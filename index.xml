@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>forest nook</title><link>/diary/</link><description>Recent content on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Tue, 28 Sep 2021 08:35:36 +0900</lastBuildDate><atom:link href="/diary/index.xml" rel="self" type="application/rss+xml"/><item><title>副反応はいずこ？</title><link>/diary/posts/2021/0928/</link><pubDate>Tue, 28 Sep 2021 08:35:36 +0900</pubDate><guid>/diary/posts/2021/0928/</guid><description>2時過ぎぐらいに寝て5時前ぐらいに起きる。やや熱っぽいかなぁぐらいの印象でもう一度寝る。8時前に起きるともう平気になってた。とくに体調は悪くない。
 昨日、書籍や macbook を持って帰ってきて引きこもり対策してたけど、体調が悪くないのでオフィスへ行くことにした。
-水分補給 副反応対策として、ポカリスエットイオンウォーターの粉末をウォーターサーバーの水に混ぜて飲んでみる。イオンウォーターと普通の ポカリスエットとの違いは何ですか？ によると、基本的な成分は同じで低カロリーという違いがあるらしい。</description><content>&lt;p>2時過ぎぐらいに寝て5時前ぐらいに起きる。やや熱っぽいかなぁぐらいの印象でもう一度寝る。8時前に起きるともう平気になってた。とくに体調は悪くない。&lt;/p>
+水分補給 副反応対策として、ポカリスエットイオンウォーターの粉末をウォーターサーバーの水に混ぜて飲んでみる。イオンウォーターと普通の ポカリスエットとの違いは何ですか？ によると、基本的な成分は同じで低カロリーという違いがあるらしい。
+日記サイト構築 diary リポジトリに push すると GitHub Actions で静的サイトをビルドして GitHub Pages で扱うための gh-pages ブランチに push される。GitHub Actions による GitHub Pages への自動デプロイ を参考にした。gh-pages ブランチにあるものが次の URL で参照される。リポジトリ名の diary がパスになるらしい。
+https://t2y.github.io/diary/ まだ設定は不完全だけど、運用しながらおいおい設定を詰めていく。Hugo は会社のホームページにも使っているので慣れているのと、使い心地も気に入っているのでこのまま使い続ける。会社のサイトはたまにしか更新しないので日記を書く方が更新頻度があがって Hugo を触るインセンティブになるかもしれない。</description><content>&lt;p>2時過ぎぐらいに寝て5時前ぐらいに起きる。やや熱っぽいかなぁぐらいの印象でもう一度寝る。8時前に起きるともう平気になってた。とくに体調は悪くない。&lt;/p>
 &lt;p>昨日、書籍や macbook を持って帰ってきて引きこもり対策してたけど、体調が悪くないのでオフィスへ行くことにした。&lt;/p>
 &lt;h2 id="水分補給">水分補給&lt;/h2>
-&lt;p>副反応対策として、ポカリスエットイオンウォーターの粉末をウォーターサーバーの水に混ぜて飲んでみる。イオンウォーターと普通の &lt;a href="https://www.otsuka.co.jp/faq/ionwater/01.html">ポカリスエットとの違いは何ですか？&lt;/a> によると、基本的な成分は同じで低カロリーという違いがあるらしい。&lt;/p></content></item><item><title>コロナワクチン2回目</title><link>/diary/posts/2021/0927/</link><pubDate>Mon, 27 Sep 2021 23:08:08 +0900</pubDate><guid>/diary/posts/2021/0927/</guid><description>土曜日は昼寝してたくさん寝たせいか、昨日はうまく寝れなかった。4時頃に 「手で書くこと」が知性を引き出す 心を整え、思考を解き放つ新習慣「ジャーナリング」入門 の序章と1章を読んだ。手で書くのとキーボードをタイピングするのでは前者の方が脳が活性化されるらしい。指先の細かい制御が脳に効果的なようだ。5時ぐらいから寝て8時前に起きる。
+&lt;p>副反応対策として、ポカリスエットイオンウォーターの粉末をウォーターサーバーの水に混ぜて飲んでみる。イオンウォーターと普通の &lt;a href="https://www.otsuka.co.jp/faq/ionwater/01.html">ポカリスエットとの違いは何ですか？&lt;/a> によると、基本的な成分は同じで低カロリーという違いがあるらしい。&lt;/p>
+&lt;h2 id="日記サイト構築">日記サイト構築&lt;/h2>
+&lt;p>&lt;a href="https://github.com/t2y/diary">diary&lt;/a> リポジトリに push すると GitHub Actions で静的サイトをビルドして GitHub Pages で扱うための gh-pages ブランチに push される。&lt;a href="https://qiita.com/peaceiris/items/d401f2e5724fdcb0759d">GitHub Actions による GitHub Pages への自動デプロイ&lt;/a> を参考にした。gh-pages ブランチにあるものが次の URL で参照される。リポジトリ名の &lt;code>diary&lt;/code> がパスになるらしい。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://t2y.github.io/diary/">https://t2y.github.io/diary/&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>まだ設定は不完全だけど、運用しながらおいおい設定を詰めていく。&lt;a href="https://gohugo.io/">Hugo&lt;/a> は会社のホームページにも使っているので慣れているのと、使い心地も気に入っているのでこのまま使い続ける。会社のサイトはたまにしか更新しないので日記を書く方が更新頻度があがって Hugo を触るインセンティブになるかもしれない。&lt;/p></content></item><item><title>コロナワクチン2回目</title><link>/diary/posts/2021/0927/</link><pubDate>Mon, 27 Sep 2021 23:08:08 +0900</pubDate><guid>/diary/posts/2021/0927/</guid><description>土曜日は昼寝してたくさん寝たせいか、昨日はうまく寝れなかった。4時頃に 「手で書くこと」が知性を引き出す 心を整え、思考を解き放つ新習慣「ジャーナリング」入門 の序章と1章を読んだ。手で書くのとキーボードをタイピングするのでは前者の方が脳が活性化されるらしい。指先の細かい制御が脳に効果的なようだ。5時ぐらいから寝て8時前に起きる。
 Horizon Workrooms Oculus Quest 2 を使って顧問の知人と workrooms を使って仕事の打ち合わせをやってみた。
 https://www.oculus.com/workrooms/ 9時から1時間強ほど打ち合わせ。
 macbook を Oculus リモートデスクトップで接続して、ホワイトボード (スクリーン) で共有しながらの会話をやってみた。所感としてはこんなところ。
