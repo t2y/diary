@@ -113,7 +113,7 @@ $ wine ~/Downloads/OculusSetup.exe
 &lt;li>&lt;a href="https://github.com/panr/hugo-theme-terminal">https://github.com/panr/hugo-theme-terminal&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;p>18時から20時ぐらいまでオフィスで作業して、買い物して帰ってきて晩ご飯食べて、その後も環境構築の作業をした。翌2時の時点で全くしんどくない。&lt;code>config.toml&lt;/code> の設定項目に対するドキュメントがないけど、直接 grep で html のソースをみた方が早いことに気づいた。&lt;/p>
-&lt;p>とりあえずコンテンツを書いてみて、そこそこの見た目で表示できるようになった。まだ完全ではないので随時、後日、ソースを読みながら設定していく。&lt;/p></content></item><item><title>Showcase</title><link>/diary/showcase/</link><pubDate>Mon, 27 Sep 2021 19:07:04 +0900</pubDate><guid>/diary/showcase/</guid><description>しょーけーす</description><content>&lt;p>しょーけーす&lt;/p></content></item><item><title>自己紹介</title><link>/diary/about/</link><pubDate>Mon, 27 Sep 2021 18:47:53 +0900</pubDate><guid>/diary/about/</guid><description>1979年生まれ。
+&lt;p>とりあえずコンテンツを書いてみて、そこそこの見た目で表示できるようになった。まだ完全ではないので随時、後日、ソースを読みながら設定していく。&lt;/p></content></item><item><title>自己紹介</title><link>/diary/about/</link><pubDate>Mon, 27 Sep 2021 18:47:53 +0900</pubDate><guid>/diary/about/</guid><description>1979年生まれ。
 IT 業界の様々な企業で働いてきた。
 中堅 SIer Linux Distributor 小さいパッケージベンダー 中堅パッケージベンダー Web サービススタートアップ 大規模ポータルサイト運営企業 SE からプログラマーに転身して10年ほどの経験。プログラマーとして自信がもてるようになったものの、勤めていた企業では評価されずリストラ対象要員だと思うようになる。
 2019年に カザモリ合同会社 を起業してマイクロ法人として世の中に役に立つことをしようと考え始める。
