@@ -47,7 +47,7 @@ paginate = 7
   [languages.en]
     languageName = "English"
     title = "forest nook"
-    subtitle = "A simple, retro theme for Hugo"
+    subtitle = ""
     owner = "Tetsuya Morimoto"
     keywords = ""
     copyright = "© 2021 Tetsuya Morimoto"
