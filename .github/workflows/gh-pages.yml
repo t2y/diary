@@ -24,6 +24,7 @@ jobs:
 
       - name: Build
         run: |
+          git submodule update --init
           cd diary
           hugo --minify
 
