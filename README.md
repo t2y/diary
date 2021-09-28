@@ -1,4 +1,4 @@
-# gh-pages-contents
+# diary
 
 Contents repository for GitHub Pages
 
@@ -20,8 +20,8 @@ hugo v0.84.4 linux/amd64 BuildDate=unknown
 Clone this repository.
 
 ```bash
-$ git clone git@github.com:t2y/gh-pages-contents.git
-$ cd gh-pages-contents/
+$ git clone git@github.com:t2y/diary.git
+$ cd diary/
 ```
 
 ### Run only once after the repository was cloned
@@ -57,7 +57,7 @@ To create new contents, use the `new` command with the path in contents director
 
 ```bash
 $ hugo new posts/2021/0927.md
-path/to/gh-pages-contents/diary/content/posts/2021/0927.md created
+path/to/diary/diary/content/posts/2021/0927.md created
 ```
 
 ## License
