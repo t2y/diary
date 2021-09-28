@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>forest nook</title><link>/</link><description>Recent content on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Tue, 28 Sep 2021 08:35:36 +0900</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>副反応はいずこ？</title><link>/posts/2021/0928/</link><pubDate>Tue, 28 Sep 2021 08:35:36 +0900</pubDate><guid>/posts/2021/0928/</guid><description>2時過ぎぐらいに寝て5時前ぐらいに起きる。やや熱っぽいかなぁぐらいの印象でもう一度寝る。8時前に起きるともう平気になってた。とくに体調は悪くない。
+昨日、書籍や macbook を持って帰ってきて引きこもり対策してたけど、体調が悪くないのでオフィスへ行くことにした。
+水分補給 副反応対策として、ポカリスエットイオンウォーターの粉末をウォーターサーバーの水に混ぜて飲んでみる。イオンウォーターと普通の ポカリスエットとの違いは何ですか？ によると、基本的な成分は同じで低カロリーという違いがあるらしい。</description><content>&lt;p>2時過ぎぐらいに寝て5時前ぐらいに起きる。やや熱っぽいかなぁぐらいの印象でもう一度寝る。8時前に起きるともう平気になってた。とくに体調は悪くない。&lt;/p>
+&lt;p>昨日、書籍や macbook を持って帰ってきて引きこもり対策してたけど、体調が悪くないのでオフィスへ行くことにした。&lt;/p>
+&lt;h2 id="水分補給">水分補給&lt;/h2>
+&lt;p>副反応対策として、ポカリスエットイオンウォーターの粉末をウォーターサーバーの水に混ぜて飲んでみる。イオンウォーターと普通の &lt;a href="https://www.otsuka.co.jp/faq/ionwater/01.html">ポカリスエットとの違いは何ですか？&lt;/a> によると、基本的な成分は同じで低カロリーという違いがあるらしい。&lt;/p></content></item><item><title>コロナワクチン2回目</title><link>/posts/2021/0927/</link><pubDate>Mon, 27 Sep 2021 23:08:08 +0900</pubDate><guid>/posts/2021/0927/</guid><description>土曜日は昼寝してたくさん寝たせいか、昨日はうまく寝れなかった。4時頃に 「手で書くこと」が知性を引き出す 心を整え、思考を解き放つ新習慣「ジャーナリング」入門 の序章と1章を読んだ。手で書くのとキーボードをタイピングするのでは前者の方が脳が活性化されるらしい。指先の細かい制御が脳に効果的なようだ。5時ぐらいから寝て8時前に起きる。
+Horizon Workrooms Oculus Quest 2 を使って顧問の知人と workrooms を使って仕事の打ち合わせをやってみた。
+https://www.oculus.com/workrooms/ 9時から1時間強ほど打ち合わせ。
+macbook を Oculus リモートデスクトップで接続して、ホワイトボード (スクリーン) で共有しながらの会話をやってみた。所感としてはこんなところ。
+リモートデスクトップと画面共有 目の前の画面を大きくできるのでホワイトボード (スクリーン) よりみやすい 眼の前の画面をみて説明すると、相手の顔が見えないので vr のメリットが半減する 半仮想モードで話しながらメモをとるのは可能ではあるが、現実でやるよりも難しいので効率が悪化する パソコンの操作が現実よりも難しいので、操作しないインセンティブになりがち リモートデスクトップで画面共有をしていたせいか、
+フル充電した状態から1.5 時間ぐらいでバッテリーが少ない警告が出た ヘッドセットの位置調整がうまくいかないと画面の文字がぼやけたりする ヘッドセットの固定がうまくいかないと、会議に集中できず、ストレスになる 1時間程度の会議であれば、とくに vr による疲れなどは気にならない 打ち合わせ終わってから NeosVR をするために Linux マシンと Oculus Quest 2 を接続する方法を検討。
+https://neosvrjp.memo.wiki/ Oculus Link アプリを PC にインストールする必要があるが、Windows 向けにしか提供されていない。wine で動かない、一通りツール類をインストールして試してみたつもりだけど、このエラーを解決できなかった。諦める。
+$ wine --version wine-5.0 (Ubuntu 5.0-3ubuntu1) $ wine ~/Downloads/OculusSetup.</description><content>&lt;p>土曜日は昼寝してたくさん寝たせいか、昨日はうまく寝れなかった。4時頃に &lt;a href="https://bunkyosha.com/books/9784866510149">「手で書くこと」が知性を引き出す 心を整え、思考を解き放つ新習慣「ジャーナリング」入門&lt;/a> の序章と1章を読んだ。手で書くのとキーボードをタイピングするのでは前者の方が脳が活性化されるらしい。指先の細かい制御が脳に効果的なようだ。5時ぐらいから寝て8時前に起きる。&lt;/p>
+&lt;h2 id="horizon-workrooms">Horizon Workrooms&lt;/h2>
+&lt;p>Oculus Quest 2 を使って顧問の知人と workrooms を使って仕事の打ち合わせをやってみた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://www.oculus.com/workrooms/">https://www.oculus.com/workrooms/&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>9時から1時間強ほど打ち合わせ。&lt;/p>
+&lt;p>macbook を Oculus リモートデスクトップで接続して、ホワイトボード (スクリーン) で共有しながらの会話をやってみた。所感としてはこんなところ。&lt;/p>
+&lt;ul>
+&lt;li>リモートデスクトップと画面共有
+&lt;ul>
+&lt;li>目の前の画面を大きくできるのでホワイトボード (スクリーン) よりみやすい&lt;/li>
+&lt;li>眼の前の画面をみて説明すると、相手の顔が見えないので vr のメリットが半減する&lt;/li>
+&lt;li>半仮想モードで話しながらメモをとるのは可能ではあるが、現実でやるよりも難しいので効率が悪化する&lt;/li>
+&lt;li>パソコンの操作が現実よりも難しいので、操作しないインセンティブになりがち&lt;/li>
+&lt;li>リモートデスクトップで画面共有をしていたせいか、&lt;br>
+フル充電した状態から1.5 時間ぐらいでバッテリーが少ない警告が出た&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>ヘッドセットの位置調整がうまくいかないと画面の文字がぼやけたりする&lt;/li>
+&lt;li>ヘッドセットの固定がうまくいかないと、会議に集中できず、ストレスになる&lt;/li>
+&lt;li>1時間程度の会議であれば、とくに vr による疲れなどは気にならない&lt;/li>
+&lt;/ul>
+&lt;p>打ち合わせ終わってから NeosVR をするために Linux マシンと Oculus Quest 2 を接続する方法を検討。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://neosvrjp.memo.wiki/">https://neosvrjp.memo.wiki/&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>Oculus Link アプリを PC にインストールする必要があるが、Windows 向けにしか提供されていない。wine で動かない、一通りツール類をインストールして試してみたつもりだけど、このエラーを解決できなかった。諦める。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ wine --version
+wine-5.0 &lt;span style="color:#f92672">(&lt;/span>Ubuntu 5.0-3ubuntu1&lt;span style="color:#f92672">)&lt;/span>
+$ wine ~/Downloads/OculusSetup.exe
+002a:err:mscoree:CLRRuntimeInfo_GetRuntimeHost Wine Mono is not installed
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Windows マシンを買うにしても PCVR をするにはそこそこのスペックが必要になり、ざっと調べると10-20万円ぐらい。ノートPCでも15-16インチぐらいのを購入すればスペック的には大丈夫そうといった記事がいくつかみつかった。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://vr-game.pw/blog/how-to-chooes-vr-pc/">https://vr-game.pw/blog/how-to-chooes-vr-pc/&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://kimono-oyaji.com/laptoppc-for-hmd-01/">https://kimono-oyaji.com/laptoppc-for-hmd-01/&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>このために Windows マシンを買ってまでやるほどのことでもないので PCVR は断念して普通に Linux マシンで NeosVR に挑戦することに決めた。&lt;/p>
+&lt;h2 id="お昼">お昼&lt;/h2>
+&lt;p>14時前ぐらいにお昼ご飯に出かけた。近所の居酒屋さんが緊急事態宣言の期間だけお弁当を販売している。いつもは13時頃には売り切れているのに、今日はたまたま14時なのに3個も残ってた。500円でおかずがいろいろ入っててコスパがいい。そのままお弁当を買ってオフィスで食べることにした。&lt;/p>
+&lt;h2 id="日記を書く環境を決める">日記を書く環境を決める&lt;/h2>
+&lt;p>この後、コロナワクチン2回目摂取があるので、副反応の発熱でいつ作業が中断してもよいように日記を書くための環境を構築することにした。&lt;/p>
+&lt;p>ざっくり条件はこんな感じ。&lt;/p>
+&lt;ul>
+&lt;li>目的は「書くこと」そのもの&lt;/li>
+&lt;li>シンプルに自分が読むためだけの文章を書ければよい&lt;/li>
+&lt;li>エディターやビューアをロックインされたくない&lt;/li>
+&lt;li>コンテンツをテキスト (markdown) で扱いたい&lt;/li>
+&lt;li>コンテンツをサービスにロックインされたくない&lt;/li>
+&lt;/ul>
+&lt;p>それぞれのツールを検討してたときのメモ。&lt;/p>
+&lt;ul>
+&lt;li>ブログプラットフォームは使いたくない
+&lt;ul>
+&lt;li>hatena, medium, note はすでに使っているので除外&lt;/li>
+&lt;li>広告やガジェットや管理ツールとかいらない&lt;/li>
+&lt;li>シンプルさがなくなってしまう&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>メモツールに書く
+&lt;ul>
+&lt;li>&lt;a href="https://obsidian.md/">obsidian&lt;/a> や &lt;a href="https://hackmd.io/">hackmd&lt;/a> など&lt;/li>
+&lt;li>メモツールなので日記を書く用途とはちょっとズレる&lt;/li>
+&lt;li>シンプルさがなくなってしまう&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>wiki に書く
+&lt;ul>
+&lt;li>&lt;a href="https://www.notion.so/">notion&lt;/a> や &lt;a href="https://github.com/weseek/growi">growi&lt;/a> など&lt;/li>
+&lt;li>シンプルさがなくなってしまう&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>ジャーナルアプリに書く
+&lt;ul>
+&lt;li>まさに日記そのものだけど、有償のプロダクトが多い&lt;/li>
+&lt;li>エディターは専用アプリになりそう&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>自分で日記ツールを作る
+&lt;ul>
+&lt;li>headless CMS とフロントエンドを実装する&lt;/li>
+&lt;li>いま日記を書き始めたいのにいつ書き始められるかわからない&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>最終的に残ったのは &lt;a href="https://docs.github.com/ja/pages">GitHub Pages&lt;/a> だった。&lt;/p>
+&lt;ul>
+&lt;li>静的サイトジェネレーターに &lt;a href="https://gohugo.io/">Hugo&lt;/a> を使う&lt;/li>
+&lt;li>Hugo のテーマをカスタマイズすればシンプルにできそう？&lt;/li>
+&lt;li>自分の好きなエディターで書ける&lt;/li>
+&lt;li>自分の好きなビューア (ブラウザ) で読める&lt;/li>
+&lt;li>Git リポジトリなのでサービスにロックインされない&lt;/li>
+&lt;/ul>
+&lt;h2 id="コロナワクチン2回目摂取">コロナワクチン2回目摂取&lt;/h2>
+&lt;p>1回目の後、最速の日程から1週間ほど遅れてネット予約が取れた。摂取会場のクリニックでは、午前中は1回目、午後は診療やって、夕方に2回目摂取の時間帯になっているみたい。したがって17時という遅い時間帯に摂取した。私を含め、6人しか患者がいなかったので混雑も待ち時間もなくすぐに摂取して、15分ほど様子をみて帰ることができた。&lt;/p>
+&lt;p>ワクチン打った後、facebook にコメントを残したり、家族へ LINE でメッセージを送った。&lt;/p>
+&lt;p>それで何が変わるかわかってないけど、一人暮らしなので万が一、体調が悪くなって誰も気づかないままそのまま死んだとしても、ワクチンで運が悪くてしんだんやなと周りの人が気付けるようにという意図がある。一体、誰に気を使っているのか、自分でもよくわからないけど、自分が不慮の事故で死んでしまったとして、身近な人には多少なりとも背景が伝わることでお別れの挨拶変わりにはなるかな？という、変な気遣いをしている。&lt;/p>
+&lt;h2 id="terminal-のカスタマイズ">Terminal のカスタマイズ&lt;/h2>
+&lt;p>副反応の発熱でいつ作業が中断してもよいように日記を書くための Hugo の Terminal というテーマの設定を始めた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/panr/hugo-theme-terminal">https://github.com/panr/hugo-theme-terminal&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>18時から20時ぐらいまでオフィスで作業して、買い物して帰ってきて晩ご飯食べて、その後も環境構築の作業をした。翌2時の時点で全くしんどくない。&lt;code>config.toml&lt;/code> の設定項目に対するドキュメントがないけど、直接 grep で html のソースをみた方が早いことに気づいた。&lt;/p>
+&lt;p>とりあえずコンテンツを書いてみて、そこそこの見た目で表示できるようになった。まだ完全ではないので随時、後日、ソースを読みながら設定していく。&lt;/p></content></item><item><title>Showcase</title><link>/showcase/</link><pubDate>Mon, 27 Sep 2021 19:07:04 +0900</pubDate><guid>/showcase/</guid><description>しょーけーす</description><content>&lt;p>しょーけーす&lt;/p></content></item><item><title>自己紹介</title><link>/about/</link><pubDate>Mon, 27 Sep 2021 18:47:53 +0900</pubDate><guid>/about/</guid><description>1979年生まれ。
+IT 業界の様々な企業で働いてきた。
+中堅 SIer Linux Distributor 小さいパッケージベンダー 中堅パッケージベンダー Web サービススタートアップ 大規模ポータルサイト運営企業 SE からプログラマーに転身して10年ほどの経験。プログラマーとして自信がもてるようになったものの、勤めていた企業では評価されずリストラ対象要員だと思うようになる。
+2019年に カザモリ合同会社 を起業してマイクロ法人として世の中に役に立つことをしようと考え始める。
+GitHub アカウント。
+https://github.com/t2y 初学者向けのメンタープラン。
+https://menta.work/plan/4385 技術情報を書く個人ブログ。最近はあまり書いてない。
+https://t2y.hatenablog.jp/ Qiita。プライバシーポリシーの杜撰な管理で嫌気がさして今後は書かない。既存の記事は削除しない。
+https://qiita.com/t2y 日々の雑感を書く個人ブログ。最近はあまり書いてない。
+https://medium.com/@t2y1979 企業活動での雑感を書く個人ブログ。
+https://note.com/t2y1979/ 会社のブログ記事。業務でやったことなどを書く。
+https://kazamori.jp/blogs/</description><content>&lt;p>1979年生まれ。&lt;/p>
+&lt;p>IT 業界の様々な企業で働いてきた。&lt;/p>
+&lt;ol>
+&lt;li>中堅 SIer&lt;/li>
+&lt;li>Linux Distributor&lt;/li>
+&lt;li>小さいパッケージベンダー&lt;/li>
+&lt;li>中堅パッケージベンダー&lt;/li>
+&lt;li>Web サービススタートアップ&lt;/li>
+&lt;li>大規模ポータルサイト運営企業&lt;/li>
+&lt;/ol>
+&lt;p>SE からプログラマーに転身して10年ほどの経験。プログラマーとして自信がもてるようになったものの、勤めていた企業では評価されずリストラ対象要員だと思うようになる。&lt;/p>
+&lt;p>2019年に &lt;a href="https://kazamori.jp/">カザモリ合同会社&lt;/a> を起業してマイクロ法人として世の中に役に立つことをしようと考え始める。&lt;/p>
+&lt;hr>
+&lt;p>GitHub アカウント。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/t2y">https://github.com/t2y&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>初学者向けのメンタープラン。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://menta.work/plan/4385">https://menta.work/plan/4385&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>技術情報を書く個人ブログ。最近はあまり書いてない。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://t2y.hatenablog.jp/">https://t2y.hatenablog.jp/&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>Qiita。プライバシーポリシーの杜撰な管理で嫌気がさして今後は書かない。既存の記事は削除しない。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://qiita.com/t2y">https://qiita.com/t2y&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>日々の雑感を書く個人ブログ。最近はあまり書いてない。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://medium.com/@t2y1979">https://medium.com/@t2y1979&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>企業活動での雑感を書く個人ブログ。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://note.com/t2y1979/">https://note.com/t2y1979/&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>会社のブログ記事。業務でやったことなどを書く。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://kazamori.jp/blogs/">https://kazamori.jp/blogs/&lt;/a>&lt;/li>
+&lt;/ul></content></item><item><title>iostat-tool メンテ</title><link>/posts/2021/0926/</link><pubDate>Sun, 26 Sep 2021 21:35:06 +0900</pubDate><guid>/posts/2021/0926/</guid><description>再現調査 お昼ぐらいオフィスに行って事前に下調べしてあった iostat-tool の不具合修正をする。
+https://github.com/t2y/iostat-tool/issues/3 前職でディスクI/Oの振る舞いを調査していたときに iostat のアウトプットを直接みてもわからないので視覚化するツールを作った。例えば、iostat -ymxt 1 のアウトプットは次のようなログになる。
+06/13/2018 02:10:50 PM avg-cpu: %user %nice %system %iowait %steal %idle 0.47 0.00 0.24 0.18 0.00 99.11 Device: rrqm/s wrqm/s r/s w/s rMB/s wMB/s avgrq-sz avgqu-sz await r_await w_await svctm %util sdd 0.07 45.88 1.57 0.59 0.08 0.18 246.55 0.26 121.04 1.28 436.94 2.07 0.45 sdh 0.07 45.78 1.59 0.60 0.08 0.18 245.64 0.22 101.97 1.17 367.51 1.89 0.</description><content>&lt;h2 id="再現調査">再現調査&lt;/h2>
+&lt;p>お昼ぐらいオフィスに行って事前に下調べしてあった iostat-tool の不具合修正をする。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/t2y/iostat-tool/issues/3">https://github.com/t2y/iostat-tool/issues/3&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>前職でディスクI/Oの振る舞いを調査していたときに iostat のアウトプットを直接みてもわからないので視覚化するツールを作った。例えば、&lt;code>iostat -ymxt 1&lt;/code> のアウトプットは次のようなログになる。&lt;/p>
+&lt;pre tabindex="0">&lt;code>06/13/2018 02:10:50 PM
+avg-cpu: %user %nice %system %iowait %steal %idle
+0.47 0.00 0.24 0.18 0.00 99.11
+Device: rrqm/s wrqm/s r/s w/s rMB/s wMB/s avgrq-sz avgqu-sz await r_await w_await svctm %util
+sdd 0.07 45.88 1.57 0.59 0.08 0.18 246.55 0.26 121.04 1.28 436.94 2.07 0.45
+sdh 0.07 45.78 1.59 0.60 0.08 0.18 245.64 0.22 101.97 1.17 367.51 1.89 0.41
+sdb 0.25 74.42 5.70 0.87 0.57 0.29 268.00 0.32 49.24 38.06 123.00 1.83 1.20
+sdg 0.07 45.84 1.57 0.60 0.08 0.18 246.12 0.26 118.32 1.24 426.10 2.05 0.44
+sdc 0.10 46.79 1.62 0.63 0.09 0.19 246.47 0.16 72.62 11.13 232.29 1.39 0.31
+sde 0.07 45.79 1.56 0.60 0.08 0.18 246.16 0.21 98.68 1.10 351.50 1.83 0.39
+sdj 0.07 45.88 1.56 0.60 0.08 0.18 245.68 0.21 95.91 1.07 341.03 1.80 0.39
+sdf 0.07 45.76 1.58 0.60 0.08 0.18 245.70 0.19 85.95 1.03 308.11 1.79 0.39
+sdk 0.07 46.68 1.56 0.61 0.08 0.18 247.68 0.28 128.43 1.25 455.92 2.17 0.47
+sdi 0.07 45.67 1.57 0.60 0.08 0.18 244.58 0.21 96.74 1.11 344.99 1.84 0.40
+sda 0.16 15.06 0.15 1.95 0.01 0.07 72.69 0.13 61.45 3.77 65.84 8.24 1.73
+&lt;/code>&lt;/pre>&lt;p>当時 rhel6 相当のディストリビューションで検証していた。そのため、その iostat のバージョンしかテストしてなかった。その後、時間が経って新しい項目が増えたり、同じ項目でも名前が変わったりしたみたい。vagrant で &lt;a href="https://app.vagrantup.com/bento/boxes/centos-8">bento/centos-8&lt;/a> の環境を構築して &lt;code>man iostat&lt;/code> や iostat のアウトプットを出力しながら確認した。&lt;/p>
+&lt;p>CentOS 8.3 の systat 11.7.3 のバージョンのアウトプットはこんな感じ。&lt;/p>
+&lt;pre tabindex="0">&lt;code>09/26/21 03:35:19
+avg-cpu: %user %nice %system %iowait %steal %idle
+0.00 0.00 0.00 0.00 0.00 1.00
+Device r/s w/s rMB/s wMB/s rrqm/s wrqm/s %rrqm %wrqm r_await w_await aqu-sz rareq-sz wareq-sz svctm %util
+sda 1.00 0.00 0.01 0.00 0.00 0.00 0.00 0.00 1.00 0.00 0.00 8.00 0.00 2.00 0.20
+&lt;/code>&lt;/pre>&lt;h2 id="時刻のフォーマットが違う">時刻のフォーマットが違う&lt;/h2>
+&lt;p>これは sysstat のバージョンによるものではないけど、ロケールの &lt;code>LC_TIME&lt;/code> のエンコーディング指定を変えると時刻のフォーマットが変わることに気づいた。これも en 環境しかチェックしてなかったから今回 ja でも正しく時刻をパースできるように修正した。&lt;/p>
+&lt;pre tabindex="0">&lt;code>old: 06/13/2018 02:10:50 PM # LC_TIME=&amp;quot;en_US.UTF-8&amp;quot;
+new: 09/26/21 03:35:19 # LC_TIME=&amp;quot;ja_JP.UTF-8&amp;quot;
+&lt;/code>&lt;/pre>&lt;h2 id="device-の軽微な変更と項目の変更">Device の軽微な変更と項目の変更&lt;/h2>
+&lt;p>新しいフォーマットだと &lt;code>Device:&lt;/code> のコロン文字がなくなってたりしてパースできなくなっていた。あと次の項目が名前変更、または新規追加されてた。&lt;/p>
+&lt;ul>
+&lt;li>aqu-sz&lt;/li>
+&lt;li>rareq-sz&lt;/li>
+&lt;li>wareq-sz&lt;/li>
+&lt;li>%rrqm&lt;/li>
+&lt;li>%wrqm&lt;/li>
+&lt;/ul>
+&lt;p>基本的にパーサーをいじる必要はなくて項目の追加などで対応できた。当時、検証していたとき、作業がうまくいってなくて2-3日で突貫で作ったツールなのでパーサーはあまりきれいに実装はされていない。作った本人がみても1-2時間デバッグしながら直す必要があった。今後も iostat のアウトプットに大きな変更があるとは思えないからまぁいいかな。&lt;/p>
+&lt;h2 id="generator-based-coroutines-の-deprecated">generator-based coroutines の deprecated&lt;/h2>
+&lt;p>このツールを作った当時、python 3.4 以上をサポートする必要があったの generator-based coroutines で実装した気がする。それが 3.8 以降は deprecated になっているみたい。今回保守するときにサポート対象を 3.6 以上に変更したのですべて &lt;code>async def&lt;/code> で書き直せるようになった。そう急ぐ必要もないのでまた今後、気が向いたら async 周りの実装も見直しながらやってみる。覚えていたら。&lt;/p>
+&lt;blockquote>
+&lt;p>Deprecated since version 3.8, will be removed in version 3.10: Use async def instead.&lt;/p>
+&lt;p>&lt;a href="https://docs.python.org/ja/3/library/asyncio-task.html#asyncio.coroutine">https://docs.python.org/ja/3/library/asyncio-task.html#asyncio.coroutine&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="iostat-tool-030-リリース">iostat-tool 0.3.0 リリース&lt;/h2>
+&lt;p>2018年から約3年ぶりに保守した。ついでに GitHub Actions で lint check と doctest の CI を実行するように変更した。&lt;/p>
+&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">新しい iostat のログフォーマットにも対応して 0.3.0 をリリースした。&lt;a href="https://t.co/zwFuomvStO">https://t.co/zwFuomvStO&lt;/a>&lt;/p>&amp;mdash; Tetsuya Morimoto (@t2y) &lt;a href="https://twitter.com/t2y/status/1442023934195421185?ref_src=twsrc%5Etfw">September 26, 2021&lt;/a>&lt;/blockquote>
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script></content></item></channel></rss>

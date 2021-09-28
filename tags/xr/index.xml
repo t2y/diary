@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>xr on forest nook</title><link>/tags/xr/</link><description>Recent content in xr on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Mon, 27 Sep 2021 23:08:08 +0900</lastBuildDate><atom:link href="/tags/xr/index.xml" rel="self" type="application/rss+xml"/><item><title>コロナワクチン2回目</title><link>/posts/2021/0927/</link><pubDate>Mon, 27 Sep 2021 23:08:08 +0900</pubDate><guid>/posts/2021/0927/</guid><description>土曜日は昼寝してたくさん寝たせいか、昨日はうまく寝れなかった。4時頃に 「手で書くこと」が知性を引き出す 心を整え、思考を解き放つ新習慣「ジャーナリング」入門 の序章と1章を読んだ。手で書くのとキーボードをタイピングするのでは前者の方が脳が活性化されるらしい。指先の細かい制御が脳に効果的なようだ。5時ぐらいから寝て8時前に起きる。
+Horizon Workrooms Oculus Quest 2 を使って顧問の知人と workrooms を使って仕事の打ち合わせをやってみた。
+https://www.oculus.com/workrooms/ 9時から1時間強ほど打ち合わせ。
+macbook を Oculus リモートデスクトップで接続して、ホワイトボード (スクリーン) で共有しながらの会話をやってみた。所感としてはこんなところ。
+リモートデスクトップと画面共有 目の前の画面を大きくできるのでホワイトボード (スクリーン) よりみやすい 眼の前の画面をみて説明すると、相手の顔が見えないので vr のメリットが半減する 半仮想モードで話しながらメモをとるのは可能ではあるが、現実でやるよりも難しいので効率が悪化する パソコンの操作が現実よりも難しいので、操作しないインセンティブになりがち リモートデスクトップで画面共有をしていたせいか、
+フル充電した状態から1.5 時間ぐらいでバッテリーが少ない警告が出た ヘッドセットの位置調整がうまくいかないと画面の文字がぼやけたりする ヘッドセットの固定がうまくいかないと、会議に集中できず、ストレスになる 1時間程度の会議であれば、とくに vr による疲れなどは気にならない 打ち合わせ終わってから NeosVR をするために Linux マシンと Oculus Quest 2 を接続する方法を検討。
+https://neosvrjp.memo.wiki/ Oculus Link アプリを PC にインストールする必要があるが、Windows 向けにしか提供されていない。wine で動かない、一通りツール類をインストールして試してみたつもりだけど、このエラーを解決できなかった。諦める。
+$ wine --version wine-5.0 (Ubuntu 5.0-3ubuntu1) $ wine ~/Downloads/OculusSetup.</description><content>&lt;p>土曜日は昼寝してたくさん寝たせいか、昨日はうまく寝れなかった。4時頃に &lt;a href="https://bunkyosha.com/books/9784866510149">「手で書くこと」が知性を引き出す 心を整え、思考を解き放つ新習慣「ジャーナリング」入門&lt;/a> の序章と1章を読んだ。手で書くのとキーボードをタイピングするのでは前者の方が脳が活性化されるらしい。指先の細かい制御が脳に効果的なようだ。5時ぐらいから寝て8時前に起きる。&lt;/p>
+&lt;h2 id="horizon-workrooms">Horizon Workrooms&lt;/h2>
+&lt;p>Oculus Quest 2 を使って顧問の知人と workrooms を使って仕事の打ち合わせをやってみた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://www.oculus.com/workrooms/">https://www.oculus.com/workrooms/&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>9時から1時間強ほど打ち合わせ。&lt;/p>
+&lt;p>macbook を Oculus リモートデスクトップで接続して、ホワイトボード (スクリーン) で共有しながらの会話をやってみた。所感としてはこんなところ。&lt;/p>
+&lt;ul>
+&lt;li>リモートデスクトップと画面共有
+&lt;ul>
+&lt;li>目の前の画面を大きくできるのでホワイトボード (スクリーン) よりみやすい&lt;/li>
+&lt;li>眼の前の画面をみて説明すると、相手の顔が見えないので vr のメリットが半減する&lt;/li>
+&lt;li>半仮想モードで話しながらメモをとるのは可能ではあるが、現実でやるよりも難しいので効率が悪化する&lt;/li>
+&lt;li>パソコンの操作が現実よりも難しいので、操作しないインセンティブになりがち&lt;/li>
+&lt;li>リモートデスクトップで画面共有をしていたせいか、&lt;br>
+フル充電した状態から1.5 時間ぐらいでバッテリーが少ない警告が出た&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>ヘッドセットの位置調整がうまくいかないと画面の文字がぼやけたりする&lt;/li>
+&lt;li>ヘッドセットの固定がうまくいかないと、会議に集中できず、ストレスになる&lt;/li>
+&lt;li>1時間程度の会議であれば、とくに vr による疲れなどは気にならない&lt;/li>
+&lt;/ul>
+&lt;p>打ち合わせ終わってから NeosVR をするために Linux マシンと Oculus Quest 2 を接続する方法を検討。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://neosvrjp.memo.wiki/">https://neosvrjp.memo.wiki/&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>Oculus Link アプリを PC にインストールする必要があるが、Windows 向けにしか提供されていない。wine で動かない、一通りツール類をインストールして試してみたつもりだけど、このエラーを解決できなかった。諦める。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ wine --version
+wine-5.0 &lt;span style="color:#f92672">(&lt;/span>Ubuntu 5.0-3ubuntu1&lt;span style="color:#f92672">)&lt;/span>
+$ wine ~/Downloads/OculusSetup.exe
+002a:err:mscoree:CLRRuntimeInfo_GetRuntimeHost Wine Mono is not installed
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Windows マシンを買うにしても PCVR をするにはそこそこのスペックが必要になり、ざっと調べると10-20万円ぐらい。ノートPCでも15-16インチぐらいのを購入すればスペック的には大丈夫そうといった記事がいくつかみつかった。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://vr-game.pw/blog/how-to-chooes-vr-pc/">https://vr-game.pw/blog/how-to-chooes-vr-pc/&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://kimono-oyaji.com/laptoppc-for-hmd-01/">https://kimono-oyaji.com/laptoppc-for-hmd-01/&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>このために Windows マシンを買ってまでやるほどのことでもないので PCVR は断念して普通に Linux マシンで NeosVR に挑戦することに決めた。&lt;/p>
+&lt;h2 id="お昼">お昼&lt;/h2>
+&lt;p>14時前ぐらいにお昼ご飯に出かけた。近所の居酒屋さんが緊急事態宣言の期間だけお弁当を販売している。いつもは13時頃には売り切れているのに、今日はたまたま14時なのに3個も残ってた。500円でおかずがいろいろ入っててコスパがいい。そのままお弁当を買ってオフィスで食べることにした。&lt;/p>
+&lt;h2 id="日記を書く環境を決める">日記を書く環境を決める&lt;/h2>
+&lt;p>この後、コロナワクチン2回目摂取があるので、副反応の発熱でいつ作業が中断してもよいように日記を書くための環境を構築することにした。&lt;/p>
+&lt;p>ざっくり条件はこんな感じ。&lt;/p>
+&lt;ul>
+&lt;li>目的は「書くこと」そのもの&lt;/li>
+&lt;li>シンプルに自分が読むためだけの文章を書ければよい&lt;/li>
+&lt;li>エディターやビューアをロックインされたくない&lt;/li>
+&lt;li>コンテンツをテキスト (markdown) で扱いたい&lt;/li>
+&lt;li>コンテンツをサービスにロックインされたくない&lt;/li>
+&lt;/ul>
+&lt;p>それぞれのツールを検討してたときのメモ。&lt;/p>
+&lt;ul>
+&lt;li>ブログプラットフォームは使いたくない
+&lt;ul>
+&lt;li>hatena, medium, note はすでに使っているので除外&lt;/li>
+&lt;li>広告やガジェットや管理ツールとかいらない&lt;/li>
+&lt;li>シンプルさがなくなってしまう&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>メモツールに書く
+&lt;ul>
+&lt;li>&lt;a href="https://obsidian.md/">obsidian&lt;/a> や &lt;a href="https://hackmd.io/">hackmd&lt;/a> など&lt;/li>
+&lt;li>メモツールなので日記を書く用途とはちょっとズレる&lt;/li>
+&lt;li>シンプルさがなくなってしまう&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>wiki に書く
+&lt;ul>
+&lt;li>&lt;a href="https://www.notion.so/">notion&lt;/a> や &lt;a href="https://github.com/weseek/growi">growi&lt;/a> など&lt;/li>
+&lt;li>シンプルさがなくなってしまう&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>ジャーナルアプリに書く
+&lt;ul>
+&lt;li>まさに日記そのものだけど、有償のプロダクトが多い&lt;/li>
+&lt;li>エディターは専用アプリになりそう&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>自分で日記ツールを作る
+&lt;ul>
+&lt;li>headless CMS とフロントエンドを実装する&lt;/li>
+&lt;li>いま日記を書き始めたいのにいつ書き始められるかわからない&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>最終的に残ったのは &lt;a href="https://docs.github.com/ja/pages">GitHub Pages&lt;/a> だった。&lt;/p>
+&lt;ul>
+&lt;li>静的サイトジェネレーターに &lt;a href="https://gohugo.io/">Hugo&lt;/a> を使う&lt;/li>
+&lt;li>Hugo のテーマをカスタマイズすればシンプルにできそう？&lt;/li>
+&lt;li>自分の好きなエディターで書ける&lt;/li>
+&lt;li>自分の好きなビューア (ブラウザ) で読める&lt;/li>
+&lt;li>Git リポジトリなのでサービスにロックインされない&lt;/li>
+&lt;/ul>
+&lt;h2 id="コロナワクチン2回目摂取">コロナワクチン2回目摂取&lt;/h2>
+&lt;p>1回目の後、最速の日程から1週間ほど遅れてネット予約が取れた。摂取会場のクリニックでは、午前中は1回目、午後は診療やって、夕方に2回目摂取の時間帯になっているみたい。したがって17時という遅い時間帯に摂取した。私を含め、6人しか患者がいなかったので混雑も待ち時間もなくすぐに摂取して、15分ほど様子をみて帰ることができた。&lt;/p>
+&lt;p>ワクチン打った後、facebook にコメントを残したり、家族へ LINE でメッセージを送った。&lt;/p>
+&lt;p>それで何が変わるかわかってないけど、一人暮らしなので万が一、体調が悪くなって誰も気づかないままそのまま死んだとしても、ワクチンで運が悪くてしんだんやなと周りの人が気付けるようにという意図がある。一体、誰に気を使っているのか、自分でもよくわからないけど、自分が不慮の事故で死んでしまったとして、身近な人には多少なりとも背景が伝わることでお別れの挨拶変わりにはなるかな？という、変な気遣いをしている。&lt;/p>
+&lt;h2 id="terminal-のカスタマイズ">Terminal のカスタマイズ&lt;/h2>
+&lt;p>副反応の発熱でいつ作業が中断してもよいように日記を書くための Hugo の Terminal というテーマの設定を始めた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/panr/hugo-theme-terminal">https://github.com/panr/hugo-theme-terminal&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>18時から20時ぐらいまでオフィスで作業して、買い物して帰ってきて晩ご飯食べて、その後も環境構築の作業をした。翌2時の時点で全くしんどくない。&lt;code>config.toml&lt;/code> の設定項目に対するドキュメントがないけど、直接 grep で html のソースをみた方が早いことに気づいた。&lt;/p>
+&lt;p>とりあえずコンテンツを書いてみて、そこそこの見た目で表示できるようになった。まだ完全ではないので随時、後日、ソースを読みながら設定していく。&lt;/p></content></item></channel></rss>
