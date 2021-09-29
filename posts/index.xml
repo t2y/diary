@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on forest nook</title><link>/diary/posts/</link><description>Recent content in Posts on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Wed, 29 Sep 2021 08:59:17 +0900</lastBuildDate><atom:link href="/diary/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>読書とイベント参加</title><link>/diary/posts/2021/0929/</link><pubDate>Wed, 29 Sep 2021 08:59:17 +0900</pubDate><guid>/diary/posts/2021/0929/</guid><description>昨日は24時頃に寝て8時ぐらいに起きる。やや発熱して疲れてたせいか、久しぶりに早く寝付けた。一日を通して体温は平均36.7℃なのでもう副反応は過ぎたみたい。体調もまったく悪くない。
 Joel on Software 過去に働いていた会社での課題管理のやり方や開発方法論について、当時の上司と雑談したところ Joel Spolsky に由来するということを聞いた。そこで今更ながらに More Joel on Software を読むことにした。2000年代に書かれた記事の内容なのでいまとなっては古典に分類される本かもしれない。だいたい半分ぐらい読んだ。技術の詳細に言及した内容は古くなっていてあまり有用ではないものも多いけど、マネジメントや優秀なプログラマーの特性などはいまでも通用する内容に思えた。あとで私が関心をもった内容をブログでまとめることにする。
-第10章コンピュータサイエンスの学生へのアドバイスの章で「卒業するまでにミクロ経済学を学ぶこと」という節がある。著者がミクロ経済学を推奨する理由を引用するとこれら。
+第10章コンピュータサイエンスの学生へのアドバイスで「卒業するまでにミクロ経済学を学ぶこと」という節がある。著者がミクロ経済学を推奨する理由を引用するとこれら。
 ミクロ経済学はビジネスで重要な理論すべての基礎となっている。需要と供給とか、競争優位とか、NPV とか割り引きとか限界効能について知らなければ、ビジネスの仕組みが全然理解できないからだ。
 マクロ経済学は、当たっているよりもはずれていることの方が多い。スキップしてよい。それ以降はただ悪くなっていく一方。
 ビジネスの基礎を理解しているプログラマは、理解していないプログラマよりもビジネスにおいてずっと価値が高いからだ。
 学んだことがなかったので簡単そうな ミクロ経済学入門の入門 を購入した。
-Java 17 リリースイベント 【オンライン】 JJUGナイトセミナー「Java 17 リリース記念イベント with Foojay」9/29(水) 開催 に参加した。Java の LTS はいま過渡期でややこしいことになって、8, 11, 17 になる。リリースされたばかりの Java 17 は LTS で重要なバージョンになる。Oracle Java SE Supportロードマップ から Premier Support 期限が次になる。
+読んでて気づきを得てふとツィートした。
+なので、システムのコンポーネントに関しての意思決定をするとき、必ずしも上位の意思決定者の判断が正しいわけではなく、現場のメンバーに判断を委ねる状況が最適な場合もある。一方向じゃなく、双方向の情報の非対称性を解消する取り組みが大事。
+&amp;mdash; Tetsuya Morimoto (@t2y) September 29, 2021 Java 17 リリースイベント 【オンライン】 JJUGナイトセミナー「Java 17 リリース記念イベント with Foojay」9/29(水) 開催 に参加した。Java の LTS はいま過渡期でややこしいことになって、8, 11, 17 になる。リリースされたばかりの Java 17 は LTS で重要なバージョンになる。Oracle Java SE Supportロードマップ から Premier Support 期限が次になる。
 8: 2022年3月 11: 2023年9月 17: 2026年9月 いま 11 を使っている組織はいいが、8 を使っている組織もまだまだ多いと推測する。8 と 11 の Premier Support 期限が近いことから 8 を使っている組織は 17 に一気にバージョンアップすることが想定される。どこかのタイミングで Java 17 を前提した開発に切り替わっていくだろうと思われる。</description><content>&lt;p>昨日は24時頃に寝て8時ぐらいに起きる。やや発熱して疲れてたせいか、久しぶりに早く寝付けた。一日を通して体温は平均36.7℃なのでもう副反応は過ぎたみたい。体調もまったく悪くない。&lt;/p>
 &lt;h2 id="joel-on-software">Joel on Software&lt;/h2>
 &lt;p>過去に働いていた会社での課題管理のやり方や開発方法論について、当時の上司と雑談したところ &lt;a href="https://en.wikipedia.org/wiki/Joel_Spolsky">Joel Spolsky&lt;/a> に由来するということを聞いた。そこで今更ながらに &lt;a href="https://www.shoeisha.co.jp/book/detail/9784798118925">More Joel on Software&lt;/a> を読むことにした。2000年代に書かれた記事の内容なのでいまとなっては古典に分類される本かもしれない。だいたい半分ぐらい読んだ。技術の詳細に言及した内容は古くなっていてあまり有用ではないものも多いけど、マネジメントや優秀なプログラマーの特性などはいまでも通用する内容に思えた。あとで私が関心をもった内容をブログでまとめることにする。&lt;/p>
-&lt;p>第10章コンピュータサイエンスの学生へのアドバイスの章で「卒業するまでにミクロ経済学を学ぶこと」という節がある。著者がミクロ経済学を推奨する理由を引用するとこれら。&lt;/p>
+&lt;p>第10章コンピュータサイエンスの学生へのアドバイスで「卒業するまでにミクロ経済学を学ぶこと」という節がある。著者がミクロ経済学を推奨する理由を引用するとこれら。&lt;/p>
 &lt;blockquote>
 &lt;p>ミクロ経済学はビジネスで重要な理論すべての基礎となっている。需要と供給とか、競争優位とか、NPV とか割り引きとか限界効能について知らなければ、ビジネスの仕組みが全然理解できないからだ。&lt;/p>
 &lt;p>マクロ経済学は、当たっているよりもはずれていることの方が多い。スキップしてよい。それ以降はただ悪くなっていく一方。&lt;/p>
 &lt;p>ビジネスの基礎を理解しているプログラマは、理解していないプログラマよりもビジネスにおいてずっと価値が高いからだ。&lt;/p>
 &lt;/blockquote>
 &lt;p>学んだことがなかったので簡単そうな &lt;a href="https://www.iwanami.co.jp/book/b285381.html">ミクロ経済学入門の入門&lt;/a> を購入した。&lt;/p>
+&lt;p>読んでて気づきを得てふとツィートした。&lt;/p>
+&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">なので、システムのコンポーネントに関しての意思決定をするとき、必ずしも上位の意思決定者の判断が正しいわけではなく、現場のメンバーに判断を委ねる状況が最適な場合もある。一方向じゃなく、双方向の情報の非対称性を解消する取り組みが大事。&lt;/p>&amp;mdash; Tetsuya Morimoto (@t2y) &lt;a href="https://twitter.com/t2y/status/1443024587944464388?ref_src=twsrc%5Etfw">September 29, 2021&lt;/a>&lt;/blockquote>
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script>
 &lt;h2 id="java-17-リリースイベント">Java 17 リリースイベント&lt;/h2>
 &lt;p>&lt;a href="https://jjug.doorkeeper.jp/events/127204">【オンライン】 JJUGナイトセミナー「Java 17 リリース記念イベント with Foojay」9/29(水) 開催&lt;/a> に参加した。Java の LTS はいま過渡期でややこしいことになって、8, 11, 17 になる。リリースされたばかりの Java 17 は LTS で重要なバージョンになる。&lt;a href="https://www.oracle.com/jp/java/technologies/java-se-support-roadmap.html">Oracle Java SE Supportロードマップ&lt;/a> から Premier Support 期限が次になる。&lt;/p>
 &lt;ul>
