@@ -1,4 +1,15 @@
 
+blockquote {
+  background: #eafff4;
+  color: #2d3330;
+  font-style: italic;
+}
+
+.post-date {
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
 .video-container iframe {
     border:0;
     max-width: 600px;
