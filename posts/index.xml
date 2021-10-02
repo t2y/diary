@@ -1,4 +1,57 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on forest nook</title><link>/diary/posts/</link><description>Recent content in Posts on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Fri, 01 Oct 2021 09:50:20 +0900</lastBuildDate><atom:link href="/diary/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>インボイス制度への準備</title><link>/diary/posts/2021/1001/</link><pubDate>Fri, 01 Oct 2021 09:50:20 +0900</pubDate><guid>/diary/posts/2021/1001/</guid><description>夜はドラクエタクトやってて2時過ぎに寝て7時に起きた。気のせいか、日記を書くようになってから早く寝付けるようになった。まつのさんが twitter で久しぶりに Python 書いたとツィートしていて、何気なくふと Implement experimental asyncio support #101 #340 をみて、そのツールの関係者でもないのに勝手にクソリプ的なレビューコメントをした。気付いてしまったらみなかった振りするのも気持ち悪いので。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on forest nook</title><link>/diary/posts/</link><description>Recent content in Posts on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sat, 02 Oct 2021 13:24:56 +0900</lastBuildDate><atom:link href="/diary/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>テーマスタイルのカスタマイズ</title><link>/diary/posts/2021/1002/</link><pubDate>Sat, 02 Oct 2021 13:24:56 +0900</pubDate><guid>/diary/posts/2021/1002/</guid><description>昨日の夜は早めに仕事を終えて 第一回関数型プログラミング（仮）の会 の、やましたさんとみずしまさんの発表の2つだけ聞いて、疲れてそのまま帰ってゆっくりしてた。ドラクエタクトの新しいイベントやってたかな。あと今秋初めて買った梨を食べてた。たぶん0時ぐらいには寝て8時ぐらいに起きた。
+あさパラS は総裁選の振り返りや役員人事の解説やっててほむほむと見てた。河野さんが官僚に嫌われる要因の1つとしてちょっと前にパワハラ音声が流出してたけど、言葉遣いがきついのに加え、正論をきつく言うから官僚の逃げ道をなくして追い詰めてしまうといったことが話されてた。心理的安全性の文脈で、お互いに信頼関係が築けた上で厳しいことを指摘するのは構わない (言い方は配慮すべき) が、そうじゃないと相手を追い詰めてしまう。過去に私も不誠実な相手に対して正論を言って追い詰めがちだったのでいまは反省している。目的は課題を解決することであって、相手を追い詰めても目的を果たせないということがようやく経験から理解できるようになってきた。
+ストレッチ 毎週土曜日は Dr.stretch さんでストレッチしてる。開脚の幅が目標 (メトリクス) になっていて毎週測っている。目標は自分の身長と同じぐらいということで178cm。ストレッチの開始前に測って、ストレッチを受けてから再計測する。今日は開始前169cm、ストレッチ後171cmと初めて170cmの大台に到達した。このままうまくいけば、あと3-6ヶ月ぐらいあれば目標の身長と同じぐらいの開脚幅になるかもしれない。家でも毎日ではないけど、2日に1回ぐらいのペースでストレッチをするのが習慣になりつつある。いまジョギングをすると腰に負担がくるんやけど、トレーナーさんが言うには、開脚幅が広がると股関節の可動域があがって腰の負担も減るという。本来、腰の筋肉は動かない方の筋肉だが、股関節の可動域が小さいとそれを補うために腰の筋肉が動いてしまい、その結果として腰に負担がかかる。なので、股関節が本来の意図した動きをしていれば、自然に腰の負担も下がるという理屈らしい。
+価値観を育てる あんちぽさんのスライドを眺めて共感してた。日記を書き始めたのも あんちぽさんの日記 を読んでて、毎日やっていることを「書くこと」は何かしら意味や意義があるんじゃないかと思うようになったから。
+歳を経て難しく感じるようになったことの1つに 動機づけ (モチベーションコントロール) がある。
+私は基本的に忙しいという言葉を使わない。やらないといけないことの何かが進捗していないとき、それは「やる気がない」と受け止めている。もちろん相手がいるときにやる気がないとそのまま表現すると横柄だったり失礼だったりすることもあるので余裕がないと答える場合もある。しかし、本質的にはやる気がないが正しい。もう少し補足すると、いまやっていることの方が自分にとって優先度が高く (やる気があり)、それ以外の別のことを先送りしているだけだと捉えている。もし別のことにやる気があるならば、いまやっていることを後回しにすればいいだけだからだ。
+ここで、何をやってもいいとしたら、何をやりたいかという課題が出てくる。適当にあれこれやってみても、実際にやってみるとうまくいかなくて、やる気が持続しなかったりすることがある。多くのケースで、若い頃ほどなにかに夢中になってやっていた経験が誰しもあると思うが、あのときはなぜそんなに夢中になってできたのか。いま思い返しながら、自分にとっての動機づけの源泉を探るようなことをしていかないとわからないのだ。まったく自分のことなのに。2021年に入ってからそういったことを考え続けていたところ、このスライドを眺めてたら動機よりも価値観なんだよと書いてあって、私がこの9ヶ月間、掘り返し続けてた動機づけの源泉=価値観という考え方はしっくりきて、価値観がブレると動機づけもうまくいかないなと思えた。
+Hugo/Terminalのカスタマイズ Speaker Deck のスライドの埋め込みができなくて調べた。HUGOで埋め込みができない時の対処法 によると、config.toml に次の設定を追加すると表示された。
+[markup] [markup.goldmark] [markup.goldmark.renderer] unsafe = true Terminal のテーマだと本文と引用の違いわかりにくかったのでスタイルを変えてみた。
+blockquote { background: #eafff4; color: #2d3330; font-style: italic; } 変更前
+変更後
+日付の表記を少し大きくして目立つようにした。
+.post-date { font-weight: bold; font-size: 1.3rem; }</description><content>&lt;p>昨日の夜は早めに仕事を終えて &lt;a href="https://opt.connpass.com/event/222709/">第一回関数型プログラミング（仮）の会&lt;/a> の、やましたさんとみずしまさんの発表の2つだけ聞いて、疲れてそのまま帰ってゆっくりしてた。ドラクエタクトの新しいイベントやってたかな。あと今秋初めて買った梨を食べてた。たぶん0時ぐらいには寝て8時ぐらいに起きた。&lt;/p>
+&lt;p>&lt;a href="https://www.ytv.co.jp/asapara/">あさパラS&lt;/a> は総裁選の振り返りや役員人事の解説やっててほむほむと見てた。河野さんが官僚に嫌われる要因の1つとしてちょっと前にパワハラ音声が流出してたけど、言葉遣いがきついのに加え、正論をきつく言うから官僚の逃げ道をなくして追い詰めてしまうといったことが話されてた。心理的安全性の文脈で、お互いに信頼関係が築けた上で厳しいことを指摘するのは構わない (言い方は配慮すべき) が、そうじゃないと相手を追い詰めてしまう。過去に私も不誠実な相手に対して正論を言って追い詰めがちだったのでいまは反省している。目的は課題を解決することであって、相手を追い詰めても目的を果たせないということがようやく経験から理解できるようになってきた。&lt;/p>
+&lt;h2 id="ストレッチ">ストレッチ&lt;/h2>
+&lt;p>毎週土曜日は &lt;a href="https://doctorstretch.com/">Dr.stretch&lt;/a> さんでストレッチしてる。開脚の幅が目標 (メトリクス) になっていて毎週測っている。目標は自分の身長と同じぐらいということで178cm。ストレッチの開始前に測って、ストレッチを受けてから再計測する。今日は開始前169cm、ストレッチ後171cmと初めて170cmの大台に到達した。このままうまくいけば、あと3-6ヶ月ぐらいあれば目標の身長と同じぐらいの開脚幅になるかもしれない。家でも毎日ではないけど、2日に1回ぐらいのペースでストレッチをするのが習慣になりつつある。いまジョギングをすると腰に負担がくるんやけど、トレーナーさんが言うには、開脚幅が広がると股関節の可動域があがって腰の負担も減るという。本来、腰の筋肉は動かない方の筋肉だが、股関節の可動域が小さいとそれを補うために腰の筋肉が動いてしまい、その結果として腰に負担がかかる。なので、股関節が本来の意図した動きをしていれば、自然に腰の負担も下がるという理屈らしい。&lt;/p>
+&lt;h2 id="価値観を育てる">価値観を育てる&lt;/h2>
+&lt;p>あんちぽさんのスライドを眺めて共感してた。日記を書き始めたのも &lt;a href="https://kentarokuribayashi.com/">あんちぽさんの日記&lt;/a> を読んでて、毎日やっていることを「書くこと」は何かしら意味や意義があるんじゃないかと思うようになったから。&lt;/p>
+&lt;iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/422f05833bc64c1a978c1ba92020a249" title="自分の人生を生きる - 遊びで生きて価値観を育てよう / Live Your Own Life - Live for Fun and Develop Your Values" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 560px; height: 314px;">&lt;/iframe>
+&lt;p>歳を経て難しく感じるようになったことの1つに &lt;strong>動機づけ (モチベーションコントロール)&lt;/strong> がある。&lt;/p>
+&lt;p>私は基本的に忙しいという言葉を使わない。やらないといけないことの何かが進捗していないとき、それは「やる気がない」と受け止めている。もちろん相手がいるときにやる気がないとそのまま表現すると横柄だったり失礼だったりすることもあるので余裕がないと答える場合もある。しかし、本質的にはやる気がないが正しい。もう少し補足すると、いまやっていることの方が自分にとって優先度が高く (やる気があり)、それ以外の別のことを先送りしているだけだと捉えている。もし別のことにやる気があるならば、いまやっていることを後回しにすればいいだけだからだ。&lt;/p>
+&lt;p>ここで、何をやってもいいとしたら、何をやりたいかという課題が出てくる。適当にあれこれやってみても、実際にやってみるとうまくいかなくて、やる気が持続しなかったりすることがある。多くのケースで、若い頃ほどなにかに夢中になってやっていた経験が誰しもあると思うが、あのときはなぜそんなに夢中になってできたのか。いま思い返しながら、自分にとっての動機づけの源泉を探るようなことをしていかないとわからないのだ。まったく自分のことなのに。2021年に入ってからそういったことを考え続けていたところ、このスライドを眺めてたら動機よりも価値観なんだよと書いてあって、私がこの9ヶ月間、掘り返し続けてた動機づけの源泉=価値観という考え方はしっくりきて、価値観がブレると動機づけもうまくいかないなと思えた。&lt;/p>
+&lt;h2 id="hugoterminalのカスタマイズ">Hugo/Terminalのカスタマイズ&lt;/h2>
+&lt;p>Speaker Deck のスライドの埋め込みができなくて調べた。&lt;a href="https://chizuchizu.com/blog/tag_hugo/">HUGOで埋め込みができない時の対処法&lt;/a> によると、&lt;code>config.toml&lt;/code> に次の設定を追加すると表示された。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-toml" data-lang="toml">[&lt;span style="color:#a6e22e">markup&lt;/span>]
+[&lt;span style="color:#a6e22e">markup&lt;/span>.&lt;span style="color:#a6e22e">goldmark&lt;/span>]
+[&lt;span style="color:#a6e22e">markup&lt;/span>.&lt;span style="color:#a6e22e">goldmark&lt;/span>.&lt;span style="color:#a6e22e">renderer&lt;/span>]
+&lt;span style="color:#a6e22e">unsafe&lt;/span> = &lt;span style="color:#66d9ef">true&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Terminal のテーマだと本文と引用の違いわかりにくかったのでスタイルを変えてみた。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-css" data-lang="css">&lt;span style="color:#f92672">blockquote&lt;/span> {
+&lt;span style="color:#66d9ef">background&lt;/span>: &lt;span style="color:#ae81ff">#eafff4&lt;/span>;
+&lt;span style="color:#66d9ef">color&lt;/span>: &lt;span style="color:#ae81ff">#2d3330&lt;/span>;
+&lt;span style="color:#66d9ef">font-style&lt;/span>: &lt;span style="color:#66d9ef">italic&lt;/span>;
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>
+&lt;p>変更前&lt;/p>
+&lt;figure class="left" >
+&lt;img src="/diary/img/2021/1002_blockquote-before.png" />
+&lt;/figure>
+&lt;/li>
+&lt;li>
+&lt;p>変更後&lt;/p>
+&lt;figure class="left" >
+&lt;img src="/diary/img/2021/1002_blockquote-after.png" />
+&lt;/figure>
+&lt;/li>
+&lt;/ul>
+&lt;p>日付の表記を少し大きくして目立つようにした。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-css" data-lang="css">.&lt;span style="color:#a6e22e">post-date&lt;/span> {
+&lt;span style="color:#66d9ef">font-weight&lt;/span>: &lt;span style="color:#66d9ef">bold&lt;/span>;
+&lt;span style="color:#66d9ef">font-size&lt;/span>: &lt;span style="color:#ae81ff">1.3&lt;/span>&lt;span style="color:#66d9ef">rem&lt;/span>;
+}
+&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>インボイス制度への準備</title><link>/diary/posts/2021/1001/</link><pubDate>Fri, 01 Oct 2021 09:50:20 +0900</pubDate><guid>/diary/posts/2021/1001/</guid><description>夜はドラクエタクトやってて2時過ぎに寝て7時に起きた。気のせいか、日記を書くようになってから早く寝付けるようになった。まつのさんが twitter で久しぶりに Python 書いたとツィートしていて、何気なくふと Implement experimental asyncio support #101 #340 をみて、そのツールの関係者でもないのに勝手にクソリプ的なレビューコメントをした。気付いてしまったらみなかった振りするのも気持ち悪いので。
 インボイス制度の準備 2023年10月1日から 消費税の軽減税率制度・適格請求書等保存方式（いわゆるインボイス制度） が開始される。開始される前に適格請求書発行事業者に登録しておく必要があり、その登録受付が今日から開始された。前に知人が教えてもらった解説動画を見返した。
 ちなみにうちの会社は今期から課税事業者になるのでインボイス制度開始による益税の影響は受けない。前期の決算で消費税を算出したとき、本則課税と簡易課税なら後者の方が46%の納税金額が少なくなることがわかった。IT 業界は経費に占める人件費の割合が大きい (人件費は消費税がかからない) ので簡易課税の方が節税になるのではないかという気がする。そのため、簡易課税で申請している。一度、申請すると2年間適用され、不適用届出を出さない限りはずっと簡易課税で継続される。
 国税庁の 申請手続 をみながら￼e-Tax (WEB 版) で申請した。
