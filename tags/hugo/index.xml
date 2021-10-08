@@ -35,14 +35,12 @@ blockquote { background: #eafff4; color: #2d3330; font-style: italic; } 変更�
 &lt;/code>&lt;/pre>&lt;/div>&lt;ul>
 &lt;li>
 &lt;p>変更前&lt;/p>
-&lt;figure class="left" >
-&lt;img src="img/2021/1002_blockquote-before.png" />
+&lt;figure>&lt;img src="/diary/diary/img/2021/1002_blockquote-before.png"/>
 &lt;/figure>
 &lt;/li>
 &lt;li>
 &lt;p>変更後&lt;/p>
-&lt;figure class="left" >
-&lt;img src="img/2021/1002_blockquote-after.png" />
+&lt;figure>&lt;img src="/diary/diary/img/2021/1002_blockquote-after.png"/>
 &lt;/figure>
 &lt;/li>
 &lt;/ul>
