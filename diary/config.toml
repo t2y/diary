@@ -2,7 +2,6 @@ baseurl = "/"
 languageCode = "ja-jp"
 theme = "terminal"
 paginate = 7
-canonifyURLs = true
 
 [markup]
   [markup.goldmark]
