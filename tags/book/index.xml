@@ -1,4 +1,33 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>book on forest nook</title><link>/diary/tags/book/</link><description>Recent content in book on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Mon, 04 Oct 2021 04:46:32 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/book/index.xml" rel="self" type="application/rss+xml"/><item><title>草刈り</title><link>/diary/posts/2021/1004/</link><pubDate>Mon, 04 Oct 2021 04:46:32 +0900</pubDate><guid>/diary/posts/2021/1004/</guid><description>3時に寝て4時半に起きる。ほとんど寝てない。蚊がいて飛んでいるのが気になったり刺されてかゆかったりして寝るの諦めた。もう涼しくなって大丈夫かと思ってたけど、まだ蚊取り線香が必要だった。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>book on forest nook</title><link>/diary/tags/book/</link><description>Recent content in book on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sat, 09 Oct 2021 09:12:12 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/book/index.xml" rel="self" type="application/rss+xml"/><item><title>職質された</title><link>/diary/posts/2021/1009/</link><pubDate>Sat, 09 Oct 2021 09:12:12 +0900</pubDate><guid>/diary/posts/2021/1009/</guid><description>0時に寝て6時に起きる。昨日も田んぼ仕事の疲れが残っていたのでよく眠れた。1週間で6時頃に起きる癖がついたのですぐに起きれた。
+Terminal のカスタマイズ 昨日からいくつか修正をしていた。
+画像のパス問題の修正 favicon の追加 タグ一覧リンクの追加 atom フィードに icon 要素の追加 (feedly では読み取れない) atom フィードに favicon を指す要素を埋め込んでみたんだけど、feedly ではダメっぽい。たまたまヒットした GitHub issue でもそういったコメントをみかけた。
+https://github.com/huginn/huginn/issues/1628#issuecomment-882103625 ストレッチ 毎週土曜日はストレッチの日。田んぼ仕事のおかげで全身軽い筋肉痛になっている。ストレッチを受けると、いつものときとの違いから、股関節から右ももと腕の筋肉がすごく張っているのに気付く。田んぼのような突発的に体を動かして疲労が溜まったときにもストレッチでほぐせるのがよい。今日の開脚幅は開始前169cmで、ストレッチ後170cmかな。前より少し落ちたのは田んぼ仕事に疲れて平日にあまりストレッチが出来なかったのと筋肉痛のせいかもしれない。
+Joel on Software 本当は実家に帰っているときに書き上げようと考えていたものの、田んぼ作業での疲れと実家のパソコンを使って作業する環境の悪さから書くことに集中できなくなって断念していた。集中できる環境なら3時間ほどで書けた。動機づけよりも価値観、価値観がブレないならその次は集中できる環境作りにこだわっていきたい。
+https://t2y.hatenablog.jp/entry/2021/10/09/162618 職務質問 買いものして帰ろうとしてたら警察官に止められて職務質問をうけた。自転車の盗難が多いので防犯登録を調べたいとのこと。はいはいって感じで免許証を提示する。自転車は東京で購入したもので10年以上乗っている。防犯登録は警視庁になっているらしく、兵庫県警の警察官では調べられないみたい。次に車体番号も読み取って調べていたけど、よくわからなかったみたい。結局、私が本物の持ち主とその場で調べることができなくて、警察官もたぶん本物だと思いますみたいな歯切れの悪い結果で職務質問を終えた。仮にその自転車が盗難にあってもその防犯登録から私を辿ることはできないので近所の自転車屋さんで防犯登録入り直してくださいと言われた。あー、またこの件か。都道府県の防犯登録のシステムが全国で統合されていればいい話しなのに、なんで引っ越したら防犯登録をやり直さないとあかんねんと。現場の警察官に言っても仕方ないので何も言わないことにした。
+プロコン たまたまタイムラインでみかけてちょっと眺めてた。動画で同じ内容をみて、ハラスメントを問題視する人と、プロダクトの新規性について言及する人がいて、感じ方は人それぞれだなぁと思いながら ハッシュタグ を眺めてた。</description><content>&lt;p>0時に寝て6時に起きる。昨日も田んぼ仕事の疲れが残っていたのでよく眠れた。1週間で6時頃に起きる癖がついたのですぐに起きれた。&lt;/p>
+&lt;h2 id="terminal-のカスタマイズ">Terminal のカスタマイズ&lt;/h2>
+&lt;p>昨日からいくつか修正をしていた。&lt;/p>
+&lt;ul>
+&lt;li>画像のパス問題の修正&lt;/li>
+&lt;li>favicon の追加&lt;/li>
+&lt;li>タグ一覧リンクの追加&lt;/li>
+&lt;li>atom フィードに icon 要素の追加 (feedly では読み取れない)&lt;/li>
+&lt;/ul>
+&lt;p>atom フィードに favicon を指す要素を埋め込んでみたんだけど、feedly ではダメっぽい。たまたまヒットした GitHub issue でもそういったコメントをみかけた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/huginn/huginn/issues/1628#issuecomment-882103625">https://github.com/huginn/huginn/issues/1628#issuecomment-882103625&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="ストレッチ">ストレッチ&lt;/h2>
+&lt;p>毎週土曜日はストレッチの日。田んぼ仕事のおかげで全身軽い筋肉痛になっている。ストレッチを受けると、いつものときとの違いから、股関節から右ももと腕の筋肉がすごく張っているのに気付く。田んぼのような突発的に体を動かして疲労が溜まったときにもストレッチでほぐせるのがよい。今日の開脚幅は開始前169cmで、ストレッチ後170cmかな。前より少し落ちたのは田んぼ仕事に疲れて平日にあまりストレッチが出来なかったのと筋肉痛のせいかもしれない。&lt;/p>
+&lt;h2 id="joel-on-software">Joel on Software&lt;/h2>
+&lt;p>本当は実家に帰っているときに書き上げようと考えていたものの、田んぼ作業での疲れと実家のパソコンを使って作業する環境の悪さから書くことに集中できなくなって断念していた。集中できる環境なら3時間ほどで書けた。動機づけよりも価値観、価値観がブレないならその次は集中できる環境作りにこだわっていきたい。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://t2y.hatenablog.jp/entry/2021/10/09/162618">https://t2y.hatenablog.jp/entry/2021/10/09/162618&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="職務質問">職務質問&lt;/h2>
+&lt;p>買いものして帰ろうとしてたら警察官に止められて職務質問をうけた。自転車の盗難が多いので防犯登録を調べたいとのこと。はいはいって感じで免許証を提示する。自転車は東京で購入したもので10年以上乗っている。防犯登録は警視庁になっているらしく、兵庫県警の警察官では調べられないみたい。次に車体番号も読み取って調べていたけど、よくわからなかったみたい。結局、私が本物の持ち主とその場で調べることができなくて、警察官もたぶん本物だと思いますみたいな歯切れの悪い結果で職務質問を終えた。仮にその自転車が盗難にあってもその防犯登録から私を辿ることはできないので近所の自転車屋さんで防犯登録入り直してくださいと言われた。あー、またこの件か。都道府県の防犯登録のシステムが全国で統合されていればいい話しなのに、なんで引っ越したら防犯登録をやり直さないとあかんねんと。現場の警察官に言っても仕方ないので何も言わないことにした。&lt;/p>
+&lt;h2 id="プロコン">プロコン&lt;/h2>
+&lt;p>たまたまタイムラインでみかけてちょっと眺めてた。動画で同じ内容をみて、ハラスメントを問題視する人と、プロダクトの新規性について言及する人がいて、感じ方は人それぞれだなぁと思いながら &lt;a href="https://twitter.com/search?q=%23procon32&amp;amp;src=typed_query&amp;amp;f=top">ハッシュタグ&lt;/a> を眺めてた。&lt;/p></content></item><item><title>草刈り</title><link>/diary/posts/2021/1004/</link><pubDate>Mon, 04 Oct 2021 04:46:32 +0900</pubDate><guid>/diary/posts/2021/1004/</guid><description>3時に寝て4時半に起きる。ほとんど寝てない。蚊がいて飛んでいるのが気になったり刺されてかゆかったりして寝るの諦めた。もう涼しくなって大丈夫かと思ってたけど、まだ蚊取り線香が必要だった。
 畑の水やり 6時半から7時半まで。玉ねぎ、茄子、大根、ミニトマトなど、いろいろ野菜が植えてある。玉ねぎはいま芽が出てきたところで水をたくさんやらないといけないらしい。
 Joel on Software 書評の続き。空き時間に少し書いた。実家だとオフィスより環境がよくないので集中力が下がり、その結果として効率が落ちる。本書の中でもオフィスのこだわりの章があったけど、環境が大事ということが実感できた。
 田んぼの草刈り 午後から草場となった田んぼの草刈り。ある程度草を刈っておかないとトラクターの爪に巻き込むので耕すことができない。草刈機で刈り取りつつ、それを集めてきて、乾かして焼く。焼畑農業みたいなことをしないといけない。刈ったばかりの草は水分を含むのですぐには焼けない。一方で乾いた草はよく燃えるので燃え拡がってしまう。下手すると周りに燃え拡がって火事になってしまう。刈り取った草の集約や配置を調整しないといけない。日中、暑かったし、あまり寝てなかったから夕方は眠くてバテてた。</description><content>&lt;p>3時に寝て4時半に起きる。ほとんど寝てない。蚊がいて飛んでいるのが気になったり刺されてかゆかったりして寝るの諦めた。もう涼しくなって大丈夫かと思ってたけど、まだ蚊取り線香が必要だった。&lt;/p>

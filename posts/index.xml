@@ -1,4 +1,33 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on forest nook</title><link>/diary/posts/</link><description>Recent content in Posts on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Fri, 08 Oct 2021 06:45:23 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>畝作り</title><link>/diary/posts/2021/1008/</link><pubDate>Fri, 08 Oct 2021 06:45:23 +0900</pubDate><guid>/diary/posts/2021/1008/</guid><description>23時頃に寝て6時頃に起きた。田んぼは朝の方が涼しくて作業しやすいので朝起きるインセンティブになる。電車乗らなくなって早起きできなくなってたけど、やっぱり朝起きるインセンティブがあると起きれる。徐々に暑くなるせいか10時が感覚的に暑さのピークでそれ以降はあまり変わらない気がする。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on forest nook</title><link>/diary/posts/</link><description>Recent content in Posts on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sat, 09 Oct 2021 09:12:12 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>職質された</title><link>/diary/posts/2021/1009/</link><pubDate>Sat, 09 Oct 2021 09:12:12 +0900</pubDate><guid>/diary/posts/2021/1009/</guid><description>0時に寝て6時に起きる。昨日も田んぼ仕事の疲れが残っていたのでよく眠れた。1週間で6時頃に起きる癖がついたのですぐに起きれた。
+Terminal のカスタマイズ 昨日からいくつか修正をしていた。
+画像のパス問題の修正 favicon の追加 タグ一覧リンクの追加 atom フィードに icon 要素の追加 (feedly では読み取れない) atom フィードに favicon を指す要素を埋め込んでみたんだけど、feedly ではダメっぽい。たまたまヒットした GitHub issue でもそういったコメントをみかけた。
+https://github.com/huginn/huginn/issues/1628#issuecomment-882103625 ストレッチ 毎週土曜日はストレッチの日。田んぼ仕事のおかげで全身軽い筋肉痛になっている。ストレッチを受けると、いつものときとの違いから、股関節から右ももと腕の筋肉がすごく張っているのに気付く。田んぼのような突発的に体を動かして疲労が溜まったときにもストレッチでほぐせるのがよい。今日の開脚幅は開始前169cmで、ストレッチ後170cmかな。前より少し落ちたのは田んぼ仕事に疲れて平日にあまりストレッチが出来なかったのと筋肉痛のせいかもしれない。
+Joel on Software 本当は実家に帰っているときに書き上げようと考えていたものの、田んぼ作業での疲れと実家のパソコンを使って作業する環境の悪さから書くことに集中できなくなって断念していた。集中できる環境なら3時間ほどで書けた。動機づけよりも価値観、価値観がブレないならその次は集中できる環境作りにこだわっていきたい。
+https://t2y.hatenablog.jp/entry/2021/10/09/162618 職務質問 買いものして帰ろうとしてたら警察官に止められて職務質問をうけた。自転車の盗難が多いので防犯登録を調べたいとのこと。はいはいって感じで免許証を提示する。自転車は東京で購入したもので10年以上乗っている。防犯登録は警視庁になっているらしく、兵庫県警の警察官では調べられないみたい。次に車体番号も読み取って調べていたけど、よくわからなかったみたい。結局、私が本物の持ち主とその場で調べることができなくて、警察官もたぶん本物だと思いますみたいな歯切れの悪い結果で職務質問を終えた。仮にその自転車が盗難にあってもその防犯登録から私を辿ることはできないので近所の自転車屋さんで防犯登録入り直してくださいと言われた。あー、またこの件か。都道府県の防犯登録のシステムが全国で統合されていればいい話しなのに、なんで引っ越したら防犯登録をやり直さないとあかんねんと。現場の警察官に言っても仕方ないので何も言わないことにした。
+プロコン たまたまタイムラインでみかけてちょっと眺めてた。動画で同じ内容をみて、ハラスメントを問題視する人と、プロダクトの新規性について言及する人がいて、感じ方は人それぞれだなぁと思いながら ハッシュタグ を眺めてた。</description><content>&lt;p>0時に寝て6時に起きる。昨日も田んぼ仕事の疲れが残っていたのでよく眠れた。1週間で6時頃に起きる癖がついたのですぐに起きれた。&lt;/p>
+&lt;h2 id="terminal-のカスタマイズ">Terminal のカスタマイズ&lt;/h2>
+&lt;p>昨日からいくつか修正をしていた。&lt;/p>
+&lt;ul>
+&lt;li>画像のパス問題の修正&lt;/li>
+&lt;li>favicon の追加&lt;/li>
+&lt;li>タグ一覧リンクの追加&lt;/li>
+&lt;li>atom フィードに icon 要素の追加 (feedly では読み取れない)&lt;/li>
+&lt;/ul>
+&lt;p>atom フィードに favicon を指す要素を埋め込んでみたんだけど、feedly ではダメっぽい。たまたまヒットした GitHub issue でもそういったコメントをみかけた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/huginn/huginn/issues/1628#issuecomment-882103625">https://github.com/huginn/huginn/issues/1628#issuecomment-882103625&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="ストレッチ">ストレッチ&lt;/h2>
+&lt;p>毎週土曜日はストレッチの日。田んぼ仕事のおかげで全身軽い筋肉痛になっている。ストレッチを受けると、いつものときとの違いから、股関節から右ももと腕の筋肉がすごく張っているのに気付く。田んぼのような突発的に体を動かして疲労が溜まったときにもストレッチでほぐせるのがよい。今日の開脚幅は開始前169cmで、ストレッチ後170cmかな。前より少し落ちたのは田んぼ仕事に疲れて平日にあまりストレッチが出来なかったのと筋肉痛のせいかもしれない。&lt;/p>
+&lt;h2 id="joel-on-software">Joel on Software&lt;/h2>
+&lt;p>本当は実家に帰っているときに書き上げようと考えていたものの、田んぼ作業での疲れと実家のパソコンを使って作業する環境の悪さから書くことに集中できなくなって断念していた。集中できる環境なら3時間ほどで書けた。動機づけよりも価値観、価値観がブレないならその次は集中できる環境作りにこだわっていきたい。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://t2y.hatenablog.jp/entry/2021/10/09/162618">https://t2y.hatenablog.jp/entry/2021/10/09/162618&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="職務質問">職務質問&lt;/h2>
+&lt;p>買いものして帰ろうとしてたら警察官に止められて職務質問をうけた。自転車の盗難が多いので防犯登録を調べたいとのこと。はいはいって感じで免許証を提示する。自転車は東京で購入したもので10年以上乗っている。防犯登録は警視庁になっているらしく、兵庫県警の警察官では調べられないみたい。次に車体番号も読み取って調べていたけど、よくわからなかったみたい。結局、私が本物の持ち主とその場で調べることができなくて、警察官もたぶん本物だと思いますみたいな歯切れの悪い結果で職務質問を終えた。仮にその自転車が盗難にあってもその防犯登録から私を辿ることはできないので近所の自転車屋さんで防犯登録入り直してくださいと言われた。あー、またこの件か。都道府県の防犯登録のシステムが全国で統合されていればいい話しなのに、なんで引っ越したら防犯登録をやり直さないとあかんねんと。現場の警察官に言っても仕方ないので何も言わないことにした。&lt;/p>
+&lt;h2 id="プロコン">プロコン&lt;/h2>
+&lt;p>たまたまタイムラインでみかけてちょっと眺めてた。動画で同じ内容をみて、ハラスメントを問題視する人と、プロダクトの新規性について言及する人がいて、感じ方は人それぞれだなぁと思いながら &lt;a href="https://twitter.com/search?q=%23procon32&amp;amp;src=typed_query&amp;amp;f=top">ハッシュタグ&lt;/a> を眺めてた。&lt;/p></content></item><item><title>畝作り</title><link>/diary/posts/2021/1008/</link><pubDate>Fri, 08 Oct 2021 06:45:23 +0900</pubDate><guid>/diary/posts/2021/1008/</guid><description>23時頃に寝て6時頃に起きた。田んぼは朝の方が涼しくて作業しやすいので朝起きるインセンティブになる。電車乗らなくなって早起きできなくなってたけど、やっぱり朝起きるインセンティブがあると起きれる。徐々に暑くなるせいか10時が感覚的に暑さのピークでそれ以降はあまり変わらない気がする。
 畑の水やり 7時半から8時まで水やり。昨日、amazon で購入した13リットル入るじょうろが届いたので初めて使ってみた。とくに問題なくて大きいので畑に水をやるときに往復する回数が減る。私が調べた限りだと、一番大きいジョウロが13リットルだった。よさそう。
 田んぼの肥料撒きと畝作り 8時から15時までお昼休憩を挟みつつ田んぼの作業。畝作りする前に堆肥を土に撒かないといけないらしい。鶏糞と苦土石灰 (くどせっかい) を撒いた。本当は一反あたり鶏糞を2-3t撒くとあったけど、しんどいので100kgぐらいにしといた。苦土石灰は50kg撒いた。撒き終わったのがお昼前で少し雑用もやって、お昼からトラクターで畝作りを12時半から15時ぐらいまでやってた。この後、母が菜の花を植えるらしい。菜の花は9-10月頃に植えて4-5月頃に収穫を迎える。なんか菜種油を淡路島の特産にしたい運動？をやっていて、菜の花の種を無料で配っているらしい。試しにやってみるとのこと。
 耕し終えたら、再度アルミブリッジを使って田んぼから畔を跨いで出る。ブリッジの配置がよくなかったのか、ウィリー状態になってひっくり返りそうになった。危なかった。

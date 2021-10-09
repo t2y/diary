@@ -1,4 +1,33 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>life on forest nook</title><link>/diary/tags/life/</link><description>Recent content in life on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sun, 03 Oct 2021 11:40:58 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/life/index.xml" rel="self" type="application/rss+xml"/><item><title>帰省</title><link>/diary/posts/2021/1003/</link><pubDate>Sun, 03 Oct 2021 11:40:58 +0900</pubDate><guid>/diary/posts/2021/1003/</guid><description>0時に寝て9時頃に起きる。今朝は寝起きが悪くてベッドでぐだぐだしてた。ダイの大冒険をみて家事をした。数日、家を空けるので冷蔵庫の中を空にして、洗いものやゴミの始末をする。11時半頃にオフィスに着く。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>life on forest nook</title><link>/diary/tags/life/</link><description>Recent content in life on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sat, 09 Oct 2021 09:12:12 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/life/index.xml" rel="self" type="application/rss+xml"/><item><title>職質された</title><link>/diary/posts/2021/1009/</link><pubDate>Sat, 09 Oct 2021 09:12:12 +0900</pubDate><guid>/diary/posts/2021/1009/</guid><description>0時に寝て6時に起きる。昨日も田んぼ仕事の疲れが残っていたのでよく眠れた。1週間で6時頃に起きる癖がついたのですぐに起きれた。
+Terminal のカスタマイズ 昨日からいくつか修正をしていた。
+画像のパス問題の修正 favicon の追加 タグ一覧リンクの追加 atom フィードに icon 要素の追加 (feedly では読み取れない) atom フィードに favicon を指す要素を埋め込んでみたんだけど、feedly ではダメっぽい。たまたまヒットした GitHub issue でもそういったコメントをみかけた。
+https://github.com/huginn/huginn/issues/1628#issuecomment-882103625 ストレッチ 毎週土曜日はストレッチの日。田んぼ仕事のおかげで全身軽い筋肉痛になっている。ストレッチを受けると、いつものときとの違いから、股関節から右ももと腕の筋肉がすごく張っているのに気付く。田んぼのような突発的に体を動かして疲労が溜まったときにもストレッチでほぐせるのがよい。今日の開脚幅は開始前169cmで、ストレッチ後170cmかな。前より少し落ちたのは田んぼ仕事に疲れて平日にあまりストレッチが出来なかったのと筋肉痛のせいかもしれない。
+Joel on Software 本当は実家に帰っているときに書き上げようと考えていたものの、田んぼ作業での疲れと実家のパソコンを使って作業する環境の悪さから書くことに集中できなくなって断念していた。集中できる環境なら3時間ほどで書けた。動機づけよりも価値観、価値観がブレないならその次は集中できる環境作りにこだわっていきたい。
+https://t2y.hatenablog.jp/entry/2021/10/09/162618 職務質問 買いものして帰ろうとしてたら警察官に止められて職務質問をうけた。自転車の盗難が多いので防犯登録を調べたいとのこと。はいはいって感じで免許証を提示する。自転車は東京で購入したもので10年以上乗っている。防犯登録は警視庁になっているらしく、兵庫県警の警察官では調べられないみたい。次に車体番号も読み取って調べていたけど、よくわからなかったみたい。結局、私が本物の持ち主とその場で調べることができなくて、警察官もたぶん本物だと思いますみたいな歯切れの悪い結果で職務質問を終えた。仮にその自転車が盗難にあってもその防犯登録から私を辿ることはできないので近所の自転車屋さんで防犯登録入り直してくださいと言われた。あー、またこの件か。都道府県の防犯登録のシステムが全国で統合されていればいい話しなのに、なんで引っ越したら防犯登録をやり直さないとあかんねんと。現場の警察官に言っても仕方ないので何も言わないことにした。
+プロコン たまたまタイムラインでみかけてちょっと眺めてた。動画で同じ内容をみて、ハラスメントを問題視する人と、プロダクトの新規性について言及する人がいて、感じ方は人それぞれだなぁと思いながら ハッシュタグ を眺めてた。</description><content>&lt;p>0時に寝て6時に起きる。昨日も田んぼ仕事の疲れが残っていたのでよく眠れた。1週間で6時頃に起きる癖がついたのですぐに起きれた。&lt;/p>
+&lt;h2 id="terminal-のカスタマイズ">Terminal のカスタマイズ&lt;/h2>
+&lt;p>昨日からいくつか修正をしていた。&lt;/p>
+&lt;ul>
+&lt;li>画像のパス問題の修正&lt;/li>
+&lt;li>favicon の追加&lt;/li>
+&lt;li>タグ一覧リンクの追加&lt;/li>
+&lt;li>atom フィードに icon 要素の追加 (feedly では読み取れない)&lt;/li>
+&lt;/ul>
+&lt;p>atom フィードに favicon を指す要素を埋め込んでみたんだけど、feedly ではダメっぽい。たまたまヒットした GitHub issue でもそういったコメントをみかけた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/huginn/huginn/issues/1628#issuecomment-882103625">https://github.com/huginn/huginn/issues/1628#issuecomment-882103625&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="ストレッチ">ストレッチ&lt;/h2>
+&lt;p>毎週土曜日はストレッチの日。田んぼ仕事のおかげで全身軽い筋肉痛になっている。ストレッチを受けると、いつものときとの違いから、股関節から右ももと腕の筋肉がすごく張っているのに気付く。田んぼのような突発的に体を動かして疲労が溜まったときにもストレッチでほぐせるのがよい。今日の開脚幅は開始前169cmで、ストレッチ後170cmかな。前より少し落ちたのは田んぼ仕事に疲れて平日にあまりストレッチが出来なかったのと筋肉痛のせいかもしれない。&lt;/p>
+&lt;h2 id="joel-on-software">Joel on Software&lt;/h2>
+&lt;p>本当は実家に帰っているときに書き上げようと考えていたものの、田んぼ作業での疲れと実家のパソコンを使って作業する環境の悪さから書くことに集中できなくなって断念していた。集中できる環境なら3時間ほどで書けた。動機づけよりも価値観、価値観がブレないならその次は集中できる環境作りにこだわっていきたい。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://t2y.hatenablog.jp/entry/2021/10/09/162618">https://t2y.hatenablog.jp/entry/2021/10/09/162618&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="職務質問">職務質問&lt;/h2>
+&lt;p>買いものして帰ろうとしてたら警察官に止められて職務質問をうけた。自転車の盗難が多いので防犯登録を調べたいとのこと。はいはいって感じで免許証を提示する。自転車は東京で購入したもので10年以上乗っている。防犯登録は警視庁になっているらしく、兵庫県警の警察官では調べられないみたい。次に車体番号も読み取って調べていたけど、よくわからなかったみたい。結局、私が本物の持ち主とその場で調べることができなくて、警察官もたぶん本物だと思いますみたいな歯切れの悪い結果で職務質問を終えた。仮にその自転車が盗難にあってもその防犯登録から私を辿ることはできないので近所の自転車屋さんで防犯登録入り直してくださいと言われた。あー、またこの件か。都道府県の防犯登録のシステムが全国で統合されていればいい話しなのに、なんで引っ越したら防犯登録をやり直さないとあかんねんと。現場の警察官に言っても仕方ないので何も言わないことにした。&lt;/p>
+&lt;h2 id="プロコン">プロコン&lt;/h2>
+&lt;p>たまたまタイムラインでみかけてちょっと眺めてた。動画で同じ内容をみて、ハラスメントを問題視する人と、プロダクトの新規性について言及する人がいて、感じ方は人それぞれだなぁと思いながら &lt;a href="https://twitter.com/search?q=%23procon32&amp;amp;src=typed_query&amp;amp;f=top">ハッシュタグ&lt;/a> を眺めてた。&lt;/p></content></item><item><title>帰省</title><link>/diary/posts/2021/1003/</link><pubDate>Sun, 03 Oct 2021 11:40:58 +0900</pubDate><guid>/diary/posts/2021/1003/</guid><description>0時に寝て9時頃に起きる。今朝は寝起きが悪くてベッドでぐだぐだしてた。ダイの大冒険をみて家事をした。数日、家を空けるので冷蔵庫の中を空にして、洗いものやゴミの始末をする。11時半頃にオフィスに着く。
 OMRON connect グラフは今週の平均体温の推移を示したもの。ワクチン摂取後の体温は36.5-37.0℃の間を行ったり来たりしているものの、体調はまったくしんどくないのであまり気にしてない。そもそも摂取後に体温を測り始めたので自分の平熱がどのぐらいなのかすら把握してないことに気付いた。音波通信体温計 MC-6800B　けんおんくん を使っていて OMRON connect というスマホアプリで計測した体温を記録できる。
 Joel on Software 書評を書き始めた。自分が学んだところや関心をひいたところは、読みながらメモ書きで課題管理システムのチケットに書いてある。それらを見返しながら、一般向けの書評にまとめる。自分にしかわからない内容を補足したり、見返すと言及するほどではないことを取り除いたり。あとは書く根気と時間次第になるわけだが、いまは時間がたっぷりあるので比較的、時間がかかっても学びの質をあげるためになるべく書くようにしている。5時間ほどかけて1/3ぐらい書けた。まだ途中。
 実家へ 16時30分の高速バスで実家へ帰る。18時前ぐらいに実家の最寄りのバス停につく。そこから車で10分ほど。片道が2,090円で、往復券だと割引で3,760円になり、420円お得になる。この距離だと大した金額ではない。東京にいたら新幹線が往復で3万円ほどで、乗り継ぎの時間を入れると移動時間も6-7時間になってしまう。東京から神戸に戻ってきた理由として実家に気軽に帰りやすいというメリットがある。
