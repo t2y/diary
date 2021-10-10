@@ -2,16 +2,39 @@
   <div class="terms">
     <h1>{{ .Title }}</h1>
     <ul>
-      {{ $type := .Type }}
+    {{ $type := .Type }}
+    {{ if eq $type "dates" }}
+      {{ $_years := slice }}
+      {{ range .Data.Terms.Alphabetical.Reverse }}
+        {{ $_years = $_years | append (index (split .Name "/") 0) }}
+      {{ end }}
+      {{ $years := $_years | uniq }}
+
+      {{ range $year := $years }}
+        <li style="margin: 1.0rem 0 0.3rem 0;">{{ $year }}</li>
+        {{ range $.Data.Terms.Alphabetical.Reverse }}
+          {{ $yearMonth := split .Name "/" }}
+          {{ if eq (index $yearMonth 0) $year }}
+            {{ $name := .Name }}
+            {{ $count := .Count }}
+            {{ with $.Site.GetPage (printf "/%s/%s" $type $name) }}
+            <a class="terms-title" href="{{ .Permalink }}" style="margin-right: 1rem;">{{ index $yearMonth 1 }} ({{ $count }})</a>
+            {{ end }}
+          {{ end }}
+        {{ end }}
+      {{ end }}
+
+    {{ else }}
       {{ range $key, $value := .Data.Terms.Alphabetical }}
-      {{ $name := .Name }}
-      {{ $count := .Count }}
-      {{ with $.Site.GetPage (printf "/%s/%s" $type $name) }}
+        {{ $name := .Name }}
+        {{ $count := .Count }}
+        {{ with $.Site.GetPage (printf "/%s/%s" $type $name) }}
         <li>
           <a class="terms-title" href="{{ .Permalink }}">{{ .Name }} ({{ $count }})</a>
         </li>
+        {{ end }}
       {{ end }}
-      {{ end }}
+    {{ end }}
     </ul>
   </div>
 {{ end }}

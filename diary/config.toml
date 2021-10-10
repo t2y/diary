@@ -3,6 +3,10 @@ languageCode = "ja-jp"
 theme = "terminal"
 paginate = 7
 
+[taxonomies]
+  date = "dates"
+  tag = "tags"
+
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
@@ -17,7 +21,7 @@ paginate = 7
   themeColor = "green"
 
   # if you set this to 0, only submenu trigger will be visible
-  showMenuItems = 2
+  showMenuItems = 9
 
   # show selector to switch language
   showLanguageSelector = false
@@ -74,6 +78,11 @@ paginate = 7
         name = "自己紹介"
         url = "/about"
         weight = 1
+      [[languages.en.menu.main]]
+        identifier = "dates"
+        name = "月別一覧"
+        url = "/dates"
+        weight = 2
       [[languages.en.menu.main]]
         identifier = "tags"
         name = "タグ一覧"
