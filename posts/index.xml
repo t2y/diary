@@ -1,4 +1,37 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on forest nook</title><link>/diary/posts/</link><description>Recent content in Posts on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sat, 09 Oct 2021 09:12:12 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>職質された</title><link>/diary/posts/2021/1009/</link><pubDate>Sat, 09 Oct 2021 09:12:12 +0900</pubDate><guid>/diary/posts/2021/1009/</guid><description>0時に寝て6時に起きる。昨日も田んぼ仕事の疲れが残っていたのでよく眠れた。1週間で6時頃に起きる癖がついたのですぐに起きれた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on forest nook</title><link>/diary/posts/</link><description>Recent content in Posts on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sun, 10 Oct 2021 11:50:09 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>86―エイティシックス―</title><link>/diary/posts/2021/1010/</link><pubDate>Sun, 10 Oct 2021 11:50:09 +0900</pubDate><guid>/diary/posts/2021/1010/</guid><description>2時に寝て7時に起きる。昨日 86―エイティシックス― の第2クールの初回をみた。起きてから第1クールの後半の内容を見返したりしてた。内容がすごくおもしろいというわけではないんだけど、作品の世界観と音楽がよい。というか、澤野弘之 氏のファンなので彼が音楽を手がける作品はみてしまう。第1クールの音楽も素晴らしかった。音楽がよいと映画やアニメのシーンが盛り上がるし、音楽だけを聞いているときにもそのシーンのイメージが想起されて音楽そのものにも深みが出るような気がする。
+Terminal のカスタマイズ 月別一覧のページを作成した。Hugo には Taxonomies という仕組みがあって、任意のラベルでカテゴライズできる。デフォルトでは categories と tags が提供されている。設定ファイルに dates というカスタム Taxonomies を定義する。
+[taxonomies] date = &amp;#34;dates&amp;#34; tag = &amp;#34;tags&amp;#34; コンテンツのメタデータには次のように年月のラベルを付与する。
+dates: [2021/10] これは hugo new したときに自動生成されるので自分で明示的に設定する必要はない。
+dates: [{{ dateFormat &amp;quot;2006/01&amp;quot; .Date }}] ラベル名に / を含めると自動的に月ごとのサブディレクトリになってくれるので月別のアーカイブを生成するのに都合がよい。
+$ tree -L 3 public/dates/ public/dates/ ├── 2021 │ ├── 09 │ │ ├── index.html │ │ ├── index.xml │ │ └── page │ └── 10 │ ├── index.html │ ├── index.</description><content>&lt;p>2時に寝て7時に起きる。昨日 &lt;a href="https://anime-86.com/">86―エイティシックス―&lt;/a> の第2クールの初回をみた。起きてから第1クールの後半の内容を見返したりしてた。内容がすごくおもしろいというわけではないんだけど、作品の世界観と音楽がよい。というか、&lt;a href="https://www.sawanohiroyuki.com/">澤野弘之&lt;/a> 氏のファンなので彼が音楽を手がける作品はみてしまう。第1クールの音楽も素晴らしかった。音楽がよいと映画やアニメのシーンが盛り上がるし、音楽だけを聞いているときにもそのシーンのイメージが想起されて音楽そのものにも深みが出るような気がする。&lt;/p>
+&lt;h2 id="terminal-のカスタマイズ">Terminal のカスタマイズ&lt;/h2>
+&lt;p>月別一覧のページを作成した。Hugo には &lt;a href="https://gohugo.io/content-management/taxonomies/">Taxonomies&lt;/a> という仕組みがあって、任意のラベルでカテゴライズできる。デフォルトでは &lt;code>categories&lt;/code> と &lt;code>tags&lt;/code> が提供されている。設定ファイルに &lt;code>dates&lt;/code> というカスタム Taxonomies を定義する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-toml" data-lang="toml">[&lt;span style="color:#a6e22e">taxonomies&lt;/span>]
+&lt;span style="color:#a6e22e">date&lt;/span> = &lt;span style="color:#e6db74">&amp;#34;dates&amp;#34;&lt;/span>
+&lt;span style="color:#a6e22e">tag&lt;/span> = &lt;span style="color:#e6db74">&amp;#34;tags&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>コンテンツのメタデータには次のように年月のラベルを付与する。&lt;/p>
+&lt;pre tabindex="0">&lt;code>dates: [2021/10]
+&lt;/code>&lt;/pre>&lt;p>これは &lt;code>hugo new&lt;/code> したときに自動生成されるので自分で明示的に設定する必要はない。&lt;/p>
+&lt;pre tabindex="0">&lt;code>dates: [{{ dateFormat &amp;quot;2006/01&amp;quot; .Date }}]
+&lt;/code>&lt;/pre>&lt;p>ラベル名に &lt;code>/&lt;/code> を含めると自動的に月ごとのサブディレクトリになってくれるので月別のアーカイブを生成するのに都合がよい。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ tree -L &lt;span style="color:#ae81ff">3&lt;/span> public/dates/
+public/dates/
+├── &lt;span style="color:#ae81ff">2021&lt;/span>
+│   ├── &lt;span style="color:#ae81ff">09&lt;/span>
+│   │   ├── index.html
+│   │   ├── index.xml
+│   │   └── page
+│   └── &lt;span style="color:#ae81ff">10&lt;/span>
+│   ├── index.html
+│   ├── index.xml
+│   └── page
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>タグ一覧とは異なり、年単位・月単位にまとめて一覧表示するためにテンプレートをカスタマイズする。&lt;a href="https://gohugo.io/templates/taxonomy-templates/">Taxonomy Templates&lt;/a> は &lt;code>terms.html&lt;/code> によって提供されている。Terminal が提供しているこのテンプレートをカスタマイズすることで月別一覧を次のような表示になるようカスタマイズした。&lt;/p>
+&lt;figure>&lt;img src="/diary/diary/img/2021/1010_dates.png"/>
+&lt;/figure>
+&lt;p>実際の修正内容は次になる。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/t2y/diary/commit/783d9685ae3698b85e428bce178bdd9ebe2c3dca">https://github.com/t2y/diary/commit/783d9685ae3698b85e428bce178bdd9ebe2c3dca&lt;/a>&lt;/li>
+&lt;/ul></content></item><item><title>職質された</title><link>/diary/posts/2021/1009/</link><pubDate>Sat, 09 Oct 2021 09:12:12 +0900</pubDate><guid>/diary/posts/2021/1009/</guid><description>0時に寝て6時に起きる。昨日も田んぼ仕事の疲れが残っていたのでよく眠れた。1週間で6時頃に起きる癖がついたのですぐに起きれた。
 Terminal のカスタマイズ 昨日からいくつか修正をしていた。
 画像のパス問題の修正 favicon の追加 タグ一覧リンクの追加 atom フィードに icon 要素の追加 (feedly では読み取れない) atom フィードに favicon を指す要素を埋め込んでみたんだけど、feedly ではダメっぽい。たまたまヒットした GitHub issue でもそういったコメントをみかけた。
 https://github.com/huginn/huginn/issues/1628#issuecomment-882103625 ストレッチ 毎週土曜日はストレッチの日。田んぼ仕事のおかげで全身軽い筋肉痛になっている。ストレッチを受けると、いつものときとの違いから、股関節から右ももと腕の筋肉がすごく張っているのに気付く。田んぼのような突発的に体を動かして疲労が溜まったときにもストレッチでほぐせるのがよい。今日の開脚幅は開始前169cmで、ストレッチ後170cmかな。前より少し落ちたのは田んぼ仕事に疲れて平日にあまりストレッチが出来なかったのと筋肉痛のせいかもしれない。

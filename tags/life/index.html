@@ -56,6 +56,51 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2021/1010/>86―エイティシックス―</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2021-10-10
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/life/>life</a>&nbsp;
+#<a href=/diary/tags/hugo/>hugo</a>&nbsp;
+</span>
+<div class=post-content>
+<p>2時に寝て7時に起きる。昨日 <a href=https://anime-86.com/>86―エイティシックス―</a> の第2クールの初回をみた。起きてから第1クールの後半の内容を見返したりしてた。内容がすごくおもしろいというわけではないんだけど、作品の世界観と音楽がよい。というか、<a href=https://www.sawanohiroyuki.com/>澤野弘之</a> 氏のファンなので彼が音楽を手がける作品はみてしまう。第1クールの音楽も素晴らしかった。音楽がよいと映画やアニメのシーンが盛り上がるし、音楽だけを聞いているときにもそのシーンのイメージが想起されて音楽そのものにも深みが出るような気がする。</p>
+<h2 id=terminal-のカスタマイズ>Terminal のカスタマイズ</h2>
+<p>月別一覧のページを作成した。Hugo には <a href=https://gohugo.io/content-management/taxonomies/>Taxonomies</a> という仕組みがあって、任意のラベルでカテゴライズできる。デフォルトでは <code>categories</code> と <code>tags</code> が提供されている。設定ファイルに <code>dates</code> というカスタム Taxonomies を定義する。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-toml data-lang=toml>[<span style=color:#a6e22e>taxonomies</span>]
+  <span style=color:#a6e22e>date</span> = <span style=color:#e6db74>&#34;dates&#34;</span>
+  <span style=color:#a6e22e>tag</span> = <span style=color:#e6db74>&#34;tags&#34;</span>
+</code></pre></div><p>コンテンツのメタデータには次のように年月のラベルを付与する。</p>
+<pre tabindex=0><code>dates: [2021/10]
+</code></pre><p>これは <code>hugo new</code> したときに自動生成されるので自分で明示的に設定する必要はない。</p>
+<pre tabindex=0><code>dates: [{{ dateFormat &quot;2006/01&quot; .Date }}]
+</code></pre><p>ラベル名に <code>/</code> を含めると自動的に月ごとのサブディレクトリになってくれるので月別のアーカイブを生成するのに都合がよい。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ tree -L <span style=color:#ae81ff>3</span> public/dates/
+public/dates/
+├── <span style=color:#ae81ff>2021</span>
+│   ├── <span style=color:#ae81ff>09</span>
+│   │   ├── index.html
+│   │   ├── index.xml
+│   │   └── page
+│   └── <span style=color:#ae81ff>10</span>
+│       ├── index.html
+│       ├── index.xml
+│       └── page
+</code></pre></div><p>タグ一覧とは異なり、年単位・月単位にまとめて一覧表示するためにテンプレートをカスタマイズする。<a href=https://gohugo.io/templates/taxonomy-templates/>Taxonomy Templates</a> は <code>terms.html</code> によって提供されている。Terminal が提供しているこのテンプレートをカスタマイズすることで月別一覧を次のような表示になるようカスタマイズした。</p>
+<figure><img src=/diary/img/2021/1010_dates.png>
+</figure>
+<p>実際の修正内容は次になる。</p>
+<ul>
+<li><a href=https://github.com/t2y/diary/commit/783d9685ae3698b85e428bce178bdd9ebe2c3dca>https://github.com/t2y/diary/commit/783d9685ae3698b85e428bce178bdd9ebe2c3dca</a></li>
+</ul>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2021/1009/>職質された</a>
 </h1>
 <div class=post-meta>
