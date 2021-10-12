@@ -1,0 +1,127 @@
+<!doctype html><html lang=en>
+<head>
+<title>やや疲れ気味 :: forest nook</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="昨日は1時半に寝て7時半に起きた。なんか疲れが溜まっているのか寝不足なのか、しゃきっとしなくて15時頃にお昼ご飯食べてきて、戻ってきて2時間ほど寝てた。夕方に寝ると夜の睡眠が悪くなるかもしれない。
+データ指向アプリケーションデザイン データ指向アプリケーションデザイン -信頼性、拡張性、保守性の高い分散システム設計の原理
+先週末から読み始めようと思いつつ、ダラダラしていて今日から読み始めた。600ページ超と分量が多いので少しずつ読んでいく。買ったのは2019年7月なので2年越しの積ん読。前職で書籍購入の補助制度があったのでその予算消化のために買ったみたいなもの。でも買っておくといつか読むので買っておいてよかった。今日は2章まで読んだ。
+「データ指向」という用語は、cpu のデータ処理がボトルネックとなり、且つそのデータ量や複雑さなどが主な課題となるアプリケーションのことをデータ指向と定義している。ソフトウェアシステムにおける3つの課題。これはすべて非機能要件になる。
+ 信頼性 スケーラビリティ メンテンナンス性  リレーショナルデータベースと NoSQL の台頭から始まり、ドキュメントデータベースやグラフデータベースの概要やリレーショナルデータベースとの比較などが書いてある。また NoSQL 系のデータベースのクエリ言語とか、よく知らないので勉強になった。12章あるので1日1-2章ぐらいのペースで今月中に読めたらいいや。
+Slack のワークフロービルダーの調査 今度、勉強会をするので調べ始めた。ワークフロービルダーは簡単に定型的な処理を作成できるけど、有料プランでしか使えないのでコミュニティなどでは使いにくい。試しにいくつかワークフローを作ってみて感触を理解した。おそらくワークフロービルダーは Slack app を作成するためのフレームワークにみえる。作成したワークフローの1つ1つが Slack app になるのではないか。
+ https://github.com/t2y/python-study/tree/master/BizPy/slack/20211027  Slack native? first? な課題管理システムもいくつかみつけた。非開発者に課題管理システムを使ってもらうのはかなり難しいので Slack と課題管理システムが連携すれば課題管理の方法論に新しい価値が出てくるのではないかと考え始めた。この機会に Slack app で構築されば課題管理システムも調べてみようと思う。">
+<meta name=keywords content>
+<meta name=robots content="noodp">
+<link rel=canonical href=/diary/posts/2021/1012/>
+<link rel=stylesheet href=/diary/assets/style.css>
+<link rel=stylesheet href=/diary/assets/green.css>
+<link rel=stylesheet href=/diary/style.css>
+<link rel=apple-touch-icon href=/diary/img/apple-touch-icon-192x192.png>
+<link rel="shortcut icon" href=/diary/favicon.ico>
+<meta name=twitter:card content="summary">
+<meta name=twitter:site content="t2y">
+<meta name=twitter:creator content>
+<meta property="og:locale" content="en">
+<meta property="og:type" content="article">
+<meta property="og:title" content="やや疲れ気味">
+<meta property="og:description" content="昨日は1時半に寝て7時半に起きた。なんか疲れが溜まっているのか寝不足なのか、しゃきっとしなくて15時頃にお昼ご飯食べてきて、戻ってきて2時間ほど寝てた。夕方に寝ると夜の睡眠が悪くなるかもしれない。
+データ指向アプリケーションデザイン データ指向アプリケーションデザイン -信頼性、拡張性、保守性の高い分散システム設計の原理
+先週末から読み始めようと思いつつ、ダラダラしていて今日から読み始めた。600ページ超と分量が多いので少しずつ読んでいく。買ったのは2019年7月なので2年越しの積ん読。前職で書籍購入の補助制度があったのでその予算消化のために買ったみたいなもの。でも買っておくといつか読むので買っておいてよかった。今日は2章まで読んだ。
+「データ指向」という用語は、cpu のデータ処理がボトルネックとなり、且つそのデータ量や複雑さなどが主な課題となるアプリケーションのことをデータ指向と定義している。ソフトウェアシステムにおける3つの課題。これはすべて非機能要件になる。
+ 信頼性 スケーラビリティ メンテンナンス性  リレーショナルデータベースと NoSQL の台頭から始まり、ドキュメントデータベースやグラフデータベースの概要やリレーショナルデータベースとの比較などが書いてある。また NoSQL 系のデータベースのクエリ言語とか、よく知らないので勉強になった。12章あるので1日1-2章ぐらいのペースで今月中に読めたらいいや。
+Slack のワークフロービルダーの調査 今度、勉強会をするので調べ始めた。ワークフロービルダーは簡単に定型的な処理を作成できるけど、有料プランでしか使えないのでコミュニティなどでは使いにくい。試しにいくつかワークフローを作ってみて感触を理解した。おそらくワークフロービルダーは Slack app を作成するためのフレームワークにみえる。作成したワークフローの1つ1つが Slack app になるのではないか。
+ https://github.com/t2y/python-study/tree/master/BizPy/slack/20211027  Slack native? first? な課題管理システムもいくつかみつけた。非開発者に課題管理システムを使ってもらうのはかなり難しいので Slack と課題管理システムが連携すれば課題管理の方法論に新しい価値が出てくるのではないかと考え始めた。この機会に Slack app で構築されば課題管理システムも調べてみようと思う。">
+<meta property="og:url" content="/diary/posts/2021/1012/">
+<meta property="og:site_name" content="forest nook">
+<meta property="og:image" content="/diary">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+<meta property="article:published_time" content="2021-10-12 12:12:34 +0900 +0900">
+</head>
+<body class=green>
+<div class="container full headings--one-size">
+<header class=header>
+<div class=header__inner>
+<div class=header__logo>
+<a href=/diary>
+<div class=logo>
+forest nook
+</div>
+</a>
+</div>
+<div class=menu-trigger>menu</div>
+</div>
+<nav class=menu>
+<ul class="menu__inner menu__inner--desktop">
+<li><a href=/diary/about>自己紹介</a></li>
+<li><a href=/diary/dates>月別一覧</a></li>
+<li><a href=/diary/tags>タグ一覧</a></li>
+</ul>
+<ul class="menu__inner menu__inner--mobile">
+<li><a href=/diary/about>自己紹介</a></li>
+<li><a href=/diary/dates>月別一覧</a></li>
+<li><a href=/diary/tags>タグ一覧</a></li>
+</ul>
+</nav>
+</header>
+<div class=content>
+<div class=post>
+<h1 class=post-title>
+<a href=/diary/posts/2021/1012/>やや疲れ気味</a></h1>
+<div class=post-meta>
+<span class=post-date>
+2021-10-12
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/book/>book</a>&nbsp;
+#<a href=/diary/tags/slack/>slack</a>&nbsp;
+</span>
+<div class=post-content><div>
+<p>昨日は1時半に寝て7時半に起きた。なんか疲れが溜まっているのか寝不足なのか、しゃきっとしなくて15時頃にお昼ご飯食べてきて、戻ってきて2時間ほど寝てた。夕方に寝ると夜の睡眠が悪くなるかもしれない。</p>
+<h2 id=データ指向アプリケーションデザイン>データ指向アプリケーションデザイン<a href=#データ指向アプリケーションデザイン class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p><a href=https://www.oreilly.co.jp/books/9784873118703/>データ指向アプリケーションデザイン -信頼性、拡張性、保守性の高い分散システム設計の原理</a></p>
+<p>先週末から読み始めようと思いつつ、ダラダラしていて今日から読み始めた。600ページ超と分量が多いので少しずつ読んでいく。買ったのは2019年7月なので2年越しの積ん読。前職で書籍購入の補助制度があったのでその予算消化のために買ったみたいなもの。でも買っておくといつか読むので買っておいてよかった。今日は2章まで読んだ。</p>
+<p>「データ指向」という用語は、cpu のデータ処理がボトルネックとなり、且つそのデータ量や複雑さなどが主な課題となるアプリケーションのことをデータ指向と定義している。ソフトウェアシステムにおける3つの課題。これはすべて非機能要件になる。</p>
+<ul>
+<li>信頼性</li>
+<li>スケーラビリティ</li>
+<li>メンテンナンス性</li>
+</ul>
+<p>リレーショナルデータベースと NoSQL の台頭から始まり、ドキュメントデータベースやグラフデータベースの概要やリレーショナルデータベースとの比較などが書いてある。また NoSQL 系のデータベースのクエリ言語とか、よく知らないので勉強になった。12章あるので1日1-2章ぐらいのペースで今月中に読めたらいいや。</p>
+<h2 id=slack-のワークフロービルダーの調査>Slack のワークフロービルダーの調査<a href=#slack-のワークフロービルダーの調査 class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p>今度、勉強会をするので調べ始めた。ワークフロービルダーは簡単に定型的な処理を作成できるけど、有料プランでしか使えないのでコミュニティなどでは使いにくい。試しにいくつかワークフローを作ってみて感触を理解した。おそらくワークフロービルダーは Slack app を作成するためのフレームワークにみえる。作成したワークフローの1つ1つが Slack app になるのではないか。</p>
+<ul>
+<li><a href=https://github.com/t2y/python-study/tree/master/BizPy/slack/20211027>https://github.com/t2y/python-study/tree/master/BizPy/slack/20211027</a></li>
+</ul>
+<p>Slack native? first? な課題管理システムもいくつかみつけた。非開発者に課題管理システムを使ってもらうのはかなり難しいので Slack と課題管理システムが連携すれば課題管理の方法論に新しい価値が出てくるのではないかと考え始めた。この機会に Slack app で構築されば課題管理システムも調べてみようと思う。</p>
+</div></div>
+<div class=pagination>
+<div class=pagination__title>
+<span class=pagination__title-h>Read other posts</span>
+<hr>
+</div>
+<div class=pagination__buttons>
+<span class="button next">
+<a href=/diary/posts/2021/1011/>
+<span class=button__text>BizPy 再始動</span>
+<span class=button__icon>→</span>
+</a>
+</span>
+</div>
+</div>
+</div>
+</div>
+<footer class=footer>
+<div class=footer__inner>
+<div class="copyright copyright--user">
+<span>© 2021 Tetsuya Morimoto</span>
+<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span>
+</div>
+</div>
+</footer>
+<script src=/diary/assets/main.js></script>
+<script src=/diary/assets/prism.js></script>
+</div>
+</body>
+</html>
