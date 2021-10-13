@@ -63,8 +63,8 @@ paginate = 7
     menuMore = "Show more"
     readMore = "Read more"
     readOtherPosts = "Read other posts"
-    newerPosts = "Newer posts"
-    olderPosts = "Older posts"
+    newerPosts = "最近の日記"
+    olderPosts = "過去の日記"
     missingContentMessage = "Page not found..."
     missingBackButtonLabel = "Back to home page"
 
