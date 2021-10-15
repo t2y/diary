@@ -16,6 +16,10 @@ img {
   padding: 2px;
 }
 
+.post-title {
+  margin: 0 auto 5px !important;
+}
+
 .post-content {
   font-size: 1.1rem;
 }
