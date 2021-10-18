@@ -10,6 +10,12 @@ img {
   border: 3px solid var(--accent);
 }
 
+figcaption p {
+  font-size: 1.1rem;
+  text-align: center;
+  margin: 5px;
+}
+
 .post-cover {
   border: 4px dotted var(--accent);
   margin: 0;
