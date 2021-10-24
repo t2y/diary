@@ -56,6 +56,34 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2021/1024/>bolt アプリ開発</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2021-10-24
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/slack/>slack</a>&nbsp;
+</span>
+<img src=/diary/img/2021/1024_bolt-app.png class=post-cover alt="bolt アプリ開発">
+<div class=post-content>
+<p>2時に寝て9時に起きた。寝る前に1時間ほどウォーキングしてきたせいか、よく眠れた。田んぼをしたり運動をしたり体を動かして疲れた方がよく眠れるような気がしてきた。しばらく続けてみようと思う。お昼は調べものをしていて夕方に眠くなって2時間ほど寝てまた夜も調べものをしていた。</p>
+<h2 id=slack-apps-の調査>Slack apps の調査</h2>
+<p>この水曜日に勉強会があるので調査と資料作成をしていた。いつの間にか slack app 作成のためのドキュメントもいくつか <a href=https://api.slack.com/lang/ja-jp>日本語化</a> されていることに気付いた。<a href=https://api.slack.com/lang/ja-jp/hello-world-bolt>Bolt フレームワークを使って Slack Bot を作ろう</a> のドキュメントをみながら <a href=https://github.com/slackapi/bolt-python>bolt-python</a> を使って簡単な bot アプリを作成した。アプリの設定・開発の流れはだいたいこんな感じ。</p>
+<ol>
+<li>slack app 作成</li>
+<li>bot ユーザー作成</li>
+<li>oauth スコープの設定</li>
+<li>bolt アプリケーションの実装</li>
+<li>イベントサブスクリプションの設定</li>
+</ol>
+<p>bolt とは別に <a href=https://github.com/slackapi/python-slack-sdk>python-slack-sdk</a> というライブラリが提供されていて、このライブラリを使って bolt というフレームワークが実装されている。bolt でやりにくいことがあったら直接 sdk を触ることもあるのかもしれない。</p>
+<p>現時点で勉強会の参加者は17人もいる。半年以上さぼっていたけど、けっこうな人数が参加してくれている。slack app の調査も兼ねて3-4回ぐらいは勉強会を開く予定。初回はアプリを作成するときの雰囲気を学んでもらえればと思う。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2021/1021/>読書はお休み2日目</a>
 </h1>
 <div class=post-meta>
