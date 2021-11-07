@@ -1,4 +1,235 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>forest nook</title><link>/diary/</link><description>Recent content on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sat, 06 Nov 2021 12:52:56 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/index.xml" rel="self" type="application/rss+xml"/><item><title>普通の休日</title><link>/diary/posts/2021/1106/</link><pubDate>Sat, 06 Nov 2021 12:52:56 +0900</pubDate><guid>/diary/posts/2021/1106/</guid><description>0時に寝て5時半に起きたが、休日だからゆっくりするかと思って二度寝して8時に起きた。知人のタイムラインで紹介されていていい言葉だなと思ったので書いておく。日記があるとこういう流れていくちょっとしたことを書く場所にもなるな。コミュニティ活動の本質はこれなんじゃないかという気もする。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>forest nook</title><link>/diary/</link><description>Recent content on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sun, 07 Nov 2021 11:21:21 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/index.xml" rel="self" type="application/rss+xml"/><item><title>普通の休日の翌日</title><link>/diary/posts/2021/1107/</link><pubDate>Sun, 07 Nov 2021 11:21:21 +0900</pubDate><guid>/diary/posts/2021/1107/</guid><description>5時に寝て10時に起きた。昨日は夕方に2-3時間寝てたのでその分、夜に調べものをしていた。休みたい気持ちもあるけど、調べるものが多過ぎて全然時間が足りない。
+bizpy 勉強会の資料作り 昨日 の続き。昨日サンプルコードを実装したので、その設定や要点を 資料 に作成した。現時点で Python で Slack のインテグレーションをやってみる勉強会 #2 の参加者は10人。連続シリーズは回を重ねるごとに減っていくものなのでこんなもんかな。あともう1回やったら終わりにする。
+udemy: Kubernetes入門 友だちから udemy の k8s のコースがよいと聞いたんだけど、そのコースはいまは提供されていなくて、せっかくなので適当に検索してヒットした Kubernetes入門 を受講することに決めた。本当は英語の本格的なコースを受講した方がよいのだろうけど、余裕のあるときはそれでいいけど、いま数日で概要を把握して使えるようにしたいので日本語のコースにしてみた。
+Udemy の Learning Docker and Kubernetes by Lab がとてもよい Docker, Kubernetes 学習とツールとコンピュータサイエンス 昨日インストールした minikube のクラスターを使って「Kubernetes入門」のセクション1からセクション5までやった。だいたい半分ぐらい。所感としては、全く何も知らない人には要点をかいつまんで教えてくれるのと、最初に覚えるとよい基本的な CLI のコマンドとその振る舞いや設定を紹介してくれるのでよかった。初めて k8s に挑戦する自分にとってはちょうどよいレベル感だった。全体像の概念を捉えてコンテキストに沿って順番にハンズオン形式で学習していくスタイル。nakamasato/kubernetes-basics を使って自分でも CLI でコマンドを打ちながら進めてみた。yaml ファイルを定義するのもこれはこれで面倒だけど、この辺は慣れの問題かな？とも思う。いくつか学んだことを整理しておく。
+セクション1 Introduction k8s には2つのコンポーネントがあり、これを k8s クラスターと呼んでいる。
+Control Plane (API サーバー) 複数の Worker (Kubelet) yaml で設定する Desired State (理想状態) と呼ばれる設定が登録されると、Control Plane の API サーバーと Worker の kubelet が通信してそれを実現しようとする。pod とは k8s のデプロイの最小単位となる。コンテナ、ポート、レプリカ数などを設定する。pod をそれぞれの Worker にデプロイしたり、Worker がダウンしたときに別の Worker で起動させたりする。</description><content>&lt;p>5時に寝て10時に起きた。昨日は夕方に2-3時間寝てたのでその分、夜に調べものをしていた。休みたい気持ちもあるけど、調べるものが多過ぎて全然時間が足りない。&lt;/p>
+&lt;h2 id="bizpy-勉強会の資料作り">bizpy 勉強会の資料作り&lt;/h2>
+&lt;p>&lt;a href="/diary/diary/posts/2021/1106/#slack-apps-の調査">昨日&lt;/a> の続き。昨日サンプルコードを実装したので、その設定や要点を &lt;a href="https://github.com/t2y/python-study/tree/master/BizPy/slack/20211027">資料&lt;/a> に作成した。現時点で &lt;a href="https://bizpy.connpass.com/event/229091/">Python で Slack のインテグレーションをやってみる勉強会 #2&lt;/a> の参加者は10人。連続シリーズは回を重ねるごとに減っていくものなのでこんなもんかな。あともう1回やったら終わりにする。&lt;/p>
+&lt;h2 id="udemy-kubernetes入門">udemy: Kubernetes入門&lt;/h2>
+&lt;p>友だちから udemy の k8s のコースがよいと聞いたんだけど、そのコースはいまは提供されていなくて、せっかくなので適当に検索してヒットした &lt;a href="https://www.udemy.com/course/kubernetes-basics-2021/">Kubernetes入門&lt;/a> を受講することに決めた。本当は英語の本格的なコースを受講した方がよいのだろうけど、余裕のあるときはそれでいいけど、いま数日で概要を把握して使えるようにしたいので日本語のコースにしてみた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://blog.ayakumo.net/entry/2018/01/27/010000">Udemy の Learning Docker and Kubernetes by Lab がとてもよい&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://blog.ayakumo.net/entry/2018/02/15/232918">Docker, Kubernetes 学習とツールとコンピュータサイエンス&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>昨日インストールした minikube のクラスターを使って「Kubernetes入門」のセクション1からセクション5までやった。だいたい半分ぐらい。所感としては、全く何も知らない人には要点をかいつまんで教えてくれるのと、最初に覚えるとよい基本的な CLI のコマンドとその振る舞いや設定を紹介してくれるのでよかった。初めて k8s に挑戦する自分にとってはちょうどよいレベル感だった。全体像の概念を捉えてコンテキストに沿って順番にハンズオン形式で学習していくスタイル。&lt;a href="https://github.com/nakamasato/kubernetes-basics">nakamasato/kubernetes-basics&lt;/a> を使って自分でも CLI でコマンドを打ちながら進めてみた。yaml ファイルを定義するのもこれはこれで面倒だけど、この辺は慣れの問題かな？とも思う。いくつか学んだことを整理しておく。&lt;/p>
+&lt;h3 id="セクション1-introduction">セクション1 Introduction&lt;/h3>
+&lt;p>k8s には2つのコンポーネントがあり、これを k8s クラスターと呼んでいる。&lt;/p>
+&lt;ul>
+&lt;li>Control Plane (API サーバー)&lt;/li>
+&lt;li>複数の Worker (Kubelet)&lt;/li>
+&lt;/ul>
+&lt;p>yaml で設定する Desired State (理想状態) と呼ばれる設定が登録されると、Control Plane の API サーバーと Worker の kubelet が通信してそれを実現しようとする。pod とは k8s のデプロイの最小単位となる。コンテナ、ポート、レプリカ数などを設定する。pod をそれぞれの Worker にデプロイしたり、Worker がダウンしたときに別の Worker で起動させたりする。&lt;/p>
+&lt;h3 id="セクション2-kubernets-概要">セクション2 Kubernets 概要&lt;/h3>
+&lt;p>k8s はコンテナ化したアプリケーションのデプロイ、スケーリング、管理を行うためのオープンソースのコンテナオーケストレーションシステムである。&lt;/p>
+&lt;ul>
+&lt;li>コンテナ
+&lt;ul>
+&lt;li>独立した環境でアプリケーションを実行する仕組み&lt;/li>
+&lt;li>コンテナの実態はプロセス&lt;/li>
+&lt;li>Kernel Namespaces を利用し、プロセスID、ネットワークインターフェース、リソースなどを分離してコンテナ間で干渉しない&lt;/li>
+&lt;li>ホストマシンへの依存度を最小化してアプリケーションをどこでも実行可能にする
+&lt;ul>
+&lt;li>従来のやり方の最大の違いはライブラリがホストマシンにインストールされるのではなく、コンテナの内部にインストールされる&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>オーケストレーション
+&lt;ul>
+&lt;li>デプロイ、スケーリング、管理などの仕組み&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>1つのアプリケーションは複数のマシン上で動かすことで可用性を高めたいが、コンテナを動かすために考えることが増えていくと管理コストも増えていく。コンテナオーケストレーション機能により次のようなシステム管理者が行っていたことが自動化される。&lt;/p>
+&lt;ul>
+&lt;li>デプロイメント&lt;/li>
+&lt;li>スケジューリング&lt;/li>
+&lt;li>オートスケーリング
+&lt;ul>
+&lt;li>負荷に応じてコンテナ数やマシン数を増減させる&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>ネットワーク&lt;/li>
+&lt;li>リソースマネジメント&lt;/li>
+&lt;li>セキュリティ
+&lt;ul>
+&lt;li>ネットワークポリシーやリソースの権限定義&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>k8s クラスターの構造は次になる。&lt;/p>
+&lt;ul>
+&lt;li>Control Plane
+&lt;ul>
+&lt;li>api: kubelet と通信するサーバー&lt;/li>
+&lt;li>etcd: 設定などを格納するキーバリューストア&lt;/li>
+&lt;li>shed: kube スケジューラー&lt;/li>
+&lt;li>c-m: コントロールマネージャー&lt;/li>
+&lt;li>c-c-m: クラウドプロバイダと api 連携する
+&lt;ul>
+&lt;li>ローカルで使うときは必要ない&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Worker ノードはコンテナランタイムをいインストールしておく必要がある
+&lt;ul>
+&lt;li>kubelet は Control Plane と通信するためのエージェントとして動作する&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>一番需要なこととして、k8s は理想状態と現実状態を比較して、理想状態に近づけようとする。app.yaml の理想状態を kubectl を用いて api サーバーを介して etcd に格納する。現実状態は kubelet から api サーバーを介して etcd に格納される。c-m は理想状態と現実状態のチェックを行い、異なっていれば理想状態に近づけることをしていく。&lt;/p>
+&lt;h3 id="セクション4-kubectl">セクション4 kubectl&lt;/h3>
+&lt;p>minikube で最初に起動しているのは Control Plane を起動していることが理解できた。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ minikube start
+$ kubectl config current-context
+minikube
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>同時に ~/.kube/config に kubectl の設定も追加される。&lt;code>minikube&lt;/code> という名前でクラスター、ユーザー、コンテキストが設定される。&lt;/p>
+&lt;p>リソース一覧の確認。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl api-resources
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>出力フォーマットも様々。例えば、デフォルトの表示は次になる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl get node
+NAME STATUS ROLES AGE VERSION
+minikube Ready control-plane,master 7m21s v1.22.2
+$ kubectl get node -o wide
+NAME STATUS ROLES AGE VERSION INTERNAL-IP EXTERNAL-IP OS-IMAGE KERNEL-VERSION CONTAINER-RUNTIME
+minikube Ready control-plane,master 8m38s v1.22.2 192.168.49.2 &amp;lt;none&amp;gt; Ubuntu 20.04.2 LTS 5.11.0-38-generic docker://20.10.8
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>より詳細な情報をそれぞれのフォーマットで表示する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl get node -o json
+$ kubectl get node -o yaml
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>namespace を確認する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl get namespace
+NAME STATUS AGE
+default Active 10m
+kube-node-lease Active 10m
+kube-public Active 10m
+kube-system Active 10m
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>namespace を指定して pod 一覧を取得する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl get pod --namespace kube-system
+NAME READY STATUS RESTARTS AGE
+coredns-78fcd69978-qxqbn 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
+etcd-minikube 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
+kube-apiserver-minikube 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
+kube-controller-manager-minikube 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
+kube-proxy-g55hg 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
+kube-scheduler-minikube 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
+storage-provisioner 1/1 Running &lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">(&lt;/span>10m ago&lt;span style="color:#f92672">)&lt;/span> 11m
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>グローバルな CLI のオプションを確認する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl options
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>ノードの詳細を表示する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl describe node
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>describe は名前の接頭辞を指定できるので namespace ならこんな感じに実行できる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl describe namespace kube-
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="セクション5-kubernetes-リソース">セクション5 Kubernetes リソース&lt;/h3>
+&lt;p>pod とは k8s 上のデプロイの最小単位である。&lt;/p>
+&lt;ul>
+&lt;li>1つまたは複数のコンテナをもつ&lt;/li>
+&lt;li>ネットワークやストレージを共有リソースとしてもつ&lt;/li>
+&lt;li>コンテナの実行方法に関する仕様をもつ&lt;/li>
+&lt;/ul>
+&lt;p>pod が使えなくなった場合に他のノードにデプロイされることもある。1つのアプリケーションを複数の pod でデプロイすることが多い。なるべく複数のアプリケーションを1つの pod に入れない。個別の pod を直接操作しない。&lt;/p>
+&lt;p>共有コンテキスト&lt;/p>
+&lt;ul>
+&lt;li>同一 pod 内のコンテナは同じストレージにアクセスできる&lt;/li>
+&lt;li>同一 pod 内のコンテナは ip アドレスとポートを含むネットワーク名前空間を共有する&lt;/li>
+&lt;/ul>
+&lt;p>k8s オブジェクト&lt;/p>
+&lt;ul>
+&lt;li>クラスタの状態を表現する&lt;/li>
+&lt;li>2つのフィールドをもつ
+&lt;ul>
+&lt;li>spec: 理想状態 (desired status)&lt;/li>
+&lt;li>status: 現実状態 (current status)&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>pod の作成は k8s オブジェクトを作成している。オブジェクト作成時の必須フィールドが4つある。&lt;/p>
+&lt;ul>
+&lt;li>apiVersion&lt;/li>
+&lt;li>kind&lt;/li>
+&lt;li>metadata&lt;/li>
+&lt;li>spec&lt;/li>
+&lt;/ul>
+&lt;p>namespace は同一クラスター上で複数の仮想クラスターの動作をサポートする。&lt;/p>
+&lt;ul>
+&lt;li>仮想クラスターとは、物理的には同じマシンで動いているかもしれないが、仮想的に環境を分離している
+&lt;ul>
+&lt;li>1つのクラスターを論理的にわける&lt;/li>
+&lt;li>チームや部署ごとにわけて使い分けたりすることも多い&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>namespace を使うメリットは次になる。&lt;/p>
+&lt;ul>
+&lt;li>pod やコンテナのリソースの範囲設定&lt;/li>
+&lt;li>namespace 全体の総リソース制限&lt;/li>
+&lt;li>権限管理&lt;/li>
+&lt;/ul>
+&lt;p>初期の namespace として4つあるが、初心者は最初の2つだけをまず覚えておく。&lt;/p>
+&lt;ul>
+&lt;li>default:&lt;/li>
+&lt;li>kube-system:&lt;/li>
+&lt;li>kube-public:&lt;/li>
+&lt;li>kube-node-lease&lt;/li>
+&lt;/ul>
+&lt;p>namespace と cluster の違い。&lt;/p>
+&lt;ul>
+&lt;li>Namespace-scoped リソース
+&lt;ul>
+&lt;li>namespace に属しているリソース&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Cluster-scoped リソース
+&lt;ul>
+&lt;li>クラスター全体で使われるもの&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>次のコマンドで確認できる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl api-resources --namespaced&lt;span style="color:#f92672">=&lt;/span>true
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>namespace の作成&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl create namespace my-namespace
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>ワークロードリソースとは複数の pod を作成・管理するためのリソース。ワークロードリソースは pod テンプレートを使って pod を作成する。&lt;/p>
+&lt;ul>
+&lt;li>ReplicaSet
+&lt;ul>
+&lt;li>常に指定したレプリカ数の pod を保つ&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Deployment
+&lt;ul>
+&lt;li>ローリングアップデートやロールバックなどのアップデート機能を提供&lt;/li>
+&lt;li>ReplicaSet のロールアウト&lt;/li>
+&lt;li>不安定な場合の前のバージョンへロールバック&lt;/li>
+&lt;li>使用頻度が高い
+&lt;ul>
+&lt;li>ほとんどのアプリケーションは Deployment で管理&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Secret
+&lt;ul>
+&lt;li>機密情報を保存・管理し、Pod から参照可能&lt;/li>
+&lt;li>主な使用方法としてコンテナの環境変数の設定
+&lt;ul>
+&lt;li>アプリケーションの DB のパスワードなどに使う&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Service
+&lt;ul>
+&lt;li>pod の集合を抽象化して公開する
+&lt;ul>
+&lt;li>pod の集合に対する DNS 名&lt;/li>
+&lt;li>pod の集合に対する負荷分散&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul></content></item><item><title>普通の休日</title><link>/diary/posts/2021/1106/</link><pubDate>Sat, 06 Nov 2021 12:52:56 +0900</pubDate><guid>/diary/posts/2021/1106/</guid><description>0時に寝て5時半に起きたが、休日だからゆっくりするかと思って二度寝して8時に起きた。知人のタイムラインで紹介されていていい言葉だなと思ったので書いておく。日記があるとこういう流れていくちょっとしたことを書く場所にもなるな。コミュニティ活動の本質はこれなんじゃないかという気もする。
 自分にまったく利益をもたらさない人間を、どう扱うかでその人がどんな人間かがはっきりわかる
 サミュエル・ジョンソン
 ストレッチ 今週もジョギングの代わりにウォーキングをしてた。ジョギングやると筋肉痛や疲労から他の日を休みがちになるけど、ウォーキングならジョギングよりは継続しやすい。今週は4-5日ほど歩いた。ただストレッチはさぼってて2日しかできなかった。ウォーキングのせいかわからないけど、右足太もも後ろの筋が張るようになった。ストレッチを始めてから日々の運動や生活の変化と関節や筋肉の張りが変化するのも意識するようにもなってきた。今日の開脚幅は開始前167.5cmcmで、ストレッチ後168cmだった。前週よりは数値がよくなっているのでこんなもんかもしれない。
