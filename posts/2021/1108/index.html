@@ -5,10 +5,10 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="1時に寝て7時に起きた。夜にウォーキングし始めてからよく眠れるようになった気がする。
 udemy: Kubernetes入門 昨日 の続き。今日はセクション6から最後まで。CI/CD のセクションだけスキップして、他は一通り目を通した。
-セクション6 Kubernetes実践 1つずつ書くのは大変だけど、数をこなして徐々に覚えていけばよい。手で書くのもよいが、別のやり方としてクライアント側で dry run すると、ひな型を作ってくれるのでそれに必要な設定を足すのもよい。
+セクション6 Kubernetes実践 1つずつ書くのは大変だけど、数をこなして徐々に覚えていけばよい。手で書くのもよいが、別のやり方としてクライアント側で dry run すると、設定のひな型を作ってくれるのでそれに必要な設定を足すのもよい。
 $ kubectl create deploy mysql --image=mysql:5.7 --dry-run=client -o yaml $ kubectl exec -n database -it mysql-787f86d65c-nflxx -- mysql -uroot -ppassword データベースとアプリケーションを異なる namespace にデプロイして、それらが通信できるような設定を行う。基本的には --dry-run=client でひな型を作りつつ、必要な設定を追加していくやり方が簡単そうにみえた。とはいえ、実際に設定していくときはどういう設定を追加するとどういう振る舞いになるかを調べながら作業すると思うのでこんな簡単にはできないとは思う。次のようなアプリケーションをデプロイする一覧の流れを理解できた。
- namespace 作成 Deployment 作成 ConfigMap 作成 Secret 作成 Deployment, ConfigMap, Secret 適用 Service 適用 port-forward でローカルからアクセス (作成したリソースをすべて削除)  セクション7 KubernetesのDebug $ kubectl get pod -A
-$ kubectl get pod -A &amp;ndash;selector run=nginx">
+ namespace 作成 Deployment 作成 ConfigMap 作成 Secret 作成 Deployment, ConfigMap, Secret 適用 Service 適用 port-forward でローカルからアクセス (作成したリソースをすべて削除)  セクション7 KubernetesのDebug 基本は pod のステータスを確認しながら問題があれば、その箇所を追いかけていって原因を調査する。
+$ kubectl get pod -A $ kubectl get pod -A --selector run=nginx k8s 上で実行しているアプリケーションの依存先へ接続できない場合は Service の確認が必要となる。kubectl の get, describe, logs などのサブコマンドをあれこれみながらエラーの原因を把握して、yaml の設定を変更していく。k8s のアーキテクチャとコマンドを覚えていないとなかなか難しそう。">
 <meta name=keywords content>
 <meta name=robots content="noodp">
 <link rel=canonical href=/diary/posts/2021/1108/>
@@ -25,10 +25,10 @@ $ kubectl get pod -A &amp;ndash;selector run=nginx">
 <meta property="og:title" content="Kubernetes 使い始めの雑感">
 <meta property="og:description" content="1時に寝て7時に起きた。夜にウォーキングし始めてからよく眠れるようになった気がする。
 udemy: Kubernetes入門 昨日 の続き。今日はセクション6から最後まで。CI/CD のセクションだけスキップして、他は一通り目を通した。
-セクション6 Kubernetes実践 1つずつ書くのは大変だけど、数をこなして徐々に覚えていけばよい。手で書くのもよいが、別のやり方としてクライアント側で dry run すると、ひな型を作ってくれるのでそれに必要な設定を足すのもよい。
+セクション6 Kubernetes実践 1つずつ書くのは大変だけど、数をこなして徐々に覚えていけばよい。手で書くのもよいが、別のやり方としてクライアント側で dry run すると、設定のひな型を作ってくれるのでそれに必要な設定を足すのもよい。
 $ kubectl create deploy mysql --image=mysql:5.7 --dry-run=client -o yaml $ kubectl exec -n database -it mysql-787f86d65c-nflxx -- mysql -uroot -ppassword データベースとアプリケーションを異なる namespace にデプロイして、それらが通信できるような設定を行う。基本的には --dry-run=client でひな型を作りつつ、必要な設定を追加していくやり方が簡単そうにみえた。とはいえ、実際に設定していくときはどういう設定を追加するとどういう振る舞いになるかを調べながら作業すると思うのでこんな簡単にはできないとは思う。次のようなアプリケーションをデプロイする一覧の流れを理解できた。
- namespace 作成 Deployment 作成 ConfigMap 作成 Secret 作成 Deployment, ConfigMap, Secret 適用 Service 適用 port-forward でローカルからアクセス (作成したリソースをすべて削除)  セクション7 KubernetesのDebug $ kubectl get pod -A
-$ kubectl get pod -A &amp;ndash;selector run=nginx">
+ namespace 作成 Deployment 作成 ConfigMap 作成 Secret 作成 Deployment, ConfigMap, Secret 適用 Service 適用 port-forward でローカルからアクセス (作成したリソースをすべて削除)  セクション7 KubernetesのDebug 基本は pod のステータスを確認しながら問題があれば、その箇所を追いかけていって原因を調査する。
+$ kubectl get pod -A $ kubectl get pod -A --selector run=nginx k8s 上で実行しているアプリケーションの依存先へ接続できない場合は Service の確認が必要となる。kubectl の get, describe, logs などのサブコマンドをあれこれみながらエラーの原因を把握して、yaml の設定を変更していく。k8s のアーキテクチャとコマンドを覚えていないとなかなか難しそう。">
 <meta property="og:url" content="/diary/posts/2021/1108/">
 <meta property="og:site_name" content="forest nook">
 <meta property="og:image" content="/diary">
@@ -79,7 +79,7 @@ forest nook
 <h2 id=udemy-kubernetes入門>udemy: Kubernetes入門<a href=#udemy-kubernetes入門 class=hanchor arialabel=Anchor>&#8983;</a> </h2>
 <p><a href=/diary/posts/2021/1107/#udemy-kubernetes入門>昨日</a> の続き。今日はセクション6から最後まで。CI/CD のセクションだけスキップして、他は一通り目を通した。</p>
 <h3 id=セクション6-kubernetes実践>セクション6 Kubernetes実践<a href=#セクション6-kubernetes実践 class=hanchor arialabel=Anchor>&#8983;</a> </h3>
-<p>1つずつ書くのは大変だけど、数をこなして徐々に覚えていけばよい。手で書くのもよいが、別のやり方としてクライアント側で dry run すると、ひな型を作ってくれるのでそれに必要な設定を足すのもよい。</p>
+<p>1つずつ書くのは大変だけど、数をこなして徐々に覚えていけばよい。手で書くのもよいが、別のやり方としてクライアント側で dry run すると、設定のひな型を作ってくれるのでそれに必要な設定を足すのもよい。</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ kubectl create deploy mysql --image<span style=color:#f92672>=</span>mysql:5.7 --dry-run<span style=color:#f92672>=</span>client -o yaml
 </code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ kubectl exec -n database -it mysql-787f86d65c-nflxx -- mysql -uroot -ppassword
 </code></pre></div><p>データベースとアプリケーションを異なる namespace にデプロイして、それらが通信できるような設定を行う。基本的には <code>--dry-run=client</code> でひな型を作りつつ、必要な設定を追加していくやり方が簡単そうにみえた。とはいえ、実際に設定していくときはどういう設定を追加するとどういう振る舞いになるかを調べながら作業すると思うのでこんな簡単にはできないとは思う。次のようなアプリケーションをデプロイする一覧の流れを理解できた。</p>
@@ -94,12 +94,14 @@ forest nook
 <li>(作成したリソースをすべて削除)</li>
 </ol>
 <h3 id=セクション7-kubernetesのdebug>セクション7 KubernetesのDebug<a href=#セクション7-kubernetesのdebug class=hanchor arialabel=Anchor>&#8983;</a> </h3>
-<p>$ kubectl get pod -A</p>
-<p>$ kubectl get pod -A &ndash;selector run=nginx</p>
-<p>kubenetes 上で実行しているアプリケーションの依存先へ接続できない場合は Service の確認が必要となる</p>
-<p>get, describe, logs などをあれこれみながらエラーの原因を把握して、yaml の設定を変更していく。k8s のアーキテクチャとコマンドを覚えていかないとなかなか難しそう。</p>
+<p>基本は pod のステータスを確認しながら問題があれば、その箇所を追いかけていって原因を調査する。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ kubectl get pod -A
+$ kubectl get pod -A --selector run<span style=color:#f92672>=</span>nginx
+</code></pre></div><p>k8s 上で実行しているアプリケーションの依存先へ接続できない場合は Service の確認が必要となる。kubectl の get, describe, logs などのサブコマンドをあれこれみながらエラーの原因を把握して、yaml の設定を変更していく。k8s のアーキテクチャとコマンドを覚えていないとなかなか難しそう。</p>
 <p>とりあえず動かした後にまとめて全部削除できるのがテストやデバッグに便利そう。</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ kubectl delete -f .
+</code></pre></div><p>もしくは開発用に独自の namespace を作成して、あとで丸ごと namespace を削除するのでもよさそう。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ kubectl delete ns mynamespace
 </code></pre></div><h2 id=k8s-の調査>k8s の調査<a href=#k8s-の調査 class=hanchor arialabel=Anchor>&#8983;</a> </h2>
 <p>業務のアプリケーションを minikube で作ったローカル k8s クラスターで動かしてみた。ローカルの開発環境の構築方法をメンテナンスして、自分でも一通り k8s の yaml を書いて、デプロイして、振る舞いを確認したりしていた。最初なのでおもしろい。自分で一通りやってみて、k8s が難しいとみんなが言っているのは k8s クラスターを自前で構築するのが難しいのだとようやく理解できた。k8s クラスターがすでにある状態なら kubectl の使い方を覚えるだけで全く難しくない。GKE や EKS を使って運用するなら k8s の運用コストは大したことがないと理解できた。k8s クラスター向けの yaml はたくさん書かないといけないけど、どうせ ECS や EC2 でやっていても CDK や Terraform などのインフラ設定を書くのは同じなのでそこはあまり差がない。k8s はコンテナオーケストレーションをやってくれるメリットが大きいので minikube と EKS の環境の差異があまり問題にならないようなアプリケーション開発であれば、普通に使っていって問題ないように思えた。ローカルで環境作るのが大変なんじゃないかという先入観があったけど、全然そんなことはなかった。コンテナのイメージをビルドしないといけないのが追加のコストかな。</p>
 </div></div>
