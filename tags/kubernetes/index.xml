@@ -1,4 +1,35 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>kubernetes on forest nook</title><link>/diary/tags/kubernetes/</link><description>Recent content in kubernetes on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sun, 07 Nov 2021 11:21:21 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/kubernetes/index.xml" rel="self" type="application/rss+xml"/><item><title>普通の休日の翌日</title><link>/diary/posts/2021/1107/</link><pubDate>Sun, 07 Nov 2021 11:21:21 +0900</pubDate><guid>/diary/posts/2021/1107/</guid><description>5時に寝て10時に起きた。昨日は夕方に2-3時間寝てたのでその分、夜に調べものをしていた。休みたい気持ちもあるけど、調べるものが多過ぎて全然時間が足りない。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>kubernetes on forest nook</title><link>/diary/tags/kubernetes/</link><description>Recent content in kubernetes on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Mon, 08 Nov 2021 08:40:51 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/kubernetes/index.xml" rel="self" type="application/rss+xml"/><item><title>Kubernetes 使い始めの雑感</title><link>/diary/posts/2021/1108/</link><pubDate>Mon, 08 Nov 2021 08:40:51 +0900</pubDate><guid>/diary/posts/2021/1108/</guid><description>1時に寝て7時に起きた。夜にウォーキングし始めてからよく眠れるようになった気がする。
+udemy: Kubernetes入門 昨日 の続き。今日はセクション6から最後まで。CI/CD のセクションだけスキップして、他は一通り目を通した。
+セクション6 Kubernetes実践 1つずつ書くのは大変だけど、数をこなして徐々に覚えていけばよい。手で書くのもよいが、別のやり方としてクライアント側で dry run すると、ひな型を作ってくれるのでそれに必要な設定を足すのもよい。
+$ kubectl create deploy mysql --image=mysql:5.7 --dry-run=client -o yaml $ kubectl exec -n database -it mysql-787f86d65c-nflxx -- mysql -uroot -ppassword データベースとアプリケーションを異なる namespace にデプロイして、それらが通信できるような設定を行う。基本的には --dry-run=client でひな型を作りつつ、必要な設定を追加していくやり方が簡単そうにみえた。とはいえ、実際に設定していくときはどういう設定を追加するとどういう振る舞いになるかを調べながら作業すると思うのでこんな簡単にはできないとは思う。次のようなアプリケーションをデプロイする一覧の流れを理解できた。
+namespace 作成 Deployment 作成 ConfigMap 作成 Secret 作成 Deployment, ConfigMap, Secret 適用 Service 適用 port-forward でローカルからアクセス (作成したリソースをすべて削除) セクション7 KubernetesのDebug $ kubectl get pod -A
+$ kubectl get pod -A &amp;ndash;selector run=nginx</description><content>&lt;p>1時に寝て7時に起きた。夜にウォーキングし始めてからよく眠れるようになった気がする。&lt;/p>
+&lt;h2 id="udemy-kubernetes入門">udemy: Kubernetes入門&lt;/h2>
+&lt;p>&lt;a href="/diary/diary/posts/2021/1107/#udemy-kubernetes入門">昨日&lt;/a> の続き。今日はセクション6から最後まで。CI/CD のセクションだけスキップして、他は一通り目を通した。&lt;/p>
+&lt;h3 id="セクション6-kubernetes実践">セクション6 Kubernetes実践&lt;/h3>
+&lt;p>1つずつ書くのは大変だけど、数をこなして徐々に覚えていけばよい。手で書くのもよいが、別のやり方としてクライアント側で dry run すると、ひな型を作ってくれるのでそれに必要な設定を足すのもよい。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl create deploy mysql --image&lt;span style="color:#f92672">=&lt;/span>mysql:5.7 --dry-run&lt;span style="color:#f92672">=&lt;/span>client -o yaml
+&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl exec -n database -it mysql-787f86d65c-nflxx -- mysql -uroot -ppassword
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>データベースとアプリケーションを異なる namespace にデプロイして、それらが通信できるような設定を行う。基本的には &lt;code>--dry-run=client&lt;/code> でひな型を作りつつ、必要な設定を追加していくやり方が簡単そうにみえた。とはいえ、実際に設定していくときはどういう設定を追加するとどういう振る舞いになるかを調べながら作業すると思うのでこんな簡単にはできないとは思う。次のようなアプリケーションをデプロイする一覧の流れを理解できた。&lt;/p>
+&lt;ol>
+&lt;li>namespace 作成&lt;/li>
+&lt;li>Deployment 作成&lt;/li>
+&lt;li>ConfigMap 作成&lt;/li>
+&lt;li>Secret 作成&lt;/li>
+&lt;li>Deployment, ConfigMap, Secret 適用&lt;/li>
+&lt;li>Service 適用&lt;/li>
+&lt;li>port-forward でローカルからアクセス&lt;/li>
+&lt;li>(作成したリソースをすべて削除)&lt;/li>
+&lt;/ol>
+&lt;h3 id="セクション7-kubernetesのdebug">セクション7 KubernetesのDebug&lt;/h3>
+&lt;p>$ kubectl get pod -A&lt;/p>
+&lt;p>$ kubectl get pod -A &amp;ndash;selector run=nginx&lt;/p>
+&lt;p>kubenetes 上で実行しているアプリケーションの依存先へ接続できない場合は Service の確認が必要となる&lt;/p>
+&lt;p>get, describe, logs などをあれこれみながらエラーの原因を把握して、yaml の設定を変更していく。k8s のアーキテクチャとコマンドを覚えていかないとなかなか難しそう。&lt;/p>
+&lt;p>とりあえず動かした後にまとめて全部削除できるのがテストやデバッグに便利そう。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl delete -f .
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="k8s-の調査">k8s の調査&lt;/h2>
+&lt;p>業務のアプリケーションを minikube で作ったローカル k8s クラスターで動かしてみた。ローカルの開発環境の構築方法をメンテナンスして、自分でも一通り k8s の yaml を書いて、デプロイして、振る舞いを確認したりしていた。最初なのでおもしろい。自分で一通りやってみて、k8s が難しいとみんなが言っているのは k8s クラスターを自前で構築するのが難しいのだとようやく理解できた。k8s クラスターがすでにある状態なら kubectl の使い方を覚えるだけで全く難しくない。GKE や EKS を使って運用するなら k8s の運用コストは大したことがないと理解できた。k8s クラスター向けの yaml はたくさん書かないといけないけど、どうせ ECS や EC2 でやっていても CDK や Terraform などのインフラ設定を書くのは同じなのでそこはあまり差がない。k8s はコンテナオーケストレーションをやってくれるメリットが大きいので minikube と EKS の環境の差異があまり問題にならないようなアプリケーション開発であれば、普通に使っていって問題ないように思えた。ローカルで環境作るのが大変なんじゃないかという先入観があったけど、全然そんなことはなかった。コンテナのイメージをビルドしないといけないのが追加のコストかな。&lt;/p></content></item><item><title>普通の休日の翌日</title><link>/diary/posts/2021/1107/</link><pubDate>Sun, 07 Nov 2021 11:21:21 +0900</pubDate><guid>/diary/posts/2021/1107/</guid><description>5時に寝て10時に起きた。昨日は夕方に2-3時間寝てたのでその分、夜に調べものをしていた。休みたい気持ちもあるけど、調べるものが多過ぎて全然時間が足りない。
 bizpy 勉強会の資料作り 昨日 の続き。昨日サンプルコードを実装したので、その設定や要点を 資料 に作成した。現時点で Python で Slack のインテグレーションをやってみる勉強会 #2 の参加者は10人。連続シリーズは回を重ねるごとに減っていくものなのでこんなもんかな。あともう1回やったら終わりにする。
 udemy: Kubernetes入門 友だちから udemy の k8s のコースがよいと聞いたんだけど、そのコースはいまは提供されていなくて、せっかくなので適当に検索してヒットした Kubernetes入門 を受講することに決めた。本当は英語の本格的なコースを受講した方がよいのだろうけど、余裕のあるときはそれでいいけど、いま数日で概要を把握して使えるようにしたいので日本語のコースにしてみた。
 Udemy の Learning Docker and Kubernetes by Lab がとてもよい Docker, Kubernetes 学習とツールとコンピュータサイエンス 昨日インストールした minikube のクラスターを使って「Kubernetes入門」のセクション1からセクション5までやった。だいたい半分ぐらい。所感としては、全く何も知らない人には要点をかいつまんで教えてくれるのと、最初に覚えるとよい基本的な CLI のコマンドとその振る舞いや設定を紹介してくれるのでよかった。初めて k8s に挑戦する自分にとってはちょうどよいレベル感だった。全体像の概念を捉えてコンテキストに沿って順番にハンズオン形式で学習していくスタイル。nakamasato/kubernetes-basics を使って自分でも CLI でコマンドを打ちながら進めてみた。yaml ファイルを定義するのもこれはこれで面倒だけど、この辺は慣れの問題かな？とも思う。いくつか学んだことを整理しておく。
