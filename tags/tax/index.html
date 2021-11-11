@@ -56,6 +56,60 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2021/1109/>呑んだくれ</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2021-11-09
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/tax/>tax</a>&nbsp;
+#<a href=/diary/tags/github/>github</a>&nbsp;
+#<a href=/diary/tags/slack/>slack</a>&nbsp;
+#<a href=/diary/tags/event/>event</a>&nbsp;
+#<a href=/diary/tags/drinking/>drinking</a>&nbsp;
+</span>
+<div class=post-content>
+<p>1時半に寝て6時に起きた。夜にウォーキングに出かけようとしたらたまたま雨が降ってきて諦めた。そしたら寝付けなかった。やっぱり歩いて疲弊すると寝付けやすいのかもしれない。ストレッチしたりしてたら寝るの遅くなった。</p>
+<h2 id=中間申告の納付>中間申告の納付</h2>
+<p>法人税・地方法人税の申告用紙が届いていたので内容を確認しながら e-tax で申請して pay-easy で税金の支払いを完了した。国税は一番最後に書類が届く。今年の書類が届いた日はこんな感じ。毎年記録しているから届く時期に準備していて慌てなくて済む。</p>
+<ul>
+<li>法人市民税: 10月16日</li>
+<li>法人県民税: 10月20日</li>
+<li>法人税・地方法人税: 11月8日</li>
+</ul>
+<p>国税の納付をもって中間申告をすべて終えた。中間申告は税金の先払いだからキャッシュフローが悪いと払えないみたいなことが起きる可能性がある。そうすると仮決算して支払い金額を抑えるみたいなことが必要になるんだろうな。まさに貧乏暇無し。</p>
+<h2 id=github--slack-integration>GitHub + Slack Integration</h2>
+<p><a href=https://github.com/integrations/slack>integrations/slack</a> の内容をみて subscribe する内容を確認した。4月頃にアップグレードしてそれまでの設定の互換性をなくして、その影響でうまく動かなかったりしてた。</p>
+<blockquote class=twitter-tweet><p lang=ja dir=ltr>github の slack 連携のときの commits:all が commits:* に変更されたみたい。4月中旬のバージョンアップ以降に作ったリポジトリか設定だと commits:all だと連携されないみたい。<a href=https://t.co/mGVUyEbgGQ>https://t.co/mGVUyEbgGQ</a></p>&mdash; Tetsuya Morimoto (@t2y) <a href="https://twitter.com/t2y/status/1387999605959188481?ref_src=twsrc%5Etfw">April 30, 2021</a></blockquote>
+<script async src=https://platform.twitter.com/widgets.js></script>
+<p>その後、追いかけてなかったけど、いま README をみたら次の5つのイベントはデフォルトで有効になるみたい。</p>
+<ul>
+<li>issues</li>
+<li>pulls</li>
+<li>commits</li>
+<li>releases</li>
+<li>deployments</li>
+</ul>
+<p>必要に応じて他のイベントも追加するとよいみたい。私は次の3つかな。</p>
+<ul>
+<li>reviews</li>
+<li>comments</li>
+<li>commits:*</li>
+</ul>
+<p>デフォルトのイベントは指定しなくてもよいけど、コピペですべて明示的に設定するならこんな感じ。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>/github subscribe owner/repo issues,pulls,commits:*,releases,deployments,reviews,comments
+</code></pre></div><h2 id=みんなの-python-勉強会>みんなの Python 勉強会</h2>
+<p><a href=https://startpython.connpass.com/event/228136/>みんなのPython勉強会#75</a> で発表した。参加者は190人となっているけど、実際に zoom に参加していた人の最高値は110人ぐらいだったかな。190 * 0.6 = 114 なので無料イベントの参加者数は6割前後の法則に合致する。人数が増えるほどこの法則は精度が高いように思う。発表者は3人いて、私は2番目に発表して、持ち時間は30分だった。録画していたので後でアーカイブをみれるようにするみたい。私は録画否定派で録画すると参加者がオンタイムで見なくなるのと、いつでも見れるものは見ないということもあるので勉強会のレベルは録画しなくてもいいんじゃないかと考えている。もちろん大きなカンファレンスは録画があった方が参加できない人も後から興味のある発表を見返せていいとは思う。25分発表で質疑応答5分で発表の時間配分はうまくいった。あまり準備できなかった割には伝えたいことはだいたい話せたと思う。なんか質疑応答で「カザモリ社は python のお仕事を受けてくれますか？」といった質問があってちょっと驚いた。ここ数年 python をメインにしたお仕事してなくて、仕事は java, go が多いと言っているせいか、python の仕事はやってないようにみえてしまうのかもしれない。python, java, go の3つの言語のお仕事は受けますよと回答した。発表終わってから1時間ほど懇親会をした。ほとんどコミュニティの主催者と発表者で雑談してた。久しぶりに外部の勉強会でいろんな人とお話することができて楽しかった。たまには外に出かけていくことに重要性も認識できた。またネタがあったら発表したいなとは思う。</p>
+<h2 id=呑み>呑み</h2>
+<p>懇親会が終わったのが22時で、疲れと空腹から仲のよい焼き鳥屋さんのお店に寄って晩ご飯を食べることにした。時短が終わっているので22時からでも飲みに行ける。お店は翌2時まで営業している。22時過ぎに行ったらお客さんは誰もいなくて、野菜サラダと焼き鳥を注文してマスターと雑談してた。</p>
+<p>時短が終わってから景気はどうかを聞いてみると、まだまだお客さんの戻りはコロナ前とくらべてまだまだだという。0時まわってから他の飲食店で働いている人たちが店内を埋まるぐらいは来てくれていたそうだけど、まだまだ余裕がないのか全然戻ってきてないと話されていた。0時半頃に2人組で「○○さんの紹介で来ました」みたいな既に酔っ払っているお客さんが来たりして、終電終わってからこういうお客さんが来たりしていたんだなと雰囲気は理解できた。マスターも2時に閉店して5時まで開いている他の飲食店に飲みに行くと話してた。そうやってお互いにお店に飲みに行って付き合いのようなものができているんだというのが理解できた。どこかのスナック行って3万円ほど使っても、必ずそのスナックの人がお店に来てくれて3万円以上使ってくれるという。お金をまわすってそういうことなんやなとマスターの話しを聞いていて理解できた。自分のお店を2時に閉店して、5時まで飲み歩いて、それから寝てまた次の日に仕事というのは体力的にすごくしんどそうで、マスター自身もコロナ明けは体調をみながら飲み歩いているとも話されてた。結局、2時前までマスターと雑談してて、私も22時から4時間弱ほど居座ってた。久しぶりに外で飲んでハイになっていたかもしれない。</p>
+<p>マスターのお勧めで <a href=https://www.hamadasyuzou.co.jp/daiyame_brand>だいやめ</a> という芋焼酎をお湯割りで飲んだ。香熟芋という珍し？芋を使っていて、ライチのような香りのする芋焼酎でおいしかった。お土産によさそうなので覚えておこうと思う。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2021/1022/>睡眠不良</a>
 </h1>
 <div class=post-meta>

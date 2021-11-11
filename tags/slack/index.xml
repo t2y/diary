@@ -1,4 +1,46 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>slack on forest nook</title><link>/diary/tags/slack/</link><description>Recent content in slack on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sat, 06 Nov 2021 12:52:56 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/slack/index.xml" rel="self" type="application/rss+xml"/><item><title>普通の休日</title><link>/diary/posts/2021/1106/</link><pubDate>Sat, 06 Nov 2021 12:52:56 +0900</pubDate><guid>/diary/posts/2021/1106/</guid><description>0時に寝て5時半に起きたが、休日だからゆっくりするかと思って二度寝して8時に起きた。知人のタイムラインで紹介されていていい言葉だなと思ったので書いておく。日記があるとこういう流れていくちょっとしたことを書く場所にもなるな。コミュニティ活動の本質はこれなんじゃないかという気もする。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>slack on forest nook</title><link>/diary/tags/slack/</link><description>Recent content in slack on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Tue, 09 Nov 2021 07:19:29 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/slack/index.xml" rel="self" type="application/rss+xml"/><item><title>呑んだくれ</title><link>/diary/posts/2021/1109/</link><pubDate>Tue, 09 Nov 2021 07:19:29 +0900</pubDate><guid>/diary/posts/2021/1109/</guid><description>1時半に寝て6時に起きた。夜にウォーキングに出かけようとしたらたまたま雨が降ってきて諦めた。そしたら寝付けなかった。やっぱり歩いて疲弊すると寝付けやすいのかもしれない。ストレッチしたりしてたら寝るの遅くなった。
+中間申告の納付 法人税・地方法人税の申告用紙が届いていたので内容を確認しながら e-tax で申請して pay-easy で税金の支払いを完了した。国税は一番最後に書類が届く。今年の書類が届いた日はこんな感じ。毎年記録しているから届く時期に準備していて慌てなくて済む。
+法人市民税: 10月16日 法人県民税: 10月20日 法人税・地方法人税: 11月8日 国税の納付をもって中間申告をすべて終えた。中間申告は税金の先払いだからキャッシュフローが悪いと払えないみたいなことが起きる可能性がある。そうすると仮決算して支払い金額を抑えるみたいなことが必要になるんだろうな。まさに貧乏暇無し。
+GitHub + Slack Integration integrations/slack の内容をみて subscribe する内容を確認した。4月頃にアップグレードしてそれまでの設定の互換性をなくして、その影響でうまく動かなかったりしてた。
+github の slack 連携のときの commits:all が commits:* に変更されたみたい。4月中旬のバージョンアップ以降に作ったリポジトリか設定だと commits:all だと連携されないみたい。https://t.co/mGVUyEbgGQ
+&amp;mdash; Tetsuya Morimoto (@t2y) April 30, 2021 その後、追いかけてなかったけど、いま README をみたら次の5つのイベントはデフォルトで有効になるみたい。
+issues pulls commits releases deployments 必要に応じて他のイベントも追加するとよいみたい。私は次の3つかな。
+reviews comments commits:* デフォルトのイベントは指定しなくてもよいけど、コピペですべて明示的に設定するならこんな感じ。
+/github subscribe owner/repo issues,pulls,commits:*,releases,deployments,reviews,comments みんなの Python 勉強会 みんなのPython勉強会#75 で発表した。参加者は190人となっているけど、実際に zoom に参加していた人の最高値は110人ぐらいだったかな。190 * 0.</description><content>&lt;p>1時半に寝て6時に起きた。夜にウォーキングに出かけようとしたらたまたま雨が降ってきて諦めた。そしたら寝付けなかった。やっぱり歩いて疲弊すると寝付けやすいのかもしれない。ストレッチしたりしてたら寝るの遅くなった。&lt;/p>
+&lt;h2 id="中間申告の納付">中間申告の納付&lt;/h2>
+&lt;p>法人税・地方法人税の申告用紙が届いていたので内容を確認しながら e-tax で申請して pay-easy で税金の支払いを完了した。国税は一番最後に書類が届く。今年の書類が届いた日はこんな感じ。毎年記録しているから届く時期に準備していて慌てなくて済む。&lt;/p>
+&lt;ul>
+&lt;li>法人市民税: 10月16日&lt;/li>
+&lt;li>法人県民税: 10月20日&lt;/li>
+&lt;li>法人税・地方法人税: 11月8日&lt;/li>
+&lt;/ul>
+&lt;p>国税の納付をもって中間申告をすべて終えた。中間申告は税金の先払いだからキャッシュフローが悪いと払えないみたいなことが起きる可能性がある。そうすると仮決算して支払い金額を抑えるみたいなことが必要になるんだろうな。まさに貧乏暇無し。&lt;/p>
+&lt;h2 id="github--slack-integration">GitHub + Slack Integration&lt;/h2>
+&lt;p>&lt;a href="https://github.com/integrations/slack">integrations/slack&lt;/a> の内容をみて subscribe する内容を確認した。4月頃にアップグレードしてそれまでの設定の互換性をなくして、その影響でうまく動かなかったりしてた。&lt;/p>
+&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">github の slack 連携のときの commits:all が commits:* に変更されたみたい。4月中旬のバージョンアップ以降に作ったリポジトリか設定だと commits:all だと連携されないみたい。&lt;a href="https://t.co/mGVUyEbgGQ">https://t.co/mGVUyEbgGQ&lt;/a>&lt;/p>&amp;mdash; Tetsuya Morimoto (@t2y) &lt;a href="https://twitter.com/t2y/status/1387999605959188481?ref_src=twsrc%5Etfw">April 30, 2021&lt;/a>&lt;/blockquote>
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script>
+&lt;p>その後、追いかけてなかったけど、いま README をみたら次の5つのイベントはデフォルトで有効になるみたい。&lt;/p>
+&lt;ul>
+&lt;li>issues&lt;/li>
+&lt;li>pulls&lt;/li>
+&lt;li>commits&lt;/li>
+&lt;li>releases&lt;/li>
+&lt;li>deployments&lt;/li>
+&lt;/ul>
+&lt;p>必要に応じて他のイベントも追加するとよいみたい。私は次の3つかな。&lt;/p>
+&lt;ul>
+&lt;li>reviews&lt;/li>
+&lt;li>comments&lt;/li>
+&lt;li>commits:*&lt;/li>
+&lt;/ul>
+&lt;p>デフォルトのイベントは指定しなくてもよいけど、コピペですべて明示的に設定するならこんな感じ。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">/github subscribe owner/repo issues,pulls,commits:*,releases,deployments,reviews,comments
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="みんなの-python-勉強会">みんなの Python 勉強会&lt;/h2>
+&lt;p>&lt;a href="https://startpython.connpass.com/event/228136/">みんなのPython勉強会#75&lt;/a> で発表した。参加者は190人となっているけど、実際に zoom に参加していた人の最高値は110人ぐらいだったかな。190 * 0.6 = 114 なので無料イベントの参加者数は6割前後の法則に合致する。人数が増えるほどこの法則は精度が高いように思う。発表者は3人いて、私は2番目に発表して、持ち時間は30分だった。録画していたので後でアーカイブをみれるようにするみたい。私は録画否定派で録画すると参加者がオンタイムで見なくなるのと、いつでも見れるものは見ないということもあるので勉強会のレベルは録画しなくてもいいんじゃないかと考えている。もちろん大きなカンファレンスは録画があった方が参加できない人も後から興味のある発表を見返せていいとは思う。25分発表で質疑応答5分で発表の時間配分はうまくいった。あまり準備できなかった割には伝えたいことはだいたい話せたと思う。なんか質疑応答で「カザモリ社は python のお仕事を受けてくれますか？」といった質問があってちょっと驚いた。ここ数年 python をメインにしたお仕事してなくて、仕事は java, go が多いと言っているせいか、python の仕事はやってないようにみえてしまうのかもしれない。python, java, go の3つの言語のお仕事は受けますよと回答した。発表終わってから1時間ほど懇親会をした。ほとんどコミュニティの主催者と発表者で雑談してた。久しぶりに外部の勉強会でいろんな人とお話することができて楽しかった。たまには外に出かけていくことに重要性も認識できた。またネタがあったら発表したいなとは思う。&lt;/p>
+&lt;h2 id="呑み">呑み&lt;/h2>
+&lt;p>懇親会が終わったのが22時で、疲れと空腹から仲のよい焼き鳥屋さんのお店に寄って晩ご飯を食べることにした。時短が終わっているので22時からでも飲みに行ける。お店は翌2時まで営業している。22時過ぎに行ったらお客さんは誰もいなくて、野菜サラダと焼き鳥を注文してマスターと雑談してた。&lt;/p>
+&lt;p>時短が終わってから景気はどうかを聞いてみると、まだまだお客さんの戻りはコロナ前とくらべてまだまだだという。0時まわってから他の飲食店で働いている人たちが店内を埋まるぐらいは来てくれていたそうだけど、まだまだ余裕がないのか全然戻ってきてないと話されていた。0時半頃に2人組で「○○さんの紹介で来ました」みたいな既に酔っ払っているお客さんが来たりして、終電終わってからこういうお客さんが来たりしていたんだなと雰囲気は理解できた。マスターも2時に閉店して5時まで開いている他の飲食店に飲みに行くと話してた。そうやってお互いにお店に飲みに行って付き合いのようなものができているんだというのが理解できた。どこかのスナック行って3万円ほど使っても、必ずそのスナックの人がお店に来てくれて3万円以上使ってくれるという。お金をまわすってそういうことなんやなとマスターの話しを聞いていて理解できた。自分のお店を2時に閉店して、5時まで飲み歩いて、それから寝てまた次の日に仕事というのは体力的にすごくしんどそうで、マスター自身もコロナ明けは体調をみながら飲み歩いているとも話されてた。結局、2時前までマスターと雑談してて、私も22時から4時間弱ほど居座ってた。久しぶりに外で飲んでハイになっていたかもしれない。&lt;/p>
+&lt;p>マスターのお勧めで &lt;a href="https://www.hamadasyuzou.co.jp/daiyame_brand">だいやめ&lt;/a> という芋焼酎をお湯割りで飲んだ。香熟芋という珍し？芋を使っていて、ライチのような香りのする芋焼酎でおいしかった。お土産によさそうなので覚えておこうと思う。&lt;/p></content></item><item><title>普通の休日</title><link>/diary/posts/2021/1106/</link><pubDate>Sat, 06 Nov 2021 12:52:56 +0900</pubDate><guid>/diary/posts/2021/1106/</guid><description>0時に寝て5時半に起きたが、休日だからゆっくりするかと思って二度寝して8時に起きた。知人のタイムラインで紹介されていていい言葉だなと思ったので書いておく。日記があるとこういう流れていくちょっとしたことを書く場所にもなるな。コミュニティ活動の本質はこれなんじゃないかという気もする。
 自分にまったく利益をもたらさない人間を、どう扱うかでその人がどんな人間かがはっきりわかる
 サミュエル・ジョンソン
 ストレッチ 今週もジョギングの代わりにウォーキングをしてた。ジョギングやると筋肉痛や疲労から他の日を休みがちになるけど、ウォーキングならジョギングよりは継続しやすい。今週は4-5日ほど歩いた。ただストレッチはさぼってて2日しかできなかった。ウォーキングのせいかわからないけど、右足太もも後ろの筋が張るようになった。ストレッチを始めてから日々の運動や生活の変化と関節や筋肉の張りが変化するのも意識するようにもなってきた。今日の開脚幅は開始前167.5cmcmで、ストレッチ後168cmだった。前週よりは数値がよくなっているのでこんなもんかもしれない。
