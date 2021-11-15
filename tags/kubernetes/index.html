@@ -56,6 +56,25 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2021/1115/>お仕事しかしなかった一日</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2021-11-15
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/kubernetes/>kubernetes</a>&nbsp;
+</span>
+<div class=post-content>
+<p>2時に寝て6時半に起きた。寝る前にウォーキングしてくるとよく眠れる気がする。お仕事で簡単に終わると思ってた作業にちょっとはまってトラブルシューティングしてたら疲れた。原因はわかって自己解決できたのはよかったけど、消耗して早くお仕事を終えて帰ってくつろいでた。</p>
+<h2 id=ローカル開発環境の整備>ローカル開発環境の整備</h2>
+<p>お仕事でローカルの k8s 環境の保守の作業をしている。<a href=https://minikube.sigs.k8s.io/docs/>minikube</a> でローカルの k8s クラスターを作成して <a href=https://kubernetes.io/docs/reference/kubectl/overview/>kubectl</a> コマンドで制御する。k8s の yaml の設定ファイルのことをマニフェストと呼ぶのかな？そのテンプレート？ジェネレーター的なツールに <a href=https://kustomize.io/>kustomize</a> を使っている。先週から1週間触っていたので cli の操作にはだいぶ慣れてきた。</p>
+<p>まだ基本的な delete & apply みたいなことしかやってないけど、また余裕のあるときに細かいコマンドやロールバックのやり方なども学習しようと思う。デプロイで一番重要なのはロールバック、次にローリングアップデート、ローリングアップデートができればカナリアリリースもできるかな？その2つがあれば運用は大幅にコスト削減できるし、開発のアジリティも上げられる。たぶん k8s を使えば簡単にできるんだろうなというのは delete & apply だけみてもそう受け取れる。k8s クラスターさえマネージドならよく出来た仕組みだなと感心した。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2021/1108/>Kubernetes 使い始めの雑感</a>
 </h1>
 <div class=post-meta>
