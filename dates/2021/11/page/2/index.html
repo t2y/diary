@@ -56,6 +56,33 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2021/1116/>カスタム GitHub Actions のサンプルを作ってみた</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2021-11-16
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/github/>github</a>&nbsp;
+</span>
+<div class=post-content>
+<p>23時半に寝て5時半に起きた。昨夜は夜にウォーキングに出掛けようと思いつつ、22時頃に1時間ほど寝てしまった。それで出掛けるのが面倒になってそのまま寝てた。早く寝た分、早く起きた。せっかく早起きしたのでドラクエタクトのデイリーミッションやって、それから起きて7時ぐらいにはオフィスに着いてたと思う。</p>
+<h2 id=カスタム-github-actions-作成>カスタム GitHub Actions 作成</h2>
+<p>GitHub Docs の <a href=https://docs.github.com/ja/actions/creating-actions>アクションの作成</a> をみながらサンプルを作ってみた。カスタムアクションは3つの作成方法がある。</p>
+<ul>
+<li>docker コンテナを使ったアクション</li>
+<li>javascript を使ったアクション</li>
+<li>シェルスクリプトなどを使ったアクション (composite アクション)</li>
+</ul>
+<p>たぶんランタイムに何を使うかでアクションの作り方が異なるようにみえる。最後の composite アクションは呼び出される環境で動くことを想定しているのかな？サンプルには bash 上で動くものを紹介していた。ほとんどチュートリアルの内容そのままんだけど、動かして雰囲気を掴むために自分で composite アクションを作ってみた。単一のリポジトリに閉じたものなら通常のワークフローの設定に書けばいいけど、複数のリポジトリで同じ処理をしたい場合は composite アクションとして再利用できるようにするとよさそう。</p>
+<ul>
+<li><a href=https://github.com/t2y/gh-actions-sample>https://github.com/t2y/gh-actions-sample</a></li>
+</ul>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2021/1115/>お仕事しかしなかった一日</a>
 </h1>
 <div class=post-meta>

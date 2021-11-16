@@ -1,4 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>github on forest nook</title><link>/diary/tags/github/</link><description>Recent content in github on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Tue, 09 Nov 2021 07:19:29 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/github/index.xml" rel="self" type="application/rss+xml"/><item><title>呑んだくれ</title><link>/diary/posts/2021/1109/</link><pubDate>Tue, 09 Nov 2021 07:19:29 +0900</pubDate><guid>/diary/posts/2021/1109/</guid><description>1時半に寝て6時に起きた。夜にウォーキングに出かけようとしたらたまたま雨が降ってきて諦めた。そしたら寝付けなかった。やっぱり歩いて疲弊すると寝付けやすいのかもしれない。ストレッチしたりしてたら寝るの遅くなった。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>github on forest nook</title><link>/diary/tags/github/</link><description>Recent content in github on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Tue, 16 Nov 2021 07:00:17 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/github/index.xml" rel="self" type="application/rss+xml"/><item><title>カスタム GitHub Actions のサンプルを作ってみた</title><link>/diary/posts/2021/1116/</link><pubDate>Tue, 16 Nov 2021 07:00:17 +0900</pubDate><guid>/diary/posts/2021/1116/</guid><description>23時半に寝て5時半に起きた。昨夜は夜にウォーキングに出掛けようと思いつつ、22時頃に1時間ほど寝てしまった。それで出掛けるのが面倒になってそのまま寝てた。早く寝た分、早く起きた。せっかく早起きしたのでドラクエタクトのデイリーミッションやって、それから起きて7時ぐらいにはオフィスに着いてたと思う。
+カスタム GitHub Actions 作成 GitHub Docs の アクションの作成 をみながらサンプルを作ってみた。カスタムアクションは3つの作成方法がある。
+docker コンテナを使ったアクション javascript を使ったアクション シェルスクリプトなどを使ったアクション (composite アクション) たぶんランタイムに何を使うかでアクションの作り方が異なるようにみえる。最後の composite アクションは呼び出される環境で動くことを想定しているのかな？サンプルには bash 上で動くものを紹介していた。ほとんどチュートリアルの内容そのままんだけど、動かして雰囲気を掴むために自分で composite アクションを作ってみた。単一のリポジトリに閉じたものなら通常のワークフローの設定に書けばいいけど、複数のリポジトリで同じ処理をしたい場合は composite アクションとして再利用できるようにするとよさそう。
+https://github.com/t2y/gh-actions-sample</description><content>&lt;p>23時半に寝て5時半に起きた。昨夜は夜にウォーキングに出掛けようと思いつつ、22時頃に1時間ほど寝てしまった。それで出掛けるのが面倒になってそのまま寝てた。早く寝た分、早く起きた。せっかく早起きしたのでドラクエタクトのデイリーミッションやって、それから起きて7時ぐらいにはオフィスに着いてたと思う。&lt;/p>
+&lt;h2 id="カスタム-github-actions-作成">カスタム GitHub Actions 作成&lt;/h2>
+&lt;p>GitHub Docs の &lt;a href="https://docs.github.com/ja/actions/creating-actions">アクションの作成&lt;/a> をみながらサンプルを作ってみた。カスタムアクションは3つの作成方法がある。&lt;/p>
+&lt;ul>
+&lt;li>docker コンテナを使ったアクション&lt;/li>
+&lt;li>javascript を使ったアクション&lt;/li>
+&lt;li>シェルスクリプトなどを使ったアクション (composite アクション)&lt;/li>
+&lt;/ul>
+&lt;p>たぶんランタイムに何を使うかでアクションの作り方が異なるようにみえる。最後の composite アクションは呼び出される環境で動くことを想定しているのかな？サンプルには bash 上で動くものを紹介していた。ほとんどチュートリアルの内容そのままんだけど、動かして雰囲気を掴むために自分で composite アクションを作ってみた。単一のリポジトリに閉じたものなら通常のワークフローの設定に書けばいいけど、複数のリポジトリで同じ処理をしたい場合は composite アクションとして再利用できるようにするとよさそう。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/t2y/gh-actions-sample">https://github.com/t2y/gh-actions-sample&lt;/a>&lt;/li>
+&lt;/ul></content></item><item><title>呑んだくれ</title><link>/diary/posts/2021/1109/</link><pubDate>Tue, 09 Nov 2021 07:19:29 +0900</pubDate><guid>/diary/posts/2021/1109/</guid><description>1時半に寝て6時に起きた。夜にウォーキングに出かけようとしたらたまたま雨が降ってきて諦めた。そしたら寝付けなかった。やっぱり歩いて疲弊すると寝付けやすいのかもしれない。ストレッチしたりしてたら寝るの遅くなった。
 中間申告の納付 法人税・地方法人税の申告用紙が届いていたので内容を確認しながら e-tax で申請して pay-easy で税金の支払いを完了した。国税は一番最後に書類が届く。今年の書類が届いた日はこんな感じ。毎年記録しているから届く時期に準備していて慌てなくて済む。
 法人市民税: 10月16日 法人県民税: 10月20日 法人税・地方法人税: 11月8日 国税の納付をもって中間申告をすべて終えた。中間申告は税金の先払いだからキャッシュフローが悪いと払えないみたいなことが起きる可能性がある。そうすると仮決算して支払い金額を抑えるみたいなことが必要になるんだろうな。まさに貧乏暇無し。
 GitHub + Slack Integration integrations/slack の内容をみて subscribe する内容を確認した。4月頃にアップグレードしてそれまでの設定の互換性をなくして、その影響でうまく動かなかったりしてた。
