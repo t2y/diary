@@ -1,4 +1,75 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2021/11 on forest nook</title><link>/diary/dates/2021/11/</link><description>Recent content in 2021/11 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2021/11/index.xml" rel="self" type="application/rss+xml"/><item><title>Testcontainers を触ってみた</title><link>/diary/posts/2021/1117/</link><pubDate>Wed, 17 Nov 2021 08:12:12 +0900</pubDate><guid>/diary/posts/2021/1117/</guid><description>23時頃に寝て3時に起きて、そこから寝たり起きたりしながら6時に半に起きた。怖い夢をみて眠れなくなって中途半端に寝てた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2021/11 on forest nook</title><link>/diary/dates/2021/11/</link><description>Recent content in 2021/11 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2021/11/index.xml" rel="self" type="application/rss+xml"/><item><title>今年は忘年会やる</title><link>/diary/posts/2021/1118/</link><pubDate>Thu, 18 Nov 2021 07:19:22 +0900</pubDate><guid>/diary/posts/2021/1118/</guid><description>1時に寝て3時に起きて2度寝して6時に起きた。起き上がれなくて6時半までだらだらしてから起きた。
+リポジトリの改行コード指定 git のリポジトリ設定で .gitattributes という設定方法がある。ざっくり理解するには .gitattributesによる改行コードの変換設定 を読むのが早い。
+とりあえずこんな設定にしてみた。すでに crlf の改行コードでコミットされたファイルがあるため、それらを lf に変換しないといけない。eol=lf にすると crlf でコミットされている既存ファイルも変換してくれるみたい。おそらくチェックアウトしたときにそうなるのかな？
+* text=auto eol=lf *.jar binary ここ数年は Windows マシンを開発に使っている開発者と一緒に働いたことがなかったけど、OS 混在環境だとリポジトリ設定が必要だということに気付いた。多様性は大事。
+忘年会 三宮.dev＆bizpy 合同忘年会 に参加登録した。bizpy だけだと、忘年会の参加者を集めるのは厳しそうなので三ノ宮.devと共同でやる。これなら最低でも2人は確定しているのでイベントがなくなることはない。日程は参加者の希望を聞きながら水曜か金曜でやるみたい。いましか飲み会できないだろうからいいと思う。
+ミクロ経済学入門の入門 第9章の公共財を読んだ。市場を考察するときに扱う財は一般論として 私的財 を想定している。私的財は次の2つの性質を満たす。
+競合的: 複数の人々が同時に利用できない 排除的: 拠出に貢献した特定のメンバーしか利用できない 一方で私的財と対偶の関係にある競合的でも排除的でもない財を 公共財 と呼ぶ。例えば、国防サービスや一般道路などが相当する。侵攻してくる敵国から自国を防衛するときにすべての国民、納税していない人であっても国防の利益にあずかれる。a
+非競合的だが、排除的である財を クラブ財 と呼ぶ。高速道路などが相当する。みんなが利用できるが、利用料金を収めないと利用できない。競合的だが非排除的な財を 顧問プール財 と呼ぶ。漁場などが相当する。どの漁師が魚を獲るかは競合しているが、漁業権をもっている限り漁そのものは制限されない。
+これをまとめると、財は次の4つの分類になる。
+競合的 非競合的 排除的 私的財 クラブ財 非排除的 顧問プール財 公共財 公共財の自発的供給の問いとして、排除的でも競合的でもない公共財が人々の自発的な行動で十分に供給できるかを考える。自分のお金を寄付する・寄付しないの2択でマトリクスを作成する。自分は寄付せず、他人の寄付から利益を得ることを フリーライド と呼ぶ。みんながフリーライドをしようとすると公共財はまったく供給されない。A と B の2者間における利得表を表すと次のようになる。相手が寄付して、自分が寄付しないときに最大の利益となり、どちらも寄付しないよりは両者が寄付した方が利益が大きくなる。</description><content>&lt;p>1時に寝て3時に起きて2度寝して6時に起きた。起き上がれなくて6時半までだらだらしてから起きた。&lt;/p>
+&lt;h2 id="リポジトリの改行コード指定">リポジトリの改行コード指定&lt;/h2>
+&lt;p>git のリポジトリ設定で &lt;a href="https://git-scm.com/docs/gitattributes">.gitattributes&lt;/a> という設定方法がある。ざっくり理解するには &lt;a href="https://kiririmode.hatenablog.jp/entry/20170416/1492300735">.gitattributesによる改行コードの変換設定&lt;/a> を読むのが早い。&lt;/p>
+&lt;p>とりあえずこんな設定にしてみた。すでに crlf の改行コードでコミットされたファイルがあるため、それらを lf に変換しないといけない。&lt;code>eol=lf&lt;/code> にすると crlf でコミットされている既存ファイルも変換してくれるみたい。おそらくチェックアウトしたときにそうなるのかな？&lt;/p>
+&lt;pre tabindex="0">&lt;code>* text=auto eol=lf
+*.jar binary
+&lt;/code>&lt;/pre>&lt;p>ここ数年は Windows マシンを開発に使っている開発者と一緒に働いたことがなかったけど、OS 混在環境だとリポジトリ設定が必要だということに気付いた。多様性は大事。&lt;/p>
+&lt;h2 id="忘年会">忘年会&lt;/h2>
+&lt;p>&lt;a href="https://kobe-sannomiya-dev.connpass.com/event/231602/">三宮.dev＆bizpy 合同忘年会&lt;/a> に参加登録した。bizpy だけだと、忘年会の参加者を集めるのは厳しそうなので三ノ宮.devと共同でやる。これなら最低でも2人は確定しているのでイベントがなくなることはない。日程は参加者の希望を聞きながら水曜か金曜でやるみたい。いましか飲み会できないだろうからいいと思う。&lt;/p>
+&lt;h2 id="ミクロ経済学入門の入門">ミクロ経済学入門の入門&lt;/h2>
+&lt;p>第9章の公共財を読んだ。市場を考察するときに扱う財は一般論として &lt;strong>私的財&lt;/strong> を想定している。私的財は次の2つの性質を満たす。&lt;/p>
+&lt;ul>
+&lt;li>競合的: 複数の人々が同時に利用できない&lt;/li>
+&lt;li>排除的: 拠出に貢献した特定のメンバーしか利用できない&lt;/li>
+&lt;/ul>
+&lt;p>一方で私的財と対偶の関係にある競合的でも排除的でもない財を &lt;strong>公共財&lt;/strong> と呼ぶ。例えば、国防サービスや一般道路などが相当する。侵攻してくる敵国から自国を防衛するときにすべての国民、納税していない人であっても国防の利益にあずかれる。a&lt;/p>
+&lt;p>非競合的だが、排除的である財を &lt;strong>クラブ財&lt;/strong> と呼ぶ。高速道路などが相当する。みんなが利用できるが、利用料金を収めないと利用できない。競合的だが非排除的な財を &lt;strong>顧問プール財&lt;/strong> と呼ぶ。漁場などが相当する。どの漁師が魚を獲るかは競合しているが、漁業権をもっている限り漁そのものは制限されない。&lt;/p>
+&lt;p>これをまとめると、財は次の4つの分類になる。&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th style="text-align:center">&lt;/th>
+&lt;th style="text-align:center">競合的&lt;/th>
+&lt;th style="text-align:center">非競合的&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td style="text-align:center">排除的&lt;/td>
+&lt;td style="text-align:center">私的財&lt;/td>
+&lt;td style="text-align:center">クラブ財&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">非排除的&lt;/td>
+&lt;td style="text-align:center">顧問プール財&lt;/td>
+&lt;td style="text-align:center">公共財&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>公共財の自発的供給の問いとして、排除的でも競合的でもない公共財が人々の自発的な行動で十分に供給できるかを考える。自分のお金を寄付する・寄付しないの2択でマトリクスを作成する。自分は寄付せず、他人の寄付から利益を得ることを &lt;strong>フリーライド&lt;/strong> と呼ぶ。みんながフリーライドをしようとすると公共財はまったく供給されない。A と B の2者間における利得表を表すと次のようになる。相手が寄付して、自分が寄付しないときに最大の利益となり、どちらも寄付しないよりは両者が寄付した方が利益が大きくなる。&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th style="text-align:center">A \ B&lt;/th>
+&lt;th style="text-align:center">寄付する&lt;/th>
+&lt;th style="text-align:center">寄付しない&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td style="text-align:center">寄付する&lt;/td>
+&lt;td style="text-align:center">4, 4&lt;/td>
+&lt;td style="text-align:center">2, 5&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">寄付しない&lt;/td>
+&lt;td style="text-align:center">5, 2&lt;/td>
+&lt;td style="text-align:center">3, 3&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>A が寄付するか・しないかの選択は、B の寄付の有無に関係なく、A は寄付しない方が寄付したよりもトクすることになる。相手がどういった選択をしても自分にとって一番トクな選択肢が同じときにその選択肢を &lt;strong>支配戦略&lt;/strong> という。この話は B からみても同じになる。A も B も寄付しないがトクする状態のことを &lt;strong>支配戦略均衡&lt;/strong> という。この状態が最善かと言えば、そうではなく、両者が寄付した方が両者が寄付しないよりもトクする状態になる。このように公共財の供給を個々のプレイヤーに任せていては &lt;strong>パレート劣位&lt;/strong> な結果となってしまう。この状態からどうやって両者が寄付する &lt;strong>パレート優位&lt;/strong> な状態に移行できるかを考えるのが、政府の徴税の方策と言える。&lt;/p>
+&lt;p>政府が誰にいくらの税を課して、どの程度の量の公共財を適切と決めるのかは難しい問題である。放っておいて上手くいかないものの、政府に任せて上手くいくことも保証されない。このようなゲーム理論を制度設計に活用する &lt;strong>メカニズムデザイン&lt;/strong> という専門分野がある。&lt;/p></content></item><item><title>Testcontainers を触ってみた</title><link>/diary/posts/2021/1117/</link><pubDate>Wed, 17 Nov 2021 08:12:12 +0900</pubDate><guid>/diary/posts/2021/1117/</guid><description>23時頃に寝て3時に起きて、そこから寝たり起きたりしながら6時に半に起きた。怖い夢をみて眠れなくなって中途半端に寝てた。
 朝活: 雑談 【三宮.dev オンライン】リモート朝活もくもく会 に参加した。寝坊、、、というよりは起きてたけど、イベントを忘れていて6時45分ぐらいから参加して主催者しかいなかったのでそのまま7時半まで雑談してた。始めが悪いとだらだらしてしまう。気をつけねば。
 三宮.dev の主催者や参加者の常連さんたちとはだいぶ身近に話すにようになってきた。コミュニティって人間関係だと思っていて、話したり顔をあわせたりする回数が増えるに従って身近な知人になっていって、それ自体が価値の1つだったりすると思う。いま忘年会の企画を三宮.dev でも行っているが、bizpy と合同でやっていいんじゃないかと考えている。
 Testcontainers DB を使ったユニットテストのために Testcontainers Postgres Module を使ってみた。docker hub からイメージを取得して JUnit のテストプロセスの中からアクセスできるようにするためのライブラリになる。コンテナの扱いをテストコードから管理したいときなどに便利。ちょっと調べて簡単に設定できたのでまた時間のあるときに会社のブログに記事を書こうと思う。</description><content>&lt;p>23時頃に寝て3時に起きて、そこから寝たり起きたりしながら6時に半に起きた。怖い夢をみて眠れなくなって中途半端に寝てた。&lt;/p>
