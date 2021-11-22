@@ -56,6 +56,53 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2021/1122/>kustomize のパッチ適用の違い</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2021-11-22
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/kubernetes/>kubernetes</a>&nbsp;
+#<a href=/diary/tags/writing/>writing</a>&nbsp;
+</span>
+<div class=post-content>
+<p>22時ぐらいには寝て6時半に起きた。昨日はお出かけしてきてバテたんで19時頃からうたた寝を繰り返してずっと寝てた。実家に帰っていた期間を除いて、土日のどちらかを休むのはここ3ヶ月はなかったと思うし、土日の2日間ほとんど仕事をしなかったのは半年ぐらいはなかったと思う。久しぶりに土日に仕事しなかったなという印象で、その理由は業務委託のお仕事の契約が決まって余裕があるからだと思う。</p>
+<h2 id=kustomize-の-inline-patch>kustomize の Inline Patch</h2>
+<p><a href=https://kubectl.docs.kubernetes.io/guides/example/inline_patch/>Inline Patch</a> に次の3つのやり方が説明されている。</p>
+<blockquote>
+<ul>
+<li>patchesStrategicMerge: Strategic Merge Patch として解析されるパッチファイルのリスト</li>
+<li>patchesJSON6902: 1つのターゲットリソースのみに適用可能な JSON Patch として解析されるパッチと関連付けされるターゲットのリスト</li>
+<li>patches: 関連付けされるターゲットとパッチのリスト。このパッチは複数のオブジェクトに適用でき、パッチが Strategic Merge Patch なのか JSON Patch かは自動的に検出</li>
+</ul>
+</blockquote>
+<p>patches は patchesStrategicMerge と patchesJSON6902 の両方を記述できる。運用上は patchesStrategicMerge か patchesJSON6902 を適用したいパッチの内容によって使い分けることになる。おそらく前者は base にない要素を追加したり、base の要素をすべて置き換えたりするときに使う。後者は base にある map や list の一部の要素のみを限定して置き換えたり、削除したりするときに使う。ちなみに patchesJSON6902 の 6902 というのは <a href=https://datatracker.ietf.org/doc/html/rfc6902>RFC 6902 JavaScript Object Notation (JSON) Patch</a> に由来する。</p>
+<p>例えば、patchesJson6902 の例として、次のように指定すると、base から読まれた metadata の要素から namespace のみを削除したり、spec.metadata の0番目のリストの secretKeyRef.name のみを my-secret で置き換えたりできる。こういったパッチを patchesStrategicMerge で実現することはできないのではないかと思う (詳しくないので私が間違っているかもしれない) 。</p>
+<h5 id=kustomizationyml>kustomization.yml</h5>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml>...
+<span style=color:#f92672>patchesJson6902</span>:
+  - <span style=color:#f92672>path</span>: <span style=color:#ae81ff>my-patch.yaml</span>
+    <span style=color:#f92672>target</span>:
+      <span style=color:#f92672>group</span>: <span style=color:#ae81ff>apps</span>
+      <span style=color:#f92672>version</span>: <span style=color:#ae81ff>v1</span>
+      <span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Component</span>
+      <span style=color:#f92672>name</span>: <span style=color:#ae81ff>my-component</span>
+...
+</code></pre></div><h5 id=my-componentyaml>my-component.yaml</h5>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml>- <span style=color:#f92672>op</span>: <span style=color:#ae81ff>remove</span>
+  <span style=color:#f92672>path</span>: <span style=color:#ae81ff>/metadata/namespace</span>
+- <span style=color:#f92672>op</span>: <span style=color:#ae81ff>replace</span>
+  <span style=color:#f92672>path</span>: <span style=color:#ae81ff>/spec/metadata/0/secretKeyRef/name</span>
+  <span style=color:#f92672>value</span>: <span style=color:#ae81ff>my-secret</span>
+</code></pre></div><h2 id=リーンキャンバスレビュー-前半>リーンキャンバスレビュー (前半)</h2>
+<p><a href=/diary/posts/2021/1114/#リーンキャンバス>前に作ったリーンキャンバス</a> を使って友だちにプロダクトの設計をレビューしてもらった。私がリーンキャンバスを作ったことがなかったので、この項目にはどういった内容を書くか、それぞれの項目がどういった関連付けや粒度で整理するかといった、リーンキャンバスの書き方そのものも含めて教えてもらった。</p>
+<p>私が設計のために作った40枚のスライドを話すと2時間必要とするが、リーンキャンバスを使えば要点のみ15分で話せるようになるのが狙いになるみたい。とはいえ、リーンキャンバスの書いてある内容の半分を確認するだけで今日は2時間弱かかってしまった。議事録を取りながらだったので話すだけならもっと短くなったかもしれないし、その背景や根拠を細かくツッコミしていくとそれなりの時間はかかるのかもしれない。リーンキャンバス上は数枚の付箋で簡潔に書いてあるが、これどういうこと？みたいな問いになると詳細を説明しないといけないので時間がかかったように思う。リーンキャンバスの精度や品質が上がれば、読み手が詳細を確認しなくても意図を理解しやすくて詳細のツッコミが不要になるのかもしれない。これまで使ったことがないツールでおもしろいので週末に後半を行う。課題管理の背景には実践知、認知心理学、情報共有、組織論といった様々な分野にまたがるのでそのコンテキストを共有するのはなかなか難しいのではないかという思いもある。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2021/1115/>お仕事しかしなかった一日</a>
 </h1>
 <div class=post-meta>
