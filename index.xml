@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>forest nook</title><link>/diary/</link><description>Recent content on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Mon, 22 Nov 2021 13:40:40 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/index.xml" rel="self" type="application/rss+xml"/><item><title>kustomize のパッチ適用の違い</title><link>/diary/posts/2021/1122/</link><pubDate>Mon, 22 Nov 2021 13:40:40 +0900</pubDate><guid>/diary/posts/2021/1122/</guid><description>22時ぐらいには寝て6時半に起きた。昨日はお出かけしてきてバテたんで19時頃からうたた寝を繰り返してずっと寝てた。実家に帰っていた期間を除いて、土日のどちらかを休むのはここ3ヶ月はなかったと思うし、土日の2日間ほとんど仕事をしなかったのは半年ぐらいはなかったと思う。久しぶりに土日に仕事しなかったなという印象で、その理由は業務委託のお仕事の契約が決まって余裕があるからだと思う。
 kustomize の Inline Patch Inline Patch に次の3つのやり方が説明されている。
 patchesStrategicMerge: Strategic Merge Patch として解析されるパッチファイルのリスト patchesJSON6902: 1つのターゲットリソースのみに適用可能な JSON Patch として解析されるパッチと関連付けされるターゲットのリスト patches: 関連付けされるターゲットとパッチのリスト。このパッチは複数のオブジェクトに適用でき、パッチが Strategic Merge Patch なのか JSON Patch かは自動的に検出 patches は patchesStrategicMerge と patchesJSON6902 の両方を記述できる。運用上は patchesStrategicMerge か patchesJSON6902 を適用したいパッチの内容によって使い分けることになる。おそらく前者は base にない要素を追加したり、base の要素をすべて置き換えたりするときに使う。後者は base にある map や list の一部の要素のみを限定して置き換えたり、削除したりするときに使う。ちなみに patchesJSON6902 の 6902 というのは RFC 6902 JavaScript Object Notation (JSON) Patch に由来する。
-例えば、patchesJson6902 の例として、次のように指定すると、base から読まれた metadata の要素から namespace のみを削除したり、spec.metadata の0番目のリストの secretKeyRef.</description><content>&lt;p>22時ぐらいには寝て6時半に起きた。昨日はお出かけしてきてバテたんで19時頃からうたた寝を繰り返してずっと寝てた。実家に帰っていた期間を除いて、土日のどちらかを休むのはここ3ヶ月はなかったと思うし、土日の2日間ほとんど仕事をしなかったのは半年ぐらいはなかったと思う。久しぶりに土日に仕事しなかったなという印象で、その理由は業務委託のお仕事の契約が決まって余裕があるからだと思う。&lt;/p>
+patchesJson6902 の例として次のような設定にパッチを適用する。base から読まれた metadata の要素から namespace のみを削除したり、spec.metadata の1番目のリストの secretKeyRef が参照する Secret を my-secret で置き換えたりできる。こういったパッチを patchesStrategicMerge で実現することはできないのではないかと思う (詳しくないので私が間違っているかもしれない) 。</description><content>&lt;p>22時ぐらいには寝て6時半に起きた。昨日はお出かけしてきてバテたんで19時頃からうたた寝を繰り返してずっと寝てた。実家に帰っていた期間を除いて、土日のどちらかを休むのはここ3ヶ月はなかったと思うし、土日の2日間ほとんど仕事をしなかったのは半年ぐらいはなかったと思う。久しぶりに土日に仕事しなかったなという印象で、その理由は業務委託のお仕事の契約が決まって余裕があるからだと思う。&lt;/p>
 &lt;h2 id="kustomize-の-inline-patch">kustomize の Inline Patch&lt;/h2>
 &lt;p>&lt;a href="https://kubectl.docs.kubernetes.io/guides/example/inline_patch/">Inline Patch&lt;/a> に次の3つのやり方が説明されている。&lt;/p>
 &lt;blockquote>
@@ -12,8 +12,22 @@ patchesStrategicMerge: Strategic Merge Patch として解析されるパッチ�
 &lt;/ul>
 &lt;/blockquote>
 &lt;p>patches は patchesStrategicMerge と patchesJSON6902 の両方を記述できる。運用上は patchesStrategicMerge か patchesJSON6902 を適用したいパッチの内容によって使い分けることになる。おそらく前者は base にない要素を追加したり、base の要素をすべて置き換えたりするときに使う。後者は base にある map や list の一部の要素のみを限定して置き換えたり、削除したりするときに使う。ちなみに patchesJSON6902 の 6902 というのは &lt;a href="https://datatracker.ietf.org/doc/html/rfc6902">RFC 6902 JavaScript Object Notation (JSON) Patch&lt;/a> に由来する。&lt;/p>
-&lt;p>例えば、patchesJson6902 の例として、次のように指定すると、base から読まれた metadata の要素から namespace のみを削除したり、spec.metadata の0番目のリストの secretKeyRef.name のみを my-secret で置き換えたりできる。こういったパッチを patchesStrategicMerge で実現することはできないのではないかと思う (詳しくないので私が間違っているかもしれない) 。&lt;/p>
-&lt;h5 id="kustomizationyml">kustomization.yml&lt;/h5>
+&lt;p>patchesJson6902 の例として次のような設定にパッチを適用する。base から読まれた metadata の要素から namespace のみを削除したり、spec.metadata の1番目のリストの secretKeyRef が参照する Secret を my-secret で置き換えたりできる。こういったパッチを patchesStrategicMerge で実現することはできないのではないかと思う (詳しくないので私が間違っているかもしれない) 。&lt;/p>
+&lt;h5 id="baseyml">base.yml&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#f92672">apiVersion&lt;/span>: &lt;span style="color:#ae81ff">apps/v1&lt;/span>
+&lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">Component&lt;/span>
+&lt;span style="color:#f92672">metadata&lt;/span>:
+&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-component&lt;/span>
+&lt;span style="color:#f92672">namespace&lt;/span>: &lt;span style="color:#ae81ff">default&lt;/span>
+&lt;span style="color:#f92672">spec&lt;/span>:
+&lt;span style="color:#f92672">metadata&lt;/span>:
+- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">username&lt;/span>
+&lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#ae81ff">user&lt;/span>
+- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">password&lt;/span>
+&lt;span style="color:#f92672">secretKeyRef&lt;/span>:
+&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">base-secret&lt;/span>
+&lt;span style="color:#f92672">key&lt;/span>: &lt;span style="color:#ae81ff">password&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="kustomizationyml">kustomization.yml&lt;/h5>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">...
 &lt;span style="color:#f92672">patchesJson6902&lt;/span>:
 - &lt;span style="color:#f92672">path&lt;/span>: &lt;span style="color:#ae81ff">my-patch.yaml&lt;/span>
@@ -23,11 +37,11 @@ patchesStrategicMerge: Strategic Merge Patch として解析されるパッチ�
 &lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">Component&lt;/span>
 &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-component&lt;/span>
 ...
-&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="my-componentyaml">my-component.yaml&lt;/h5>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="my-patchyaml">my-patch.yaml&lt;/h5>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">- &lt;span style="color:#f92672">op&lt;/span>: &lt;span style="color:#ae81ff">remove&lt;/span>
 &lt;span style="color:#f92672">path&lt;/span>: &lt;span style="color:#ae81ff">/metadata/namespace&lt;/span>
 - &lt;span style="color:#f92672">op&lt;/span>: &lt;span style="color:#ae81ff">replace&lt;/span>
-&lt;span style="color:#f92672">path&lt;/span>: &lt;span style="color:#ae81ff">/spec/metadata/0/secretKeyRef/name&lt;/span>
+&lt;span style="color:#f92672">path&lt;/span>: &lt;span style="color:#ae81ff">/spec/metadata/1/secretKeyRef/name&lt;/span>
 &lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#ae81ff">my-secret&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="リーンキャンバスレビュー-前半">リーンキャンバスレビュー (前半)&lt;/h2>
 &lt;p>&lt;a href="/diary/diary/posts/2021/1114/#リーンキャンバス">前に作ったリーンキャンバス&lt;/a> を使って友だちにプロダクトの設計をレビューしてもらった。私がリーンキャンバスを作ったことがなかったので、この項目にはどういった内容を書くか、それぞれの項目がどういった関連付けや粒度で整理するかといった、リーンキャンバスの書き方そのものも含めて教えてもらった。&lt;/p>

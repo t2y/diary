@@ -79,8 +79,22 @@ forest nook
 </ul>
 </blockquote>
 <p>patches は patchesStrategicMerge と patchesJSON6902 の両方を記述できる。運用上は patchesStrategicMerge か patchesJSON6902 を適用したいパッチの内容によって使い分けることになる。おそらく前者は base にない要素を追加したり、base の要素をすべて置き換えたりするときに使う。後者は base にある map や list の一部の要素のみを限定して置き換えたり、削除したりするときに使う。ちなみに patchesJSON6902 の 6902 というのは <a href=https://datatracker.ietf.org/doc/html/rfc6902>RFC 6902 JavaScript Object Notation (JSON) Patch</a> に由来する。</p>
-<p>例えば、patchesJson6902 の例として、次のように指定すると、base から読まれた metadata の要素から namespace のみを削除したり、spec.metadata の0番目のリストの secretKeyRef.name のみを my-secret で置き換えたりできる。こういったパッチを patchesStrategicMerge で実現することはできないのではないかと思う (詳しくないので私が間違っているかもしれない) 。</p>
-<h5 id=kustomizationyml>kustomization.yml</h5>
+<p>patchesJson6902 の例として次のような設定にパッチを適用する。base から読まれた metadata の要素から namespace のみを削除したり、spec.metadata の1番目のリストの secretKeyRef が参照する Secret を my-secret で置き換えたりできる。こういったパッチを patchesStrategicMerge で実現することはできないのではないかと思う (詳しくないので私が間違っているかもしれない) 。</p>
+<h5 id=baseyml>base.yml</h5>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>apps/v1</span>
+<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Component</span>
+<span style=color:#f92672>metadata</span>:
+  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>my-component</span>
+  <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>default</span>
+<span style=color:#f92672>spec</span>:
+  <span style=color:#f92672>metadata</span>:
+  - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>username</span>
+    <span style=color:#f92672>value</span>: <span style=color:#ae81ff>user</span>
+  - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>password</span>
+    <span style=color:#f92672>secretKeyRef</span>:
+      <span style=color:#f92672>name</span>: <span style=color:#ae81ff>base-secret</span>
+      <span style=color:#f92672>key</span>: <span style=color:#ae81ff>password</span>
+</code></pre></div><h5 id=kustomizationyml>kustomization.yml</h5>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml>...
 <span style=color:#f92672>patchesJson6902</span>:
   - <span style=color:#f92672>path</span>: <span style=color:#ae81ff>my-patch.yaml</span>
@@ -90,11 +104,11 @@ forest nook
       <span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Component</span>
       <span style=color:#f92672>name</span>: <span style=color:#ae81ff>my-component</span>
 ...
-</code></pre></div><h5 id=my-componentyaml>my-component.yaml</h5>
+</code></pre></div><h5 id=my-patchyaml>my-patch.yaml</h5>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml>- <span style=color:#f92672>op</span>: <span style=color:#ae81ff>remove</span>
   <span style=color:#f92672>path</span>: <span style=color:#ae81ff>/metadata/namespace</span>
 - <span style=color:#f92672>op</span>: <span style=color:#ae81ff>replace</span>
-  <span style=color:#f92672>path</span>: <span style=color:#ae81ff>/spec/metadata/0/secretKeyRef/name</span>
+  <span style=color:#f92672>path</span>: <span style=color:#ae81ff>/spec/metadata/1/secretKeyRef/name</span>
   <span style=color:#f92672>value</span>: <span style=color:#ae81ff>my-secret</span>
 </code></pre></div><h2 id=リーンキャンバスレビュー-前半>リーンキャンバスレビュー (前半)</h2>
 <p><a href=/diary/posts/2021/1114/#リーンキャンバス>前に作ったリーンキャンバス</a> を使って友だちにプロダクトの設計をレビューしてもらった。私がリーンキャンバスを作ったことがなかったので、この項目にはどういった内容を書くか、それぞれの項目がどういった関連付けや粒度で整理するかといった、リーンキャンバスの書き方そのものも含めて教えてもらった。</p>
