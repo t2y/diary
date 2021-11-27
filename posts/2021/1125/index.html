@@ -5,7 +5,7 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="1時半に寝て6時に起きた
 ソースコードのフォーマッター go 言語の gofmt が成功をおさめたことからどんなプログラミング言語でもコーディングスタイルはツールで自動整形するのがよいという雰囲気が醸成され、とくに業務の開発においては統一すべしというルールを設けている組織が多いと思う。java はこの領域では後塵を拝していると言ってよいと思う。歴史的に java の言語仕様と ide は相性がよかったため、ide がコーディングスタイルを自動整形していた結果、ide ごとに互換性のない異なるコーディングスタイルが使われるようになってしまった。私がアリエルで開発していた頃、開発者はみんな eclipse しか使ってなかったので問題にならなかった。しかし、いまや私が知っている ide だけでも次のものがある。
- eclipse intellij idea netbeans vscode  この問題を共通化するツールとして最もメジャーなのは google-java-format で、当初はこのツールを導入しようと考えていた。しかし、開発チームのテックリードから google-java-format のコーディングスタイルはひどい、一番優れているのは intellij idea だというお気持ちを表明された。導入を止めろと言われたわけではないが、チームに入ったばかりの私はテックリードのお気持ちに忖度して google-java-format の導入を断念した。代わりに intellij idea のデフォルトフォーマットをどうやって他の ide を共有するかを調べたところ、Manage code style on a directory level with EditorConfig で EditorConfig の設定 (.editorconfig) を intellij idea で再利用できることがわかった。
+ eclipse intellij idea netbeans vscode  この問題を解決するツールとして最もメジャーなのは google-java-format で、当初はこのツールを導入しようと考えていた。しかし、開発チームのテックリードから google-java-format のコーディングスタイルはひどい、一番優れているのは intellij idea だというお気持ちを表明された。導入を止めろと言われたわけではないが、チームに入ったばかりの私はテックリードのお気持ちに忖度して google-java-format の導入を断念した。代わりに intellij idea のデフォルトフォーマットをどうやって他の ide を共有するかを調べたところ、Manage code style on a directory level with EditorConfig で EditorConfig の設定 (.editorconfig) を intellij idea で再利用できることがわかった。
 うちの開発チームのメンバーは intellij idea と vscode しか使っていないため、現状はこれで解決できるように思えた。intellij idea にはデフォルトで EditorConfig プラグインがバンドルされていて有効になっている。リポジトリのルートディレクトリに .editorconfig があれば自動的にそれを読み込んでくれる。そこで intellij idea のデフォルト設定を .">
 <meta name=keywords content>
 <meta name=robots content="noodp">
@@ -23,7 +23,7 @@
 <meta property="og:title" content="コーディングスタイルの共通化">
 <meta property="og:description" content="1時半に寝て6時に起きた
 ソースコードのフォーマッター go 言語の gofmt が成功をおさめたことからどんなプログラミング言語でもコーディングスタイルはツールで自動整形するのがよいという雰囲気が醸成され、とくに業務の開発においては統一すべしというルールを設けている組織が多いと思う。java はこの領域では後塵を拝していると言ってよいと思う。歴史的に java の言語仕様と ide は相性がよかったため、ide がコーディングスタイルを自動整形していた結果、ide ごとに互換性のない異なるコーディングスタイルが使われるようになってしまった。私がアリエルで開発していた頃、開発者はみんな eclipse しか使ってなかったので問題にならなかった。しかし、いまや私が知っている ide だけでも次のものがある。
- eclipse intellij idea netbeans vscode  この問題を共通化するツールとして最もメジャーなのは google-java-format で、当初はこのツールを導入しようと考えていた。しかし、開発チームのテックリードから google-java-format のコーディングスタイルはひどい、一番優れているのは intellij idea だというお気持ちを表明された。導入を止めろと言われたわけではないが、チームに入ったばかりの私はテックリードのお気持ちに忖度して google-java-format の導入を断念した。代わりに intellij idea のデフォルトフォーマットをどうやって他の ide を共有するかを調べたところ、Manage code style on a directory level with EditorConfig で EditorConfig の設定 (.editorconfig) を intellij idea で再利用できることがわかった。
+ eclipse intellij idea netbeans vscode  この問題を解決するツールとして最もメジャーなのは google-java-format で、当初はこのツールを導入しようと考えていた。しかし、開発チームのテックリードから google-java-format のコーディングスタイルはひどい、一番優れているのは intellij idea だというお気持ちを表明された。導入を止めろと言われたわけではないが、チームに入ったばかりの私はテックリードのお気持ちに忖度して google-java-format の導入を断念した。代わりに intellij idea のデフォルトフォーマットをどうやって他の ide を共有するかを調べたところ、Manage code style on a directory level with EditorConfig で EditorConfig の設定 (.editorconfig) を intellij idea で再利用できることがわかった。
 うちの開発チームのメンバーは intellij idea と vscode しか使っていないため、現状はこれで解決できるように思えた。intellij idea にはデフォルトで EditorConfig プラグインがバンドルされていて有効になっている。リポジトリのルートディレクトリに .editorconfig があれば自動的にそれを読み込んでくれる。そこで intellij idea のデフォルト設定を .">
 <meta property="og:url" content="/diary/posts/2021/1125/">
 <meta property="og:site_name" content="forest nook">
@@ -81,7 +81,7 @@ forest nook
 <li><a href=https://netbeans.apache.org/>netbeans</a></li>
 <li><a href=https://code.visualstudio.com/>vscode</a></li>
 </ul>
-<p>この問題を共通化するツールとして最もメジャーなのは <a href=https://github.com/google/google-java-format>google-java-format</a> で、当初はこのツールを導入しようと考えていた。しかし、開発チームのテックリードから google-java-format のコーディングスタイルはひどい、一番優れているのは intellij idea だというお気持ちを表明された。導入を止めろと言われたわけではないが、チームに入ったばかりの私はテックリードのお気持ちに忖度して google-java-format の導入を断念した。代わりに intellij idea のデフォルトフォーマットをどうやって他の ide を共有するかを調べたところ、<a href=https://www.jetbrains.com/help/idea/configuring-code-style.html#editorconfig>Manage code style on a directory level with EditorConfig</a> で <a href=https://editorconfig.org/>EditorConfig</a> の設定 (<code>.editorconfig</code>) を intellij idea で再利用できることがわかった。</p>
+<p>この問題を解決するツールとして最もメジャーなのは <a href=https://github.com/google/google-java-format>google-java-format</a> で、当初はこのツールを導入しようと考えていた。しかし、開発チームのテックリードから google-java-format のコーディングスタイルはひどい、一番優れているのは intellij idea だというお気持ちを表明された。導入を止めろと言われたわけではないが、チームに入ったばかりの私はテックリードのお気持ちに忖度して google-java-format の導入を断念した。代わりに intellij idea のデフォルトフォーマットをどうやって他の ide を共有するかを調べたところ、<a href=https://www.jetbrains.com/help/idea/configuring-code-style.html#editorconfig>Manage code style on a directory level with EditorConfig</a> で <a href=https://editorconfig.org/>EditorConfig</a> の設定 (<code>.editorconfig</code>) を intellij idea で再利用できることがわかった。</p>
 <p>うちの開発チームのメンバーは intellij idea と vscode しか使っていないため、現状はこれで解決できるように思えた。intellij idea にはデフォルトで EditorConfig プラグインがバンドルされていて有効になっている。リポジトリのルートディレクトリに <code>.editorconfig</code> があれば自動的にそれを読み込んでくれる。そこで intellij idea のデフォルト設定を <code>.editorconfig</code> 形式でエクスポートして、それをリポジトリのルートディレクトリに配置することでコーディングスタイルのフォーマッターを共通化できた。</p>
 </div></div>
 <div class=pagination>
@@ -90,6 +90,12 @@ forest nook
 <hr>
 </div>
 <div class=pagination__buttons>
+<span class="button previous">
+<a href=/diary/posts/2021/1126/>
+<span class=button__icon>←</span>
+<span class=button__text>朝から番まで多忙な一日</span>
+</a>
+</span>
 <span class="button next">
 <a href=/diary/posts/2021/1124/>
 <span class=button__text>eLTAX 触ってみた</span>

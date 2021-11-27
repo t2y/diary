@@ -77,7 +77,7 @@ forest nook
 <li><a href=https://netbeans.apache.org/>netbeans</a></li>
 <li><a href=https://code.visualstudio.com/>vscode</a></li>
 </ul>
-<p>この問題を共通化するツールとして最もメジャーなのは <a href=https://github.com/google/google-java-format>google-java-format</a> で、当初はこのツールを導入しようと考えていた。しかし、開発チームのテックリードから google-java-format のコーディングスタイルはひどい、一番優れているのは intellij idea だというお気持ちを表明された。導入を止めろと言われたわけではないが、チームに入ったばかりの私はテックリードのお気持ちに忖度して google-java-format の導入を断念した。代わりに intellij idea のデフォルトフォーマットをどうやって他の ide を共有するかを調べたところ、<a href=https://www.jetbrains.com/help/idea/configuring-code-style.html#editorconfig>Manage code style on a directory level with EditorConfig</a> で <a href=https://editorconfig.org/>EditorConfig</a> の設定 (<code>.editorconfig</code>) を intellij idea で再利用できることがわかった。</p>
+<p>この問題を解決するツールとして最もメジャーなのは <a href=https://github.com/google/google-java-format>google-java-format</a> で、当初はこのツールを導入しようと考えていた。しかし、開発チームのテックリードから google-java-format のコーディングスタイルはひどい、一番優れているのは intellij idea だというお気持ちを表明された。導入を止めろと言われたわけではないが、チームに入ったばかりの私はテックリードのお気持ちに忖度して google-java-format の導入を断念した。代わりに intellij idea のデフォルトフォーマットをどうやって他の ide を共有するかを調べたところ、<a href=https://www.jetbrains.com/help/idea/configuring-code-style.html#editorconfig>Manage code style on a directory level with EditorConfig</a> で <a href=https://editorconfig.org/>EditorConfig</a> の設定 (<code>.editorconfig</code>) を intellij idea で再利用できることがわかった。</p>
 <p>うちの開発チームのメンバーは intellij idea と vscode しか使っていないため、現状はこれで解決できるように思えた。intellij idea にはデフォルトで EditorConfig プラグインがバンドルされていて有効になっている。リポジトリのルートディレクトリに <code>.editorconfig</code> があれば自動的にそれを読み込んでくれる。そこで intellij idea のデフォルト設定を <code>.editorconfig</code> 形式でエクスポートして、それをリポジトリのルートディレクトリに配置することでコーディングスタイルのフォーマッターを共通化できた。</p>
 </div>
 </div>
