@@ -56,6 +56,37 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2021/1128/>slack ペイロードの response_url にはまった</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2021-11-28
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/bizpy/>bizpy</a>&nbsp;
+</span>
+<div class=post-content>
+<p>1時に寝て8時に起きた。昨日は喋り倒して疲れてよく眠れた。午前中は溜まった日記を書き殴って、お仕事でやっているカスタム github actions で気になったコードを修正して、午後から bizpy の勉強会の準備を始めた。なんか気乗りせずにだらだらやって最終的には出来上がった。たいていだらだらやるときは頭の中ではもう出来上がってて集中したら2-3時間でできるのを脳が把握していて、まだ時間に余裕があるから怠けるみたいなときがある。そういうときは作業やめて散歩に出掛けるようにしている。</p>
+<h2 id=bizpy-勉強会の資料作り>bizpy 勉強会の資料作り</h2>
+<p>次の <a href=https://bizpy.connpass.com/event/229239/>Python で Slack のインテグレーションをやってみる勉強会 #3</a> のサンプルコードの実装をしていた。内容はだいたい次の通り。あとは資料をまとめるだけ。</p>
+<ul>
+<li>slash command の設定と実装</li>
+<li>ephemeral メッセージ (本人だけみえるメッセージ) の実装</li>
+<li>block kit でモーダルダイアログに入力した情報を使ってチャットに書き込む
+<ul>
+<li><a href=https://openweathermap.org/>OpenWeather API</a> を使って天気の情報を連携する</li>
+</ul>
+</li>
+</ul>
+<p>たまたまモーダルダイアログを取り上げただけなんだけど、モーダルダイアログを submit したときにチャットに書き込むのは、そのままではできなくて、なんらかの特別な処理が必要になって、そこにはまってた。response_url の扱いはわりとややこしいみたい。</p>
+<ul>
+<li><a href=https://qiita.com/seratch/items/ed29acd565af36e65072>Slack ペイロードに含まれる response_url を完全に理解する</a></li>
+</ul>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2021/1127/>まる一日喋り続けた日</a>
 </h1>
 <div class=post-meta>
