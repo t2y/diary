@@ -1,4 +1,55 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>morning activity on forest nook</title><link>/diary/tags/morning-activity/</link><description>Recent content in morning activity on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Fri, 26 Nov 2021 19:36:04 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/morning-activity/index.xml" rel="self" type="application/rss+xml"/><item><title>朝から晩まで多忙な一日</title><link>/diary/posts/2021/1126/</link><pubDate>Fri, 26 Nov 2021 19:36:04 +0900</pubDate><guid>/diary/posts/2021/1126/</guid><description>0時に寝て5時に起きた。昨日 slack で質問していた内容に5時頃に返信があるのをたまたまみかけた。この時間に起きているんだと思って返信にコメントしてたら別のメンバーからもコメントが書き込まれて、早起きは三文の得みたいな感じで朝5時から slack でやり取りしてた。いま私はだいたい8時から始業している。開発チームの半分ぐらいのメンバーはそのぐらいから始業しているのが課題管理システムや git のコミットログからわかる。このチームは朝早い人たちが多いなと感心した。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>morning activity on forest nook</title><link>/diary/tags/morning-activity/</link><description>Recent content in morning activity on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Wed, 01 Dec 2021 04:13:59 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/morning-activity/index.xml" rel="self" type="application/rss+xml"/><item><title>師走入り</title><link>/diary/posts/2021/1201/</link><pubDate>Wed, 01 Dec 2021 04:13:59 +0900</pubDate><guid>/diary/posts/2021/1201/</guid><description>1時から1時間ほど仮眠をとって2時から4時過ぎまで作業して帰ってお風呂に入ってそのまま6時から 【三宮.dev オンライン】リモート朝活もくもく会 の朝活に参加した。30分ほど雑談して眠くなって7時過ぎから9時前まで寝てた。
+dapr の pubsub の dead letter サポート お仕事で dapr を触っている。pubsub で dead letter queue の仕組みを導入しようとしているが、PubSub&amp;rsquo;s DeadLetter Topic #2217 によると v1.6 (2022年1月20日リリース予定) のマイルストーンになっている。本当にその予定ならそろそろベータ版が実装されていて、開発ブランチあったらテストしようかと考えていた。調べてたら rabbitmq はすでに v1.5 で dead letter のサポートがマージされているのを発見した。
+Add dead letter support for RabbitMQ pubsub #1844 たまたま、いま使っている pubsub も rabbitmq だった。ドキュメントをみたら確かにその設定が追加されている。
+dapr RabbitMQ
+Field Required Details Example enableDeadLetter N Enable forwarding Messages that cannot be handled to a dead-letter topic.</description><content>&lt;p>1時から1時間ほど仮眠をとって2時から4時過ぎまで作業して帰ってお風呂に入ってそのまま6時から &lt;a href="https://kobe-sannomiya-dev.connpass.com/event/232426/">【三宮.dev オンライン】リモート朝活もくもく会&lt;/a> の朝活に参加した。30分ほど雑談して眠くなって7時過ぎから9時前まで寝てた。&lt;/p>
+&lt;h2 id="dapr-の-pubsub-の-dead-letter-サポート">dapr の pubsub の dead letter サポート&lt;/h2>
+&lt;p>お仕事で dapr を触っている。pubsub で dead letter queue の仕組みを導入しようとしているが、&lt;a href="https://github.com/dapr/dapr/issues/2217">PubSub&amp;rsquo;s DeadLetter Topic #2217&lt;/a> によると v1.6 (2022年1月20日リリース予定) のマイルストーンになっている。本当にその予定ならそろそろベータ版が実装されていて、開発ブランチあったらテストしようかと考えていた。調べてたら rabbitmq はすでに v1.5 で dead letter のサポートがマージされているのを発見した。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/dapr/docs/pull/1844">Add dead letter support for RabbitMQ pubsub #1844&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>たまたま、いま使っている pubsub も rabbitmq だった。ドキュメントをみたら確かにその設定が追加されている。&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;a href="https://docs.dapr.io/reference/components-reference/supported-pubsub/setup-rabbitmq/">dapr RabbitMQ&lt;/a>&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field&lt;/th>
+&lt;th>Required&lt;/th>
+&lt;th>Details&lt;/th>
+&lt;th>Example&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>enableDeadLetter&lt;/td>
+&lt;td>N&lt;/td>
+&lt;td>Enable forwarding Messages that cannot be handled to a dead-letter topic. Defaults to &amp;ldquo;false&amp;rdquo;&lt;/td>
+&lt;td>&amp;ldquo;true&amp;rdquo;, &amp;ldquo;false&amp;rdquo;&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>maxLen&lt;/td>
+&lt;td>N&lt;/td>
+&lt;td>The maximum number of messages of a queue and its dead letter queue (if dead letter enabled). If both maxLen and maxLenBytes are set then both will apply; whichever limit is hit first will be enforced. Defaults to no limit.&lt;/td>
+&lt;td>&amp;ldquo;1000&amp;rdquo;&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>maxLenBytes&lt;/td>
+&lt;td>N&lt;/td>
+&lt;td>Maximum length in bytes of a queue and its dead letter queue (if dead letter enabled). If both maxLen and maxLenBytes are set then both will apply; whichever limit is hit first will be enforced. Defaults to no limit.&lt;/td>
+&lt;td>&amp;ldquo;1048576&amp;rdquo;&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;/blockquote>
+&lt;p>enableDeadLetter=true に設定して、適当にエラーが発生しそうなリクエストを作って dead letter にメッセージが入るかどうかを検証してた。ひとまず dead letter にメッセージが入ること自体は確認できた。&lt;/p>
+&lt;h2 id="bizpy-勉強会">bizpy 勉強会&lt;/h2>
+&lt;p>&lt;a href="https://bizpy.connpass.com/event/229239/">Python で Slack のインテグレーションをやってみる勉強会 #3&lt;/a> を開催した。月曜日から2時間もあればできる資料作成をだらだら先送りしていて夜中に作った。なんか体調を崩しているのかもしれない。たまたま勉強会の前にせらさんから激励のコメントをいただいて嬉しかった。&lt;/p>
+&lt;blockquote>
+&lt;p>今日の分も含めコンテンツ拝見しましたが、素晴らしいですね&lt;/p>
+&lt;/blockquote>
+&lt;p>私見だけど、slack インテグレーションで調べものをしているとせらさんの記事や issue のやり取りをみかけることが多い。twitter で slack インテグレーションに関してつぶやくと100%せらさんからレスポンスがある (個人の経験談) 。過去に私は外資の ISV で働きたいと思って活動したこともあったけど、せらさんをみていて自分のレベルでは無理だったなと得心がいった。なにがすごいって、bizpy の勉強会のようなところにもわざわざやってきて、講師にコメントしたりアドバイスしてくれるんだからね。&lt;/p>
+&lt;p>2ヶ月に渡り、slack インテグレーションのチュートリアルレベルの記事を実際に設定してみて、サンプルコード書いてみて、動かしてみて、slack でどんなことができそうかの理解を深めることができた。今回の内容はビジネスパーソン向けではなかったのでちょっと敷居が高かったかもしれないが、全3回でやり切ることができてよかった。終わってから運営に新たにわたなべさんが加わったことを参加者に紹介しつつ、次回の企画について雑談していた。次回はわたなべさんから機械学習入門のような勉強会をしてもらうことに決まった。&lt;/p></content></item><item><title>朝から晩まで多忙な一日</title><link>/diary/posts/2021/1126/</link><pubDate>Fri, 26 Nov 2021 19:36:04 +0900</pubDate><guid>/diary/posts/2021/1126/</guid><description>0時に寝て5時に起きた。昨日 slack で質問していた内容に5時頃に返信があるのをたまたまみかけた。この時間に起きているんだと思って返信にコメントしてたら別のメンバーからもコメントが書き込まれて、早起きは三文の得みたいな感じで朝5時から slack でやり取りしてた。いま私はだいたい8時から始業している。開発チームの半分ぐらいのメンバーはそのぐらいから始業しているのが課題管理システムや git のコミットログからわかる。このチームは朝早い人たちが多いなと感心した。
 朝活: アジャイル開発とスクラム 第2版 2021-11-26 AM 6 金曜朝6時開催のもくもく会 で第6章と第7章を読んだ。第2部は企業において実際にスクラムを導入していったときの四方山話が出てくる。私はあまり他社の事例に興味はないが、対談の過程で本質的に大事なことや難しいことなどがあぶり出されることもあるので、実務を通しての話題も参考になる場合があることは理解できる。大半の事例は実業務で使われているという結論がわかるだけでも十分だと思う。とくに大企業は様々な厳しい制約や要件の中で採用していると推測されるので、それだけで大きなメッセージをもつ。斜め読みでざっと読み進めながら興味のある話題があれば精読するといった程度で読んでた。
 大企業あるあるな話しでスクラムイベントを通してお互いの距離感が縮まってうまくいったといった内容があった。開発者からすると距離感の遠近に関係なく、必要なら適切な相手を探し出してコミュニケーションを取るのが普通だけど、みんながみんなそうではないだろうし、(同じ会社の社員でも)よく知らない人とは話さないといった考え方をもつ人もいるだろう。ある人はこれを単純接触効果で説明していたけど、業務ではなく人間の側面からみてスクラムイベントが多いことにも意義があるのかもしれない。
 ある事例でスクラムにおいてイベントがたくさんあってそれに参加することでお互いの距離感を縮めたという効果が書かれている。開発者は気になったことは何でも確認するという姿勢をとりがちだけど、関係者のみんながそうではないというのも理解できる #金朝ツメトギ

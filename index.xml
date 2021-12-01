@@ -1,4 +1,55 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>forest nook</title><link>/diary/</link><description>Recent content on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Tue, 30 Nov 2021 07:45:30 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/index.xml" rel="self" type="application/rss+xml"/><item><title>66日目</title><link>/diary/posts/2021/1130/</link><pubDate>Tue, 30 Nov 2021 07:45:30 +0900</pubDate><guid>/diary/posts/2021/1130/</guid><description>23時に寝て3時過ぎに起きて作業しようと思ったものの、やっぱりそのまま寝てしまって7時に起きた。前々日にあまり寝てなかったせいか、睡眠不足を解消したとポジティブに考えとく。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>forest nook</title><link>/diary/</link><description>Recent content on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Wed, 01 Dec 2021 04:13:59 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/index.xml" rel="self" type="application/rss+xml"/><item><title>師走入り</title><link>/diary/posts/2021/1201/</link><pubDate>Wed, 01 Dec 2021 04:13:59 +0900</pubDate><guid>/diary/posts/2021/1201/</guid><description>1時から1時間ほど仮眠をとって2時から4時過ぎまで作業して帰ってお風呂に入ってそのまま6時から 【三宮.dev オンライン】リモート朝活もくもく会 の朝活に参加した。30分ほど雑談して眠くなって7時過ぎから9時前まで寝てた。
+dapr の pubsub の dead letter サポート お仕事で dapr を触っている。pubsub で dead letter queue の仕組みを導入しようとしているが、PubSub&amp;rsquo;s DeadLetter Topic #2217 によると v1.6 (2022年1月20日リリース予定) のマイルストーンになっている。本当にその予定ならそろそろベータ版が実装されていて、開発ブランチあったらテストしようかと考えていた。調べてたら rabbitmq はすでに v1.5 で dead letter のサポートがマージされているのを発見した。
+Add dead letter support for RabbitMQ pubsub #1844 たまたま、いま使っている pubsub も rabbitmq だった。ドキュメントをみたら確かにその設定が追加されている。
+dapr RabbitMQ
+Field Required Details Example enableDeadLetter N Enable forwarding Messages that cannot be handled to a dead-letter topic.</description><content>&lt;p>1時から1時間ほど仮眠をとって2時から4時過ぎまで作業して帰ってお風呂に入ってそのまま6時から &lt;a href="https://kobe-sannomiya-dev.connpass.com/event/232426/">【三宮.dev オンライン】リモート朝活もくもく会&lt;/a> の朝活に参加した。30分ほど雑談して眠くなって7時過ぎから9時前まで寝てた。&lt;/p>
+&lt;h2 id="dapr-の-pubsub-の-dead-letter-サポート">dapr の pubsub の dead letter サポート&lt;/h2>
+&lt;p>お仕事で dapr を触っている。pubsub で dead letter queue の仕組みを導入しようとしているが、&lt;a href="https://github.com/dapr/dapr/issues/2217">PubSub&amp;rsquo;s DeadLetter Topic #2217&lt;/a> によると v1.6 (2022年1月20日リリース予定) のマイルストーンになっている。本当にその予定ならそろそろベータ版が実装されていて、開発ブランチあったらテストしようかと考えていた。調べてたら rabbitmq はすでに v1.5 で dead letter のサポートがマージされているのを発見した。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/dapr/docs/pull/1844">Add dead letter support for RabbitMQ pubsub #1844&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>たまたま、いま使っている pubsub も rabbitmq だった。ドキュメントをみたら確かにその設定が追加されている。&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;a href="https://docs.dapr.io/reference/components-reference/supported-pubsub/setup-rabbitmq/">dapr RabbitMQ&lt;/a>&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field&lt;/th>
+&lt;th>Required&lt;/th>
+&lt;th>Details&lt;/th>
+&lt;th>Example&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>enableDeadLetter&lt;/td>
+&lt;td>N&lt;/td>
+&lt;td>Enable forwarding Messages that cannot be handled to a dead-letter topic. Defaults to &amp;ldquo;false&amp;rdquo;&lt;/td>
+&lt;td>&amp;ldquo;true&amp;rdquo;, &amp;ldquo;false&amp;rdquo;&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>maxLen&lt;/td>
+&lt;td>N&lt;/td>
+&lt;td>The maximum number of messages of a queue and its dead letter queue (if dead letter enabled). If both maxLen and maxLenBytes are set then both will apply; whichever limit is hit first will be enforced. Defaults to no limit.&lt;/td>
+&lt;td>&amp;ldquo;1000&amp;rdquo;&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>maxLenBytes&lt;/td>
+&lt;td>N&lt;/td>
+&lt;td>Maximum length in bytes of a queue and its dead letter queue (if dead letter enabled). If both maxLen and maxLenBytes are set then both will apply; whichever limit is hit first will be enforced. Defaults to no limit.&lt;/td>
+&lt;td>&amp;ldquo;1048576&amp;rdquo;&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;/blockquote>
+&lt;p>enableDeadLetter=true に設定して、適当にエラーが発生しそうなリクエストを作って dead letter にメッセージが入るかどうかを検証してた。ひとまず dead letter にメッセージが入ること自体は確認できた。&lt;/p>
+&lt;h2 id="bizpy-勉強会">bizpy 勉強会&lt;/h2>
+&lt;p>&lt;a href="https://bizpy.connpass.com/event/229239/">Python で Slack のインテグレーションをやってみる勉強会 #3&lt;/a> を開催した。月曜日から2時間もあればできる資料作成をだらだら先送りしていて夜中に作った。なんか体調を崩しているのかもしれない。たまたま勉強会の前にせらさんから激励のコメントをいただいて嬉しかった。&lt;/p>
+&lt;blockquote>
+&lt;p>今日の分も含めコンテンツ拝見しましたが、素晴らしいですね&lt;/p>
+&lt;/blockquote>
+&lt;p>私見だけど、slack インテグレーションで調べものをしているとせらさんの記事や issue のやり取りをみかけることが多い。twitter で slack インテグレーションに関してつぶやくと100%せらさんからレスポンスがある (個人の経験談) 。過去に私は外資の ISV で働きたいと思って活動したこともあったけど、せらさんをみていて自分のレベルでは無理だったなと得心がいった。なにがすごいって、bizpy の勉強会のようなところにもわざわざやってきて、講師にコメントしたりアドバイスしてくれるんだからね。&lt;/p>
+&lt;p>2ヶ月に渡り、slack インテグレーションのチュートリアルレベルの記事を実際に設定してみて、サンプルコード書いてみて、動かしてみて、slack でどんなことができそうかの理解を深めることができた。今回の内容はビジネスパーソン向けではなかったのでちょっと敷居が高かったかもしれないが、全3回でやり切ることができてよかった。終わってから運営に新たにわたなべさんが加わったことを参加者に紹介しつつ、次回の企画について雑談していた。次回はわたなべさんから機械学習入門のような勉強会をしてもらうことに決まった。&lt;/p></content></item><item><title>66日目</title><link>/diary/posts/2021/1130/</link><pubDate>Tue, 30 Nov 2021 07:45:30 +0900</pubDate><guid>/diary/posts/2021/1130/</guid><description>23時に寝て3時過ぎに起きて作業しようと思ったものの、やっぱりそのまま寝てしまって7時に起きた。前々日にあまり寝てなかったせいか、睡眠不足を解消したとポジティブに考えとく。
 習慣化のための平均66日 前に GIG MINDSET ギグ・マインドセット を読んだときにロンドン大学が行った研究で習慣になるには平均して66日かかるというのをみかけた。「平均して」というのが曖昧なところで、直観的に理解できるけど、対象の難易度によって習慣化に要する日数が異なる。簡単なことはすぐ習慣化できるし、難しいことには時間がかかる。それらをいくつも試してみて平均したら66日だったという話し。66日仮説 でも言及されているようにこの手の研究はあまり鵜呑みにするのもよくない。とはいえ、何らかの基準や目安があること自体は悪いことではないので一般論として参考にするのはよいと私は考えている。日記を書くというのは比較的簡単なことだと私は捉えるが、66日続いたので習慣と化したとみなしていいだろう。
 書くこと 日記に関連して「書くこと」そのものを研究対象としている。自分でも日記を書き続けて何が起こるのかを理解するために実践しているという意図もある。
 日記だけではなく、私は業務の過程で普通の開発者より、平均的な文章量よりも大量に書く。課題管理システムに私以上にコメントを書く開発者を、この10年で1人もみたことがない。私以上に課題管理システムを使いこなす開発者もこの10年みたことがない。課題管理システムの使い方や応用をメンバーにアドバイスするし、メンバーも私の使い方をみて真似してくれることもあった。これまでそういった行動は無意識にやっていたことだけど、それを意識化して形式知として体系化したいという狙いもある。
@@ -986,7 +1037,7 @@ RabbitMQ のチュートリアル を1から5までやった。チュートリ�
 &lt;/ul>
 &lt;p>前者は特定のデータベースシステムだけで動くので相対的に最適化ができたり、うまく運用できるケースもある。後者は複数のシステムを介した汎用の仕組みになるので2相コミットのような プロトコル を使って &lt;strong>アトミックなコミット&lt;/strong> を保証しなければならない。2PC はコーディネータの障害が運用上の大きな問題となることがわかっている。ヘテロジニアスな技術間での2相コミットの標準を &lt;strong>X/Open XA（eXtended Architecture の省略）&lt;/strong> と呼ぶ。多くの RDB やメッセージブローカーでもサポートされているらしい。Java EE アプリケーションの世界だと Java Transaction API （ JTA ）で実装されているらしい。全く聞いたことがなくて、私はいままでこの技術に関わることがなかった。&lt;/p></content></item><item><title>ワイヤレス REALFORCE</title><link>/diary/posts/2021/1102/</link><pubDate>Tue, 02 Nov 2021 09:22:30 +0900</pubDate><guid>/diary/posts/2021/1102/</guid><description>3時に寝て7時に起きた。ウォーキングから帰ってきて0時にベッドに入ったものの、選挙結果の総括記事を読んだり、宇宙よりも遠い場所 をみたりしていたら3時になってしまった。全13話すべてみた。どちらかと言えばおもしろかったけど、ツィートみて期待値が高かった分、そこまで私の中に響くものはなかったかな。南極へ行く道中や南極の生活がわりと遊んでいるようにみえてあまり大変そうにみえなかった。とはいえ、実際の船上や南極でもやることなくて娯楽ないと持て余すのかなとも思えた。南極地域観測隊 って現実にあるんだなとみてた。
 僕はだいたいプログラミングしてるときは既に内容を知ってるアニメを常に流してるんですが今週はまた「宇宙よりも遠い場所」を観ていました。これほどまでに13話すべて足すところも引くところもない完璧な作品は他に早々思いつかないです。
-&amp;mdash; しろやま (@fushiroyama) October 28, 2021 データ指向アプリケーションデザイン 9.3 順序の保証を読んだ。
+&amp;mdash; 父 (@fushiroyama) October 28, 2021 データ指向アプリケーションデザイン 9.3 順序の保証を読んだ。
 データベースや分散システムにおいて順序付けは重要な基本的概念である。順序と線形化可能性、合意との間には深い関係がある。順序付けが重要なのは 因果関係 を保つのに役立つことがあげられる。
 全順序 があれば任意の2つの数を比較して大小関係を必ず判断できる。たとえば自然数には全順序があると言える。線形化可能なシステムは操作に全順序がある。一方で因果律には並行という概念があり、どちらが先に行われたかが重要ではない場合に操作が並行に行われたとみなせる。したがって、因果律は全順序ではなく、 半順序 を定義すると言える。半順序とは、大小関係を比較できる場合もあるしできない場合もあることを指す。
 因果律に基づく順序と線形化可能性との関係は、線形化可能性は因果関係を 暗に含む といえる。線形化可能性を持つシステムは、因果律を正しく保持する。しかし、システムを線形化可能にすればパフォーマンスや可用性が損なわれる可能性がある。特にネットワークの遅延が大きい（たとえば地理的に分散している）システムで問題になる。そのため、分散データシステムの中には線形化可能性をあきらめることでパフォーマンスを向上させたものの、扱いが難しいものもある。因果律を保持する方法は、線形化可能性が唯一というわけではなく他の方法もある。多くの場合、システムに本当に必要なのは線形化可能性ではなく因果律における一貫性だけであり、これは線形化可能性よりも効率の良い実装が可能となる。
@@ -996,7 +1047,7 @@ RabbitMQ のチュートリアル を1から5までやった。チュートリ�
 REALFORCE のワイヤレスモデル ユーザーから待望されていた REALFORCE のワイヤレスモデルがとうとう発売された。
 高級キーボードREALFORCEから待望のワイヤレス機「R3」が登場、見どころは？ 先週から amazon で予約販売を受け付けていたので REALFORCE 東プレ R3 キーボード 静音 ハイブリッドモデル 日本語配列 91キー ブラック R3HC12 を予約して、本日届いた。私はとくに必要ないけど、bluetooth のマルチペアリングに対応していて最大4つまで接続できる。オフィスの机はそこそこ広いけれど、本とラップトップとモニター2台置いたらスペースが埋まってしまっている。ご飯を食べるときや書類を作成するときにキーボードを立てかけたりしてスペースを確保していて不便に感じていた。
 ubuntu 環境での bluetooth の設定に少し手こずった。GUI の設定マネージャー (blueman) でペアリングしようとしても失敗する。キーボードの情報は取得できるけど、ペアリングは失敗する。試しに macos でペアリングしてみたらパスキーの入力画面が表示されて、6桁の数字を入力して ENTER した後に接続するとペアリングできた。blueman だとパスキーが表示されないなと気付いてググってたら [SOLVED] Bluetooth keyboard: Unable to pair (authentication timeout) を見かけて、bluetoothctl でも設定できそうなのでやってみた。</description><content>&lt;p>3時に寝て7時に起きた。ウォーキングから帰ってきて0時にベッドに入ったものの、選挙結果の総括記事を読んだり、&lt;a href="http://yorimoi.com/story/">宇宙よりも遠い場所&lt;/a> をみたりしていたら3時になってしまった。全13話すべてみた。どちらかと言えばおもしろかったけど、ツィートみて期待値が高かった分、そこまで私の中に響くものはなかったかな。南極へ行く道中や南極の生活がわりと遊んでいるようにみえてあまり大変そうにみえなかった。とはいえ、実際の船上や南極でもやることなくて娯楽ないと持て余すのかなとも思えた。&lt;a href="https://www.nipr.ac.jp/antarctic/">南極地域観測隊&lt;/a> って現実にあるんだなとみてた。&lt;/p>
-&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">僕はだいたいプログラミングしてるときは既に内容を知ってるアニメを常に流してるんですが今週はまた「宇宙よりも遠い場所」を観ていました。これほどまでに13話すべて足すところも引くところもない完璧な作品は他に早々思いつかないです。&lt;/p>&amp;mdash; しろやま (@fushiroyama) &lt;a href="https://twitter.com/fushiroyama/status/1453610090632663048?ref_src=twsrc%5Etfw">October 28, 2021&lt;/a>&lt;/blockquote>
+&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">僕はだいたいプログラミングしてるときは既に内容を知ってるアニメを常に流してるんですが今週はまた「宇宙よりも遠い場所」を観ていました。これほどまでに13話すべて足すところも引くところもない完璧な作品は他に早々思いつかないです。&lt;/p>&amp;mdash; 父 (@fushiroyama) &lt;a href="https://twitter.com/fushiroyama/status/1453610090632663048?ref_src=twsrc%5Etfw">October 28, 2021&lt;/a>&lt;/blockquote>
 &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script>
 &lt;h2 id="データ指向アプリケーションデザイン">データ指向アプリケーションデザイン&lt;/h2>
 &lt;p>9.3 順序の保証を読んだ。&lt;/p>
@@ -1079,11 +1130,11 @@ Changing F6:9D:A5:80:B7:1F trust succeeded
 &lt;h2 id="みんなの-python-勉強会の資料作り">みんなの Python 勉強会の資料作り&lt;/h2>
 &lt;p>昨日の続き。午後からオフィスで資料を作り始めた。夕方に晩ご飯食べに帰ってくつろいでからまた夜にウォーキングの途中でオフィスに戻ってきて資料を作っていた。気付いたら3時間ほどやってて9割ほどできた。本と読者と学びの段階みたいな、何が言いたいのか自分でもまだ明確ではない、学びの視点を考慮したプログラミングの話しを組み立ててみた。まだふわふわしているのでもう少し洗練させて詰めようと思う。資料の中に3つの話題があるのでなんかうまくまとまっていないような気がしている。タイトルも決まらない。&lt;/p></content></item><item><title>勉強会のコンテンツ思案</title><link>/diary/posts/2021/1030/</link><pubDate>Sat, 30 Oct 2021 10:15:17 +0900</pubDate><guid>/diary/posts/2021/1030/</guid><description>0時からウォーキングに出て1時に帰ってきて軽くストレッチして 宇宙よりも遠い場所 を3話までみた。たまたまタイムラインでツィートをみかけて気になってみたら確かにおもしろい。3時ぐらいから寝て6時半に一度起きたものの、2度寝して8時ぐらいまで寝てた。夕方に期日前投票やって、初めて出口調査に声を掛けられたのでそれもやってみた。
 僕はだいたいプログラミングしてるときは既に内容を知ってるアニメを常に流してるんですが今週はまた「宇宙よりも遠い場所」を観ていました。これほどまでに13話すべて足すところも引くところもない完璧な作品は他に早々思いつかないです。
-&amp;mdash; しろやま (@fushiroyama) October 28, 2021 消防設備点検 点検があるとのことだったので軽く部屋を掃除した。朝ゴミ捨てに行ったらたまたま管理人さんがいて、点検の時間帯でもしいなかったら勝手に部屋に入ってやってもらってよいですと連絡してたら、点検員さんに掛け合ってくれてすぐに設備点検してもらえた。部屋とキッチンにある火災探知機がちゃんと作動するかどうかをテストしてた。2分ぐらいで完了した。おかげで今日の家を出る予定を前倒しできた。感謝。
+&amp;mdash; 父 (@fushiroyama) October 28, 2021 消防設備点検 点検があるとのことだったので軽く部屋を掃除した。朝ゴミ捨てに行ったらたまたま管理人さんがいて、点検の時間帯でもしいなかったら勝手に部屋に入ってやってもらってよいですと連絡してたら、点検員さんに掛け合ってくれてすぐに設備点検してもらえた。部屋とキッチンにある火災探知機がちゃんと作動するかどうかをテストしてた。2分ぐらいで完了した。おかげで今日の家を出る予定を前倒しできた。感謝。
 ストレッチ 今週はジョギングしてない代わりにウォーキングをして筋肉痛を軽減しつつ臨んだ。平日のストレッチも3回ぐらいやっているので現状維持ぐらいかな？と思ったけど、開始前166cmで、ストレッチ後167cmで前回よりも数値は悪くなってた。物理的な体調はよいつもりだったけど、数値が悪化したのでなにか不足があるのか、平日のストレッチの時間が足りないのかもしれない。もしくは、ストレッチを受けていると、まだ右股関節の違和感とお尻の筋肉の張りは根強い。今週は5日ぐらいウォーキングしているのでその疲労もあるのかもしれない。トレーナーさんに夜にウォーキングするとよく眠れるという話しをしたら、ジョギングよりもウォーキングの方がリラックスできて、ジョギングや筋トレ (激しい運動) は交感神経を刺激して睡眠にはよくないといった話だった。ググったら ジョギングよりもウォーキングがお勧め という記事も出てきた。
 みんなの Python 勉強会の資料作り 昨日の続き。発表の内容の構成を考えながら、過去に書いた本や資料、サンプルコードなどを見返していた。コンテンツはだいたい頭の中で固まってきた。あとは構成を練りながら実際にスライドとして仕上げていくだけ。いつもそうなんだけど、スライドの作り始めが一番難しい。何から書くか、どこから作り始めるのかに最も時間を割く。もう少し悩みながら考えておく。
 サバクトビバッタの研究 たまたまタイムラインでみかけて 『バッタを倒しにアフリカへ』行き、必殺技を見つけてきました を読んでみたらすごくおもしろかった。国連にはバッタ予報官という専門職？があるのを記事などでみかけていた。日本だとイナゴになるんだろうけど、世界的にはバッタなんよね。そんなバッタの研究に、全然関係ない日本の若手研究者が、過去40年間誰もアフリカで腰を据えて研究しておらず、バッタ研究の歴史が止まったままであることに気付いて、何年もかけてシンプルな観察をメインにしたフィールドワークで成果をあげたという、ミドルエイジクライシスな自分にとっては痛快で元気がでる記事だった。著者のノリもおもしろいので、おそらく陽気な人なんだろうと思う。応援する意図でも バッタを倒しにアフリカへ を購入した。</description><content>&lt;p>0時からウォーキングに出て1時に帰ってきて軽くストレッチして &lt;a href="http://yorimoi.com/story/">宇宙よりも遠い場所&lt;/a> を3話までみた。たまたまタイムラインでツィートをみかけて気になってみたら確かにおもしろい。3時ぐらいから寝て6時半に一度起きたものの、2度寝して8時ぐらいまで寝てた。夕方に期日前投票やって、初めて出口調査に声を掛けられたのでそれもやってみた。&lt;/p>
-&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">僕はだいたいプログラミングしてるときは既に内容を知ってるアニメを常に流してるんですが今週はまた「宇宙よりも遠い場所」を観ていました。これほどまでに13話すべて足すところも引くところもない完璧な作品は他に早々思いつかないです。&lt;/p>&amp;mdash; しろやま (@fushiroyama) &lt;a href="https://twitter.com/fushiroyama/status/1453610090632663048?ref_src=twsrc%5Etfw">October 28, 2021&lt;/a>&lt;/blockquote>
+&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">僕はだいたいプログラミングしてるときは既に内容を知ってるアニメを常に流してるんですが今週はまた「宇宙よりも遠い場所」を観ていました。これほどまでに13話すべて足すところも引くところもない完璧な作品は他に早々思いつかないです。&lt;/p>&amp;mdash; 父 (@fushiroyama) &lt;a href="https://twitter.com/fushiroyama/status/1453610090632663048?ref_src=twsrc%5Etfw">October 28, 2021&lt;/a>&lt;/blockquote>
 &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script>
 &lt;h2 id="消防設備点検">消防設備点検&lt;/h2>
 &lt;p>点検があるとのことだったので軽く部屋を掃除した。朝ゴミ捨てに行ったらたまたま管理人さんがいて、点検の時間帯でもしいなかったら勝手に部屋に入ってやってもらってよいですと連絡してたら、点検員さんに掛け合ってくれてすぐに設備点検してもらえた。部屋とキッチンにある火災探知機がちゃんと作動するかどうかをテストしてた。2分ぐらいで完了した。おかげで今日の家を出る予定を前倒しできた。感謝。&lt;/p>
