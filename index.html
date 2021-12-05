@@ -57,6 +57,51 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2021/1205/>頭文字Dを読了</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2021-12-05
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/life/>life</a>&nbsp;
+#<a href=/diary/tags/commic/>commic</a>&nbsp;
+#<a href=/diary/tags/tax/>tax</a>&nbsp;
+#<a href=/diary/tags/dapr/>dapr</a>&nbsp;
+#<a href=/diary/tags/kubernetes/>kubernetes</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#頭文字d>頭文字D</a></li>
+<li><a href=#ふるさと納税>ふるさと納税</a></li>
+<li><a href=#dapr-の-api-トークンを使った認証>dapr の api トークンを使った認証</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>0時に寝て7時に起きてだらだらやってて午前中は <a href=https://ja.wikipedia.org/wiki/%E9%A0%AD%E6%96%87%E5%AD%97D>頭文字D</a> のアニメをみてた。漫画 (アニメも？) はすでに完結しているのでいつか読もうと思いつつ最後まで読んでいない。ゴッドフットやゴッドアームが出てくるぐらいまでは読んだ気がする。その後どうなったのかを知らない。イニシャルDをみていると、ストーリーも絵も演出もまったく派手さはなくて普通なんだけど、なぜかおもしろくて続きをみてしまうという人間の娯楽の本質をついている気がしてくる。なんでなんだろうなぁ。</p>
+<h2 id=頭文字d>頭文字D</h2>
+<p>たまたま思い出したので夜に漫画喫茶行って頭文字Dを最後まで読んできた。全48巻で、31巻ぐらいから読み始めて3-4時間ぐらいで読み終えた。漫画なので仕方ないけど、対戦相手がどんどん強くなっていって勝ち方が玄人好みというのか、単純に抜いた・抜かれたの話しではなく、タイヤマネージメントがどうこうとか、恐怖に対する心理がどうこうとか、ドライバーと車のセッティングも含めた駆け引きが強くなっていって、どちらが速いかというよりは戦略通りの展開にもっていって最後はそれがうまくはまるみたいな、これまでもずっとそうだったんだけど、ここからはよりトップレベルのほんの僅かな差が勝敗を分けるといった描き方になっていったように思う。それはそれで現実に近い気はするけど、漫画的には派手な演出にならないので玄人好みなストーリーになっていった気がする。但し、そこまでやってきて最後の対戦相手だけは、個人的には納得感がなくて、ここまで緻密に作り上げてきた理論や個々のドライバーの修練の積み重ねが圧倒的天才の前にひれ伏すみたいな切り口が急展開していて、頭の切り替えができなかった感じがした。とはいえ、最後まで読み終えられてよかったし、作品としてはすごくおもしろかった。作者はモータースポーツが本当に好きなんだろうなというのが伝わってくる漫画だと思う。</p>
+<h2 id=ふるさと納税>ふるさと納税</h2>
+<p>あまり欲しいものもないし、ふるさと納税の行政手続きも一通り理解したから今年はやらなくてもいいかとも思っていた。しかし、<a href=https://www.satofull.jp/static/campaign/202112_pcp.php>paypayボーナスキャンペーン</a> をみてやってみるかという気になった。paypay はいろんなものと連携していて見かけるたびにすごいなと思う。お得だからと必要もないものを買うことはないけど、ふるさと納税はやらなかったとしても、どのみち納税は必要なものなので還元があるということは節税につながるのかな？理屈はよくわからないけど、言いたいことは paypay はすごいという話でした。</p>
+<h2 id=dapr-の-api-トークンを使った認証>dapr の api トークンを使った認証</h2>
+<p><a href=https://docs.dapr.io/operations/security/api-token/>Enable API token authentication in Dapr</a> を一通り読んだ。内容はとくに難しくなく、こんな風に dapr の manifest を書けば <a href=https://jwt.io/>JWT</a> トークンを設定できますということを書いてある。私はずっとサーバーサイドばっかりやってきたからフロントエンドで使われる技術や仕組みに弱い。JWT トークンもその1つで、自分でちゃんと実装したことがないからちゃんとよく分かってない。これが OAuth2 なら provider を実装したこともあるからその仕組みも意図も理解できる。一度どこかで自分で JWT も実装してみないといけないのだろうな。</p>
+<p>少し前にお仕事で kubernetes の secret の移行作業をやった。既存の secret にキーバリューを追加するときは patch を使う。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ kubectl patch secret mydata -p<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;{&#34;stringData&#34;:{&#34;mykey&#34;: &#34;myvalue&#34;}}&#39;</span>
+</code></pre></div><p>secret の内容を確認するときも2つのやり方がある。キーだけを確認するならこれでよい。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ kubectl describe secrets mydata
+</code></pre></div><p>キーに対応する値もデコードして確認するならこうする。但し、閲覧注意。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ kubectl get secret mydata -o json | jq <span style=color:#e6db74>&#39;.data | map_values(@base64d)&#39;</span>
+</code></pre></div>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2021/1204/>github actions のビルドキャッシュ運用</a>
 </h1>
 <div class=post-meta>
@@ -350,47 +395,6 @@ forest nook
 <p>辞め方というのはその人の信義を表すように私は思っていて、どういう背景や事情があるにしろ、ひどい辞め方をするのは本人にとって百害あって一利なしだと思う。余裕のない辞め方というのはあまり推奨しない。</p>
 <h2 id=忘年会>忘年会</h2>
 <p><a href=https://kobe-sannomiya-dev.connpass.com/event/231602/>【初参加大歓迎】三宮.dev＆bizpy 合同忘年会</a> の日程を12月10日に決定した。オミクロン株の不安などが出てきたところだけど、水際対策をがんばっているのでまだ大丈夫かなといましかできない飲み会をこのまま行うことにする。言うても参加してくれるメンバーは限定的なのでいつも人たちで労をねぎらうみたいな飲み会になりそう。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2021/1128/>slack ペイロードの response_url にはまった</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2021-11-28
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/bizpy/>bizpy</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#bizpy-勉強会の資料作り>bizpy 勉強会の資料作り</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>1時に寝て8時に起きた。昨日は喋り倒して疲れてよく眠れた。午前中は溜まった日記を書き殴って、お仕事でやっているカスタム github actions で気になったコードを修正して、午後から bizpy の勉強会の準備を始めた。なんか気乗りせずにだらだらやって最終的には出来上がった。たいていだらだらやるときは頭の中ではもう出来上がってて集中したら2-3時間でできるのを脳が把握していて、まだ時間に余裕があるから怠けるみたいなときがある。そういうときは作業やめて散歩に出掛けるようにしている。</p>
-<h2 id=bizpy-勉強会の資料作り>bizpy 勉強会の資料作り</h2>
-<p>次の <a href=https://bizpy.connpass.com/event/229239/>Python で Slack のインテグレーションをやってみる勉強会 #3</a> のサンプルコードの実装をしていた。内容はだいたい次の通り。あとは資料をまとめるだけ。</p>
-<ul>
-<li>slash command の設定と実装</li>
-<li>ephemeral メッセージ (本人だけみえるメッセージ) の実装</li>
-<li>block kit でモーダルダイアログに入力した情報を使ってチャットに書き込む
-<ul>
-<li><a href=https://openweathermap.org/>OpenWeather API</a> を使って天気の情報を連携する</li>
-</ul>
-</li>
-</ul>
-<p>たまたまモーダルダイアログを取り上げただけなんだけど、モーダルダイアログを submit したときにチャットに書き込むのは、そのままではできなくて、なんらかの特別な処理が必要になって、そこにはまってた。response_url の扱いはわりとややこしいみたい。</p>
-<ul>
-<li><a href=https://qiita.com/seratch/items/ed29acd565af36e65072>Slack ペイロードに含まれる response_url を完全に理解する</a></li>
-</ul>
 </div>
 </div>
 <div class=pagination>
