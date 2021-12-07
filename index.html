@@ -57,6 +57,47 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2021/1207/>クロスデフォルト</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2021-12-07
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/economy/>economy</a>&nbsp;
+#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/logging/>logging</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#恒大集団のデフォルト>恒大集団のデフォルト</a></li>
+<li><a href=#アプリケーションログの調査>アプリケーションログの調査</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>0時に寝て6時半に起きた。5時代には起きているんだけど、起き上がるところまではなかなかいけない。</p>
+<h2 id=恒大集団のデフォルト>恒大集団のデフォルト</h2>
+<p>11月から利払の期日の日はチェックしていて、支払うときは2-3日前には支払いを完了したというニュースが出ていたように思う。今日の支払いは前日に支払いしたというニュースが出ないからダメなんだろうなと様子をみていた。</p>
+<ul>
+<li><a href=https://jp.reuters.com/article/evergrande-idJPKBN2IM0F0>中国恒大、猶予期間終了までにオフショア債利払いできず＝関係筋</a></li>
+</ul>
+<p>1つの債務がデフォルトした場合、残りの債務も一括返済しないといけないことを <a href=https://www.ifinance.ne.jp/glossary/loan/loa259.html>クロスデフォルト</a> と呼ぶらしい。契約書にクロスデフォルト条項として書いてあるらしい。記事によると、クロスデフォルトによって約190億ドル (約2.1兆円) のオフショア債の返済を一括でしないといけないらしい。リーマンショックのようなことは起きないという見通しだけど、うちみたいな零細企業は世の中の影響を諸に受けるのでお仕事に影響がでなければいいなぁといったところ。</p>
+<h2 id=アプリケーションログの調査>アプリケーションログの調査</h2>
+<p>昨日の続き。ecs-logging-java で JSON Lines でログを制御するところで spring-boot の設定で tomcat のアクセスログの設定ができる。tomcat のアクセスログを log4j のレイアウトの仕組みを使って ecs-logging-java が提供する EcsLayout に変更できないかを3時間ほど調査して、どうもできないようだというのを教えてもらった。tomcat は apache のログを出力するという目的で実装されているから log4j の柔軟なログに対応していないという理屈。</p>
+<p>じゃあ、どうやって apache のアクセスログを JSON Lines にするかというと、PatternLayout のパターンに json のフォーマットを直書きしてしまうというやり方がある。なんかプログラミングでスマートに解決したいところだけど、その仕組みがないなら仕方ないかって感じでこれでやろうと思う。</p>
+<ul>
+<li><a href=https://ogugu.hateblo.jp/entry/2018/08/03/153930>apacheのaccess_logをjson化しtd-agentで集約サーバへ収集する</a></li>
+</ul>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2021/1206/>アプリケーションログの調査</a>
 </h1>
 <div class=post-meta>
@@ -358,44 +399,6 @@ forest nook
 </blockquote>
 <p>私見だけど、slack インテグレーションで調べものをしているとせらさんの記事や issue のやり取りをみかけることが多い。twitter で slack インテグレーションに関してつぶやくと100%せらさんからレスポンスがある (個人の経験談) 。過去に私は外資の ISV で働きたいと思って活動したこともあったけど、せらさんをみていて自分のレベルでは無理だったなと得心がいった。なにがすごいって、bizpy の勉強会のようなところにもわざわざやってきて、講師にコメントしたりアドバイスしてくれるんだからね。</p>
 <p>2ヶ月に渡り、slack インテグレーションのチュートリアルレベルの記事を実際に設定してみて、サンプルコード書いてみて、動かしてみて、slack でどんなことができそうかの理解を深めることができた。今回の内容はビジネスパーソン向けではなかったのでちょっと敷居が高かったかもしれないが、全3回でやり切ることができてよかった。終わってから運営に新たにわたなべさんが加わったことを参加者に紹介しつつ、次回の企画について雑談していた。次回はわたなべさんから機械学習入門のような勉強会をしてもらうことに決まった。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2021/1130/>66日目</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2021-11-30
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/life/>life</a>&nbsp;
-#<a href=/diary/tags/writing/>writing</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#習慣化のための平均66日>習慣化のための平均66日</a></li>
-<li><a href=#書くこと>書くこと</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>23時に寝て3時過ぎに起きて作業しようと思ったものの、やっぱりそのまま寝てしまって7時に起きた。前々日にあまり寝てなかったせいか、睡眠不足を解消したとポジティブに考えとく。</p>
-<h2 id=習慣化のための平均66日>習慣化のための平均66日</h2>
-<p>前に <a href=https://note.com/t2y1979/n/nb6e36f94b198>GIG MINDSET ギグ・マインドセット</a> を読んだときにロンドン大学が行った研究で習慣になるには平均して66日かかるというのをみかけた。「平均して」というのが曖昧なところで、直観的に理解できるけど、対象の難易度によって習慣化に要する日数が異なる。簡単なことはすぐ習慣化できるし、難しいことには時間がかかる。それらをいくつも試してみて平均したら66日だったという話し。<a href=http://ishiirikie.jpn.org/article/182619784.html>66日仮説</a> でも言及されているようにこの手の研究はあまり鵜呑みにするのもよくない。とはいえ、何らかの基準や目安があること自体は悪いことではないので一般論として参考にするのはよいと私は考えている。日記を書くというのは比較的簡単なことだと私は捉えるが、66日続いたので習慣と化したとみなしていいだろう。</p>
-<figure><img src=/diary/img/2021/1130_diary-dates.png>
-</figure>
-<h2 id=書くこと>書くこと</h2>
-<p>日記に関連して「書くこと」そのものを研究対象としている。自分でも日記を書き続けて何が起こるのかを理解するために実践しているという意図もある。</p>
-<p>日記だけではなく、私は業務の過程で普通の開発者より、平均的な文章量よりも大量に書く。課題管理システムに私以上にコメントを書く開発者を、この10年で1人もみたことがない。私以上に課題管理システムを使いこなす開発者もこの10年みたことがない。課題管理システムの使い方や応用をメンバーにアドバイスするし、メンバーも私の使い方をみて真似してくれることもあった。これまでそういった行動は無意識にやっていたことだけど、それを意識化して形式知として体系化したいという狙いもある。</p>
-<p>書くことは <a href=https://note.com/t2y1979/n/n4713058f48ce>メタ認知を活用して学びのスキルを磨く</a> 手法の1つとして優れていると私は考えている。これを開発者にとって日常的な課題管理 (システム) に取り入れられないかというのが、私の持論であり今後の研究課題である。たまたま、はらさんとそういった話題で話す機会があり、共感してもらえて嬉しかった。</p>
-<blockquote class=twitter-tweet><p lang=ja dir=ltr><a href="https://twitter.com/t2y?ref_src=twsrc%5Etfw">@t2y</a> 先ほどはありがとうございました！色々と参考になることがあり、また久しぶりにお話しできて楽しかったです！また、お願いします。<br>下記の「書くこと」とか、すごい良いと思い、ライトに始めてめて見ようと思います！<a href=https://t.co/WnnQ1JeSG4>https://t.co/WnnQ1JeSG4</a></p>&mdash; Hiroshi Hara (@hir_hara) <a href="https://twitter.com/hir_hara/status/1465631183752949761?ref_src=twsrc%5Etfw">November 30, 2021</a></blockquote>
-<script async src=https://platform.twitter.com/widgets.js></script>
 </div>
 </div>
 <div class=pagination>
