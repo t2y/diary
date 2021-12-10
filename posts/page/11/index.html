@@ -56,6 +56,31 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2021/1209/>2年目の創立記念日</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2021-12-09
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/dapr/>dapr</a>&nbsp;
+#<a href=/diary/tags/founding/>founding</a>&nbsp;
+</span>
+<div class=post-content>
+<p>0時半に寝て6時半に起きた。久しぶりに22時までお仕事やって区切りもよかったからそれからお惣菜を買って23時頃から晩ご飯を食べてた。生活が乱れるなぁ。</p>
+<h2 id=dapr-の分散トレーシングと-w3c-trace-context>dapr の分散トレーシングと W3C trace context</h2>
+<p>お仕事で dapr の分散トレーシングを検証してた。知らない人は <a href=https://cero-t.hatenadiary.jp/entry/2021/12/08/071742>Dapr Advent Calendar 8日目 - DaprとZipkinで分散トレーシング</a> のチュートリアルをお勧めする。dapr は <a href=https://www.w3.org/TR/trace-context/>W3C Trace Context</a> を使って分散トレーシングを扱う。rest api では、具体的には <code>traceparent</code> と <code>tracestore</code> という http ヘッダーにトレース用途の情報を付けて転送する。すごいところは pubsub のメッセージングを経由してもそれらの情報を転送できる。pubsub 間でこれらの情報は <a href=https://github.com/cloudevents/spec>CloudEvents</a> という標準化されたデータのフォーマットでやり取りされる。実際には CloudEvents の中に <code>traceparent</code> と <code>tracestore</code> の値を含めて通信するけれど、外部からみたら http ヘッダーを転送できているようにみえる。しかし、http ヘッダーの任意の値を転送したい場合、それができない。<code>tracestore</code> はトレースのためのベンダー独自情報を付与できるとあったので、ここに任意の値をセットして送ってみたけど、http ヘッダーの付け替えは行われなかった。あとで dapr のソースを読んだら publish するときはそのまま送っているけど、subscribe するときに <code>tracestore</code> の仕様を満たしているか検証しながらパースしていて、任意の値を送っても仕様に沿っていなければ捨てられてしまうことがわかった。dapr の issue でも要望として登録されてた。誰もやってないならコントリビュートするチャンスかもしれない。</p>
+<ul>
+<li><a href=https://github.com/dapr/dapr/issues/3642>Propagate arbitrary/configurable http headers from publisher to subscribers #3642</a></li>
+</ul>
+<h2 id=創立記念日>創立記念日</h2>
+<p>今日が会社の創立記念日。無事に2周年を迎えた。創立記念日をお休みにするしないを考えたのだけど、いま休日も普通に働いている状況で、且つ役員は勤怠管理をする必要はないので平日になんの意味もなく休むメリットが何もないということに行き着いた。創立記念日だから休むのではなく、いつでも必要なときに休めばいい。もっと言うと、休む理由がなければ働くという逆転現象が生じていて、休む理由は私用か疲労ぐらいしかなくて、基本的に疲れてない限りはずっと働くみたいな理屈になってしまっている。社員が増えて会社に余裕が出てから創立記念日は休みみたいな制度を作ればいい。それまではたぶん来年もそれ以降も普通に働いていると思う。</p>
+<p>1年目は訳分からず働いていたから経営的なことは全くわからなかったけど、2年目は経営上の諸問題が出てきて、経営的な意思決定や考察も増えてきて、行政手続きも熟れて、会社の実績も増えていっていて、会社を育てるという意識もかなり出てきた。率直に言えば、いまの経営状態は可もなく不可もなくといったものなので何もアピールすることはない。しかし、経営したことない人間が経営というキャリアを積み重ねていることには大きな意義があって、自身のキャリアアップには確かな手応えも感じつつある。これからもがんばっていこう。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2021/1208/>整理・整頓・清掃・清潔・躾</a>
 </h1>
 <div class=post-meta>
