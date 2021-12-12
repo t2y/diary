@@ -57,6 +57,38 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2021/1211/>ワーケーションのシミュレーション</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2021-12-11
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/life/>life</a>&nbsp;
+#<a href=/diary/tags/workcation/>workcation</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#ストレッチ>ストレッチ</a></li>
+<li><a href=#ワーケーション計画>ワーケーション計画</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>1時に寝て7時に起きた。久しぶりに遅くまで飲んでたのでやや気分が悪い。全体としてあまり大したことしてなかったんだけど、日記のふりかえりしたり、スクラム談義したり、log4j の脆弱性のその後の状況を静観したりしてた。</p>
+<h2 id=ストレッチ>ストレッチ</h2>
+<p>今週もお仕事に注力してたらストレッチは2日/週とあまりできなかった。夜も外に出掛けるのが億劫になったり、勉強会に参加してたりしてウォーキングもやってない。今日の開脚幅は開始前167cmで、ストレッチ後169.5cmだった。さぼってたわりにはまぁまぁだった。特別なことはなにもしてなかったけど、右太もも後ろの筋がやや張っていて右足はあまりよくない。一方で右股関節の不可動領域がよくなっていることが自分でストレッチしててもわかるようになってきて半年以上やってきた甲斐があったと言える。</p>
+<h2 id=ワーケーション計画>ワーケーション計画</h2>
+<p>参加者の目処がついてきたので城崎温泉に出掛けるワーケーションの計画をシミュレーションしていた。たとえば電車とレンタカーでどのぐらい料金の差になるかというと、三ノ宮発でレンタカーを借りて移動 (2泊3日) するときの料金 (高速道路/ガソリン代含む) は 35,648 円、電車は往復11,000円/人になる。3人いればレンタカーと同じぐらいの料金で、4人いればレンタカーで移動した方が安くなる。3人だったとしても移動の勝手の良さを考慮するとレンタカーの方がよさそうに思えた。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2021/1210/>ワーケーションの思いつき</a>
 </h1>
 <div class=post-meta>
@@ -69,6 +101,7 @@ forest nook
 #<a href=/diary/tags/book/>book</a>&nbsp;
 #<a href=/diary/tags/scrum/>scrum</a>&nbsp;
 #<a href=/diary/tags/event/>event</a>&nbsp;
+#<a href=/diary/tags/workcation/>workcation</a>&nbsp;
 </span>
 <div class=table-of-contents>
 <h2>
@@ -279,65 +312,6 @@ forest nook
 </code></pre></div><p>キーに対応する値もデコードして確認するならこうする。但し、閲覧注意。</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ kubectl get secret mydata -o json | jq <span style=color:#e6db74>&#39;.data | map_values(@base64d)&#39;</span>
 </code></pre></div>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2021/1204/>github actions のビルドキャッシュ運用</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2021-12-04
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/life/>life</a>&nbsp;
-#<a href=/diary/tags/github/>github</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#ストレッチ>ストレッチ</a></li>
-<li><a href=#actionscache-の-exclude-設定>actions/cache の exclude 設定</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>23時に寝て5時に起きてちょっと作業してまた寝て7時に起きた。お仕事も働き始めて1ヶ月が経過して、だいぶチームの雰囲気や業務に慣れてきたところ。稼働日の18日間で作成した pr が16件。入ったときに割当てられた3つの課題から10数件の issue を派生させてちょうどすべて fix した。来週から新しい課題に取り組む。</p>
-<h2 id=ストレッチ>ストレッチ</h2>
-<p>今週もお仕事に注力してたらストレッチは2日/週とあまりできなかった。ウォーキングもやってない。今日の開脚幅は開始前165cmで、ストレッチ後167cmだった。さぼってたせいか、数値が悪くなってしまった。右股関節の関節の可動域がよくないところは少しずつまがるようになってきてよくなってきている実感がある。一方で右太ももの後ろの筋が張りが大きいことに気付いた。トレーナーさんに聞くと、この筋は椅子に座っていると張りやすいという話しなので、最近はお仕事に注力して椅子に座っている時間が以前より伸びているせいだと思う。あと会議に出席している時間も増えているため、その時間は椅子に座っておかないといけないという制約も増えている。</p>
-<h2 id=actionscache-の-exclude-設定>actions/cache の exclude 設定</h2>
-<p>github actions でビルドキャッシュを扱う方法は <a href=https://docs.github.com/ja/actions/advanced-guides/caching-dependencies-to-speed-up-workflows>Caching dependencies to speed up workflows</a> に書いてあって、それは <a href=https://github.com/actions/cache>actions/cache</a> という github actions がキャッシュ機能を提供している。ここでドキュメントにはキャッシュの除外設定については何も書かれていないが、リポジトリに含まれる <code>examples.md</code> には次のような説明と設定例が出てくる。</p>
-<blockquote>
-<p>Depending on the environment, huge packages might be pre-installed in the global cache folder. With actions/cache@v2 you can now exclude unwanted packages with <a href=https://github.com/actions/toolkit/tree/main/packages/glob#exclude-patterns>exclude pattern</a></p>
-<p><a href=https://github.com/actions/cache/blob/main/examples.md#c---nuget>https://github.com/actions/cache/blob/main/examples.md#c---nuget</a></p>
-</blockquote>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml>- <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/cache@v2</span>
-  <span style=color:#f92672>with</span>:
-    <span style=color:#f92672>path</span>: |<span style=color:#e6db74>
-</span><span style=color:#e6db74>      ~/.nuget/packages
-</span><span style=color:#e6db74>      !~/.nuget/packages/unwanted</span>      
-    <span style=color:#f92672>key</span>: <span style=color:#ae81ff>${{ runner.os }}-nuget-${{ hashFiles(&#39;**/packages.lock.json&#39;) }}</span>
-    <span style=color:#f92672>restore-keys</span>: |<span style=color:#e6db74>
-</span><span style=color:#e6db74>      </span>      <span style=color:#ae81ff>${{ runner.os }}-nuget-</span>
-</code></pre></div><p><code>!</code> を入れるだけかと思って検証してみたらどうも意図した振る舞いにならない。実はこの設定はバグっていて実際には動かない。なぜ動かないかを追いかけてないけど、issue にも登録されている。<code>path</code> の記述方法によって動いたり動かなかったりするというのが現状の振る舞いになるらしい。</p>
-<ul>
-<li><a href=https://github.com/actions/cache/issues/494>Excluded sub directory not working #494</a></li>
-<li><a href=https://github.com/actions/toolkit/issues/713>Cache - excluding files or folders with ! not working #713</a></li>
-</ul>
-<p>ちなみに正しい動く設定は次になる。ワイルドカードを使わないといけないらしい。ドキュメントに除外設定について書いていないのはバグってて中途半端な振る舞いをしているからかもしれない。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml>- <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/cache@v2</span>
-  <span style=color:#f92672>with</span>:
-    <span style=color:#f92672>path</span>: |<span style=color:#e6db74>
-</span><span style=color:#e6db74>      ~/.nuget/packages/*
-</span><span style=color:#e6db74>      !~/.nuget/packages/unwanted</span>      
-    <span style=color:#f92672>key</span>: <span style=color:#ae81ff>${{ runner.os }}-nuget-${{ hashFiles(&#39;**/packages.lock.json&#39;) }}</span>
-    <span style=color:#f92672>restore-keys</span>: |<span style=color:#e6db74>
-</span><span style=color:#e6db74>      </span>      <span style=color:#ae81ff>${{ runner.os }}-nuget-</span>
-</code></pre></div><p>あとビルドキャッシュのキーにパッケージ管理のファイルのハッシュ値を取るようになっている。この背景も github actions がキャッシュをクリアする機能を提供していないからであろう。<a href=https://github.com/actions/cache/issues/2>Clear cache #2</a> でも議論されているが、キャッシュをクリアできないため、同じキーにパッケージが溜まり続けるような運用は開発者にとっても github 社にとってもリソースを浪費するので好ましくない。いまは7日以上アクセスされていないキャッシュを削除する運用になっているため、なるべくフレッシュなキャッシュが生成されるような運用となるよう、ハッシュ値を取得するようなキーの運用が行われているように推測される。</p>
 </div>
 </div>
 <div class=pagination>
