@@ -1,12 +1,12 @@
 <!doctype html><html lang=en>
 <head>
-<title>founding :: forest nook</title>
+<title>security :: forest nook</title>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content>
 <meta name=keywords content>
 <meta name=robots content="noodp">
-<link rel=canonical href=/diary/tags/founding/>
+<link rel=canonical href=/diary/tags/security/>
 <link rel=stylesheet href=/diary/assets/style.css>
 <link rel=stylesheet href=/diary/assets/green.css>
 <link rel=stylesheet href=/diary/style.css>
@@ -17,14 +17,14 @@
 <meta name=twitter:creator content>
 <meta property="og:locale" content="en">
 <meta property="og:type" content="website">
-<meta property="og:title" content="founding">
+<meta property="og:title" content="security">
 <meta property="og:description" content>
-<meta property="og:url" content="/diary/tags/founding/">
+<meta property="og:url" content="/diary/tags/security/">
 <meta property="og:site_name" content="forest nook">
 <meta property="og:image" content="/diary/favicon.ico">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
-<link href=/diary/tags/founding/index.xml rel=alternate type=application/rss+xml title="forest nook">
+<link href=/diary/tags/security/index.xml rel=alternate type=application/rss+xml title="forest nook">
 </head>
 <body class=green>
 <div class="container full headings--one-size">
@@ -77,31 +77,6 @@ forest nook
 <h2 id=ターコイズ>ターコイズ</h2>
 <p>ふとしたきっかけで <a href=https://www.fu-stone.com/blog/turquoise/>ターコイズ</a> の記事を読んだ。12月の誕生石らしく、それでいまの時期に紹介されることも多いのだと推測する。別の記事でターコイズは喉によいと書かれていて、以前 <a href=/diary/posts/2021/1114/#傾斜枕>喉に違和感がある</a> ことを書いた。日常生活に困るほどではないけど、もうこの歳だから体調が良くなることはなく悪くなる一方だろうという見通しも含めて験担ぎのような感覚で喉というキーワードでつながったから購入してみた。</p>
 <p>近所の原石屋さんに行って尋ねてみたら1-2cmぐらいのサイズ1個240円ほどで売っていたので3個買って、近所のダイソーで入れものを買って、それっぽくオフィスに置いておくことにした。うちのコーポレートカラーはグリーンとブルーなんだけど、ターコイズも <a href=https://www.colordic.org/colorscheme/4115>ターコイズグリーン</a> と <a href=https://www.colordic.org/colorscheme/4129>ターコイズブルー</a> の2種類の色がある。共通点があって相性がよさそうなのでうちのコーポレートストーン (そんな言葉ない) はターコイズでいいや。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2021/1209/>2年目の創立記念日</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2021-12-09
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/dapr/>dapr</a>&nbsp;
-#<a href=/diary/tags/founding/>founding</a>&nbsp;
-</span>
-<div class=post-content>
-<p>0時半に寝て6時半に起きた。久しぶりに22時までお仕事やって区切りもよかったからそれからお惣菜を買って23時頃から晩ご飯を食べてた。生活が乱れるなぁ。</p>
-<h2 id=dapr-の分散トレーシングと-w3c-trace-context>dapr の分散トレーシングと W3C trace context</h2>
-<p>お仕事で dapr の分散トレーシングを検証してた。知らない人は <a href=https://cero-t.hatenadiary.jp/entry/2021/12/08/071742>Dapr Advent Calendar 8日目 - DaprとZipkinで分散トレーシング</a> のチュートリアルをお勧めする。dapr は <a href=https://www.w3.org/TR/trace-context/>W3C Trace Context</a> を使って分散トレーシングを扱う。rest api では、具体的には <code>traceparent</code> と <code>tracestore</code> という http ヘッダーにトレース用途の情報を付けて転送する。すごいところは pubsub のメッセージングを経由してもそれらの情報を転送できる。pubsub 間でこれらの情報は <a href=https://github.com/cloudevents/spec>CloudEvents</a> という標準化されたデータのフォーマットでやり取りされる。実際には CloudEvents の中に <code>traceparent</code> と <code>tracestore</code> の値を含めて通信するけれど、外部からみたら http ヘッダーを転送できているようにみえる。しかし、http ヘッダーの任意の値を転送したい場合、それができない。<code>tracestore</code> はトレースのためのベンダー独自情報を付与できるとあったので、ここに任意の値をセットして送ってみたけど、http ヘッダーの付け替えは行われなかった。あとで dapr のソースを読んだら publish するときはそのまま送っているけど、subscribe するときに <code>tracestore</code> の仕様を満たしているか検証しながらパースしていて、任意の値を送っても仕様に沿っていなければ捨てられてしまうことがわかった。dapr の issue でも要望として登録されてた。誰もやってないならコントリビュートするチャンスかもしれない。</p>
-<ul>
-<li><a href=https://github.com/dapr/dapr/issues/3642>Propagate arbitrary/configurable http headers from publisher to subscribers #3642</a></li>
-</ul>
-<h2 id=創立記念日>創立記念日</h2>
-<p>今日が会社の創立記念日。無事に2周年を迎えた。創立記念日をお休みにするしないを考えたのだけど、いま休日も普通に働いている状況で、且つ役員は勤怠管理をする必要はないので平日になんの意味もなく休むメリットが何もないということに行き着いた。創立記念日だから休むのではなく、いつでも必要なときに休めばいい。もっと言うと、休む理由がなければ働くという逆転現象が生じていて、休む理由は私用か疲労ぐらいしかなくて、基本的に疲れてない限りはずっと働くみたいな理屈になってしまっている。社員が増えて会社に余裕が出てから創立記念日は休みみたいな制度を作ればいい。それまではたぶん来年もそれ以降も普通に働いていると思う。</p>
-<p>1年目は訳分からず働いていたから経営的なことは全くわからなかったけど、2年目は経営上の諸問題が出てきて、経営的な意思決定や考察も増えてきて、行政手続きも熟れて、会社の実績も増えていっていて、会社を育てるという意識もかなり出てきた。率直に言えば、いまの経営状態は可もなく不可もなくといったものなので何もアピールすることはない。しかし、経営したことない人間が経営というキャリアを積み重ねていることには大きな意義があって、自身のキャリアアップには確かな手応えも感じつつある。これからもがんばっていこう。</p>
 </div>
 </div>
 <div class=pagination>
