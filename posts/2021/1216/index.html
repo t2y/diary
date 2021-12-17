@@ -1,0 +1,138 @@
+<!doctype html><html lang=en>
+<head>
+<title>traceparent の生成 :: forest nook</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="1時半に寝て7時半に起きた。ちょっと疲れてて寝坊した。
+W3C Trace Context の traceparent ヘッダーの生成 前にお仕事で dapr の分散トレーシングを検証している ことについて書いた。
+dapr の分散トレーシングは W3C Trace Context に準拠していて、dapr 経由のリクエストは自動的にこの情報が付与されるが、そうじゃないリクエストもトレーシングできるようにするためには http ヘッダーの traceparent をセットしないといけない。試しにサーバー側に traceparent を生成するのはどうやるのかを調べてみた。Implementations of Trace Context にある java ライブラリを調べていて、Jaeger クライアントは OpenTelemetry に移行したと書いてあって、OpenTracing と OpenCensus は OpenTelemetry に統合されたと書いてあって、どうやら OpenTelemetry を使うのがよさそうだとわかった。
+やりたいことは traceparent を生成したいだけだが、OpenTelemetry の Manual Instrumentation を読んでも直接的なやり方は書いてなくて、open-telemetry/opentelemetry-java のテストコードなどもみながら実装した。細かいところの仕様をまだ理解できていないけど、ひとまずこれで生成できたので検証はできると思う。
+public class W3cContextUtil { private static final String TRACE_PARENT_VERSION = &amp;#34;00&amp;#34;; private static final OpenTelemetrySdk openTelemetry = OpenTelemetrySdk.builder() .setTracerProvider(SdkTracerProvider.builder().build()) .setPropagators(ContextPropagators.create(W3CTraceContextPropagator.getInstance())) .buildAndRegisterGlobal(); private static final Tracer tracer = openTelemetry.">
+<meta name=keywords content>
+<meta name=robots content="noodp">
+<link rel=canonical href=/diary/posts/2021/1216/>
+<link rel=stylesheet href=/diary/assets/style.css>
+<link rel=stylesheet href=/diary/assets/green.css>
+<link rel=stylesheet href=/diary/style.css>
+<link rel=apple-touch-icon href=/diary/img/apple-touch-icon-192x192.png>
+<link rel="shortcut icon" href=/diary/favicon.ico>
+<meta name=twitter:card content="summary">
+<meta name=twitter:site content="t2y">
+<meta name=twitter:creator content>
+<meta property="og:locale" content="en">
+<meta property="og:type" content="article">
+<meta property="og:title" content="traceparent の生成">
+<meta property="og:description" content="1時半に寝て7時半に起きた。ちょっと疲れてて寝坊した。
+W3C Trace Context の traceparent ヘッダーの生成 前にお仕事で dapr の分散トレーシングを検証している ことについて書いた。
+dapr の分散トレーシングは W3C Trace Context に準拠していて、dapr 経由のリクエストは自動的にこの情報が付与されるが、そうじゃないリクエストもトレーシングできるようにするためには http ヘッダーの traceparent をセットしないといけない。試しにサーバー側に traceparent を生成するのはどうやるのかを調べてみた。Implementations of Trace Context にある java ライブラリを調べていて、Jaeger クライアントは OpenTelemetry に移行したと書いてあって、OpenTracing と OpenCensus は OpenTelemetry に統合されたと書いてあって、どうやら OpenTelemetry を使うのがよさそうだとわかった。
+やりたいことは traceparent を生成したいだけだが、OpenTelemetry の Manual Instrumentation を読んでも直接的なやり方は書いてなくて、open-telemetry/opentelemetry-java のテストコードなどもみながら実装した。細かいところの仕様をまだ理解できていないけど、ひとまずこれで生成できたので検証はできると思う。
+public class W3cContextUtil { private static final String TRACE_PARENT_VERSION = &amp;#34;00&amp;#34;; private static final OpenTelemetrySdk openTelemetry = OpenTelemetrySdk.builder() .setTracerProvider(SdkTracerProvider.builder().build()) .setPropagators(ContextPropagators.create(W3CTraceContextPropagator.getInstance())) .buildAndRegisterGlobal(); private static final Tracer tracer = openTelemetry.">
+<meta property="og:url" content="/diary/posts/2021/1216/">
+<meta property="og:site_name" content="forest nook">
+<meta property="og:image" content="/diary">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+<meta property="article:published_time" content="2021-12-16 08:22:54 +0900 +0900">
+</head>
+<body class=green>
+<div class="container full headings--one-size">
+<header class=header>
+<div class=header__inner>
+<div class=header__logo>
+<a href=/diary>
+<div class=logo>
+forest nook
+</div>
+</a>
+</div>
+<div class=menu-trigger>menu</div>
+</div>
+<nav class=menu>
+<ul class="menu__inner menu__inner--desktop">
+<li><a href=/diary/about>自己紹介</a></li>
+<li><a href=/diary/dates>月別一覧</a></li>
+<li><a href=/diary/tags>タグ一覧</a></li>
+</ul>
+<ul class="menu__inner menu__inner--mobile">
+<li><a href=/diary/about>自己紹介</a></li>
+<li><a href=/diary/dates>月別一覧</a></li>
+<li><a href=/diary/tags>タグ一覧</a></li>
+</ul>
+</nav>
+</header>
+<div class=content>
+<div class=post>
+<h1 class=post-title>
+<a href=/diary/posts/2021/1216/>traceparent の生成</a></h1>
+<div class=post-meta>
+<span class=post-date>
+2021-12-16
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/dapr/>dapr</a>&nbsp;
+#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/event/>event</a>&nbsp;
+</span>
+<div class=post-content><div>
+<p>1時半に寝て7時半に起きた。ちょっと疲れてて寝坊した。</p>
+<h2 id=w3c-trace-context-の-traceparent-ヘッダーの生成>W3C Trace Context の traceparent ヘッダーの生成<a href=#w3c-trace-context-の-traceparent-ヘッダーの生成 class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p>前にお仕事で <a href=/diary/posts/2021/1209/#dapr-の分散トレーシングと-w3c-trace-context>dapr の分散トレーシングを検証している</a> ことについて書いた。</p>
+<p>dapr の分散トレーシングは <a href=https://www.w3.org/TR/trace-context/>W3C Trace Context</a> に準拠していて、dapr 経由のリクエストは自動的にこの情報が付与されるが、そうじゃないリクエストもトレーシングできるようにするためには http ヘッダーの <code>traceparent</code> をセットしないといけない。試しにサーバー側に <code>traceparent</code> を生成するのはどうやるのかを調べてみた。<a href=https://github.com/w3c/trace-context/blob/main/implementations.md>Implementations of Trace Context</a> にある java ライブラリを調べていて、Jaeger クライアントは OpenTelemetry に移行したと書いてあって、OpenTracing と OpenCensus は OpenTelemetry に統合されたと書いてあって、どうやら OpenTelemetry を使うのがよさそうだとわかった。</p>
+<p>やりたいことは <code>traceparent</code> を生成したいだけだが、OpenTelemetry の <a href=https://opentelemetry.io/docs/instrumentation/java/manual_instrumentation/>Manual Instrumentation</a> を読んでも直接的なやり方は書いてなくて、<a href=https://github.com/open-telemetry/opentelemetry-java>open-telemetry/opentelemetry-java</a> のテストコードなどもみながら実装した。細かいところの仕様をまだ理解できていないけど、ひとまずこれで生成できたので検証はできると思う。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>W3cContextUtil</span> <span style=color:#f92672>{</span>
+
+    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> String TRACE_PARENT_VERSION <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;00&#34;</span><span style=color:#f92672>;</span>
+    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> OpenTelemetrySdk openTelemetry <span style=color:#f92672>=</span> OpenTelemetrySdk<span style=color:#f92672>.</span><span style=color:#a6e22e>builder</span><span style=color:#f92672>()</span>
+            <span style=color:#f92672>.</span><span style=color:#a6e22e>setTracerProvider</span><span style=color:#f92672>(</span>SdkTracerProvider<span style=color:#f92672>.</span><span style=color:#a6e22e>builder</span><span style=color:#f92672>().</span><span style=color:#a6e22e>build</span><span style=color:#f92672>())</span>
+            <span style=color:#f92672>.</span><span style=color:#a6e22e>setPropagators</span><span style=color:#f92672>(</span>ContextPropagators<span style=color:#f92672>.</span><span style=color:#a6e22e>create</span><span style=color:#f92672>(</span>W3CTraceContextPropagator<span style=color:#f92672>.</span><span style=color:#a6e22e>getInstance</span><span style=color:#f92672>()))</span>
+            <span style=color:#f92672>.</span><span style=color:#a6e22e>buildAndRegisterGlobal</span><span style=color:#f92672>();</span>
+    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> Tracer tracer <span style=color:#f92672>=</span> openTelemetry<span style=color:#f92672>.</span><span style=color:#a6e22e>getTracer</span><span style=color:#f92672>(</span>
+            <span style=color:#e6db74>&#34;my-tracer&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;1.0.0&#34;</span><span style=color:#f92672>);</span>
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> String <span style=color:#a6e22e>generateTraceParent</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+        Span span <span style=color:#f92672>=</span> tracer<span style=color:#f92672>.</span><span style=color:#a6e22e>spanBuilder</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;parent&#34;</span><span style=color:#f92672>).</span><span style=color:#a6e22e>startSpan</span><span style=color:#f92672>();</span>
+        <span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
+            SpanContext sc <span style=color:#f92672>=</span> span<span style=color:#f92672>.</span><span style=color:#a6e22e>getSpanContext</span><span style=color:#f92672>();</span>
+            <span style=color:#66d9ef>return</span> String<span style=color:#f92672>.</span><span style=color:#a6e22e>format</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;%s-%s-%s-%s&#34;</span><span style=color:#f92672>,</span>
+                    TRACE_PARENT_VERSION<span style=color:#f92672>,</span>
+                    sc<span style=color:#f92672>.</span><span style=color:#a6e22e>getTraceId</span><span style=color:#f92672>(),</span>
+                    sc<span style=color:#f92672>.</span><span style=color:#a6e22e>getSpanId</span><span style=color:#f92672>(),</span>
+                    sc<span style=color:#f92672>.</span><span style=color:#a6e22e>getTraceFlags</span><span style=color:#f92672>().</span><span style=color:#a6e22e>asHex</span><span style=color:#f92672>());</span>
+        <span style=color:#f92672>}</span> <span style=color:#66d9ef>finally</span> <span style=color:#f92672>{</span>
+            span<span style=color:#f92672>.</span><span style=color:#a6e22e>end</span><span style=color:#f92672>();</span>
+        <span style=color:#f92672>}</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><h2 id=大阪python-もくもく会>大阪Python もくもく会<a href=#大阪python-もくもく会 class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p><a href=https://osakapython.connpass.com/event/233460/>大阪Python もくもく会 #66</a> にオンライン参加した。コロナ禍前に大阪へ通勤していた頃はオフライン勉強会に何回か参加したことがある。主催者のやぎさんは一度 bizpy に参加してくれたこともある。11月からオフライン勉強会を再開したとのこと。久しぶりに参加してやぎさんと話していたら <a href=https://neos.com/>neosvr</a> にも関心をもっているとのこと。私も少し前に oculus quest 2 を購入して触ってみた程度なのでメタバース関連で一緒に勉強会をしてもよいかもしれない。もくもく会では「アジャイル開発とスクラム 第2版」を読んでいて昨日の日記の記事がまさにその成果物。せっかくなので成果発表でこの本の紹介などをした。</p>
+</div></div>
+<div class=pagination>
+<div class=pagination__title>
+<span class=pagination__title-h>Read other posts</span>
+<hr>
+</div>
+<div class=pagination__buttons>
+<span class="button next">
+<a href=/diary/posts/2021/1215/>
+<span class=button__text>データと業務の変遷</span>
+<span class=button__icon>→</span>
+</a>
+</span>
+</div>
+</div>
+</div>
+</div>
+<footer class=footer>
+<div class=footer__inner>
+<div class="copyright copyright--user">
+<span>© 2021 Tetsuya Morimoto</span>
+<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span>
+</div>
+</div>
+</footer>
+<script src=/diary/assets/main.js></script>
+<script src=/diary/assets/prism.js></script>
+</div>
+</body>
+</html>
