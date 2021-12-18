@@ -1,4 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>bizpy on forest nook</title><link>/diary/tags/bizpy/</link><description>Recent content in bizpy on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Wed, 01 Dec 2021 04:13:59 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/bizpy/index.xml" rel="self" type="application/rss+xml"/><item><title>師走入り</title><link>/diary/posts/2021/1201/</link><pubDate>Wed, 01 Dec 2021 04:13:59 +0900</pubDate><guid>/diary/posts/2021/1201/</guid><description>1時から1時間ほど仮眠をとって2時から4時過ぎまで作業して帰ってお風呂に入ってそのまま6時から 【三宮.dev オンライン】リモート朝活もくもく会 の朝活に参加した。30分ほど雑談して眠くなって7時過ぎから9時前まで寝てた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>bizpy on forest nook</title><link>/diary/tags/bizpy/</link><description>Recent content in bizpy on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sat, 18 Dec 2021 17:41:18 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/bizpy/index.xml" rel="self" type="application/rss+xml"/><item><title>スクラム本を読了</title><link>/diary/posts/2021/1218/</link><pubDate>Sat, 18 Dec 2021 17:41:18 +0900</pubDate><guid>/diary/posts/2021/1218/</guid><description>0時に寝て6時に起きてだらだらしてて8時に起き上がった。
+ストレッチ 今週もお仕事に注力してた。ストレッチは2-3日/週かな。普通ぐらいの頻度。夜は寒くなって外に出掛けるのが億劫で1日ウォーキングしたかなぐらい。今日の開脚幅は開始前169cmで、ストレッチ後170cmで、久しぶりに170cm台に戻した。いい感じ。右股関節の不可動領域がよくなっているのが実感できるようになってきているので調子はよさそう。今日は全体的に右半身 (太もも後ろ、腰、大胸筋) と張りがあって疲労もやや溜まってそうに思えた。基本的に週末もなにかしら作業していて疲労が蓄積していないのは毎週のストレッチの効果も大きいと考えている。
+次の bizpy 勉強会 1月の bizpy 勉強会のイベント、Python で機械学習をやってみる勉強会 を公開した。次回はわたなべさんに講師をやってもらう。このイベントページも作っていただいた。運営が2人になったのでお互いの忙しいときは分担しながらコミュニティを運営していける。本当にありがたい。わたなべさんが担当している間に私も次のネタの下調べや仕込みをする余裕がもてる。メタバースの勉強会やってもいいなとは考えているけど、私だけではコンテンツが弱くて、よそから詳しい人を招いてこないといけない。どうしたものか。
+アジャイル開発とスクラム 第2版 読了した。全12章の後にもコラムと対談があって、この内容も読み応えがあっていくつも示唆を与えられるものだった。
+コラム 野中理論とスクラム スペシャルトーク 野中氏と平鍋氏の対談 イノベーションに必要なのは、対話を通じて共振・共感・共鳴する実践知リーダーシップであり、それがスクラムの心だ おわりに 12章で出てきた実践知について、実践知とは何か、実践知リーダーシップとはどういうことかというのが対談の中でも繰り返し出てきてその理解が深まった。私の中では暗黙知と実践知の境界が曖昧だったが、暗黙知と形式知を行ったり来たりすること、そして身体性を伴っているというのが実践知であること。そこには「もの」や「こと」の目に見えない関係性を洞察しながら判断し、本質を考え抜く知力が必要であると述べられていた。昔は 知行合一 と言ったらしいが、90年代以降の日本は分析過多、計画過多、コンプライアンス過多になってしまったという。また時間のあるときに所感をまとめようと思う。</description><content>&lt;p>0時に寝て6時に起きてだらだらしてて8時に起き上がった。&lt;/p>
+&lt;h2 id="ストレッチ">ストレッチ&lt;/h2>
+&lt;p>今週もお仕事に注力してた。ストレッチは2-3日/週かな。普通ぐらいの頻度。夜は寒くなって外に出掛けるのが億劫で1日ウォーキングしたかなぐらい。今日の開脚幅は開始前169cmで、ストレッチ後170cmで、久しぶりに170cm台に戻した。いい感じ。右股関節の不可動領域がよくなっているのが実感できるようになってきているので調子はよさそう。今日は全体的に右半身 (太もも後ろ、腰、大胸筋) と張りがあって疲労もやや溜まってそうに思えた。基本的に週末もなにかしら作業していて疲労が蓄積していないのは毎週のストレッチの効果も大きいと考えている。&lt;/p>
+&lt;h2 id="次の-bizpy-勉強会">次の bizpy 勉強会&lt;/h2>
+&lt;p>1月の bizpy 勉強会のイベント、&lt;a href="https://bizpy.connpass.com/event/234387/">Python で機械学習をやってみる勉強会&lt;/a> を公開した。次回はわたなべさんに講師をやってもらう。このイベントページも作っていただいた。運営が2人になったのでお互いの忙しいときは分担しながらコミュニティを運営していける。本当にありがたい。わたなべさんが担当している間に私も次のネタの下調べや仕込みをする余裕がもてる。メタバースの勉強会やってもいいなとは考えているけど、私だけではコンテンツが弱くて、よそから詳しい人を招いてこないといけない。どうしたものか。&lt;/p>
+&lt;h2 id="アジャイル開発とスクラム-第2版">アジャイル開発とスクラム 第2版&lt;/h2>
+&lt;p>読了した。全12章の後にもコラムと対談があって、この内容も読み応えがあっていくつも示唆を与えられるものだった。&lt;/p>
+&lt;ul>
+&lt;li>コラム 野中理論とスクラム&lt;/li>
+&lt;li>スペシャルトーク 野中氏と平鍋氏の対談
+&lt;ul>
+&lt;li>イノベーションに必要なのは、対話を通じて共振・共感・共鳴する実践知リーダーシップであり、それがスクラムの心だ&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>おわりに&lt;/li>
+&lt;/ul>
+&lt;p>12章で出てきた実践知について、実践知とは何か、実践知リーダーシップとはどういうことかというのが対談の中でも繰り返し出てきてその理解が深まった。私の中では暗黙知と実践知の境界が曖昧だったが、暗黙知と形式知を行ったり来たりすること、そして身体性を伴っているというのが実践知であること。そこには「もの」や「こと」の目に見えない関係性を洞察しながら判断し、本質を考え抜く知力が必要であると述べられていた。昔は &lt;a href="https://ja.wikipedia.org/wiki/%E7%9F%A5%E8%A1%8C%E5%90%88%E4%B8%80">知行合一&lt;/a> と言ったらしいが、90年代以降の日本は分析過多、計画過多、コンプライアンス過多になってしまったという。また時間のあるときに所感をまとめようと思う。&lt;/p></content></item><item><title>師走入り</title><link>/diary/posts/2021/1201/</link><pubDate>Wed, 01 Dec 2021 04:13:59 +0900</pubDate><guid>/diary/posts/2021/1201/</guid><description>1時から1時間ほど仮眠をとって2時から4時過ぎまで作業して帰ってお風呂に入ってそのまま6時から 【三宮.dev オンライン】リモート朝活もくもく会 の朝活に参加した。30分ほど雑談して眠くなって7時過ぎから9時前まで寝てた。
 dapr の pubsub の dead letter サポート お仕事で dapr を触っている。pubsub で dead letter queue の仕組みを導入しようとしているが、PubSub&amp;rsquo;s DeadLetter Topic #2217 によると v1.6 (2022年1月20日リリース予定) のマイルストーンになっている。本当にその予定ならそろそろベータ版が実装されていて、開発ブランチあったらテストしようかと考えていた。調べてたら rabbitmq はすでに v1.5 で dead letter のサポートがマージされているのを発見した。
 Add dead letter support for RabbitMQ pubsub #1844 たまたま、いま使っている pubsub も rabbitmq だった。ドキュメントをみたら確かにその設定が追加されている。
 dapr RabbitMQ
