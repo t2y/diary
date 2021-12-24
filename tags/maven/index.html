@@ -1,0 +1,102 @@
+<!doctype html><html lang=en>
+<head>
+<title>maven :: forest nook</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=keywords content>
+<meta name=robots content="noodp">
+<link rel=canonical href=/diary/tags/maven/>
+<link rel=stylesheet href=/diary/assets/style.css>
+<link rel=stylesheet href=/diary/assets/green.css>
+<link rel=stylesheet href=/diary/style.css>
+<link rel=apple-touch-icon href=/diary/img/apple-touch-icon-192x192.png>
+<link rel="shortcut icon" href=/diary/favicon.ico>
+<meta name=twitter:card content="summary">
+<meta name=twitter:site content="t2y">
+<meta name=twitter:creator content>
+<meta property="og:locale" content="en">
+<meta property="og:type" content="website">
+<meta property="og:title" content="maven">
+<meta property="og:description" content>
+<meta property="og:url" content="/diary/tags/maven/">
+<meta property="og:site_name" content="forest nook">
+<meta property="og:image" content="/diary/favicon.ico">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+<link href=/diary/tags/maven/index.xml rel=alternate type=application/rss+xml title="forest nook">
+</head>
+<body class=green>
+<div class="container full headings--one-size">
+<header class=header>
+<div class=header__inner>
+<div class=header__logo>
+<a href=/diary>
+<div class=logo>
+forest nook
+</div>
+</a>
+</div>
+<div class=menu-trigger>menu</div>
+</div>
+<nav class=menu>
+<ul class="menu__inner menu__inner--desktop">
+<li><a href=/diary/about>自己紹介</a></li>
+<li><a href=/diary/dates>月別一覧</a></li>
+<li><a href=/diary/tags>タグ一覧</a></li>
+</ul>
+<ul class="menu__inner menu__inner--mobile">
+<li><a href=/diary/about>自己紹介</a></li>
+<li><a href=/diary/dates>月別一覧</a></li>
+<li><a href=/diary/tags>タグ一覧</a></li>
+</ul>
+</nav>
+</header>
+<div class=content>
+<div class=posts>
+<div class="post on-list">
+<h1 class=post-title>
+<a href=/diary/posts/2021/1223/>maven のバージョンチェック処理の振る舞い</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2021-12-23
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/maven/>maven</a>&nbsp;
+</span>
+<div class=post-content>
+<p>23時に寝て1時に起きてまた寝て6時半に起きた。変なライフサイクルになってきた。</p>
+<h2 id=maven-のアップデートポリシー>maven のアップデートポリシー</h2>
+<p>maven が依存解決するとき、例えばバージョンの範囲を指定して最新バージョンを取得するといった設定ができる。実行していると、新しいバージョンをチェックしにいくときとそうじゃないときがあって、どういう仕組みで動いているのかよくわからなかったのでデバッグした。言うても DEBUG ログを出力させて、ログの内容をソースで grep しながら関連するところを読んだだけ。</p>
+<p><a href=https://github.com/apache/maven/blob/maven-3.6.3/maven-compat/src/main/java/org/apache/maven/repository/legacy/DefaultUpdateCheckManager.java#L110>DefaultUpdateCheckManager.isUpdateRequired</a> の中でポリシーが最終チェック日付を確認していいる。ここから辿っていくと <a href=https://github.com/apache/maven/blob/maven-3.6.3/maven-artifact/src/main/java/org/apache/maven/artifact/repository/ArtifactRepositoryPolicy.java#L115>ArtifactRepositoryPolicy</a> という仕組みがある。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>return</span> <span style=color:#f92672>(</span> lastCheckDate <span style=color:#f92672>==</span> <span style=color:#66d9ef>null</span> <span style=color:#f92672>)</span> <span style=color:#f92672>||</span> policy<span style=color:#f92672>.</span><span style=color:#a6e22e>checkOutOfDate</span><span style=color:#f92672>(</span> lastCheckDate <span style=color:#f92672>);</span>
+</code></pre></div><p>ドキュメントでそれっぽい内容を調べると <code>updatePolicy</code> を設定できるようになっている。デフォルトは <code>daily</code> なので日次でチェックしにいくような振る舞いをする。バージョンチェックするときとしないときの何が違うのか、よくわかっていなかった振る舞いを理解できた。これはビルドキャッシュの有無に関係ないのでキャッシュがあるからバージョンチェック処理をスキップできるわけではない。もちろん、更新をチェックさせたくないのであれば <code>never</code> に設定してもいいのかもしれない。</p>
+<blockquote>
+<p>updatePolicy</p>
+<p>The frequency for downloading updates - can be &ldquo;always&rdquo;, &ldquo;daily&rdquo; (default), &ldquo;interval:XXX&rdquo; (in minutes) or &ldquo;never&rdquo; (only if it doesn&rsquo;t exist locally).</p>
+<p><a href=https://maven.apache.org/ref/3.6.3/maven-settings/settings.html>https://maven.apache.org/ref/3.6.3/maven-settings/settings.html</a></p>
+</blockquote>
+</div>
+</div>
+<div class=pagination>
+<div class=pagination__buttons>
+</div>
+</div>
+</div>
+</div>
+<footer class=footer>
+<div class=footer__inner>
+<div class="copyright copyright--user">
+<span>© 2021 Tetsuya Morimoto</span>
+<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span>
+</div>
+</div>
+</footer>
+<script src=/diary/assets/main.js></script>
+<script src=/diary/assets/prism.js></script>
+</div>
+</body>
+</html>
