@@ -56,6 +56,75 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0116/>JUnit5 のテスト拡張</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-01-16
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/testing/>testing</a>&nbsp;
+</span>
+<div class=post-content>
+<p>1時に寝て5時に起きて2度寝して9時に起きた。前日呑んでたのであまり眠れなくて体調よくない。</p>
+<h2 id=junit5-的なロガーのテスト>JUnit5 的なロガーのテスト</h2>
+<p>お仕事でログ管理の機能開発をしている。カスタムロガーを使って出力するメッセージを加工している。設計が固まってきて機能も作り込むようになってきたので出力内容が意図した構造化ログになっているかをテストしたい。JUnit5 の機能と log4j の機能を組み合わせてカスタムロガーのテストの仕組みを作ってみた。</p>
+<p>まずログ出力した内容を取得するオブジェクトを特定するためのアノテーションを定義する。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Documented</span>
+<span style=color:#a6e22e>@Target</span><span style=color:#f92672>(</span>ElementType<span style=color:#f92672>.</span><span style=color:#a6e22e>FIELD</span><span style=color:#f92672>)</span>
+<span style=color:#a6e22e>@Retention</span><span style=color:#f92672>(</span>RetentionPolicy<span style=color:#f92672>.</span><span style=color:#a6e22e>RUNTIME</span><span style=color:#f92672>)</span>
+<span style=color:#66d9ef>public</span> <span style=color:#a6e22e>@interface</span> LoggerTestWriter <span style=color:#f92672>{</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><p>JUnit5 の <a href=https://junit.org/junit5/docs/current/user-guide/#extensions-registration-declarative>Declarative Extension Registration</a> の仕組みを使って、テストケース非依存な setup/teadown のメソッドを定義する。<a href=https://junit.org/junit5/docs/current/api/org.junit.jupiter.api/org/junit/jupiter/api/extension/ExtensionContext.html>ExtensionContext</a> から拡張するテストケースのインスタンスを取得できる。テストケースインスタンスに定義されている <code>@LoggerTestWriter</code> アノテーションがついたオブジェクトを lgo4j の Appender としてインジェクションするようなコードを setup/teardown (beforeEach/afterEach メソッド) で定義する。Appender のインジェクション周りは <a href=https://qiita.com/kazurof/items/abbd42f11bfc125f3190>Log4j 2でログ出力をテストするサンプルソース</a> の記事を参考にした。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>SetupLogAppender</span> <span style=color:#66d9ef>implements</span> BeforeEachCallback<span style=color:#f92672>,</span> AfterEachCallback <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> String APPENDER_NAME <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;logger-test-appender&#34;</span><span style=color:#f92672>;</span>
+
+    <span style=color:#66d9ef>private</span> Optional<span style=color:#f92672>&lt;</span>Writer<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>getWriter</span><span style=color:#f92672>(</span>ExtensionContext context<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> IllegalAccessException <span style=color:#f92672>{</span>
+        var testInstance <span style=color:#f92672>=</span> context<span style=color:#f92672>.</span><span style=color:#a6e22e>getRequiredTestInstance</span><span style=color:#f92672>();</span>
+        <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span>var field <span style=color:#f92672>:</span> testInstance<span style=color:#f92672>.</span><span style=color:#a6e22e>getClass</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getDeclaredFields</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
+            <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>field<span style=color:#f92672>.</span><span style=color:#a6e22e>isAnnotationPresent</span><span style=color:#f92672>(</span>LoggerTestWriter<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>))</span> <span style=color:#f92672>{</span>
+                <span style=color:#66d9ef>return</span> Optional<span style=color:#f92672>.</span><span style=color:#a6e22e>of</span><span style=color:#f92672>((</span>Writer<span style=color:#f92672>)</span> field<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>testInstance<span style=color:#f92672>));</span>
+            <span style=color:#f92672>}</span>
+        <span style=color:#f92672>}</span>
+        <span style=color:#66d9ef>return</span> Optional<span style=color:#f92672>.</span><span style=color:#a6e22e>empty</span><span style=color:#f92672>();</span>
+    <span style=color:#f92672>}</span>
+
+    <span style=color:#a6e22e>@Override</span>
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>beforeEach</span><span style=color:#f92672>(</span>ExtensionContext context<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> Exception <span style=color:#f92672>{</span>
+        var writer <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getWriter</span><span style=color:#f92672>(</span>context<span style=color:#f92672>).</span><span style=color:#a6e22e>orElseThrow</span><span style=color:#f92672>(()</span> <span style=color:#f92672>-&gt;</span>
+                <span style=color:#66d9ef>new</span> IllegalStateException<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;@LoggerTestWriter のアノテーションをもつ Writer を定義してください&#34;</span><span style=color:#f92672>));</span>
+        addAppender<span style=color:#f92672>(</span>writer<span style=color:#f92672>,</span> APPENDER_NAME<span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span>
+
+    <span style=color:#a6e22e>@Override</span>
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>afterEach</span><span style=color:#f92672>(</span>ExtensionContext context<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> Exception <span style=color:#f92672>{</span>
+        var writer <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getWriter</span><span style=color:#f92672>(</span>context<span style=color:#f92672>).</span><span style=color:#a6e22e>orElseThrow</span><span style=color:#f92672>(</span>IllegalStateException<span style=color:#f92672>::</span><span style=color:#66d9ef>new</span><span style=color:#f92672>);</span>
+        removeAppender<span style=color:#f92672>(</span>APPENDER_NAME<span style=color:#f92672>);</span>
+        <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>writer <span style=color:#66d9ef>instanceof</span> StringWriter<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+            var stringWriter <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>StringWriter<span style=color:#f92672>)</span> writer<span style=color:#f92672>;</span>
+            stringWriter<span style=color:#f92672>.</span><span style=color:#a6e22e>getBuffer</span><span style=color:#f92672>().</span><span style=color:#a6e22e>delete</span><span style=color:#f92672>(</span>0<span style=color:#f92672>,</span> stringWriter<span style=color:#f92672>.</span><span style=color:#a6e22e>getBuffer</span><span style=color:#f92672>().</span><span style=color:#a6e22e>length</span><span style=color:#f92672>());</span>
+        <span style=color:#f92672>}</span>
+    <span style=color:#f92672>}</span>
+</code></pre></div><p>実際にテストを書くテストクラスは次のようになる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@ExtendWith</span><span style=color:#f92672>(</span>SetupLogAppender<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)</span>
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyLoggerTest</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> MyLogger logger <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> MyLogger<span style=color:#f92672>(</span>MyLoggerTest<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>());</span>
+
+    <span style=color:#a6e22e>@LoggerTestWriter</span>
+    StringWriter writer <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> StringWriter<span style=color:#f92672>();</span>
+
+    <span style=color:#a6e22e>@Test</span>
+    <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>testDebugMap</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+        logger<span style=color:#f92672>.</span><span style=color:#a6e22e>debug</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;my-message&#34;</span><span style=color:#f92672>)</span>
+        assertEquals<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;my-message&#34;</span> writer<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>());</span>
+    <span style=color:#f92672>}</span>
+</code></pre></div><p><code>@ExtendWith</code> で指定した <code>SetupLogAppender</code> クラスの beforeEach や afterEach がそれぞれのテストメソッドごとに呼ばれて、Appender のインジェクションが <code>@LoggerTestWriter</code> のアノテーションをもつ writer を使って行われる。この writer にはログ出力した文字列が記録されるようになる。これで、テストメソッドで logger に対して出力したメッセージを writer から取得できるので意図したメッセージが出力されていることをテストできる。カスタムロガーのテストケースごとに再利用可能な拡張をきれいに実装できた。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0115/>ワーケーション延期</a>
 </h1>
 <div class=post-meta>
@@ -73,11 +142,14 @@ forest nook
 <h2 id=ストレッチ>ストレッチ</h2>
 <p>今週も開発に集中していてあまりストレッチができなかった。今日の開脚幅は開始前165cmで、ストレッチ後166.5cmだった。先週と同じぐらい、もしくはちょっとよくなったぐらい。先週から引き続き、ふくらはぎとふとももの後ろが張っている。ここ最近は開発に集中していて1日あたり10-12時間ぐらい椅子に座っているので疲労しているのだと推測する。毎週ストレッチを受けていると疲労改善になってよい。</p>
 <h2 id=ワーケーション延期>ワーケーション延期</h2>
-<p>これまで <a href=/diary/posts/2021/1225/#ワーケーション準備>準備を進めてきたワーケーション</a> が2週間後になった。もともとこの企画はオミクロン株が発見される前だったので1月末に予定していた。年末年始を挟んでオミクロン株の感染流行を今週みてきて延期することに決定した。<a href=https://web.pref.hyogo.lg.jp/kf16/coronavirus_data.html>兵庫県 新型コロナウイルスの検査・陽性者の状況</a> によると、直近3日間の陽性者数は次のように推移している。2週間後は5,000人ぐらいの陽性者数になるのではないか。諸外国の推移をみていると兵庫県のピークの陽性者数は1日1万人ぐらいまで増える可能性がある。</p>
+<p>これまで <a href=/diary/posts/2021/1225/#ワーケーション準備>準備を進めてきたワーケーション</a> が2週間後になった。もともとこの企画はオミクロン株が発見される前だったので1月末に予定していた。年末年始を挟んでオミクロン株の感染流行を今週みてきて延期することに決定した。<a href=https://web.pref.hyogo.lg.jp/kf16/coronavirus_data.html>兵庫県 新型コロナウイルスの検査・陽性者の状況</a> によると、直近の陽性者数は次のように推移している。2週間後は5,000人ぐらいの陽性者数になるのではないか。諸外国の推移をみていると兵庫県のピークの陽性者数は1日1万人ぐらいまで増える可能性がある。</p>
 <ul>
+<li>1/10: 167</li>
+<li>1/11: 113</li>
 <li>1/12: 511</li>
 <li>1/13: 903</li>
 <li>1/14: 929</li>
+<li>1/15: 1191</li>
 </ul>
 <p>残念だけど、次回の目処は5-6月ぐらいに3回目のワクチン接種を終えてからになるだろう。</p>
 <h2 id=呑み>呑み</h2>
@@ -4590,6 +4662,12 @@ new: 09/26/21 03:35:19       # LC_TIME=&quot;ja_JP.UTF-8&quot;
 <a href=/diary/posts/page/15/>
 <span class=button__icon>←</span>
 <span class=button__text>最近の日記</span>
+</a>
+</span>
+<span class="button next">
+<a href=/diary/posts/page/17/>
+<span class=button__text>過去の日記</span>
+<span class=button__icon>→</span>
 </a>
 </span>
 </div>
