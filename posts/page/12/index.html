@@ -56,6 +56,34 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0120/>spring boot の xml 変換の仕組み</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-01-20
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/spring-boot/>spring boot</a>&nbsp;
+</span>
+<div class=post-content>
+<p>0時に寝て吐き気がして3時に起きて、断続的に仮眠をとってみたけど、それでも気分悪くて5時から起きてた。昨日の晩ご飯食べて寝てから吐き気が出てきた。なにかの食べ合わせなのだろうか。コロッケとその後にチョコレート食べたのが悪かったのか。普通にオフィスへ行ってお仕事してたら直った。</p>
+<h2 id=spring-boot-の-xml-変換>spring boot の xml 変換</h2>
+<p>いまお手伝いしているお仕事で spring boot で <a href=https://en.wikipedia.org/wiki/SOAP>SOAP</a> の xml 通信しているサービスがある。任意の文字列を受け取って任意の文字列を返すような仕組みで設計されていて、xml の変換処理を jackson を使ってアプリケーションコードで書いていた。</p>
+<p>これをやるならミドルウェアでやるべきだなと思って spring boot のドキュメントを調べてみた。<a href=https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#web.servlet.spring-mvc.error-handling>Error Handling</a> のように例外が発生したときの処理をフックする ResponseEntityExceptionHandler のようなミドルウェアに近い仕組みはあるが、通常のレスポンスに対して行う処理はなかった。代わりに <a href=https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#web.servlet.spring-mvc.message-converters>HttpMessageConverters</a> という、レスポンスを変換する仕組み自体は操作できないが、変換する変換器は置き換えたり拡張したりできるようになっている。レスポンスのデータフォーマットのカスタマイズをしたい場合は HttpMessageConverters で行うというのが spring boot 的なやり方にみえる。</p>
+<p>さらに調べていると <a href=https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#howto.spring-mvc.write-xml-rest-service>Write an XML REST Service</a> に <code>jackson-dataformat-xml</code> がクラスパスにあれば jackson の ObjectMapper を使って xml に変換するよと書いてあって、試しにレスポンスのオブジェクトを返したら自動的に xml に変換されるという振る舞いを確認できた。つまり、アプリケーションコードで xml の変換処理を自前で実装しなくてもほぼ同じことを spring boot のデフォルトの仕組みでやってくれるというわけだ。jackson の ObjectMapper のカスタマイズがしたいときもいくつかやり方がある。例えば、 <code>@Configuration</code> をもつ Config オブジェクトで次のような bean を生成すれば任意の設定にカスタマイズした ObjectMapper が使われるようになる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Bean</span>
+<span style=color:#66d9ef>public</span> Jackson2ObjectMapperBuilderCustomizer <span style=color:#a6e22e>configureObjectMapper</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>return</span> builder <span style=color:#f92672>-&gt;</span> <span style=color:#f92672>{</span>
+        builder<span style=color:#f92672>.</span><span style=color:#a6e22e>serializationInclusion</span><span style=color:#f92672>(</span>JsonInclude<span style=color:#f92672>.</span><span style=color:#a6e22e>Include</span><span style=color:#f92672>.</span><span style=color:#a6e22e>NON_EMPTY</span><span style=color:#f92672>);</span>
+    <span style=color:#f92672>};</span>
+<span style=color:#f92672>}</span>
+</code></pre></div>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0119/>最初のフォロワー</a>
 </h1>
 <div class=post-meta>
