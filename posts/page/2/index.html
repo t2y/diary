@@ -56,6 +56,25 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0127/>datadog-agent のログ連携の不具合調査</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-01-27
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/datadog/>datadog</a>&nbsp;
+#<a href=/diary/tags/kubernetes/>kubernetes</a>&nbsp;
+</span>
+<div class=post-content>
+<p>0時に寝て4時に起きた。朝から1時間ほどドラクエタクトやってた。</p>
+<h2 id=ログ連携の不具合調査>ログ連携の不具合調査</h2>
+<p>少し前に本番環境で <a href=https://github.com/DataDog/datadog-agent>datadog-agent</a> からログが (クラウドの) datadog に連携されていないことがわかった。kubectl logs のコマンドで確認すると、アプリケーションのログは出力されているので datadog-agent から datadog にログを送信するところの問題であるように推測された。たまたま今日、同じような現象をテスト環境で確認できた。ちょうどスクラムのプランニングでログ調査のための作業をするチケットの承認を得たところだった。満を持して発生したような障害だったので私が調査すると明言して調査してた。半日ぐらい調査して、pod 内の credential 情報が置き換わってしまうことが原因っぽいと特定できたが、なぜ置き換わってしまうのかはまだわからない。もう少し調査して解決したら会社のテックブログにいいなと思ったので、日記に書いてた内容を移行することにした。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0126/>レビュー待ちのストレス</a>
 </h1>
 <div class=post-meta>
