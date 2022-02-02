@@ -56,6 +56,25 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0131/>ヘルスチェックのレスポンスのステータスコード</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-01-31
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/kubernetes/>kubernetes</a>&nbsp;
+</span>
+<div class=post-content>
+<p>1時に寝て6時に起きた。</p>
+<h2 id=404-のレスポンスをヘルスチェック>404 のレスポンスをヘルスチェック</h2>
+<p>ここ数日はお仕事でインフラ周りの調査をしていた。たまたまログをみていて、ELB のヘルスチェックが 404 になっているのを大量にみつけた。てっきりヘルスチェックを使ってないのだろうと思ってインフラ担当者に問い合わせたら、404 が返ってくることをヘルスチェックしているという。404 をチェックすることになんの意味もなく、ただ急ぎで設定する必要があったからとりあえず動かせるためにそう設定したという。一方でアプリケーション側は spring boot で開発していて、<a href=https://www.baeldung.com/spring-boot-actuators>Spring Boot Actuator</a> も導入されているので <code>/actuator/health</code> にアクセスすれば 200 が返ってくるようになっている。どういう経緯だったかはわからないけど、開発者に一言聞けば 404 のレスポンスをヘルスチェックすることは何もない状態でずっと運用されていたことがわかった。</p>
+<p>アプリケーション側の <a href=https://kubernetes.io/docs/concepts/services-networking/ingress/>Kubernetes: Ingress</a> のマニフェストにもそういった設定が入っていて、インフラ側の CDK のコードにもそういったマニフェストがあって、両方の設定変更が必要なのか、アプリケーション側のものだけでいいのか、少し調査が必要ということになった。私も Ingress というのがなにものなのか、よくわかってないので調べて理解する機会としよう。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0127/>datadog-agent のログ連携の不具合調査</a>
 </h1>
 <div class=post-meta>
