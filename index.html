@@ -57,6 +57,54 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0201/>wiki のドキュメント整理</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-02-01
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/datadog/>datadog</a>&nbsp;
+#<a href=/diary/tags/kubernetes/>kubernetes</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#kubernetes-のログ管理と-datadog-agent-のログ連携不具合>kubernetes のログ管理と datadog-agent のログ連携不具合</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>23時に寝て4時半に起きた。昨日の帰りに自転車でこけて胸を強打してひたすら痛い。起き上がるのも痛い。安静にしてた。</p>
+<h2 id=kubernetes-のログ管理と-datadog-agent-のログ連携不具合>kubernetes のログ管理と datadog-agent のログ連携不具合</h2>
+<p>先日、<a href=/diary/posts/2022/0127/#ログ連携の不具合調査>datadog にログ連携されていない不具合</a> が発生していて、その1次調査を終えたことについて書いた。緊急対応としては datadog-agent を再起動することで改善することはわかっていたので、その後、kubernetes のログ管理と datadog-agent がどうやって kubernetes クラスター上で実行されているアプリケーションのログを収集しているかを調査していた。今日は wiki に調査してわかったことなどをまとめていた。</p>
+<p>kubernetes クラスターはコンテナランタイムに docker を使っていて、アプリケーションの stdout/stderr を docker の logging driver にリダイレクトし、JSON Lines に設定された logging driver が kubernetes ノード上にログファイルとして出力する。datadog-agent は autodiscovery 機能で pod の情報を常にポーリングしていて、pod が新たにデプロイされたらログファイルを pod 内にマウントして、そのマウントしたログファイルを読み込んでログ収集していると思われる。datadog-agent から pod の情報を取得するには kubernetes のサービスアカウントを使っていて、その credential が projected volume としてマウントされて pod 内から利用できる。その credential を使って kubelet api にリクエストすることで pod の情報を取得している。</p>
+<p>文章で書けばたったこれだけのことなんだけど、たったこれだけのことを理解するのに次のドキュメントを読んだ。実際の調査のときはわからなかったのでもっと多くのドキュメントを読んでいる。いま書いたことを理解するならこのドキュメントを読めば理解できるはず。</p>
+<ul>
+<li><a href=https://kubernetes.io/docs/concepts/overview/components/>https://kubernetes.io/docs/concepts/overview/components/</a></li>
+<li><a href=https://kubernetes.io/docs/concepts/architecture/control-plane-node-communication/>https://kubernetes.io/docs/concepts/architecture/control-plane-node-communication/</a></li>
+<li><a href=https://kubernetes.io/docs/concepts/cluster-administration/logging/>https://kubernetes.io/docs/concepts/cluster-administration/logging/</a></li>
+<li><a href=https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/>https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/</a></li>
+<li><a href=https://kubernetes.io/docs/concepts/storage/projected-volumes/>https://kubernetes.io/docs/concepts/storage/projected-volumes/</a></li>
+<li><a href="https://docs.datadoghq.com/agent/kubernetes/log/?tab=helm">https://docs.datadoghq.com/agent/kubernetes/log/?tab=helm</a></li>
+<li><a href="https://docs.datadoghq.com/getting_started/agent/autodiscovery/?tab=kubernetes">https://docs.datadoghq.com/getting_started/agent/autodiscovery/?tab=kubernetes</a></li>
+</ul>
+<p>当然、ドキュメントに書いてあることがソース上で確認するため、kubernetes と datadog-agent のソースコードも読んだ。どちらも go 言語で実装されている。</p>
+<ul>
+<li><a href=https://github.com/kubernetes/kubernetes>https://github.com/kubernetes/kubernetes</a></li>
+<li><a href=https://github.com/DataDog/datadog-agent>https://github.com/DataDog/datadog-agent</a></li>
+</ul>
+<p><code>kubectl logs</code> の振る舞いを確認するだけでも、ソースコードからは実際のログファイルを open してストリームを返しているところはわからなかった。api 呼び出しが連携されて抽象化されていて、コンポーネントの役割分担があって、何も知らずにコードを読んでいてもわからなかった。Kubernetes の低レイヤーのところは Container Runtime Interface (CRI) という標準化を行い、1.20 から docker は非推奨となり、将来的に CRI を提供する実装に置き換わるらしい。ログファイルを open する役割は CRI の実装が担うんじゃないかと思うけど、そこまでは調べきれなかった。また機会があれば CRI の実装も読んでみる。</p>
+<figure><img src=/diary/img/2022/0201_kubectl-logs.png>
+</figure>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0131/>ヘルスチェックのレスポンスのステータスコード</a>
 </h1>
 <div class=post-meta>
@@ -308,38 +356,6 @@ forest nook
 <h2 id=普通のプログラマの普通の設計>普通のプログラマの普通の設計</h2>
 <p>タイムラインでたまたまみかけて <a href=https://modeling-how-to-learn.connpass.com/event/231669/>普通のプログラマの普通の設計</a> に参加した。設計の話しはコンテキストやコードがないと抽象的過ぎてふわふわして勉強会で扱うには難しいテーマだけど、その懸念通り、ふわふわした内容だったと思う。おもしろくなかったわけではなく、発表者それぞれの考え方や大事にしている価値観などを知ることで多様性を認めるというか、他人のやり方を受け入れることにもつながるのかなとは思えた。</p>
 <p>コードのない設計の話しは言葉から連想される概念が広過ぎてあまりよくわからない。現実の設計でも言葉でやり取りして同意していたのにコードは全然違うみたいなことはたまに発生する。だから言葉で設計のやり取りするよりも、2-3日でプロトタイプを実装できるならコードを先にみせてもらった方がよいとすら私は考えているところがある。あと一度設計をやったら終わりと考える開発者も多い。設計とは運用してからのフィードバックを受けてさらに改善していくことも含まれる。だから開発を継続している限り、設計したということはなくてずっと設計しているという考え方が正しい。matz もコードとは設計であると話していたと思う。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0125/>歴史と地政学</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-01-25
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/book/>book</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#地政学に関心がある>地政学に関心がある</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>1時に寝て6時半に起きた。今日はリリース日でリリースに間に合わなかった PR 群の説明を書いてそれらをまとめたり、チケットの整理をしたりしていて、あんまり他のことの記憶がない。</p>
-<h2 id=地政学に関心がある>地政学に関心がある</h2>
-<p>プーチン大統領が「地政学的に言えば……」という枕詞をよく使う (印象を私が勝手にもっていて、実際にそういう発言をググっても検索ヒットするわけではないので勝手な私の思い込みかもしれないが) ので地政学という分野に以前から関心をもっている。とくにプーチン大統領のファンだというわけではない。地政学といえばプーチン大統領という連想が働くだけだ。たまたまはてブのエントリーでみつけた記事を読んだらおもしろかった。</p>
-<ul>
-<li><a href=https://dain.cocolog-nifty.com/myblog/2022/01/post-1d5097.html>面白い世界史の本を3人で2時間お薦めしあった中から厳選した12冊（前編）</a></li>
-</ul>
-<p>記事に触発されて <a href=http://sakurasha.com/2016/11/%E6%81%90%E6%80%96%E3%81%AE%E5%9C%B0%E6%94%BF%E5%AD%A6/>恐怖の地政学</a> を購入した。いま私が地方都市に住んでいるというのもあって、地方に根付いた産業とか文化とか、いくらかそれは地理的な要因もあるだろうとは思っていて、せっかく地方に住んでいるのだからそういう分野の歴史や背景を調べるのもおもしろそうだと思い始めたところでもある。</p>
 </div>
 </div>
 <div class=pagination>
