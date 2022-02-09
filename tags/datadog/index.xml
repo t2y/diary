@@ -16,7 +16,7 @@ https://kubernetes.io/docs/concepts/overview/components/ https://kubernetes.io/d
 &lt;li>&lt;a href="https://docs.datadoghq.com/agent/kubernetes/log/?tab=helm">https://docs.datadoghq.com/agent/kubernetes/log/?tab=helm&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://docs.datadoghq.com/getting_started/agent/autodiscovery/?tab=kubernetes">https://docs.datadoghq.com/getting_started/agent/autodiscovery/?tab=kubernetes&lt;/a>&lt;/li>
 &lt;/ul>
-&lt;p>当然、ドキュメントに書いてあることがソース上で確認するため、kubernetes と datadog-agent のソースコードも読んだ。どちらも go 言語で実装されている。&lt;/p>
+&lt;p>ドキュメントに書いてあることを深く理解するために、kubernetes と datadog-agent のソースコードも読んだ。どちらも go 言語で実装されている。&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="https://github.com/kubernetes/kubernetes">https://github.com/kubernetes/kubernetes&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://github.com/DataDog/datadog-agent">https://github.com/DataDog/datadog-agent&lt;/a>&lt;/li>

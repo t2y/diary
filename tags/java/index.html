@@ -56,6 +56,33 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0208/>テストコードのリファクタリング</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-02-08
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/testing/>testing</a>&nbsp;
+</span>
+<div class=post-content>
+<p>0時に寝て6時に起きた。今日は7時半から23時過ぎまで集中してコードを書いてた。最近は19-20時には帰って、晩ご飯食べて、ドラクエタクトやったり漫画読んだりだらだらしている。そんな暇あったら積ん読の本読めって感じだ。</p>
+<h2 id=テストコードのリファクタリング>テストコードのリファクタリング</h2>
+<p>業務機能の開発をするにあたって、既存のテストコードをみていて、<code>@BeforeEach</code> というテストメソッド単位に呼ばれるメソッドでテストデータの削除と postgresql の sequence のリセット処理をしていた。こんなの共通処理ですべてのテーブルの truncate と sequence のリセット処理をすればいいやんとか思って、いろいろ調べて2つのリファクタリングの PR を作成した。先日 <a href=/diary/posts/2022/0116/>JUnit5 の拡張</a> を調べたばかりだから、テストの共通化のノウハウが溜まっている。<a href=https://www.testcontainers.org/modules/databases/postgres/>Testcontainers Postgres Module</a> と連携して、postgresql コンテナに接続して sequence のリセット処理を汎用のテスト拡張として実装した。テストを実装する開発者は、次のように <code>@ExtendWith(DatabaseInitializer.class)</code> をアノテーションに付与すれば、自分で sequence のリセット処理を <code>@BeforeEach</code> のメソッドに実装する必要がなくなる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@SpringBootTest</span>
+<span style=color:#a6e22e>@Transactional</span>
+<span style=color:#a6e22e>@ExtendWith</span><span style=color:#f92672>(</span>SetupDatabaseContainer<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)</span>
+<span style=color:#a6e22e>@ExtendWith</span><span style=color:#f92672>(</span>DatabaseInitializer<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)</span>
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyTest</span> <span style=color:#f92672>{</span>
+    <span style=color:#f92672>...</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><p>この作業の過程で spring boot の <a href=https://spring.pleiades.io/spring-framework/docs/current/reference/html/testing.html#testcontext-tx-enabling-transactions>@Transactional</a> はデフォルトでテストメソッドの実行後にロールバックする機能が提供されていて、いままで <code>@BeforeEach</code> のメソッドで明示的にテーブルのデータを削除する必要はなかったんやと気付いた。じゃあ、なぜ削除するコードを書いてたかと言うと、テストの外部で初期データを作成する仕組みがあるから、初期データを削除する目的でそうしていたことが判明した。そして、一部のコードはそこで作った外部の初期データに依存して実装されていた。テストコードの一部が外部のデータに依存しつつ、テストメソッドでは外部のデータに依存しないように削除のコードが書いてある。書いていて何を言っているのかわからないと思うけど、私も調べてて訳がわからんくて、PR に「いまの状況はかなりややこしい」と前置きしつつ、無駄なコードや仕組みを取り除くための修正を行った。本当は機能開発やらないといけないのにテストコードのリファクタリングするのに大きな時間をかけるわけにはいかないだろうという意図で、半日掛けてリファクタリングして23時過ぎまで作業して、既存のテストコードも含めて全部直した。このリファクタリングで数十のテストケースの約300行ぐらいの初期化コードをなくせた。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0120/>spring boot の xml 変換の仕組み</a>
 </h1>
 <div class=post-meta>
