@@ -56,6 +56,36 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0212/>mysql のデータ移行</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-02-12
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/life/>life</a>&nbsp;
+#<a href=/diary/tags/docker/>docker</a>&nbsp;
+#<a href=/diary/tags/mysql/>mysql</a>&nbsp;
+#<a href=/diary/tags/event/>event</a>&nbsp;
+</span>
+<div class=post-content>
+<p>23時に寝て2時前に起きて5時に起きて8時に起きた。あんまり眠れなくなってきた。</p>
+<h2 id=もくもく会>もくもく会</h2>
+<p><a href=https://kobe-sannomiya-dev.connpass.com/event/235747/>【三宮.dev】もくもく会</a> に参加した。もともとオフラインの予定だったけど、オミクロン株の流行でオンラインに変更された。</p>
+<p>お仕事である開発環境の構築をしていて docker-compose を使って mysql の環境構築や共有の開発環境にある db2 に接続するために <a href="https://www.ibm.com/docs/en/db2/10.5?topic=commands-command-line-processor-plus-clpplus">clpplus</a> のインストール方法などを wiki にまとめてた。コンテナにある mysqldump や mysql コマンドを使ってこんな風にデータ移行もできた。</p>
+<p>共有の開発環境からデータをエクスポート。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ docker-compose exec -T mydb mysqldump -h $DB_HOST -C --set-gtid-purged<span style=color:#f92672>=</span>OFF --skip-triggers $DB &gt; dump.sql
+</code></pre></div><p>ローカルの mysql にデータをインポート。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ docker-compose exec -T mydb mysql -h localhost -u root -proot $DB &lt; dump.sql
+</code></pre></div><blockquote class=twitter-tweet><p lang=ja dir=ltr>コンテナにある mysqldump と mysql コマンドを使ってデータのインポートするには -T を指定すればいいみたい。そうしないと WARNING とかの文字列が sql ファイルに含まれてしまってインポートできない。<a href=https://t.co/JGeDNsWjhx>https://t.co/JGeDNsWjhx</a></p>&mdash; Tetsuya Morimoto (@t2y) <a href="https://twitter.com/t2y/status/1492391598612959234?ref_src=twsrc%5Etfw">February 12, 2022</a></blockquote>
+<script async src=https://platform.twitter.com/widgets.js></script>
+<h2 id=ストレッチ>ストレッチ</h2>
+<p>いつもは11時からなんやけど、今日は17時40分からだった。カレンダーの予定を変更し忘れてて11時に行って間違えた。今週は2日間ぐらいストレッチしたかな。今日の開脚幅は開始前164cmで、ストレッチ後168cmだった。いつも時間帯が違うので数値も変わる。今日は右太ももの内転筋や内側やらがすごく張ってた。あまり調子はよくない。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0211/>docker の勉強</a>
 </h1>
 <div class=post-meta>
