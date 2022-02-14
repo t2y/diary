@@ -1,4 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2022/02 on forest nook</title><link>/diary/dates/2022/02/</link><description>Recent content in 2022/02 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2022/02/index.xml" rel="self" type="application/rss+xml"/><item><title>java のコードレビューサービス</title><link>/diary/posts/2022/0213/</link><pubDate>Sun, 13 Feb 2022 09:27:20 +0900</pubDate><guid>/diary/posts/2022/0213/</guid><description>22時に寝て0時に起きて5時に起きて7時に起きた。なんか体調が微妙。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2022/02 on forest nook</title><link>/diary/dates/2022/02/</link><description>Recent content in 2022/02 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2022/02/index.xml" rel="self" type="application/rss+xml"/><item><title>取材商法というビジネス</title><link>/diary/posts/2022/0214/</link><pubDate>Mon, 14 Feb 2022 07:38:37 +0900</pubDate><guid>/diary/posts/2022/0214/</guid><description>1時半に寝て5時半に起きた。いよいよ眠れなくなった感じだな。
+取材商法の営業 会社の問い合わせのメールアドレスに取材させてほしいといった問い合わせが届いた。うちみたいな無名の零細会社になんの前触れもなく届く問い合わせの大半は営業に関するもの。
+※撮影・インタビュー記事の掲載にあたりまして、費用等は一切発生しませんので、ご安心くださいませ。
+WEBにて、お写真と記事でご紹介させていただきたいと考えております。
+こんな感じで取材の費用はいりませんと言っている。記事広告と取材商法(タレントインタビュー)で雑誌掲載の効果は？ によると、取材は無料かもしれないが、メディアや雑誌といった媒体に掲載するのに料金を請求するらしい。まさにこの記事で書かれている会社からのメールだ。取材して記事ができてしまうとサンクコストが気になって掲載料を支払ってしまうような心理を利用しているのだと推測する。
+いろんなビジネスがあるなぁと世の中の勉強になった。</description><content>&lt;p>1時半に寝て5時半に起きた。いよいよ眠れなくなった感じだな。&lt;/p>
+&lt;h2 id="取材商法の営業">取材商法の営業&lt;/h2>
+&lt;p>会社の問い合わせのメールアドレスに取材させてほしいといった問い合わせが届いた。うちみたいな無名の零細会社になんの前触れもなく届く問い合わせの大半は営業に関するもの。&lt;/p>
+&lt;blockquote>
+&lt;p>※撮影・インタビュー記事の掲載にあたりまして、費用等は一切発生しませんので、ご安心くださいませ。&lt;/p>
+&lt;p>WEBにて、お写真と記事でご紹介させていただきたいと考えております。&lt;/p>
+&lt;/blockquote>
+&lt;p>こんな感じで取材の費用はいりませんと言っている。&lt;a href="https://marketing.idegene.com/%E8%A8%98%E4%BA%8B%E5%BA%83%E5%91%8A_%E5%8F%96%E6%9D%90%E5%95%86%E6%B3%95_%E9%9B%91%E8%AA%8C%E6%8E%B2%E8%BC%89%E3%81%AF%E5%8A%B9%E6%9E%9C%E7%9A%84">記事広告と取材商法(タレントインタビュー)で雑誌掲載の効果は？&lt;/a> によると、取材は無料かもしれないが、メディアや雑誌といった媒体に掲載するのに料金を請求するらしい。まさにこの記事で書かれている会社からのメールだ。取材して記事ができてしまうとサンクコストが気になって掲載料を支払ってしまうような心理を利用しているのだと推測する。&lt;/p>
+&lt;p>いろんなビジネスがあるなぁと世の中の勉強になった。&lt;/p></content></item><item><title>java のコードレビューサービス</title><link>/diary/posts/2022/0213/</link><pubDate>Sun, 13 Feb 2022 09:27:20 +0900</pubDate><guid>/diary/posts/2022/0213/</guid><description>22時に寝て0時に起きて5時に起きて7時に起きた。なんか体調が微妙。
 リファクタリングのチケット作成 これまでは業務に関係しないところの機能拡張をしていたので新規にコードを書くことが多かった。いま業務の開発にも着手し始め、その過程で既存のコードを読むことも多くなった。私からみたらコードの品質が著しく低くて、ただ動いているだけで堅牢でもないし、設計の意図も伝わらないコードが多い。そういうのを自分が変更するときに少しずつ出来る範囲でリファクタリングしたりしている。今日もコードを読んでいて enum の扱いについてチケットを作成した。
 前に手伝っていた会社の契約を終了するときに java のコードレビューだけなんらかの契約で依頼できないかという話しはあった。そのときは別件のお仕事が火の車だったので断ってしまった。いまお手伝いしている java のコードをみても、java に慣れていない開発者の書く java のコードはたいていひどい。なぜひどくなるかというと、java は言語仕様が複雑で難しいからだと思う。java の経験が少ないと Effective Java を読んでも理解できないぐらいには java の設計は難しい。その結果として java で開発しているのに設計を練っておらず「動けばいい」コードが散見される。java で開発するなら「これ以外に動かない」コードを書いた方がよいと私は考えている。その意図が伝わるからドキュメントなんか読まなくても「動かすにはこう書けばいい」とわかる。さらにインターフェースが明確であれば、責務や拡張方法も明示的になる。
 前から考えてはいたけど、sier や内製始めたばかりの事業会社向けに java のコードレビューのサービスを提供することも考えている。私1人だとたくさん受けられないし、コードレビューサービスのようなものは会社の信頼関係の方が重要なのでビジネスにするのはちょっと難しいかもなぁ。
