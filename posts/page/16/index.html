@@ -56,6 +56,39 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0218/>予算作り</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-02-18
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/scrum/>scrum</a>&nbsp;
+#<a href=/diary/tags/founding/>founding</a>&nbsp;
+</span>
+<div class=post-content>
+<p>23時に寝て1時半に起きてそのまま断続的に寝て起きての繰り返しで6時に起きた。本当は非稼働日だけど、昨日作った pr の機能を検証するための環境を用意してもらったのでそれを動かしたら要件漏れに気付いてその改修をやってた。</p>
+<h2 id=隔週の雑談>隔週の雑談</h2>
+<p>顧問のはらさんと隔週の打ち合わせの日。今日の議題は2つ。</p>
+<h3 id=見積もりの雑談>見積もりの雑談</h3>
+<p>先日、見積もりについての <a href=/diary/posts/2022/0213/#見積もりのまとめ>私の考え</a> を整理した。それについて第3者の意見も聞いてみたいと考えた。</p>
+<p>いろいろ雑談したけど、結論としてはバーンダウンチャートもストーリーポイントも運用が形骸化したら役に立たないという当たり前の話しになった。従来の期限や工数を見積もる方法と比較して得られるメリットはそう多くないという私の印象である。ストーリーポイントが優れている唯一の点は、タスクの見積もりについて話し合う場ができるという、その機会そのものがあげられる。その機会を使ってメンバーとの情報共有や教育の場にもできるという点がある。それ以外のところでストーリーポイントのメリットはさしてないと私は感じた。</p>
+<blockquote class=twitter-tweet><p lang=ja dir=ltr>ストーリーポイント(以下SP)について雑談していて、あるチームでは事前に見積もったSPをタスク完了後に実績ベースで上書きする運用をしていたという。その理由は見積もったSPに対して進捗や実績が悪いと偉い人からお叱りを受けるため、SPが正しくなかったという解釈で実績から変更しているという。</p>&mdash; Tetsuya Morimoto (@t2y) <a href="https://twitter.com/t2y/status/1494511584378769408?ref_src=twsrc%5Etfw">February 18, 2022</a></blockquote>
+<script async src=https://platform.twitter.com/widgets.js></script>
+<h3 id=来期の予算策定>来期の予算策定</h3>
+<p>ざっくり試算すると来期は少し赤字になる。経営者として赤字にならないようの対策を講じる。私が予め用意した施策は次の3つ。</p>
+<ol>
+<li>既存顧客のお仕事の単価をあげる</li>
+<li>赤字分の売上を別のお仕事で稼ぐ</li>
+<li>赤字分の経費を削減する</li>
+</ol>
+<p>はらさんから役員報酬を下げてはどうか？という提案もあったけど、これは却下しようと思う。もともと役員報酬は高くないし、役員報酬を下げると必然的に健康保険や社会保険の再計算やそれらに関連する事務手続きが発生する。いま私は会計士も税理士も雇わず自分ですべてやっているのだけど、専門家に依頼するにしろ、自分でやるにしろ、経費を下げるために別の経費を発生させてしまう。これは本末転倒な気がしてやりたくない。</p>
+<p>したがって、お仕事の単価をあげる交渉からまず始めることにする。私はずっと開発者で働いてきたから交渉ごとはほとんど経験がない。交渉の経験を積むという側面でも自分のキャリアにとって新しい取り組みになってよいと考えている。次の契約更新は3月末になるのでそれまでに交渉のための準備を進めていく。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0217/>Mockito を触ってみた</a>
 </h1>
 <div class=post-meta>
@@ -72,7 +105,7 @@ forest nook
 <p>0時に寝て4時に起きて6時に起きた。6時過ぎに slack でインフラ担当者から作業の報告があってその対応してた。</p>
 <h2 id=mockito-のモック作成>Mockito のモック作成</h2>
 <p><a href=https://www.baeldung.com/spring-5-webclient>Spring 5 WebClient</a> のテストコードを書いてみた。<a href=https://site.mockito.org/>Mockito</a> というモックライブラリを使っているのをみかけたのでそれを使うことにした。当初は WebClient そのもののモックを用意して、どんなメソッドを呼び出しても Null オブジェクトのように無視すればいいんじゃないかと思ってたんだけど、Mockito はそういう用途に使うものではなく、それぞれのメソッドごとにモックを返すような設定ができる。次のような WebClient のメソッドチェーンでリクエストするようなモックを考える。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>var out <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>client</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>var response <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>client</span>
         <span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>()</span>
         <span style=color:#f92672>.</span><span style=color:#a6e22e>uri</span><span style=color:#f92672>(</span>uriBuilder <span style=color:#f92672>-&gt;</span> uriBuilder
                 <span style=color:#f92672>.</span><span style=color:#a6e22e>path</span><span style=color:#f92672>(</span>path<span style=color:#f92672>)</span>

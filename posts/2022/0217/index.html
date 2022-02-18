@@ -5,7 +5,7 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="0時に寝て4時に起きて6時に起きた。6時過ぎに slack でインフラ担当者から作業の報告があってその対応してた。
 Mockito のモック作成 Spring 5 WebClient のテストコードを書いてみた。Mockito というモックライブラリを使っているのをみかけたのでそれを使うことにした。当初は WebClient そのもののモックを用意して、どんなメソッドを呼び出しても Null オブジェクトのように無視すればいいんじゃないかと思ってたんだけど、Mockito はそういう用途に使うものではなく、それぞれのメソッドごとにモックを返すような設定ができる。次のような WebClient のメソッドチェーンでリクエストするようなモックを考える。
-var out = this.client .get() .uri(uriBuilder -&amp;gt; uriBuilder .path(path) .queryParam(&amp;#34;param&amp;#34;, param) .build()) .retrieve() .bodyToMono(MyResponse.class) .block(); 他にもっとよいやり方があるかもしれないけど、私がよくわかってなくてこんなやり方しかできなかった。最終的には block() を呼び出したときに任意のレスポンスを取得できればよいのだけど、メソッド単位にモックを呼び出していかないと型チェックやら実行時エラーやらで意図したようにテストできなかった。これだけをみたらメソッドチェーンのモック作りは面倒にみえる。Mockito がどうやってこれを実現しているのかわからないけど、すごい仕組みだなとは思った。
+var response = this.client .get() .uri(uriBuilder -&amp;gt; uriBuilder .path(path) .queryParam(&amp;#34;param&amp;#34;, param) .build()) .retrieve() .bodyToMono(MyResponse.class) .block(); 他にもっとよいやり方があるかもしれないけど、私がよくわかってなくてこんなやり方しかできなかった。最終的には block() を呼び出したときに任意のレスポンスを取得できればよいのだけど、メソッド単位にモックを呼び出していかないと型チェックやら実行時エラーやらで意図したようにテストできなかった。これだけをみたらメソッドチェーンのモック作りは面倒にみえる。Mockito がどうやってこれを実現しているのかわからないけど、すごい仕組みだなとは思った。
 @MockBean WebClient client; @Mock WebClient.RequestHeadersUriSpec requestHeadersUriSpec; @Mock WebClient.RequestHeadersSpec requestHeadersSpec; @Mock WebClient.ResponseSpec responseSpec; @Mock Mono&amp;lt;MyResponse&amp;gt; mono; private void mockWebClientMethodChain(MyResponse response) { Mockito.when(client.get()).thenReturn(requestHeadersUriSpec); Mockito.when(requestHeadersUriSpec.uri((Function&amp;lt;UriBuilder, URI&amp;gt;) Mockito.any())).thenReturn(requestHeadersSpec); Mockito.when(requestHeadersSpec.retrieve()).thenReturn(responseSpec); Mockito.when(responseSpec.bodyToMono(MyResponse.class)).thenReturn(mono); Mockito.when(mono.block()).thenReturn(response); } ">
 <meta name=keywords content>
 <meta name=robots content="noodp">
@@ -23,7 +23,7 @@ var out = this.client .get() .uri(uriBuilder -&amp;gt; uriBuilder .path(path) .q
 <meta property="og:title" content="Mockito を触ってみた">
 <meta property="og:description" content="0時に寝て4時に起きて6時に起きた。6時過ぎに slack でインフラ担当者から作業の報告があってその対応してた。
 Mockito のモック作成 Spring 5 WebClient のテストコードを書いてみた。Mockito というモックライブラリを使っているのをみかけたのでそれを使うことにした。当初は WebClient そのもののモックを用意して、どんなメソッドを呼び出しても Null オブジェクトのように無視すればいいんじゃないかと思ってたんだけど、Mockito はそういう用途に使うものではなく、それぞれのメソッドごとにモックを返すような設定ができる。次のような WebClient のメソッドチェーンでリクエストするようなモックを考える。
-var out = this.client .get() .uri(uriBuilder -&amp;gt; uriBuilder .path(path) .queryParam(&amp;#34;param&amp;#34;, param) .build()) .retrieve() .bodyToMono(MyResponse.class) .block(); 他にもっとよいやり方があるかもしれないけど、私がよくわかってなくてこんなやり方しかできなかった。最終的には block() を呼び出したときに任意のレスポンスを取得できればよいのだけど、メソッド単位にモックを呼び出していかないと型チェックやら実行時エラーやらで意図したようにテストできなかった。これだけをみたらメソッドチェーンのモック作りは面倒にみえる。Mockito がどうやってこれを実現しているのかわからないけど、すごい仕組みだなとは思った。
+var response = this.client .get() .uri(uriBuilder -&amp;gt; uriBuilder .path(path) .queryParam(&amp;#34;param&amp;#34;, param) .build()) .retrieve() .bodyToMono(MyResponse.class) .block(); 他にもっとよいやり方があるかもしれないけど、私がよくわかってなくてこんなやり方しかできなかった。最終的には block() を呼び出したときに任意のレスポンスを取得できればよいのだけど、メソッド単位にモックを呼び出していかないと型チェックやら実行時エラーやらで意図したようにテストできなかった。これだけをみたらメソッドチェーンのモック作りは面倒にみえる。Mockito がどうやってこれを実現しているのかわからないけど、すごい仕組みだなとは思った。
 @MockBean WebClient client; @Mock WebClient.RequestHeadersUriSpec requestHeadersUriSpec; @Mock WebClient.RequestHeadersSpec requestHeadersSpec; @Mock WebClient.ResponseSpec responseSpec; @Mock Mono&amp;lt;MyResponse&amp;gt; mono; private void mockWebClientMethodChain(MyResponse response) { Mockito.when(client.get()).thenReturn(requestHeadersUriSpec); Mockito.when(requestHeadersUriSpec.uri((Function&amp;lt;UriBuilder, URI&amp;gt;) Mockito.any())).thenReturn(requestHeadersSpec); Mockito.when(requestHeadersSpec.retrieve()).thenReturn(responseSpec); Mockito.when(responseSpec.bodyToMono(MyResponse.class)).thenReturn(mono); Mockito.when(mono.block()).thenReturn(response); } ">
 <meta property="og:url" content="/diary/posts/2022/0217/">
 <meta property="og:site_name" content="forest nook">
@@ -76,7 +76,7 @@ forest nook
 <p>0時に寝て4時に起きて6時に起きた。6時過ぎに slack でインフラ担当者から作業の報告があってその対応してた。</p>
 <h2 id=mockito-のモック作成>Mockito のモック作成<a href=#mockito-のモック作成 class=hanchor arialabel=Anchor>&#8983;</a> </h2>
 <p><a href=https://www.baeldung.com/spring-5-webclient>Spring 5 WebClient</a> のテストコードを書いてみた。<a href=https://site.mockito.org/>Mockito</a> というモックライブラリを使っているのをみかけたのでそれを使うことにした。当初は WebClient そのもののモックを用意して、どんなメソッドを呼び出しても Null オブジェクトのように無視すればいいんじゃないかと思ってたんだけど、Mockito はそういう用途に使うものではなく、それぞれのメソッドごとにモックを返すような設定ができる。次のような WebClient のメソッドチェーンでリクエストするようなモックを考える。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>var out <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>client</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>var response <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>client</span>
         <span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>()</span>
         <span style=color:#f92672>.</span><span style=color:#a6e22e>uri</span><span style=color:#f92672>(</span>uriBuilder <span style=color:#f92672>-&gt;</span> uriBuilder
                 <span style=color:#f92672>.</span><span style=color:#a6e22e>path</span><span style=color:#f92672>(</span>path<span style=color:#f92672>)</span>
@@ -112,6 +112,12 @@ forest nook
 <hr>
 </div>
 <div class=pagination__buttons>
+<span class="button previous">
+<a href=/diary/posts/2022/0218/>
+<span class=button__icon>←</span>
+<span class=button__text>予算作り</span>
+</a>
+</span>
 <span class="button next">
 <a href=/diary/posts/2022/0216/>
 <span class=button__text>ふりかえりとプランニング</span>
