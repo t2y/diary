@@ -56,6 +56,55 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0217/>Mockito を触ってみた</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-02-17
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/mock/>mock</a>&nbsp;
+#<a href=/diary/tags/testing/>testing</a>&nbsp;
+</span>
+<div class=post-content>
+<p>0時に寝て4時に起きて6時に起きた。6時過ぎに slack でインフラ担当者から作業の報告があってその対応してた。</p>
+<h2 id=mockito-のモック作成>Mockito のモック作成</h2>
+<p><a href=https://www.baeldung.com/spring-5-webclient>Spring 5 WebClient</a> のテストコードを書いてみた。<a href=https://site.mockito.org/>Mockito</a> というモックライブラリを使っているのをみかけたのでそれを使うことにした。当初は WebClient そのもののモックを用意して、どんなメソッドを呼び出しても Null オブジェクトのように無視すればいいんじゃないかと思ってたんだけど、Mockito はそういう用途に使うものではなく、それぞれのメソッドごとにモックを返すような設定ができる。次のような WebClient のメソッドチェーンでリクエストするようなモックを考える。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>var out <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>client</span>
+        <span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>()</span>
+        <span style=color:#f92672>.</span><span style=color:#a6e22e>uri</span><span style=color:#f92672>(</span>uriBuilder <span style=color:#f92672>-&gt;</span> uriBuilder
+                <span style=color:#f92672>.</span><span style=color:#a6e22e>path</span><span style=color:#f92672>(</span>path<span style=color:#f92672>)</span>
+                <span style=color:#f92672>.</span><span style=color:#a6e22e>queryParam</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;param&#34;</span><span style=color:#f92672>,</span> param<span style=color:#f92672>)</span>
+                <span style=color:#f92672>.</span><span style=color:#a6e22e>build</span><span style=color:#f92672>())</span>
+        <span style=color:#f92672>.</span><span style=color:#a6e22e>retrieve</span><span style=color:#f92672>()</span>
+        <span style=color:#f92672>.</span><span style=color:#a6e22e>bodyToMono</span><span style=color:#f92672>(</span>MyResponse<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)</span>
+        <span style=color:#f92672>.</span><span style=color:#a6e22e>block</span><span style=color:#f92672>();</span>
+</code></pre></div><p>他にもっとよいやり方があるかもしれないけど、私がよくわかってなくてこんなやり方しかできなかった。最終的には <code>block()</code> を呼び出したときに任意のレスポンスを取得できればよいのだけど、メソッド単位にモックを呼び出していかないと型チェックやら実行時エラーやらで意図したようにテストできなかった。これだけをみたらメソッドチェーンのモック作りは面倒にみえる。Mockito がどうやってこれを実現しているのかわからないけど、すごい仕組みだなとは思った。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    <span style=color:#a6e22e>@MockBean</span>
+    WebClient client<span style=color:#f92672>;</span>
+    <span style=color:#a6e22e>@Mock</span>
+    WebClient<span style=color:#f92672>.</span><span style=color:#a6e22e>RequestHeadersUriSpec</span> requestHeadersUriSpec<span style=color:#f92672>;</span>
+    <span style=color:#a6e22e>@Mock</span>
+    WebClient<span style=color:#f92672>.</span><span style=color:#a6e22e>RequestHeadersSpec</span> requestHeadersSpec<span style=color:#f92672>;</span>
+    <span style=color:#a6e22e>@Mock</span>
+    WebClient<span style=color:#f92672>.</span><span style=color:#a6e22e>ResponseSpec</span> responseSpec<span style=color:#f92672>;</span>
+    <span style=color:#a6e22e>@Mock</span>
+    Mono<span style=color:#f92672>&lt;</span>MyResponse<span style=color:#f92672>&gt;</span> mono<span style=color:#f92672>;</span>
+
+    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>mockWebClientMethodChain</span><span style=color:#f92672>(</span>MyResponse response<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>when</span><span style=color:#f92672>(</span>client<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>()).</span><span style=color:#a6e22e>thenReturn</span><span style=color:#f92672>(</span>requestHeadersUriSpec<span style=color:#f92672>);</span>
+        Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>when</span><span style=color:#f92672>(</span>requestHeadersUriSpec<span style=color:#f92672>.</span><span style=color:#a6e22e>uri</span><span style=color:#f92672>((</span>Function<span style=color:#f92672>&lt;</span>UriBuilder<span style=color:#f92672>,</span> URI<span style=color:#f92672>&gt;)</span> Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>any</span><span style=color:#f92672>())).</span><span style=color:#a6e22e>thenReturn</span><span style=color:#f92672>(</span>requestHeadersSpec<span style=color:#f92672>);</span>
+        Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>when</span><span style=color:#f92672>(</span>requestHeadersSpec<span style=color:#f92672>.</span><span style=color:#a6e22e>retrieve</span><span style=color:#f92672>()).</span><span style=color:#a6e22e>thenReturn</span><span style=color:#f92672>(</span>responseSpec<span style=color:#f92672>);</span>
+        Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>when</span><span style=color:#f92672>(</span>responseSpec<span style=color:#f92672>.</span><span style=color:#a6e22e>bodyToMono</span><span style=color:#f92672>(</span>MyResponse<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)).</span><span style=color:#a6e22e>thenReturn</span><span style=color:#f92672>(</span>mono<span style=color:#f92672>);</span>
+        Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>when</span><span style=color:#f92672>(</span>mono<span style=color:#f92672>.</span><span style=color:#a6e22e>block</span><span style=color:#f92672>()).</span><span style=color:#a6e22e>thenReturn</span><span style=color:#f92672>(</span>response<span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span>
+</code></pre></div>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0208/>テストコードのリファクタリング</a>
 </h1>
 <div class=post-meta>
