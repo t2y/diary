@@ -56,6 +56,34 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0220/>2021年度の確定申告</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-02-20
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/tax/>tax</a>&nbsp;
+#<a href=/diary/tags/docker/>docker</a>&nbsp;
+#<a href=/diary/tags/jib/>jib</a>&nbsp;
+</span>
+<div class=post-content>
+<p>0時に寝て6時に起きた。</p>
+<h2 id=確定申告>確定申告</h2>
+<p>本当は9時から受け付けなんだけど、昨年早めに行ったら受け付けしてくれたので今年も8時半ぐらいから出掛けていった。家から徒歩5分のところに特設の申告会場があって、行ったらすでに100人ぐらいは並んでいた。整理券を配るために行列を誘導している係員に「書類は作成済みで提出だけです」と伝えると「どうぞ、こちらへ」と行列をショートカットして、書類の作成会場の横にある提出会場へ案内される。朝一なので誰も提出してなくてすぐに応対してくれた。書類チェックして提出完了。会場についてから提出するまでに5分。あわせて10分もあれば確定申告できる。電子申告してもよいのだけど、寄付金の領収書の電子化が面倒なのでまだ紙で申告している。寄付金の領収書が電子化されて添付できるような手軽さになったら電子申告してもよいかもしれない。</p>
+<h2 id=github-container-action-の検証>github container action の検証</h2>
+<p><a href=https://github.com/GoogleContainerTools/jib>jib</a> という java アプリケーション向けの docker イメージをビルドするためのツールがある。お仕事で使い始めたので雰囲気を理解するために私もサンプルアプリケーションを <a href=https://github.com/t2y/jib-sample>jib-sample</a> として作ってみた。簡単に設定して java アプリケーションを docker 化できるので感触はよさそう。基本的に java アプリケーションと docker は相性が悪くて、たぶん go で開発するような用途と比較するとサイズがめちゃくちゃでかい。それでも jib を使うと作成された docker イメージのサイズも自分でビルドして作るよりは小さくしてくれる。さすが google という感じ。</p>
+<p>この jib-sample の docker イメージを使って github actions のカスタム container action を作ってみたのが <a href=https://github.com/t2y/gh-actions-container-sample>gh-actions-container-sample</a> になる。<a href=https://docs.github.com/en/actions/creating-actions/creating-a-docker-container-action>Creating a Docker container action</a> のドキュメントには Dockerfile を使ったサンプルしか紹介されていないけど、docker イメージを直接参照して利用することもできる。</p>
+<p>検証作業をしているときに jib-sample リポジトリの github packages が private 設定になっていることに気付かなくて少しはまった。リポジトリの visibility 設定と github packages の visibility 設定は連動していないのでそれぞれで別に管理しないといけない。</p>
+<p>また jib で作った docker イメージはデフォルトでは manifest を作ってくれない。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ docker manifest inspect --verbose ghcr.io/t2y/jib-sample:latest
+no such manifest: ghcr.io/t2y/jib-sample:latest
+</code></pre></div><p><a href=https://github.com/GoogleContainerTools/jib/blob/master/docs/faq.md#how-do-i-specify-a-platform-in-the-manifest-list-or-oci-index-of-a-base-image>How do I specify a platform in the manifest list (or OCI index) of a base image?</a> のドキュメントによると、manifest に platform 情報を追加するのは incubating feature らしくて、なんか条件付きで設定すれば使えそうにもみえたんだけど、私がやってみた感じだとうまくいかなかった。また必要ならもう一度調べてみる。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0219/>docker の勉強</a>
 </h1>
 <div class=post-meta>
@@ -5604,6 +5632,12 @@ new: 09/26/21 03:35:19       # LC_TIME=&quot;ja_JP.UTF-8&quot;
 <a href=/diary/posts/page/20/>
 <span class=button__icon>←</span>
 <span class=button__text>最近の日記</span>
+</a>
+</span>
+<span class="button next">
+<a href=/diary/posts/page/22/>
+<span class=button__text>過去の日記</span>
+<span class=button__icon>→</span>
 </a>
 </span>
 </div>
