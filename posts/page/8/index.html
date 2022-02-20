@@ -56,6 +56,51 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0219/>docker の勉強</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-02-19
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/life/>life</a>&nbsp;
+#<a href=/diary/tags/docker/>docker</a>&nbsp;
+#<a href=/diary/tags/github/>github</a>&nbsp;
+</span>
+<div class=post-content>
+<p>0時に寝て6時に起きた。</p>
+<h2 id=ストレッチ>ストレッチ</h2>
+<p>ここ1ヶ月ほどお仕事に集中しているのもあるけど、あまりストレッチに意識を割いていない。やるときは集中して注力するのだけど、飽きてくると怠ける性格的なところがある。とはいえ、やめずに続けているといいことがあると経験則からわかっているのでなるべく継続していきたい。今週も特別なことはなにもしていないのだけど、右足の股関節周りに張りがあってあまり調子がよくなかった。今日の開脚幅は開始前163cmで、ストレッチ後167cmで先週よりも数値が悪化している。良くなるときもあれば悪くなるときもある。毎週ストレッチを受けて計測しているとそういう気付きがあること自体、この機会は健康のために役立っているように考えている。</p>
+<h2 id=github-packages-で-docker-イメージを公開する>github packages で docker イメージを公開する</h2>
+<p>docker が流行りだした頃に勤めていた会社の貸与端末が docker 禁止だったので私は docker に乗り遅れて、これまでも誰かが用意してくれたコンテナを使うだけでよかったため、最低限の docker コマンドや docker-compose の使い方しか知らなかった。ちょうどインフラの運用を見直す過程で docker コンテナの作成方法から見直すお仕事ができたのでこの機にいろいろ勉強する。いまどき当たり前なんだろうけど、docker の <a href=https://matsuand.github.io/docs.docker.jp.onthefly/develop/develop-images/multistage-build/>マルチステージビルド</a> をやってみる。</p>
+<p>最初に go のバイナリを選択したのは間違いだったのかもしれない。go のビルド環境を作るベースイメージの選択が難しくて、ビルドはできるけど、作成したバイナリが動かないという状況にはまった。<a href=https://dev.classmethod.jp/articles/how-to-fix-standard-init-linux-error/>ECSのタスク起動時に「standard_init_linux.go」関連のエラーが出た場合の対処方法</a> であるように、いろんな不具合がある。ベースイメージの選択やビルドに必要なライブラリがないとそういうエラーになるんだと気付くまでに時間がかかった。</p>
+<p>最終的に次のような <a href=https://github.com/kazamori/go-sql-executor/blob/main/Dockerfile>Dockerfile</a> でマルチステージビルドができた。builder としてのベースイメージの選択によってやり方はいろいろ変わってくるように思える。</p>
+<pre tabindex=0><code>FROM golang:alpine as builder
+RUN apk add --no-cache git make gcc musl-dev
+WORKDIR /work
+COPY . .
+RUN go mod download
+RUN make build
+
+FROM alpine:latest
+WORKDIR /
+COPY --from=builder /work/bin/sql-executor .
+CMD [ &quot;/sql-executor&quot; ]
+</code></pre><p>Dockerfile ができたら <a href=https://docs.github.com/en/actions/publishing-packages/publishing-docker-images>Publishing Docker images</a> を読みながら github actions で自動的に docker イメージを github packages に公開する設定をやってみた。リリースを作成したときに docker イメージをビルドして公開する <a href=https://github.com/kazamori/go-sql-executor/blob/main/.github/workflows/publish.yml>workflow yml</a> を作成した。ほとんどドキュメントのまま。</p>
+<p>github actions の実行結果。</p>
+<ul>
+<li><a href="https://github.com/kazamori/go-sql-executor/runs/5258037718?check_suite_focus=true">https://github.com/kazamori/go-sql-executor/runs/5258037718?check_suite_focus=true</a></li>
+</ul>
+<p>github packages 上で公開された docker イメージ。</p>
+<ul>
+<li><a href=https://github.com/kazamori/go-sql-executor/pkgs/container/go-sql-executor>https://github.com/kazamori/go-sql-executor/pkgs/container/go-sql-executor</a></li>
+</ul>
+<p>リリースのタイミングじゃなくてコミットのタイミングでも docker イメージを生成できると思うけど、docker イメージのタグに相当するものをどう付けるかというところは工夫する必要がありそう。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0218/>予算作り</a>
 </h1>
 <div class=post-meta>
@@ -152,7 +197,7 @@ forest nook
 <div class=post-content>
 <p>1時に寝て3時過ぎに起きて6時半に起きた。</p>
 <h2 id=ふりかえり>ふりかえり</h2>
-<p>今日はスクラムのふりかえりとプランニングの日。1週間が終わり始まる。ふりかえりをしていて、2週連続でスプリントゴールが未達になって、原因を追究する空気になって、最終的にはリーダーを糾弾するみたいな雰囲気になった。昔の私だったら論理的に問題を掘り起こそうとがんばったかもしれないけど、いまはもう歳をとってスラムダンクの安西先生みたいになったのか、もしくは外部パートナーとしてのお手伝いだから真剣ではないのか、その両方かもしれないが、一歩引いたところからできなかったもんしゃーないんちゃう？みたいな心境で見守っていた。うまくできない人や状況に「なぜできなかった？」みたいに迫ると「努力が足りなかった」とか「もっとがんばります」みたいなやり取りしかならないので不毛にみえる。経営者のくせにこんなことを言うと怒られるかもしれないが、仕事なんてやりたい人やできる人が楽しめるように好き勝手やって、そうじゃない人は最低限やるとか、邪魔しないように配慮するとか、もうそれでいいんじゃないとか思ったりもしている。もう人類は会社の半分ぐらいの社員が遊んでても暮らしていけるぐらいの生産性を手に入れたと思うよ。半分は言い過ぎか。いずれにしても私はもう無理なく自分のペースで働きたいと思うようになった感じ。</p>
+<p>今日はスクラムのふりかえりとプランニングの日。1週間が終わり始まる。ふりかえりをしていて、2週連続でスプリントゴールが未達になって、原因を追求する空気になって、最終的にはリーダーを糾弾するみたいな雰囲気になった。昔の私だったら論理的に問題を掘り起こそうとがんばったかもしれないけど、いまはもう歳をとってスラムダンクの安西先生みたいになったのか、もしくは外部パートナーとしてのお手伝いだから真剣ではないのか、その両方かもしれないが、一歩引いたところからできなかったもんしゃーないんちゃう？みたいな心境で見守っていた。うまくできない人や状況に「なぜできなかった？」みたいに迫ると「努力が足りなかった」とか「もっとがんばります」みたいなやり取りしかならないので不毛にみえる。経営者のくせにこんなことを言うと怒られるかもしれないが、仕事なんてやりたい人やできる人が楽しめるように好き勝手やって、そうじゃない人は最低限やるとか、邪魔しないように配慮するとか、もうそれでいいんじゃないとか思ったりもしている。もう人類は会社の半分ぐらいの社員が遊んでても暮らしていけるぐらいの生産性を手に入れたと思うよ。半分は言い過ぎか。いずれにしても私はもう無理なく自分のペースで働きたいと思うようになった感じ。</p>
 <h2 id=backlog-の管理者権限>backlog の管理者権限</h2>
 <p>お手伝い先で <a href=https://backlog.com/ja/>backlog</a> を課題管理システムに使っている。私は課題管理システムのスペシャリストとして、ああしたい、こうしたいといくつも注文を付けて、チームの開発やワークフローを改善している。これまでは管理者権限がなかったのでもっている人に依頼するしかなかったけど、そろそろ私の相手をするのが面倒くさくなってきたのか、私にも backlog の設定を変更する管理者権限をもらえた。さっそくカスタム属性をいくつか作って実験的な検証をしていた。カスタム属性は backlog のフリープランでは使えない機能なので、お手伝い先の実地で用途や振る舞いを検証するしかない。同じプロジェクトでも種別ごとにカスタム属性の設定有無を切り分けられる機能があって、この機能は他の課題管理システムでみたことがない実用的で珍しい機能だと思った。チケットに PR とコミットのカスタム属性を追加して、github actions でコミットや PR のタイミングでそれらの属性に URL を追加すれば github 連携もできそうな気がしてきたところ。週末に時間があったら作ってみる。</p>
 </div>
