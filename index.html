@@ -57,6 +57,37 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0223/>java アプリケーションの継続的デリバリー</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-02-23
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/ci/cd/>ci/cd</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#snapshot-jar-と継続的デリバリー>snapshot jar と継続的デリバリー</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>0時に寝て3時に起きた6時ぐらいまでだらだらして寝て7時に起きた。</p>
+<h2 id=snapshot-jar-と継続的デリバリー>snapshot jar と継続的デリバリー</h2>
+<p>昨日 <a href=/diary/posts/2022/0222/#jar-ファイルと-git-のリビジョン>jar に git のリビジョン番号を含める</a> ことについて書いた。jar から git のリビジョン番号を取得できれば、docker イメージを生成するときに <a href=https://docs.docker.com/config/labels-custom-metadata/>labels</a> に jar の artifact id と git のリビジョン番号のラベルを追加して、docker イメージからもソースコードの追跡ができるようになる。いまデプロイは docker イメージのみで運用しているため、maven のバージョン管理ができなくても docker イメージの追跡可能性さえあれば現実の運用で問題にならないのではないかと考えた。つまり、snapshot jar で開発したものをそのまま本番環境にデプロイするということを意味する。こうすれば特定のバージョン番号を付けるだけのビルドとデプロイが不要になって、テスト環境にデプロイされた docker イメージのテストを完了すれば、そのイメージをいつでも本番環境にデプロイできるようになる。デプロイするタイミングでビルドする必要がなくなるので継続的デリバリーに近づくのではないかと考えた。</p>
+<p>今日、開発の偉い人やインフラ担当者も含めて、みんなでわいわい打ち合わせして、現状の開発では、インターフェースや互換性の変更にあわせてバージョン番号を付けていないし、古いバージョンに戻すことも現実にはなく、保守は常に最新のリビジョンを更新していくから maven でバージョン管理できなくなっても snapshot jar の運用でがんがん開発していけばいいんちゃうという合意を得られた。</p>
+<p>実際にこのやり方がうまくいくかどうか、私も初めての試みなのでやってみないとわからないが、この運用によるワークフローの効率化のメリットも大きいので、引き続き、イニシアティブをもって取り組んでいきたい。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0222/>jar のマニフェストファイル</a>
 </h1>
 <div class=post-meta>
@@ -342,38 +373,6 @@ CMD [ &quot;/sql-executor&quot; ]
         Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>when</span><span style=color:#f92672>(</span>mono<span style=color:#f92672>.</span><span style=color:#a6e22e>block</span><span style=color:#f92672>()).</span><span style=color:#a6e22e>thenReturn</span><span style=color:#f92672>(</span>response<span style=color:#f92672>);</span>
     <span style=color:#f92672>}</span>
 </code></pre></div>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0216/>ふりかえりとプランニング</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-02-16
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/scrum/>scrum</a>&nbsp;
-#<a href=/diary/tags/ssue-tracking-system/>ssue tracking system</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#ふりかえり>ふりかえり</a></li>
-<li><a href=#backlog-の管理者権限>backlog の管理者権限</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>1時に寝て3時過ぎに起きて6時半に起きた。</p>
-<h2 id=ふりかえり>ふりかえり</h2>
-<p>今日はスクラムのふりかえりとプランニングの日。1週間が終わり始まる。ふりかえりをしていて、2週連続でスプリントゴールが未達になって、原因を追求する空気になって、最終的にはリーダーを糾弾するみたいな雰囲気になった。昔の私だったら論理的に問題を掘り起こそうとがんばったかもしれないけど、いまはもう歳をとってスラムダンクの安西先生みたいになったのか、もしくは外部パートナーとしてのお手伝いだから真剣ではないのか、その両方かもしれないが、一歩引いたところからできなかったもんしゃーないんちゃう？みたいな心境で見守っていた。うまくできない人や状況に「なぜできなかった？」みたいに迫ると「努力が足りなかった」とか「もっとがんばります」みたいなやり取りしかならないので不毛にみえる。経営者のくせにこんなことを言うと怒られるかもしれないが、仕事なんてやりたい人やできる人が楽しめるように好き勝手やって、そうじゃない人は最低限やるとか、邪魔しないように配慮するとか、もうそれでいいんじゃないとか思ったりもしている。もう人類は会社の半分ぐらいの社員が遊んでても暮らしていけるぐらいの生産性を手に入れたと思うよ。半分は言い過ぎか。いずれにしても私はもう無理なく自分のペースで働きたいと思うようになった感じ。</p>
-<h2 id=backlog-の管理者権限>backlog の管理者権限</h2>
-<p>お手伝い先で <a href=https://backlog.com/ja/>backlog</a> を課題管理システムに使っている。私は課題管理システムのスペシャリストとして、ああしたい、こうしたいといくつも注文を付けて、チームの開発やワークフローを改善している。これまでは管理者権限がなかったのでもっている人に依頼するしかなかったけど、そろそろ私の相手をするのが面倒くさくなってきたのか、私にも backlog の設定を変更する管理者権限をもらえた。さっそくカスタム属性をいくつか作って実験的な検証をしていた。カスタム属性は backlog のフリープランでは使えない機能なので、お手伝い先の実地で用途や振る舞いを検証するしかない。同じプロジェクトでも種別ごとにカスタム属性の設定有無を切り分けられる機能があって、この機能は他の課題管理システムでみたことがない実用的で珍しい機能だと思った。チケットに PR とコミットのカスタム属性を追加して、github actions でコミットや PR のタイミングでそれらの属性に URL を追加すれば github 連携もできそうな気がしてきたところ。週末に時間があったら作ってみる。</p>
 </div>
 </div>
 <div class=pagination>
