@@ -57,6 +57,35 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0224/>継続的デリバリーへの第一歩</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-02-24
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/ci/cd/>ci/cd</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#docker-object-labels-と-git-リビジョン>docker object labels と git リビジョン</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>0時に寝て6時に起きた。</p>
+<h2 id=docker-object-labels-と-git-リビジョン>docker object labels と git リビジョン</h2>
+<p>継続的デリバリーのために snapshot jar のマニフェストから取得した git のリビジョンを docker イメージの <a href=https://docs.docker.com/config/labels-custom-metadata/>labels</a> に追加するサンプルコードを <a href=https://github.com/t2y/jib-sample>jib-sample</a> に実装してみた。jib の gradle プラグインを作って簡略化すれば便利かもしれない。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0223/>java アプリケーションの継続的デリバリー</a>
 </h1>
 <div class=post-meta>
@@ -79,7 +108,7 @@ forest nook
 </nav>
 </div>
 <div class=post-content>
-<p>0時に寝て3時に起きた6時ぐらいまでだらだらして寝て7時に起きた。</p>
+<p>0時に寝て3時に起きて6時ぐらいまでだらだらして寝て7時に起きた。</p>
 <h2 id=snapshot-jar-と継続的デリバリー>snapshot jar と継続的デリバリー</h2>
 <p>昨日 <a href=/diary/posts/2022/0222/#jar-ファイルと-git-のリビジョン>jar に git のリビジョン番号を含める</a> ことについて書いた。jar から git のリビジョン番号を取得できれば、docker イメージを生成するときに <a href=https://docs.docker.com/config/labels-custom-metadata/>labels</a> に jar の artifact id と git のリビジョン番号のラベルを追加して、docker イメージからもソースコードの追跡ができるようになる。いまデプロイは docker イメージのみで運用しているため、maven のバージョン管理ができなくても docker イメージの追跡可能性さえあれば現実の運用で問題にならないのではないかと考えた。つまり、snapshot jar で開発したものをそのまま本番環境にデプロイするということを意味する。こうすれば特定のバージョン番号を付けるだけのビルドとデプロイが不要になって、テスト環境にデプロイされた docker イメージのテストを完了すれば、そのイメージをいつでも本番環境にデプロイできるようになる。デプロイするタイミングでビルドする必要がなくなるので継続的デリバリーに近づくのではないかと考えた。</p>
 <p>今日、開発の偉い人やインフラ担当者も含めて、みんなでわいわい打ち合わせして、現状の開発では、インターフェースや互換性の変更にあわせてバージョン番号を付けていないし、古いバージョンに戻すことも現実にはなく、保守は常に最新のリビジョンを更新していくから maven でバージョン管理できなくなっても snapshot jar の運用でがんがん開発していけばいいんちゃうという合意を得られた。</p>
@@ -314,65 +343,6 @@ CMD [ &quot;/sql-executor&quot; ]
 </ol>
 <p>はらさんから役員報酬を下げてはどうか？という提案もあったけど、これは却下しようと思う。もともと役員報酬は高くないし、役員報酬を下げると必然的に健康保険や社会保険の再計算やそれらに関連する事務手続きが発生する。いま私は会計士も税理士も雇わず自分ですべてやっているのだけど、専門家に依頼するにしろ、自分でやるにしろ、経費を下げるために別の経費を発生させてしまう。これは本末転倒な気がしてやりたくない。</p>
 <p>したがって、お仕事の単価をあげる交渉からまず始めることにする。私はずっと開発者で働いてきたから交渉ごとはほとんど経験がない。交渉の経験を積むという側面でも自分のキャリアにとって新しい取り組みになってよいと考えている。次の契約更新は3月末になるのでそれまでに交渉のための準備を進めていく。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0217/>Mockito を触ってみた</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-02-17
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/java/>java</a>&nbsp;
-#<a href=/diary/tags/mock/>mock</a>&nbsp;
-#<a href=/diary/tags/testing/>testing</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#mockito-のモック作成>Mockito のモック作成</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>0時に寝て4時に起きて6時に起きた。6時過ぎに slack でインフラ担当者から作業の報告があってその対応してた。</p>
-<h2 id=mockito-のモック作成>Mockito のモック作成</h2>
-<p><a href=https://www.baeldung.com/spring-5-webclient>Spring 5 WebClient</a> のテストコードを書いてみた。<a href=https://site.mockito.org/>Mockito</a> というモックライブラリを使っているのをみかけたのでそれを使うことにした。当初は WebClient そのもののモックを用意して、どんなメソッドを呼び出しても Null オブジェクトのように無視すればいいんじゃないかと思ってたんだけど、Mockito はそういう用途に使うものではなく、それぞれのメソッドごとにモックを返すような設定ができる。次のような WebClient のメソッドチェーンでリクエストするようなモックを考える。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>var response <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>client</span>
-        <span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>()</span>
-        <span style=color:#f92672>.</span><span style=color:#a6e22e>uri</span><span style=color:#f92672>(</span>uriBuilder <span style=color:#f92672>-&gt;</span> uriBuilder
-                <span style=color:#f92672>.</span><span style=color:#a6e22e>path</span><span style=color:#f92672>(</span>path<span style=color:#f92672>)</span>
-                <span style=color:#f92672>.</span><span style=color:#a6e22e>queryParam</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;param&#34;</span><span style=color:#f92672>,</span> param<span style=color:#f92672>)</span>
-                <span style=color:#f92672>.</span><span style=color:#a6e22e>build</span><span style=color:#f92672>())</span>
-        <span style=color:#f92672>.</span><span style=color:#a6e22e>retrieve</span><span style=color:#f92672>()</span>
-        <span style=color:#f92672>.</span><span style=color:#a6e22e>bodyToMono</span><span style=color:#f92672>(</span>MyResponse<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)</span>
-        <span style=color:#f92672>.</span><span style=color:#a6e22e>block</span><span style=color:#f92672>();</span>
-</code></pre></div><p>他にもっとよいやり方があるかもしれないけど、私がよくわかってなくてこんなやり方しかできなかった。最終的には <code>block()</code> を呼び出したときに任意のレスポンスを取得できればよいのだけど、メソッド単位にモックを呼び出していかないと型チェックやら実行時エラーやらで意図したようにテストできなかった。これだけをみたらメソッドチェーンのモック作りは面倒にみえる。Mockito がどうやってこれを実現しているのかわからないけど、すごい仕組みだなとは思った。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    <span style=color:#a6e22e>@MockBean</span>
-    WebClient client<span style=color:#f92672>;</span>
-    <span style=color:#a6e22e>@Mock</span>
-    WebClient<span style=color:#f92672>.</span><span style=color:#a6e22e>RequestHeadersUriSpec</span> requestHeadersUriSpec<span style=color:#f92672>;</span>
-    <span style=color:#a6e22e>@Mock</span>
-    WebClient<span style=color:#f92672>.</span><span style=color:#a6e22e>RequestHeadersSpec</span> requestHeadersSpec<span style=color:#f92672>;</span>
-    <span style=color:#a6e22e>@Mock</span>
-    WebClient<span style=color:#f92672>.</span><span style=color:#a6e22e>ResponseSpec</span> responseSpec<span style=color:#f92672>;</span>
-    <span style=color:#a6e22e>@Mock</span>
-    Mono<span style=color:#f92672>&lt;</span>MyResponse<span style=color:#f92672>&gt;</span> mono<span style=color:#f92672>;</span>
-
-    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>mockWebClientMethodChain</span><span style=color:#f92672>(</span>MyResponse response<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-        Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>when</span><span style=color:#f92672>(</span>client<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>()).</span><span style=color:#a6e22e>thenReturn</span><span style=color:#f92672>(</span>requestHeadersUriSpec<span style=color:#f92672>);</span>
-        Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>when</span><span style=color:#f92672>(</span>requestHeadersUriSpec<span style=color:#f92672>.</span><span style=color:#a6e22e>uri</span><span style=color:#f92672>((</span>Function<span style=color:#f92672>&lt;</span>UriBuilder<span style=color:#f92672>,</span> URI<span style=color:#f92672>&gt;)</span> Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>any</span><span style=color:#f92672>())).</span><span style=color:#a6e22e>thenReturn</span><span style=color:#f92672>(</span>requestHeadersSpec<span style=color:#f92672>);</span>
-        Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>when</span><span style=color:#f92672>(</span>requestHeadersSpec<span style=color:#f92672>.</span><span style=color:#a6e22e>retrieve</span><span style=color:#f92672>()).</span><span style=color:#a6e22e>thenReturn</span><span style=color:#f92672>(</span>responseSpec<span style=color:#f92672>);</span>
-        Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>when</span><span style=color:#f92672>(</span>responseSpec<span style=color:#f92672>.</span><span style=color:#a6e22e>bodyToMono</span><span style=color:#f92672>(</span>MyResponse<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)).</span><span style=color:#a6e22e>thenReturn</span><span style=color:#f92672>(</span>mono<span style=color:#f92672>);</span>
-        Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>when</span><span style=color:#f92672>(</span>mono<span style=color:#f92672>.</span><span style=color:#a6e22e>block</span><span style=color:#f92672>()).</span><span style=color:#a6e22e>thenReturn</span><span style=color:#f92672>(</span>response<span style=color:#f92672>);</span>
-    <span style=color:#f92672>}</span>
-</code></pre></div>
 </div>
 </div>
 <div class=pagination>
