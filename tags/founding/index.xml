@@ -1,4 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>founding on forest nook</title><link>/diary/tags/founding/</link><description>Recent content in founding on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Fri, 18 Feb 2022 07:53:46 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/founding/index.xml" rel="self" type="application/rss+xml"/><item><title>予算作り</title><link>/diary/posts/2022/0218/</link><pubDate>Fri, 18 Feb 2022 07:53:46 +0900</pubDate><guid>/diary/posts/2022/0218/</guid><description>23時に寝て1時半に起きてそのまま断続的に寝て起きての繰り返しで6時に起きた。本当は非稼働日だけど、昨日作った pr の機能を検証するための環境を用意してもらったのでそれを動かしたら要件漏れに気付いてその改修をやってた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>founding on forest nook</title><link>/diary/tags/founding/</link><description>Recent content in founding on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sun, 27 Feb 2022 15:38:22 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/founding/index.xml" rel="self" type="application/rss+xml"/><item><title>ウクライナ情勢</title><link>/diary/posts/2022/0227/</link><pubDate>Sun, 27 Feb 2022 15:38:22 +0900</pubDate><guid>/diary/posts/2022/0227/</guid><description>0時に寝て7時に起きた。アニメみたりドラクエタクトしたりして11時ぐらいまでだらだらしてた。
+保険料率の変更 毎年、社会保険の保険料率が変更されるのでその保険料の計算をして反映しないといけない。多くの会社は3月度の保険料は翌月払いとなるので4月からの反映となるが、うちの会社は当月締めの当月払いなので3月から反映させないといけない。
+健康保険料率: 10.24% → 10.13% 介護保険料率: 1.80% → 1.64% 協会けんぽの来期の保険料率は下がるみたい。毎年少しずつ上がっていく一方だと思っていたのでそういうこともあるんだなという印象。
+ウクライナ情勢 タイムラインを眺めていると、否応でもウクライナ情勢のニュースやコメントが流れてきてなんとなくみてしまって作業の手がつかなくなってしまった。早めに帰って仕切り直そうとしたけど、精神的に疲れてしまって休んでいた。sns の功罪はいろいろあるけど、ネガティブな情報にたくさん触れるのはなかなかしんどいな。何だったかもう忘れたけど、前にもこんなことがあった気がする。そういうときは sns を見ない方がよいのだろうけど、何もしないでいると気になってついつい見てしまう。情報があり過ぎることも問題なんだなとつくづく実感する。</description><content>&lt;p>0時に寝て7時に起きた。アニメみたりドラクエタクトしたりして11時ぐらいまでだらだらしてた。&lt;/p>
+&lt;h2 id="保険料率の変更">保険料率の変更&lt;/h2>
+&lt;p>毎年、社会保険の保険料率が変更されるのでその保険料の計算をして反映しないといけない。多くの会社は3月度の保険料は翌月払いとなるので4月からの反映となるが、うちの会社は当月締めの当月払いなので3月から反映させないといけない。&lt;/p>
+&lt;ul>
+&lt;li>健康保険料率: 10.24% → 10.13%&lt;/li>
+&lt;li>介護保険料率: 1.80% → 1.64%&lt;/li>
+&lt;/ul>
+&lt;p>協会けんぽの来期の保険料率は下がるみたい。毎年少しずつ上がっていく一方だと思っていたのでそういうこともあるんだなという印象。&lt;/p>
+&lt;h2 id="ウクライナ情勢">ウクライナ情勢&lt;/h2>
+&lt;p>タイムラインを眺めていると、否応でもウクライナ情勢のニュースやコメントが流れてきてなんとなくみてしまって作業の手がつかなくなってしまった。早めに帰って仕切り直そうとしたけど、精神的に疲れてしまって休んでいた。sns の功罪はいろいろあるけど、ネガティブな情報にたくさん触れるのはなかなかしんどいな。何だったかもう忘れたけど、前にもこんなことがあった気がする。そういうときは sns を見ない方がよいのだろうけど、何もしないでいると気になってついつい見てしまう。情報があり過ぎることも問題なんだなとつくづく実感する。&lt;/p></content></item><item><title>予算作り</title><link>/diary/posts/2022/0218/</link><pubDate>Fri, 18 Feb 2022 07:53:46 +0900</pubDate><guid>/diary/posts/2022/0218/</guid><description>23時に寝て1時半に起きてそのまま断続的に寝て起きての繰り返しで6時に起きた。本当は非稼働日だけど、昨日作った pr の機能を検証するための環境を用意してもらったのでそれを動かしたら要件漏れに気付いてその改修をやってた。
 隔週の雑談 顧問のはらさんと隔週の打ち合わせの日。今日の議題は2つ。
 見積もりの雑談 先日、見積もりについての 私の考え を整理した。それについて第3者の意見も聞いてみたいと考えた。
 いろいろ雑談したけど、結論としてはバーンダウンチャートもストーリーポイントも運用が形骸化したら役に立たないという当たり前の話しになった。従来の期限や工数を見積もる方法と比較して得られるメリットはそう多くないという私の印象である。ストーリーポイントが優れている唯一の点は、タスクの見積もりについて話し合う場ができるという、その機会そのものがあげられる。その機会を使ってメンバーとの情報共有や教育の場にもできるという点がある。それ以外のところでストーリーポイントのメリットはさしてないと私は感じた。
