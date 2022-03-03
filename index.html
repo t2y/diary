@@ -57,6 +57,73 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0301/>github apps を調べた</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-03-01
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/github/>github</a>&nbsp;
+#<a href=/diary/tags/auth/>auth</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#oauth-apps-と-github-apps>oauth apps と github apps</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>23時に寝て5時半に起きた。何度か夜中にも起きた。起きてからドラクエタクトやってた。</p>
+<h2 id=oauth-apps-と-github-apps>oauth apps と github apps</h2>
+<p>いまお仕事で ci/cd の改善をやっていて、その一環としてリポジトリをまたがったパイプライン処理を検討している。
+ci/cd で使うような認可の仕組みとして github には oauth apps と github apps の2種類がある。</p>
+<ul>
+<li><a href=https://docs.github.com/en/developers/apps/building-oauth-apps>Building OAuth Apps</a></li>
+<li><a href=https://docs.github.com/en/developers/apps/building-github-apps>Building GitHub Apps</a></li>
+</ul>
+<p>私はどちらも全く関わったことがなかったので、仕組みがイメージできる oauth apps を使えばよいのだろうと調べ始めた。しかし、一通り調べてみて会社の開発における ci/cd に使うなら github apps の方が適していることがわかった。両者がどう違うのかもドキュメントに記載されている。最初にこのドキュメントを読めば oauth apps を調査する必要はなかった。</p>
+<ul>
+<li><a href=https://docs.github.com/en/developers/apps/getting-started-with-apps/differences-between-github-apps-and-oauth-apps>Differences between GitHub Apps and OAuth Apps</a></li>
+</ul>
+<p>具体的には、oauth apps は user の権限を認可する仕組みで、github apps は organization の権限を認可する仕組みと言える。github apps も oauth によるユーザー認証もできる上にアプリ自身の認証もできる。さらにアクセスできるリポジトリも制限できることから github actions などで、特定のリポジトリに対してのみアクセス可能なトークンを取得するには github apps の方が向くというわけだ。取得できる token の有効期限にもその考え方の違いが出ている。</p>
+<ul>
+<li>oauth apps
+<ul>
+<li>ユーザー/デバイス認証
+<ul>
+<li>認可コード: 15分</li>
+<li>アクセストークン: 無期限</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>github apps
+<ul>
+<li>installation 認証
+<ul>
+<li>jwt: 10分</li>
+<li>installation トークン: 1時間</li>
+</ul>
+</li>
+<li>ユーザー/デバイス認証
+<ul>
+<li>認可コード: 15分</li>
+<li>アクセストークン: 8時間</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0228/>kustomize の動的な設定</a>
 </h1>
 <div class=post-meta>
@@ -259,64 +326,6 @@ forest nook
 <p>昨日 <a href=/diary/posts/2022/0222/#jar-ファイルと-git-のリビジョン>jar に git のリビジョン番号を含める</a> ことについて書いた。jar から git のリビジョン番号を取得できれば、docker イメージを生成するときに <a href=https://docs.docker.com/config/labels-custom-metadata/>labels</a> に jar の artifact id と git のリビジョン番号のラベルを追加して、docker イメージからもソースコードの追跡ができるようになる。いまデプロイは docker イメージのみで運用しているため、maven のバージョン管理ができなくても docker イメージの追跡可能性さえあれば現実の運用で問題にならないのではないかと考えた。つまり、snapshot jar で開発したものをそのまま本番環境にデプロイするということを意味する。こうすれば特定のバージョン番号を付けるだけのビルドとデプロイが不要になって、テスト環境にデプロイされた docker イメージのテストを完了すれば、そのイメージをいつでも本番環境にデプロイできるようになる。デプロイするタイミングでビルドする必要がなくなるので継続的デリバリーに近づくのではないかと考えた。</p>
 <p>今日、開発の偉い人やインフラ担当者も含めて、みんなでわいわい打ち合わせして、現状の開発では、インターフェースや互換性の変更にあわせてバージョン番号を付けていないし、古いバージョンに戻すことも現実にはなく、保守は常に最新のリビジョンを更新していくから maven でバージョン管理できなくなっても snapshot jar の運用でがんがん開発していけばいいんちゃうという合意を得られた。</p>
 <p>実際にこのやり方がうまくいくかどうか、私も初めての試みなのでやってみないとわからないが、この運用によるワークフローの効率化のメリットも大きいので、引き続き、イニシアティブをもって取り組んでいきたい。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0222/>jar のマニフェストファイル</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-02-22
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/java/>java</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#jar-ファイルと-git-のリビジョン>jar ファイルと git のリビジョン</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>0時に寝て3時に起きて5時に起きて6時半に起きた。</p>
-<h2 id=jar-ファイルと-git-のリビジョン>jar ファイルと git のリビジョン</h2>
-<p>java パッケージのフォーマットとして jar ファイルがある。開発中の jar ファイルは snapshot という特別なバージョンで管理したりするが、この snapshot と git のリビジョンが対応していないので snapshot jar だけではどのリビジョンのソースからビルドされたかがわからない。jar には <a href=https://docs.oracle.com/javase/10/docs/specs/jar/jar.html>JAR File Specification</a> で定義された <code>META-INF/MANIFEST.MF</code> に任意のメタデータを保持できる。maven なら <a href=https://github.com/git-commit-id/git-commit-id-maven-plugin>maven git commit id plugin</a> と <a href=https://github.com/apache/maven-jar-plugin>Apache Maven JAR Plugin</a> を組み合わせれば、ビルド設定だけで git のリポジトリ情報を任意のメタデータとして jar に含めることができる。試しにプラグインの検証も兼ねてやってみた。例えば、次のようなマニフェストを作れる。</p>
-<pre tabindex=0><code>Manifest-Version: 1.0
-Created-By: Apache Maven 3.6.3
-Built-By: t2y
-Build-Jdk: 11.0.13
-Specification-Title: My Nice Product
-Specification-Version: 1.0
-Artifact-Id: my-product
-Build-Time: 2022-02-21T11:39:07Z
-Git-Branch: main
-Git-Commit-Id: 81a4642
-Git-Commit-Time: 2022-02-21T19:39:30+0900
-Git-Commit-User: Tetsuya Morimoto
-</code></pre><p>java のコードからマニフェストを取得するサンプルコードはこんな感じ。ググるといくつかやり方があるようなので他の実装もある。但し、このコードだと複数の jar のマニフェストを取得してしまうので、あとで自分がみたい jar のマニフェストをフィルターする処理が必要になる。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> String MANIFEST_PATH <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;META-INF/MANIFEST.MF&#34;</span><span style=color:#f92672>;</span>
-
-<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> Map<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>,</span> Manifest<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>getManifests</span><span style=color:#f92672>()</span> <span style=color:#66d9ef>throws</span> IOException<span style=color:#f92672>,</span> URISyntaxException <span style=color:#f92672>{</span>
-    var map <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> HashMap<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>,</span> Manifest<span style=color:#f92672>&gt;();</span>
-    var resources <span style=color:#f92672>=</span> MyUtil<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getClassLoader</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getResources</span><span style=color:#f92672>(</span>MANIFEST_PATH<span style=color:#f92672>);</span>
-    <span style=color:#66d9ef>while</span> <span style=color:#f92672>(</span>resources<span style=color:#f92672>.</span><span style=color:#a6e22e>hasMoreElements</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
-        var elem <span style=color:#f92672>=</span> resources<span style=color:#f92672>.</span><span style=color:#a6e22e>nextElement</span><span style=color:#f92672>();</span>
-        var part <span style=color:#f92672>=</span> elem<span style=color:#f92672>.</span><span style=color:#a6e22e>toURI</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getSchemeSpecificPart</span><span style=color:#f92672>();</span>
-        <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>part <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-            <span style=color:#66d9ef>try</span> <span style=color:#f92672>(</span>var stream <span style=color:#f92672>=</span> elem<span style=color:#f92672>.</span><span style=color:#a6e22e>openStream</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
-                map<span style=color:#f92672>.</span><span style=color:#a6e22e>put</span><span style=color:#f92672>(</span>part<span style=color:#f92672>,</span> <span style=color:#66d9ef>new</span> Manifest<span style=color:#f92672>(</span>stream<span style=color:#f92672>));</span>
-            <span style=color:#f92672>}</span>
-        <span style=color:#f92672>}</span>
-    <span style=color:#f92672>}</span>
-    <span style=color:#66d9ef>return</span> map<span style=color:#f92672>;</span>
-<span style=color:#f92672>}</span>
-</code></pre></div>
 </div>
 </div>
 <div class=pagination>

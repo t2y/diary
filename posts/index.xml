@@ -1,4 +1,48 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on forest nook</title><link>/diary/posts/</link><description>Recent content in Posts on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Mon, 28 Feb 2022 08:11:25 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>kustomize の動的な設定</title><link>/diary/posts/2022/0228/</link><pubDate>Mon, 28 Feb 2022 08:11:25 +0900</pubDate><guid>/diary/posts/2022/0228/</guid><description>23時に寝て2時に起きてそこから断続的に寝たり起きたりを繰り返して6時に半に起きた。ウクライナ情勢のニュースや記事ばかり読んでてあてられた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on forest nook</title><link>/diary/posts/</link><description>Recent content in Posts on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Tue, 01 Mar 2022 07:56:36 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>github apps を調べた</title><link>/diary/posts/2022/0301/</link><pubDate>Tue, 01 Mar 2022 07:56:36 +0900</pubDate><guid>/diary/posts/2022/0301/</guid><description>23時に寝て5時半に起きた。何度か夜中にも起きた。起きてからドラクエタクトやってた。
+oauth apps と github apps いまお仕事で ci/cd の改善をやっていて、その一環としてリポジトリをまたがったパイプライン処理を検討している。 ci/cd で使うような認可の仕組みとして github には oauth apps と github apps の2種類がある。
+Building OAuth Apps Building GitHub Apps 私はどちらも全く関わったことがなかったので、仕組みがイメージできる oauth apps を使えばよいのだろうと調べ始めた。しかし、一通り調べてみて会社の開発における ci/cd に使うなら github apps の方が適していることがわかった。両者がどう違うのかもドキュメントに記載されている。最初にこのドキュメントを読めば oauth apps を調査する必要はなかった。
+Differences between GitHub Apps and OAuth Apps 具体的には、oauth apps は user の権限を認可する仕組みで、github apps は organization の権限を認可する仕組みと言える。github apps も oauth によるユーザー認証もできる上にアプリ自身の認証もできる。さらにアクセスできるリポジトリも制限できることから github actions などで、特定のリポジトリに対してのみアクセス可能なトークンを取得するには github apps の方が向くというわけだ。取得できる token の有効期限にもその考え方の違いが出ている。
+oauth apps ユーザー/デバイス認証 認可コード: 15分 アクセストークン: 無期限 github apps installation 認証 jwt: 10分 installation トークン: 1時間 ユーザー/デバイス認証 認可コード: 15分 アクセストークン: 8時間</description><content>&lt;p>23時に寝て5時半に起きた。何度か夜中にも起きた。起きてからドラクエタクトやってた。&lt;/p>
+&lt;h2 id="oauth-apps-と-github-apps">oauth apps と github apps&lt;/h2>
+&lt;p>いまお仕事で ci/cd の改善をやっていて、その一環としてリポジトリをまたがったパイプライン処理を検討している。
+ci/cd で使うような認可の仕組みとして github には oauth apps と github apps の2種類がある。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.github.com/en/developers/apps/building-oauth-apps">Building OAuth Apps&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.github.com/en/developers/apps/building-github-apps">Building GitHub Apps&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>私はどちらも全く関わったことがなかったので、仕組みがイメージできる oauth apps を使えばよいのだろうと調べ始めた。しかし、一通り調べてみて会社の開発における ci/cd に使うなら github apps の方が適していることがわかった。両者がどう違うのかもドキュメントに記載されている。最初にこのドキュメントを読めば oauth apps を調査する必要はなかった。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.github.com/en/developers/apps/getting-started-with-apps/differences-between-github-apps-and-oauth-apps">Differences between GitHub Apps and OAuth Apps&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>具体的には、oauth apps は user の権限を認可する仕組みで、github apps は organization の権限を認可する仕組みと言える。github apps も oauth によるユーザー認証もできる上にアプリ自身の認証もできる。さらにアクセスできるリポジトリも制限できることから github actions などで、特定のリポジトリに対してのみアクセス可能なトークンを取得するには github apps の方が向くというわけだ。取得できる token の有効期限にもその考え方の違いが出ている。&lt;/p>
+&lt;ul>
+&lt;li>oauth apps
+&lt;ul>
+&lt;li>ユーザー/デバイス認証
+&lt;ul>
+&lt;li>認可コード: 15分&lt;/li>
+&lt;li>アクセストークン: 無期限&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>github apps
+&lt;ul>
+&lt;li>installation 認証
+&lt;ul>
+&lt;li>jwt: 10分&lt;/li>
+&lt;li>installation トークン: 1時間&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>ユーザー/デバイス認証
+&lt;ul>
+&lt;li>認可コード: 15分&lt;/li>
+&lt;li>アクセストークン: 8時間&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul></content></item><item><title>kustomize の動的な設定</title><link>/diary/posts/2022/0228/</link><pubDate>Mon, 28 Feb 2022 08:11:25 +0900</pubDate><guid>/diary/posts/2022/0228/</guid><description>23時に寝て2時に起きてそこから断続的に寝たり起きたりを繰り返して6時に半に起きた。ウクライナ情勢のニュースや記事ばかり読んでてあてられた。
 kustomize の動的な設定 kustomize で管理している image のタグをデプロイ処理の中で動的に変更したい。パラメーター渡しなり環境変数なり、なにかしらあるだろうとは予測している。Demo: change image names and tags のサンプルによると、次のように実行すればよいみたい。
 $ kustomize edit set image busybox=alpine:3.6 次のような kustomization.yaml をセットしてくれるみたい。
 images: - name: busybox newName: alpine newTag: 3.6 タグのところをリビジョン指定できればいいだけなのでとくに SECRET を使う必要もない。このやり方で書き換えた newTag が POD のデプロイ対象になってくれればよいはず。</description><content>&lt;p>23時に寝て2時に起きてそこから断続的に寝たり起きたりを繰り返して6時に半に起きた。ウクライナ情勢のニュースや記事ばかり読んでてあてられた。&lt;/p>
