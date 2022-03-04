@@ -1,4 +1,33 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>event on forest nook</title><link>/diary/tags/event/</link><description>Recent content in event on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sat, 12 Feb 2022 10:30:35 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/event/index.xml" rel="self" type="application/rss+xml"/><item><title>mysql のデータ移行</title><link>/diary/posts/2022/0212/</link><pubDate>Sat, 12 Feb 2022 10:30:35 +0900</pubDate><guid>/diary/posts/2022/0212/</guid><description>23時に寝て2時前に起きて5時に起きて8時に起きた。あんまり眠れなくなってきた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>event on forest nook</title><link>/diary/tags/event/</link><description>Recent content in event on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Wed, 02 Mar 2022 13:28:44 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/event/index.xml" rel="self" type="application/rss+xml"/><item><title>シェルスクリプトも進化する</title><link>/diary/posts/2022/0302/</link><pubDate>Wed, 02 Mar 2022 13:28:44 +0900</pubDate><guid>/diary/posts/2022/0302/</guid><description>23時に寝て2時に起きて6時に起きた。
+シェルスクリプト再考 久しぶりにシュルスクリプトを書いていて、ユーティリティ関数をうまいこと実装できないかを調べていたら nameref という仕組みが bash 4.3 以降で使えるらしい。私の bash 環境は 5.0.17 なので、bash 5 以上という制約にしてしまってもよいだろうと思う。例えば、こんなことができる。シェルスクリプトで split を実装するの面倒よね。
+function split() { local -n arr=&amp;#34;$1&amp;#34; local values=&amp;#34;$2&amp;#34; local sep=&amp;#34;${3:-,}&amp;#34; IFS=&amp;#34;${sep}&amp;#34; read -a arr &amp;lt;&amp;lt;&amp;lt; $(echo &amp;#34;$values&amp;#34; | tr -d &amp;#39;[:space:]&amp;#39;) } function test() { split mylist &amp;#34;a, b, c&amp;#34; echo &amp;#34;&amp;#39;${mylist[0]}&amp;#39;&amp;#34; echo &amp;#34;&amp;#39;${mylist[1]}&amp;#39;&amp;#34; echo &amp;#34;&amp;#39;${mylist[2]}&amp;#39;&amp;#34; } 実行結果。ちょっと感動した。
+$ test &amp;#39;a&amp;#39; &amp;#39;b&amp;#39; &amp;#39;c&amp;#39; How to return an array in bash without using globals? 3.</description><content>&lt;p>23時に寝て2時に起きて6時に起きた。&lt;/p>
+&lt;h2 id="シェルスクリプト再考">シェルスクリプト再考&lt;/h2>
+&lt;p>久しぶりにシュルスクリプトを書いていて、ユーティリティ関数をうまいこと実装できないかを調べていたら &lt;strong>nameref&lt;/strong> という仕組みが bash 4.3 以降で使えるらしい。私の bash 環境は 5.0.17 なので、bash 5 以上という制約にしてしまってもよいだろうと思う。例えば、こんなことができる。シェルスクリプトで split を実装するの面倒よね。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#66d9ef">function&lt;/span> split&lt;span style="color:#f92672">()&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
+local -n arr&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>$1&lt;span style="color:#e6db74">&amp;#34;&lt;/span>
+local values&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>$2&lt;span style="color:#e6db74">&amp;#34;&lt;/span>
+local sep&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>&lt;span style="color:#e6db74">${&lt;/span>3&lt;span style="color:#66d9ef">:-&lt;/span>,&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>
+IFS&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>&lt;span style="color:#e6db74">${&lt;/span>sep&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>
+read -a arr &lt;span style="color:#f92672">&amp;lt;&amp;lt;&amp;lt;&lt;/span> &lt;span style="color:#66d9ef">$(&lt;/span>echo &lt;span style="color:#e6db74">&amp;#34;&lt;/span>$values&lt;span style="color:#e6db74">&amp;#34;&lt;/span> | tr -d &lt;span style="color:#e6db74">&amp;#39;[:space:]&amp;#39;&lt;/span>&lt;span style="color:#66d9ef">)&lt;/span>
+&lt;span style="color:#f92672">}&lt;/span>
+&lt;span style="color:#66d9ef">function&lt;/span> test&lt;span style="color:#f92672">()&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
+split mylist &lt;span style="color:#e6db74">&amp;#34;a, b, c&amp;#34;&lt;/span>
+echo &lt;span style="color:#e6db74">&amp;#34;&amp;#39;&lt;/span>&lt;span style="color:#e6db74">${&lt;/span>mylist[0]&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">&amp;#39;&amp;#34;&lt;/span>
+echo &lt;span style="color:#e6db74">&amp;#34;&amp;#39;&lt;/span>&lt;span style="color:#e6db74">${&lt;/span>mylist[1]&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">&amp;#39;&amp;#34;&lt;/span>
+echo &lt;span style="color:#e6db74">&amp;#34;&amp;#39;&lt;/span>&lt;span style="color:#e6db74">${&lt;/span>mylist[2]&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">&amp;#39;&amp;#34;&lt;/span>
+&lt;span style="color:#f92672">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>実行結果。ちょっと感動した。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ test
+&lt;span style="color:#e6db74">&amp;#39;a&amp;#39;&lt;/span>
+&lt;span style="color:#e6db74">&amp;#39;b&amp;#39;&lt;/span>
+&lt;span style="color:#e6db74">&amp;#39;c&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>&lt;a href="https://stackoverflow.com/questions/10582763/how-to-return-an-array-in-bash-without-using-globals">How to return an array in bash without using globals?&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.gnu.org/software/bash/manual/html_node/Shell-Parameters.html">3.4 Shell Parameters&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="bizpy-勉強会">bizpy 勉強会&lt;/h2>
+&lt;p>&lt;a href="https://bizpy.connpass.com/event/239471/">Python で機械学習の前処理をやってみる勉強会&lt;/a> を開催した。今回も講師をわたなべさんにお願いした。私が余裕なくて全くなにもできていない。運営が2人いるとすごく助かる。今回は機械学習の前処理に着目して pandas や scikit-learn を使って実際にどういったプログラミングをするかを解説してもらった。&lt;a href="https://colab.research.google.com/">Colab&lt;/a> を使ってデモするのがいまどきのやり方なのかな？私は全く触ったことがないけど、そういうやり方の違いも含めて関心をもてた。Colab 上で普通に git コマンドも使えるのでリポジトリのクローンなんかもできる。次回は私もなにかしら発表をしたいなとは思う。いまのお仕事が一段落ついたら。&lt;/p></content></item><item><title>mysql のデータ移行</title><link>/diary/posts/2022/0212/</link><pubDate>Sat, 12 Feb 2022 10:30:35 +0900</pubDate><guid>/diary/posts/2022/0212/</guid><description>23時に寝て2時前に起きて5時に起きて8時に起きた。あんまり眠れなくなってきた。
 もくもく会 【三宮.dev】もくもく会 に参加した。もともとオフラインの予定だったけど、オミクロン株の流行でオンラインに変更された。
 お仕事である開発環境の構築をしていて docker-compose を使って mysql の環境構築や共有の開発環境にある db2 に接続するために clpplus のインストール方法などを wiki にまとめてた。コンテナにある mysqldump や mysql コマンドを使ってこんな風にデータ移行もできた。
 共有の開発環境からデータをエクスポート。
