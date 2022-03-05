@@ -57,6 +57,38 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0305/>週末は休出</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-03-05
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/life/>life</a>&nbsp;
+#<a href=/diary/tags/ci/cd/>ci/cd</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#ストレッチ>ストレッチ</a></li>
+<li><a href=#ぼくのかんがえたさいきょうのでぷろい>ぼくのかんがえたさいきょうのでぷろい</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>2時に寝て8時頃に起きた。前日に深夜まで開発してたせいか、朝起きたら頭痛かった。</p>
+<h2 id=ストレッチ>ストレッチ</h2>
+<p>お仕事に集中していて今週は1回しかストレッチができなかった。今日の開脚幅は開始前164cmで、ストレッチ後165cmだった。先週と同じぐらいかな。それでも毎週予定が入っているので必ず週に1回はちゃんとしたストレッチを受けられる。もう1年以上続けているのだけど、以前より体調のよい状態をずっと継続できている。私はなにかに集中すると他のことをしばらく放置してそればっかりやってしまう傾向があるから毎週の予約があることが継続的な体調管理に大きく役立っている。太ももの後ろの筋肉と腰のストレッチの2つを楽しみにしている。デスクワークをする人は基本的にこの2つに疲労が蓄積するので疲労が溜まるのは自然と言える。その度合いがどのぐらいかでその週の疲労感や調子がよくわかる。今日は先週よりもその2つはましになっていた。</p>
+<h2 id=ぼくのかんがえたさいきょうのでぷろい>ぼくのかんがえたさいきょうのでぷろい</h2>
+<p>ここ2週間ほど、ビルドとデプロイの分離のための作業をしている。具体的には <a href=https://docs.github.com/en/rest/reference/deployments>GitHub Deployments</a> と <a href=https://docs.github.com/en/actions>GitHub Actions</a> を組み合わせて、新たな開発のワークフローを作るといったもの。main, test, develop と3つのブランチで開発/運用しているのを main ブランチ1つに統合し、ビルドもデプロイも最小限に留めて継続的デリバリーを目指すというもの。移行時は開発を止めてしまうのでこの土日で作業する予定だった。準備は十分にやっていたので問題なく移行を完了させた。今日は単体リポジトリのテスト環境へのデプロイができるところまでできた。あとはデプロイツールや github actions の処理を洗練させていくだけ。テンションが上がっているのでこのまま明日も休出してできるだけ品質をあげていく。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0304/>組織系のイベントにはもう参加しない</a>
 </h1>
 <div class=post-meta>
@@ -304,46 +336,6 @@ ci/cd で使うような認可の仕組みとして github には oauth apps と
 <p>協会けんぽの来期の保険料率は下がるみたい。毎年少しずつ上がっていく一方だと思っていたのでそういうこともあるんだなという印象。</p>
 <h2 id=ウクライナ情勢>ウクライナ情勢</h2>
 <p>タイムラインを眺めていると、否応でもウクライナ情勢のニュースやコメントが流れてきてなんとなくみてしまって作業の手がつかなくなってしまった。早めに帰って仕切り直そうとしたけど、精神的に疲れてしまって休んでいた。sns の功罪はいろいろあるけど、ネガティブな情報にたくさん触れるのはなかなかしんどいな。何だったかもう忘れたけど、前にもこんなことがあった気がする。そういうときは sns を見ない方がよいのだろうけど、何もしないでいると気になってついつい見てしまう。情報があり過ぎることも問題なんだなとつくづく実感する。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0226/>github deployments の調査</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-02-26
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/life/>life</a>&nbsp;
-#<a href=/diary/tags/github/>github</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#ストレッチ>ストレッチ</a></li>
-<li><a href=#github-deployments-の調査>github deployments の調査</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>22時に寝て23時半に起きて1時に寝て6時に起きた。</p>
-<h2 id=ストレッチ>ストレッチ</h2>
-<p>先週に引き続き、右太もも後ろの張り感が強い。もしかしたらここ2-3週間、長時間机に向かっていることが増えて負担がかかっているのかもしれない。2月は寒いから帰って散歩やジョギングすることもなくて余計に筋肉をほぐすこともできていない。今日の開脚幅は開始前164cmで、ストレッチ後160cmで先週と変わらないぐらいだった。調子がよくなかったのか、ストレッチ後にあまり開脚できなかった。たまにこういうときもある。</p>
-<h2 id=github-deployments-の調査>github deployments の調査</h2>
-<p>github actions を実行するにはなんらかのトリガーが必要なことから、デプロイのためのトリガーに使えそうなものはないかを <a href=https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows>Events that trigger workflows</a> で調べていたら <code>deployment</code> と <code>deployment_status</code> というイベントがあることに気付いた。</p>
-<p>わりと最近できた仕組みで <a href=https://docs.github.com/en/rest/reference/deployments>github deployments</a> という api 群が提供されている。一度ベーダとして出したものの、アルファレベルだったせいか、gh cli でも専用コマンドとして機能追加されていないし、github の slack インテグレーションでも一度提供した deploy サブコマンドを削除するみたいなことが発生している。まだ設計やインタフェースが使いやすいものではないから作り直すみたいな状況にみえる。とはいえ、rest api は提供されているので現状の機能のまま github actions のトリガーとして使う分には問題なさそう。</p>
-<ul>
-<li><a href=https://github.com/cli/cli/issues/921>https://github.com/cli/cli/issues/921</a></li>
-<li><a href=https://github.com/integrations/slack/issues/1150>https://github.com/integrations/slack/issues/1150</a></li>
-</ul>
-<p>ビルドとデプロイを分離するにあたって、デプロイのためのトリガーが github 上のサービスとしてみつかったのはよかったと言える。github deployments は現状では中途半端なサービスという位置づけにみえる。</p>
-<blockquote class=twitter-tweet><p lang=ja dir=ltr>github はどこまでいってもリポジトリ単位というのがボトルネックになるからリポジトリをグルーピングする概念を他のサービスで一貫して扱えるようにならないとサードパーティに頼る場面はまだまだありそうかな。</p>&mdash; Tetsuya Morimoto (@t2y) <a href="https://twitter.com/t2y/status/1497458295602544641?ref_src=twsrc%5Etfw">February 26, 2022</a></blockquote>
-<script async src=https://platform.twitter.com/widgets.js></script>
 </div>
 </div>
 <div class=pagination>
