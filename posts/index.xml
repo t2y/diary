@@ -1,4 +1,28 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on forest nook</title><link>/diary/posts/</link><description>Recent content in Posts on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Mon, 07 Mar 2022 08:11:25 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>ワークフローの移行説明</title><link>/diary/posts/2022/0307/</link><pubDate>Mon, 07 Mar 2022 08:11:25 +0900</pubDate><guid>/diary/posts/2022/0307/</guid><description>3時に寝て6時半に起きた。朝起きたら github actions のリソース上限に達しているという連絡が slack に書き込まれていて週末に移行作業して1500分ぐらいは浪費しましたと事後報告した。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on forest nook</title><link>/diary/posts/</link><description>Recent content in Posts on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Tue, 08 Mar 2022 06:24:20 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>デプロイ改善の成果まとめ</title><link>/diary/posts/2022/0308/</link><pubDate>Tue, 08 Mar 2022 06:24:20 +0900</pubDate><guid>/diary/posts/2022/0308/</guid><description>23時に寝て5時過ぎに起きた。何度か途中で起きたけど、久しぶりによく寝た。前日あまり寝てなかったから19時過ぎには帰ってきてだらだらしてた。
+もてなしだけではもう食えない 業界研究を兼ねて もてなしだけではもう食えない -ホテル経営学の本質と実践- を読み始めた。同じ出版社の週刊ホテルレストランという雑誌の連載を書籍化したものらしい。著者は立教大学で社会人向けビジネススクールでホテルマネジメントとホテルインベストメントを教えているらしい。ビジネスの堅い話しを小説調にすれば読みやすいんじゃないかみたいな取り組みなのかな？よくわかてないけど、小説仕立てで業界研究ができるような書籍になっているらしい。第1章プロローグと第2章腐りやすい在庫を読んだ。実際の現場でこんな仕事できない人が改革チームのリーダーなんかになったりしないなと思いながら読んでた。そこは本題じゃない！コンサルティングでありそうな経営の話しが出てくるのでうちの会社の経営の勉強にもなるかもしれない。少しずつ読んでいく。
+デプロイ改善の成果 水曜日がすくらむのふりかえりイベントがあるのでそれに間に合わせて簡単にまとめの資料を作った。3スプリント (3週間) もかけて抜本的に開発のワークフローからビルド/デプロイの ci/cd を見直したので開発全般に影響を与えた。
+本番環境デプロイ: 実行時間を約72%の短縮 テスト環境デプロイ: 実行時間を約51%の短縮 hotfix デプロイ: 実行時間を約64%の短縮 そもそも従来のやり方では hotfix を出していないので机上の時間ではあるが 単純に github actions の実行時間だけ比較しても速くなっているのだけど、それ以上にブランチ戦略を大きく変えた。従来は3つのブランチで運用していた。
+develop test main これを1つのブランチのみで運用できるように開発のワークフローを刷新した。ブランチが1つしかないので ci/cd の戦略もシンプルになって、変則的な運用 (hotfix を出したいとか) をしても、開発全体に影響を与えない。「誰か勝手にブランチを作ってデプロイして」で終わる。従来のやり方は3つのブランチが開発ワークフローと ci/cd に密接であったために本番環境のリリースするときは開発すべてが止まってしまう状態だった。週1回のリリースだったので本番リリース前の1-2日は PR のレビューやマージを止めているという運用になっていた。それは開発速度に大きな影響を与えていた。ブランチ戦略を見直したことでいつでも本番環境にデプロイできるようになって、継続的デリバリーっぽいことがやりたかったらできるよという話しをした。</description><content>&lt;p>23時に寝て5時過ぎに起きた。何度か途中で起きたけど、久しぶりによく寝た。前日あまり寝てなかったから19時過ぎには帰ってきてだらだらしてた。&lt;/p>
+&lt;h2 id="もてなしだけではもう食えない">もてなしだけではもう食えない&lt;/h2>
+&lt;p>業界研究を兼ねて &lt;a href="https://ec.hoteresonline.com/products/detail.php?product_id=262">もてなしだけではもう食えない -ホテル経営学の本質と実践-&lt;/a> を読み始めた。同じ出版社の週刊ホテルレストランという雑誌の連載を書籍化したものらしい。著者は立教大学で社会人向けビジネススクールでホテルマネジメントとホテルインベストメントを教えているらしい。ビジネスの堅い話しを小説調にすれば読みやすいんじゃないかみたいな取り組みなのかな？よくわかてないけど、小説仕立てで業界研究ができるような書籍になっているらしい。第1章プロローグと第2章腐りやすい在庫を読んだ。実際の現場でこんな仕事できない人が改革チームのリーダーなんかになったりしないなと思いながら読んでた。そこは本題じゃない！コンサルティングでありそうな経営の話しが出てくるのでうちの会社の経営の勉強にもなるかもしれない。少しずつ読んでいく。&lt;/p>
+&lt;h2 id="デプロイ改善の成果">デプロイ改善の成果&lt;/h2>
+&lt;p>水曜日がすくらむのふりかえりイベントがあるのでそれに間に合わせて簡単にまとめの資料を作った。3スプリント (3週間) もかけて抜本的に開発のワークフローからビルド/デプロイの ci/cd を見直したので開発全般に影響を与えた。&lt;/p>
+&lt;ul>
+&lt;li>本番環境デプロイ: 実行時間を約72%の短縮&lt;/li>
+&lt;li>テスト環境デプロイ: 実行時間を約51%の短縮&lt;/li>
+&lt;li>hotfix デプロイ: 実行時間を約64%の短縮
+&lt;ul>
+&lt;li>そもそも従来のやり方では hotfix を出していないので机上の時間ではあるが&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>単純に github actions の実行時間だけ比較しても速くなっているのだけど、それ以上にブランチ戦略を大きく変えた。従来は3つのブランチで運用していた。&lt;/p>
+&lt;ul>
+&lt;li>develop&lt;/li>
+&lt;li>test&lt;/li>
+&lt;li>main&lt;/li>
+&lt;/ul>
+&lt;p>これを1つのブランチのみで運用できるように開発のワークフローを刷新した。ブランチが1つしかないので ci/cd の戦略もシンプルになって、変則的な運用 (hotfix を出したいとか) をしても、開発全体に影響を与えない。「誰か勝手にブランチを作ってデプロイして」で終わる。従来のやり方は3つのブランチが開発ワークフローと ci/cd に密接であったために本番環境のリリースするときは開発すべてが止まってしまう状態だった。週1回のリリースだったので本番リリース前の1-2日は PR のレビューやマージを止めているという運用になっていた。それは開発速度に大きな影響を与えていた。ブランチ戦略を見直したことでいつでも本番環境にデプロイできるようになって、継続的デリバリーっぽいことがやりたかったらできるよという話しをした。&lt;/p></content></item><item><title>ワークフローの移行説明</title><link>/diary/posts/2022/0307/</link><pubDate>Mon, 07 Mar 2022 08:11:25 +0900</pubDate><guid>/diary/posts/2022/0307/</guid><description>3時に寝て6時半に起きた。朝起きたら github actions のリソース上限に達しているという連絡が slack に書き込まれていて週末に移行作業して1500分ぐらいは浪費しましたと事後報告した。
 ワークフロー移行後の説明 週末に移行した新しい ci/cd の仕組みを開発者に説明した。開発のワークフローも大きく変わる。いくつか要望をもらいつつ、とくに混乱も誤解もなく受け入れられた。github actions の管理画面からボタンでデプロイ実行できるため、本番環境にデプロイできるユーザーは制限したいと言われて次のようなステップを追加した。
 - name: デプロイユーザーを確認 if: ${{ env.DEPLOYMENT_ENV == &amp;#39;prod&amp;#39; }} run: |[[ &amp;#34;${{ contains(fromJSON(env.DEPLOYABLE_USERS), github.actor) }}&amp;#34; == &amp;#34;true&amp;#34; ]] &amp;amp;&amp;amp; exit 0 echo &amp;#34;デプロイ権限のあるユーザーではありません&amp;#34; exit 1 env: DEPLOYABLE_USERS: &amp;#39;[&amp;#34;user1&amp;#34;, &amp;#34;user2&amp;#34;, &amp;#34;app-bot&amp;#34;]&amp;#39; expressions の Functions に組み込みの関数がいくつか紹介されている。それらを組み合わせるとうまくいきそうと思って書いてみた。たしかにちょっと楽に実装はできるけど、github actions の expression とシェルの文字列との境界が、yaml のコード上では曖昧なため、真偽値などはとくにわかりにくい。例えば、次のコード。
 [[ &amp;#34;${{ contains(fromJSON(env.DEPLOYABLE_USERS), github.actor) }}&amp;#34; == &amp;#34;true&amp;#34; ]] ${{ ... }} で囲まれたところは github の expression なので boolean として評価できるが、それをシェルにもってくると文字列になってしまうので文字列で比較しないといけない。普通にコードを書いていて気づきにくいので実行して振る舞いを検証しないと間違うみたいな話し。</description><content>&lt;p>3時に寝て6時半に起きた。朝起きたら github actions のリソース上限に達しているという連絡が slack に書き込まれていて週末に移行作業して1500分ぐらいは浪費しましたと事後報告した。&lt;/p>
