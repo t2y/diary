@@ -56,6 +56,44 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0313/>k8s のロールバック</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-03-13
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/kubernetes/>kubernetes</a>&nbsp;
+</span>
+<div class=post-content>
+<p>0時に寝て7時に起きた。</p>
+<h2 id=k8s-のロールバック>k8s のロールバック</h2>
+<p><a href=https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-back-to-a-previous-revision>Rolling Back to a Previous Revision</a> をみながらすぐできた。ロールバックもこれまでと同様、github actions の workflow dispatch で管理できるようにした。基本的にはこれだけでロールバックできる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ kubectl rollout undo deployment/my-app-deploy
+</code></pre></div><p>ちょっと工夫したこととして、デプロイ時に <a href=https://kubernetes.io/docs/reference/labels-annotations-taints/#change-cause>kubernetes.io/change-cause</a> というアノテーションに git のリビジョンもセットしておくと確認するときにちょっと楽ができる。apply した後の deployment リソースに docker イメージのタグ情報 (= git のリビジョン) を書き込んでおく。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ kubectl apply -k <span style=color:#e6db74>${</span>{ env.DEPLOYMENT_ENV <span style=color:#e6db74>}</span><span style=color:#f92672>}</span>
+$ kubectl annotate deployment my-app-deploy kubernetes.io/change-cause<span style=color:#f92672>=</span><span style=color:#e6db74>${</span>{ env.IMAGE_TAG <span style=color:#e6db74>}</span><span style=color:#f92672>}</span> --overwrite<span style=color:#f92672>=</span>true
+</code></pre></div><p>kubectl から履歴をみたときに k8s のリビジョンがどの git のリビジョンを使っているかがわかりやすい。デフォルトでは何も設定されていないかもしれない。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ kubectl rollout history deployment/my-app-deploy
+deployment.apps/my-app-deploy
+REVISION  CHANGE-CAUSE
+<span style=color:#ae81ff>15</span>       &lt;none&gt;
+<span style=color:#ae81ff>16</span>       &lt;none&gt;
+<span style=color:#ae81ff>17</span>       &lt;none&gt;
+<span style=color:#ae81ff>18</span>       &lt;none&gt;
+<span style=color:#ae81ff>19</span>       &lt;none&gt;
+<span style=color:#ae81ff>20</span>       &lt;none&gt;
+<span style=color:#ae81ff>21</span>       &lt;none&gt;
+<span style=color:#ae81ff>22</span>       &lt;none&gt;
+<span style=color:#ae81ff>24</span>       1f17a22a6659ea0714a21fca034645cd191e189b
+<span style=color:#ae81ff>27</span>       a84e113d8b7c124178b58e2f40f57b00aae65485 
+<span style=color:#ae81ff>28</span>       dcf3552db0668d416ed880f6e896455d7bab194c
+</code></pre></div>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0312/>デプロイ改善の残作業</a>
 </h1>
 <div class=post-meta>

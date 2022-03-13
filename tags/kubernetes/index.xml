@@ -1,4 +1,30 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>kubernetes on forest nook</title><link>/diary/tags/kubernetes/</link><description>Recent content in kubernetes on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Mon, 28 Feb 2022 08:11:25 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/kubernetes/index.xml" rel="self" type="application/rss+xml"/><item><title>kustomize の動的な設定</title><link>/diary/posts/2022/0228/</link><pubDate>Mon, 28 Feb 2022 08:11:25 +0900</pubDate><guid>/diary/posts/2022/0228/</guid><description>23時に寝て2時に起きてそこから断続的に寝たり起きたりを繰り返して6時に半に起きた。ウクライナ情勢のニュースや記事ばかり読んでてあてられた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>kubernetes on forest nook</title><link>/diary/tags/kubernetes/</link><description>Recent content in kubernetes on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sun, 13 Mar 2022 12:07:00 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/kubernetes/index.xml" rel="self" type="application/rss+xml"/><item><title>k8s のロールバック</title><link>/diary/posts/2022/0313/</link><pubDate>Sun, 13 Mar 2022 12:07:00 +0900</pubDate><guid>/diary/posts/2022/0313/</guid><description>0時に寝て7時に起きた。
+k8s のロールバック Rolling Back to a Previous Revision をみながらすぐできた。ロールバックもこれまでと同様、github actions の workflow dispatch で管理できるようにした。基本的にはこれだけでロールバックできる。
+$ kubectl rollout undo deployment/my-app-deploy ちょっと工夫したこととして、デプロイ時に kubernetes.io/change-cause というアノテーションに git のリビジョンもセットしておくと確認するときにちょっと楽ができる。apply した後の deployment リソースに docker イメージのタグ情報 (= git のリビジョン) を書き込んでおく。
+$ kubectl apply -k ${{ env.DEPLOYMENT_ENV }} $ kubectl annotate deployment my-app-deploy kubernetes.io/change-cause=${{ env.IMAGE_TAG }} --overwrite=true kubectl から履歴をみたときに k8s のリビジョンがどの git のリビジョンを使っているかがわかりやすい。デフォルトでは何も設定されていないかもしれない。
+$ kubectl rollout history deployment/my-app-deploy deployment.apps/my-app-deploy REVISION CHANGE-CAUSE 15 &amp;lt;none&amp;gt; 16 &amp;lt;none&amp;gt; 17 &amp;lt;none&amp;gt; 18 &amp;lt;none&amp;gt; 19 &amp;lt;none&amp;gt; 20 &amp;lt;none&amp;gt; 21 &amp;lt;none&amp;gt; 22 &amp;lt;none&amp;gt; 24 1f17a22a6659ea0714a21fca034645cd191e189b 27 a84e113d8b7c124178b58e2f40f57b00aae65485 28 dcf3552db0668d416ed880f6e896455d7bab194c</description><content>&lt;p>0時に寝て7時に起きた。&lt;/p>
+&lt;h2 id="k8s-のロールバック">k8s のロールバック&lt;/h2>
+&lt;p>&lt;a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-back-to-a-previous-revision">Rolling Back to a Previous Revision&lt;/a> をみながらすぐできた。ロールバックもこれまでと同様、github actions の workflow dispatch で管理できるようにした。基本的にはこれだけでロールバックできる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl rollout undo deployment/my-app-deploy
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>ちょっと工夫したこととして、デプロイ時に &lt;a href="https://kubernetes.io/docs/reference/labels-annotations-taints/#change-cause">kubernetes.io/change-cause&lt;/a> というアノテーションに git のリビジョンもセットしておくと確認するときにちょっと楽ができる。apply した後の deployment リソースに docker イメージのタグ情報 (= git のリビジョン) を書き込んでおく。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl apply -k &lt;span style="color:#e6db74">${&lt;/span>{ env.DEPLOYMENT_ENV &lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#f92672">}&lt;/span>
+$ kubectl annotate deployment my-app-deploy kubernetes.io/change-cause&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">${&lt;/span>{ env.IMAGE_TAG &lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#f92672">}&lt;/span> --overwrite&lt;span style="color:#f92672">=&lt;/span>true
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>kubectl から履歴をみたときに k8s のリビジョンがどの git のリビジョンを使っているかがわかりやすい。デフォルトでは何も設定されていないかもしれない。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl rollout history deployment/my-app-deploy
+deployment.apps/my-app-deploy
+REVISION CHANGE-CAUSE
+&lt;span style="color:#ae81ff">15&lt;/span> &amp;lt;none&amp;gt;
+&lt;span style="color:#ae81ff">16&lt;/span> &amp;lt;none&amp;gt;
+&lt;span style="color:#ae81ff">17&lt;/span> &amp;lt;none&amp;gt;
+&lt;span style="color:#ae81ff">18&lt;/span> &amp;lt;none&amp;gt;
+&lt;span style="color:#ae81ff">19&lt;/span> &amp;lt;none&amp;gt;
+&lt;span style="color:#ae81ff">20&lt;/span> &amp;lt;none&amp;gt;
+&lt;span style="color:#ae81ff">21&lt;/span> &amp;lt;none&amp;gt;
+&lt;span style="color:#ae81ff">22&lt;/span> &amp;lt;none&amp;gt;
+&lt;span style="color:#ae81ff">24&lt;/span> 1f17a22a6659ea0714a21fca034645cd191e189b
+&lt;span style="color:#ae81ff">27&lt;/span> a84e113d8b7c124178b58e2f40f57b00aae65485
+&lt;span style="color:#ae81ff">28&lt;/span> dcf3552db0668d416ed880f6e896455d7bab194c
+&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>kustomize の動的な設定</title><link>/diary/posts/2022/0228/</link><pubDate>Mon, 28 Feb 2022 08:11:25 +0900</pubDate><guid>/diary/posts/2022/0228/</guid><description>23時に寝て2時に起きてそこから断続的に寝たり起きたりを繰り返して6時に半に起きた。ウクライナ情勢のニュースや記事ばかり読んでてあてられた。
 kustomize の動的な設定 kustomize で管理している image のタグをデプロイ処理の中で動的に変更したい。パラメーター渡しなり環境変数なり、なにかしらあるだろうとは予測している。Demo: change image names and tags のサンプルによると、次のように実行すればよいみたい。
 $ kustomize edit set image busybox=alpine:3.6 次のような kustomization.yaml をセットしてくれるみたい。
 images: - name: busybox newName: alpine newTag: 3.6 タグのところをリビジョン指定できればいいだけなのでとくに SECRET を使う必要もない。このやり方で書き換えた newTag が POD のデプロイ対象になってくれればよいはず。</description><content>&lt;p>23時に寝て2時に起きてそこから断続的に寝たり起きたりを繰り返して6時に半に起きた。ウクライナ情勢のニュースや記事ばかり読んでてあてられた。&lt;/p>

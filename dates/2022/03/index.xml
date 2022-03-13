@@ -1,4 +1,30 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2022/03 on forest nook</title><link>/diary/dates/2022/03/</link><description>Recent content in 2022/03 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2022/03/index.xml" rel="self" type="application/rss+xml"/><item><title>デプロイ改善の残作業</title><link>/diary/posts/2022/0312/</link><pubDate>Sat, 12 Mar 2022 09:49:06 +0900</pubDate><guid>/diary/posts/2022/0312/</guid><description>23時に寝て2時に起きて4時ぐらいまでだらだらして寝て6時に起きた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2022/03 on forest nook</title><link>/diary/dates/2022/03/</link><description>Recent content in 2022/03 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2022/03/index.xml" rel="self" type="application/rss+xml"/><item><title>k8s のロールバック</title><link>/diary/posts/2022/0313/</link><pubDate>Sun, 13 Mar 2022 12:07:00 +0900</pubDate><guid>/diary/posts/2022/0313/</guid><description>0時に寝て7時に起きた。
+k8s のロールバック Rolling Back to a Previous Revision をみながらすぐできた。ロールバックもこれまでと同様、github actions の workflow dispatch で管理できるようにした。基本的にはこれだけでロールバックできる。
+$ kubectl rollout undo deployment/my-app-deploy ちょっと工夫したこととして、デプロイ時に kubernetes.io/change-cause というアノテーションに git のリビジョンもセットしておくと確認するときにちょっと楽ができる。apply した後の deployment リソースに docker イメージのタグ情報 (= git のリビジョン) を書き込んでおく。
+$ kubectl apply -k ${{ env.DEPLOYMENT_ENV }} $ kubectl annotate deployment my-app-deploy kubernetes.io/change-cause=${{ env.IMAGE_TAG }} --overwrite=true kubectl から履歴をみたときに k8s のリビジョンがどの git のリビジョンを使っているかがわかりやすい。デフォルトでは何も設定されていないかもしれない。
+$ kubectl rollout history deployment/my-app-deploy deployment.apps/my-app-deploy REVISION CHANGE-CAUSE 15 &amp;lt;none&amp;gt; 16 &amp;lt;none&amp;gt; 17 &amp;lt;none&amp;gt; 18 &amp;lt;none&amp;gt; 19 &amp;lt;none&amp;gt; 20 &amp;lt;none&amp;gt; 21 &amp;lt;none&amp;gt; 22 &amp;lt;none&amp;gt; 24 1f17a22a6659ea0714a21fca034645cd191e189b 27 a84e113d8b7c124178b58e2f40f57b00aae65485 28 dcf3552db0668d416ed880f6e896455d7bab194c</description><content>&lt;p>0時に寝て7時に起きた。&lt;/p>
+&lt;h2 id="k8s-のロールバック">k8s のロールバック&lt;/h2>
+&lt;p>&lt;a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-back-to-a-previous-revision">Rolling Back to a Previous Revision&lt;/a> をみながらすぐできた。ロールバックもこれまでと同様、github actions の workflow dispatch で管理できるようにした。基本的にはこれだけでロールバックできる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl rollout undo deployment/my-app-deploy
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>ちょっと工夫したこととして、デプロイ時に &lt;a href="https://kubernetes.io/docs/reference/labels-annotations-taints/#change-cause">kubernetes.io/change-cause&lt;/a> というアノテーションに git のリビジョンもセットしておくと確認するときにちょっと楽ができる。apply した後の deployment リソースに docker イメージのタグ情報 (= git のリビジョン) を書き込んでおく。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl apply -k &lt;span style="color:#e6db74">${&lt;/span>{ env.DEPLOYMENT_ENV &lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#f92672">}&lt;/span>
+$ kubectl annotate deployment my-app-deploy kubernetes.io/change-cause&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">${&lt;/span>{ env.IMAGE_TAG &lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#f92672">}&lt;/span> --overwrite&lt;span style="color:#f92672">=&lt;/span>true
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>kubectl から履歴をみたときに k8s のリビジョンがどの git のリビジョンを使っているかがわかりやすい。デフォルトでは何も設定されていないかもしれない。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl rollout history deployment/my-app-deploy
+deployment.apps/my-app-deploy
+REVISION CHANGE-CAUSE
+&lt;span style="color:#ae81ff">15&lt;/span> &amp;lt;none&amp;gt;
+&lt;span style="color:#ae81ff">16&lt;/span> &amp;lt;none&amp;gt;
+&lt;span style="color:#ae81ff">17&lt;/span> &amp;lt;none&amp;gt;
+&lt;span style="color:#ae81ff">18&lt;/span> &amp;lt;none&amp;gt;
+&lt;span style="color:#ae81ff">19&lt;/span> &amp;lt;none&amp;gt;
+&lt;span style="color:#ae81ff">20&lt;/span> &amp;lt;none&amp;gt;
+&lt;span style="color:#ae81ff">21&lt;/span> &amp;lt;none&amp;gt;
+&lt;span style="color:#ae81ff">22&lt;/span> &amp;lt;none&amp;gt;
+&lt;span style="color:#ae81ff">24&lt;/span> 1f17a22a6659ea0714a21fca034645cd191e189b
+&lt;span style="color:#ae81ff">27&lt;/span> a84e113d8b7c124178b58e2f40f57b00aae65485
+&lt;span style="color:#ae81ff">28&lt;/span> dcf3552db0668d416ed880f6e896455d7bab194c
+&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>デプロイ改善の残作業</title><link>/diary/posts/2022/0312/</link><pubDate>Sat, 12 Mar 2022 09:49:06 +0900</pubDate><guid>/diary/posts/2022/0312/</guid><description>23時に寝て2時に起きて4時ぐらいまでだらだらして寝て6時に起きた。
 ストレッチ これまで11時からストレッチを受けていたが、今週から dr.stretch さんの土日の開店時間が10時になったのにあわせる形で時間変更した。朝に予定が入っているとその時間にあわせて起きて身支度して1日が始まるので家で中途半端にだらだらしなくてよい。いつもは11時にあわせて家を出掛けるのが、10時にあわせて出掛けるようになったのでいつもより1時間早く活動できるようになった。私はなんか予定がないとだらだらしてしまって怠惰に過ごしてしまう。そういう怠ける自分の性格もわかっているので適度に予定を入れて怠けないように注意している。
 今日の開脚幅は開始前163cmで、ストレッチ後165cmだった。先週とほぼ同じ。今週もお仕事が忙しくて全くできなかったので現状維持といったところ。
 デプロイのパイプライン処理 github deployment から workflow dispatch に移行したおかげでせっかく deployments ベースで作ったパイプライン処理のツールを workflow dispatch 向けに移行する必要があった。言うても基本的に同じパラメーターを処理するだけなので大半は再利用できる。ツールのちょっとしたリファクタリングをやってパイプライン処理が動くかどうかの検証をして、ドキュメントを wiki にまとめた。あとはロールバックを自動化するための仕組みを作るだけ。基本的には k8s の kubectl を実行するワークフローを作るだけという想定。</description><content>&lt;p>23時に寝て2時に起きて4時ぐらいまでだらだらして寝て6時に起きた。&lt;/p>
