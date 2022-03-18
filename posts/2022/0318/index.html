@@ -1,0 +1,114 @@
+<!doctype html><html lang=en>
+<head>
+<title>github actions の改善 :: forest nook</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="0時に寝て3時に起きて6時に起きた。
+失敗したジョブの再実行 せらさんのツィートをみかけて調べたら2日ほど前に失敗したジョブからの再実行の改善が行われたらしい。
+GitHub Action で失敗したジョブだけ実行できる様になってる。今まで失敗しやすいものは再実行を小さくするために設定を分けたりとかしていたんだけど、そういうことをしなくてもよくなった。
+&amp;mdash; Kazuhiro Sera (瀬良) (@seratch_ja) March 18, 2022   Save time with partial re-runs in GitHub Actions  たまにだけど、i/o エラーみたいな内容で github actions のワークフロー実行が異常終了することがある。そんなときに途中から再実行できるといいなぁとは思っていた。これはステップ単位ではなく、ジョブ単位の実行みたいだけど、それでも途中から再実行できればワークフローの自由度や効率は上がると思う。github actions がどんどん強力になっていくのが楽しみ。あとやぎさんから教えてもらった GitHub Actions 実践入門 も購入した。ある程度触ったところで雰囲気は掴めてきたので体系的に学んでみる。">
+<meta name=keywords content>
+<meta name=robots content="noodp">
+<link rel=canonical href=/diary/posts/2022/0318/>
+<link rel=stylesheet href=/diary/assets/style.css>
+<link rel=stylesheet href=/diary/assets/green.css>
+<link rel=stylesheet href=/diary/style.css>
+<link rel=apple-touch-icon href=/diary/img/apple-touch-icon-192x192.png>
+<link rel="shortcut icon" href=/diary/favicon.ico>
+<meta name=twitter:card content="summary">
+<meta name=twitter:site content="t2y">
+<meta name=twitter:creator content>
+<meta property="og:locale" content="en">
+<meta property="og:type" content="article">
+<meta property="og:title" content="github actions の改善">
+<meta property="og:description" content="0時に寝て3時に起きて6時に起きた。
+失敗したジョブの再実行 せらさんのツィートをみかけて調べたら2日ほど前に失敗したジョブからの再実行の改善が行われたらしい。
+GitHub Action で失敗したジョブだけ実行できる様になってる。今まで失敗しやすいものは再実行を小さくするために設定を分けたりとかしていたんだけど、そういうことをしなくてもよくなった。
+&amp;mdash; Kazuhiro Sera (瀬良) (@seratch_ja) March 18, 2022   Save time with partial re-runs in GitHub Actions  たまにだけど、i/o エラーみたいな内容で github actions のワークフロー実行が異常終了することがある。そんなときに途中から再実行できるといいなぁとは思っていた。これはステップ単位ではなく、ジョブ単位の実行みたいだけど、それでも途中から再実行できればワークフローの自由度や効率は上がると思う。github actions がどんどん強力になっていくのが楽しみ。あとやぎさんから教えてもらった GitHub Actions 実践入門 も購入した。ある程度触ったところで雰囲気は掴めてきたので体系的に学んでみる。">
+<meta property="og:url" content="/diary/posts/2022/0318/">
+<meta property="og:site_name" content="forest nook">
+<meta property="og:image" content="/diary">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+<meta property="article:published_time" content="2022-03-18 10:05:06 +0900 +0900">
+</head>
+<body class=green>
+<div class="container full headings--one-size">
+<header class=header>
+<div class=header__inner>
+<div class=header__logo>
+<a href=/diary>
+<div class=logo>
+forest nook
+</div>
+</a>
+</div>
+<div class=menu-trigger>menu</div>
+</div>
+<nav class=menu>
+<ul class="menu__inner menu__inner--desktop">
+<li><a href=/diary/about>自己紹介</a></li>
+<li><a href=/diary/dates>月別一覧</a></li>
+<li><a href=/diary/tags>タグ一覧</a></li>
+</ul>
+<ul class="menu__inner menu__inner--mobile">
+<li><a href=/diary/about>自己紹介</a></li>
+<li><a href=/diary/dates>月別一覧</a></li>
+<li><a href=/diary/tags>タグ一覧</a></li>
+</ul>
+</nav>
+</header>
+<div class=content>
+<div class=post>
+<h1 class=post-title>
+<a href=/diary/posts/2022/0318/>github actions の改善</a></h1>
+<div class=post-meta>
+<span class=post-date>
+2022-03-18
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/github/>github</a>&nbsp;
+#<a href=/diary/tags/ci/cd/>ci/cd</a>&nbsp;
+#<a href=/diary/tags/book/>book</a>&nbsp;
+</span>
+<div class=post-content><div>
+<p>0時に寝て3時に起きて6時に起きた。</p>
+<h2 id=失敗したジョブの再実行>失敗したジョブの再実行<a href=#失敗したジョブの再実行 class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p>せらさんのツィートをみかけて調べたら2日ほど前に失敗したジョブからの再実行の改善が行われたらしい。</p>
+<blockquote class=twitter-tweet><p lang=ja dir=ltr>GitHub Action で失敗したジョブだけ実行できる様になってる。今まで失敗しやすいものは再実行を小さくするために設定を分けたりとかしていたんだけど、そういうことをしなくてもよくなった。</p>&mdash; Kazuhiro Sera (瀬良) (@seratch_ja) <a href="https://twitter.com/seratch_ja/status/1504664461483085826?ref_src=twsrc%5Etfw">March 18, 2022</a></blockquote>
+<script async src=https://platform.twitter.com/widgets.js></script>
+<ul>
+<li><a href=https://github.blog/2022-03-16-save-time-partial-re-runs-github-actions/>Save time with partial re-runs in GitHub Actions</a></li>
+</ul>
+<p>たまにだけど、i/o エラーみたいな内容で github actions のワークフロー実行が異常終了することがある。そんなときに途中から再実行できるといいなぁとは思っていた。これはステップ単位ではなく、ジョブ単位の実行みたいだけど、それでも途中から再実行できればワークフローの自由度や効率は上がると思う。github actions がどんどん強力になっていくのが楽しみ。あとやぎさんから教えてもらった <a href=https://miyajan.booth.pm/items/1865906>GitHub Actions 実践入門</a> も購入した。ある程度触ったところで雰囲気は掴めてきたので体系的に学んでみる。</p>
+</div></div>
+<div class=pagination>
+<div class=pagination__title>
+<span class=pagination__title-h>Read other posts</span>
+<hr>
+</div>
+<div class=pagination__buttons>
+<span class="button next">
+<a href=/diary/posts/2022/0317/>
+<span class=button__text>マージできると開発が楽しい</span>
+<span class=button__icon>→</span>
+</a>
+</span>
+</div>
+</div>
+</div>
+</div>
+<footer class=footer>
+<div class=footer__inner>
+<div class="copyright copyright--user">
+<span>© 2021 Tetsuya Morimoto</span>
+<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span>
+</div>
+</div>
+</footer>
+<script src=/diary/assets/main.js></script>
+<script src=/diary/assets/prism.js></script>
+</div>
+</body>
+</html>
