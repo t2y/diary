@@ -1,4 +1,25 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>python on forest nook</title><link>/diary/tags/python/</link><description>Recent content in python on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Mon, 11 Oct 2021 08:37:53 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/python/index.xml" rel="self" type="application/rss+xml"/><item><title>BizPy 再始動</title><link>/diary/posts/2021/1011/</link><pubDate>Mon, 11 Oct 2021 08:37:53 +0900</pubDate><guid>/diary/posts/2021/1011/</guid><description>昨日は晩ご飯食べてからのんびりしていた。寝て起きての繰り返しだったので何時に寝たのかよくわからない。夜、本を読もうと思っていたのにダラダラ過ごしてしまった。朝は7時半に起きた。朝起きたら Python で Unicode 正規化 NFC/NFD の文字列を扱う がはてブでホットエントリ化してた。昨日、書評を書いたからその記事かと期待したけど、なぜか2年ほど前に書いた古い記事だった。なんかがっかり。そして、その理由は全くわからない。1日経って夜の時点ではてブが82個ついている。昔は10個もついたら嬉しかったものだけど、いまは100個ぐらいついてもなんとも思わない。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>python on forest nook</title><link>/diary/tags/python/</link><description>Recent content in python on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sun, 20 Mar 2022 12:11:13 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/python/index.xml" rel="self" type="application/rss+xml"/><item><title>gihtub-api-tools の拡張</title><link>/diary/posts/2022/0320/</link><pubDate>Sun, 20 Mar 2022 12:11:13 +0900</pubDate><guid>/diary/posts/2022/0320/</guid><description>5時に寝て9時過ぎに起きた。昨日は久しぶりに夜更ししてコードを書いてた。
+github actions のいろいろな時間の算出 以前作った github-api-tools を拡張して github actions の実行履歴の分析するための機能を作っている。
+Add actions statistics Add gh-cli-actions command for Actions API ひとまずワークフローの実行履歴からジョブのステップの実行時間を積み上げた時間を算出してみた。いくつか API を調べているうちに課金時間は直接 API から取得できることに気付いた。この3つの時間は全然別の意味をもっていて、それぞれの時間は一致しない。
+ステップ実行時間: ジョブのそれぞれのステップの実行時間の合計 課金時間: 課金対象として数えられている時間 ワークフロー実行時間: アクションのワークフローの実行にかかった時間 github actions は public リポジトリに関しては課金対象ではないんやね。private リポジトリ且つ github-hosted ランナーを使っている場合のみ課金対象となるみたい。
+Viewing job execution time About billing for GitHub Actions</description><content>&lt;p>5時に寝て9時過ぎに起きた。昨日は久しぶりに夜更ししてコードを書いてた。&lt;/p>
+&lt;h2 id="github-actions-のいろいろな時間の算出">github actions のいろいろな時間の算出&lt;/h2>
+&lt;p>以前作った github-api-tools を拡張して github actions の実行履歴の分析するための機能を作っている。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/kazamori/github-api-tools/issues/2">Add actions statistics&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/kazamori/github-api-tools/pull/4">Add gh-cli-actions command for Actions API&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>ひとまずワークフローの実行履歴からジョブのステップの実行時間を積み上げた時間を算出してみた。いくつか API を調べているうちに課金時間は直接 API から取得できることに気付いた。この3つの時間は全然別の意味をもっていて、それぞれの時間は一致しない。&lt;/p>
+&lt;ul>
+&lt;li>ステップ実行時間: ジョブのそれぞれのステップの実行時間の合計&lt;/li>
+&lt;li>課金時間: 課金対象として数えられている時間&lt;/li>
+&lt;li>ワークフロー実行時間: アクションのワークフローの実行にかかった時間&lt;/li>
+&lt;/ul>
+&lt;p>github actions は public リポジトリに関しては課金対象ではないんやね。private リポジトリ且つ github-hosted ランナーを使っている場合のみ課金対象となるみたい。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/viewing-job-execution-time">Viewing job execution time&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions">About billing for GitHub Actions&lt;/a>&lt;/li>
+&lt;/ul></content></item><item><title>BizPy 再始動</title><link>/diary/posts/2021/1011/</link><pubDate>Mon, 11 Oct 2021 08:37:53 +0900</pubDate><guid>/diary/posts/2021/1011/</guid><description>昨日は晩ご飯食べてからのんびりしていた。寝て起きての繰り返しだったので何時に寝たのかよくわからない。夜、本を読もうと思っていたのにダラダラ過ごしてしまった。朝は7時半に起きた。朝起きたら Python で Unicode 正規化 NFC/NFD の文字列を扱う がはてブでホットエントリ化してた。昨日、書評を書いたからその記事かと期待したけど、なぜか2年ほど前に書いた古い記事だった。なんかがっかり。そして、その理由は全くわからない。1日経って夜の時点ではてブが82個ついている。昔は10個もついたら嬉しかったものだけど、いまは100個ぐらいついてもなんとも思わない。
 fin-pyコードリーディング会に発表準備 fin-pyコードリーディング会#4 に参加することにした。過去にオブジェクトストレージの開発に関わっていたからデータストアやストレージに関することは興味がある。たまたまツールの store.py を題材にしていたので読んでしまった。簡単にコードを読んで気になったところをイベントの hackmd に記載した。やっていることの詳細をよくわかっていないので、コードレビューみたいになってしまった。
 https://hackmd.io/bFBFaPbYS1Kqfc97HMlp7Q?view BizPy のコミュニティ活動を再開 前にやってたお仕事がうまくいかなくて他のことに時間を費やす余裕がなくてお休みしてた。本当はもっと早く再開してもよかったんだけど、新しいことに挑戦しているときにあまり他のことに注意を取られたくないという考えもあって少し保留していた。新しいことへの活動も一段落して方向性や展望もみえてきたので BizPy も再開することにした。ちょうど Slack のインテグレーションを調べようと思ったところだったので弾みを付ける意図でも都合がよい。複数の意味でタイミングがよかった。また参加者が戻ってきてくれると嬉しい。
 Python で Slack のインテグレーションをやってみる勉強会 #1 プロコンの続き ネットで話題になったせいか、当事者同士で話し合う場が設けられたという公式発表が行われた。

@@ -57,6 +57,51 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0320/>gihtub-api-tools の拡張</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-03-20
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/github/>github</a>&nbsp;
+#<a href=/diary/tags/ci/cd/>ci/cd</a>&nbsp;
+#<a href=/diary/tags/python/>python</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#github-actions-のいろいろな時間の算出>github actions のいろいろな時間の算出</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>5時に寝て9時過ぎに起きた。昨日は久しぶりに夜更ししてコードを書いてた。</p>
+<h2 id=github-actions-のいろいろな時間の算出>github actions のいろいろな時間の算出</h2>
+<p>以前作った github-api-tools を拡張して github actions の実行履歴の分析するための機能を作っている。</p>
+<ul>
+<li><a href=https://github.com/kazamori/github-api-tools/issues/2>Add actions statistics</a></li>
+<li><a href=https://github.com/kazamori/github-api-tools/pull/4>Add gh-cli-actions command for Actions API</a></li>
+</ul>
+<p>ひとまずワークフローの実行履歴からジョブのステップの実行時間を積み上げた時間を算出してみた。いくつか API を調べているうちに課金時間は直接 API から取得できることに気付いた。この3つの時間は全然別の意味をもっていて、それぞれの時間は一致しない。</p>
+<ul>
+<li>ステップ実行時間: ジョブのそれぞれのステップの実行時間の合計</li>
+<li>課金時間: 課金対象として数えられている時間</li>
+<li>ワークフロー実行時間: アクションのワークフローの実行にかかった時間</li>
+</ul>
+<p>github actions は public リポジトリに関しては課金対象ではないんやね。private リポジトリ且つ github-hosted ランナーを使っている場合のみ課金対象となるみたい。</p>
+<ul>
+<li><a href=https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/viewing-job-execution-time>Viewing job execution time</a></li>
+<li><a href=https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions>About billing for GitHub Actions</a></li>
+</ul>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0319/>workrooms 雑談会をした</a>
 </h1>
 <div class=post-meta>
@@ -272,54 +317,6 @@ forest nook
 <p>0時に寝て5時半に起きた。一仕事を終えて淡々と前の作業の続きのリファクタリングなどをしていた。</p>
 <h2 id=デプロイ改善のタスク完了報告>デプロイ改善のタスク完了報告</h2>
 <p>週末にパイプライン処理の検証やロールバック処理の実装を行った。ドキュメントも一通り書いた。チームの開発者にそれらを説明して3スプリント(3週間)に渡った改善が完了したことを報告した。チケットにすると26、そのうち私が担当したのが22なので、私がイニシアティブをとって完遂させた。github actions を始めとする、github のサービスの理解が深まってそれなりに学びがあった。自分でもいくつかカスタム action を作ってみようと思う。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0313/>k8s のロールバック</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-03-13
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/kubernetes/>kubernetes</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#k8s-のロールバック>k8s のロールバック</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>0時に寝て7時に起きた。</p>
-<h2 id=k8s-のロールバック>k8s のロールバック</h2>
-<p><a href=https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-back-to-a-previous-revision>Rolling Back to a Previous Revision</a> をみながらすぐできた。ロールバックもこれまでと同様、github actions の workflow dispatch で管理できるようにした。基本的にはこれだけでロールバックできる。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ kubectl rollout undo deployment/my-app-deploy
-</code></pre></div><p>ちょっと工夫したこととして、デプロイ時に <a href=https://kubernetes.io/docs/reference/labels-annotations-taints/#change-cause>kubernetes.io/change-cause</a> というアノテーションに git のリビジョンもセットしておくと確認するときにちょっと楽ができる。apply した後の deployment リソースに docker イメージのタグ情報 (= git のリビジョン) を書き込んでおく。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ kubectl apply -k <span style=color:#e6db74>${</span>{ env.DEPLOYMENT_ENV <span style=color:#e6db74>}</span><span style=color:#f92672>}</span>
-$ kubectl annotate deployment my-app-deploy kubernetes.io/change-cause<span style=color:#f92672>=</span><span style=color:#e6db74>${</span>{ env.IMAGE_TAG <span style=color:#e6db74>}</span><span style=color:#f92672>}</span> --overwrite<span style=color:#f92672>=</span>true
-</code></pre></div><p>kubectl から履歴をみたときに k8s のリビジョンがどの git のリビジョンを使っているかがわかりやすい。デフォルトでは何も設定されていないかもしれない。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ kubectl rollout history deployment/my-app-deploy
-deployment.apps/my-app-deploy
-REVISION  CHANGE-CAUSE
-<span style=color:#ae81ff>15</span>       &lt;none&gt;
-<span style=color:#ae81ff>16</span>       &lt;none&gt;
-<span style=color:#ae81ff>17</span>       &lt;none&gt;
-<span style=color:#ae81ff>18</span>       &lt;none&gt;
-<span style=color:#ae81ff>19</span>       &lt;none&gt;
-<span style=color:#ae81ff>20</span>       &lt;none&gt;
-<span style=color:#ae81ff>21</span>       &lt;none&gt;
-<span style=color:#ae81ff>22</span>       &lt;none&gt;
-<span style=color:#ae81ff>24</span>       1f17a22a6659ea0714a21fca034645cd191e189b
-<span style=color:#ae81ff>27</span>       a84e113d8b7c124178b58e2f40f57b00aae65485 
-<span style=color:#ae81ff>28</span>       dcf3552db0668d416ed880f6e896455d7bab194c
-</code></pre></div>
 </div>
 </div>
 <div class=pagination>
