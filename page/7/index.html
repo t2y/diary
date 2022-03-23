@@ -57,6 +57,43 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0208/>テストコードのリファクタリング</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-02-08
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/testing/>testing</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#テストコードのリファクタリング>テストコードのリファクタリング</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>0時に寝て6時に起きた。今日は7時半から23時過ぎまで集中してコードを書いてた。最近は19-20時には帰って、晩ご飯食べて、ドラクエタクトやったり漫画読んだりだらだらしている。そんな暇あったら積ん読の本読めって感じだ。</p>
+<h2 id=テストコードのリファクタリング>テストコードのリファクタリング</h2>
+<p>業務機能の開発をするにあたって、既存のテストコードをみていて、<code>@BeforeEach</code> というテストメソッド単位に呼ばれるメソッドでテストデータの削除と postgresql の sequence のリセット処理をしていた。こんなの共通処理ですべてのテーブルの truncate と sequence のリセット処理をすればいいやんとか思って、いろいろ調べて2つのリファクタリングの PR を作成した。先日 <a href=/diary/posts/2022/0116/>JUnit5 の拡張</a> を調べたばかりだから、テストの共通化のノウハウが溜まっている。<a href=https://www.testcontainers.org/modules/databases/postgres/>Testcontainers Postgres Module</a> と連携して、postgresql コンテナに接続して sequence のリセット処理を汎用のテスト拡張として実装した。テストを実装する開発者は、次のように <code>@ExtendWith(DatabaseInitializer.class)</code> をアノテーションに付与すれば、自分で sequence のリセット処理を <code>@BeforeEach</code> のメソッドに実装する必要がなくなる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@SpringBootTest</span>
+<span style=color:#a6e22e>@Transactional</span>
+<span style=color:#a6e22e>@ExtendWith</span><span style=color:#f92672>(</span>SetupDatabaseContainer<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)</span>
+<span style=color:#a6e22e>@ExtendWith</span><span style=color:#f92672>(</span>DatabaseInitializer<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)</span>
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyTest</span> <span style=color:#f92672>{</span>
+    <span style=color:#f92672>...</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><p>この作業の過程で spring boot の <a href=https://spring.pleiades.io/spring-framework/docs/current/reference/html/testing.html#testcontext-tx-enabling-transactions>@Transactional</a> はデフォルトでテストメソッドの実行後にロールバックする機能が提供されていて、いままで <code>@BeforeEach</code> のメソッドで明示的にテーブルのデータを削除する必要はなかったんやと気付いた。じゃあ、なぜ削除するコードを書いてたかと言うと、テストの外部で初期データを作成する仕組みがあるから、初期データを削除する目的でそうしていたことが判明した。そして、一部のコードはそこで作った外部の初期データに依存して実装されていた。テストコードの一部が外部のデータに依存しつつ、テストメソッドでは外部のデータに依存しないように削除のコードが書いてある。書いていて何を言っているのかわからないと思うけど、私も調べてて訳がわからんくて、PR に「いまの状況はかなりややこしい」と前置きしつつ、無駄なコードや仕組みを取り除くための修正を行った。本当は機能開発やらないといけないのにテストコードのリファクタリングするのに大きな時間をかけるわけにはいかないだろうという意図で、半日掛けてリファクタリングして23時過ぎまで作業して、既存のテストコードも含めて全部直した。このリファクタリングで数十のテストケースの約300行ぐらいの初期化コードをなくせた。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0207/>確定申告書類の印刷</a>
 </h1>
 <div class=post-meta>
@@ -240,54 +277,6 @@ forest nook
 <h2 id=課題管理の情熱>課題管理の情熱</h2>
 <p>先日、行った <a href=/diary/posts/2022/0130/#3ヶ月フィードバック完了>3ヶ月フィードバック</a> はスクラムマスターには好評だったらしく、他にも3人ほど読んでくれた人たちがいたようだ。いま課題管理のボードの整理をしたり、wiki のドキュメント階層を整理したり、情報共有や書く文化の重要性を説いたり、チームに私のやり方を見本のように示している。チームにも、私のチケットはコメントの量が大幅に違うということは認識され、それを見様見真似でやり始める開発者も現れ始めている。誰もが最初はお手本を模倣しながら学ぶ。いままで課題管理と情報共有というコンテキストで見本を示せる開発者がいなかっただけという話だ。</p>
 <p>ふと、なぜ私はここまで課題管理やドキュメントなどを整理したがるのか、自分で考えてもよくわからない。強いて言うと、自分が働く環境やツールに関心をもっていて、それをいまよりもより良く改善したいという気持ちが他人よりも強いのかもしれない。働くからにはよいものを作りたい、ひいてはよい環境があればよいものを作れる、よい環境を作るための投資は惜しまないという姿勢から、課題管理のワークフローと情報共有の最適化を常に考えながら実践している気がする。もっと端的には言えば、仕事がどうこうというのは全く関係なく、日々の活動に関心をもっていると言えるのかもしれないなと思ったりした。採用における特性をみるときの1つの指標として生きていることに関心をもっているか、どういう行動を取っているかとかをヒアリングしてもおもしろいのかもしれない。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0201/>wiki のドキュメント整理</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-02-01
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/datadog/>datadog</a>&nbsp;
-#<a href=/diary/tags/kubernetes/>kubernetes</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#kubernetes-のログ管理と-datadog-agent-のログ連携不具合>kubernetes のログ管理と datadog-agent のログ連携不具合</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>23時に寝て4時半に起きた。昨日の帰りに自転車でこけて胸を強打してひたすら痛い。起き上がるのも痛い。安静にしてた。</p>
-<h2 id=kubernetes-のログ管理と-datadog-agent-のログ連携不具合>kubernetes のログ管理と datadog-agent のログ連携不具合</h2>
-<p>先日、<a href=/diary/posts/2022/0127/#ログ連携の不具合調査>datadog にログ連携されていない不具合</a> が発生していて、その1次調査を終えたことについて書いた。緊急対応としては datadog-agent を再起動することで改善することはわかっていたので、その後、kubernetes のログ管理と datadog-agent がどうやって kubernetes クラスター上で実行されているアプリケーションのログを収集しているかを調査していた。今日は wiki に調査してわかったことなどをまとめていた。</p>
-<p>kubernetes クラスターはコンテナランタイムに docker を使っていて、アプリケーションの stdout/stderr を docker の logging driver にリダイレクトし、JSON Lines に設定された logging driver が kubernetes ノード上にログファイルとして出力する。datadog-agent は autodiscovery 機能で pod の情報を常にポーリングしていて、pod が新たにデプロイされたらログファイルを pod 内にマウントして、そのマウントしたログファイルを読み込んでログ収集していると思われる。datadog-agent から pod の情報を取得するには kubernetes のサービスアカウントを使っていて、その credential が projected volume としてマウントされて pod 内から利用できる。その credential を使って kubelet api にリクエストすることで pod の情報を取得している。</p>
-<p>文章で書けばたったこれだけのことなんだけど、たったこれだけのことを理解するのに次のドキュメントを読んだ。実際の調査のときはわからなかったのでもっと多くのドキュメントを読んでいる。いま書いたことを理解するならこのドキュメントを読めば理解できるはず。</p>
-<ul>
-<li><a href=https://kubernetes.io/docs/concepts/overview/components/>https://kubernetes.io/docs/concepts/overview/components/</a></li>
-<li><a href=https://kubernetes.io/docs/concepts/architecture/control-plane-node-communication/>https://kubernetes.io/docs/concepts/architecture/control-plane-node-communication/</a></li>
-<li><a href=https://kubernetes.io/docs/concepts/cluster-administration/logging/>https://kubernetes.io/docs/concepts/cluster-administration/logging/</a></li>
-<li><a href=https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/>https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/</a></li>
-<li><a href=https://kubernetes.io/docs/concepts/storage/projected-volumes/>https://kubernetes.io/docs/concepts/storage/projected-volumes/</a></li>
-<li><a href="https://docs.datadoghq.com/agent/kubernetes/log/?tab=helm">https://docs.datadoghq.com/agent/kubernetes/log/?tab=helm</a></li>
-<li><a href="https://docs.datadoghq.com/getting_started/agent/autodiscovery/?tab=kubernetes">https://docs.datadoghq.com/getting_started/agent/autodiscovery/?tab=kubernetes</a></li>
-</ul>
-<p>ドキュメントに書いてあることを深く理解するために、kubernetes と datadog-agent のソースコードも読んだ。どちらも go 言語で実装されている。</p>
-<ul>
-<li><a href=https://github.com/kubernetes/kubernetes>https://github.com/kubernetes/kubernetes</a></li>
-<li><a href=https://github.com/DataDog/datadog-agent>https://github.com/DataDog/datadog-agent</a></li>
-</ul>
-<p><code>kubectl logs</code> の振る舞いを確認するだけでも、ソースコードからは実際のログファイルを open してストリームを返しているところはわからなかった。api 呼び出しが連携されて抽象化されていて、コンポーネントの役割分担があって、何も知らずにコードを読んでいてもわからなかった。Kubernetes の低レイヤーのところは Container Runtime Interface (CRI) という標準化を行い、1.20 から docker は非推奨となり、将来的に CRI を提供する実装に置き換わるらしい。ログファイルを open する役割は CRI の実装が担うんじゃないかと思うけど、そこまでは調べきれなかった。また機会があれば CRI の実装も読んでみる。</p>
-<figure><img src=/diary/img/2022/0201_kubectl-logs.png>
-</figure>
 </div>
 </div>
 <div class=pagination>
