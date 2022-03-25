@@ -56,6 +56,73 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0324/>spring boot の環境とログ設定</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-03-24
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/spring-boot/>spring boot</a>&nbsp;
+#<a href=/diary/tags/logging/>logging</a>&nbsp;
+#<a href=/diary/tags/kubernetes/>kubernetes</a>&nbsp;
+</span>
+<div class=post-content>
+<p>0時に寝て4時に起きて6時に起きた。</p>
+<h2 id=spring-のプロファイル設定>spring のプロファイル設定</h2>
+<p>spring の <a href=https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.profiles>Profiles</a> の仕組みを使って環境ごとの設定を作る。デプロイは k8s で管理しているため、spring boot の <a href=https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config>Externalized Configuration</a> の仕組みを使って、環境変数から application.yml に定義された設定を書き換える。k8s は kustomize で管理していて prod, test, dev の3つの環境で任意の設定を記述できる。</p>
+<p>問題はログ出力の設定を環境ごとに変えたい。具体的には datadog に連携されるログは構造化ログ (json lines) を、ローカルの開発ではコンソールログをみたい。<a href=https://logging.apache.org/log4j/2.x/log4j-spring-boot/index.html>Log4j Spring Boot Support</a> によると、1つの設定ファイルに複数のプロファイル設定を記述できるようにもみえるけど、実際にやってみたらうまく動かなかった。xml ではなく yml を使っているせいかもしれないし、私の記述方法が誤っているのかもしれない。いずれにしても yml で複数のプロファイルを設定しているサンプルをみつけられなかった。</p>
+<p>そこで <a href=https://www.baeldung.com/spring-log4j2-config-per-profile>Different Log4j2 Configurations per Spring Profile</a> をみて、環境ごとにログ設定ファイルも分割することにした。application.yml には次のように記述する。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#f92672>spring</span>:
+  <span style=color:#f92672>profiles</span>:
+    <span style=color:#f92672>active</span>: <span style=color:#ae81ff>dev</span>
+
+<span style=color:#f92672>logging</span>:
+  <span style=color:#f92672>config</span>: <span style=color:#ae81ff>classpath:log4j2-${spring.profiles.active}.yml</span>
+</code></pre></div><p>ローカル開発向けの lgo4j2-dev.yml は次のようになる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#f92672>Configuration</span>:
+  <span style=color:#f92672>status</span>: <span style=color:#ae81ff>warn</span>
+  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>YAMLConfig</span>
+  <span style=color:#f92672>appenders</span>:
+    <span style=color:#f92672>Console</span>:
+      <span style=color:#f92672>name</span>: <span style=color:#ae81ff>STDOUT</span>
+      <span style=color:#f92672>target</span>: <span style=color:#ae81ff>SYSTEM_OUT</span>
+      <span style=color:#f92672>PatternLayout</span>:
+        <span style=color:#f92672>Pattern</span>: <span style=color:#e6db74>&#34;%d{yyyy-MM-dd HH:mm:ss.SSS}[%t]%-5level %logger{36} - %msg%n&#34;</span>
+</code></pre></div><p>k8s のマニフェストで環境変数を次のように定義すれば prod というプロファイルが設定される。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>apps/v1</span>
+<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Deployment</span>
+<span style=color:#f92672>metadata</span>:
+  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>my-service</span>
+<span style=color:#f92672>spec</span>:
+  <span style=color:#f92672>template</span>:
+    <span style=color:#f92672>spec</span>:
+      <span style=color:#f92672>containers</span>:
+      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>my-service</span>
+        <span style=color:#f92672>env</span>:
+        - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>spring.profiles.active</span>
+          <span style=color:#f92672>value</span>: <span style=color:#e6db74>&#34;prod&#34;</span>
+</code></pre></div><p>クラウド環境向けの log4j2-prod.yml は次のようになる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#f92672>Configuration</span>:
+  <span style=color:#f92672>status</span>: <span style=color:#ae81ff>warn</span>
+  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>YAMLConfig</span>
+  <span style=color:#f92672>appenders</span>:
+    <span style=color:#f92672>Console</span>:
+      <span style=color:#f92672>name</span>: <span style=color:#ae81ff>STDOUT</span>
+      <span style=color:#f92672>target</span>: <span style=color:#ae81ff>SYSTEM_OUT</span>
+      <span style=color:#f92672>EcsLayout</span>:
+        <span style=color:#f92672>serviceName</span>: <span style=color:#ae81ff>my-service</span>
+        <span style=color:#f92672>serviceNodeName</span>: <span style=color:#66d9ef>null</span>
+        <span style=color:#f92672>includeMarkers</span>: <span style=color:#66d9ef>true</span>
+        <span style=color:#f92672>KeyValuePair</span>:
+        - <span style=color:#f92672>key</span>: <span style=color:#ae81ff>type</span>
+          <span style=color:#f92672>value</span>: <span style=color:#ae81ff>app</span>
+</code></pre></div>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0313/>k8s のロールバック</a>
 </h1>
 <div class=post-meta>

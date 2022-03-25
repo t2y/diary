@@ -1,4 +1,57 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>logging on forest nook</title><link>/diary/tags/logging/</link><description>Recent content in logging on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Tue, 07 Dec 2021 08:14:52 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/logging/index.xml" rel="self" type="application/rss+xml"/><item><title>クロスデフォルト</title><link>/diary/posts/2021/1207/</link><pubDate>Tue, 07 Dec 2021 08:14:52 +0900</pubDate><guid>/diary/posts/2021/1207/</guid><description>0時に寝て6時半に起きた。5時台には起きているんだけど、起き上がるところまではなかなかいけない。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>logging on forest nook</title><link>/diary/tags/logging/</link><description>Recent content in logging on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 24 Mar 2022 07:54:35 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/logging/index.xml" rel="self" type="application/rss+xml"/><item><title>spring boot の環境とログ設定</title><link>/diary/posts/2022/0324/</link><pubDate>Thu, 24 Mar 2022 07:54:35 +0900</pubDate><guid>/diary/posts/2022/0324/</guid><description>0時に寝て4時に起きて6時に起きた。
+spring のプロファイル設定 spring の Profiles の仕組みを使って環境ごとの設定を作る。デプロイは k8s で管理しているため、spring boot の Externalized Configuration の仕組みを使って、環境変数から application.yml に定義された設定を書き換える。k8s は kustomize で管理していて prod, test, dev の3つの環境で任意の設定を記述できる。
+問題はログ出力の設定を環境ごとに変えたい。具体的には datadog に連携されるログは構造化ログ (json lines) を、ローカルの開発ではコンソールログをみたい。Log4j Spring Boot Support によると、1つの設定ファイルに複数のプロファイル設定を記述できるようにもみえるけど、実際にやってみたらうまく動かなかった。xml ではなく yml を使っているせいかもしれないし、私の記述方法が誤っているのかもしれない。いずれにしても yml で複数のプロファイルを設定しているサンプルをみつけられなかった。
+そこで Different Log4j2 Configurations per Spring Profile をみて、環境ごとにログ設定ファイルも分割することにした。application.yml には次のように記述する。
+spring: profiles: active: dev logging: config: classpath:log4j2-${spring.profiles.active}.yml ローカル開発向けの lgo4j2-dev.yml は次のようになる。
+Configuration: status: warn name: YAMLConfig appenders: Console: name: STDOUT target: SYSTEM_OUT PatternLayout: Pattern: &amp;#34;%d{yyyy-MM-dd HH:mm:ss.</description><content>&lt;p>0時に寝て4時に起きて6時に起きた。&lt;/p>
+&lt;h2 id="spring-のプロファイル設定">spring のプロファイル設定&lt;/h2>
+&lt;p>spring の &lt;a href="https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.profiles">Profiles&lt;/a> の仕組みを使って環境ごとの設定を作る。デプロイは k8s で管理しているため、spring boot の &lt;a href="https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config">Externalized Configuration&lt;/a> の仕組みを使って、環境変数から application.yml に定義された設定を書き換える。k8s は kustomize で管理していて prod, test, dev の3つの環境で任意の設定を記述できる。&lt;/p>
+&lt;p>問題はログ出力の設定を環境ごとに変えたい。具体的には datadog に連携されるログは構造化ログ (json lines) を、ローカルの開発ではコンソールログをみたい。&lt;a href="https://logging.apache.org/log4j/2.x/log4j-spring-boot/index.html">Log4j Spring Boot Support&lt;/a> によると、1つの設定ファイルに複数のプロファイル設定を記述できるようにもみえるけど、実際にやってみたらうまく動かなかった。xml ではなく yml を使っているせいかもしれないし、私の記述方法が誤っているのかもしれない。いずれにしても yml で複数のプロファイルを設定しているサンプルをみつけられなかった。&lt;/p>
+&lt;p>そこで &lt;a href="https://www.baeldung.com/spring-log4j2-config-per-profile">Different Log4j2 Configurations per Spring Profile&lt;/a> をみて、環境ごとにログ設定ファイルも分割することにした。application.yml には次のように記述する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yml" data-lang="yml">&lt;span style="color:#f92672">spring&lt;/span>:
+&lt;span style="color:#f92672">profiles&lt;/span>:
+&lt;span style="color:#f92672">active&lt;/span>: &lt;span style="color:#ae81ff">dev&lt;/span>
+&lt;span style="color:#f92672">logging&lt;/span>:
+&lt;span style="color:#f92672">config&lt;/span>: &lt;span style="color:#ae81ff">classpath:log4j2-${spring.profiles.active}.yml&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>ローカル開発向けの lgo4j2-dev.yml は次のようになる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yml" data-lang="yml">&lt;span style="color:#f92672">Configuration&lt;/span>:
+&lt;span style="color:#f92672">status&lt;/span>: &lt;span style="color:#ae81ff">warn&lt;/span>
+&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">YAMLConfig&lt;/span>
+&lt;span style="color:#f92672">appenders&lt;/span>:
+&lt;span style="color:#f92672">Console&lt;/span>:
+&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">STDOUT&lt;/span>
+&lt;span style="color:#f92672">target&lt;/span>: &lt;span style="color:#ae81ff">SYSTEM_OUT&lt;/span>
+&lt;span style="color:#f92672">PatternLayout&lt;/span>:
+&lt;span style="color:#f92672">Pattern&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;%d{yyyy-MM-dd HH:mm:ss.SSS}[%t]%-5level %logger{36} - %msg%n&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>k8s のマニフェストで環境変数を次のように定義すれば prod というプロファイルが設定される。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yml" data-lang="yml">&lt;span style="color:#f92672">apiVersion&lt;/span>: &lt;span style="color:#ae81ff">apps/v1&lt;/span>
+&lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">Deployment&lt;/span>
+&lt;span style="color:#f92672">metadata&lt;/span>:
+&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-service&lt;/span>
+&lt;span style="color:#f92672">spec&lt;/span>:
+&lt;span style="color:#f92672">template&lt;/span>:
+&lt;span style="color:#f92672">spec&lt;/span>:
+&lt;span style="color:#f92672">containers&lt;/span>:
+- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-service&lt;/span>
+&lt;span style="color:#f92672">env&lt;/span>:
+- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">spring.profiles.active&lt;/span>
+&lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;prod&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>クラウド環境向けの log4j2-prod.yml は次のようになる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yml" data-lang="yml">&lt;span style="color:#f92672">Configuration&lt;/span>:
+&lt;span style="color:#f92672">status&lt;/span>: &lt;span style="color:#ae81ff">warn&lt;/span>
+&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">YAMLConfig&lt;/span>
+&lt;span style="color:#f92672">appenders&lt;/span>:
+&lt;span style="color:#f92672">Console&lt;/span>:
+&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">STDOUT&lt;/span>
+&lt;span style="color:#f92672">target&lt;/span>: &lt;span style="color:#ae81ff">SYSTEM_OUT&lt;/span>
+&lt;span style="color:#f92672">EcsLayout&lt;/span>:
+&lt;span style="color:#f92672">serviceName&lt;/span>: &lt;span style="color:#ae81ff">my-service&lt;/span>
+&lt;span style="color:#f92672">serviceNodeName&lt;/span>: &lt;span style="color:#66d9ef">null&lt;/span>
+&lt;span style="color:#f92672">includeMarkers&lt;/span>: &lt;span style="color:#66d9ef">true&lt;/span>
+&lt;span style="color:#f92672">KeyValuePair&lt;/span>:
+- &lt;span style="color:#f92672">key&lt;/span>: &lt;span style="color:#ae81ff">type&lt;/span>
+&lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#ae81ff">app&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>クロスデフォルト</title><link>/diary/posts/2021/1207/</link><pubDate>Tue, 07 Dec 2021 08:14:52 +0900</pubDate><guid>/diary/posts/2021/1207/</guid><description>0時に寝て6時半に起きた。5時台には起きているんだけど、起き上がるところまではなかなかいけない。
 恒大集団のデフォルト 11月から利払の期日の日はチェックしていて、支払うときは2-3日前には支払いを完了したというニュースが出ていたように思う。今日の支払いは前日に支払いしたというニュースが出ないからダメなんだろうなと様子をみていた。
 中国恒大、猶予期間終了までにオフショア債利払いできず＝関係筋 1つの債務がデフォルトした場合、残りの債務も一括返済しないといけないことを クロスデフォルト と呼ぶらしい。契約書にクロスデフォルト条項として書いてあるらしい。記事によると、クロスデフォルトによって約190億ドル (約2.1兆円) のオフショア債の返済を一括でしないといけないらしい。リーマンショックのようなことは起きないという見通しだけど、うちみたいな零細企業は世の中の影響を諸に受けるのでお仕事に影響がでなければいいなぁといったところ。
 アプリケーションログの調査 昨日の続き。ecs-logging-java で JSON Lines でログを制御するところで spring-boot の設定で tomcat のアクセスログの設定ができる。tomcat のアクセスログを log4j のレイアウトの仕組みを使って ecs-logging-java が提供する EcsLayout に変更できないかを3時間ほど調査して、どうもできないようだというのを教えてもらった。tomcat は apache のログを出力するという目的で実装されているから log4j の柔軟なログに対応していないという理屈。
