@@ -1,0 +1,113 @@
+<!doctype html><html lang=en>
+<head>
+<title>カスタム github action 開発に着手 :: forest nook</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="0時に寝て6時に起きた。
+歯医者 3ヶ月ごとの定期検診。本音は行くのが面倒くさいのだけど、こういう機会がないと検診に行かないので健康のためと思って通い続けている。基本的には30分強ぐらいで歯の掃除？みたいなことをやるだけ。下の歯の親知らずをまだ抜いていなくて、歯磨きでは届かないスポットがあって、そこが虫歯になりやすいのかな？3ヶ月に1回は掃除してもらえるのでたぶん役に立っているのだろう。今回は前にレントゲンをとって2年経ったので取り直ししましょうということで歯のレントゲンもとった。この歯医者にきてから2年経ったんだなということを実感した。よい歯医者さんだと思っているのでこれからも通うだろう。
+カスタム github action 開発 前からやろうやろうと思っていて、他のことに時間を割かれてできていなかったことに着手した。久しぶりに gradle を触ったら使い方や設定方法を忘れてしまってドキュメントを読みながら再入門した。1つのアプリケーションであってもマルチプロジェクト構成がデフォルトになったみたい。これによってディレクトリの階層構造も変わっている。
+ Gradle のマルチプロジェクト機能を試す  今日のところは gradle 設定と main 関数と config のコードだけ書いた。java のバージョンも17を使うことにした。週末にある程度動くものを作りきれるかどうか。着手するまでが一番時間がかかので着手すればすぐにできそうな見通しはある。">
+<meta name=keywords content>
+<meta name=robots content="noodp">
+<link rel=canonical href=/diary/posts/2022/0325/>
+<link rel=stylesheet href=/diary/assets/style.css>
+<link rel=stylesheet href=/diary/assets/green.css>
+<link rel=stylesheet href=/diary/style.css>
+<link rel=apple-touch-icon href=/diary/img/apple-touch-icon-192x192.png>
+<link rel="shortcut icon" href=/diary/favicon.ico>
+<meta name=twitter:card content="summary">
+<meta name=twitter:site content="t2y">
+<meta name=twitter:creator content>
+<meta property="og:locale" content="en">
+<meta property="og:type" content="article">
+<meta property="og:title" content="カスタム github action 開発に着手">
+<meta property="og:description" content="0時に寝て6時に起きた。
+歯医者 3ヶ月ごとの定期検診。本音は行くのが面倒くさいのだけど、こういう機会がないと検診に行かないので健康のためと思って通い続けている。基本的には30分強ぐらいで歯の掃除？みたいなことをやるだけ。下の歯の親知らずをまだ抜いていなくて、歯磨きでは届かないスポットがあって、そこが虫歯になりやすいのかな？3ヶ月に1回は掃除してもらえるのでたぶん役に立っているのだろう。今回は前にレントゲンをとって2年経ったので取り直ししましょうということで歯のレントゲンもとった。この歯医者にきてから2年経ったんだなということを実感した。よい歯医者さんだと思っているのでこれからも通うだろう。
+カスタム github action 開発 前からやろうやろうと思っていて、他のことに時間を割かれてできていなかったことに着手した。久しぶりに gradle を触ったら使い方や設定方法を忘れてしまってドキュメントを読みながら再入門した。1つのアプリケーションであってもマルチプロジェクト構成がデフォルトになったみたい。これによってディレクトリの階層構造も変わっている。
+ Gradle のマルチプロジェクト機能を試す  今日のところは gradle 設定と main 関数と config のコードだけ書いた。java のバージョンも17を使うことにした。週末にある程度動くものを作りきれるかどうか。着手するまでが一番時間がかかので着手すればすぐにできそうな見通しはある。">
+<meta property="og:url" content="/diary/posts/2022/0325/">
+<meta property="og:site_name" content="forest nook">
+<meta property="og:image" content="/diary">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+<meta property="article:published_time" content="2022-03-25 18:35:34 +0900 +0900">
+</head>
+<body class=green>
+<div class="container full headings--one-size">
+<header class=header>
+<div class=header__inner>
+<div class=header__logo>
+<a href=/diary>
+<div class=logo>
+forest nook
+</div>
+</a>
+</div>
+<div class=menu-trigger>menu</div>
+</div>
+<nav class=menu>
+<ul class="menu__inner menu__inner--desktop">
+<li><a href=/diary/about>自己紹介</a></li>
+<li><a href=/diary/dates>月別一覧</a></li>
+<li><a href=/diary/tags>タグ一覧</a></li>
+</ul>
+<ul class="menu__inner menu__inner--mobile">
+<li><a href=/diary/about>自己紹介</a></li>
+<li><a href=/diary/dates>月別一覧</a></li>
+<li><a href=/diary/tags>タグ一覧</a></li>
+</ul>
+</nav>
+</header>
+<div class=content>
+<div class=post>
+<h1 class=post-title>
+<a href=/diary/posts/2022/0325/>カスタム github action 開発に着手</a></h1>
+<div class=post-meta>
+<span class=post-date>
+2022-03-25
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/life/>life</a>&nbsp;
+#<a href=/diary/tags/github/>github</a>&nbsp;
+</span>
+<div class=post-content><div>
+<p>0時に寝て6時に起きた。</p>
+<h2 id=歯医者>歯医者<a href=#歯医者 class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p>3ヶ月ごとの定期検診。本音は行くのが面倒くさいのだけど、こういう機会がないと検診に行かないので健康のためと思って通い続けている。基本的には30分強ぐらいで歯の掃除？みたいなことをやるだけ。下の歯の親知らずをまだ抜いていなくて、歯磨きでは届かないスポットがあって、そこが虫歯になりやすいのかな？3ヶ月に1回は掃除してもらえるのでたぶん役に立っているのだろう。今回は前にレントゲンをとって2年経ったので取り直ししましょうということで歯のレントゲンもとった。この歯医者にきてから2年経ったんだなということを実感した。よい歯医者さんだと思っているのでこれからも通うだろう。</p>
+<h2 id=カスタム-github-action-開発>カスタム github action 開発<a href=#カスタム-github-action-開発 class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p>前からやろうやろうと思っていて、他のことに時間を割かれてできていなかったことに着手した。久しぶりに gradle を触ったら使い方や設定方法を忘れてしまってドキュメントを読みながら再入門した。1つのアプリケーションであってもマルチプロジェクト構成がデフォルトになったみたい。これによってディレクトリの階層構造も変わっている。</p>
+<ul>
+<li><a href=https://kazamori.jp/blogs/2020/06/30/gradle-multi-project/>Gradle のマルチプロジェクト機能を試す</a></li>
+</ul>
+<p>今日のところは gradle 設定と main 関数と config のコードだけ書いた。java のバージョンも17を使うことにした。週末にある程度動くものを作りきれるかどうか。着手するまでが一番時間がかかので着手すればすぐにできそうな見通しはある。</p>
+</div></div>
+<div class=pagination>
+<div class=pagination__title>
+<span class=pagination__title-h>Read other posts</span>
+<hr>
+</div>
+<div class=pagination__buttons>
+<span class="button next">
+<a href=/diary/posts/2022/0324/>
+<span class=button__text>spring boot の環境とログ設定</span>
+<span class=button__icon>→</span>
+</a>
+</span>
+</div>
+</div>
+</div>
+</div>
+<footer class=footer>
+<div class=footer__inner>
+<div class="copyright copyright--user">
+<span>© 2021 Tetsuya Morimoto</span>
+<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span>
+</div>
+</div>
+</footer>
+<script src=/diary/assets/main.js></script>
+<script src=/diary/assets/prism.js></script>
+</div>
+</body>
+</html>
