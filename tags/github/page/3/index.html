@@ -56,6 +56,25 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0328/>backlog-github-integration-action を運用し始めた</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-03-28
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/github/>github</a>&nbsp;
+#<a href=/diary/tags/ci/cd/>ci/cd</a>&nbsp;
+</span>
+<div class=post-content>
+<p>2時に寝て6時半に起きた。</p>
+<h2 id=backlog-と-github-のインテグレーション-action-の試験運用>backlog と github のインテグレーション action の試験運用</h2>
+<p>昨日作った backlog-github-integration-action を早速お手伝い先の github リポジトリと backlog に導入した。いま暇な時期というのもあって、誰からもクレームが出なかった。この閑散とした間隙を「乗るしかない、このビッグウェーブに」というノリで導入して運用して既成事実を作る。ses でお手伝いに行って課題管理のツールを作っているというのは頭おかしいと思うけど、周りからクレームが出る前に電光石火で運用にのせてしまう。実際に運用で使うといくつかバグがあって、いま latest の docker イメージを使ってカスタム action が動いている。バグがあったら修正して、<code>./gradlew jib</code> (docker push) で新しい docker イメージを gihtub packages に push して、不具合があった pr のジョブを再実行すれば再現環境でテストもできる。いくつかバグ修正をした。実際の運用のデータを使うとばらばらとバグがみつかる。運用で実際に使われていないツールはダメ、絶対。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0327/>backlog-github-integration-action を作った</a>
 </h1>
 <div class=post-meta>
@@ -719,6 +738,12 @@ CMD [ &quot;/sql-executor&quot; ]
 <a href=/diary/tags/github/page/2/>
 <span class=button__icon>←</span>
 <span class=button__text>最近の日記</span>
+</a>
+</span>
+<span class="button next">
+<a href=/diary/tags/github/page/4/>
+<span class=button__text>過去の日記</span>
+<span class=button__icon>→</span>
 </a>
 </span>
 </div>
