@@ -57,6 +57,46 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0327/>backlog-github-integration-action を作った</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-03-27
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/github/>github</a>&nbsp;
+#<a href=/diary/tags/ci/cd/>ci/cd</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#backlog-と-github-のインテグレーション-action>backlog と github のインテグレーション action</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>0時に寝て7時に起きた。丸一日開発していた。構想1ヶ月、実装2日といったところか。</p>
+<h2 id=backlog-と-github-のインテグレーション-action>backlog と github のインテグレーション action</h2>
+<p>お手伝い先が <a href=https://backlog.com/ja/>backlog</a> を課題管理システムとして使っている。backlog は <a href=https://support-ja.backlog.com/hc/ja/sections/360005425774-Git>git 連携</a> の機能をもっているが、これは nulab 社のクラウド上に git リポジトリを構築したものと連携する機能であって、github と連携する機能ではない。そこで github と backlog と連携するためのカスタム github action を作った。</p>
+<ul>
+<li><a href=https://github.com/kazamori/backlog-github-integration-action>https://github.com/kazamori/backlog-github-integration-action</a></li>
+</ul>
+<p>カスタム github action を java で開発するのは普通にはやらないと思うが、いくつか理由があってお手伝い先が java しかできないというのと、nulab 社が提供している公式クライアント <a href=https://github.com/nulab/backlog4j>nulab/backlog4j</a> が java しかないから。最初は go で実装しようと思って go のクライアントを試したんだけど、サンプルコードをかいたら一部の処理でエラーになって、そのエラーがよくわからなくてやる気がなくなってしまった。最新の rest api の仕様にそってメンテナンスされていないのかな？と思って、やっぱり公式クライアントしかないなと。他にも次のライブラリを使っている。</p>
+<ul>
+<li>設定ファイル: <a href=https://github.com/lightbend/config>https://github.com/lightbend/config</a></li>
+<li>コマンドライン解析: <a href=https://github.com/remkop/picocli>https://github.com/remkop/picocli</a></li>
+<li>github クライアント: <a href=https://github.com/hub4j/github-api>https://github.com/hub4j/github-api</a></li>
+</ul>
+<p>これまでは commons-cli を使ってきたけど、サブコマンドの機能を提供していない。もうメンテされてないかも？サブコマンドの機能をもつ argument parser がほしくて picocli を選択した。初めて使っていて、実装してみたらわりと私の好みでよく出来ていると思う。今後は cli ライブラリとして picocli を使っていこうと思う。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0326/>まん延防止等重点措置解除後の飲み会</a>
 </h1>
 <div class=post-meta>
@@ -295,51 +335,6 @@ forest nook
 <p>2時に寝て何度か起きてだらだらしながら10時に起きた。</p>
 <h2 id=gihtub-api-tools-のリファクタリングとデータ分析>gihtub-api-tools のリファクタリングとデータ分析</h2>
 <p>実際に使ってみながらリファクタリングしたり、足りない機能を追加したりした。ツールに拡張した機能が使えるかどうかの検証のため、お仕事のプライベートリポジトリのデータを使って分析をし始めて、気付いたら分析ならびに分析結果の資料まで作ってしまった。軽く半日ぐらいのお仕事をやってしまっていた。過去5ヶ月分の課金時間の合計を算出し、単体テストの実行を github actions に追加することで増える課金時間の見積もりと金額を算出した。月間でいまより3時間30分、全体の課金時間に対して20%弱程度の追加が見込まれる。それによる課金金額を算出すると 210 * $0.008 = $1.68 になる。いままで無料枠を超えないように運用してきたわけだが、こんな200円程度の金額を節約するために github actions 上でテスト実行しないといった判断がくだされていた。開発者は誰も実際の課金金額を知らなかったし、課金金額を算出するとあほらしくなった。あと github actions はめちゃくちゃ安い。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0320/>gihtub-api-tools の拡張</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-03-20
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/github/>github</a>&nbsp;
-#<a href=/diary/tags/ci/cd/>ci/cd</a>&nbsp;
-#<a href=/diary/tags/python/>python</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#github-actions-のいろいろな時間の算出>github actions のいろいろな時間の算出</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>5時に寝て9時過ぎに起きた。昨日は久しぶりに夜更ししてコードを書いてた。</p>
-<h2 id=github-actions-のいろいろな時間の算出>github actions のいろいろな時間の算出</h2>
-<p>以前作った github-api-tools を拡張して github actions の実行履歴の分析するための機能を作っている。</p>
-<ul>
-<li><a href=https://github.com/kazamori/github-api-tools/issues/2>Add actions statistics</a></li>
-<li><a href=https://github.com/kazamori/github-api-tools/pull/4>Add gh-cli-actions command for Actions API</a></li>
-</ul>
-<p>ひとまずワークフローの実行履歴からジョブのステップの実行時間を積み上げた時間を算出してみた。いくつか API を調べているうちに課金時間は直接 API から取得できることに気付いた。この3つの時間は全然別の意味をもっていて、それぞれの時間は一致しない。</p>
-<ul>
-<li>ステップ実行時間: ジョブのそれぞれのステップの実行時間の合計</li>
-<li>課金時間: 課金対象として数えられている時間の合計</li>
-<li>ワークフロー実行時間: アクションのワークフローの実行にかかった時間</li>
-</ul>
-<p>github actions は public リポジトリに関しては課金対象ではないんやね。private リポジトリ且つ github-hosted ランナーを使っている場合のみ課金対象となるみたい。</p>
-<ul>
-<li><a href=https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/viewing-job-execution-time>Viewing job execution time</a></li>
-<li><a href=https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions>About billing for GitHub Actions</a></li>
-</ul>
 </div>
 </div>
 <div class=pagination>

@@ -1,0 +1,118 @@
+<!doctype html><html lang=en>
+<head>
+<title>backlog-github-integration-action を作った :: forest nook</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="0時に寝て7時に起きた。丸一日開発していた。構想1ヶ月、実装2日といったところか。
+backlog と github のインテグレーション action お手伝い先が backlog を課題管理システムとして使っている。backlog は git 連携 の機能をもっているが、これは nulab 社のクラウド上に git リポジトリを構築したものと連携する機能であって、github と連携する機能ではない。そこで github と backlog と連携するためのカスタム github action を作った。
+ https://github.com/kazamori/backlog-github-integration-action  カスタム github action を java で開発するのは普通にはやらないと思うが、いくつか理由があってお手伝い先が java しかできないというのと、nulab 社が提供している公式クライアント nulab/backlog4j が java しかないから。最初は go で実装しようと思って go のクライアントを試したんだけど、サンプルコードをかいたら一部の処理でエラーになって、そのエラーがよくわからなくてやる気がなくなってしまった。最新の rest api の仕様にそってメンテナンスされていないのかな？と思って、やっぱり公式クライアントしかないなと。他にも次のライブラリを使っている。
+ 設定ファイル: https://github.com/lightbend/config コマンドライン解析: https://github.com/remkop/picocli github クライアント: https://github.com/hub4j/github-api  これまでは commons-cli を使ってきたけど、サブコマンドの機能を提供していない。もうメンテされてないかも？サブコマンドの機能をもつ argument parser がほしくて picocli を選択した。初めて使っていて、実装してみたらわりと私の好みでよく出来ていると思う。今後は cli ライブラリとして picocli を使っていこうと思う。">
+<meta name=keywords content>
+<meta name=robots content="noodp">
+<link rel=canonical href=/diary/posts/2022/0327/>
+<link rel=stylesheet href=/diary/assets/style.css>
+<link rel=stylesheet href=/diary/assets/green.css>
+<link rel=stylesheet href=/diary/style.css>
+<link rel=apple-touch-icon href=/diary/img/apple-touch-icon-192x192.png>
+<link rel="shortcut icon" href=/diary/favicon.ico>
+<meta name=twitter:card content="summary">
+<meta name=twitter:site content="t2y">
+<meta name=twitter:creator content>
+<meta property="og:locale" content="en">
+<meta property="og:type" content="article">
+<meta property="og:title" content="backlog-github-integration-action を作った">
+<meta property="og:description" content="0時に寝て7時に起きた。丸一日開発していた。構想1ヶ月、実装2日といったところか。
+backlog と github のインテグレーション action お手伝い先が backlog を課題管理システムとして使っている。backlog は git 連携 の機能をもっているが、これは nulab 社のクラウド上に git リポジトリを構築したものと連携する機能であって、github と連携する機能ではない。そこで github と backlog と連携するためのカスタム github action を作った。
+ https://github.com/kazamori/backlog-github-integration-action  カスタム github action を java で開発するのは普通にはやらないと思うが、いくつか理由があってお手伝い先が java しかできないというのと、nulab 社が提供している公式クライアント nulab/backlog4j が java しかないから。最初は go で実装しようと思って go のクライアントを試したんだけど、サンプルコードをかいたら一部の処理でエラーになって、そのエラーがよくわからなくてやる気がなくなってしまった。最新の rest api の仕様にそってメンテナンスされていないのかな？と思って、やっぱり公式クライアントしかないなと。他にも次のライブラリを使っている。
+ 設定ファイル: https://github.com/lightbend/config コマンドライン解析: https://github.com/remkop/picocli github クライアント: https://github.com/hub4j/github-api  これまでは commons-cli を使ってきたけど、サブコマンドの機能を提供していない。もうメンテされてないかも？サブコマンドの機能をもつ argument parser がほしくて picocli を選択した。初めて使っていて、実装してみたらわりと私の好みでよく出来ていると思う。今後は cli ライブラリとして picocli を使っていこうと思う。">
+<meta property="og:url" content="/diary/posts/2022/0327/">
+<meta property="og:site_name" content="forest nook">
+<meta property="og:image" content="/diary">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+<meta property="article:published_time" content="2022-03-27 07:41:04 +0900 +0900">
+</head>
+<body class=green>
+<div class="container full headings--one-size">
+<header class=header>
+<div class=header__inner>
+<div class=header__logo>
+<a href=/diary>
+<div class=logo>
+forest nook
+</div>
+</a>
+</div>
+<div class=menu-trigger>menu</div>
+</div>
+<nav class=menu>
+<ul class="menu__inner menu__inner--desktop">
+<li><a href=/diary/about>自己紹介</a></li>
+<li><a href=/diary/dates>月別一覧</a></li>
+<li><a href=/diary/tags>タグ一覧</a></li>
+</ul>
+<ul class="menu__inner menu__inner--mobile">
+<li><a href=/diary/about>自己紹介</a></li>
+<li><a href=/diary/dates>月別一覧</a></li>
+<li><a href=/diary/tags>タグ一覧</a></li>
+</ul>
+</nav>
+</header>
+<div class=content>
+<div class=post>
+<h1 class=post-title>
+<a href=/diary/posts/2022/0327/>backlog-github-integration-action を作った</a></h1>
+<div class=post-meta>
+<span class=post-date>
+2022-03-27
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/github/>github</a>&nbsp;
+#<a href=/diary/tags/ci/cd/>ci/cd</a>&nbsp;
+</span>
+<div class=post-content><div>
+<p>0時に寝て7時に起きた。丸一日開発していた。構想1ヶ月、実装2日といったところか。</p>
+<h2 id=backlog-と-github-のインテグレーション-action>backlog と github のインテグレーション action<a href=#backlog-と-github-のインテグレーション-action class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p>お手伝い先が <a href=https://backlog.com/ja/>backlog</a> を課題管理システムとして使っている。backlog は <a href=https://support-ja.backlog.com/hc/ja/sections/360005425774-Git>git 連携</a> の機能をもっているが、これは nulab 社のクラウド上に git リポジトリを構築したものと連携する機能であって、github と連携する機能ではない。そこで github と backlog と連携するためのカスタム github action を作った。</p>
+<ul>
+<li><a href=https://github.com/kazamori/backlog-github-integration-action>https://github.com/kazamori/backlog-github-integration-action</a></li>
+</ul>
+<p>カスタム github action を java で開発するのは普通にはやらないと思うが、いくつか理由があってお手伝い先が java しかできないというのと、nulab 社が提供している公式クライアント <a href=https://github.com/nulab/backlog4j>nulab/backlog4j</a> が java しかないから。最初は go で実装しようと思って go のクライアントを試したんだけど、サンプルコードをかいたら一部の処理でエラーになって、そのエラーがよくわからなくてやる気がなくなってしまった。最新の rest api の仕様にそってメンテナンスされていないのかな？と思って、やっぱり公式クライアントしかないなと。他にも次のライブラリを使っている。</p>
+<ul>
+<li>設定ファイル: <a href=https://github.com/lightbend/config>https://github.com/lightbend/config</a></li>
+<li>コマンドライン解析: <a href=https://github.com/remkop/picocli>https://github.com/remkop/picocli</a></li>
+<li>github クライアント: <a href=https://github.com/hub4j/github-api>https://github.com/hub4j/github-api</a></li>
+</ul>
+<p>これまでは commons-cli を使ってきたけど、サブコマンドの機能を提供していない。もうメンテされてないかも？サブコマンドの機能をもつ argument parser がほしくて picocli を選択した。初めて使っていて、実装してみたらわりと私の好みでよく出来ていると思う。今後は cli ライブラリとして picocli を使っていこうと思う。</p>
+</div></div>
+<div class=pagination>
+<div class=pagination__title>
+<span class=pagination__title-h>Read other posts</span>
+<hr>
+</div>
+<div class=pagination__buttons>
+<span class="button next">
+<a href=/diary/posts/2022/0326/>
+<span class=button__text>まん延防止等重点措置解除後の飲み会</span>
+<span class=button__icon>→</span>
+</a>
+</span>
+</div>
+</div>
+</div>
+</div>
+<footer class=footer>
+<div class=footer__inner>
+<div class="copyright copyright--user">
+<span>© 2021 Tetsuya Morimoto</span>
+<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span>
+</div>
+</div>
+</footer>
+<script src=/diary/assets/main.js></script>
+<script src=/diary/assets/prism.js></script>
+</div>
+</body>
+</html>
