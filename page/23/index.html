@@ -57,6 +57,47 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2021/1028/>変哲もない日</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2021-10-28
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/book/>book</a>&nbsp;
+#<a href=/diary/tags/subcontract/>subcontract</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#データ指向アプリケーションデザイン>データ指向アプリケーションデザイン</a></li>
+<li><a href=#pmbok-ガイド第7版>PMBOK ガイド第7版</a></li>
+<li><a href=#選考面談の最終決定>選考面談の最終決定</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>0時に寝て6時半に起きた。久しぶりに勉強会でたくさん話したせいか、疲れて抜け殻になってた。昨日もよく眠れた。今日は調整作業が多かったので集中力を欠いてチケットの業務は進められなかった。</p>
+<h2 id=データ指向アプリケーションデザイン>データ指向アプリケーションデザイン</h2>
+<p>第Ⅱ部の最後の章である9章の一貫性と合意を読み始めた。この章も内容は難しそう。9.1 まで読み終えた。時間をかけて1節ずつ読んでいく。</p>
+<blockquote>
+<p>間違っているかもしれなくても動き続ける方が良いのか、それとも正しくあるべく停止してしまう方が良いのか？</p>
+<p>―― <a href=https://blog.empathybox.com/post/62279088548/a-few-notes-on-kafka-and-jepsen>Jay Kreps, “A Few Notes on Kafka and Jepsen” （ 2013 ）</a></p>
+</blockquote>
+<p>冒頭の格言で kafka というキーワードが気になったので原文を探して (deepl で翻訳して) 読んでみた。一般論で考えたらこの問いの答えは停止してしまう方を選択するように私は考えてしまったが、原文の記事によると、この答えはアプリケーションに依るという。ダウンタイム=データの損失という特性のアプリケーションであれば、間違っている可能性があってもすぐに復旧して動かした方がよいという場合もあると言っている。kafka はどちらかと言えば、間違っていても動き続ける方のシステムに分類されると思う。メッセージの到達保証も At Least Once だし。</p>
+<p>もう1点、意識しておかないといけないのはレプリケーションを行うデータベースの大半は <strong>結果整合性（eventual consistency）</strong> であること。私は本書を読むまで、結果整合性をスケーラビリティやスループットの高い分散システムのキーバリューストアの特性だと考えていたが、RDB であってもレプリケーションはリアルタイムに行われるわけではなく、ネットワークという遅延の上限が保証されないインフラの上に構築されたものである以上、結果整合性で同期される。レプリケーションをしないデータベースシステム以外はすべて結果整合性の特性があると考えて設計や開発をする必要がある。</p>
+<h2 id=pmbok-ガイド第7版>PMBOK ガイド第7版</h2>
+<p><a href=https://www.pmi-japan.shop/shopdetail/000000000028/>プロジェクトマネジメント知識体系ガイド（PMBOKガイド）第7版＋プロジェクトマネジメント標準</a> を購入して届いた。たぶんいつか電子版も出ると思うけど、現時点では紙の本しかなさそう。ぱらぱらとめくりながら中身を眺めているとそんなに文字がびっしり書いてあるような本ではないので読むのはそんなに大変ではなさそうな印象を受けた。索引で知りたいキーワードを探しながらその箇所を拾い読みしたりしてた。またがっつり読み込んでまとめていきたい。</p>
+<h2 id=選考面談の最終決定>選考面談の最終決定</h2>
+<p>先日受けた <a href=/diary/posts/2021/1026/#選考面談>選考面談</a> で2社ともオファーをいただいた。感謝。自分の中では決まっていたが、顧問さんにも双方の案件の概要を話してアドバイスをもらった。その結果、私の意思と顧問さんのアドバイスも一致した。何の憂いもなく Java の開発案件の方を選択した。11月上旬から働き始める予定。3ヶ月ほど課題管理の調査・研究みたいなことをやっていたけど、いつまでもやれるほど財務に余裕がないので普通に働きながら自社のプロダクト開発も並行してやっていく。以前は2社のお仕事を引き受けて他のことをやる余裕がなくなってしまっていただけど、その失敗を教訓に今回は1社の仕事だけを専念しつつ、自社の仕事も少しずつ進めていきたい。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2021/1027/>bizpy 再開</a>
 </h1>
 <div class=post-meta>
@@ -456,41 +497,6 @@ forest nook
 <p>たまたまそんな話しをツィートしてたら Jira API と Slack API を使ってスクリプトを書いているというのを教えてもらった。これはこれで便利そう。</p>
 <blockquote class=twitter-tweet><p lang=ja dir=ltr>こんな感じのスクリプトでJIRAからslackに通知してます <a href=https://t.co/UzeIZ9Nbol>https://t.co/UzeIZ9Nbol</a></p>&mdash; Takanori Suzuki (@takanory) <a href="https://twitter.com/takanory/status/1451572269768003589?ref_src=twsrc%5Etfw">October 22, 2021</a></blockquote>
 <script async src=https://platform.twitter.com/widgets.js></script>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2021/1021/>読書はお休み2日目</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2021-10-21
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/slack/>slack</a>&nbsp;
-#<a href=/diary/tags/writing/>writing</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#設計ドキュメント作成>設計ドキュメント作成</a></li>
-<li><a href=#ジョギング>ジョギング</a></li>
-<li><a href=#slack-community>Slack Community</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>0時に寝て7時に起きた。昨日は寝不足だったせいかぐっすり眠れた。</p>
-<h2 id=設計ドキュメント作成>設計ドキュメント作成</h2>
-<p>昨日の続き。着手すると徐々に興が乗ってくる。朝からずっとやり続けて17時ぐらいに一通りたたき台ができた。なぜか朝ご飯もお昼ご飯も食べずに資料を作り続けてた。お腹もあまりすかなかった。経緯や背景、設計の意図やシステム構成、展望やビジネス戦略など、スライドで39枚になった。顧問さんに情報共有するための資料なんだけど、自分一人の会社で自分一人で開発するのに2日もかけて資料作る必要あるのだろうかと考える人も多いと思う。この資料に書いた内容はすべて課題管理システム上のチケットのどこかに書いてあることなので、私の視点からは全部知っている内容ではある。ちょうど100を超えたばかりのチケット上のどこかに書いてあることを、39枚のスライドにまとめて今日の時点でのスナップショットを作るというのは思考の整理に役立っている。去年はそういうことをやらなかったので何かうまくいかなくなったのを <a href=https://note.com/t2y1979/n/n84deed5fd934>リモートワークと相談相手</a> に書いた。今年はうまくいってないという感覚がないので気持ちに余裕がある。気持ちに余裕があるから新しい施策やアイディアに集中できているように考えている。</p>
-<h2 id=ジョギング>ジョギング</h2>
-<p>資料できたのが嬉しくて気分がよかったのでそのまま帰ってジョギングしてきた。今週初めて。19時までに帰ってくると行く気するんだけど、それよりも遅く帰ってくるとお腹空いて晩ご飯を先に食べてしまい、晩ご飯を食べると走りに行く気力がなくなってしまう。前に軽く調べたら健康的には食べる前に走った方がよいみたい。<a href=/diary/posts/2021/1014/#ジョギング>先週とだいたい同じ時間帯に行った</a> んやけど、陸上部の人たちが減ってて走りやすかった。曜日じゃなくて何か別のサイクルがあるのかな。ちょっと寒いぐらいだから走っててもあまり汗も書かないし、走った後にストレッチするのも汗だくにはならない。</p>
-<h2 id=slack-community>Slack Community</h2>
-<p><a href=https://qiita.com/seratch/items/d67f36d0ff7dfaadcc3b#slack-community-%E6%97%A7-slack-platform-community>Slack Community</a> というのがあるのをみかけたので参加してみた。これからしばらく Slack apps についてがっつり調べていく予定。困ったときに相談できるように。</p>
 </div>
 </div>
 <div class=pagination>
