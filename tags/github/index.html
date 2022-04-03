@@ -56,6 +56,58 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0403/>カスタムドメインの設定</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-04-03
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/economy/>economy</a>&nbsp;
+#<a href=/diary/tags/blog/>blog</a>&nbsp;
+#<a href=/diary/tags/dns/>dns</a>&nbsp;
+#<a href=/diary/tags/github/>github</a>&nbsp;
+</span>
+<div class=post-content>
+<p>3時に寝て7時半に起きた。前日の深夜にオフィスの掃除をしてた。シェアオフィスなので掃除機をかけると音がうるさくて周りに迷惑なので誰もいない時間帯を見計らって行う必要がある。</p>
+<h2 id=逆イールド>逆イールド</h2>
+<p>会社を経営する上で経済の状況は大きな影響を受けるので機をみて経済の勉強もしている。直近40年近くの統計では、米国債金利において、2年債の金利が10年債の金利を追い越してしまう現象が発生した場合、その1年後ぐらいに景気後退期がやってくる。この現象を <strong>逆イールド</strong> と呼ぶ。</p>
+<p>なぜ逆イールドが発生すると景気後退となるのか。国債とは政府の借金。金融機関、年金、個人、海外などが貸している。金利は複雑で様々な要因で決まるので一概に言えないが、大雑把にまとめると経済の力や金融政策、世のおカネの量で決まる。政策金利によって3ヶ月債や2年債は大きく影響を受ける。利上げを急ぎでやろうとしている理由は高いインフレがある。米国は約40年ぶりの高インフレとなっている。FRB は約2%のインフレを目標としているが、現状は遥かに高い水準になるので金利を上げてインフレを抑制しようとしている。FRB は次の2つの使命を負っている。</p>
+<ul>
+<li>物価の安定</li>
+<li>雇用の最大化</li>
+</ul>
+<p>いま物価が急上昇しているため、このまま金融緩和を続けるとさらに物価が上昇して悪い影響を及ぼしてしまう。いまは金融緩和を縮小して利上げをしていく必要がある。しかし、利上げは景気に対して悪影響となる可能性がある。どのぐらい利上げすればよいのかは実際には誰もわからない。最悪の状況として次がある。</p>
+<ul>
+<li><strong>スタグフレーション</strong>: 高インフレのまま景気が減速する現象</li>
+</ul>
+<p>スタグフレーションが発生すると経済対策や金融政策で対応しづらい非常にまずい状況となる。経済学者によっても意見が分かれるので、まだスタグフレーションが起こるとは限らない。しかし、起こる可能性があるという見方も出てきているらしい。</p>
+<div class=video-container>
+<iframe src=https://www.youtube.com/embed/apeDeUAXMdk allowfullscreen title=よくわかる「逆イールド」　景気後退のシグナル（後藤達也）></iframe>
+</div>
+<h2 id=英語のテックブログ開設>英語のテックブログ開設</h2>
+<p>先日作った <a href=/diary/posts/2022/0327/#backlog-と-github-のインテグレーション-action>backlog-github-integration-action</a> の記事を書くことにした。会社のプロダクトとして作ったツールで汎用的なものや業務として保守していくものは積極的にアピールしていきたい。基本的に私は日本市場をあてにしていないのと、せっかく会社を作ったのだし、海外の会社と取り引きできるようになりたいという野望もある。プロダクトの情報発信は英語が基本で、余裕があったら日本語も書くといった優先度でやっていく。</p>
+<p>少し前にたまたま <a href=https://hashnode.com/>hashnode</a> がイケてるというのをタイムラインでみかけたのを思い出した。せっかくなので調べてみたら、どうも <a href=https://support.hashnode.com/docs/mapping-domain>Custom Domain</a> を無償、且つお手軽に設定できるのが訴求点になっているらしい。カスタムドメインを使うと、url に統合性があってカッコいいという以外にも信頼できるドメインに対して SEO が行われるため、優良な記事を書いていると自社ドメインの信頼があがっていくといったメリットがある。コストがかからないならカスタムドメインを使わない理由は何もない。そして設定したものが次になる。</p>
+<ul>
+<li><a href=https://blog.kazamori.jp/>https://blog.kazamori.jp/</a></li>
+</ul>
+<p>ネームサーバーにカスタムドメインの設定をしていて間違って少しはまった。</p>
+<p>間違った設定</p>
+<pre tabindex=0><code>cname blog hashnode.network
+</code></pre><p>正しい設定</p>
+<pre tabindex=0><code>cname blog hashnode.network.
+</code></pre><p>最後にドット <code>.</code> が必要になる。これで blog.kazamori.jp の名前解決が hashnode.network として解決される。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ dig blog.kazamori.jp
+...
+;; ANSWER SECTION:
+blog.kazamori.jp.	198	IN	CNAME	hashnode.network.
+hashnode.network.	46	IN	A	76.76.21.21
+</code></pre></div><p>CNAME レコードを滅多に設定しないのでドットで終わらないといけない規則を忘れてた。設定後、dns の propagation に最大24時間ほどかかる。世界のどこからでもアクセスできるようになるには24時間ぐらいかかるかもしれないけど、ローカルで動作検証するなら数分で反映されてた。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0328/>backlog-github-integration-action を運用し始めた</a>
 </h1>
 <div class=post-meta>
