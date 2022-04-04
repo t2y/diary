@@ -57,6 +57,46 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0307/>ワークフローの移行説明</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-03-07
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/github/>github</a>&nbsp;
+#<a href=/diary/tags/ci/cd/>ci/cd</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#ワークフロー移行後の説明>ワークフロー移行後の説明</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>3時に寝て6時半に起きた。朝起きたら github actions のリソース上限に達しているという連絡が slack に書き込まれていて週末に移行作業して1500分ぐらいは浪費しましたと事後報告した。</p>
+<h2 id=ワークフロー移行後の説明>ワークフロー移行後の説明</h2>
+<p>週末に移行した新しい ci/cd の仕組みを開発者に説明した。開発のワークフローも大きく変わる。いくつか要望をもらいつつ、とくに混乱も誤解もなく受け入れられた。github actions の管理画面からボタンでデプロイ実行できるため、本番環境にデプロイできるユーザーは制限したいと言われて次のようなステップを追加した。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml>- <span style=color:#f92672>name</span>: <span style=color:#ae81ff>デプロイユーザーを確認</span>
+  <span style=color:#f92672>if</span>: <span style=color:#ae81ff>${{ env.DEPLOYMENT_ENV == &#39;prod&#39; }}</span>
+  <span style=color:#f92672>run</span>: |<span style=color:#e6db74>
+</span><span style=color:#e6db74>    [[ &#34;${{ contains(fromJSON(env.DEPLOYABLE_USERS), github.actor) }}&#34; == &#34;true&#34; ]] &amp;&amp; exit 0
+</span><span style=color:#e6db74>    echo &#34;デプロイ権限のあるユーザーではありません&#34;
+</span><span style=color:#e6db74>    exit 1</span>    
+  <span style=color:#f92672>env</span>:
+    <span style=color:#f92672>DEPLOYABLE_USERS</span>: <span style=color:#e6db74>&#39;[&#34;user1&#34;, &#34;user2&#34;, &#34;app-bot&#34;]&#39;</span>
+</code></pre></div><p>expressions の <a href=https://docs.github.com/en/actions/learn-github-actions/expressions#functions>Functions</a> に組み込みの関数がいくつか紹介されている。それらを組み合わせるとうまくいきそうと思って書いてみた。たしかにちょっと楽に実装はできるけど、github actions の expression とシェルの文字列との境界が、yaml のコード上では曖昧なため、真偽値などはとくにわかりにくい。例えば、次のコード。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#f92672>[[</span> <span style=color:#e6db74>&#34;</span><span style=color:#e6db74>${</span>{ contains(fromJSON(env.DEPLOYABLE_USERS), github.actor) <span style=color:#e6db74>}</span><span style=color:#e6db74>}&#34;</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;true&#34;</span> <span style=color:#f92672>]]</span>
+</code></pre></div><p><code>${{ ... }}</code> で囲まれたところは github の expression なので boolean として評価できるが、それをシェルにもってくると文字列になってしまうので文字列で比較しないといけない。普通にコードを書いていて気づきにくいので実行して振る舞いを検証しないと間違うみたいな話し。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0306/>もっとさいきょうのでぷろい</a>
 </h1>
 <div class=post-meta>
@@ -302,41 +342,6 @@ ci/cd で使うような認可の仕組みとして github には oauth apps と
 </ul>
 </li>
 </ul>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0228/>kustomize の動的な設定</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-02-28
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/kubernetes/>kubernetes</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#kustomize-の動的な設定>kustomize の動的な設定</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>23時に寝て2時に起きてそこから断続的に寝たり起きたりを繰り返して6時に半に起きた。ウクライナ情勢のニュースや記事ばかり読んでてあてられた。</p>
-<h2 id=kustomize-の動的な設定>kustomize の動的な設定</h2>
-<p>kustomize で管理している image のタグをデプロイ処理の中で動的に変更したい。パラメーター渡しなり環境変数なり、なにかしらあるだろうとは予測している。<a href=https://github.com/kubernetes-sigs/kustomize/blob/master/examples/image.md>Demo: change image names and tags</a> のサンプルによると、次のように実行すればよいみたい。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ kustomize edit set image busybox<span style=color:#f92672>=</span>alpine:3.6
-</code></pre></div><p>次のような <code>kustomization.yaml</code> をセットしてくれるみたい。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#f92672>images</span>:
-- <span style=color:#f92672>name</span>: <span style=color:#ae81ff>busybox</span>
-  <span style=color:#f92672>newName</span>: <span style=color:#ae81ff>alpine</span>
-  <span style=color:#f92672>newTag</span>: <span style=color:#ae81ff>3.6</span>
-</code></pre></div><p>タグのところをリビジョン指定できればいいだけなのでとくに SECRET を使う必要もない。このやり方で書き換えた <code>newTag</code> が POD のデプロイ対象になってくれればよいはず。</p>
 </div>
 </div>
 <div class=pagination>
