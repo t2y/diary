@@ -56,6 +56,46 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0406/>ecs の draining とタスクの停止時間</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-04-06
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
+</span>
+<div class=post-content>
+<p>0時に寝て4時に起きた。なんか起きてから sns のタイムラインを眺めてた。6時半にはオフィスについて cdk のコードを読み始めた。</p>
+<h2 id=ecs-の-draining-に時間がかかる>ecs の draining に時間がかかる？</h2>
+<p>cdk でインフラのデプロイをしていて、ecs のタスクの置き換えにやたら時間がかかっているのに気付いた。調べてみると、aws のドキュメントがすぐにヒットした。デフォルトでは停止するまでに5分ぐらいかかってしまうようだけど、それを調整したかったらいくつかパラメーターがある。</p>
+<ul>
+<li><a href=https://aws.amazon.com/jp/premiumsupport/knowledge-center/ecs-tasks-stop-delayed-draining/>コンテナインスタンスが DRAINING に設定されているときに、Amazon ECS タスクが停止するのに時間がかかるトラブルシューティング方法を教えてください。</a></li>
+</ul>
+<h4 id=ecs-サービスの-deployment-configuration>ecs サービスの deployment configuration</h4>
+<ul>
+<li>minimumHealthyPercent: 同時に停止できるタスクの割合設定</li>
+<li>maximumPercent: draining されるタスクが停止するまで置き換えるタスクを開始するかどうかの設定？</li>
+</ul>
+<h4 id=ロードバランサーの-deregistration-delay>ロードバランサーの deregistration delay</h4>
+<ul>
+<li>deregistrationDelay: elb(nlb) が登録解除処理が完了するまでに待つ時間。タスクが draining の状態になってこの時間が過ぎた後に登録解除して target が未使用になる</li>
+</ul>
+<h4 id=ecs-タスク定義の-stop-timeout>ecs タスク定義の stop timeout</h4>
+<ul>
+<li>stopTimeout: コンテナーが正常終了しないときに ecs が強制的にプロセスを kill するまでの待ち時間</li>
+</ul>
+<p>それぞれのインフラの状況にあわせて適切なパラメーターを変更すればよい。私が管理しているのは次の2つを変更した。</p>
+<ul>
+<li>maximumPercent: 100 -> 200 (%)</li>
+<li>deregistrationDelay: 300 -> 30 (秒)</li>
+</ul>
+<p>これで18分ほどかかっていたデプロイ時間を8分ぐらいまで短縮できた。テスト環境の設定なので多少のエラーが発生したとしても速い方がよい。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0405/>再びのインフラエンジニア</a>
 </h1>
 <div class=post-meta>

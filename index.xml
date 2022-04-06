@@ -1,4 +1,31 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>forest nook</title><link>/diary/</link><description>Recent content on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Tue, 05 Apr 2022 06:30:11 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/index.xml" rel="self" type="application/rss+xml"/><item><title>再びのインフラエンジニア</title><link>/diary/posts/2022/0405/</link><pubDate>Tue, 05 Apr 2022 06:30:11 +0900</pubDate><guid>/diary/posts/2022/0405/</guid><description>0時に寝て7時に起きた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>forest nook</title><link>/diary/</link><description>Recent content on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Wed, 06 Apr 2022 06:30:16 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/index.xml" rel="self" type="application/rss+xml"/><item><title>ecs の draining とタスクの停止時間</title><link>/diary/posts/2022/0406/</link><pubDate>Wed, 06 Apr 2022 06:30:16 +0900</pubDate><guid>/diary/posts/2022/0406/</guid><description>0時に寝て4時に起きた。なんか起きてから sns のタイムラインを眺めてた。6時半にはオフィスについて cdk のコードを読み始めた。
+ecs の draining に時間がかかる？ cdk でインフラのデプロイをしていて、ecs のタスクの置き換えにやたら時間がかかっているのに気付いた。調べてみると、aws のドキュメントがすぐにヒットした。デフォルトでは停止するまでに5分ぐらいかかってしまうようだけど、それを調整したかったらいくつかパラメーターがある。
+コンテナインスタンスが DRAINING に設定されているときに、Amazon ECS タスクが停止するのに時間がかかるトラブルシューティング方法を教えてください。 ecs サービスの deployment configuration minimumHealthyPercent: 同時に停止できるタスクの割合設定 maximumPercent: draining されるタスクが停止するまで置き換えるタスクを開始するかどうかの設定？ ロードバランサーの deregistration delay deregistrationDelay: elb(nlb) が登録解除処理が完了するまでに待つ時間。タスクが draining の状態になってこの時間が過ぎた後に登録解除して target が未使用になる ecs タスク定義の stop timeout stopTimeout: コンテナーが正常終了しないときに ecs が強制的にプロセスを kill するまでの待ち時間 それぞれのインフラの状況にあわせて適切なパラメーターを変更すればよい。私が管理しているのは次の2つを変更した。
+maximumPercent: 100 -&amp;gt; 200 (%) deregistrationDelay: 300 -&amp;gt; 30 (秒) これで18分ほどかかっていたデプロイ時間を8分ぐらいまで短縮できた。テスト環境の設定なので多少のエラーが発生したとしても速い方がよい。</description><content>&lt;p>0時に寝て4時に起きた。なんか起きてから sns のタイムラインを眺めてた。6時半にはオフィスについて cdk のコードを読み始めた。&lt;/p>
+&lt;h2 id="ecs-の-draining-に時間がかかる">ecs の draining に時間がかかる？&lt;/h2>
+&lt;p>cdk でインフラのデプロイをしていて、ecs のタスクの置き換えにやたら時間がかかっているのに気付いた。調べてみると、aws のドキュメントがすぐにヒットした。デフォルトでは停止するまでに5分ぐらいかかってしまうようだけど、それを調整したかったらいくつかパラメーターがある。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://aws.amazon.com/jp/premiumsupport/knowledge-center/ecs-tasks-stop-delayed-draining/">コンテナインスタンスが DRAINING に設定されているときに、Amazon ECS タスクが停止するのに時間がかかるトラブルシューティング方法を教えてください。&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h4 id="ecs-サービスの-deployment-configuration">ecs サービスの deployment configuration&lt;/h4>
+&lt;ul>
+&lt;li>minimumHealthyPercent: 同時に停止できるタスクの割合設定&lt;/li>
+&lt;li>maximumPercent: draining されるタスクが停止するまで置き換えるタスクを開始するかどうかの設定？&lt;/li>
+&lt;/ul>
+&lt;h4 id="ロードバランサーの-deregistration-delay">ロードバランサーの deregistration delay&lt;/h4>
+&lt;ul>
+&lt;li>deregistrationDelay: elb(nlb) が登録解除処理が完了するまでに待つ時間。タスクが draining の状態になってこの時間が過ぎた後に登録解除して target が未使用になる&lt;/li>
+&lt;/ul>
+&lt;h4 id="ecs-タスク定義の-stop-timeout">ecs タスク定義の stop timeout&lt;/h4>
+&lt;ul>
+&lt;li>stopTimeout: コンテナーが正常終了しないときに ecs が強制的にプロセスを kill するまでの待ち時間&lt;/li>
+&lt;/ul>
+&lt;p>それぞれのインフラの状況にあわせて適切なパラメーターを変更すればよい。私が管理しているのは次の2つを変更した。&lt;/p>
+&lt;ul>
+&lt;li>maximumPercent: 100 -&amp;gt; 200 (%)&lt;/li>
+&lt;li>deregistrationDelay: 300 -&amp;gt; 30 (秒)&lt;/li>
+&lt;/ul>
+&lt;p>これで18分ほどかかっていたデプロイ時間を8分ぐらいまで短縮できた。テスト環境の設定なので多少のエラーが発生したとしても速い方がよい。&lt;/p></content></item><item><title>再びのインフラエンジニア</title><link>/diary/posts/2022/0405/</link><pubDate>Tue, 05 Apr 2022 06:30:11 +0900</pubDate><guid>/diary/posts/2022/0405/</guid><description>0時に寝て7時に起きた。
 インフラタスクに専念 本当はインフラ担当者が別途いるのだけど、多忙過ぎて、インフラタスクが1ヶ月近く遅延していて、プロジェクト内で合意を得て私がすべて巻き取ることにした。内容の如何に依らず、その一切合切をすべて巻き取ると宣言した。過去に働いた会社でも他の担当者ができなかった業務を後からリカバリするのはよくやってたのでそれ自体は構わない。ただ他人のタスクを肩代わりしても評価されないことも多くて、もともと私のタスクではないから誰がやったかなんか忘れてしまうんよね。私もとくにアピールしないからそう認識されても構わないのだけど、そういう業務が増えてくるとその職場を辞めるきっかけにもなってた。
 インフラ担当者や他の社員さんにヒアリングしながら現時点でも十数個のタスクがある。過去のインフラの負債も含めて2-3週間ぐらい、私が集中的にやればすべて片がつくのではないかと考えている。今日たまたまスクラムのリファインメントやってて、業務の人から他の機能開発が遅れているのに2-3週間もインフラ作業に専念するってどういうこと？インフラタスクってインフラ担当者にやってもらえないんですか？と質問を受けて、できるんならその方が望ましいけど、過去の実績からまったく進捗しないのでこちらでやるざるを得ない状況というのを説明した。業務の人からみたらインフラなんか何をやっているかわからないからそんなもんよね。これから2-3週間経って蓄積したインフラタスクをすべて解決した後で少し時間が経つとインフラ担当者が全部やったように外部からはみえてしまうというのを、過去に何度も経験した。</description><content>&lt;p>0時に寝て7時に起きた。&lt;/p>
 &lt;h2 id="インフラタスクに専念">インフラタスクに専念&lt;/h2>
