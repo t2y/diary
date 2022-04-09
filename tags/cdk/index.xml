@@ -1,4 +1,40 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>cdk on forest nook</title><link>/diary/tags/cdk/</link><description>Recent content in cdk on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 07 Apr 2022 06:10:00 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/cdk/index.xml" rel="self" type="application/rss+xml"/><item><title>cdk のメジャーバージョンのマイグレーション</title><link>/diary/posts/2022/0407/</link><pubDate>Thu, 07 Apr 2022 06:10:00 +0900</pubDate><guid>/diary/posts/2022/0407/</guid><description>0時に寝て5時に起きた。開発者にインフラ変更の影響を出さないように6時半からインフラのお仕事してた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>cdk on forest nook</title><link>/diary/tags/cdk/</link><description>Recent content in cdk on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Fri, 08 Apr 2022 10:13:19 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/cdk/index.xml" rel="self" type="application/rss+xml"/><item><title>壊れた cf スタックのリストアと cdk の再同期</title><link>/diary/posts/2022/0408/</link><pubDate>Fri, 08 Apr 2022 10:13:19 +0900</pubDate><guid>/diary/posts/2022/0408/</guid><description>2時に寝て6時半に起きた。インフラエンジニアになったのでみんなが作業していない時間にインフラの保守作業をするようにしている。昼はアプリケーションエンジニア、夜はインフラエンジニアみたいな生活になっていてしんどい。
+壊れた cf スタックの更新 テスト環境の cf スタックを手動で更新して壊れているのを cdk で管理できるように直した。壊れていたのは次の3つ。
+rds をスナップショットからリストアしたので cf が管理している rds リソースが存在しない iam の acl 設定が異なる セキュリティグループのインバウンドルールが異なる aws 的にもそういった状況は認識していて cdk で同期できなくなった cf スタックを更新する手順を提供している。
+AWS CloudFormation スタックを削除したときにリソースの一部を保持する方法を教えてください。 ざっくり手順をまとめると次になる。
+対象のリソースに DeletetionPolicy=Retain にセットする テンプレートからリソースを削除して、スタックの更新を実行する テンプレート内のリソースの実際の状態を describe して、スタック内に既存のリソースをインポートする リソースの設定ぐらいなら既存のリソースからインポートしなくても cf のテンプレートを直接書き換えたものをアップロードしてスタックを更新するのでも大丈夫だったりする。しかし、cdk もそのテンプレートにあうように修正しないといけないため、cdk のコードとテンプレートのコードの両方をチェックしながら検証する必要がある。cdk でリソース管理ができるようになったからといって、それが変更前の既存のリソースの設定と同じかどうかは人間が目でみて検証しないといけない。これがあちこちで参照されているリソースだと追跡するのが面倒くさいといった手間暇がかかる。
+cdk がよいものかどうか、私はまだ判断がつかないけど、cf を抽象化して便利になっているところは認めるものの、cf のスタックが壊れたときのトラブルシューティングが必要以上に複雑で厄介というのも事実ではある。一方で壊れた cf スタックを5時間ぐらいかけて直したのではまりポイントはいくつかも学ぶことができた。しんどかったけど。例えば、あるセキュリティグループのインバウンドルールに別のセキュリティグループを関連付けるとき、1つの設定ではうまくいかなくて次の2つの設定を追加した。これが適切かどうかわからないが、この設定で cdk でデプロイしたスタックの環境と既存リソースとの環境が整合した状態 (ドリフトが解消される) になった。こういうのが cdk の抽象化による訳のわからないところの1つ。
+otherSecurityGroup.addIngressRule( ec2.SecurityGroup.fromSecurityGroupId(this, &amp;#39;my security group&amp;#39;, mySgId), ec2.Port.tcp(80), &amp;#34;my inboud rule&amp;#34;, ) otherSecurityGroup.</description><content>&lt;p>2時に寝て6時半に起きた。インフラエンジニアになったのでみんなが作業していない時間にインフラの保守作業をするようにしている。昼はアプリケーションエンジニア、夜はインフラエンジニアみたいな生活になっていてしんどい。&lt;/p>
+&lt;h2 id="壊れた-cf-スタックの更新">壊れた cf スタックの更新&lt;/h2>
+&lt;p>テスト環境の cf スタックを手動で更新して壊れているのを cdk で管理できるように直した。壊れていたのは次の3つ。&lt;/p>
+&lt;ul>
+&lt;li>rds をスナップショットからリストアしたので cf が管理している rds リソースが存在しない&lt;/li>
+&lt;li>iam の acl 設定が異なる&lt;/li>
+&lt;li>セキュリティグループのインバウンドルールが異なる&lt;/li>
+&lt;/ul>
+&lt;p>aws 的にもそういった状況は認識していて cdk で同期できなくなった cf スタックを更新する手順を提供している。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://aws.amazon.com/jp/premiumsupport/knowledge-center/delete-cf-stack-retain-resources/">AWS CloudFormation スタックを削除したときにリソースの一部を保持する方法を教えてください。&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>ざっくり手順をまとめると次になる。&lt;/p>
+&lt;ol>
+&lt;li>対象のリソースに DeletetionPolicy=Retain にセットする&lt;/li>
+&lt;li>テンプレートからリソースを削除して、スタックの更新を実行する&lt;/li>
+&lt;li>テンプレート内のリソースの実際の状態を describe して、スタック内に既存のリソースをインポートする&lt;/li>
+&lt;/ol>
+&lt;p>リソースの設定ぐらいなら既存のリソースからインポートしなくても cf のテンプレートを直接書き換えたものをアップロードしてスタックを更新するのでも大丈夫だったりする。しかし、cdk もそのテンプレートにあうように修正しないといけないため、cdk のコードとテンプレートのコードの両方をチェックしながら検証する必要がある。cdk でリソース管理ができるようになったからといって、それが変更前の既存のリソースの設定と同じかどうかは人間が目でみて検証しないといけない。これがあちこちで参照されているリソースだと追跡するのが面倒くさいといった手間暇がかかる。&lt;/p>
+&lt;p>cdk がよいものかどうか、私はまだ判断がつかないけど、cf を抽象化して便利になっているところは認めるものの、cf のスタックが壊れたときのトラブルシューティングが必要以上に複雑で厄介というのも事実ではある。一方で壊れた cf スタックを5時間ぐらいかけて直したのではまりポイントはいくつかも学ぶことができた。しんどかったけど。例えば、あるセキュリティグループのインバウンドルールに別のセキュリティグループを関連付けるとき、1つの設定ではうまくいかなくて次の2つの設定を追加した。これが適切かどうかわからないが、この設定で cdk でデプロイしたスタックの環境と既存リソースとの環境が整合した状態 (ドリフトが解消される) になった。こういうのが cdk の抽象化による訳のわからないところの1つ。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-typescript" data-lang="typescript">&lt;span style="color:#a6e22e">otherSecurityGroup&lt;/span>.&lt;span style="color:#a6e22e">addIngressRule&lt;/span>(
+&lt;span style="color:#a6e22e">ec2&lt;/span>.&lt;span style="color:#a6e22e">SecurityGroup&lt;/span>.&lt;span style="color:#a6e22e">fromSecurityGroupId&lt;/span>(&lt;span style="color:#66d9ef">this&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;my security group&amp;#39;&lt;/span>, &lt;span style="color:#a6e22e">mySgId&lt;/span>),
+&lt;span style="color:#a6e22e">ec2&lt;/span>.&lt;span style="color:#a6e22e">Port&lt;/span>.&lt;span style="color:#a6e22e">tcp&lt;/span>(&lt;span style="color:#ae81ff">80&lt;/span>),
+&lt;span style="color:#e6db74">&amp;#34;my inboud rule&amp;#34;&lt;/span>,
+)
+&lt;span style="color:#a6e22e">otherSecurityGroup&lt;/span>.&lt;span style="color:#a6e22e">addIngressRule&lt;/span>(
+&lt;span style="color:#a6e22e">ec2&lt;/span>.&lt;span style="color:#a6e22e">Peer&lt;/span>.&lt;span style="color:#a6e22e">securityGroupId&lt;/span>(&lt;span style="color:#a6e22e">mySgId&lt;/span>),
+&lt;span style="color:#a6e22e">ec2&lt;/span>.&lt;span style="color:#a6e22e">Port&lt;/span>.&lt;span style="color:#a6e22e">tcp&lt;/span>(&lt;span style="color:#ae81ff">80&lt;/span>),
+&lt;span style="color:#e6db74">&amp;#34;my inboud rule&amp;#34;&lt;/span>,
+)
+&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>cdk のメジャーバージョンのマイグレーション</title><link>/diary/posts/2022/0407/</link><pubDate>Thu, 07 Apr 2022 06:10:00 +0900</pubDate><guid>/diary/posts/2022/0407/</guid><description>0時に寝て5時に起きた。開発者にインフラ変更の影響を出さないように6時半からインフラのお仕事してた。
 cdk v1 と v2 の違い AWS CDK Versions には v1 と v2 の2つがある。新規で作るものは v2 を選択すればよいけど、既存のスタックが v1 だとマイグレーションが必要になる。cdk は bootstrap したときに CDKToolkit というスタックを生成する。cdk をアップグレードするというのはこのスタックの設定も更新する必要がある。デフォルト設定をそのまま使っていればマイグレーションはそんなに難しくはないはずだけど、設定をカスタマイズしていたりするといくつかパラメーターを調整したりしなかったりしてややこしいかもしれない。
 Migrating to AWS CDK v2 Bootstrapping また v2 は v1 の experimental な機能は移行されていないため、v1 のライブラリを直接使うか、自前でその機能を実装するといったことも必要になる可能性がある。
 cdk v2 を使っていて v1 にある機能が v2 になくてあれー？って感じで調べてたら experimental な機能はまだ移行されてないらしい。https://t.co/SbRZ5ddrTj
