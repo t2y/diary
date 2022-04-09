@@ -1,4 +1,30 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on forest nook</title><link>/diary/posts/</link><description>Recent content in Posts on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Wed, 06 Apr 2022 06:30:16 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>ecs の draining とタスクの停止時間</title><link>/diary/posts/2022/0406/</link><pubDate>Wed, 06 Apr 2022 06:30:16 +0900</pubDate><guid>/diary/posts/2022/0406/</guid><description>0時に寝て4時に起きた。なんか起きてから sns のタイムラインを眺めてた。6時半にはオフィスについて cdk のコードを読み始めた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on forest nook</title><link>/diary/posts/</link><description>Recent content in Posts on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 07 Apr 2022 06:10:00 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>cdk のメジャーバージョンのマイグレーション</title><link>/diary/posts/2022/0407/</link><pubDate>Thu, 07 Apr 2022 06:10:00 +0900</pubDate><guid>/diary/posts/2022/0407/</guid><description>0時に寝て5時に起きた。開発者にインフラ変更の影響を出さないように6時半からインフラのお仕事してた。
+cdk v1 と v2 の違い AWS CDK Versions には v1 と v2 の2つがある。新規で作るものは v2 を選択すればよいけど、既存のスタックが v1 だとマイグレーションが必要になる。cdk は bootstrap したときに CDKToolkit というスタックを生成する。cdk をアップグレードするというのはこのスタックの設定も更新する必要がある。デフォルト設定をそのまま使っていればマイグレーションはそんなに難しくはないはずだけど、設定をカスタマイズしていたりするといくつかパラメーターを調整したりしなかったりしてややこしいかもしれない。
+Migrating to AWS CDK v2 Bootstrapping また v2 は v1 の experimental な機能は移行されていないため、v1 のライブラリを直接使うか、自前でその機能を実装するといったことも必要になる可能性がある。
+cdk v2 を使っていて v1 にある機能が v2 になくてあれー？って感じで調べてたら experimental な機能はまだ移行されてないらしい。https://t.co/SbRZ5ddrTj
+&amp;mdash; Tetsuya Morimoto (@t2y) April 7, 2022 例えば、v1 の apigwv2.VpcLink というメソッドは experimental で v2 に移行されていないため、v2 に移行されている stable な CfnVpcLink という機能を使って次のように実装した。これは v1 の cdk の実装をみて同じように実装しただけ。</description><content>&lt;p>0時に寝て5時に起きた。開発者にインフラ変更の影響を出さないように6時半からインフラのお仕事してた。&lt;/p>
+&lt;h2 id="cdk-v1-と-v2-の違い">cdk v1 と v2 の違い&lt;/h2>
+&lt;p>&lt;a href="https://docs.aws.amazon.com/cdk/api/versions.html">AWS CDK Versions&lt;/a> には v1 と v2 の2つがある。新規で作るものは v2 を選択すればよいけど、既存のスタックが v1 だとマイグレーションが必要になる。cdk は bootstrap したときに CDKToolkit というスタックを生成する。cdk をアップグレードするというのはこのスタックの設定も更新する必要がある。デフォルト設定をそのまま使っていればマイグレーションはそんなに難しくはないはずだけど、設定をカスタマイズしていたりするといくつかパラメーターを調整したりしなかったりしてややこしいかもしれない。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html">Migrating to AWS CDK v2&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/cdk/v2/guide/bootstrapping.html">Bootstrapping&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>また v2 は v1 の experimental な機能は移行されていないため、v1 のライブラリを直接使うか、自前でその機能を実装するといったことも必要になる可能性がある。&lt;/p>
+&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">cdk v2 を使っていて v1 にある機能が v2 になくてあれー？って感じで調べてたら experimental な機能はまだ移行されてないらしい。&lt;a href="https://t.co/SbRZ5ddrTj">https://t.co/SbRZ5ddrTj&lt;/a>&lt;/p>&amp;mdash; Tetsuya Morimoto (@t2y) &lt;a href="https://twitter.com/t2y/status/1511924087450640386?ref_src=twsrc%5Etfw">April 7, 2022&lt;/a>&lt;/blockquote>
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script>
+&lt;p>例えば、v1 の apigwv2.VpcLink というメソッドは experimental で v2 に移行されていないため、v2 に移行されている stable な CfnVpcLink という機能を使って次のように実装した。これは v1 の cdk の実装をみて同じように実装しただけ。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/aws/aws-cdk/pull/10531/files#diff-1cf3aaf7b2b6b2e72123b93cb3108eb9e9a3291e588d62eb2cd34dd0509d3045">https://github.com/aws/aws-cdk/pull/10531/files#diff-1cf3aaf7b2b6b2e72123b93cb3108eb9e9a3291e588d62eb2cd34dd0509d3045&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-diff" data-lang="diff">&lt;span style="color:#f92672">- const apiGwVpcLink = new apigwv2.VpcLink(this, &amp;#39;ApiGwVpcLink&amp;#39;, {
+&lt;/span>&lt;span style="color:#f92672">- vpc: vpc,
+&lt;/span>&lt;span style="color:#f92672">- vpcLinkName: &amp;#39;my-vpc-link&amp;#39;,
+&lt;/span>&lt;span style="color:#f92672">- securityGroups: [mySecurityGroup]
+&lt;/span>&lt;span style="color:#f92672">&lt;/span>&lt;span style="color:#a6e22e">+ const apiGwVpcLink = new apigwv2.CfnVpcLink(this, &amp;#39;ApiGwVpcLink&amp;#39;, {
+&lt;/span>&lt;span style="color:#a6e22e">+ name: &amp;#39;my-vpc-link&amp;#39;,
+&lt;/span>&lt;span style="color:#a6e22e">+ subnetIds: vpc.privateSubnets.map(sb =&amp;gt; sb.subnetId),
+&lt;/span>&lt;span style="color:#a6e22e">+ securityGroupIds: [mySecurityGroup.securityGroupId]
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>ecs の draining とタスクの停止時間</title><link>/diary/posts/2022/0406/</link><pubDate>Wed, 06 Apr 2022 06:30:16 +0900</pubDate><guid>/diary/posts/2022/0406/</guid><description>0時に寝て4時に起きた。なんか起きてから sns のタイムラインを眺めてた。6時半にはオフィスについて cdk のコードを読み始めた。
 ecs の draining に時間がかかる？ cdk でインフラのデプロイをしていて、ecs のタスクの置き換えにやたら時間がかかっているのに気付いた。調べてみると、aws のドキュメントがすぐにヒットした。デフォルトでは停止するまでに5分ぐらいかかってしまうようだけど、それを調整したかったらいくつかパラメーターがある。
 コンテナインスタンスが DRAINING に設定されているときに、Amazon ECS タスクが停止するのに時間がかかるトラブルシューティング方法を教えてください。 ecs サービスの deployment configuration minimumHealthyPercent: 同時に停止できるタスクの割合設定 maximumPercent: draining されるタスクが停止するまで置き換えるタスクを開始するかどうかの設定？ ロードバランサーの deregistration delay deregistrationDelay: elb(nlb) が登録解除処理が完了するまでに待つ時間。タスクが draining の状態になってこの時間が過ぎた後に登録解除して target が未使用になる ecs タスク定義の stop timeout stopTimeout: コンテナーが正常終了しないときに ecs が強制的にプロセスを kill するまでの待ち時間 それぞれのインフラの状況にあわせて適切なパラメーターを変更すればよい。私が管理しているのは次の2つを変更した。
 maximumPercent: 100 -&amp;gt; 200 (%) deregistrationDelay: 300 -&amp;gt; 30 (秒) これで18分ほどかかっていたデプロイ時間を8分ぐらいまで短縮できた。テスト環境の設定なので多少のエラーが発生したとしても速い方がよい。</description><content>&lt;p>0時に寝て4時に起きた。なんか起きてから sns のタイムラインを眺めてた。6時半にはオフィスについて cdk のコードを読み始めた。&lt;/p>
