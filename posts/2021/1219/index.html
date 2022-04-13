@@ -6,7 +6,7 @@
 <meta name=description content="0時に寝て2時過ぎに起きてだらだらして7時に起きてだらだらして8時に起き上がった。休日は自然とだらだらしがち。
 log4j2 の脆弱性対応 たまたま sns で新たに脆弱性が発見され 2.17.0 がリリースされたことをみかけた。Apache Log4j Security Vulnerabilities をみて、午前中に対応して pr を作成して dos 攻撃の脆弱性と書いた後に次のツィートをみかけた。私は詳細を理解できていないのでこの内容が 2.17.0 で fix されているのかどうかまでは調査できていない。いずれにしても rce 攻撃はこわいから緊急度が跳ね上がるなとみていた。
 【悲報】log4jのRCE脆弱性、2.15で緩和策としてlocalhostにしかlookupできなくしたはずが、127.0.0[.]1#example[.]comのように#を挟むことにより回避可能ということが判明。これにより任意ドメインへのリクエストが可能になり再びリモート実行可能に。みなさん最新版の2.17にアップデートしましょう。 https://t.co/uQhJSnjv7m
-&amp;mdash; 暇な女子高専生@1日1食水煮サバ缶ダイエット (@miettal) December 19, 2021  アジャイル開発とスクラム 第2版 昨日の続き。素晴らしい本だったので所感をまとめた。スクラム開発の理解がより進んだ。
+&amp;mdash; たいしょー (@miettal) December 19, 2021  アジャイル開発とスクラム 第2版 昨日の続き。素晴らしい本だったので所感をまとめた。スクラム開発の理解がより進んだ。
  アジャイル開発とスクラム 第2版 顧客・技術・経営をつなぐ協調的ソフトウェア開発マネジメント  ">
 <meta name=keywords content>
 <meta name=robots content="noodp">
@@ -25,7 +25,7 @@ log4j2 の脆弱性対応 たまたま sns で新たに脆弱性が発見され 
 <meta property="og:description" content="0時に寝て2時過ぎに起きてだらだらして7時に起きてだらだらして8時に起き上がった。休日は自然とだらだらしがち。
 log4j2 の脆弱性対応 たまたま sns で新たに脆弱性が発見され 2.17.0 がリリースされたことをみかけた。Apache Log4j Security Vulnerabilities をみて、午前中に対応して pr を作成して dos 攻撃の脆弱性と書いた後に次のツィートをみかけた。私は詳細を理解できていないのでこの内容が 2.17.0 で fix されているのかどうかまでは調査できていない。いずれにしても rce 攻撃はこわいから緊急度が跳ね上がるなとみていた。
 【悲報】log4jのRCE脆弱性、2.15で緩和策としてlocalhostにしかlookupできなくしたはずが、127.0.0[.]1#example[.]comのように#を挟むことにより回避可能ということが判明。これにより任意ドメインへのリクエストが可能になり再びリモート実行可能に。みなさん最新版の2.17にアップデートしましょう。 https://t.co/uQhJSnjv7m
-&amp;mdash; 暇な女子高専生@1日1食水煮サバ缶ダイエット (@miettal) December 19, 2021  アジャイル開発とスクラム 第2版 昨日の続き。素晴らしい本だったので所感をまとめた。スクラム開発の理解がより進んだ。
+&amp;mdash; たいしょー (@miettal) December 19, 2021  アジャイル開発とスクラム 第2版 昨日の続き。素晴らしい本だったので所感をまとめた。スクラム開発の理解がより進んだ。
  アジャイル開発とスクラム 第2版 顧客・技術・経営をつなぐ協調的ソフトウェア開発マネジメント  ">
 <meta property="og:url" content="/diary/posts/2021/1219/">
 <meta property="og:site_name" content="forest nook">
@@ -77,7 +77,7 @@ forest nook
 <p>0時に寝て2時過ぎに起きてだらだらして7時に起きてだらだらして8時に起き上がった。休日は自然とだらだらしがち。</p>
 <h2 id=log4j2-の脆弱性対応>log4j2 の脆弱性対応<a href=#log4j2-の脆弱性対応 class=hanchor arialabel=Anchor>&#8983;</a> </h2>
 <p>たまたま sns で新たに脆弱性が発見され 2.17.0 がリリースされたことをみかけた。<a href=https://logging.apache.org/log4j/2.x/security.html>Apache Log4j Security Vulnerabilities</a> をみて、午前中に対応して pr を作成して dos 攻撃の脆弱性と書いた後に次のツィートをみかけた。私は詳細を理解できていないのでこの内容が 2.17.0 で fix されているのかどうかまでは調査できていない。いずれにしても rce 攻撃はこわいから緊急度が跳ね上がるなとみていた。</p>
-<blockquote class=twitter-tweet><p lang=ja dir=ltr>【悲報】log4jのRCE脆弱性、2.15で緩和策としてlocalhostにしかlookupできなくしたはずが、127.0.0[.]1#example[.]comのように#を挟むことにより回避可能ということが判明。これにより任意ドメインへのリクエストが可能になり再びリモート実行可能に。みなさん最新版の2.17にアップデートしましょう。 <a href=https://t.co/uQhJSnjv7m>https://t.co/uQhJSnjv7m</a></p>&mdash; 暇な女子高専生@1日1食水煮サバ缶ダイエット (@miettal) <a href="https://twitter.com/miettal/status/1472372715281858563?ref_src=twsrc%5Etfw">December 19, 2021</a></blockquote>
+<blockquote class=twitter-tweet><p lang=ja dir=ltr>【悲報】log4jのRCE脆弱性、2.15で緩和策としてlocalhostにしかlookupできなくしたはずが、127.0.0[.]1#example[.]comのように#を挟むことにより回避可能ということが判明。これにより任意ドメインへのリクエストが可能になり再びリモート実行可能に。みなさん最新版の2.17にアップデートしましょう。 <a href=https://t.co/uQhJSnjv7m>https://t.co/uQhJSnjv7m</a></p>&mdash; たいしょー (@miettal) <a href="https://twitter.com/miettal/status/1472372715281858563?ref_src=twsrc%5Etfw">December 19, 2021</a></blockquote>
 <script async src=https://platform.twitter.com/widgets.js></script>
 <h2 id=アジャイル開発とスクラム-第2版>アジャイル開発とスクラム 第2版<a href=#アジャイル開発とスクラム-第2版 class=hanchor arialabel=Anchor>&#8983;</a> </h2>
 <p>昨日の続き。素晴らしい本だったので所感をまとめた。スクラム開発の理解がより進んだ。</p>
