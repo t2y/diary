@@ -56,6 +56,24 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0412/>cloudfront のキャッシュ設定</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-04-12
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
+</span>
+<div class=post-content>
+<p>1時に寝て5時に起きた。</p>
+<h2 id=フロントエンドのインフラ作業>フロントエンドのインフラ作業</h2>
+<p>これまでバックエンドのインフラ作業をしてきたが、そちらの移行作業は完了した。フロントエンドのインフラも積み残しが多々あるのでこの機にリファクタリングする。差分が出ないことを確認して cf のテンプレートのドリフト結果を解消したものをデプロイしたらフロントエンドが壊れた。具体的には xhr の web api 呼び出しに対して認可エラーが返るようになった。数時間ほどの調査の結果、cloudfront の distribution 設定のビヘイビアのキャッシュ設定で web api 呼び出しのときに authorization ヘッダーを転送するための設定が漏れていることがわかった。cdk のコードにはそんな設定がどこにもなく差分も表示されないことから、フロントエンドの cdk コードも全く保守されていないことがわかった。デプロイするときに前回のデプロイが半年前だったのでなんか悪い予感はしたんよね。インフラ担当者の怠慢が度を越し過ぎてもう何が起きても私は驚かないけど。設定に漏れがある前提でフロントエンドのインフラをリファクタリングしていかないといけない。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0411/>cdk/cf の Stack とライフサイクル</a>
 </h1>
 <div class=post-meta>
