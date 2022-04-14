@@ -57,6 +57,49 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0414/>コロナワクチン3回目</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-04-14
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/life/>life</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#ワクチン3回目接種>ワクチン3回目接種</a></li>
+<li><a href=#インフラ移行作業>インフラ移行作業</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>22時に寝て3時に起きた6時に起きた。季節の変わり目のせいか、いつも眠い。</p>
+<h2 id=ワクチン3回目接種>ワクチン3回目接種</h2>
+<p><a href=/diary/posts/2021/0927/#コロナワクチン2回目摂取>2回目は昨年の9月27日</a> に接種した。6ヶ月以上経たないといけないので3月27日以降に接種資格を得て、実際に接種券が届いたのが4月7日だった。神戸市は初回のときにまごまごしたので他の自治体よりも遅れている。これまでファイザーを2回接種したので今回はモデルナを受けてみることにした。モデルナを扱っていてネット予約できるもっとも近くの診療所を予約した。オフィスから自転車で15分ぐらいのところ。16:30の予約なのに16時過ぎぐらいに行ったら普通に受け付けしてくれてすぐに接種もできた。16:05に接種終えて16:20まで待機してオフィスに戻ってきて普通にお仕事してた。その1時間半後に熱を測ったら37.0℃だった。その後もやや熱っぽいけど、平気とは言えば平気。</p>
+<h2 id=インフラ移行作業>インフラ移行作業</h2>
+<p>昨日の続き。フロントエンドのテスト環境が壊れる可能性があるため、他メンバーが使っていない夜に移行作業を行う。POの人たちがQA検証を19-21時ぐらいにやっていることが多いので21時以降に作業すると連絡しておいた。なかなか大変だった。最悪の場合、数時間テスト環境を使えませんと伝えていたものの、その通りで4時間ぐらい検証作業をしていた。cloudfront の distribution 設定を CloudFrontWebDistribution から Distribution へ移行して、新しいやり方であるマネージドポリシーを使うようにした。この設定が意図した振る舞いにならなくて検証作業に時間を割いた。</p>
+<p>cloudfront 経由で web api を呼び出すルートがあってキャッシュを無効にしたいのだが、無効にしたキャッシュポリシー (ttl をゼロにする) を作るとヘッダーの設定ができない。次のようなエラーになる。</p>
+<pre tabindex=0><code>The parameter HeaderBehavior is invalid for policy with caching disabled.
+</code></pre><p><a href=https://github.com/aws/aws-cdk/issues/13441>(cloudfront): Cache Policy cannot forward Authorization header. #13441</a> によると、maxTTL を1秒にして <code>Authorization</code> ヘッダーをオリジンに転送するようには設定できる。キャッシュメソッドは GET と HEAD なので実運用上は問題ないとは思うが、この回避策がないかどうかを調べて検証していた。結果としてはなかった。<a href=https://docs.amazonaws.cn/en_us/AmazonCloudFront/latest/DeveloperGuide/add-origin-custom-headers.html#add-origin-custom-headers-forward-authorization>Configuring CloudFront to forward the Authorization header</a> には <code>Authorization</code> ヘッダーを転送する方法は次の2通りとある。</p>
+<ol>
+<li>cache key に含める</li>
+<li>Managed-AllViewer という origin request policy をすべての viewer requests に含める</li>
+</ol>
+<p>最終的には1番目のやり方で対応はしたが、2番目のオリジンリクエストポリシーを設定する方法も検証してみた。オリジンリクエストポリシーを単体で設定することはできなくて、キャッシュポリシーも一緒に設定しないといけないことからキャッシュポリシーの設定の影響を受けて意図したように <code>Authorization</code> ヘッダーの転送はできなかった。</p>
+<ul>
+<li>cache policy: Managed-CachingDisabled</li>
+<li>origin request policy: Managed-AllViewer</li>
+</ul>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0413/>cdk の cloudfront の distribution 設定の移行</a>
 </h1>
 <div class=post-meta>
@@ -349,55 +392,6 @@ forest nook
   <span style=color:#e6db74>&#34;my inboud rule&#34;</span>,
 )
 </code></pre></div>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0407/>cdk のメジャーバージョンのマイグレーション</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-04-07
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/cdk/>cdk</a>&nbsp;
-#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#cdk-v1-と-v2-の違い>cdk v1 と v2 の違い</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>0時に寝て5時に起きた。開発者にインフラ変更の影響を出さないように6時半からインフラのお仕事してた。</p>
-<h2 id=cdk-v1-と-v2-の違い>cdk v1 と v2 の違い</h2>
-<p><a href=https://docs.aws.amazon.com/cdk/api/versions.html>AWS CDK Versions</a> には v1 と v2 の2つがある。新規で作るものは v2 を選択すればよいけど、既存のスタックが v1 だとマイグレーションが必要になる。cdk は bootstrap したときに CDKToolkit というスタックを生成する。cdk をアップグレードするというのはこのスタックの設定も更新する必要がある。デフォルト設定をそのまま使っていればマイグレーションはそんなに難しくはないはずだけど、設定をカスタマイズしていたりするといくつかパラメーターを調整したりしなかったりしてややこしいかもしれない。</p>
-<ul>
-<li><a href=https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html>Migrating to AWS CDK v2</a></li>
-<li><a href=https://docs.aws.amazon.com/cdk/v2/guide/bootstrapping.html>Bootstrapping</a></li>
-</ul>
-<p>また v2 は v1 の experimental な機能は移行されていないため、v1 のライブラリを直接使うか、自前でその機能を実装するといったことも必要になる可能性がある。</p>
-<blockquote class=twitter-tweet><p lang=ja dir=ltr>cdk v2 を使っていて v1 にある機能が v2 になくてあれー？って感じで調べてたら experimental な機能はまだ移行されてないらしい。<a href=https://t.co/SbRZ5ddrTj>https://t.co/SbRZ5ddrTj</a></p>&mdash; Tetsuya Morimoto (@t2y) <a href="https://twitter.com/t2y/status/1511924087450640386?ref_src=twsrc%5Etfw">April 7, 2022</a></blockquote>
-<script async src=https://platform.twitter.com/widgets.js></script>
-<p>例えば、v1 の apigwv2.VpcLink というメソッドは experimental で v2 に移行されていないため、v2 に移行されている stable な CfnVpcLink という機能を使って次のように実装した。これは v1 の cdk の実装をみて同じように実装しただけ。</p>
-<ul>
-<li><a href=https://github.com/aws/aws-cdk/pull/10531/files#diff-1cf3aaf7b2b6b2e72123b93cb3108eb9e9a3291e588d62eb2cd34dd0509d3045>https://github.com/aws/aws-cdk/pull/10531/files#diff-1cf3aaf7b2b6b2e72123b93cb3108eb9e9a3291e588d62eb2cd34dd0509d3045</a></li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-diff data-lang=diff><span style=color:#f92672>-    const apiGwVpcLink = new apigwv2.VpcLink(this, &#39;ApiGwVpcLink&#39;, {
-</span><span style=color:#f92672>-      vpc: vpc,
-</span><span style=color:#f92672>-      vpcLinkName: &#39;my-vpc-link&#39;,
-</span><span style=color:#f92672>-      securityGroups: [mySecurityGroup]
-</span><span style=color:#f92672></span><span style=color:#a6e22e>+    const apiGwVpcLink = new  apigwv2.CfnVpcLink(this, &#39;ApiGwVpcLink&#39;, {
-</span><span style=color:#a6e22e>+     name: &#39;my-vpc-link&#39;,
-</span><span style=color:#a6e22e>+     subnetIds: vpc.privateSubnets.map(sb =&gt; sb.subnetId),
-</span><span style=color:#a6e22e>+     securityGroupIds: [mySecurityGroup.securityGroupId]
-</span></code></pre></div>
 </div>
 </div>
 <div class=pagination>
