@@ -56,6 +56,30 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0413/>cdk の cloudfront の distribution 設定の移行</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-04-13
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/cdk/>cdk</a>&nbsp;
+#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
+</span>
+<div class=post-content>
+<p>0時に寝て5時過ぎに起きた。</p>
+<h2 id=フロントエンドのインフラ作業の続き>フロントエンドのインフラ作業の続き</h2>
+<p>昨日、cloudfront の distribution 設定のビヘイビアのキャッシュ設定が誤っていることに気付いたので cdk のコードを修正していく。<a href=https://aws.amazon.com/jp/blogs/news/amazon-cloudfront-announces-cache-and-origin-request-policies/>Amazon CloudFront キャッシュポリシーとオリジンリクエストポリシーを発表</a> によると、2020年ぐらいに distribution ごとに個別設定していたのをマネージドポリシーというリソースを参照することで一元管理できるようになったらしい。cdk のコードで言えば、次の issue で対応されているが、これらの機能は <a href=https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_cloudfront.Distribution.html>aws_cloudfront.Distribution</a> のみに追加されている。従来の CloudFrontWebDistribution では使えないので distribution 設定そのものを新しいやり方に移行する必要がある。</p>
+<ul>
+<li><a href=https://github.com/aws/aws-cdk/issues/9644>https://github.com/aws/aws-cdk/issues/9644</a></li>
+<li><a href=https://github.com/aws/aws-cdk/issues/9647>https://github.com/aws/aws-cdk/issues/9647</a></li>
+</ul>
+<p>基本的には同じ設定を行うので新しいクラスのメンバーや構造にあわせて移行するだけなので難しくはないけれど、1つずつ設定内容の移行方法を確認していかないといけないから手間暇はかかる。cdk のドキュメントをみると、型に対してどういった設定をすればよいかが書いてあって、あとはメソッドの定義などもみながら自分たちの設定に近いものを選択していくといった作業になる。難しくはないけど時間はかかる。半日ほどやって移行のための pr を作成した。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0411/>cdk/cf の Stack とライフサイクル</a>
 </h1>
 <div class=post-meta>
