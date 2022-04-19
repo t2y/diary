@@ -57,6 +57,45 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0220/>2021年度の確定申告</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-02-20
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/tax/>tax</a>&nbsp;
+#<a href=/diary/tags/docker/>docker</a>&nbsp;
+#<a href=/diary/tags/jib/>jib</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#確定申告>確定申告</a></li>
+<li><a href=#github-container-action-の検証>github container action の検証</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>0時に寝て6時に起きた。</p>
+<h2 id=確定申告>確定申告</h2>
+<p>本当は9時から受け付けなんだけど、昨年早めに行ったら受け付けしてくれたので今年も8時半ぐらいから出掛けていった。家から徒歩5分のところに特設の申告会場があって、行ったらすでに100人ぐらいは並んでいた。整理券を配るために行列を誘導している係員に「書類は作成済みで提出だけです」と伝えると「どうぞ、こちらへ」と行列をショートカットして、書類の作成会場の横にある提出会場へ案内される。朝一なので誰も提出してなくてすぐに応対してくれた。書類チェックして提出完了。会場についてから提出するまでに5分。あわせて10分もあれば確定申告できる。電子申告してもよいのだけど、寄付金の領収書の電子化が面倒なのでまだ紙で申告している。寄付金の領収書が電子化されて添付できるような手軽さになったら電子申告してもよいかもしれない。</p>
+<h2 id=github-container-action-の検証>github container action の検証</h2>
+<p><a href=https://github.com/GoogleContainerTools/jib>jib</a> という java アプリケーション向けの docker イメージをビルドするためのツールがある。お仕事で使い始めたので雰囲気を理解するために私もサンプルアプリケーションを <a href=https://github.com/t2y/jib-sample>jib-sample</a> として作ってみた。簡単に設定して java アプリケーションを docker 化できるので感触はよさそう。基本的に java アプリケーションと docker は相性が悪くて、たぶん go で開発するような用途と比較するとサイズがめちゃくちゃでかい。それでも jib を使うと作成された docker イメージのサイズも自分でビルドして作るよりは小さくしてくれる。さすが google という感じ。</p>
+<p>この jib-sample の docker イメージを使って github actions のカスタム container action を作ってみたのが <a href=https://github.com/t2y/gh-actions-container-sample>gh-actions-container-sample</a> になる。<a href=https://docs.github.com/en/actions/creating-actions/creating-a-docker-container-action>Creating a Docker container action</a> のドキュメントには Dockerfile を使ったサンプルしか紹介されていないけど、docker イメージを直接参照して利用することもできる。</p>
+<p>検証作業をしているときに jib-sample リポジトリの github packages が private 設定になっていることに気付かなくて少しはまった。リポジトリの visibility 設定と github packages の visibility 設定は連動していないのでそれぞれで別に管理しないといけない。</p>
+<p>また jib で作った docker イメージはデフォルトでは manifest を作ってくれない。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ docker manifest inspect --verbose ghcr.io/t2y/jib-sample:latest
+no such manifest: ghcr.io/t2y/jib-sample:latest
+</code></pre></div><p><a href=https://github.com/GoogleContainerTools/jib/blob/master/docs/faq.md#how-do-i-specify-a-platform-in-the-manifest-list-or-oci-index-of-a-base-image>How do I specify a platform in the manifest list (or OCI index) of a base image?</a> のドキュメントによると、manifest に platform 情報を追加するのは incubating feature らしくて、なんか条件付きで設定すれば使えそうにもみえたんだけど、私がやってみた感じだとうまくいかなかった。また必要ならもう一度調べてみる。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0219/>docker の勉強</a>
 </h1>
 <div class=post-meta>
@@ -320,45 +359,6 @@ CMD [ &quot;/sql-executor&quot; ]
 </blockquote>
 <p>こんな感じで取材の費用はいりませんと言っている。<a href=https://marketing.idegene.com/%E8%A8%98%E4%BA%8B%E5%BA%83%E5%91%8A_%E5%8F%96%E6%9D%90%E5%95%86%E6%B3%95_%E9%9B%91%E8%AA%8C%E6%8E%B2%E8%BC%89%E3%81%AF%E5%8A%B9%E6%9E%9C%E7%9A%84>記事広告と取材商法(タレントインタビュー)で雑誌掲載の効果は？</a> によると、取材は無料かもしれないが、メディアや雑誌といった媒体に掲載するのに料金を請求するらしい。まさにこの記事で書かれている会社からのメールだ。取材して記事ができてしまうとサンクコストが気になって掲載料を支払ってしまうような心理を利用しているのだと推測する。</p>
 <p>いろんなビジネスがあるなぁと世の中の勉強になった。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0213/>java のコードレビューサービス</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-02-13
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/java/>java</a>&nbsp;
-#<a href=/diary/tags/refactoring/>refactoring</a>&nbsp;
-#<a href=/diary/tags/scrum/>scrum</a>&nbsp;
-#<a href=/diary/tags/issue-tracking-system/>issue tracking system</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#リファクタリングのチケット作成>リファクタリングのチケット作成</a></li>
-<li><a href=#見積もりのまとめ>見積もりのまとめ</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>22時に寝て0時に起きて5時に起きて7時に起きた。なんか体調が微妙。</p>
-<h2 id=リファクタリングのチケット作成>リファクタリングのチケット作成</h2>
-<p>これまでは業務に関係しないところの機能拡張をしていたので新規にコードを書くことが多かった。いま業務の開発にも着手し始め、その過程で既存のコードを読むことも多くなった。私からみたらコードの品質が著しく低くて、ただ動いているだけで堅牢でもないし、設計の意図も伝わらないコードが多い。そういうのを自分が変更するときに少しずつ出来る範囲でリファクタリングしたりしている。今日もコードを読んでいて enum の扱いについてチケットを作成した。</p>
-<p>前に手伝っていた会社の契約を終了するときに java のコードレビューだけなんらかの契約で依頼できないかという話しはあった。そのときは別件のお仕事が火の車だったので断ってしまった。いまお手伝いしている java のコードをみても、java に慣れていない開発者の書く java のコードはたいていひどい。なぜひどくなるかというと、java は言語仕様が複雑で難しいからだと思う。java の経験が少ないと Effective Java を読んでも理解できないぐらいには java の設計は難しい。その結果として java で開発しているのに設計を練っておらず「動けばいい」コードが散見される。java で開発するなら「これ以外に動かない」コードを書いた方がよいと私は考えている。その意図が伝わるからドキュメントなんか読まなくても「動かすにはこう書けばいい」とわかる。さらにインターフェースが明確であれば、責務や拡張方法も明示的になる。</p>
-<p>前から考えてはいたけど、sier や内製始めたばかりの事業会社向けに java のコードレビューのサービスを提供することも考えている。私1人だとたくさん受けられないし、コードレビューサービスのようなものは会社の信頼関係の方が重要なのでビジネスにするのはちょっと難しいかもなぁ。</p>
-<h2 id=見積もりのまとめ>見積もりのまとめ</h2>
-<p>先日 <a href=/diary/posts/2022/0205/##見積もりとは>見積もりについて考察した</a> 。もともとは社内向けに書こうと書き始めたが、内容の大半は社内に閉じたものではなかったので一般論の記事として書き直した。最終的には1万文字ぐらい書いた。</p>
-<ul>
-<li><a href=https://t2y.hatenablog.jp/entry/2022/02/13/191235>見積もりをがんばらない</a></li>
-</ul>
 </div>
 </div>
 <div class=pagination>
