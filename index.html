@@ -57,6 +57,54 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0420/>堅牢なインフラコード</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-04-20
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/life/>life</a>&nbsp;
+#<a href=/diary/tags/cdk/>cdk</a>&nbsp;
+#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#駐輪場の定期更新>駐輪場の定期更新</a></li>
+<li><a href=#インフラコードの抜本的リファクタリング>インフラコードの抜本的リファクタリング</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>23時に寝て5時に起きた。</p>
+<h2 id=駐輪場の定期更新>駐輪場の定期更新</h2>
+<p>3ヶ月ごとの更新。ちょうどいまのお仕事の契約と同じ更新月になっている。前回と同じ金額だったのでまだ駐輪場の料金は値上げされていない。世界的にインフレしているのに日本が全然インフレしていない理由の1つとして不動産が値上げしていないからというのを日銀の記事で見かけた気がする。どこかのタイミングで不動産関連の値上げも始まるのかもしれない。</p>
+<h2 id=インフラコードの抜本的リファクタリング>インフラコードの抜本的リファクタリング</h2>
+<p>約2週間かけて、新規インフラ環境の構築、既存インフラの cdk/cf と同期されていなかったインフラ (rds, security group, croudfront, api gateway, waf) の同期など、インフラコードの大きな変更をやり終えた。一部 <code>fromLookup</code> でインポートしているリソースもあるが、いま完全に cdk/cf 管理なインフラとなった。ここからはせっかく cdk でコードを書いているので、モジュール化や共通化など、再利用可能なリソースとして定義して、複数の Stack でコードを再利用するといったリファクタリングをしていく。ひとまずこのことをボーナスステージと呼ぼう。いま完全に同期されたインフラがあるため、インフラ上のリソースの差分が出なければリファクタリングは正しいことが保証される。cdk は <a href=https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib-readme.html#dependencies>Stack 間の依存関係</a> も定義できるため、適切な依存関係を定義することでより堅牢なインフラコードとなるはずである。具体的には次のような依存関係になる。然るべき堅牢なインフラコードに書き換えていく。</p>
+<ul>
+<li>DatabaseStack
+<ul>
+<li>BackendStack
+<ul>
+<li>GatewayStack
+<ul>
+<li>FrontendStack</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0419/>api gateway のデプロイ検証</a>
 </h1>
 <div class=post-meta>
@@ -265,40 +313,6 @@ forest nook
 <li>cache policy: Managed-CachingDisabled</li>
 <li>origin request policy: Managed-AllViewer</li>
 </ul>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0413/>cdk の cloudfront の distribution 設定の移行</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-04-13
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/cdk/>cdk</a>&nbsp;
-#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#フロントエンドのインフラ作業の続き>フロントエンドのインフラ作業の続き</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>0時に寝て5時過ぎに起きた。</p>
-<h2 id=フロントエンドのインフラ作業の続き>フロントエンドのインフラ作業の続き</h2>
-<p>昨日、cloudfront の distribution 設定のビヘイビアのキャッシュ設定が誤っていることに気付いたので cdk のコードを修正していく。<a href=https://aws.amazon.com/jp/blogs/news/amazon-cloudfront-announces-cache-and-origin-request-policies/>Amazon CloudFront キャッシュポリシーとオリジンリクエストポリシーを発表</a> によると、2020年ぐらいに distribution ごとに個別設定していたのをマネージドポリシーというリソースを参照することで一元管理できるようになったらしい。cdk のコードで言えば、次の issue で対応されているが、これらの機能は <a href=https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_cloudfront.Distribution.html>aws_cloudfront.Distribution</a> のみに追加されている。従来の CloudFrontWebDistribution では使えないので distribution 設定そのものを新しいやり方に移行する必要がある。</p>
-<ul>
-<li><a href=https://github.com/aws/aws-cdk/issues/9644>https://github.com/aws/aws-cdk/issues/9644</a></li>
-<li><a href=https://github.com/aws/aws-cdk/issues/9647>https://github.com/aws/aws-cdk/issues/9647</a></li>
-</ul>
-<p>基本的には同じ設定を行うので新しいクラスのメンバーや構造にあわせて移行するだけなので難しくはないけれど、1つずつ設定内容の移行方法を確認していかないといけないから手間暇はかかる。cdk のドキュメントをみると、型に対してどういった設定をすればよいかが書いてあって、あとはメソッドの定義などもみながら自分たちの設定に近いものを選択していくといった作業になる。難しくはないけど時間はかかる。半日ほどやって移行のための pr を作成した。</p>
 </div>
 </div>
 <div class=pagination>
