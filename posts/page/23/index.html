@@ -56,6 +56,31 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0418/>api gateway のコード化</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-04-18
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/cdk/>cdk</a>&nbsp;
+#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
+</span>
+<div class=post-content>
+<p>1時に寝て7時に起きた。</p>
+<h2 id=api-gateway-のコード化>api gateway のコード化</h2>
+<p>いま cdk で管理していない大きなインフラとして <a href=https://aws.amazon.com/jp/api-gateway/>api gateway</a> がある。さらに restful api ではなく http api という新しい仕組みを使っているため、cdk 側も experimental な機能として提供されている。experimental と言っても本番環境で使われいるので十分に production ready と言える。弊害としては cdk のサンプルコードが少なく、公式の api reference に付いているサンプルコードぐらいしか参考になるものがなく、適当にコードを書いてでデプロイし、管理画面で意図した設定になっているかを確認するといったトライ&エラーみたいなやり方しかない。今日の時点では pr まで作ってデプロイと検証は翌日にまわることにした。</p>
+<p>さらに cdk の v2 系では <code>-alpha</code> というパッケージが experimental 向けの機能を提供している。バージョン番号ではなく、パッケージ名に alpha が付くという分かりにくさに拍車をかけている。お手伝い先で使っている設定は次の3つのパッケージを使うことで実現できた。api gateway, vpc link, integration, route, authorization, stage など、複数のリソースを連携して設定しないといけないのでちょっとややこしい。</p>
+<ul>
+<li><a href=https://www.npmjs.com/package/@aws-cdk/aws-apigatewayv2-alpha>https://www.npmjs.com/package/@aws-cdk/aws-apigatewayv2-alpha</a></li>
+<li><a href=https://www.npmjs.com/package/@aws-cdk/aws-apigatewayv2-authorizers-alpha>https://www.npmjs.com/package/@aws-cdk/aws-apigatewayv2-authorizers-alpha</a></li>
+<li><a href=https://www.npmjs.com/package/@aws-cdk/aws-apigatewayv2-integrations-alpha>https://www.npmjs.com/package/@aws-cdk/aws-apigatewayv2-integrations-alpha</a></li>
+</ul>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0417/>草稿書き</a>
 </h1>
 <div class=post-meta>
@@ -138,6 +163,7 @@ forest nook
 </div>
 <span class=post-tags>
 #<a href=/diary/tags/life/>life</a>&nbsp;
+#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
 </span>
 <div class=post-content>
 <p>22時に寝て3時に起きた6時に起きた。季節の変わり目のせいか、いつも眠い。</p>
