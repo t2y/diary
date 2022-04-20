@@ -1,0 +1,103 @@
+<!doctype html><html lang=en>
+<head>
+<title>api gateway のデプロイ検証 :: forest nook</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="0時に寝て6時に起きた。
+api gateway のデプロイ検証 昨日の続き。api gateway を再作成すると、当然、既存のテスト環境は疎通できなくなってしまう。他の開発者を妨害しないようにまた21時から深夜にかけて作業しようと考えていたら、いまは閑散期でテスト環境を使わないといけないような開発の状況にはないと他の開発者から教えてもらった。PO の人たちも検証は一段落しているとのこと。午後からテスト環境壊してもよいという確認が取れたので13時からインフラ作業をしていた。早ければ1時間ぐらい、遅ければ4時間と見積もって、実際にデプロイしてみると、あれやこれやの抜け・漏れ、手動で設定されていたリソースの弊害などもあって、3時間ぐらいかかった。もう2週間ほどインフラの作業ばかりやっているせいか、何が起こっても4時間ぐらいあれば調査とリストアを完了できるぐらいの自信がついてきた。最終的に cdk で再作成した api gateway を使って cloudfront の distribution 経由で web api 呼び出しが繋がった。当たり前の話なんだけど、繋がる瞬間、ローカルで web api のエンドポイントを叩いてレスポンスが返ってくるときが嬉しい。最後の大物だったインフラもたった2日でやっつけることができた。これからはボーナスステージ。">
+<meta name=keywords content>
+<meta name=robots content="noodp">
+<link rel=canonical href=/diary/posts/2022/0419/>
+<link rel=stylesheet href=/diary/assets/style.css>
+<link rel=stylesheet href=/diary/assets/green.css>
+<link rel=stylesheet href=/diary/style.css>
+<link rel=apple-touch-icon href=/diary/img/apple-touch-icon-192x192.png>
+<link rel="shortcut icon" href=/diary/favicon.ico>
+<meta name=twitter:card content="summary">
+<meta name=twitter:site content="t2y">
+<meta name=twitter:creator content>
+<meta property="og:locale" content="en">
+<meta property="og:type" content="article">
+<meta property="og:title" content="api gateway のデプロイ検証">
+<meta property="og:description" content="0時に寝て6時に起きた。
+api gateway のデプロイ検証 昨日の続き。api gateway を再作成すると、当然、既存のテスト環境は疎通できなくなってしまう。他の開発者を妨害しないようにまた21時から深夜にかけて作業しようと考えていたら、いまは閑散期でテスト環境を使わないといけないような開発の状況にはないと他の開発者から教えてもらった。PO の人たちも検証は一段落しているとのこと。午後からテスト環境壊してもよいという確認が取れたので13時からインフラ作業をしていた。早ければ1時間ぐらい、遅ければ4時間と見積もって、実際にデプロイしてみると、あれやこれやの抜け・漏れ、手動で設定されていたリソースの弊害などもあって、3時間ぐらいかかった。もう2週間ほどインフラの作業ばかりやっているせいか、何が起こっても4時間ぐらいあれば調査とリストアを完了できるぐらいの自信がついてきた。最終的に cdk で再作成した api gateway を使って cloudfront の distribution 経由で web api 呼び出しが繋がった。当たり前の話なんだけど、繋がる瞬間、ローカルで web api のエンドポイントを叩いてレスポンスが返ってくるときが嬉しい。最後の大物だったインフラもたった2日でやっつけることができた。これからはボーナスステージ。">
+<meta property="og:url" content="/diary/posts/2022/0419/">
+<meta property="og:site_name" content="forest nook">
+<meta property="og:image" content="/diary">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+<meta property="article:published_time" content="2022-04-19 07:38:47 +0900 +0900">
+</head>
+<body class=green>
+<div class="container full headings--one-size">
+<header class=header>
+<div class=header__inner>
+<div class=header__logo>
+<a href=/diary>
+<div class=logo>
+forest nook
+</div>
+</a>
+</div>
+<div class=menu-trigger>menu</div>
+</div>
+<nav class=menu>
+<ul class="menu__inner menu__inner--desktop">
+<li><a href=/diary/about>自己紹介</a></li>
+<li><a href=/diary/dates>月別一覧</a></li>
+<li><a href=/diary/tags>タグ一覧</a></li>
+</ul>
+<ul class="menu__inner menu__inner--mobile">
+<li><a href=/diary/about>自己紹介</a></li>
+<li><a href=/diary/dates>月別一覧</a></li>
+<li><a href=/diary/tags>タグ一覧</a></li>
+</ul>
+</nav>
+</header>
+<div class=content>
+<div class=post>
+<h1 class=post-title>
+<a href=/diary/posts/2022/0419/>api gateway のデプロイ検証</a></h1>
+<div class=post-meta>
+<span class=post-date>
+2022-04-19
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/cdk/>cdk</a>&nbsp;
+#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
+</span>
+<div class=post-content><div>
+<p>0時に寝て6時に起きた。</p>
+<h2 id=api-gateway-のデプロイ検証>api gateway のデプロイ検証<a href=#api-gateway-のデプロイ検証 class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p>昨日の続き。api gateway を再作成すると、当然、既存のテスト環境は疎通できなくなってしまう。他の開発者を妨害しないようにまた21時から深夜にかけて作業しようと考えていたら、いまは閑散期でテスト環境を使わないといけないような開発の状況にはないと他の開発者から教えてもらった。PO の人たちも検証は一段落しているとのこと。午後からテスト環境壊してもよいという確認が取れたので13時からインフラ作業をしていた。早ければ1時間ぐらい、遅ければ4時間と見積もって、実際にデプロイしてみると、あれやこれやの抜け・漏れ、手動で設定されていたリソースの弊害などもあって、3時間ぐらいかかった。もう2週間ほどインフラの作業ばかりやっているせいか、何が起こっても4時間ぐらいあれば調査とリストアを完了できるぐらいの自信がついてきた。最終的に cdk で再作成した api gateway を使って cloudfront の distribution 経由で web api 呼び出しが繋がった。当たり前の話なんだけど、繋がる瞬間、ローカルで web api のエンドポイントを叩いてレスポンスが返ってくるときが嬉しい。最後の大物だったインフラもたった2日でやっつけることができた。これからはボーナスステージ。</p>
+</div></div>
+<div class=pagination>
+<div class=pagination__title>
+<span class=pagination__title-h>Read other posts</span>
+<hr>
+</div>
+<div class=pagination__buttons>
+<span class="button next">
+<a href=/diary/posts/2022/0418/>
+<span class=button__text>api gateway のコード化</span>
+<span class=button__icon>→</span>
+</a>
+</span>
+</div>
+</div>
+</div>
+</div>
+<footer class=footer>
+<div class=footer__inner>
+<div class="copyright copyright--user">
+<span>© 2021 Tetsuya Morimoto</span>
+<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span>
+</div>
+</div>
+</footer>
+<script src=/diary/assets/main.js></script>
+<script src=/diary/assets/prism.js></script>
+</div>
+</body>
+</html>
