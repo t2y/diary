@@ -1,4 +1,28 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>infrastructure on forest nook</title><link>/diary/tags/infrastructure/</link><description>Recent content in infrastructure on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Wed, 20 Apr 2022 07:38:23 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/infrastructure/index.xml" rel="self" type="application/rss+xml"/><item><title>堅牢なインフラコード</title><link>/diary/posts/2022/0420/</link><pubDate>Wed, 20 Apr 2022 07:38:23 +0900</pubDate><guid>/diary/posts/2022/0420/</guid><description>23時に寝て5時に起きた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>infrastructure on forest nook</title><link>/diary/tags/infrastructure/</link><description>Recent content in infrastructure on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 21 Apr 2022 07:37:32 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/infrastructure/index.xml" rel="self" type="application/rss+xml"/><item><title>rds の再作成</title><link>/diary/posts/2022/0421/</link><pubDate>Thu, 21 Apr 2022 07:37:32 +0900</pubDate><guid>/diary/posts/2022/0421/</guid><description>23時に寝て5時半に起きた。久しぶりによく眠れた気がする。
+rds を独立したスタックに分離 昨日の続き。ライフサイクルにあわせたスタックに分割し、スタック間の依存関係を適切に定義することで堅牢なインフラコードになる。最後に残った DatabaseStack を分離するところを朝からやっていた。
+DatabaseStack BackendStack GatewayStack FrontendStack rds を壊して、バージョンを aurora postgresql 最新の 13.x にアップグレードして、cf のテンプレートで小細工をしながら既存の環境を移行したりしていた。pg_dump を使ってテキストに dump したデータを、psql を使ってリストアしたりもした。データ量が少なかったらこれで移行してもいいかもしれない。
+$ pg_dump --host mydb.xxx.ap-northeast-1.rds.amazonaws.com --username user mydb &amp;gt; mydb.dump $ psql --host mydb.xxx.ap-northeast-1.rds.amazonaws.com --username user --dbname mydb --file ./mydb.dump</description><content>&lt;p>23時に寝て5時半に起きた。久しぶりによく眠れた気がする。&lt;/p>
+&lt;h2 id="rds-を独立したスタックに分離">rds を独立したスタックに分離&lt;/h2>
+&lt;p>昨日の続き。ライフサイクルにあわせたスタックに分割し、スタック間の依存関係を適切に定義することで堅牢なインフラコードになる。最後に残った DatabaseStack を分離するところを朝からやっていた。&lt;/p>
+&lt;ul>
+&lt;li>DatabaseStack
+&lt;ul>
+&lt;li>BackendStack
+&lt;ul>
+&lt;li>GatewayStack
+&lt;ul>
+&lt;li>FrontendStack&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>rds を壊して、バージョンを aurora postgresql 最新の 13.x にアップグレードして、cf のテンプレートで小細工をしながら既存の環境を移行したりしていた。&lt;a href="https://www.postgresql.org/docs/13/app-pgdump.html">pg_dump&lt;/a> を使ってテキストに dump したデータを、psql を使ってリストアしたりもした。データ量が少なかったらこれで移行してもいいかもしれない。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ pg_dump --host mydb.xxx.ap-northeast-1.rds.amazonaws.com --username user mydb &amp;gt; mydb.dump
+$ psql --host mydb.xxx.ap-northeast-1.rds.amazonaws.com --username user --dbname mydb --file ./mydb.dump
+&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>堅牢なインフラコード</title><link>/diary/posts/2022/0420/</link><pubDate>Wed, 20 Apr 2022 07:38:23 +0900</pubDate><guid>/diary/posts/2022/0420/</guid><description>23時に寝て5時に起きた。
 駐輪場の定期更新 3ヶ月ごとの更新。ちょうどいまのお仕事の契約と同じ更新月になっている。前回と同じ金額だったのでまだ駐輪場の料金は値上げされていない。世界的にインフレしているのに日本が全然インフレしていない理由の1つとして不動産が値上げしていないからというのを日銀の記事で見かけた気がする。どこかのタイミングで不動産関連の値上げも始まるのかもしれない。
 インフラコードの抜本的リファクタリング 約2週間かけて、新規インフラ環境の構築、既存インフラの cdk/cf と同期されていなかったインフラ (rds, security group, croudfront, api gateway, waf) の同期など、インフラコードの大きな変更をやり終えた。一部 fromLookup でインポートしているリソースもあるが、いま完全に cdk/cf 管理なインフラとなった。ここからはせっかく cdk でコードを書いているので、モジュール化や共通化など、再利用可能なリソースとして定義して、複数の Stack でコードを再利用するといったリファクタリングをしていく。ひとまずこのことをボーナスステージと呼ぼう。いま完全に同期されたインフラがあるため、インフラ上のリソースの差分が出なければリファクタリングは正しいことが保証される。cdk は Stack 間の依存関係 も定義できるため、適切な依存関係を定義することでより堅牢なインフラコードとなるはずである。具体的には次のような依存関係になる。然るべき堅牢なインフラコードに書き換えていく。
 DatabaseStack BackendStack GatewayStack FrontendStack</description><content>&lt;p>23時に寝て5時に起きた。&lt;/p>
