@@ -56,6 +56,28 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0422/>カスタム action の開発再開</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-04-22
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/workcation/>workcation</a>&nbsp;
+#<a href=/diary/tags/github/>github</a>&nbsp;
+#<a href=/diary/tags/ci/cd/>ci/cd</a>&nbsp;
+</span>
+<div class=post-content>
+<p>22時に寝て0時に起きて3時に起きて5時半に起きた。</p>
+<h2 id=ワーケーションのリトライ>ワーケーションのリトライ</h2>
+<p>オミクロン株の流行で延期していた開発合宿を行う。レンタカーと <a href=https://kinosaki-kinoie.com/>きのいえ</a> の予約を6月3-5日で確定させた。3回目のワクチンを接種したばかりだし、世の中の雰囲気も with コロナへの取り組みになってきている気がする。行き先は同じなので前回作った旅のしおりをコピーしていくつか修正しながら再計画していく。<a href=https://goto.jata-net.or.jp/>Go To トラベル</a> 再開が6月ではないかという噂もある。</p>
+<h2 id=backlog-github-integration-action-の機能拡張>backlog-github-integration-action の機能拡張</h2>
+<p>先日作った <a href=/diary/posts/2022/0327/>backlog-github-integration-action</a> に push という新たなサブコマンドを追加した。コミットをリポジトリに push したときのイベントをフックしてカスタム action を実行する。インプットが github から取得できるデータになるため、<a href=https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows>GitHub Events</a> 単位にサブコマンドを作ればトリガーと扱えるインプットデータが一致してわかりやすい機能分割になるんじゃないかと思えた。ひとまずそれでやってみる。今日のところはローカルで動かしてコミット連携ができることを確認して、いくつかテストを書いていた。また明日、結合レベルのテストをやってみる。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0328/>backlog-github-integration-action を運用し始めた</a>
 </h1>
 <div class=post-meta>
