@@ -1,4 +1,22 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2022/04 on forest nook</title><link>/diary/dates/2022/04/</link><description>Recent content in 2022/04 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2022/04/index.xml" rel="self" type="application/rss+xml"/><item><title>個人開発の日</title><link>/diary/posts/2022/0423/</link><pubDate>Sat, 23 Apr 2022 11:49:45 +0900</pubDate><guid>/diary/posts/2022/0423/</guid><description>0時に寝て6時に起きた。午後から昨日作った機能拡張のテストをしながらコードの修正やテストコードを追加したりしていた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2022/04 on forest nook</title><link>/diary/dates/2022/04/</link><description>Recent content in 2022/04 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2022/04/index.xml" rel="self" type="application/rss+xml"/><item><title>個人開発楽しい</title><link>/diary/posts/2022/0424/</link><pubDate>Sun, 24 Apr 2022 21:06:20 +0900</pubDate><guid>/diary/posts/2022/0424/</guid><description>0時に寝て7時に起きた。朝から雨降りだったのでだらだらしながら家を出たけど、オフィスに着いたのは9時頃だったと思う。午前中にコードを書いてテストして、それからお昼ご飯食べて、家に戻って、ちょっとゆっくりしてからオフィスに戻ろうと思ってたら3時間ほど寝てた。
+backlog のコミット連携の反応 たまたまツィートしていたらこみやさんが関心をもってくれた。fix, close などでチケットのステータスを変えたいという要望をもらったので作ることにした。
+同じ構成なのでちょっと気になる
+&amp;mdash; tk0miya (@tk0miya) April 23, 2022 3時間ほどとわりとすぐに実装できた。いまのプロジェクトでは使わない機能なので当初は乗り気ではなかったけど、やっぱり使いたいという人がいると開発のモチベーションになる。
+Add a feature to change the issue status with commit messages (fix, close) #3 機能拡張して、テストしたり、ドキュメント書いたりしてた。github discussions も積極的に使ってみようと思っていてちょっとした faq も書いてみた。
+About Internationalization (i18n) #4 1-2週間ほど試験運用して問題なさそうだったら v1 のタグをつけて marketplace などに公開してもよいかもしれない。ブログにも書かないとな。まだまだタスクは残っている。</description><content>&lt;p>0時に寝て7時に起きた。朝から雨降りだったのでだらだらしながら家を出たけど、オフィスに着いたのは9時頃だったと思う。午前中にコードを書いてテストして、それからお昼ご飯食べて、家に戻って、ちょっとゆっくりしてからオフィスに戻ろうと思ってたら3時間ほど寝てた。&lt;/p>
+&lt;h2 id="backlog-のコミット連携の反応">backlog のコミット連携の反応&lt;/h2>
+&lt;p>たまたまツィートしていたらこみやさんが関心をもってくれた。fix, close などでチケットのステータスを変えたいという要望をもらったので作ることにした。&lt;/p>
+&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">同じ構成なのでちょっと気になる&lt;/p>&amp;mdash; tk0miya (@tk0miya) &lt;a href="https://twitter.com/tk0miya/status/1517681854539001856?ref_src=twsrc%5Etfw">April 23, 2022&lt;/a>&lt;/blockquote>
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script>
+&lt;p>3時間ほどとわりとすぐに実装できた。いまのプロジェクトでは使わない機能なので当初は乗り気ではなかったけど、やっぱり使いたいという人がいると開発のモチベーションになる。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/kazamori/backlog-github-integration-action/pull/3">Add a feature to change the issue status with commit messages (fix, close) #3&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>機能拡張して、テストしたり、ドキュメント書いたりしてた。github discussions も積極的に使ってみようと思っていてちょっとした faq も書いてみた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/kazamori/backlog-github-integration-action/discussions/4">About Internationalization (i18n) #4&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>1-2週間ほど試験運用して問題なさそうだったら v1 のタグをつけて marketplace などに公開してもよいかもしれない。ブログにも書かないとな。まだまだタスクは残っている。&lt;/p></content></item><item><title>個人開発の日</title><link>/diary/posts/2022/0423/</link><pubDate>Sat, 23 Apr 2022 11:49:45 +0900</pubDate><guid>/diary/posts/2022/0423/</guid><description>0時に寝て6時に起きた。午後から昨日作った機能拡張のテストをしながらコードの修正やテストコードを追加したりしていた。
 ストレッチ 今日の開脚幅は開始前161cmで、ストレッチ後161cmだった。先週はワクチン接種後にダウンして寝込んでいて数値が悪かったのが元に戻った感じ。それでもまだ復調にはいたらないのか、右の肩甲骨が硬いのと腰の張りもすごかった。3月からずっとだらだらした生活を送っているのでもうちょっと生活をびしっとしないといけない。インフラエのお仕事を引き受けてから深夜早朝に作業する機会が増えて生活のリズムを崩しているのもあるとは思う。歳をとって体調がよくない日が増えるという話しを聞いたけど、私もストレッチを始める前はそうだったような気がするけど、毎週ストレッチに通うようになってからそういう印象が解消した。もう1年以上通っているから間違っていないと思う。毎週どこそこが悪いといったことも書いたりはしているけど、それはストレッチをする上でのよくないところや前週よりも成果が出ないところの話しであって、日常生活を送る上ではまったく影響はない。ストレッチは正義。
 Go Conference 2022 Spring Online ストレッチを終えてから Go Conference 2022 Spring Online に参加した。いくつか発表を聞きながらコードを書いたりもしていた。一番よかったのはたいちさんの DBアクセスライブラリkra の発表かな。taichi/kra というライブラリも知らなかったので機会があれば今度使ってみようという気になった。私も sql 好きだし、orm の弊害の話しも共感できてよかったと思う。orm 使うなという話しではなく、それぞれの用途にあわせて使い分けたい。</description><content>&lt;p>0時に寝て6時に起きた。午後から昨日作った機能拡張のテストをしながらコードの修正やテストコードを追加したりしていた。&lt;/p>
 &lt;h2 id="ストレッチ">ストレッチ&lt;/h2>
