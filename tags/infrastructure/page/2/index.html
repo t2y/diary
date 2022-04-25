@@ -56,6 +56,25 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0425/>本番環境反映の監督</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-04-25
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/cdk/>cdk</a>&nbsp;
+#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
+</span>
+<div class=post-content>
+<p>昨日は思いっきり昼寝してしまったせいか、夜に眠れなくて3時ぐらいまで起きてて、寝たのか寝てのかよくわからない雰囲気で7時前に起きた。</p>
+<h2 id=インフラ作業の本番反映>インフラ作業の本番反映</h2>
+<p>先週対応した <a href=/diary/posts/2022/0419/>api gateway のコード化</a> を本番環境に反映した。手動で作成されていた api gateway, vpc link, セキュリティグループとそれに関連するリソース群を cdk 管理のコードで置き換える。既存のリソースを削除してから cdk でデプロイするため、失敗しても切り戻しできないのでプレッシャーがかかる。とはいえ、想定通りに作業が進捗して2時間ほどで完了した。それと並行してテスト環境では、手動で作成された rds を cdk 管理のコードで置き換える移行作業をしていた。これも一筋縄ではいかなくて右往左往しながら作業してた。これを本番環境でやるのもまた億劫だなぁと思いながら発生したエラーや事象を書き綴っていた。あと本番環境で行う大きな移行作業はこれだけ。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0421/>rds の再作成</a>
 </h1>
 <div class=post-meta>
