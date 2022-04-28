@@ -56,6 +56,33 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0428/>jvm の脆弱性対応</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-04-28
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/security/>security</a>&nbsp;
+</span>
+<div class=post-content>
+<p>23時に寝て3時に起きて5時に起きて7時に起きた。なんか調子が微妙。</p>
+<h2 id=jvm-の脆弱性対応>jvm の脆弱性対応</h2>
+<p>少し前だけど、jvm のセキュリティアナウンスがあった。</p>
+<ul>
+<li><a href=https://openjdk.java.net/groups/vulnerability/advisories/2022-04-19>OpenJDK Vulnerability Advisory: 2022/04/19</a></li>
+</ul>
+<p>java 11 向けの docker イメージのビルドはあまり緊急度が高くなかったせいか、17よりは優先度が低かったようにみえる。docker イメージビルドの作業状況は次の issue で管理されている。</p>
+<ul>
+<li><a href=https://github.com/adoptium/adoptium/issues/140>April 2022 Release Status per Platform, Version & Binary Type #140</a></li>
+</ul>
+<p>これまで <a href="https://hub.docker.com/r/adoptopenjdk/openjdk11/tags?page=1&name=alpine-jre">adoptopenjdk/openjdk11:alpine-jre</a> という docker イメージを使っていた。<a href=https://blog.adoptopenjdk.net/2021/03/transition-to-eclipse-an-update/>Transition to Eclipse - An Update</a> によると、Eclipse Temurin という組織が管理する <a href=https://adoptium.net/>Adoptium</a> というプロジェクトに移管されたらしい。この機会に docker イメージも <a href="https://hub.docker.com/_/eclipse-temurin?tab=tags&page=1&name=11-jre-alpine">eclipse-temurin:11-jre-alpine</a> に移行した。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0427/>障害調査と先入観</a>
 </h1>
 <div class=post-meta>
