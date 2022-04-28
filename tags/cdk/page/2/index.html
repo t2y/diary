@@ -56,6 +56,35 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0427/>障害調査と先入観</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-04-27
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/cdk/>cdk</a>&nbsp;
+#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
+</span>
+<div class=post-content>
+<p>23時に寝て5時過ぎに起きた。</p>
+<h2 id=インフラの不具合調査>インフラの不具合調査</h2>
+<p>本番環境に初回デプロイして ecs から secrets manager のアクセスに失敗しているエラーが出ていたので調査した。エラーメッセージでググるとクラスメソッドさんの記事が出てきた。</p>
+<ul>
+<li><a href=https://dev.classmethod.jp/articles/tsnote-ecs-resourceinitializationerror/>ECSでコンテナ環境変数をSecretManagerから取得する際にResourceInitializationErrorが発生したときの対処方法</a></li>
+</ul>
+<p>この記事によると、次のどちらかの原因かなと推測していた。</p>
+<ul>
+<li>実行 IAM ロールの権限不足</li>
+<li>SecretsManager エンドポイントへの不到達</li>
+</ul>
+<p>調べども調べどもテスト環境との違いがわからなくてはまってしまった。ある検証をしていたときに、テスト環境を手動で構築した担当者から datadog の api key を設定してないんじゃない？と言われて、まさにそれが原因だった。cdk のコード上は設定済みのものとして ecs の datadog のサイドカーに設定していた。先入観で rds の credential 情報を取得できずにエラーになっていると思い込んでいたが、サイドカーの datadog の api key が原因ではまるべくしてはまったという感じ。</p>
+<p>一方で secrets manager に登録するサードパーティの api key をどこで管理するかというのは難しい問題でもある。cdk のコードの中に書いてしまうというのも1つのやり方ではあるが、昨今の github 関連のサードパーティから派生したセキュリティインシデントで private リポジトリのソースコードにアクセスされることも発生しているのでソースコードには書きたくない。で、手動で secrets manager に設定しないといけないから、今回みたいな初回デプロイ時に誰も気付かないみたいなことが起きる。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0425/>本番環境反映の監督</a>
 </h1>
 <div class=post-meta>
