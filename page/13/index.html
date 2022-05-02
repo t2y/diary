@@ -57,6 +57,38 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0207/>確定申告書類の印刷</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-02-07
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/tax/>tax</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#確定申告書類の印刷>確定申告書類の印刷</a></li>
+<li><a href=#業務システムの開発>業務システムの開発</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>1時に寝て7時に起きた。</p>
+<h2 id=確定申告書類の印刷>確定申告書類の印刷</h2>
+<p>最近は遅くても8時、速かったら7時過ぎからお仕事している。ちょうど仕事の谷間で手持ちのタスクを終えてしまっていて、今日から別のタスクに着手する予定が、昨日から障害が発生していたらしく、朝忙しそうだったから11時まで確定申告の作業をしていた。昨日、データ入力は終えていたので総勘定元帳をみながら変な数字になっていないかをチェックしたり、源泉徴収税の還付金の計算があうかどうかを検算したりしていた。あとすでに廃棄した固定資産が残っていることに気付いた。耐用年数が過ぎた固定資産の価値は1円として管理される。これを備忘価格と呼ぶらしい。除却の手続きもした。ついでに <a href=https://advisors-freee.jp/article/category/cat-big-03/cat-small-06/12956/>固定資産売却益（損）とは</a> の会計手続きも調べたりしていた。</p>
+<p>オフィスのプリンタで一通り書類を印刷した。あとは提出するだけ。昨年から住んでいるところの徒歩圏内に申告できる場所ができて、散歩のついでに確定申告する程度の手間しかかからない。このまま電子申告してもよいのだけど、寄付金控除のための領収書を写真か PDF ファイルなどで取り込む必要があって、それだけ面倒なので放置している。このまま今年も紙で提出してくるかなぁ。</p>
+<h2 id=業務システムの開発>業務システムの開発</h2>
+<p>twitter のタイムラインで業務システムの開発者は「業務系エンジニア」と呼ぶとか言っている人をみかけた。そっか、私は web エンジニアから業務系エンジニアになったんだー、web アプリケーション開発しているけどな、とか思いながら、今週からいよいよお手伝い先の業務システムの開発に着手する。いままでインフラやサーバーサイドのシステム寄りの保守や機能開発のみをしていた。さっそく DB スキーマの定義やドキュメントの書き方、作業の進め方などを確認していた。ひとまず1週間のスプリントで終えられそうなタスクなのでがんばってやりたい。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0206/>確定申告の準備</a>
 </h1>
 <div class=post-meta>
@@ -256,35 +288,6 @@ forest nook
 <p><code>kubectl logs</code> の振る舞いを確認するだけでも、ソースコードからは実際のログファイルを open してストリームを返しているところはわからなかった。api 呼び出しが連携されて抽象化されていて、コンポーネントの役割分担があって、何も知らずにコードを読んでいてもわからなかった。Kubernetes の低レイヤーのところは Container Runtime Interface (CRI) という標準化を行い、1.20 から docker は非推奨となり、将来的に CRI を提供する実装に置き換わるらしい。ログファイルを open する役割は CRI の実装が担うんじゃないかと思うけど、そこまでは調べきれなかった。また機会があれば CRI の実装も読んでみる。</p>
 <figure><img src=/diary/img/2022/0201_kubectl-logs.png>
 </figure>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0131/>ヘルスチェックのレスポンスのステータスコード</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-01-31
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/kubernetes/>kubernetes</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#404-のレスポンスをヘルスチェック>404 のレスポンスをヘルスチェック</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>1時に寝て6時に起きた。</p>
-<h2 id=404-のレスポンスをヘルスチェック>404 のレスポンスをヘルスチェック</h2>
-<p>ここ数日はお仕事でインフラ周りの調査をしていた。たまたまログをみていて、ELB のヘルスチェックが 404 になっているのを大量にみつけた。てっきりヘルスチェックを使ってないのだろうと思ってインフラ担当者に問い合わせたら、404 が返ってくることをヘルスチェックしているという。404 をチェックすることになんの意味もなく、ただ急ぎで設定する必要があったからとりあえず動かせるためにそう設定したという。一方でアプリケーション側は spring boot で開発していて、<a href=https://www.baeldung.com/spring-boot-actuators>Spring Boot Actuator</a> も導入されているので <code>/actuator/health</code> にアクセスすれば 200 が返ってくるようになっている。どういう経緯だったかはわからないけど、開発者に一言聞けば 404 のレスポンスをヘルスチェックすることは何もない状態でずっと運用されていたことがわかった。</p>
-<p>アプリケーション側の <a href=https://kubernetes.io/docs/concepts/services-networking/ingress/>Kubernetes: Ingress</a> のマニフェストにもそういった設定が入っていて、インフラ側の CDK のコードにもそういったマニフェストがあって、両方の設定変更が必要なのか、アプリケーション側のものだけでいいのか、少し調査が必要ということになった。私も Ingress というのがなにものなのか、よくわかってないので調べて理解する機会としよう。</p>
 </div>
 </div>
 <div class=pagination>
