@@ -56,6 +56,34 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0501/>chatbot やめて slack apps</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-05-01
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/slack/>slack</a>&nbsp;
+</span>
+<div class=post-content>
+<h2 id=slack-と-backlog-の連携>slack と backlog の連携</h2>
+<p>backlog の rest api を使って課題一覧に定型的なフィルター処理を実行してその結果を slack に通知したい。日々のスクラムイベントで画面をぽちぽちしながらチェックするのにそろそろ飽きてきた。運用が熟れて、みないといけない課題のフィルター条件が明確になったとも言える。こういうのを人間が手作業でフィルターするのをやめて誰でも操作できて、頻繁に目に付くようにすることでメンバーの運用に変化をもたらす。人間の行動や運用を変えるのは並大抵のことではないので、こういった小さな気づきを絶え間なく与え続けることが大事だと私は考えている。気付く人はすぐに気付く。もちろんそうじゃない人もいるが。</p>
+<p><a href=https://backlog.com/integrations/slack/>backlog 公式 slack app</a> は backlog で発生したイベントに対するデータを通知することしかできない。たぶん機能拡張されることもなさそうなので足りない機能は自分で作るしかない。当初は知人が働いている会社の次の記事を読んで <a href=https://aws.amazon.com/jp/chatbot/>aws chatbot</a> を使おうと考えていた。</p>
+<ul>
+<li><a href=https://note.com/nissan_nkm_blog/n/na30a8150ac5d>プロジェクトにChatOpsを導入してみる</a></li>
+</ul>
+<p>いろいろ調べてみると、chatbot は基本的に aws とのサービス連携を前提としたものだとわかった。もちろん lambda と連携することで backlog の rest api を呼び出すことはできるだろうけど、backlog にアクセスしたいだけなら最初から slack apps を自前で作ってそこから backlog の rest api を使った方が構成がシンプルでカスタマイズもしやすいのではないかと思えてきた。slack apps をどこにどうやってデプロイするかは検討課題と言える。lambda にデプロイすることもできるし、専用に ec2 インスタンスを設けてもいいかもしれない。すぐには結論が出ないのでデプロイは作った後で考えることにする。</p>
+<p>次にサードパーティの slack apps のセキュリティはどうやって担保するのだろう？と調べてみた。slack 社もレビューはするけど、セキュリティを保証するものではない。適当にググってみつかった記事を読んでみても、基本的に悪意のない slack apps かどうかを検証する方法はなさそう。slack のメッセージを不正な用途に使われる可能性があるというリスクを受け入れつつ、サードパーティの slack apps をインストールするときに権限が適切かどうかを確認するぐらいしかできない。</p>
+<ul>
+<li><a href=https://api.slack.com/security-review>Slack App Security Review</a></li>
+<li><a href=https://www.polymerhq.io/blog/third-party-apps-on-slack-lurking-data-security-threat/>Third-Party Apps on Slack: Lurking Data Security Threat</a></li>
+</ul>
+<p>従って、サードパーティ製の backlog slack apps を作ろうと思ったらソースコードを公開して悪意がないことを訴求するぐらいしかできることはなさそうにみえる。ソースコードを公開しておけば、それぞれの組織内でデプロイする手段も取れる。当社のプロダクトとしてクラウド上にパブリックに公開するかどうかはある程度、作り込んでから後で考えることにする。github のカスタム action は java で作ったけど、今回は go で作ろうと思う。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0430/>テックブログを更新した</a>
 </h1>
 <div class=post-meta>
