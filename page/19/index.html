@@ -57,6 +57,36 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2021/1230/>銀行での手続き</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2021-12-30
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/founding/>founding</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#bizstation-light>BizSTATION Light</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>0時に寝て6時に起きた。10時に銀行へ行く予定があったから普通に起きて8時にはオフィスにいた。予定があればちゃんと起きれるのに休日はだらけてしまう。午後から気分転換に漫画喫茶へ行ったら満室で入れなくて、そのまま帰ってだらだらしてた。</p>
+<h2 id=bizstation-light>BizSTATION Light</h2>
+<p><a href=https://bizstation.bk.mufg.jp/bizlight/index.html>BizSTATION Light</a> (以下light) という無償サービスを使っているが、このサービスは契約時に OS 縛りがあって macOS と Windows のどちらかでしか使えないサービスとなっている。誤った意識の高さでセキュリティを考えたような制約にみえる。しかし、現状そうなっているので仕方ない。これまで macOS でサービスを利用してきたが、Windows マシンを購入したのでこのサービスも Windows に切り替えることにした。なぜ macOS だとダメかというと、<a href=https://bizstation.bk.mufg.jp/bizstation/index.html>BizSTATION</a> という有償サービスがある。月々1,760円を支払うと light よりも高機能なサービスを受けられる。macOS でも利用できるのだけど、macOS の場合、有償でも API サービスを利用できない。Web サービスでありながら OS で認証方式を変えているため、その仕様制限で API サービスは利用できないという理屈になるらしい。API サービスを利用できなければ会計システムと連携できないため、これまで light しか使ってこなかった。Windows マシンを購入したのでこの機会に macOS から Windows へ契約を変更することに決めた。</p>
+<p>ここで macOS から Windows への変更は既存契約を解約して新規契約を結ぶという手順になるらしい。同じ会社・口座なのに OS の変更すらできないというのは不便で、新規契約なので登録手続きに3週間ぐらいはサービスを利用できない期間ができる。いま API サービスを使っていないから全く問題ないけど、こういう利便性の悪さからも有償サービスに切り替えるモチベーションをなくしてしまった。というのは、API サービスなしで1年以上やり繰りしてきて、いまお金を払えば API サービスを利用できると言っても現時点では別に困らないから不要だと考えている。いずれ必要になる可能性もあるので、いまのうちに Windows マシンに契約を切り替えておこうと考えた次第。</p>
+<p>昨日、準備した <a href=/diary/posts/2021/1229/#経営セーフティ共済の前納>経営セーフティ共済</a> の前納付の書類もついでに確認してもらって問題なしということでそのまま提出してきた。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2021/1229/>年末の事務手続き</a>
 </h1>
 <div class=post-meta>
@@ -261,43 +291,6 @@ forest nook
 <p>人間が会話するチャンネルとシステムが通知するチャンネルは分けた方がよい</p>
 </blockquote>
 <p>と、私はプラクティスとして常々言っている。きっと誰もが言っている。システム通知が認知負荷となるという声は業務側のメンバーからも届いていた。これは外部メンバーをマルチチャンネルゲストにすることのコストだけの問題なので、その価値をどう測るかという視点から、中の人がその予算を確保して外部メンバーがマルチチャンネルゲスト化された。その判断を支持する意図でも、slack のチャンネルが複数扱えることでどういった情報共有やシステム間連携の価値があるかというのを、私の経験からも提示していきたいと考えている。情報を監視するという概念、ならびに情報の一元管理にも関わってくるので、課題管理と並ぶ情報共有という文脈で私の強みが活きる分野でもある。いろいろやっていきたい。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2021/1223/>maven のバージョンチェック処理の振る舞い</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2021-12-23
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/java/>java</a>&nbsp;
-#<a href=/diary/tags/maven/>maven</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#maven-のアップデートポリシー>maven のアップデートポリシー</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>23時に寝て1時に起きてまた寝て6時半に起きた。変なライフサイクルになってきた。</p>
-<h2 id=maven-のアップデートポリシー>maven のアップデートポリシー</h2>
-<p>maven が依存解決するとき、例えばバージョンの範囲を指定して最新バージョンを取得するといった設定ができる。実行していると、新しいバージョンをチェックしにいくときとそうじゃないときがあって、どういう仕組みで動いているのかよくわからなかったのでデバッグした。言うても DEBUG ログを出力させて、ログの内容をソースで grep しながら関連するところを読んだだけ。</p>
-<p><a href=https://github.com/apache/maven/blob/maven-3.6.3/maven-compat/src/main/java/org/apache/maven/repository/legacy/DefaultUpdateCheckManager.java#L110>DefaultUpdateCheckManager.isUpdateRequired</a> の中でポリシーが最終チェック日付を確認していいる。ここから辿っていくと <a href=https://github.com/apache/maven/blob/maven-3.6.3/maven-artifact/src/main/java/org/apache/maven/artifact/repository/ArtifactRepositoryPolicy.java#L115>ArtifactRepositoryPolicy</a> という仕組みがある。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>return</span> <span style=color:#f92672>(</span> lastCheckDate <span style=color:#f92672>==</span> <span style=color:#66d9ef>null</span> <span style=color:#f92672>)</span> <span style=color:#f92672>||</span> policy<span style=color:#f92672>.</span><span style=color:#a6e22e>checkOutOfDate</span><span style=color:#f92672>(</span> lastCheckDate <span style=color:#f92672>);</span>
-</code></pre></div><p>ドキュメントでそれっぽい内容を調べると <code>updatePolicy</code> を設定できるようになっている。デフォルトは <code>daily</code> なので日次でチェックしにいくような振る舞いをする。バージョンチェックするときとしないときの何が違うのか、よくわかっていなかった振る舞いを理解できた。これはビルドキャッシュの有無に関係ないのでキャッシュがあるからバージョンチェック処理をスキップできるわけではない。もちろん、更新をチェックさせたくないのであれば <code>never</code> に設定してもいいのかもしれない。</p>
-<blockquote>
-<p>updatePolicy</p>
-<p>The frequency for downloading updates - can be &ldquo;always&rdquo;, &ldquo;daily&rdquo; (default), &ldquo;interval:XXX&rdquo; (in minutes) or &ldquo;never&rdquo; (only if it doesn&rsquo;t exist locally).</p>
-<p><a href=https://maven.apache.org/ref/3.6.3/maven-settings/settings.html>https://maven.apache.org/ref/3.6.3/maven-settings/settings.html</a></p>
-</blockquote>
 </div>
 </div>
 <div class=pagination>
