@@ -56,6 +56,38 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0506/>flyway を触ってみた</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-05-06
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/database/>database</a>&nbsp;
+#<a href=/diary/tags/migration/>migration</a>&nbsp;
+</span>
+<div class=post-content>
+<p>0時に寝て4時に起きてタイムライン眺めながらだらだらして6時半に起き上がった。</p>
+<h2 id=データベースの移行処理>データベースの移行処理</h2>
+<p>半年前から導入したいという話しは聞いていたものの、先送りになっていたライブラリに <a href=https://flywaydb.org/>flyway</a> がある。データベースの移行処理のためのスクリプト (sql) を管理するツールでどの移行スクリプトを実行したかを記録したり、未適用の処理を自動で適用してくれたりする。spring boot だとすぐ組み込める状態になっていて <a href=https://flywaydb.org/documentation/usage/plugins/springboot>Community Plugins and Integrations: Spring Boot</a> をみながら設定したらすぐに動いた。flyway 自体の設定も <a href=https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html>Common Application Properties</a> を参考に spring boot の設定ファイルで行える。</p>
+<p>例えば、こんな感じ。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#f92672>spring</span>:
+  <span style=color:#f92672>flyway</span>:
+<span style=color:#f92672>￼    enabled</span>: <span style=color:#66d9ef>true</span>
+<span style=color:#f92672>￼    schemas</span>: <span style=color:#ae81ff>public</span>
+<span style=color:#f92672>￼    locations</span>: <span style=color:#ae81ff>classpath:db/migration</span>
+<span style=color:#f92672>￼    baseline-version</span>: <span style=color:#ae81ff>0</span>
+<span style=color:#f92672>￼    baseline-on-migrate</span>: <span style=color:#66d9ef>true</span>
+</code></pre></div><p>移行処理の履歴情報は <code>flyway_schema_history</code> テーブルに保持される。既存のテーブルが存在して flyway の履歴データがない場合 (初回起動時) に移行処理を実行するかどうかを baseline-on-migrate で決める。実行するなら baseline-version でどのバージョンをベースラインとするかも設定できる。ゼロにすることで <code>V1</code> からの sql ファイルを適用してくれる。ベースラインの考え方は実際に何度かデータベースの初期状態を変えて実行しないとわかりにくいかもしれない。</p>
+<ul>
+<li><a href=https://flywaydb.org/documentation/tutorials/baselineMigrations>Tutorial: Baseline Migrations</a></li>
+</ul>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0428/>jvm の脆弱性対応</a>
 </h1>
 <div class=post-meta>
