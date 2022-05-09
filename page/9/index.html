@@ -57,6 +57,35 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0314/>平穏な一日</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-03-14
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/github/>github</a>&nbsp;
+#<a href=/diary/tags/ci/cd/>ci/cd</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#デプロイ改善のタスク完了報告>デプロイ改善のタスク完了報告</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>0時に寝て5時半に起きた。一仕事を終えて淡々と前の作業の続きのリファクタリングなどをしていた。</p>
+<h2 id=デプロイ改善のタスク完了報告>デプロイ改善のタスク完了報告</h2>
+<p>週末にパイプライン処理の検証やロールバック処理の実装を行った。ドキュメントも一通り書いた。チームの開発者にそれらを説明して3スプリント(3週間)に渡った改善が完了したことを報告した。チケットにすると26、そのうち私が担当したのが22なので、私がイニシアティブをとって完遂させた。github actions を始めとする、github のサービスの理解が深まってそれなりに学びがあった。自分でもいくつかカスタム action を作ってみようと思う。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0313/>k8s のロールバック</a>
 </h1>
 <div class=post-meta>
@@ -289,46 +318,6 @@ REVISION  CHANGE-CAUSE
 <li>main</li>
 </ul>
 <p>これを1つのブランチのみで運用できるように開発のワークフローを刷新した。ブランチが1つしかないので ci/cd の戦略もシンプルになって、変則的な運用 (hotfix を出したいとか) をしても、開発全体に影響を与えない。「誰か勝手にブランチを作ってデプロイして」で終わる。従来のやり方は3つのブランチが開発ワークフローと ci/cd に密接であったために本番環境のリリースするときは開発すべてが止まってしまう状態だった。週1回のリリースだったので本番リリース前の1-2日は PR のレビューやマージを止めているという運用になっていた。それは開発速度に大きな影響を与えていた。ブランチ戦略を見直したことでいつでも本番環境にデプロイできるようになって、継続的デリバリーっぽいことがやりたかったらできるよという話しをした。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0307/>ワークフローの移行説明</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-03-07
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/github/>github</a>&nbsp;
-#<a href=/diary/tags/ci/cd/>ci/cd</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#ワークフロー移行後の説明>ワークフロー移行後の説明</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>3時に寝て6時半に起きた。朝起きたら github actions のリソース上限に達しているという連絡が slack に書き込まれていて週末に移行作業して1500分ぐらいは浪費しましたと事後報告した。</p>
-<h2 id=ワークフロー移行後の説明>ワークフロー移行後の説明</h2>
-<p>週末に移行した新しい ci/cd の仕組みを開発者に説明した。開発のワークフローも大きく変わる。いくつか要望をもらいつつ、とくに混乱も誤解もなく受け入れられた。github actions の管理画面からボタンでデプロイ実行できるため、本番環境にデプロイできるユーザーは制限したいと言われて次のようなステップを追加した。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml>- <span style=color:#f92672>name</span>: <span style=color:#ae81ff>デプロイユーザーを確認</span>
-  <span style=color:#f92672>if</span>: <span style=color:#ae81ff>${{ env.DEPLOYMENT_ENV == &#39;prod&#39; }}</span>
-  <span style=color:#f92672>run</span>: |<span style=color:#e6db74>
-</span><span style=color:#e6db74>    [[ &#34;${{ contains(fromJSON(env.DEPLOYABLE_USERS), github.actor) }}&#34; == &#34;true&#34; ]] &amp;&amp; exit 0
-</span><span style=color:#e6db74>    echo &#34;デプロイ権限のあるユーザーではありません&#34;
-</span><span style=color:#e6db74>    exit 1</span>    
-  <span style=color:#f92672>env</span>:
-    <span style=color:#f92672>DEPLOYABLE_USERS</span>: <span style=color:#e6db74>&#39;[&#34;user1&#34;, &#34;user2&#34;, &#34;app-bot&#34;]&#39;</span>
-</code></pre></div><p>expressions の <a href=https://docs.github.com/en/actions/learn-github-actions/expressions#functions>Functions</a> に組み込みの関数がいくつか紹介されている。それらを組み合わせるとうまくいきそうと思って書いてみた。たしかにちょっと楽に実装はできるけど、github actions の expression とシェルの文字列との境界が、yaml のコード上では曖昧なため、真偽値などはとくにわかりにくい。例えば、次のコード。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#f92672>[[</span> <span style=color:#e6db74>&#34;</span><span style=color:#e6db74>${</span>{ contains(fromJSON(env.DEPLOYABLE_USERS), github.actor) <span style=color:#e6db74>}</span><span style=color:#e6db74>}&#34;</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;true&#34;</span> <span style=color:#f92672>]]</span>
-</code></pre></div><p><code>${{ ... }}</code> で囲まれたところは github の expression なので boolean として評価できるが、それをシェルにもってくると文字列になってしまうので文字列で比較しないといけない。普通にコードを書いていて気づきにくいので実行して振る舞いを検証しないと間違うみたいな話し。</p>
 </div>
 </div>
 <div class=pagination>
