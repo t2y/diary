@@ -1,4 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>founding on forest nook</title><link>/diary/tags/founding/</link><description>Recent content in founding on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Mon, 09 May 2022 12:49:34 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/founding/index.xml" rel="self" type="application/rss+xml"/><item><title>スライドデザインの作成</title><link>/diary/posts/2022/0509/</link><pubDate>Mon, 09 May 2022 12:49:34 +0900</pubDate><guid>/diary/posts/2022/0509/</guid><description>0時に寝て4時に起きて6時半に起きたつもりが、なんか3度寝して8時に起きた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>founding on forest nook</title><link>/diary/tags/founding/</link><description>Recent content in founding on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Tue, 10 May 2022 07:34:55 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/founding/index.xml" rel="self" type="application/rss+xml"/><item><title>スライドデザインのレビュー</title><link>/diary/posts/2022/0510/</link><pubDate>Tue, 10 May 2022 07:34:55 +0900</pubDate><guid>/diary/posts/2022/0510/</guid><description>1時に寝て6時半に起きた。
+スライドマスターのデザインレビュー はらさんと一緒にレビューした。私とは全然視点が違うので参考になった。自分が得意ではない分野の相談相手がいると本当に助かる。いくつか取り上げる。あれこれ、私が気になったところもヒアリングしながら意見をもらった。あとでデザイナーさんにフィードバックする。
+外国人が作ると文字のレイアウトが日本語と異なることを考慮する必要がある 日本語には y や q のような下にはみ出る文字がない スライド全体の色使いで目立たせるときの注目色を作ってもらった方がよい インジケーターのようなデザインがあると聴衆がいま発表のどの辺りかわかって嬉しい 会社の自己主張が強過ぎない方がよさそう</description><content>&lt;p>1時に寝て6時半に起きた。&lt;/p>
+&lt;h2 id="スライドマスターのデザインレビュー">スライドマスターのデザインレビュー&lt;/h2>
+&lt;p>はらさんと一緒にレビューした。私とは全然視点が違うので参考になった。自分が得意ではない分野の相談相手がいると本当に助かる。いくつか取り上げる。あれこれ、私が気になったところもヒアリングしながら意見をもらった。あとでデザイナーさんにフィードバックする。&lt;/p>
+&lt;ul>
+&lt;li>外国人が作ると文字のレイアウトが日本語と異なることを考慮する必要がある
+&lt;ul>
+&lt;li>日本語には y や q のような下にはみ出る文字がない&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>スライド全体の色使いで目立たせるときの注目色を作ってもらった方がよい&lt;/li>
+&lt;li>インジケーターのようなデザインがあると聴衆がいま発表のどの辺りかわかって嬉しい&lt;/li>
+&lt;li>会社の自己主張が強過ぎない方がよさそう&lt;/li>
+&lt;/ul></content></item><item><title>スライドデザインの作成</title><link>/diary/posts/2022/0509/</link><pubDate>Mon, 09 May 2022 12:49:34 +0900</pubDate><guid>/diary/posts/2022/0509/</guid><description>0時に寝て4時に起きて6時半に起きたつもりが、なんか3度寝して8時に起きた。
 スライドマスターのデザイン作成 うちの会社のロゴは Ševarika™ というデザイナーさんに作ってもらった。言語にセルビア語とあるので旧ユーゴスラビア地域の国の出身なのかなと推測する。このご時世なので NATO 加盟国なのだろうか？とか調べてみたけど、旧ユーゴスラビア地域の国々の歴史は複雑ですぐにわかるものではなかった。閑話休題。私は会社のロゴをとても気に入っているし、ロゴを作ってもらうときの取り引きも円滑にできたのでそのデザイナーさんを信頼している。今回も2年半ぶりに連絡をとったら快くスライドマスターの作成を引き受けてくれた。4月30日に契約して、とくに急いでいないのでデザイナーの都合がついたらでという緩い依頼をしたんだけど、昨日さっそく最初の草稿が届いた。いくつか私の好みのスライドデザインのサンプルを渡したりしていたので、私の好みのスタイルは外していない。ただ私はデザインのことは何もわからないので、今回は顧問のはらさんにもレビューしてもらってご意見をもらうことにした。
 ベースライン移行 先日の flyway のデータベース移行 の続き。管理しているマイクロサービスが4つあるのでそれぞれのサービスごとに設定していかないといけない。サーバーサイドって共通化できるのが大きなメリットなのに、同じサーバーサイドの仕組みを複数導入しないといけないというのはマイクロサービスのデメリットと言えばそうだし、アーキテクチャとしても正しいんやろか？という気持ちも出てくる。おそらく1つのチームが複数のマイクロサービスを開発する体制がよくない。変更作業と検証で約1日を費やした。</description><content>&lt;p>0時に寝て4時に起きて6時半に起きたつもりが、なんか3度寝して8時に起きた。&lt;/p>
 &lt;h2 id="スライドマスターのデザイン作成">スライドマスターのデザイン作成&lt;/h2>
