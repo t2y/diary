@@ -56,6 +56,33 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0512/>cdk と eks と lambda と iam がわからん</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-05-12
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/cdk/>cdk</a>&nbsp;
+#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
+</span>
+<div class=post-content>
+<p>0時に寝て3時に起きて漫画読んで5時に寝て8時に起きた。</p>
+<h2 id=eks-クラスターの-helm-管理>eks クラスターの helm 管理</h2>
+<p>昨日の続き。helm のよさはわかったので dapr を helm で管理しようとしている。その際になるべく cdk で管理できた方がよい。eks は cdk の外部で管理しているのだけど、既存の eks クラスターをインポートする機能も提供されていることに気付いた。</p>
+<ul>
+<li><a href=https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_eks-readme.html#using-existing-clusters>Using existing clusters</a></li>
+</ul>
+<p>それなら既存の eks クラスターをインポートして cdk で helm だけ管理しようと思って始めたものの、これがとても難しくて丸1日作業してわからなかった。設定項目は少ないけど、権限の問題で動かない。1回あたりの実行に15分ぐらいかかるのでトライ&エラーするのもなかなか大変。</p>
+<blockquote>
+<p><code>kubectlRoleArn</code> - the ARN of an IAM role mapped to the system:masters RBAC role. If the cluster you are importing was created using the AWS CDK, the CloudFormation stack has an output that includes an IAM role that can be used. Otherwise, you can create an IAM role and map it to system:masters manually. The trust policy of this role should include the the arn:aws::iam::${accountId}:root principal in order to allow the execution role of the kubectl resource to assume it.</p>
+</blockquote>
+<p><code>kubectlRoleArn</code> の設定をどうするかだけなんだが、この説明でどう設定していいか理解できなかった。cdk で新規に eks クラスターを作成するなら自動で作ってくれるけど、既存の eks クラスターの場合は自分で設定しないといけない。ややこしいことに cdk は kubectl の実行を lambda 経由で実行するので eks と lambda と iam のロールやポリシーを適切に設定する必要がある。lambda にどういう権限を設定するのが適切なのかは本当に難しい。サーバーレスはよいアイディアだとは思うけど、lambda は難し過ぎて私はなるべく使いたくないサービスではある。結局わからなくて翌日に持ち越し。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0511/>helm を調べた</a>
 </h1>
 <div class=post-meta>
