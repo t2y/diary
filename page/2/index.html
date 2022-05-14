@@ -57,6 +57,48 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0506/>flyway を触ってみた</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-05-06
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/database/>database</a>&nbsp;
+#<a href=/diary/tags/migration/>migration</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#データベースの移行処理>データベースの移行処理</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>0時に寝て4時に起きてタイムライン眺めながらだらだらして6時半に起き上がった。</p>
+<h2 id=データベースの移行処理>データベースの移行処理</h2>
+<p>半年前から導入したいという話しは聞いていたものの、先送りになっていたライブラリに <a href=https://flywaydb.org/>flyway</a> がある。データベースの移行処理のためのスクリプト (sql) を管理するツールでどの移行スクリプトを実行したかを記録したり、未適用の処理を自動で適用してくれたりする。spring boot だとすぐ組み込める状態になっていて <a href=https://flywaydb.org/documentation/usage/plugins/springboot>Community Plugins and Integrations: Spring Boot</a> をみながら設定したらすぐに動いた。flyway 自体の設定も <a href=https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html>Common Application Properties</a> を参考に spring boot の設定ファイルで行える。</p>
+<p>例えば、こんな感じ。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#f92672>spring</span>:
+  <span style=color:#f92672>flyway</span>:
+<span style=color:#f92672>￼    enabled</span>: <span style=color:#66d9ef>true</span>
+<span style=color:#f92672>￼    schemas</span>: <span style=color:#ae81ff>public</span>
+<span style=color:#f92672>￼    locations</span>: <span style=color:#ae81ff>classpath:db/migration</span>
+<span style=color:#f92672>￼    baseline-version</span>: <span style=color:#ae81ff>0</span>
+<span style=color:#f92672>￼    baseline-on-migrate</span>: <span style=color:#66d9ef>true</span>
+</code></pre></div><p>移行処理の履歴情報は <code>flyway_schema_history</code> テーブルに保持される。既存のテーブルが存在して flyway の履歴データがない場合 (初回起動時) に移行処理を実行するかどうかを baseline-on-migrate で決める。実行するなら baseline-version でどのバージョンをベースラインとするかも設定できる。ゼロにすることで <code>V1</code> からの sql ファイルを適用してくれる。ベースラインの考え方は実際に何度かデータベースの初期状態を変えて実行しないとわかりにくいかもしれない。</p>
+<ul>
+<li><a href=https://flywaydb.org/documentation/tutorials/baselineMigrations>Tutorial: Baseline Migrations</a></li>
+</ul>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0505/>法人決算に着手</a>
 </h1>
 <div class=post-meta>
@@ -280,42 +322,6 @@ forest nook
 <ul>
 <li><a href=https://blog.kazamori.jp/commits-integrate-with-backlog-issue>Commits integrate with Backlog issue</a></li>
 </ul>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0429/>第3期のふりかえり</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-04-29
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/founding/>founding</a>&nbsp;
-#<a href=/diary/tags/reflection/>reflection</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#隔週の雑談>隔週の雑談</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>23時に寝て5時に起きた。本当は夜に打ち合わせの資料を作らないといけなかったが、なんかだらだらやってそのまま寝て朝起きてから資料を作り始めた。今日は祝日だから業務委託のお仕事は完全に休むと決めた (非稼働日もデイリースクラムには参加するし、なんだかんだで軽いチケット整理や作業などはしている) 。その分の余裕が資料の作成を先延ばしにした気がする。</p>
-<h2 id=隔週の雑談>隔週の雑談</h2>
-<p>顧問のはらさんと隔週の打ち合わせ。今日の議題は会社の第3期 (前期) のふりかえりにした。半分ぐらいは資料はできていたものの、5時半ぐらいにはオフィスに行って6時過ぎから残りの部分を作り始めた。8時前には完成した。いつもは2-3日前には資料を提示するようにしていたが、今日は祝日でだらだらモードで1時間前 (打ち合わせは9時から) となった。はらさんも直前で資料に目を通してもらったが、こういうのはよくなかったと後で反省した。</p>
-<p>資料を作っていて、ふと思い浮かんだ気づきの1つをあげる。</p>
-<blockquote>
-<p>会社の銀行口座と自分の銀行口座残高がダブルでただひたすらに減額しているさまを見るのって普通にメンタルに良くないんですよね。しかも事業も全然伸びていきませんし…。</p>
-<p><a href=https://note.com/iktakahiro/n/ne90610ffc0ed>ソフトウェアエンジニア社長として起業してから会社清算するまでの4年間の振り返り （完結編）</a></p>
-</blockquote>
-<p>前期は3ヶ月ほど仕事をせずに遊んでいた。数字だけをみたら6ヶ月ほど遊んでいてもよい余裕はあったと言える。それでも3ヶ月ほど経ってから次のお仕事を探して、いま受託開発をしているのは <strong>銀行口座の残高がダブルで減り続ける恐怖に抗うのが難しい</strong> からと言える。会社が倒産するわけでも、生活に困るわけでもなく、銀行口座の残高が減り続ける毎日が怖いという話し。「死の恐怖は死そのものよりも怖ろしい」と誰かの名言があるが、その経営者バージョンかもしれない。難しい判断は心身ともに落ち着いていて余裕をもった状態で下すのが望ましいと、誰もが頭では理解できるだろうが、実際に銀行の口座がずっと減り続けている状態でそう在れるかというのは別問題だという話し。無計画に仕事せずに遊ぶのは、うちの会社の場合は3ヶ月程度が限界だと分かった、というのが今期の財務における収穫と言える。</p>
-<p>そんな1年を通したふりかえりを雑談してたら2時間ほど経過していた。また2週間後に第4期の展望をやることにした。</p>
 </div>
 </div>
 <div class=pagination>
