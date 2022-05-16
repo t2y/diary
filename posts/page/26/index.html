@@ -56,6 +56,30 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0516/>helm 調査の一時中断</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-05-16
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/cdk/>cdk</a>&nbsp;
+#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
+</span>
+<div class=post-content>
+<p>0時に寝て6時半に起きた。</p>
+<h2 id=eks-クラスターの-helm-管理の調査>eks クラスターの helm 管理の調査</h2>
+<p><a href=/diary/posts/2022/0513/#eks-クラスターの-helm-管理の調査>先週から調査</a> していて、調査結果から <code>kubectlRoleArn</code> を生成してデプロイを実行してみた。以前発生していた権限エラーは解消したものの、lambda 内からの kubectl と k8s クラスターの認証に失敗する。もう1つ <code>kubectlLambdaRole</code> という設定もあるので、ここに <code>system:masters</code> 権限をもつ iam ロールを設定してみたものの、エラー結果は変わらない。お手上げかなと思ってたら <a href=https://github.com/aws/aws-cdk/issues/20008>aws-eks: Cluster.FromClusterAttributes ignores KubectlLambdaRole #20008</a> という issue があって、まさにいま起こっている現象と合致するのでこのせいかもしれない。cdk のバグならそれが解消しないと検証を進められないため、この調査は一旦打ち切って、cdk のバグが修正されて新しいバージョンがリリースされてから再試行することに決めた。</p>
+<h2 id=backlog-のいろいろ>backlog のいろいろ</h2>
+<p>たまたまタイムラインでスライドをみかけて、backlog の開発をしている方の記事をみつけた。scala と play framework で実装されているらしい。もう10年以上開発しているプロダクトなのかな。それ自体はすごいなぁと感心しながらスライドを眺めてた。</p>
+<ul>
+<li><a href=https://muziyoshiz.hatenablog.com/entry/2021/08/28/154859>ヌーラボ入社後に書いたブログ記事＆プレゼン資料まとめ</a></li>
+</ul>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0515/>オフラインのもくもく会</a>
 </h1>
 <div class=post-meta>

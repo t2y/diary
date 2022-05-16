@@ -57,6 +57,41 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0516/>helm 調査の一時中断</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-05-16
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/cdk/>cdk</a>&nbsp;
+#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#eks-クラスターの-helm-管理の調査>eks クラスターの helm 管理の調査</a></li>
+<li><a href=#backlog-のいろいろ>backlog のいろいろ</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>0時に寝て6時半に起きた。</p>
+<h2 id=eks-クラスターの-helm-管理の調査>eks クラスターの helm 管理の調査</h2>
+<p><a href=/diary/posts/2022/0513/#eks-クラスターの-helm-管理の調査>先週から調査</a> していて、調査結果から <code>kubectlRoleArn</code> を生成してデプロイを実行してみた。以前発生していた権限エラーは解消したものの、lambda 内からの kubectl と k8s クラスターの認証に失敗する。もう1つ <code>kubectlLambdaRole</code> という設定もあるので、ここに <code>system:masters</code> 権限をもつ iam ロールを設定してみたものの、エラー結果は変わらない。お手上げかなと思ってたら <a href=https://github.com/aws/aws-cdk/issues/20008>aws-eks: Cluster.FromClusterAttributes ignores KubectlLambdaRole #20008</a> という issue があって、まさにいま起こっている現象と合致するのでこのせいかもしれない。cdk のバグならそれが解消しないと検証を進められないため、この調査は一旦打ち切って、cdk のバグが修正されて新しいバージョンがリリースされてから再試行することに決めた。</p>
+<h2 id=backlog-のいろいろ>backlog のいろいろ</h2>
+<p>たまたまタイムラインでスライドをみかけて、backlog の開発をしている方の記事をみつけた。scala と play framework で実装されているらしい。もう10年以上開発しているプロダクトなのかな。それ自体はすごいなぁと感心しながらスライドを眺めてた。</p>
+<ul>
+<li><a href=https://muziyoshiz.hatenablog.com/entry/2021/08/28/154859>ヌーラボ入社後に書いたブログ記事＆プレゼン資料まとめ</a></li>
+</ul>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0515/>オフラインのもくもく会</a>
 </h1>
 <div class=post-meta>
@@ -347,38 +382,6 @@ forest nook
 <li>インジケーターのようなデザインがあると聴衆がいま発表のどの辺りかわかって嬉しい</li>
 <li>会社の自己主張が強過ぎない方がよさそう</li>
 </ul>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0509/>スライドデザインの作成</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-05-09
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/founding/>founding</a>&nbsp;
-#<a href=/diary/tags/migration/>migration</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#スライドマスターのデザイン作成>スライドマスターのデザイン作成</a></li>
-<li><a href=#ベースライン移行>ベースライン移行</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>0時に寝て4時に起きて6時半に起きたつもりが、なんか3度寝して8時に起きた。</p>
-<h2 id=スライドマスターのデザイン作成>スライドマスターのデザイン作成</h2>
-<p>うちの会社のロゴは <a href=https://99designs.jp/profiles/dsevarika>Ševarika™</a> というデザイナーさんに作ってもらった。言語にセルビア語とあるので旧ユーゴスラビア地域の国の出身なのかなと推測する。このご時世なので NATO 加盟国なのだろうか？とか調べてみたけど、旧ユーゴスラビア地域の国々の歴史は複雑ですぐにわかるものではなかった。閑話休題。私は会社のロゴをとても気に入っているし、ロゴを作ってもらうときの取り引きも円滑にできたのでそのデザイナーさんを信頼している。今回も2年半ぶりに連絡をとったら快くスライドマスターの作成を引き受けてくれた。4月30日に契約して、とくに急いでいないのでデザイナーの都合がついたらでという緩い依頼をしたんだけど、昨日さっそく最初の草稿が届いた。いくつか私の好みのスライドデザインのサンプルを渡したりしていたので、私の好みのスタイルは外していない。ただ私はデザインのことは何もわからないので、今回は顧問のはらさんにもレビューしてもらってご意見をもらうことにした。</p>
-<h2 id=ベースライン移行>ベースライン移行</h2>
-<p>先日の <a href=/diary/posts/2022/0506/#データベースの移行処理>flyway のデータベース移行</a> の続き。管理しているマイクロサービスが4つあるのでそれぞれのサービスごとに設定していかないといけない。サーバーサイドって共通化できるのが大きなメリットなのに、同じサーバーサイドの仕組みを複数導入しないといけないというのはマイクロサービスのデメリットと言えばそうだし、アーキテクチャとしても正しいんやろか？という気持ちも出てくる。おそらく1つのチームが複数のマイクロサービスを開発する体制がよくない。変更作業と検証で約1日を費やした。</p>
 </div>
 </div>
 <div class=pagination>
