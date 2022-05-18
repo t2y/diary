@@ -56,6 +56,48 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0518/>cdk のビルドが難しい話し</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-05-18
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/cdk/>cdk</a>&nbsp;
+#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
+</span>
+<div class=post-content>
+<p>0時に寝て6時半に起きた。暑くなってきたせいかバテ気味。水曜日は本番リリースの日。3つほど本場環境のインフラ移行作業があったので社員さんの実作業をリモートから指示しながらサポートしていた。私に本番環境の操作権限があれば、この工数はほぼ半分に削減できる。</p>
+<h2 id=cdk-のパッチ検証>cdk のパッチ検証</h2>
+<p>先日 <a href=/diary/posts/2022/0516/#eks-クラスターの-helm-管理の調査>cdk による eks クラスターの helm 管理の調査中断</a> について書いた。バグっているから適切な設定が反映されないという話しで一時中断していたんだけど、そのときにクラスメソッドの担当者さんとも相談していた。そしたら、その担当者さんが問題を修正して pr を送ってくれた。感謝。</p>
+<ul>
+<li><a href=https://github.com/aws/aws-cdk/pull/20373>fix(eks): Cluster.FromClusterAttributes ignores KubectlLambdaRole #20373</a></li>
+</ul>
+<p>そこまでやってくれると思ってなかったのですごいなぁと感心しながら、せっかくなのでパッチを当てた cdk で検証してみようと、<a href=https://github.com/aws/aws-cdk/blob/master/CONTRIBUTING.md>Contributing to the AWS Cloud Development Kit</a> をみながらローカルでのビルドを試みた。ビルド自体はできたんだけど、パッケージを作るのがうまくいかなくて、cdk はツール自体が大きいので実行時間がかかる。だいたいビルドやパッケージングのそれぞれに20-30分ぐらいかかる。エラーの原因がよく分からなくて面倒になって断念した。私が javascript のパッケージングに疎いせいもあると思うけど、ドキュメントに書いてある通りにうまくいかなかったので早々に諦めた。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
+<a href=/diary/posts/2022/0517/>datadog のログアーカイブ</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-05-17
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/datadog/>datadog</a>&nbsp;
+#<a href=/diary/tags/logging/>logging</a>&nbsp;
+</span>
+<div class=post-content>
+<p>1時に寝て5時半に起きた。</p>
+<h2 id=datadog-のログアーカイブ>datadog のログアーカイブ</h2>
+<p>datadog には <a href="https://docs.datadoghq.com/logs/log_configuration/archives/?tab=awss3">Log Archives</a> という機能があって、datadog 経由でログをどこかのストレージに永続化できる。datadog プラットフォーム上では設定した期間内のログしか検索できず、おそらく料金の予算にあわせて期間を設定して、それが過ぎたら消えていくのだと思う。aws なら s3 に datadog に連携されたログをパイプライン処理してそのまま永続化できる。そのための s3 バケットの作成、s3 バケットへの datadog からのアクセス権限ロールの設定、datadog の aws インテグレーションの設定などをした。ドキュメントを読みながら1日あれば設定できたので難しくはない。もう cdk の設定にも慣れた感じで必要な権限を cdk の Stack としてコードで管理できるようにした。保守もばっちり。永続化されるログは gzip 圧縮されて時系列に s3 に永続化されるみたい。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0516/>helm 調査の一時中断</a>
 </h1>
 <div class=post-meta>

@@ -57,6 +57,95 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0223/>java アプリケーションの継続的デリバリー</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-02-23
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/ci/cd/>ci/cd</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#snapshot-jar-と継続的デリバリー>snapshot jar と継続的デリバリー</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>0時に寝て3時に起きて6時ぐらいまでだらだらして寝て7時に起きた。</p>
+<h2 id=snapshot-jar-と継続的デリバリー>snapshot jar と継続的デリバリー</h2>
+<p>昨日 <a href=/diary/posts/2022/0222/#jar-ファイルと-git-のリビジョン>jar に git のリビジョン番号を含める</a> ことについて書いた。jar から git のリビジョン番号を取得できれば、docker イメージを生成するときに <a href=https://docs.docker.com/config/labels-custom-metadata/>labels</a> に jar の artifact id と git のリビジョン番号のラベルを追加して、docker イメージからもソースコードの追跡ができるようになる。いまデプロイは docker イメージのみで運用しているため、maven のバージョン管理ができなくても docker イメージの追跡可能性さえあれば現実の運用で問題にならないのではないかと考えた。つまり、snapshot jar で開発したものをそのまま本番環境にデプロイするということを意味する。こうすれば特定のバージョン番号を付けるだけのビルドとデプロイが不要になって、テスト環境にデプロイされた docker イメージのテストを完了すれば、そのイメージをいつでも本番環境にデプロイできるようになる。デプロイするタイミングでビルドする必要がなくなるので継続的デリバリーに近づくのではないかと考えた。</p>
+<p>今日、開発の偉い人やインフラ担当者も含めて、みんなでわいわい打ち合わせして、現状の開発では、インターフェースや互換性の変更にあわせてバージョン番号を付けていないし、古いバージョンに戻すことも現実にはなく、保守は常に最新のリビジョンを更新していくから maven でバージョン管理できなくなっても snapshot jar の運用でがんがん開発していけばいいんちゃうという合意を得られた。</p>
+<p>実際にこのやり方がうまくいくかどうか、私も初めての試みなのでやってみないとわからないが、この運用によるワークフローの効率化のメリットも大きいので、引き続き、イニシアティブをもって取り組んでいきたい。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
+<a href=/diary/posts/2022/0222/>jar のマニフェストファイル</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-02-22
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/java/>java</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#jar-ファイルと-git-のリビジョン>jar ファイルと git のリビジョン</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>0時に寝て3時に起きて5時に起きて6時半に起きた。</p>
+<h2 id=jar-ファイルと-git-のリビジョン>jar ファイルと git のリビジョン</h2>
+<p>java パッケージのフォーマットとして jar ファイルがある。開発中の jar ファイルは snapshot という特別なバージョンで管理したりするが、この snapshot と git のリビジョンが対応していないので snapshot jar だけではどのリビジョンのソースからビルドされたかがわからない。jar には <a href=https://docs.oracle.com/javase/10/docs/specs/jar/jar.html>JAR File Specification</a> で定義された <code>META-INF/MANIFEST.MF</code> に任意のメタデータを保持できる。maven なら <a href=https://github.com/git-commit-id/git-commit-id-maven-plugin>maven git commit id plugin</a> と <a href=https://github.com/apache/maven-jar-plugin>Apache Maven JAR Plugin</a> を組み合わせれば、ビルド設定だけで git のリポジトリ情報を任意のメタデータとして jar に含めることができる。試しにプラグインの検証も兼ねてやってみた。例えば、次のようなマニフェストを作れる。</p>
+<pre tabindex=0><code>Manifest-Version: 1.0
+Created-By: Apache Maven 3.6.3
+Built-By: t2y
+Build-Jdk: 11.0.13
+Specification-Title: My Nice Product
+Specification-Version: 1.0
+Artifact-Id: my-product
+Build-Time: 2022-02-21T11:39:07Z
+Git-Branch: main
+Git-Commit-Id: 81a4642
+Git-Commit-Time: 2022-02-21T19:39:30+0900
+Git-Commit-User: Tetsuya Morimoto
+</code></pre><p>java のコードからマニフェストを取得するサンプルコードはこんな感じ。ググるといくつかやり方があるようなので他の実装もある。但し、このコードだと複数の jar のマニフェストを取得してしまうので、あとで自分がみたい jar のマニフェストをフィルターする処理が必要になる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> String MANIFEST_PATH <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;META-INF/MANIFEST.MF&#34;</span><span style=color:#f92672>;</span>
+
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> Map<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>,</span> Manifest<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>getManifests</span><span style=color:#f92672>()</span> <span style=color:#66d9ef>throws</span> IOException<span style=color:#f92672>,</span> URISyntaxException <span style=color:#f92672>{</span>
+    var map <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> HashMap<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>,</span> Manifest<span style=color:#f92672>&gt;();</span>
+    var resources <span style=color:#f92672>=</span> MyUtil<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getClassLoader</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getResources</span><span style=color:#f92672>(</span>MANIFEST_PATH<span style=color:#f92672>);</span>
+    <span style=color:#66d9ef>while</span> <span style=color:#f92672>(</span>resources<span style=color:#f92672>.</span><span style=color:#a6e22e>hasMoreElements</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
+        var elem <span style=color:#f92672>=</span> resources<span style=color:#f92672>.</span><span style=color:#a6e22e>nextElement</span><span style=color:#f92672>();</span>
+        var part <span style=color:#f92672>=</span> elem<span style=color:#f92672>.</span><span style=color:#a6e22e>toURI</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getSchemeSpecificPart</span><span style=color:#f92672>();</span>
+        <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>part <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+            <span style=color:#66d9ef>try</span> <span style=color:#f92672>(</span>var stream <span style=color:#f92672>=</span> elem<span style=color:#f92672>.</span><span style=color:#a6e22e>openStream</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
+                map<span style=color:#f92672>.</span><span style=color:#a6e22e>put</span><span style=color:#f92672>(</span>part<span style=color:#f92672>,</span> <span style=color:#66d9ef>new</span> Manifest<span style=color:#f92672>(</span>stream<span style=color:#f92672>));</span>
+            <span style=color:#f92672>}</span>
+        <span style=color:#f92672>}</span>
+    <span style=color:#f92672>}</span>
+    <span style=color:#66d9ef>return</span> map<span style=color:#f92672>;</span>
+<span style=color:#f92672>}</span>
+</code></pre></div>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0221/>祝日の勤怠</a>
 </h1>
 <div class=post-meta>
@@ -284,76 +373,6 @@ CMD [ &quot;/sql-executor&quot; ]
         Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>when</span><span style=color:#f92672>(</span>mono<span style=color:#f92672>.</span><span style=color:#a6e22e>block</span><span style=color:#f92672>()).</span><span style=color:#a6e22e>thenReturn</span><span style=color:#f92672>(</span>response<span style=color:#f92672>);</span>
     <span style=color:#f92672>}</span>
 </code></pre></div>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0216/>ふりかえりとプランニング</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-02-16
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/scrum/>scrum</a>&nbsp;
-#<a href=/diary/tags/ssue-tracking-system/>ssue tracking system</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#ふりかえり>ふりかえり</a></li>
-<li><a href=#backlog-の管理者権限>backlog の管理者権限</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>1時に寝て3時過ぎに起きて6時半に起きた。</p>
-<h2 id=ふりかえり>ふりかえり</h2>
-<p>今日はスクラムのふりかえりとプランニングの日。1週間が終わり始まる。ふりかえりをしていて、2週連続でスプリントゴールが未達になって、原因を追求する空気になって、最終的にはリーダーを糾弾するみたいな雰囲気になった。昔の私だったら論理的に問題を掘り起こそうとがんばったかもしれないけど、いまはもう歳をとってスラムダンクの安西先生みたいになったのか、もしくは外部パートナーとしてのお手伝いだから真剣ではないのか、その両方かもしれないが、一歩引いたところからできなかったもんしゃーないんちゃう？みたいな心境で見守っていた。うまくできない人や状況に「なぜできなかった？」みたいに迫ると「努力が足りなかった」とか「もっとがんばります」みたいなやり取りしかならないので不毛にみえる。経営者のくせにこんなことを言うと怒られるかもしれないが、仕事なんてやりたい人やできる人が楽しめるように好き勝手やって、そうじゃない人は最低限やるとか、邪魔しないように配慮するとか、もうそれでいいんじゃないとか思ったりもしている。もう人類は会社の半分ぐらいの社員が遊んでても暮らしていけるぐらいの生産性を手に入れたと思うよ。半分は言い過ぎか。いずれにしても私はもう無理なく自分のペースで働きたいと思うようになった感じ。</p>
-<h2 id=backlog-の管理者権限>backlog の管理者権限</h2>
-<p>お手伝い先で <a href=https://backlog.com/ja/>backlog</a> を課題管理システムに使っている。私は課題管理システムのスペシャリストとして、ああしたい、こうしたいといくつも注文を付けて、チームの開発やワークフローを改善している。これまでは管理者権限がなかったのでもっている人に依頼するしかなかったけど、そろそろ私の相手をするのが面倒くさくなってきたのか、私にも backlog の設定を変更する管理者権限をもらえた。さっそくカスタム属性をいくつか作って実験的な検証をしていた。カスタム属性は backlog のフリープランでは使えない機能なので、お手伝い先の実地で用途や振る舞いを検証するしかない。同じプロジェクトでも種別ごとにカスタム属性の設定有無を切り分けられる機能があって、この機能は他の課題管理システムでみたことがない実用的で珍しい機能だと思った。チケットに PR とコミットのカスタム属性を追加して、github actions でコミットや PR のタイミングでそれらの属性に URL を追加すれば github 連携もできそうな気がしてきたところ。週末に時間があったら作ってみる。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0215/>担々麺がおいしい</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-02-15
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/food/>food</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#担々麺>担々麺</a>
-<ul>
-<li></li>
-</ul>
-</li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>0時に寝て4時に起きて6時半に起きた。今回のスプリントは1つの機能拡張のチケットに専念していてとても疲れた。</p>
-<h2 id=担々麺>担々麺</h2>
-<p>オフィスの近くに <a href=https://tabelog.com/hyogo/A2801/A280102/28061761/>珠しっぴん</a> という坦々麺専門店ができているのに気付いた。半年ぐらい前にオープンしたらしい。あまり通らない場所だったせいか、全然気付いてなくて試しに入ってみたら私の好みの味でとてもおいしかった。食わず嫌いだったのか何なのか、昨年ぐらいまで担々麺はほとんど食べたことなかったんだけど、近所においしい担々麺のお店がいくつかできて、担々麺そのものも好きになってきた。新しい担々麺のお店をみかけるととりあえず入ってみるようになった。</p>
-<h4 id=珠辛担々麺>珠辛担々麺</h4>
-<figure><img src=/diary/img/2022/0215_noodle1.jpg>
-</figure>
-<h4 id=汁なし担々麺>汁なし担々麺</h4>
-<figure><img src=/diary/img/2022/0215_noodle2.jpg>
-</figure>
 </div>
 </div>
 <div class=pagination>

@@ -56,6 +56,25 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0517/>datadog のログアーカイブ</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-05-17
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/datadog/>datadog</a>&nbsp;
+#<a href=/diary/tags/logging/>logging</a>&nbsp;
+</span>
+<div class=post-content>
+<p>1時に寝て5時半に起きた。</p>
+<h2 id=datadog-のログアーカイブ>datadog のログアーカイブ</h2>
+<p>datadog には <a href="https://docs.datadoghq.com/logs/log_configuration/archives/?tab=awss3">Log Archives</a> という機能があって、datadog 経由でログをどこかのストレージに永続化できる。datadog プラットフォーム上では設定した期間内のログしか検索できず、おそらく料金の予算にあわせて期間を設定して、それが過ぎたら消えていくのだと思う。aws なら s3 に datadog に連携されたログをパイプライン処理してそのまま永続化できる。そのための s3 バケットの作成、s3 バケットへの datadog からのアクセス権限ロールの設定、datadog の aws インテグレーションの設定などをした。ドキュメントを読みながら1日あれば設定できたので難しくはない。もう cdk の設定にも慣れた感じで必要な権限を cdk の Stack としてコードで管理できるようにした。保守もばっちり。永続化されるログは gzip 圧縮されて時系列に s3 に永続化されるみたい。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0324/>spring boot の環境とログ設定</a>
 </h1>
 <div class=post-meta>

@@ -57,6 +57,68 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0413/>cdk の cloudfront の distribution 設定の移行</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-04-13
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/cdk/>cdk</a>&nbsp;
+#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#フロントエンドのインフラ作業の続き>フロントエンドのインフラ作業の続き</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>0時に寝て5時過ぎに起きた。</p>
+<h2 id=フロントエンドのインフラ作業の続き>フロントエンドのインフラ作業の続き</h2>
+<p>昨日、cloudfront の distribution 設定のビヘイビアのキャッシュ設定が誤っていることに気付いたので cdk のコードを修正していく。<a href=https://aws.amazon.com/jp/blogs/news/amazon-cloudfront-announces-cache-and-origin-request-policies/>Amazon CloudFront キャッシュポリシーとオリジンリクエストポリシーを発表</a> によると、2020年ぐらいに distribution ごとに個別設定していたのをマネージドポリシーというリソースを参照することで一元管理できるようになったらしい。cdk のコードで言えば、次の issue で対応されているが、これらの機能は <a href=https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_cloudfront.Distribution.html>aws_cloudfront.Distribution</a> のみに追加されている。従来の CloudFrontWebDistribution では使えないので distribution 設定そのものを新しいやり方に移行する必要がある。</p>
+<ul>
+<li><a href=https://github.com/aws/aws-cdk/issues/9644>https://github.com/aws/aws-cdk/issues/9644</a></li>
+<li><a href=https://github.com/aws/aws-cdk/issues/9647>https://github.com/aws/aws-cdk/issues/9647</a></li>
+</ul>
+<p>基本的には同じ設定を行うので新しいクラスのメンバーや構造にあわせて移行するだけなので難しくはないけれど、1つずつ設定内容の移行方法を確認していかないといけないから手間暇はかかる。cdk のドキュメントをみると、型に対してどういった設定をすればよいかが書いてあって、あとはメソッドの定義などもみながら自分たちの設定に近いものを選択していくといった作業になる。難しくはないけど時間はかかる。半日ほどやって移行のための pr を作成した。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
+<a href=/diary/posts/2022/0412/>cloudfront のキャッシュ設定</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-04-12
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#フロントエンドのインフラ作業>フロントエンドのインフラ作業</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>1時に寝て5時に起きた。</p>
+<h2 id=フロントエンドのインフラ作業>フロントエンドのインフラ作業</h2>
+<p>これまでバックエンドのインフラ作業をしてきたが、そちらの移行作業は完了した。フロントエンドのインフラも積み残しが多々あるのでこの機にリファクタリングする。差分が出ないことを確認して cf のテンプレートのドリフト結果を解消したものをデプロイしたらフロントエンドが壊れた。具体的には xhr の web api 呼び出しに対して認可エラーが返るようになった。数時間ほどの調査の結果、cloudfront の distribution 設定のビヘイビアのキャッシュ設定で web api 呼び出しのときに authorization ヘッダーを転送するための設定が漏れていることがわかった。cdk のコードにはそんな設定がどこにもなく差分も表示されないことから、フロントエンドの cdk コードも全く保守されていないことがわかった。デプロイするときに前回のデプロイが半年前だったのでなんか悪い予感はしたんよね。インフラ担当者の怠慢が度を越し過ぎてもう何が起きても私は驚かないけど。設定に漏れがある前提でフロントエンドのインフラをリファクタリングしていかないといけない。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0411/>cdk/cf の Stack とライフサイクル</a>
 </h1>
 <div class=post-meta>
@@ -336,89 +398,6 @@ forest nook
 </span><span style=color:#a6e22e>+     subnetIds: vpc.privateSubnets.map(sb =&gt; sb.subnetId),
 </span><span style=color:#a6e22e>+     securityGroupIds: [mySecurityGroup.securityGroupId]
 </span></code></pre></div>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0406/>ecs の draining とタスクの停止時間</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-04-06
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#ecs-の-draining-に時間がかかる>ecs の draining に時間がかかる？</a>
-<ul>
-<li></li>
-</ul>
-</li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>0時に寝て4時に起きた。なんか起きてから sns のタイムラインを眺めてた。6時半にはオフィスについて cdk のコードを読み始めた。</p>
-<h2 id=ecs-の-draining-に時間がかかる>ecs の draining に時間がかかる？</h2>
-<p>cdk でインフラのデプロイをしていて、ecs のタスクの置き換えにやたら時間がかかっているのに気付いた。調べてみると、aws のドキュメントがすぐにヒットした。デフォルトでは停止するまでに5分ぐらいかかってしまうようだけど、それを調整したかったらいくつかパラメーターがある。</p>
-<ul>
-<li><a href=https://aws.amazon.com/jp/premiumsupport/knowledge-center/ecs-tasks-stop-delayed-draining/>コンテナインスタンスが DRAINING に設定されているときに、Amazon ECS タスクが停止するのに時間がかかるトラブルシューティング方法を教えてください。</a></li>
-</ul>
-<h4 id=ecs-サービスの-deployment-configuration>ecs サービスの deployment configuration</h4>
-<ul>
-<li>minimumHealthyPercent: 同時に停止できるタスクの割合設定</li>
-<li>maximumPercent: draining されるタスクが停止するまで置き換えるタスクを開始するかどうかの設定？</li>
-</ul>
-<h4 id=ロードバランサーの-deregistration-delay>ロードバランサーの deregistration delay</h4>
-<ul>
-<li>deregistrationDelay: elb(nlb) が登録解除処理が完了するまでに待つ時間。タスクが draining の状態になってこの時間が過ぎた後に登録解除して target が未使用になる</li>
-</ul>
-<h4 id=ecs-タスク定義の-stop-timeout>ecs タスク定義の stop timeout</h4>
-<ul>
-<li>stopTimeout: コンテナーが正常終了しないときに ecs が強制的にプロセスを kill するまでの待ち時間</li>
-</ul>
-<p>それぞれのインフラの状況にあわせて適切なパラメーターを変更すればよい。私が管理しているのは次の2つを変更した。</p>
-<ul>
-<li>maximumPercent: 100 -> 200 (%)</li>
-<li>deregistrationDelay: 300 -> 30 (秒)</li>
-</ul>
-<p>これで18分ほどかかっていたデプロイ時間を8分ぐらいまで短縮できた。テスト環境の設定なので多少のエラーが発生したとしても速い方がよい。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0405/>再びのインフラエンジニア</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-04-05
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#インフラタスクに専念>インフラタスクに専念</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>0時に寝て7時に起きた。</p>
-<h2 id=インフラタスクに専念>インフラタスクに専念</h2>
-<p>本当はインフラ担当者が別途いるのだけど、多忙過ぎて、インフラタスクが1ヶ月近く遅延していて、プロジェクト内で合意を得て私がすべて巻き取ることにした。内容の如何に依らず、その一切合切をすべて巻き取ると宣言した。過去に働いた会社でも他の担当者ができなかった業務を後からリカバリするのはよくやってたのでそれ自体は構わない。ただ他人のタスクを肩代わりしても評価されないことも多くて、もともと私のタスクではないから誰がやったかなんか忘れてしまうんよね。私もとくにアピールしないからそう認識されても構わないのだけど、そういう業務が増えてくるとその職場を辞めるきっかけにもなってた。</p>
-<p>インフラ担当者や他の社員さんにヒアリングしながら現時点でも十数個のタスクがある。過去のインフラの負債も含めて2-3週間ぐらい、私が集中的にやればすべて片がつくのではないかと考えている。今日たまたまスクラムのリファインメントやってて、業務の人から他の機能開発が遅れているのに2-3週間もインフラ作業に専念するってどういうこと？インフラタスクってインフラ担当者にやってもらえないんですか？と質問を受けて、できるんならその方が望ましいけど、過去の実績からまったく進捗しないのでこちらでやるざるを得ない状況というのを説明した。業務の人からみたらインフラなんか何をやっているかわからないからそんなもんよね。これから2-3週間経って蓄積したインフラタスクをすべて解決した後で少し時間が経つとインフラ担当者が全部やったように外部からはみえてしまうというのを、過去に何度も経験した。</p>
 </div>
 </div>
 <div class=pagination>
