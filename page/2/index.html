@@ -57,6 +57,116 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0513/>マーケティング施策の取り組み開始</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-05-13
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/cdk/>cdk</a>&nbsp;
+#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#隔週の雑談>隔週の雑談</a></li>
+<li><a href=#eks-クラスターの-helm-管理の調査>eks クラスターの helm 管理の調査</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>23時に寝て1時に起きて漫画を読んで6時に起きて漫画読んでた。</p>
+<h2 id=隔週の雑談>隔週の雑談</h2>
+<p>顧問のはらさんと隔週の打ち合わせ。今日の議題は <a href=/diary/posts/2022/0503/#打ち合わせ資料の作成>先日作成した第4期の展望</a> について雑談した。あまり深く考えずに起業して初期の頃に作った10ヶ年計画に対してわりとその通りに推移している。来期ぐらいで業務委託のお仕事は終える予定。来期か再来期ぐらいからプロダクト開発の期間に入る。自社プロダクトを作る前から徐々にマーケティングもしていかないといけない。そのため、今期からマーケティング施策を少しずつ増やしていて、まずは会社の信頼度を上げるところからやっていく。売上を上げるためのマーケティングではなく信頼度を上げるためのマーケティングを行う。金森氏が言うようにどんなに優れたプロダクトを作ったとしても売れるかどうかは別問題だ。</p>
+<iframe width=500 height=250 scrolling=no src="https://alu.jp/series/%E6%98%A0%E5%83%8F%E7%A0%94%E3%81%AB%E3%81%AF%E6%89%8B%E3%82%92%E5%87%BA%E3%81%99%E3%81%AA%EF%BC%81/crop/embed/X8MNLWdDgPeZ5RIF25sD/0?referer=oembed" style=margin:auto></iframe>
+<h2 id=eks-クラスターの-helm-管理の調査>eks クラスターの helm 管理の調査</h2>
+<p>昨日の続き。権限設定がなんもわからんみたいな様相になったので調査のやり方を変えることにした。検証用の eks クラスターを cdk から新規に作成して helm をインストールするときのリソースや権限設定がどうなるのかを調査した。lambda 関数が5個ぐらい、ロールは10個ぐらい作成された。lambda の生成に時間がかかるのか？新規作成するのに25分、削除するときは30分ぐらいかかった。rds もそうだけど、eks のような複雑なインフラを cdk で管理すると実行するのにけっこう時間がかかる。設定が難しくなければ別によいけど、eks のような権限やリソースの設定が複雑なインフラはトライ&エラーで何度も実行する必要があるから、こういうものは cdk で管理するのには向かないインフラだと言えると思う。一定の設定のプラクティスが溜まるまでは eks は cdk で管理しない方がよいかもしれない。</p>
+<p>CreationRole というのが設定されて trust relationships に次のような設定が追加される。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
+    <span style=color:#f92672>&#34;Version&#34;</span>: <span style=color:#e6db74>&#34;2012-10-17&#34;</span>,
+    <span style=color:#f92672>&#34;Statement&#34;</span>: [
+        {
+            <span style=color:#f92672>&#34;Effect&#34;</span>: <span style=color:#e6db74>&#34;Allow&#34;</span>,
+            <span style=color:#f92672>&#34;Principal&#34;</span>: {
+                <span style=color:#f92672>&#34;AWS&#34;</span>: <span style=color:#e6db74>&#34;arn:aws:iam::${accountId}:root&#34;</span>
+            },
+            <span style=color:#f92672>&#34;Action&#34;</span>: <span style=color:#e6db74>&#34;sts:AssumeRole&#34;</span>
+        }
+    ]
+}
+</code></pre></div><p>このロールに含まれるカスタムポリシーには次のような設定がある。たぶんこんな感じのロールを新規に作成して <code>kubectlRoleArn</code> として指定してやればいいんじゃないかと思う。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
+    <span style=color:#f92672>&#34;Version&#34;</span>: <span style=color:#e6db74>&#34;2012-10-17&#34;</span>,
+    <span style=color:#f92672>&#34;Statement&#34;</span>: [
+        {
+            <span style=color:#f92672>&#34;Action&#34;</span>: <span style=color:#e6db74>&#34;iam:PassRole&#34;</span>,
+            <span style=color:#f92672>&#34;Resource&#34;</span>: <span style=color:#e6db74>&#34;arn:aws:iam::${accountId}:role/${EksClusterIamRole}&#34;</span>,
+            <span style=color:#f92672>&#34;Effect&#34;</span>: <span style=color:#e6db74>&#34;Allow&#34;</span>
+        },
+        {
+            <span style=color:#f92672>&#34;Action&#34;</span>: [
+                <span style=color:#e6db74>&#34;eks:CreateCluster&#34;</span>,
+                <span style=color:#e6db74>&#34;eks:DescribeCluster&#34;</span>,
+                <span style=color:#e6db74>&#34;eks:DescribeUpdate&#34;</span>,
+                <span style=color:#e6db74>&#34;eks:DeleteCluster&#34;</span>,
+                <span style=color:#e6db74>&#34;eks:UpdateClusterVersion&#34;</span>,
+                <span style=color:#e6db74>&#34;eks:UpdateClusterConfig&#34;</span>,
+                <span style=color:#e6db74>&#34;eks:CreateFargateProfile&#34;</span>,
+                <span style=color:#e6db74>&#34;eks:TagResource&#34;</span>,
+                <span style=color:#e6db74>&#34;eks:UntagResource&#34;</span>
+            ],
+            <span style=color:#f92672>&#34;Resource&#34;</span>: [
+                <span style=color:#e6db74>&#34;arn:aws:eks:ap-northeast-1:${accountId}:cluster/tmp-test-eks-cluster-by-morimoto&#34;</span>,
+                <span style=color:#e6db74>&#34;arn:aws:eks:ap-northeast-1:${accountId}:cluster/tmp-test-eks-cluster-by-morimoto/*&#34;</span>
+            ],
+            <span style=color:#f92672>&#34;Effect&#34;</span>: <span style=color:#e6db74>&#34;Allow&#34;</span>
+        },
+        {
+            <span style=color:#f92672>&#34;Action&#34;</span>: [
+                <span style=color:#e6db74>&#34;eks:DescribeFargateProfile&#34;</span>,
+                <span style=color:#e6db74>&#34;eks:DeleteFargateProfile&#34;</span>
+            ],
+            <span style=color:#f92672>&#34;Resource&#34;</span>: <span style=color:#e6db74>&#34;arn:aws:eks:ap-northeast-1:${accountId}:fargateprofile/tmp-test-eks-cluster-by-morimoto/*&#34;</span>,
+            <span style=color:#f92672>&#34;Effect&#34;</span>: <span style=color:#e6db74>&#34;Allow&#34;</span>
+        },
+        {
+            <span style=color:#f92672>&#34;Action&#34;</span>: [
+                <span style=color:#e6db74>&#34;iam:GetRole&#34;</span>,
+                <span style=color:#e6db74>&#34;iam:listAttachedRolePolicies&#34;</span>
+            ],
+            <span style=color:#f92672>&#34;Resource&#34;</span>: <span style=color:#e6db74>&#34;*&#34;</span>,
+            <span style=color:#f92672>&#34;Effect&#34;</span>: <span style=color:#e6db74>&#34;Allow&#34;</span>
+        },
+        {
+            <span style=color:#f92672>&#34;Action&#34;</span>: <span style=color:#e6db74>&#34;iam:CreateServiceLinkedRole&#34;</span>,
+            <span style=color:#f92672>&#34;Resource&#34;</span>: <span style=color:#e6db74>&#34;*&#34;</span>,
+            <span style=color:#f92672>&#34;Effect&#34;</span>: <span style=color:#e6db74>&#34;Allow&#34;</span>
+        },
+        {
+            <span style=color:#f92672>&#34;Action&#34;</span>: [
+                <span style=color:#e6db74>&#34;ec2:DescribeInstances&#34;</span>,
+                <span style=color:#e6db74>&#34;ec2:DescribeNetworkInterfaces&#34;</span>,
+                <span style=color:#e6db74>&#34;ec2:DescribeSecurityGroups&#34;</span>,
+                <span style=color:#e6db74>&#34;ec2:DescribeSubnets&#34;</span>,
+                <span style=color:#e6db74>&#34;ec2:DescribeRouteTables&#34;</span>,
+                <span style=color:#e6db74>&#34;ec2:DescribeDhcpOptions&#34;</span>,
+                <span style=color:#e6db74>&#34;ec2:DescribeVpcs&#34;</span>
+            ],
+            <span style=color:#f92672>&#34;Resource&#34;</span>: <span style=color:#e6db74>&#34;*&#34;</span>,
+            <span style=color:#f92672>&#34;Effect&#34;</span>: <span style=color:#e6db74>&#34;Allow&#34;</span>
+        }
+    ]
+}
+</code></pre></div>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0512/>cdk と eks と lambda と iam がわからん</a>
 </h1>
 <div class=post-meta>
@@ -276,48 +386,6 @@ forest nook
 </ul>
 <figure><img src=/diary/img/2022/0507_avocado.jpg>
 </figure>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0506/>flyway を触ってみた</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-05-06
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/java/>java</a>&nbsp;
-#<a href=/diary/tags/database/>database</a>&nbsp;
-#<a href=/diary/tags/migration/>migration</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#データベースの移行処理>データベースの移行処理</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>0時に寝て4時に起きてタイムライン眺めながらだらだらして6時半に起き上がった。</p>
-<h2 id=データベースの移行処理>データベースの移行処理</h2>
-<p>半年前から導入したいという話しは聞いていたものの、先送りになっていたライブラリに <a href=https://flywaydb.org/>flyway</a> がある。データベースの移行処理のためのスクリプト (sql) を管理するツールでどの移行スクリプトを実行したかを記録したり、未適用の処理を自動で適用してくれたりする。spring boot だとすぐ組み込める状態になっていて <a href=https://flywaydb.org/documentation/usage/plugins/springboot>Community Plugins and Integrations: Spring Boot</a> をみながら設定したらすぐに動いた。flyway 自体の設定も <a href=https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html>Common Application Properties</a> を参考に spring boot の設定ファイルで行える。</p>
-<p>例えば、こんな感じ。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#f92672>spring</span>:
-  <span style=color:#f92672>flyway</span>:
-<span style=color:#f92672>￼    enabled</span>: <span style=color:#66d9ef>true</span>
-<span style=color:#f92672>￼    schemas</span>: <span style=color:#ae81ff>public</span>
-<span style=color:#f92672>￼    locations</span>: <span style=color:#ae81ff>classpath:db/migration</span>
-<span style=color:#f92672>￼    baseline-version</span>: <span style=color:#ae81ff>0</span>
-<span style=color:#f92672>￼    baseline-on-migrate</span>: <span style=color:#66d9ef>true</span>
-</code></pre></div><p>移行処理の履歴情報は <code>flyway_schema_history</code> テーブルに保持される。既存のテーブルが存在して flyway の履歴データがない場合 (初回起動時) に移行処理を実行するかどうかを baseline-on-migrate で決める。実行するなら baseline-version でどのバージョンをベースラインとするかも設定できる。ゼロにすることで <code>V1</code> からの sql ファイルを適用してくれる。ベースラインの考え方は実際に何度かデータベースの初期状態を変えて実行しないとわかりにくいかもしれない。</p>
-<ul>
-<li><a href=https://flywaydb.org/documentation/tutorials/baselineMigrations>Tutorial: Baseline Migrations</a></li>
-</ul>
 </div>
 </div>
 <div class=pagination>
