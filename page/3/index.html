@@ -57,6 +57,39 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0505/>法人決算に着手</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-05-05
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/founding/>founding</a>&nbsp;
+#<a href=/diary/tags/tax/>tax</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#法人決算>法人決算</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>夜眠れなくてだらだらして朝もだらだらしてからお昼前ぐらいにオフィスに行った。</p>
+<h2 id=法人決算>法人決算</h2>
+<p>ようやく着手した。今日のところは前期の所得を求めて各種法人税の算出をした。所得を算出し終えて初めて決算書を作成できる。と言っても、前期は当社初の赤字となった。そのため、均等割以外の法人税はすべてゼロになる。法人県民税と法人市民税の均等割を合計すると7万2千円を納める必要がある。この税金は会社が赤字であろうと必ず支払う必要がある。他の法人税、地方法人税、法人事業税、特別法人事業税、法人県民税と法人市民税の法人税割は所得に対して税率を課すものなので赤字 = 所得がマイナスならゼロになる。ないに越したことはないけど、今後も赤字決算はあるかもしれないので今回は赤字決算のときの税制や会計処理について学ぶ機会となる。その1つとして前々期に納めた法人税を還付する仕組みがある。</p>
+<ul>
+<li><a href=https://www.nta.go.jp/taxes/shiraberu/taxanswer/hojin/5763.htm>No.5763 欠損金の繰戻しによる還付</a></li>
+</ul>
+<p>あと赤字でも支払う必要のある税金として消費税がある。これも3期目から支払う必要があるため、今回が初めてとなる。算はすべて会計システムがやってくれるので私がやることは書類を作ったり、実際の手続きをするだけだとは思う。ちなみにうちは簡易課税で消費税を支払う。その方が節税になることは <a href=/diary/posts/2021/1001/#インボイス制度の準備>インボイス制度を調べていた</a> ときにも書いた。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0504/>ずっと考え続けること</a>
 </h1>
 <div class=post-meta>
@@ -283,43 +316,6 @@ forest nook
 </blockquote>
 <p>前期は3ヶ月ほど仕事をせずに遊んでいた。数字だけをみたら6ヶ月ほど遊んでいてもよい余裕はあったと言える。それでも3ヶ月ほど経ってから次のお仕事を探して、いま受託開発をしているのは <strong>銀行口座の残高がダブルで減り続ける恐怖に抗うのが難しい</strong> からと言える。会社が倒産するわけでも、生活に困るわけでもなく、銀行口座の残高が減り続ける毎日が怖いという話し。「死の恐怖は死そのものよりも怖ろしい」と誰かの名言があるが、その経営者バージョンかもしれない。難しい判断は心身ともに落ち着いていて余裕をもった状態で下すのが望ましいと、誰もが頭では理解できるだろうが、実際に銀行の口座がずっと減り続けている状態でそう在れるかというのは別問題だという話し。無計画に仕事せずに遊ぶのは、うちの会社の場合は3ヶ月程度が限界だと分かった、というのが今期の財務における収穫と言える。</p>
 <p>そんな1年を通したふりかえりを雑談してたら2時間ほど経過していた。また2週間後に第4期の展望をやることにした。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0428/>jvm の脆弱性対応</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-04-28
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/java/>java</a>&nbsp;
-#<a href=/diary/tags/security/>security</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#jvm-の脆弱性対応>jvm の脆弱性対応</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>23時に寝て3時に起きて5時に起きて7時に起きた。なんか調子が微妙。</p>
-<h2 id=jvm-の脆弱性対応>jvm の脆弱性対応</h2>
-<p>少し前だけど、jvm のセキュリティアナウンスがあった。</p>
-<ul>
-<li><a href=https://openjdk.java.net/groups/vulnerability/advisories/2022-04-19>OpenJDK Vulnerability Advisory: 2022/04/19</a></li>
-</ul>
-<p>java 11 向けの docker イメージのビルドはあまり緊急度が高くなかったせいか、17よりは優先度が低かったようにみえる。docker イメージビルドの作業状況は次の issue で管理されている。</p>
-<ul>
-<li><a href=https://github.com/adoptium/adoptium/issues/140>April 2022 Release Status per Platform, Version & Binary Type #140</a></li>
-</ul>
-<p>これまで <a href="https://hub.docker.com/r/adoptopenjdk/openjdk11/tags?page=1&name=alpine-jre">adoptopenjdk/openjdk11:alpine-jre</a> という docker イメージを使っていた。<a href=https://blog.adoptopenjdk.net/2021/03/transition-to-eclipse-an-update/>Transition to Eclipse - An Update</a> によると、Eclipse Temurin という組織が管理する <a href=https://adoptium.net/>Adoptium</a> というプロジェクトに移管されたらしい。この機会に docker イメージも <a href="https://hub.docker.com/_/eclipse-temurin?tab=tags&page=1&name=11-jre-alpine">eclipse-temurin:11-jre-alpine</a> に移行した。</p>
 </div>
 </div>
 <div class=pagination>

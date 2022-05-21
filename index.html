@@ -57,6 +57,40 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0519/>ドキュメントをちゃんと書く</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-05-19
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
+#<a href=/diary/tags/document/>document</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#インフラのドキュメント作成>インフラのドキュメント作成</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>20時に寝て22時に起きて、それから作業して3時に寝て6時に起きた。</p>
+<h2 id=インフラのドキュメント作成>インフラのドキュメント作成</h2>
+<p>今日からインフラのドキュメント作成に着手した。4月から1ヶ月以上に渡って <a href=/diary/posts/2022/0405/>インフラエンジニア</a> のようなお仕事をしていた。具体的には新しい環境のインフラ構築、ならびに既存インフラのリファクタリングというよりは再構築といった作業をしていた。約1ヶ月で大きなインフラのタスクは完了して、その後もこれまで cdk 管理していなかったインフラリソースの管理なども含め、より再現可能な管理されたインフラとなるように改善してきた。それもだいたい終えてきたので、そろそろ他の開発者にも引き継げるようにドキュメントを書くことにした。私以外は若い開発者が多いせいか、cdk/cf の知識というよりもインフラそのもののやネットワークの知識が少ないメンバーが多い。そういった運用経験の浅い開発者にも適切な教育が行えるよう、ドキュメントやチュートリアルなどを書いていく。数日ぐらいかけてしっかり書いてから勉強会を開催する。それをもって引き継ぎしていくかなぁ。</p>
+<p>私が前任者から引き継いだ README に helm の説明が次のように書かれてた。</p>
+<blockquote>
+<p>まず helm がわかってない人はググってくること。</p>
+</blockquote>
+<p>こんな README を私はみたことなくて書いている人が訳分からず作業しているんだなという印象を受けた。私が書くドキュメントには cdk とは何か？から説明している。もちろん aws のドキュメントをすべて読めばよいのだが、それはコストがかかる。私の経験と私が理解した cdk の概念を簡潔に、なるべく自分たちの業務にとって大事なことを要約して書くことに意義があると私は考えている。README にググれみたいなことを書いて誰もなにも言わない開発文化を改善していきたい。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0518/>cdk のビルドが難しい話し</a>
 </h1>
 <div class=post-meta>
@@ -324,43 +358,6 @@ forest nook
     ]
 }
 </code></pre></div>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0512/>cdk と eks と lambda と iam がわからん</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-05-12
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/cdk/>cdk</a>&nbsp;
-#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#eks-クラスターの-helm-管理>eks クラスターの helm 管理</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>0時に寝て3時に起きて漫画読んで5時に寝て8時に起きた。</p>
-<h2 id=eks-クラスターの-helm-管理>eks クラスターの helm 管理</h2>
-<p>昨日の続き。helm のよさはわかったので dapr を helm で管理しようとしている。その際になるべく cdk で管理できた方がよい。eks は cdk の外部で管理しているのだけど、既存の eks クラスターをインポートする機能も提供されていることに気付いた。</p>
-<ul>
-<li><a href=https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_eks-readme.html#using-existing-clusters>Using existing clusters</a></li>
-</ul>
-<p>それなら既存の eks クラスターをインポートして cdk で helm だけ管理しようと思って始めたものの、これがとても難しくて丸1日作業してわからなかった。設定項目は少ないけど、権限の問題で動かない。1回あたりの実行に15分ぐらいかかるのでトライ&エラーするのもなかなか大変。</p>
-<blockquote>
-<p><code>kubectlRoleArn</code> - the ARN of an IAM role mapped to the system:masters RBAC role. If the cluster you are importing was created using the AWS CDK, the CloudFormation stack has an output that includes an IAM role that can be used. Otherwise, you can create an IAM role and map it to system:masters manually. The trust policy of this role should include the the arn:aws::iam::${accountId}:root principal in order to allow the execution role of the kubectl resource to assume it.</p>
-</blockquote>
-<p><code>kubectlRoleArn</code> の設定をどうするかだけなんだが、この説明でどう設定していいか理解できなかった。cdk で新規に eks クラスターを作成するなら自動で作ってくれるけど、既存の eks クラスターの場合は自分で設定しないといけない。ややこしいことに cdk は kubectl の実行を lambda 経由で実行するので eks と lambda と iam のロールやポリシーを適切に設定する必要がある。lambda にどういう権限を設定するのが適切なのかは本当に難しい。サーバーレスはよいアイディアだとは思うけど、lambda は難し過ぎて私はなるべく使いたくないサービスではある。結局わからなくて翌日に持ち越し。</p>
 </div>
 </div>
 <div class=pagination>
