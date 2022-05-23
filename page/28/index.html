@@ -57,6 +57,35 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2021/1115/>お仕事しかしなかった一日</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2021-11-15
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/kubernetes/>kubernetes</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#ローカル開発環境の整備>ローカル開発環境の整備</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>2時に寝て6時半に起きた。寝る前にウォーキングしてくるとよく眠れる気がする。お仕事で簡単に終わると思ってた作業にちょっとはまってトラブルシューティングしてたら疲れた。原因はわかって自己解決できたのはよかったけど、消耗して早くお仕事を終えて帰ってくつろいでた。</p>
+<h2 id=ローカル開発環境の整備>ローカル開発環境の整備</h2>
+<p>お仕事でローカルの k8s 環境の保守の作業をしている。<a href=https://minikube.sigs.k8s.io/docs/>minikube</a> でローカルの k8s クラスターを作成して <a href=https://kubernetes.io/docs/reference/kubectl/overview/>kubectl</a> コマンドで制御する。k8s の yaml の設定ファイルのことをマニフェストと呼ぶのかな？そのテンプレート？ジェネレーター的なツールに <a href=https://kustomize.io/>kustomize</a> を使っている。先週から1週間触っていたので cli の操作にはだいぶ慣れてきた。</p>
+<p>まだ基本的な delete & apply みたいなことしかやってないけど、また余裕のあるときに細かいコマンドやロールバックのやり方なども学習しようと思う。デプロイで一番重要なのはロールバック、次にローリングアップデート、ローリングアップデートができればカナリアリリースもできるかな？その2つがあれば運用は大幅にコスト削減できるし、開発のアジリティも上げられる。たぶん k8s を使えば簡単にできるんだろうなというのは delete & apply だけみてもそう受け取れる。k8s クラスターさえマネージドならよく出来た仕組みだなと感心した。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2021/1114/>リーンキャンバスやってみた</a>
 </h1>
 <div class=post-meta>
@@ -354,66 +383,6 @@ PMBOK ガイドは4-5年ごとに更新されるものらしい。
 <p>懇親会が終わったのが22時で、疲れと空腹から仲のよい焼き鳥屋さんのお店に寄って晩ご飯を食べることにした。時短が終わっているので22時からでも飲みに行ける。お店は翌2時まで営業している。22時過ぎに行ったらお客さんは誰もいなくて、野菜サラダと焼き鳥を注文してマスターと雑談してた。</p>
 <p>時短が終わってから景気はどうかを聞いてみると、まだまだお客さんの戻りはコロナ前とくらべてまだまだだという。0時まわってから他の飲食店で働いている人たちが店内を埋まるぐらいは来てくれていたそうだけど、まだまだ余裕がないのか全然戻ってきてないと話されていた。0時半頃に2人組で「○○さんの紹介で来ました」みたいな既に酔っ払っているお客さんが来たりして、終電終わってからこういうお客さんが来たりしていたんだなと雰囲気は理解できた。マスターも2時に閉店して5時まで開いている他の飲食店に飲みに行くと話してた。そうやってお互いにお店に飲みに行って付き合いのようなものができているんだというのが理解できた。どこかのスナック行って3万円ほど使っても、必ずそのスナックの人がお店に来てくれて3万円以上使ってくれるという。お金をまわすってそういうことなんやなとマスターの話しを聞いていて理解できた。自分のお店を2時に閉店して、5時まで飲み歩いて、それから寝てまた次の日に仕事というのは体力的にすごくしんどそうで、マスター自身もコロナ明けは体調をみながら飲み歩いているとも話されてた。結局、2時前までマスターと雑談してて、私も22時から4時間弱ほど居座ってた。久しぶりに外で飲んでハイになっていたかもしれない。</p>
 <p>マスターのお勧めで <a href=https://www.hamadasyuzou.co.jp/daiyame_brand>だいやめ</a> という芋焼酎をお湯割りで飲んだ。香熟芋という珍し？芋を使っていて、ライチのような香りのする芋焼酎でおいしかった。お土産によさそうなので覚えておこうと思う。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2021/1108/>Kubernetes 使い始めの雑感</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2021-11-08
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/kubernetes/>kubernetes</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#udemy-kubernetes入門>udemy: Kubernetes入門</a>
-<ul>
-<li><a href=#セクション6-kubernetes実践>セクション6 Kubernetes実践</a></li>
-<li><a href=#セクション7-kubernetesのdebug>セクション7 KubernetesのDebug</a></li>
-</ul>
-</li>
-<li><a href=#k8s-の調査>k8s の調査</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>1時に寝て7時に起きた。夜にウォーキングし始めてからよく眠れるようになった気がする。</p>
-<h2 id=udemy-kubernetes入門>udemy: Kubernetes入門</h2>
-<p><a href=/diary/posts/2021/1107/#udemy-kubernetes入門>昨日</a> の続き。今日はセクション6から最後まで。CI/CD のセクションだけスキップして、他は一通り目を通した。</p>
-<h3 id=セクション6-kubernetes実践>セクション6 Kubernetes実践</h3>
-<p>1つずつ書くのは大変だけど、数をこなして徐々に覚えていけばよい。手で書くのもよいが、別のやり方としてクライアント側で dry run すると、設定のひな型を作ってくれるのでそれに必要な設定を足すのもよい。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ kubectl create deploy mysql --image<span style=color:#f92672>=</span>mysql:5.7 --dry-run<span style=color:#f92672>=</span>client -o yaml
-</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ kubectl exec -n database -it mysql-787f86d65c-nflxx -- mysql -uroot -ppassword
-</code></pre></div><p>データベースとアプリケーションを異なる namespace にデプロイして、それらが通信できるような設定を行う。基本的には <code>--dry-run=client</code> でひな型を作りつつ、必要な設定を追加していくやり方が簡単そうにみえた。とはいえ、実際に設定していくときはどういう設定を追加するとどういう振る舞いになるかを調べながら作業すると思うのでこんな簡単にはできないとは思う。次のようなアプリケーションをデプロイする一覧の流れを理解できた。</p>
-<ol>
-<li>namespace 作成</li>
-<li>Deployment 作成</li>
-<li>ConfigMap 作成</li>
-<li>Secret 作成</li>
-<li>Deployment, ConfigMap, Secret 適用</li>
-<li>Service 適用</li>
-<li>port-forward でローカルからアクセス</li>
-<li>(作成したリソースをすべて削除)</li>
-</ol>
-<h3 id=セクション7-kubernetesのdebug>セクション7 KubernetesのDebug</h3>
-<p>基本は pod のステータスを確認しながら問題があれば、その箇所を追いかけていって原因を調査する。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ kubectl get pod -A
-$ kubectl get pod -A --selector run<span style=color:#f92672>=</span>nginx
-</code></pre></div><p>k8s 上で実行しているアプリケーションの依存先へ接続できない場合は Service の確認が必要となる。kubectl の get, describe, logs などのサブコマンドをあれこれみながらエラーの原因を把握して、yaml の設定を変更していく。k8s のアーキテクチャとコマンドを覚えていないとなかなか難しそう。</p>
-<p>とりあえず動かした後にまとめて全部削除できるのがテストやデバッグに便利そう。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ kubectl delete -f .
-</code></pre></div><p>もしくは開発用に独自の namespace を作成して、あとで丸ごと namespace を削除するのでもよさそう。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ kubectl delete ns mynamespace
-</code></pre></div><h2 id=k8s-の調査>k8s の調査</h2>
-<p>業務のアプリケーションを minikube で作ったローカル k8s クラスターで動かしてみた。ローカルの開発環境の構築方法をメンテナンスして、自分でも一通り k8s の yaml を書いて、デプロイして、振る舞いを確認したりしていた。最初なのでおもしろい。自分で一通りやってみて、k8s が難しいとみんなが言っているのは k8s クラスターを自前で構築するのが難しいのだとようやく理解できた。k8s クラスターがすでにある状態なら kubectl の使い方を覚えるだけで全く難しくない。GKE や EKS を使って運用するなら k8s の運用コストは大したことがないと理解できた。k8s クラスター向けの yaml はたくさん書かないといけないけど、どうせ ECS や EC2 でやっていても CDK や Terraform などのインフラ設定を書くのは同じなのでそこはあまり差がない。k8s はコンテナオーケストレーションをやってくれるメリットが大きいので minikube と EKS の環境の差異があまり問題にならないようなアプリケーション開発であれば、普通に使っていって問題ないように思えた。ローカルで環境作るのが大変なんじゃないかという先入観があったけど、全然そんなことはなかった。コンテナのイメージをビルドしないといけないのが追加のコストかな。</p>
 </div>
 </div>
 <div class=pagination>
