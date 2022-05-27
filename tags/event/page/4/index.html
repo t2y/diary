@@ -56,6 +56,34 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0526/>aws-lambda-python-alpha を使っておけばいい</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-05-26
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/cdk/>cdk</a>&nbsp;
+#<a href=/diary/tags/event/>event</a>&nbsp;
+</span>
+<div class=post-content>
+<p>0時に寝て6時に起きて7時半に起きた。なんかバテバテ。</p>
+<h2 id=aws-lambda-python-alpha>aws-lambda-python-alpha</h2>
+<p>cdk 標準の lambda モジュールで python スクリプトをデプロイすることはもちろんできるが、その python スクリプト内でサードパーティのライブラリを使いたい場合、layer という機能を使って複数の lambda 関数で再利用するというのがもともとのやり方っぽい。とはいえ、サードパーティの依存ライブラリも python スクリプトによって使うものが違ったりするので lambda 関数単位に管理したいという場合もある。その要件を考慮した場合、python のパッケージングを lambda 関数のデプロイ時に再利用できるのが望ましくて、そのためのモジュールが aws-lambda-python-alpha になる。説明が長い。</p>
+<ul>
+<li><a href=https://www.npmjs.com/package/@aws-cdk/aws-lambda-python-alpha>@aws-cdk/aws-lambda-python-alpha</a></li>
+<li><a href=https://docs.aws.amazon.com/cdk/api/v2/docs/aws-lambda-python-alpha-readme.html#packaging>Amazon Lambda Python Library - Packaging</a></li>
+</ul>
+<h2 id=jjug-ccc-2022-spring-のタイムテーブル>JJUG CCC 2022 Spring のタイムテーブル</h2>
+<p>タイムテーブルが公開された。</p>
+<blockquote class=twitter-tweet><p lang=ja dir=ltr>タイムテーブルが公開されたみたい。2022/06/19 10:25〜 Track C <a href="https://twitter.com/hashtag/jjug_ccc_c?src=hash&ref_src=twsrc%5Etfw">#jjug_ccc_c</a> でカスタム github actions の話しをします。よかったらご覧ください。スライド資料も主催のチェック完了後に公開予定です。<a href=https://t.co/AjP1aLt9EM>https://t.co/AjP1aLt9EM</a></p>&mdash; Tetsuya Morimoto (@t2y) <a href="https://twitter.com/t2y/status/1529788493895188480?ref_src=twsrc%5Etfw">May 26, 2022</a></blockquote>
+<script async src=https://platform.twitter.com/widgets.js></script>
+<p>私の前の発表が大橋さんという、一緒のチームでお仕事している方で github actions で運用している開発のワークフロー全般を改善したという話しをされる。その大半は私が設計して既存のワークフローを作り直したものなので応援している。改善の前後におけるワークフローの実行時間の比較や資料のレビューなども手伝っていて、私が主導してやったんだから内容についての責任は私にあると考えていろいろサポートしていた。おそらく github actions つながりで連続しているのかなと推測する。当初はお互いに送客すればいいかなと考えていたけど、普通のセッションの規定が厳しくて、スポンサーじゃなければ会社や製品の宣伝はダメという話しなので送客は断念した。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0522/>発表ビデオ提出</a>
 </h1>
 <div class=post-meta>
