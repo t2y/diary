@@ -1,4 +1,42 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on forest nook</title><link>/diary/posts/</link><description>Recent content in Posts on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Tue, 24 May 2022 01:14:51 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>法人として消費税を納めた</title><link>/diary/posts/2022/0524/</link><pubDate>Tue, 24 May 2022 01:14:51 +0900</pubDate><guid>/diary/posts/2022/0524/</guid><description>5時に寝て7時過ぎに起きた。前日の夜から法人決算の電子申告に取り組み始めた。本当は紙でやるつもりだったんだけど、eltax が快適だったので e-tax も衝動的にやってみたくなった。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on forest nook</title><link>/diary/posts/</link><description>Recent content in Posts on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Wed, 25 May 2022 08:11:17 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>0525</title><link>/diary/posts/2022/0525/</link><pubDate>Wed, 25 May 2022 08:11:17 +0900</pubDate><guid>/diary/posts/2022/0525/</guid><description>22時に寝て1時に起きて5時半に起きた。前日はあまり寝てなかったので知らないうちに寝てしまった。
+severless framework と cdk の比較 serverless framework というツールがある。マルチクラウド対応で aws で言えば lambda のような、サーバーレスのアプリケーションを簡単にデプロイするためのツール。よく使われているようで、私がお手伝いしている会社でも lambda 関数のデプロイにこのツールを使っている。いろいろ調べていたら、serverless framework は cdk と真正面から競合になるツールで、cdk をすでに使っているなら cdk に一元管理した方が保守コストが下がっていいだろうと考え、新たに lambda 関数を作る作業を cdk でやってみた。私はほとんど serverless framework を使ったことがないので正しく理解できていない可能性は高いが、ざっくり比較すると次になる。
+serverless framework メリット
+cdk より学習コストが低い yaml 設定だけで簡単にデプロイできる デメリット
+リソース管理のための s3 バケットを必要とする lambda に関連するリソースしかデプロイできない 開発者が明示的に設定しなくても裏でリソースを勝手に生成するので意図せず適切に管理されていないインフラを作ってしまう懸念がある 大半の実務レベルのアプリケーションでは cf テンプレートの dsl を yaml に設定する必要があり、設定が煩雑になったり見通しが悪くなる cdk メリット
+任意の aws インフラのリソースを管理できる プログラミング言語で記述できるので動的なリソースの依存関係を定義できる cf は裏に隠蔽されているが、serverless framework のような dsl を記述する必要はない デメリット
+学習コストが高い リファレンス</description><content>&lt;p>22時に寝て1時に起きて5時半に起きた。前日はあまり寝てなかったので知らないうちに寝てしまった。&lt;/p>
+&lt;h2 id="severless-framework-と-cdk-の比較">severless framework と cdk の比較&lt;/h2>
+&lt;p>&lt;a href="https://www.serverless.com/">serverless framework&lt;/a> というツールがある。マルチクラウド対応で aws で言えば lambda のような、サーバーレスのアプリケーションを簡単にデプロイするためのツール。よく使われているようで、私がお手伝いしている会社でも lambda 関数のデプロイにこのツールを使っている。いろいろ調べていたら、serverless framework は cdk と真正面から競合になるツールで、cdk をすでに使っているなら cdk に一元管理した方が保守コストが下がっていいだろうと考え、新たに lambda 関数を作る作業を cdk でやってみた。私はほとんど serverless framework を使ったことがないので正しく理解できていない可能性は高いが、ざっくり比較すると次になる。&lt;/p>
+&lt;h4 id="serverless-framework">serverless framework&lt;/h4>
+&lt;p>メリット&lt;/p>
+&lt;ul>
+&lt;li>cdk より学習コストが低い&lt;/li>
+&lt;li>yaml 設定だけで簡単にデプロイできる&lt;/li>
+&lt;/ul>
+&lt;p>デメリット&lt;/p>
+&lt;ul>
+&lt;li>リソース管理のための s3 バケットを必要とする&lt;/li>
+&lt;li>lambda に関連するリソースしかデプロイできない&lt;/li>
+&lt;li>開発者が明示的に設定しなくても裏でリソースを勝手に生成するので意図せず適切に管理されていないインフラを作ってしまう懸念がある&lt;/li>
+&lt;li>大半の実務レベルのアプリケーションでは cf テンプレートの dsl を yaml に設定する必要があり、設定が煩雑になったり見通しが悪くなる&lt;/li>
+&lt;/ul>
+&lt;h4 id="cdk">cdk&lt;/h4>
+&lt;p>メリット&lt;/p>
+&lt;ul>
+&lt;li>任意の aws インフラのリソースを管理できる&lt;/li>
+&lt;li>プログラミング言語で記述できるので動的なリソースの依存関係を定義できる&lt;/li>
+&lt;li>cf は裏に隠蔽されているが、serverless framework のような dsl を記述する必要はない&lt;/li>
+&lt;/ul>
+&lt;p>デメリット&lt;/p>
+&lt;ul>
+&lt;li>学習コストが高い&lt;/li>
+&lt;/ul>
+&lt;p>リファレンス&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://www.secjuice.com/aws-cdk-vs-serverless-framework/">AWS CDK vs Serverless Framework&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://dev.to/tastefulelk/serverless-framework-vs-sam-vs-aws-cdk-1g9g">Serverless Framework vs SAM vs AWS CDK&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>結論から言うと、将来的に cdk を使うならまず cdk を使った方がよい。本当にシンプルな要件で lambda 関数のインフラしか扱わないなら serverless framework でもいいかもしれない。serverless framework は cdk がない時代に作られたツールだろうからいまから新規に導入する場合は、多少の学習コストを払っても cdk を学んでおけば、将来的に役に立つ場面が多いと思う。&lt;/p></content></item><item><title>法人として消費税を納めた</title><link>/diary/posts/2022/0524/</link><pubDate>Tue, 24 May 2022 01:14:51 +0900</pubDate><guid>/diary/posts/2022/0524/</guid><description>5時に寝て7時過ぎに起きた。前日の夜から法人決算の電子申告に取り組み始めた。本当は紙でやるつもりだったんだけど、eltax が快適だったので e-tax も衝動的にやってみたくなった。
 消費税と地方消費税の申告 法人決算 の一部。今回が初めての消費税と地方消費税の申告になる。簡易課税で支払う。
 消費税は、国税（国に納付する税金）であり消費税の納税義務がある事業者が納付します。地方消費税とは、 消費税と同様で商品の販売やサービスの提供などの取引にかかる税金 です。消費税との違いは、 地方消費税は国税ではなく地方税（都道府県や市町村に納付する税金）という点です。 しかし実際に納付するときは消費税と分けて納付はせずに、 消費税と一緒に地方消費税を所管税務署へ納付します。
 消費税と地方消費税の違いは？納付対象者や納付方法、計算の仕方まで徹底解説！

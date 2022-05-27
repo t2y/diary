@@ -1,12 +1,12 @@
 <!doctype html><html lang=en>
 <head>
-<title>infrastructure :: forest nook</title>
+<title>cdk :: forest nook</title>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content>
 <meta name=keywords content>
 <meta name=robots content="noodp">
-<link rel=canonical href=/diary/tags/infrastructure/>
+<link rel=canonical href=/diary/tags/cdk/>
 <link rel=stylesheet href=/diary/assets/style.css>
 <link rel=stylesheet href=/diary/assets/green.css>
 <link rel=stylesheet href=/diary/style.css>
@@ -17,14 +17,14 @@
 <meta name=twitter:creator content>
 <meta property="og:locale" content="en">
 <meta property="og:type" content="website">
-<meta property="og:title" content="infrastructure">
+<meta property="og:title" content="cdk">
 <meta property="og:description" content>
-<meta property="og:url" content="/diary/tags/infrastructure/">
+<meta property="og:url" content="/diary/tags/cdk/">
 <meta property="og:site_name" content="forest nook">
 <meta property="og:image" content="/diary/favicon.ico">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
-<link href=/diary/tags/infrastructure/index.xml rel=alternate type=application/rss+xml title="forest nook">
+<link href=/diary/tags/cdk/index.xml rel=alternate type=application/rss+xml title="forest nook">
 </head>
 <body class=green>
 <div class="container full headings--one-size">
@@ -101,30 +101,6 @@ forest nook
 <li><a href=https://dev.to/tastefulelk/serverless-framework-vs-sam-vs-aws-cdk-1g9g>Serverless Framework vs SAM vs AWS CDK</a></li>
 </ul>
 <p>結論から言うと、将来的に cdk を使うならまず cdk を使った方がよい。本当にシンプルな要件で lambda 関数のインフラしか扱わないなら serverless framework でもいいかもしれない。serverless framework は cdk がない時代に作られたツールだろうからいまから新規に導入する場合は、多少の学習コストを払っても cdk を学んでおけば、将来的に役に立つ場面が多いと思う。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0519/>ドキュメントをちゃんと書く</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-05-19
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
-#<a href=/diary/tags/document/>document</a>&nbsp;
-</span>
-<div class=post-content>
-<p>20時に寝て22時に起きて、それから作業して3時に寝て6時に起きた。</p>
-<h2 id=インフラのドキュメント作成>インフラのドキュメント作成</h2>
-<p>今日からインフラのドキュメント作成に着手した。4月から1ヶ月以上に渡って <a href=/diary/posts/2022/0405/>インフラエンジニア</a> のようなお仕事をしていた。具体的には新しい環境のインフラ構築、ならびに既存インフラのリファクタリングというよりは再構築といった作業をしていた。約1ヶ月で大きなインフラのタスクは完了して、その後もこれまで cdk 管理していなかったインフラリソースの管理なども含め、より再現可能な管理されたインフラとなるように改善してきた。それもだいたい終えてきたので、そろそろ他の開発者にも引き継げるようにドキュメントを書くことにした。私以外は若い開発者が多いせいか、cdk/cf の知識というよりもインフラそのもののやネットワークの知識が少ないメンバーが多い。そういった運用経験の浅い開発者にも適切な教育が行えるよう、ドキュメントやチュートリアルなどを書いていく。数日ぐらいかけてしっかり書いてから勉強会を開催する。それをもって引き継ぎしていくかなぁ。</p>
-<p>私が前任者から引き継いだ README に helm の説明が次のように書かれてた。</p>
-<blockquote>
-<p>まず helm がわかってない人はググってくること。</p>
-</blockquote>
-<p>こんな README を私はみたことなくて書いている人が訳分からず作業しているんだなという印象を受けた。私が書くドキュメントには cdk とは何か？から説明している。もちろん aws のドキュメントをすべて読めばよいのだが、それはコストがかかる。私の経験と私が理解した cdk の概念を簡潔に、なるべく自分たちの業務にとって大事なことを要約して書くことに意義があると私は考えている。README にググれみたいなことを書いて誰もなにも言わない開発文化を改善していきたい。</p>
 </div>
 </div>
 <div class="post on-list">
@@ -469,39 +445,6 @@ $ psql --host mydb.xxx.ap-northeast-1.rds.amazonaws.com --username user --dbname
 </div>
 <div class="post on-list">
 <h1 class=post-title>
-<a href=/diary/posts/2022/0414/>コロナワクチン3回目</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-04-14
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/life/>life</a>&nbsp;
-#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
-</span>
-<div class=post-content>
-<p>22時に寝て3時に起きた6時に起きた。季節の変わり目のせいか、いつも眠い。</p>
-<h2 id=ワクチン3回目接種>ワクチン3回目接種</h2>
-<p><a href=/diary/posts/2021/0927/#コロナワクチン2回目摂取>2回目は昨年の9月27日</a> に接種した。6ヶ月以上経たないといけないので3月27日以降に接種資格を得て、実際に接種券が届いたのが4月7日だった。神戸市は初回のときにまごまごしたので他の自治体よりも遅れている。これまでファイザーを2回接種したので今回はモデルナを受けてみることにした。モデルナを扱っていてネット予約できるもっとも近くの診療所を予約した。オフィスから自転車で15分ぐらいのところ。16:30の予約なのに16時過ぎぐらいに行ったら普通に受け付けしてくれてすぐに接種もできた。16:05に接種終えて16:20まで待機してオフィスに戻ってきて普通にお仕事してた。その1時間半後に熱を測ったら37.0℃だった。その後もやや熱っぽいけど、平気とは言えば平気。</p>
-<h2 id=インフラ移行作業>インフラ移行作業</h2>
-<p>昨日の続き。フロントエンドのテスト環境が壊れる可能性があるため、他メンバーが使っていない夜に移行作業を行う。POの人たちがQA検証を19-21時ぐらいにやっていることが多いので21時以降に作業すると連絡しておいた。なかなか大変だった。最悪の場合、数時間テスト環境を使えませんと伝えていたものの、その通りで4時間ぐらい検証作業をしていた。cloudfront の distribution 設定を CloudFrontWebDistribution から Distribution へ移行して、新しいやり方であるマネージドポリシーを使うようにした。この設定が意図した振る舞いにならなくて検証作業に時間を割いた。</p>
-<p>cloudfront 経由で web api を呼び出すルートがあってキャッシュを無効にしたいのだが、無効にしたキャッシュポリシー (ttl をゼロにする) を作るとヘッダーの設定ができない。次のようなエラーになる。</p>
-<pre tabindex=0><code>The parameter HeaderBehavior is invalid for policy with caching disabled.
-</code></pre><p><a href=https://github.com/aws/aws-cdk/issues/13441>(cloudfront): Cache Policy cannot forward Authorization header. #13441</a> によると、maxTTL を1秒にして <code>Authorization</code> ヘッダーをオリジンに転送するようには設定できる。キャッシュメソッドは GET と HEAD なので実運用上は問題ないとは思うが、この回避策がないかどうかを調べて検証していた。結果としてはなかった。<a href=https://docs.amazonaws.cn/en_us/AmazonCloudFront/latest/DeveloperGuide/add-origin-custom-headers.html#add-origin-custom-headers-forward-authorization>Configuring CloudFront to forward the Authorization header</a> には <code>Authorization</code> ヘッダーを転送する方法は次の2通りとある。</p>
-<ol>
-<li>cache key に含める</li>
-<li>Managed-AllViewer という origin request policy をすべての viewer requests に含める</li>
-</ol>
-<p>最終的には1番目のやり方で対応はしたが、2番目のオリジンリクエストポリシーを設定する方法も検証してみた。オリジンリクエストポリシーを単体で設定することはできなくて、キャッシュポリシーも一緒に設定しないといけないことからキャッシュポリシーの設定の影響を受けて意図したように <code>Authorization</code> ヘッダーの転送はできなかった。</p>
-<ul>
-<li>cache policy: Managed-CachingDisabled</li>
-<li>origin request policy: Managed-AllViewer</li>
-</ul>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
 <a href=/diary/posts/2022/0413/>cdk の cloudfront の distribution 設定の移行</a>
 </h1>
 <div class=post-meta>
@@ -522,24 +465,6 @@ $ psql --host mydb.xxx.ap-northeast-1.rds.amazonaws.com --username user --dbname
 <li><a href=https://github.com/aws/aws-cdk/issues/9647>https://github.com/aws/aws-cdk/issues/9647</a></li>
 </ul>
 <p>基本的には同じ設定を行うので新しいクラスのメンバーや構造にあわせて移行するだけなので難しくはないけれど、1つずつ設定内容の移行方法を確認していかないといけないから手間暇はかかる。cdk のドキュメントをみると、型に対してどういった設定をすればよいかが書いてあって、あとはメソッドの定義などもみながら自分たちの設定に近いものを選択していくといった作業になる。難しくはないけど時間はかかる。半日ほどやって移行のための pr を作成した。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0412/>cloudfront のキャッシュ設定</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-04-12
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
-</span>
-<div class=post-content>
-<p>1時に寝て5時に起きた。</p>
-<h2 id=フロントエンドのインフラ作業>フロントエンドのインフラ作業</h2>
-<p>これまでバックエンドのインフラ作業をしてきたが、そちらの移行作業は完了した。フロントエンドのインフラも積み残しが多々あるのでこの機にリファクタリングする。差分が出ないことを確認して cf のテンプレートのドリフト結果を解消したものをデプロイしたらフロントエンドが壊れた。具体的には xhr の web api 呼び出しに対して認可エラーが返るようになった。数時間ほどの調査の結果、cloudfront の distribution 設定のビヘイビアのキャッシュ設定で web api 呼び出しのときに authorization ヘッダーを転送するための設定が漏れていることがわかった。cdk のコードにはそんな設定がどこにもなく差分も表示されないことから、フロントエンドの cdk コードも全く保守されていないことがわかった。デプロイするときに前回のデプロイが半年前だったのでなんか悪い予感はしたんよね。インフラ担当者の怠慢が度を越し過ぎてもう何が起きても私は驚かないけど。設定に漏れがある前提でフロントエンドのインフラをリファクタリングしていかないといけない。</p>
 </div>
 </div>
 <div class="post on-list">
@@ -654,71 +579,12 @@ $ psql --host mydb.xxx.ap-northeast-1.rds.amazonaws.com --username user --dbname
 </span></code></pre></div>
 </div>
 </div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0406/>ecs の draining とタスクの停止時間</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-04-06
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
-</span>
-<div class=post-content>
-<p>0時に寝て4時に起きた。なんか起きてから sns のタイムラインを眺めてた。6時半にはオフィスについて cdk のコードを読み始めた。</p>
-<h2 id=ecs-の-draining-に時間がかかる>ecs の draining に時間がかかる？</h2>
-<p>cdk でインフラのデプロイをしていて、ecs のタスクの置き換えにやたら時間がかかっているのに気付いた。調べてみると、aws のドキュメントがすぐにヒットした。デフォルトでは停止するまでに5分ぐらいかかってしまうようだけど、それを調整したかったらいくつかパラメーターがある。</p>
-<ul>
-<li><a href=https://aws.amazon.com/jp/premiumsupport/knowledge-center/ecs-tasks-stop-delayed-draining/>コンテナインスタンスが DRAINING に設定されているときに、Amazon ECS タスクが停止するのに時間がかかるトラブルシューティング方法を教えてください。</a></li>
-</ul>
-<h4 id=ecs-サービスの-deployment-configuration>ecs サービスの deployment configuration</h4>
-<ul>
-<li>minimumHealthyPercent: 同時に停止できるタスクの割合設定</li>
-<li>maximumPercent: draining されるタスクが停止するまで置き換えるタスクを開始するかどうかの設定？</li>
-</ul>
-<h4 id=ロードバランサーの-deregistration-delay>ロードバランサーの deregistration delay</h4>
-<ul>
-<li>deregistrationDelay: elb(nlb) が登録解除処理が完了するまでに待つ時間。タスクが draining の状態になってこの時間が過ぎた後に登録解除して target が未使用になる</li>
-</ul>
-<h4 id=ecs-タスク定義の-stop-timeout>ecs タスク定義の stop timeout</h4>
-<ul>
-<li>stopTimeout: コンテナーが正常終了しないときに ecs が強制的にプロセスを kill するまでの待ち時間</li>
-</ul>
-<p>それぞれのインフラの状況にあわせて適切なパラメーターを変更すればよい。私が管理しているのは次の2つを変更した。</p>
-<ul>
-<li>maximumPercent: 100 -> 200 (%)</li>
-<li>deregistrationDelay: 300 -> 30 (秒)</li>
-</ul>
-<p>これで18分ほどかかっていたデプロイ時間を8分ぐらいまで短縮できた。テスト環境の設定なので多少のエラーが発生したとしても速い方がよい。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0405/>再びのインフラエンジニア</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-04-05
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
-</span>
-<div class=post-content>
-<p>0時に寝て7時に起きた。</p>
-<h2 id=インフラタスクに専念>インフラタスクに専念</h2>
-<p>本当はインフラ担当者が別途いるのだけど、多忙過ぎて、インフラタスクが1ヶ月近く遅延していて、プロジェクト内で合意を得て私がすべて巻き取ることにした。内容の如何に依らず、その一切合切をすべて巻き取ると宣言した。過去に働いた会社でも他の担当者ができなかった業務を後からリカバリするのはよくやってたのでそれ自体は構わない。ただ他人のタスクを肩代わりしても評価されないことも多くて、もともと私のタスクではないから誰がやったかなんか忘れてしまうんよね。私もとくにアピールしないからそう認識されても構わないのだけど、そういう業務が増えてくるとその職場を辞めるきっかけにもなってた。</p>
-<p>インフラ担当者や他の社員さんにヒアリングしながら現時点でも十数個のタスクがある。過去のインフラの負債も含めて2-3週間ぐらい、私が集中的にやればすべて片がつくのではないかと考えている。今日たまたまスクラムのリファインメントやってて、業務の人から他の機能開発が遅れているのに2-3週間もインフラ作業に専念するってどういうこと？インフラタスクってインフラ担当者にやってもらえないんですか？と質問を受けて、できるんならその方が望ましいけど、過去の実績からまったく進捗しないのでこちらでやるざるを得ない状況というのを説明した。業務の人からみたらインフラなんか何をやっているかわからないからそんなもんよね。これから2-3週間経って蓄積したインフラタスクをすべて解決した後で少し時間が経つとインフラ担当者が全部やったように外部からはみえてしまうというのを、過去に何度も経験した。</p>
-</div>
-</div>
 <div class=pagination>
 <div class=pagination__buttons>
-<span class="button next">
-<a href=/diary/tags/infrastructure/page/2/>
-<span class=button__text>過去の日記</span>
-<span class=button__icon>→</span>
+<span class="button previous">
+<a href=/diary/tags/cdk/page/2/>
+<span class=button__icon>←</span>
+<span class=button__text>最近の日記</span>
 </a>
 </span>
 </div>

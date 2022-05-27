@@ -57,6 +57,39 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0518/>cdk のビルドが難しい話し</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-05-18
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/cdk/>cdk</a>&nbsp;
+#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#cdk-のパッチ検証>cdk のパッチ検証</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>0時に寝て6時半に起きた。暑くなってきたせいかバテ気味。水曜日は本番リリースの日。3つほど本場環境のインフラ移行作業があったので社員さんの実作業をリモートから指示しながらサポートしていた。私に本番環境の操作権限があれば、この工数はほぼ半分に削減できる。</p>
+<h2 id=cdk-のパッチ検証>cdk のパッチ検証</h2>
+<p>先日 <a href=/diary/posts/2022/0516/#eks-クラスターの-helm-管理の調査>cdk による eks クラスターの helm 管理の調査中断</a> について書いた。バグっているから適切な設定が反映されないという話しで一時中断していたんだけど、そのときにクラスメソッドの担当者さんとも相談していた。そしたら、その担当者さんが問題を修正して pr を送ってくれた。感謝。</p>
+<ul>
+<li><a href=https://github.com/aws/aws-cdk/pull/20373>fix(eks): Cluster.FromClusterAttributes ignores KubectlLambdaRole #20373</a></li>
+</ul>
+<p>そこまでやってくれると思ってなかったのですごいなぁと感心しながら、せっかくなのでパッチを当てた cdk で検証してみようと、<a href=https://github.com/aws/aws-cdk/blob/master/CONTRIBUTING.md>Contributing to the AWS Cloud Development Kit</a> をみながらローカルでのビルドを試みた。ビルド自体はできたんだけど、パッケージを作るのがうまくいかなくて、cdk はツール自体が大きいので実行時間がかかる。だいたいビルドやパッケージングのそれぞれに20-30分ぐらいかかる。エラーの原因がよく分からなくて面倒になって断念した。私が javascript のパッケージングに疎いせいもあると思うけど、ドキュメントに書いてある通りにうまくいかなかったので早々に諦めた。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0517/>datadog のログアーカイブ</a>
 </h1>
 <div class=post-meta>
@@ -328,51 +361,6 @@ forest nook
 <p><code>kubectlRoleArn</code> - the ARN of an IAM role mapped to the system:masters RBAC role. If the cluster you are importing was created using the AWS CDK, the CloudFormation stack has an output that includes an IAM role that can be used. Otherwise, you can create an IAM role and map it to system:masters manually. The trust policy of this role should include the the arn:aws::iam::${accountId}:root principal in order to allow the execution role of the kubectl resource to assume it.</p>
 </blockquote>
 <p><code>kubectlRoleArn</code> の設定をどうするかだけなんだが、この説明でどう設定していいか理解できなかった。cdk で新規に eks クラスターを作成するなら自動で作ってくれるけど、既存の eks クラスターの場合は自分で設定しないといけない。ややこしいことに cdk は kubectl の実行を lambda 経由で実行するので eks と lambda と iam のロールやポリシーを適切に設定する必要がある。lambda にどういう権限を設定するのが適切なのかは本当に難しい。サーバーレスはよいアイディアだとは思うけど、lambda は難し過ぎて私はなるべく使いたくないサービスではある。結局わからなくて翌日に持ち越し。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0511/>helm を調べた</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-05-11
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/kubernetes/>kubernetes</a>&nbsp;
-#<a href=/diary/tags/helm/>helm</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#helm-調査>helm 調査</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>1時に寝て6時半に起きて8時に起きた。前日は資料づくりで遅くまでオフィスに残っていたせいか、なんか寝坊した。</p>
-<h2 id=helm-調査>helm 調査</h2>
-<p><a href=/diary/posts/2022/0201/#kubernetes-のログ管理と-datadog-agent-のログ連携不具合>k8s 上の datadog-agent</a> が <a href=https://helm.sh/>helm</a> で管理されていて、あるバージョンから <a href=https://docs.dapr.io/operations/hosting/kubernetes/kubernetes-deploy/#install-with-helm-advanced>dapr も helm 管理できる</a> ようになった。dapr は cli からもインストールできるけど、helm のことをよくわかってなかったので調べることにした。そんなたくさん記事をみたわけではないけど、いくつか記事を読んで quora のやり取りが一番よかった。</p>
-<ul>
-<li><a href=https://www.quora.com/When-should-you-use-Kubernetes-Helm-and-not-use-it>When should you use Kubernetes Helm and not use it?</a></li>
-</ul>
-<p>ざっくりまとめるとこうかな。</p>
-<ul>
-<li>helm は oss 且つ cncf の公式プロジェクトだからまぁ安心</li>
-<li>helm はサードパーティのパッケージのインストールや設定の利便性を高める
-<ul>
-<li>k8s はテンプレート機能が弱いので共通設定と特定環境向けの設定を管理するのがあまり得意ではない</li>
-<li>セキュリティを考慮した k8s 設定は自分でやるよりコミュニティに任せた方がよい場合もある</li>
-<li>パッケージなのでバージョン管理は得意</li>
-</ul>
-</li>
-<li>helm は k8s 向けのパッケージマネージャとレポジトリマネージャーとマーケットプレイスを組み合わせたみたいなもの</li>
-</ul>
-<p>k8s 上でサードパーティのパッケージを自分で設定したい特別な理由がない限りは helm を使うのがよさそうという結論になった。</p>
 </div>
 </div>
 <div class=pagination>

@@ -56,6 +56,55 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0525/>0525</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-05-25
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/cdk/>cdk</a>&nbsp;
+#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
+</span>
+<div class=post-content>
+<p>22時に寝て1時に起きて5時半に起きた。前日はあまり寝てなかったので知らないうちに寝てしまった。</p>
+<h2 id=severless-framework-と-cdk-の比較>severless framework と cdk の比較</h2>
+<p><a href=https://www.serverless.com/>serverless framework</a> というツールがある。マルチクラウド対応で aws で言えば lambda のような、サーバーレスのアプリケーションを簡単にデプロイするためのツール。よく使われているようで、私がお手伝いしている会社でも lambda 関数のデプロイにこのツールを使っている。いろいろ調べていたら、serverless framework は cdk と真正面から競合になるツールで、cdk をすでに使っているなら cdk に一元管理した方が保守コストが下がっていいだろうと考え、新たに lambda 関数を作る作業を cdk でやってみた。私はほとんど serverless framework を使ったことがないので正しく理解できていない可能性は高いが、ざっくり比較すると次になる。</p>
+<h4 id=serverless-framework>serverless framework</h4>
+<p>メリット</p>
+<ul>
+<li>cdk より学習コストが低い</li>
+<li>yaml 設定だけで簡単にデプロイできる</li>
+</ul>
+<p>デメリット</p>
+<ul>
+<li>リソース管理のための s3 バケットを必要とする</li>
+<li>lambda に関連するリソースしかデプロイできない</li>
+<li>開発者が明示的に設定しなくても裏でリソースを勝手に生成するので意図せず適切に管理されていないインフラを作ってしまう懸念がある</li>
+<li>大半の実務レベルのアプリケーションでは cf テンプレートの dsl を yaml に設定する必要があり、設定が煩雑になったり見通しが悪くなる</li>
+</ul>
+<h4 id=cdk>cdk</h4>
+<p>メリット</p>
+<ul>
+<li>任意の aws インフラのリソースを管理できる</li>
+<li>プログラミング言語で記述できるので動的なリソースの依存関係を定義できる</li>
+<li>cf は裏に隠蔽されているが、serverless framework のような dsl を記述する必要はない</li>
+</ul>
+<p>デメリット</p>
+<ul>
+<li>学習コストが高い</li>
+</ul>
+<p>リファレンス</p>
+<ul>
+<li><a href=https://www.secjuice.com/aws-cdk-vs-serverless-framework/>AWS CDK vs Serverless Framework</a></li>
+<li><a href=https://dev.to/tastefulelk/serverless-framework-vs-sam-vs-aws-cdk-1g9g>Serverless Framework vs SAM vs AWS CDK</a></li>
+</ul>
+<p>結論から言うと、将来的に cdk を使うならまず cdk を使った方がよい。本当にシンプルな要件で lambda 関数のインフラしか扱わないなら serverless framework でもいいかもしれない。serverless framework は cdk がない時代に作られたツールだろうからいまから新規に導入する場合は、多少の学習コストを払っても cdk を学んでおけば、将来的に役に立つ場面が多いと思う。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0519/>ドキュメントをちゃんと書く</a>
 </h1>
 <div class=post-meta>
