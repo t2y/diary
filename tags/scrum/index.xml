@@ -1,4 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>scrum on forest nook</title><link>/diary/tags/scrum/</link><description>Recent content in scrum on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Mon, 02 May 2022 07:29:34 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/scrum/index.xml" rel="self" type="application/rss+xml"/><item><title>新規メンバー</title><link>/diary/posts/2022/0502/</link><pubDate>Mon, 02 May 2022 07:29:34 +0900</pubDate><guid>/diary/posts/2022/0502/</guid><description>23時に寝て5時に起きて2度寝して6時に起きた。今年の連休はカレンダー通りに過ごすので月曜日と金曜日の飛び石のお仕事。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>scrum on forest nook</title><link>/diary/tags/scrum/</link><description>Recent content in scrum on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Fri, 27 May 2022 16:31:02 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/scrum/index.xml" rel="self" type="application/rss+xml"/><item><title>スクラムマスターは超人か</title><link>/diary/posts/2022/0527/</link><pubDate>Fri, 27 May 2022 16:31:02 +0900</pubDate><guid>/diary/posts/2022/0527/</guid><description>0時に寝て6時に起きた。調子よくて7時からオフィスで作業してた。なんだかんだで今日は主にお手伝い先のお仕事をしてた。
+隔週の雑談 顧問のはらさんと隔週の打ち合わせ。今日の話題はたくさんあった。
+スライドマスター作成のふりかえり 課題管理のためのメンタルモデルづくり スクラムの悪いところの共有 住民税の変遷について 会社としての発表のスライドを管理するために speakerdeck の会社アカウントを作成した。jjug の主催者のスライドチェックが完了したらアップロードしようと思う。google docs をそのまま公開するのと speakerdeck のどちらがいいかを検討した。google docs だと、スライド資料のノートまで公開されてしまうのでスライドだけなら speakerdeck の方がよさそうかなと判断した。
+https://speakerdeck.com/kazamori スクラムの悪いところの1つとして、スクラムマスターが現状認識を誤っているときの是正方法がないという話題をした。スクラムマスターは po や開発者にアドバイスするのだけど、アドバイス自体が誤っているのではなく、アドバイスしている内容がプロジェクトの置かれている状況にあっていないというギャップに対しての、ふりかえりや是正の仕組みがスクラムに包含されていない。ある知人によると、スクラムマスターは超人でなければ務まらないという前提になっているのではないかという意見もあった。現時点でとくに結論はないのだけど、難しい課題だなぁと議論していた。</description><content>&lt;p>0時に寝て6時に起きた。調子よくて7時からオフィスで作業してた。なんだかんだで今日は主にお手伝い先のお仕事をしてた。&lt;/p>
+&lt;h2 id="隔週の雑談">隔週の雑談&lt;/h2>
+&lt;p>顧問のはらさんと隔週の打ち合わせ。今日の話題はたくさんあった。&lt;/p>
+&lt;ul>
+&lt;li>スライドマスター作成のふりかえり&lt;/li>
+&lt;li>課題管理のためのメンタルモデルづくり&lt;/li>
+&lt;li>スクラムの悪いところの共有&lt;/li>
+&lt;li>住民税の変遷について&lt;/li>
+&lt;/ul>
+&lt;p>会社としての発表のスライドを管理するために speakerdeck の会社アカウントを作成した。jjug の主催者のスライドチェックが完了したらアップロードしようと思う。google docs をそのまま公開するのと speakerdeck のどちらがいいかを検討した。google docs だと、スライド資料のノートまで公開されてしまうのでスライドだけなら speakerdeck の方がよさそうかなと判断した。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://speakerdeck.com/kazamori">https://speakerdeck.com/kazamori&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>スクラムの悪いところの1つとして、スクラムマスターが現状認識を誤っているときの是正方法がないという話題をした。スクラムマスターは po や開発者にアドバイスするのだけど、アドバイス自体が誤っているのではなく、アドバイスしている内容がプロジェクトの置かれている状況にあっていないというギャップに対しての、ふりかえりや是正の仕組みがスクラムに包含されていない。ある知人によると、スクラムマスターは超人でなければ務まらないという前提になっているのではないかという意見もあった。現時点でとくに結論はないのだけど、難しい課題だなぁと議論していた。&lt;/p></content></item><item><title>新規メンバー</title><link>/diary/posts/2022/0502/</link><pubDate>Mon, 02 May 2022 07:29:34 +0900</pubDate><guid>/diary/posts/2022/0502/</guid><description>23時に寝て5時に起きて2度寝して6時に起きた。今年の連休はカレンダー通りに過ごすので月曜日と金曜日の飛び石のお仕事。
 開発メンバーの加入 今日から開発者が新たに加わった。6月から正社員になるそうだけど、手続きの問題なのか、5月から1ヶ月間は業務委託として働くという。正社員の開発者がいないために要件定義がうまく進まず、外部の協力会社の開発者が遊休するといった状況があったのだけど、それが改善されていくかもしれない。聞くところによると、シニア開発者らしいのでこれからバリバリ活躍されるはず。一方で1つのチームの開発者が6人というのは中途半端なサイズにもみえる。2チームに分割した方が実際の作業はやりやすいかもしれない。</description><content>&lt;p>23時に寝て5時に起きて2度寝して6時に起きた。今年の連休はカレンダー通りに過ごすので月曜日と金曜日の飛び石のお仕事。&lt;/p>
 &lt;h2 id="開発メンバーの加入">開発メンバーの加入&lt;/h2>
 &lt;p>今日から開発者が新たに加わった。6月から正社員になるそうだけど、手続きの問題なのか、5月から1ヶ月間は業務委託として働くという。正社員の開発者がいないために要件定義がうまく進まず、外部の協力会社の開発者が遊休するといった状況があったのだけど、それが改善されていくかもしれない。聞くところによると、シニア開発者らしいのでこれからバリバリ活躍されるはず。一方で1つのチームの開発者が6人というのは中途半端なサイズにもみえる。2チームに分割した方が実際の作業はやりやすいかもしれない。&lt;/p></content></item><item><title>開発は生きもの</title><link>/diary/posts/2022/0426/</link><pubDate>Tue, 26 Apr 2022 07:55:49 +0900</pubDate><guid>/diary/posts/2022/0426/</guid><description>0時に寝て5時過ぎに起きた。
