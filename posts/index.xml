@@ -1,4 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on forest nook</title><link>/diary/posts/</link><description>Recent content in Posts on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 26 May 2022 09:55:16 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>aws-lambda-python-alpha を使っておけばいい</title><link>/diary/posts/2022/0526/</link><pubDate>Thu, 26 May 2022 09:55:16 +0900</pubDate><guid>/diary/posts/2022/0526/</guid><description>0時に寝て6時に起きて7時半に起きた。なんかバテバテ。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on forest nook</title><link>/diary/posts/</link><description>Recent content in Posts on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Fri, 27 May 2022 16:31:02 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>スクラムマスターは超人か</title><link>/diary/posts/2022/0527/</link><pubDate>Fri, 27 May 2022 16:31:02 +0900</pubDate><guid>/diary/posts/2022/0527/</guid><description>0時に寝て6時に起きた。調子よくて7時からオフィスで作業してた。なんだかんだで今日は主にお手伝い先のお仕事をしてた。
+隔週の雑談 顧問のはらさんと隔週の打ち合わせ。今日の話題はたくさんあった。
+スライドマスター作成のふりかえり 課題管理のためのメンタルモデルづくり スクラムの悪いところの共有 住民税の変遷について 会社としての発表のスライドを管理するために speakerdeck の会社アカウントを作成した。jjug の主催者のスライドチェックが完了したらアップロードしようと思う。google docs をそのまま公開するのと speakerdeck のどちらがいいかを検討した。google docs だと、スライド資料のノートまで公開されてしまうのでスライドだけなら speakerdeck の方がよさそうかなと判断した。
+https://speakerdeck.com/kazamori スクラムの悪いところの1つとして、スクラムマスターが現状認識を誤っているときの是正方法がないという話題をした。スクラムマスターは po や開発者にアドバイスするのだけど、アドバイス自体が誤っているのではなく、アドバイスしている内容がプロジェクトの置かれている状況にあっていないというギャップに対しての、ふりかえりや是正の仕組みがスクラムに包含されていない。ある知人によると、スクラムマスターは超人でなければ務まらないという前提になっているのではないかという意見もあった。現時点でとくに結論はないのだけど、難しい課題だなぁと議論していた。</description><content>&lt;p>0時に寝て6時に起きた。調子よくて7時からオフィスで作業してた。なんだかんだで今日は主にお手伝い先のお仕事をしてた。&lt;/p>
+&lt;h2 id="隔週の雑談">隔週の雑談&lt;/h2>
+&lt;p>顧問のはらさんと隔週の打ち合わせ。今日の話題はたくさんあった。&lt;/p>
+&lt;ul>
+&lt;li>スライドマスター作成のふりかえり&lt;/li>
+&lt;li>課題管理のためのメンタルモデルづくり&lt;/li>
+&lt;li>スクラムの悪いところの共有&lt;/li>
+&lt;li>住民税の変遷について&lt;/li>
+&lt;/ul>
+&lt;p>会社としての発表のスライドを管理するために speakerdeck の会社アカウントを作成した。jjug の主催者のスライドチェックが完了したらアップロードしようと思う。google docs をそのまま公開するのと speakerdeck のどちらがいいかを検討した。google docs だと、スライド資料のノートまで公開されてしまうのでスライドだけなら speakerdeck の方がよさそうかなと判断した。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://speakerdeck.com/kazamori">https://speakerdeck.com/kazamori&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>スクラムの悪いところの1つとして、スクラムマスターが現状認識を誤っているときの是正方法がないという話題をした。スクラムマスターは po や開発者にアドバイスするのだけど、アドバイス自体が誤っているのではなく、アドバイスしている内容がプロジェクトの置かれている状況にあっていないというギャップに対しての、ふりかえりや是正の仕組みがスクラムに包含されていない。ある知人によると、スクラムマスターは超人でなければ務まらないという前提になっているのではないかという意見もあった。現時点でとくに結論はないのだけど、難しい課題だなぁと議論していた。&lt;/p></content></item><item><title>aws-lambda-python-alpha を使っておけばいい</title><link>/diary/posts/2022/0526/</link><pubDate>Thu, 26 May 2022 09:55:16 +0900</pubDate><guid>/diary/posts/2022/0526/</guid><description>0時に寝て6時に起きて7時半に起きた。なんかバテバテ。
 aws-lambda-python-alpha cdk 標準の lambda モジュールで python スクリプトをデプロイすることはもちろんできるが、その python スクリプト内でサードパーティのライブラリを使いたい場合、layer という機能を使って複数の lambda 関数で再利用するというのがもともとのやり方っぽい。とはいえ、サードパーティの依存ライブラリも python スクリプトによって使うものが違ったりするので lambda 関数単位に管理したいという場合もある。その要件を考慮した場合、python のパッケージングを lambda 関数のデプロイ時に再利用できるのが望ましくて、そのためのモジュールが aws-lambda-python-alpha になる。説明が長い。
 @aws-cdk/aws-lambda-python-alpha Amazon Lambda Python Library - Packaging JJUG CCC 2022 Spring のタイムテーブル タイムテーブルが公開された。
 タイムテーブルが公開されたみたい。2022/06/19 10:25〜 Track C #jjug_ccc_c でカスタム github actions の話しをします。よかったらご覧ください。スライド資料も主催のチェック完了後に公開予定です。https://t.co/AjP1aLt9EM

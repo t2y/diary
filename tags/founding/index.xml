@@ -1,4 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>founding on forest nook</title><link>/diary/tags/founding/</link><description>Recent content in founding on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Tue, 24 May 2022 01:14:51 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/founding/index.xml" rel="self" type="application/rss+xml"/><item><title>法人として消費税を納めた</title><link>/diary/posts/2022/0524/</link><pubDate>Tue, 24 May 2022 01:14:51 +0900</pubDate><guid>/diary/posts/2022/0524/</guid><description>5時に寝て7時過ぎに起きた。前日の夜から法人決算の電子申告に取り組み始めた。本当は紙でやるつもりだったんだけど、eltax が快適だったので e-tax も衝動的にやってみたくなった。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>founding on forest nook</title><link>/diary/tags/founding/</link><description>Recent content in founding on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Fri, 27 May 2022 16:31:02 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/founding/index.xml" rel="self" type="application/rss+xml"/><item><title>スクラムマスターは超人か</title><link>/diary/posts/2022/0527/</link><pubDate>Fri, 27 May 2022 16:31:02 +0900</pubDate><guid>/diary/posts/2022/0527/</guid><description>0時に寝て6時に起きた。調子よくて7時からオフィスで作業してた。なんだかんだで今日は主にお手伝い先のお仕事をしてた。
+隔週の雑談 顧問のはらさんと隔週の打ち合わせ。今日の話題はたくさんあった。
+スライドマスター作成のふりかえり 課題管理のためのメンタルモデルづくり スクラムの悪いところの共有 住民税の変遷について 会社としての発表のスライドを管理するために speakerdeck の会社アカウントを作成した。jjug の主催者のスライドチェックが完了したらアップロードしようと思う。google docs をそのまま公開するのと speakerdeck のどちらがいいかを検討した。google docs だと、スライド資料のノートまで公開されてしまうのでスライドだけなら speakerdeck の方がよさそうかなと判断した。
+https://speakerdeck.com/kazamori スクラムの悪いところの1つとして、スクラムマスターが現状認識を誤っているときの是正方法がないという話題をした。スクラムマスターは po や開発者にアドバイスするのだけど、アドバイス自体が誤っているのではなく、アドバイスしている内容がプロジェクトの置かれている状況にあっていないというギャップに対しての、ふりかえりや是正の仕組みがスクラムに包含されていない。ある知人によると、スクラムマスターは超人でなければ務まらないという前提になっているのではないかという意見もあった。現時点でとくに結論はないのだけど、難しい課題だなぁと議論していた。</description><content>&lt;p>0時に寝て6時に起きた。調子よくて7時からオフィスで作業してた。なんだかんだで今日は主にお手伝い先のお仕事をしてた。&lt;/p>
+&lt;h2 id="隔週の雑談">隔週の雑談&lt;/h2>
+&lt;p>顧問のはらさんと隔週の打ち合わせ。今日の話題はたくさんあった。&lt;/p>
+&lt;ul>
+&lt;li>スライドマスター作成のふりかえり&lt;/li>
+&lt;li>課題管理のためのメンタルモデルづくり&lt;/li>
+&lt;li>スクラムの悪いところの共有&lt;/li>
+&lt;li>住民税の変遷について&lt;/li>
+&lt;/ul>
+&lt;p>会社としての発表のスライドを管理するために speakerdeck の会社アカウントを作成した。jjug の主催者のスライドチェックが完了したらアップロードしようと思う。google docs をそのまま公開するのと speakerdeck のどちらがいいかを検討した。google docs だと、スライド資料のノートまで公開されてしまうのでスライドだけなら speakerdeck の方がよさそうかなと判断した。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://speakerdeck.com/kazamori">https://speakerdeck.com/kazamori&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>スクラムの悪いところの1つとして、スクラムマスターが現状認識を誤っているときの是正方法がないという話題をした。スクラムマスターは po や開発者にアドバイスするのだけど、アドバイス自体が誤っているのではなく、アドバイスしている内容がプロジェクトの置かれている状況にあっていないというギャップに対しての、ふりかえりや是正の仕組みがスクラムに包含されていない。ある知人によると、スクラムマスターは超人でなければ務まらないという前提になっているのではないかという意見もあった。現時点でとくに結論はないのだけど、難しい課題だなぁと議論していた。&lt;/p></content></item><item><title>法人として消費税を納めた</title><link>/diary/posts/2022/0524/</link><pubDate>Tue, 24 May 2022 01:14:51 +0900</pubDate><guid>/diary/posts/2022/0524/</guid><description>5時に寝て7時過ぎに起きた。前日の夜から法人決算の電子申告に取り組み始めた。本当は紙でやるつもりだったんだけど、eltax が快適だったので e-tax も衝動的にやってみたくなった。
 消費税と地方消費税の申告 法人決算 の一部。今回が初めての消費税と地方消費税の申告になる。簡易課税で支払う。
 消費税は、国税（国に納付する税金）であり消費税の納税義務がある事業者が納付します。地方消費税とは、 消費税と同様で商品の販売やサービスの提供などの取引にかかる税金 です。消費税との違いは、 地方消費税は国税ではなく地方税（都道府県や市町村に納付する税金）という点です。 しかし実際に納付するときは消費税と分けて納付はせずに、 消費税と一緒に地方消費税を所管税務署へ納付します。
 消費税と地方消費税の違いは？納付対象者や納付方法、計算の仕方まで徹底解説！
@@ -40,7 +56,94 @@ jjug の発表資料作り Ševarika™ というデザイナーさんに スラ
 &lt;p>決算そのものはすでに完了しているのだけど、申告手続きをまだ終えていない。本気を出せば1日で終わるのがわかっているのでだらだら先延ばししていた。今回は地方自治体への納税手続きを &lt;a href="https://www.eltax.lta.go.jp/">eltax&lt;/a> でやってみることに決めていた。先延ばしにしていた理由の1つとして eltax が土日祝は運用していない。平日は24時まで運用しているので、平日にお仕事を終えてからやればいいのだけど、なんか気乗りしなくて先送りしていた。神戸市に対して法人市民税を、兵庫県に対して法人県民税、法人事業税、特別法人事業税の申告を行う。eltax の画面は実際の書類様式とまったく同じ画面で入力するため、書類作成を知っている人には何も難しくない。前回の書類をみながら必要な入力欄に今回の値を入力していくだけの作業。作成後にプリンターで印刷すれば書類も手に入る。今回の納税手続きは eltax で初めて触る画面を操作したのだけど、2時間もあれば2つの申告手続きを終えられた。1度誤った内容で申告したので再申告もした。後優先になってくれることを願う。言うても簡単ではある。昨年まではこれらの申告のために電車で3駅離れた庁舎へ出向いていたが、今後はそうする必要はなさそうだ。一方で申告手続きを含めてもオフィスからの庁舎の往復に2時間もかからないのも事実ではあるが。&lt;/p>
 &lt;h2 id="jjug-の発表資料作り">jjug の発表資料作り&lt;/h2>
 &lt;p>&lt;a href="https://99designs.jp/profiles/dsevarika">Ševarika™&lt;/a> というデザイナーさんに &lt;a href="/diary/diary/posts/2022/0509/#スライドマスターのデザイン作成">スライドマスターの作成&lt;/a> を4月30日に依頼して5月19日に納品された。納期は1ヶ月程度を見込んでいたのに早く仕上げてくれた。こちらから急かしたわけではない。ちょうど &lt;a href="/diary/diary/posts/2022/0402/#jjug-ccc-2022-spring-の-cfp-応募">JJUG CCC 2022 Spring&lt;/a> の発表ビデオの提出期限が5月19日で間に合えばいいなぁぐらいの感覚で静観していて、ちょうど同じ時期に納品できそうだったので、jjug のスタッフさんに発表ビデオの提出期限を週末まで待ってもらうようにお願いしていた。私は自社のロゴをめちゃくちゃ気に入っているんだけど、同じデザイナーさんに作ってもらったスライドマスターのデザインもやはりめちゃくちゃ気に入っている。今後うちの会社が儲かってお金に余裕ができたら Ševarika™ さんにもっと色んなものをデザインしてもらおうと思うようになった。いつになるかはわからんが。&lt;/p>
-&lt;p>発表のコンテンツのアウトラインは八割ほどは事前に作っていた。新しいスライドデザインに配置したり、レイアウトを調整したり、デザインとのバランスを考えたりすることに主に時間を費やした。20時ぐらいから始めて2時ぐらいまでやっていた。ここ1-2週間、19時以降にオフィスで居残り作業みたいなことをやってなくて、なんかだらだらしていた。コンテキストスイッチを切り替えてやるぞとなったら集中して6時間ほど作業できた。それで気付いたんだけど、私は毎日大量のお仕事をすることがあまり得意ではない。平均ぐらいに毎日コツコツ積み重ねるのはできるけど、それ以上のパフォーマンスを出す爆発力にはメリハリがいる。いまは構想1ヶ月、実装2日みたいな作業のやり方になる。そのうちの2日は18時間/日ぐらい没頭しているみたいな。昔からそうだったのか、加齢で体力が落ちたせいかわからないけど、メリハリのある働き方が自分には向いていることを再認識した。&lt;/p></content></item><item><title>スライドデザインのレビュー</title><link>/diary/posts/2022/0510/</link><pubDate>Tue, 10 May 2022 07:34:55 +0900</pubDate><guid>/diary/posts/2022/0510/</guid><description>1時に寝て6時半に起きた。
+&lt;p>発表のコンテンツのアウトラインは八割ほどは事前に作っていた。新しいスライドデザインに配置したり、レイアウトを調整したり、デザインとのバランスを考えたりすることに主に時間を費やした。20時ぐらいから始めて2時ぐらいまでやっていた。ここ1-2週間、19時以降にオフィスで居残り作業みたいなことをやってなくて、なんかだらだらしていた。コンテキストスイッチを切り替えてやるぞとなったら集中して6時間ほど作業できた。それで気付いたんだけど、私は毎日大量のお仕事をすることがあまり得意ではない。平均ぐらいに毎日コツコツ積み重ねるのはできるけど、それ以上のパフォーマンスを出す爆発力にはメリハリがいる。いまは構想1ヶ月、実装2日みたいな作業のやり方になる。そのうちの2日は18時間/日ぐらい没頭しているみたいな。昔からそうだったのか、加齢で体力が落ちたせいかわからないけど、メリハリのある働き方が自分には向いていることを再認識した。&lt;/p></content></item><item><title>マーケティング施策の取り組み開始</title><link>/diary/posts/2022/0513/</link><pubDate>Fri, 13 May 2022 08:42:18 +0900</pubDate><guid>/diary/posts/2022/0513/</guid><description>23時に寝て1時に起きて漫画を読んで6時に起きて漫画読んでた。
+隔週の雑談 顧問のはらさんと隔週の打ち合わせ。今日の議題は 先日作成した第4期の展望 について雑談した。あまり深く考えずに起業して初期の頃に作った10ヶ年計画に対してわりとその通りに推移している。来期ぐらいで業務委託のお仕事は終える予定。来期か再来期ぐらいからプロダクト開発の期間に入る。自社プロダクトを作る前から徐々にマーケティングもしていかないといけない。そのため、今期からマーケティング施策を少しずつ増やしていて、まずは会社の信頼度を上げるところからやっていく。売上を上げるためのマーケティングではなく信頼度を上げるためのマーケティングを行う。金森氏が言うようにどんなに優れたプロダクトを作ったとしても売れるかどうかは別問題だ。
+eks クラスターの helm 管理の調査 昨日の続き。権限設定がなんもわからんみたいな様相になったので調査のやり方を変えることにした。検証用の eks クラスターを cdk から新規に作成して helm をインストールするときのリソースや権限設定がどうなるのかを調査した。lambda 関数が5個ぐらい、ロールは10個ぐらい作成された。lambda の生成に時間がかかるのか？新規作成するのに25分、削除するときは30分ぐらいかかった。rds もそうだけど、eks のような複雑なインフラを cdk で管理すると実行するのにけっこう時間がかかる。設定が難しくなければ別によいけど、eks のような権限やリソースの設定が複雑なインフラはトライ&amp;amp;エラーで何度も実行する必要があるから、こういうものは cdk で管理するのには向かないインフラだと言えると思う。一定の設定のプラクティスが溜まるまでは eks は cdk で管理しない方がよいかもしれない。
+CreationRole というのが設定されて trust relationships に次のような設定が追加される。
+{ &amp;#34;Version&amp;#34;: &amp;#34;2012-10-17&amp;#34;, &amp;#34;Statement&amp;#34;: [ { &amp;#34;Effect&amp;#34;: &amp;#34;Allow&amp;#34;, &amp;#34;Principal&amp;#34;: { &amp;#34;AWS&amp;#34;: &amp;#34;arn:aws:iam::${accountId}:root&amp;#34; }, &amp;#34;Action&amp;#34;: &amp;#34;sts:AssumeRole&amp;#34; } ] } このロールに含まれるカスタムポリシーには次のような設定がある。たぶんこんな感じのロールを新規に作成して kubectlRoleArn として指定してやればいいんじゃないかと思う。
+{ &amp;#34;Version&amp;#34;: &amp;#34;2012-10-17&amp;#34;, &amp;#34;Statement&amp;#34;: [ { &amp;#34;Action&amp;#34;: &amp;#34;iam:PassRole&amp;#34;, &amp;#34;Resource&amp;#34;: &amp;#34;arn:aws:iam::${accountId}:role/${EksClusterIamRole}&amp;#34;, &amp;#34;Effect&amp;#34;: &amp;#34;Allow&amp;#34; }, { &amp;#34;Action&amp;#34;: [ &amp;#34;eks:CreateCluster&amp;#34;, &amp;#34;eks:DescribeCluster&amp;#34;, &amp;#34;eks:DescribeUpdate&amp;#34;, &amp;#34;eks:DeleteCluster&amp;#34;, &amp;#34;eks:UpdateClusterVersion&amp;#34;, &amp;#34;eks:UpdateClusterConfig&amp;#34;, &amp;#34;eks:CreateFargateProfile&amp;#34;, &amp;#34;eks:TagResource&amp;#34;, &amp;#34;eks:UntagResource&amp;#34; ], &amp;#34;Resource&amp;#34;: [ &amp;#34;arn:aws:eks:ap-northeast-1:${accountId}:cluster/tmp-test-eks-cluster-by-morimoto&amp;#34;, &amp;#34;arn:aws:eks:ap-northeast-1:${accountId}:cluster/tmp-test-eks-cluster-by-morimoto/*&amp;#34; ], &amp;#34;Effect&amp;#34;: &amp;#34;Allow&amp;#34; }, { &amp;#34;Action&amp;#34;: [ &amp;#34;eks:DescribeFargateProfile&amp;#34;, &amp;#34;eks:DeleteFargateProfile&amp;#34; ], &amp;#34;Resource&amp;#34;: &amp;#34;arn:aws:eks:ap-northeast-1:${accountId}:fargateprofile/tmp-test-eks-cluster-by-morimoto/*&amp;#34;, &amp;#34;Effect&amp;#34;: &amp;#34;Allow&amp;#34; }, { &amp;#34;Action&amp;#34;: [ &amp;#34;iam:GetRole&amp;#34;, &amp;#34;iam:listAttachedRolePolicies&amp;#34; ], &amp;#34;Resource&amp;#34;: &amp;#34;*&amp;#34;, &amp;#34;Effect&amp;#34;: &amp;#34;Allow&amp;#34; }, { &amp;#34;Action&amp;#34;: &amp;#34;iam:CreateServiceLinkedRole&amp;#34;, &amp;#34;Resource&amp;#34;: &amp;#34;*&amp;#34;, &amp;#34;Effect&amp;#34;: &amp;#34;Allow&amp;#34; }, { &amp;#34;Action&amp;#34;: [ &amp;#34;ec2:DescribeInstances&amp;#34;, &amp;#34;ec2:DescribeNetworkInterfaces&amp;#34;, &amp;#34;ec2:DescribeSecurityGroups&amp;#34;, &amp;#34;ec2:DescribeSubnets&amp;#34;, &amp;#34;ec2:DescribeRouteTables&amp;#34;, &amp;#34;ec2:DescribeDhcpOptions&amp;#34;, &amp;#34;ec2:DescribeVpcs&amp;#34; ], &amp;#34;Resource&amp;#34;: &amp;#34;*&amp;#34;, &amp;#34;Effect&amp;#34;: &amp;#34;Allow&amp;#34; } ] }</description><content>&lt;p>23時に寝て1時に起きて漫画を読んで6時に起きて漫画読んでた。&lt;/p>
+&lt;h2 id="隔週の雑談">隔週の雑談&lt;/h2>
+&lt;p>顧問のはらさんと隔週の打ち合わせ。今日の議題は &lt;a href="/diary/diary/posts/2022/0503/#打ち合わせ資料の作成">先日作成した第4期の展望&lt;/a> について雑談した。あまり深く考えずに起業して初期の頃に作った10ヶ年計画に対してわりとその通りに推移している。来期ぐらいで業務委託のお仕事は終える予定。来期か再来期ぐらいからプロダクト開発の期間に入る。自社プロダクトを作る前から徐々にマーケティングもしていかないといけない。そのため、今期からマーケティング施策を少しずつ増やしていて、まずは会社の信頼度を上げるところからやっていく。売上を上げるためのマーケティングではなく信頼度を上げるためのマーケティングを行う。金森氏が言うようにどんなに優れたプロダクトを作ったとしても売れるかどうかは別問題だ。&lt;/p>
+&lt;iframe width="500" height="250" scrolling="no" src="https://alu.jp/series/%E6%98%A0%E5%83%8F%E7%A0%94%E3%81%AB%E3%81%AF%E6%89%8B%E3%82%92%E5%87%BA%E3%81%99%E3%81%AA%EF%BC%81/crop/embed/X8MNLWdDgPeZ5RIF25sD/0?referer=oembed" style="margin: auto;">&lt;/iframe>
+&lt;h2 id="eks-クラスターの-helm-管理の調査">eks クラスターの helm 管理の調査&lt;/h2>
+&lt;p>昨日の続き。権限設定がなんもわからんみたいな様相になったので調査のやり方を変えることにした。検証用の eks クラスターを cdk から新規に作成して helm をインストールするときのリソースや権限設定がどうなるのかを調査した。lambda 関数が5個ぐらい、ロールは10個ぐらい作成された。lambda の生成に時間がかかるのか？新規作成するのに25分、削除するときは30分ぐらいかかった。rds もそうだけど、eks のような複雑なインフラを cdk で管理すると実行するのにけっこう時間がかかる。設定が難しくなければ別によいけど、eks のような権限やリソースの設定が複雑なインフラはトライ&amp;amp;エラーで何度も実行する必要があるから、こういうものは cdk で管理するのには向かないインフラだと言えると思う。一定の設定のプラクティスが溜まるまでは eks は cdk で管理しない方がよいかもしれない。&lt;/p>
+&lt;p>CreationRole というのが設定されて trust relationships に次のような設定が追加される。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-json" data-lang="json">{
+&lt;span style="color:#f92672">&amp;#34;Version&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;2012-10-17&amp;#34;&lt;/span>,
+&lt;span style="color:#f92672">&amp;#34;Statement&amp;#34;&lt;/span>: [
+{
+&lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>,
+&lt;span style="color:#f92672">&amp;#34;Principal&amp;#34;&lt;/span>: {
+&lt;span style="color:#f92672">&amp;#34;AWS&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;arn:aws:iam::${accountId}:root&amp;#34;&lt;/span>
+},
+&lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;sts:AssumeRole&amp;#34;&lt;/span>
+}
+]
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>このロールに含まれるカスタムポリシーには次のような設定がある。たぶんこんな感じのロールを新規に作成して &lt;code>kubectlRoleArn&lt;/code> として指定してやればいいんじゃないかと思う。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-json" data-lang="json">{
+&lt;span style="color:#f92672">&amp;#34;Version&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;2012-10-17&amp;#34;&lt;/span>,
+&lt;span style="color:#f92672">&amp;#34;Statement&amp;#34;&lt;/span>: [
+{
+&lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;iam:PassRole&amp;#34;&lt;/span>,
+&lt;span style="color:#f92672">&amp;#34;Resource&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;arn:aws:iam::${accountId}:role/${EksClusterIamRole}&amp;#34;&lt;/span>,
+&lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>
+},
+{
+&lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: [
+&lt;span style="color:#e6db74">&amp;#34;eks:CreateCluster&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;eks:DescribeCluster&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;eks:DescribeUpdate&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;eks:DeleteCluster&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;eks:UpdateClusterVersion&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;eks:UpdateClusterConfig&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;eks:CreateFargateProfile&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;eks:TagResource&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;eks:UntagResource&amp;#34;&lt;/span>
+],
+&lt;span style="color:#f92672">&amp;#34;Resource&amp;#34;&lt;/span>: [
+&lt;span style="color:#e6db74">&amp;#34;arn:aws:eks:ap-northeast-1:${accountId}:cluster/tmp-test-eks-cluster-by-morimoto&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;arn:aws:eks:ap-northeast-1:${accountId}:cluster/tmp-test-eks-cluster-by-morimoto/*&amp;#34;&lt;/span>
+],
+&lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>
+},
+{
+&lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: [
+&lt;span style="color:#e6db74">&amp;#34;eks:DescribeFargateProfile&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;eks:DeleteFargateProfile&amp;#34;&lt;/span>
+],
+&lt;span style="color:#f92672">&amp;#34;Resource&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;arn:aws:eks:ap-northeast-1:${accountId}:fargateprofile/tmp-test-eks-cluster-by-morimoto/*&amp;#34;&lt;/span>,
+&lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>
+},
+{
+&lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: [
+&lt;span style="color:#e6db74">&amp;#34;iam:GetRole&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;iam:listAttachedRolePolicies&amp;#34;&lt;/span>
+],
+&lt;span style="color:#f92672">&amp;#34;Resource&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;*&amp;#34;&lt;/span>,
+&lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>
+},
+{
+&lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;iam:CreateServiceLinkedRole&amp;#34;&lt;/span>,
+&lt;span style="color:#f92672">&amp;#34;Resource&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;*&amp;#34;&lt;/span>,
+&lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>
+},
+{
+&lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: [
+&lt;span style="color:#e6db74">&amp;#34;ec2:DescribeInstances&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;ec2:DescribeNetworkInterfaces&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;ec2:DescribeSecurityGroups&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;ec2:DescribeSubnets&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;ec2:DescribeRouteTables&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;ec2:DescribeDhcpOptions&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;ec2:DescribeVpcs&amp;#34;&lt;/span>
+],
+&lt;span style="color:#f92672">&amp;#34;Resource&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;*&amp;#34;&lt;/span>,
+&lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>
+}
+]
+}
+&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>スライドデザインのレビュー</title><link>/diary/posts/2022/0510/</link><pubDate>Tue, 10 May 2022 07:34:55 +0900</pubDate><guid>/diary/posts/2022/0510/</guid><description>1時に寝て6時半に起きた。
 スライドマスターのデザインレビュー はらさんと一緒にレビューした。私とは全然視点が違うので参考になった。自分が得意ではない分野の相談相手がいると本当に助かる。いくつか取り上げる。あれこれ、私が気になったところもヒアリングしながら意見をもらった。あとでデザイナーさんにフィードバックする。
 外国人が作ると文字のレイアウトが日本語と異なることを考慮する必要がある 日本語には y や q のような下にはみ出る文字がない スライド全体の色使いで目立たせるときの注目色を作ってもらった方がよい インジケーターのようなデザインがあると聴衆がいま発表のどの辺りかわかって嬉しい 会社の自己主張が強過ぎない方がよさそう</description><content>&lt;p>1時に寝て6時半に起きた。&lt;/p>
 &lt;h2 id="スライドマスターのデザインレビュー">スライドマスターのデザインレビュー&lt;/h2>
