@@ -56,6 +56,36 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0530/>aws サービスと ipv6</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-05-30
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/cdk/>cdk</a>&nbsp;
+#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
+</span>
+<div class=post-content>
+<p>0時に寝て6時頃に起きて7時半に起きた。</p>
+<h2 id=cloudfront-と-waf-と-s3-と-ipv6-と>cloudfront と waf と s3 と ipv6 と</h2>
+<p>aws サービスについて ipv6 について調べると、少しずつ対応してきた経緯があって、ipv4 と ipv6 の両対応のことを aws は dualstack と読んでいる。エンドポイントのサブドメインに dualstack があれば、ipv6 対応していると考えてよいと思う。リモートワークしている開発者がテスト環境に接続するときに、その開発者の IP アドレスを登録する aws lambda 関数がある。その lambda 関数にリクスとすると、リクエストしたクライアントの IP アドレスを waf の IP sets に登録することで、パケットフィルタリングのルールを更新している。たまたま、そのインフラを cdk 移行したところ、ある開発者は ipv6 で登録しようとしてエラーになるということがわかった。移行のときに api gateway を使わずに直接 lambda の fuction url を使うようにしたところ、lambda は ipv6 対応しているのでそのまま ipv6 の IP アドレスを登録しようとして waf の設定が ipv4 しか対応していなかったためにエラーになっていた。</p>
+<ul>
+<li><a href=https://aws.amazon.com/jp/about-aws/whats-new/2021/12/aws-lambda-ipv6-endpoints-inbound-connections/>AWS Lambda がインバウンド接続用のインターネットプロトコルバージョン 6 (IPv6) エンドポイントのサポートを開始</a></li>
+</ul>
+<p>cloudfront, waf, s3 の ipv6 対応は2016年頃に対応していて、この3つのサービスに対して一緒にブログ記事を書いているのは、これらのサービスを一緒に使うことを想定しているとみなすべきだろう。</p>
+<ul>
+<li><a href=https://aws.amazon.com/jp/blogs/news/ipv6-support-update-cloudfront-waf-and-s3-transfer-acceleration/>IPv6 サポートの更新 – CloudFront、WAF、S3 Transfer Acceleration</a></li>
+</ul>
+<p>cdk のコードで cloudfront, waf は ipv6 対応したのだけど、cloudfront のオリジンに当たる s3 の ipv6 対応を cdk からどうやって設定していいかわからなかった。<a href=https://github.com/aws/aws-cdk/tree/master/packages/%40aws-cdk/aws-cloudfront-origins>aws-cloudfront-origins</a> の <code>S3Origin</code> のコードを読むと、どうも s3 の ipv6 対応のエンドポイント (dualstack) を考慮して制御しているようにはみえない。バグではないけど、設定方法がわからないので feature request として issue 登録してみた。aws-cdk に issue 登録するのは初めて。余談だけど、<a href=https://github.com/aws/aws-cdk/tree/master/.github/ISSUE_TEMPLATE>ISSUE_TEMPLATE</a> もよく出来ていて、これを参考にして自分たちのリポジトリにも取り入れてもよさそう。</p>
+<ul>
+<li><a href=https://github.com/aws/aws-cdk/issues/20550>(aws-cloudfront-origins): Support dualstack domain name (ipv6) for S3 origin #20550</a></li>
+</ul>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0529/>レンタカーで気分転換</a>
 </h1>
 <div class=post-meta>
