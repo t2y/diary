@@ -57,6 +57,54 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0421/>rds の再作成</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-04-21
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/cdk/>cdk</a>&nbsp;
+#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#rds-を独立したスタックに分離>rds を独立したスタックに分離</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>23時に寝て5時半に起きた。久しぶりによく眠れた気がする。</p>
+<h2 id=rds-を独立したスタックに分離>rds を独立したスタックに分離</h2>
+<p>昨日の続き。ライフサイクルにあわせたスタックに分割し、スタック間の依存関係を適切に定義することで堅牢なインフラコードになる。最後に残った DatabaseStack を分離するところを朝からやっていた。</p>
+<ul>
+<li>DatabaseStack
+<ul>
+<li>BackendStack
+<ul>
+<li>GatewayStack
+<ul>
+<li>FrontendStack</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>rds を壊して、バージョンを aurora postgresql 最新の 13.x にアップグレードして、cf のテンプレートで小細工をしながら既存の環境を移行したりしていた。<a href=https://www.postgresql.org/docs/13/app-pgdump.html>pg_dump</a> を使ってテキストに dump したデータを、psql を使ってリストアしたりもした。データ量が少なかったらこれで移行してもいいかもしれない。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ pg_dump --host mydb.xxx.ap-northeast-1.rds.amazonaws.com --username user mydb &gt; mydb.dump
+$ psql --host mydb.xxx.ap-northeast-1.rds.amazonaws.com --username user --dbname mydb --file ./mydb.dump
+</code></pre></div>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0420/>堅牢なインフラコード</a>
 </h1>
 <div class=post-meta>
@@ -268,50 +316,6 @@ forest nook
 <p>朝オフィスで測ったときは37.2℃でこのぐらいなら普通にお仕事できるかなと始めたんだけど、段々体温が上がってきて10時ぐらいには37.9℃になって、しんどいから一旦家に帰って横になって、デイリースクラムだけ家から参加した。その後もずっと寝込んでた。何回か起きて熱を測ったら最高38.5℃まで上がった。厚労省のサイトによると、3回目の副反応は2回目と同等とある。私は2回目の副反応はここまでひどくなかったのでこの差はファイザーとモデルナの違いなのかもしれない。熱が出て寝込むとか、数年に1回ぐらいの頻度でしか起きない。病気になったらこのぐらいしんどいんだなという、しんどさを思い出すのにちょうどよかったのかもしれない。</p>
 <ul>
 <li><a href=https://www.cov19-vaccine.mhlw.go.jp/qa/0101.html>追加（3回目）接種ではどのような副反応がありますか。2回目より重いのでしょうか。</a></li>
-</ul>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0414/>コロナワクチン3回目</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-04-14
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/life/>life</a>&nbsp;
-#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#ワクチン3回目接種>ワクチン3回目接種</a></li>
-<li><a href=#インフラ移行作業>インフラ移行作業</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>22時に寝て3時に起きた6時に起きた。季節の変わり目のせいか、いつも眠い。</p>
-<h2 id=ワクチン3回目接種>ワクチン3回目接種</h2>
-<p><a href=/diary/posts/2021/0927/#コロナワクチン2回目摂取>2回目は昨年の9月27日</a> に接種した。6ヶ月以上経たないといけないので3月27日以降に接種資格を得て、実際に接種券が届いたのが4月7日だった。神戸市は初回のときにまごまごしたので他の自治体よりも遅れている。これまでファイザーを2回接種したので今回はモデルナを受けてみることにした。モデルナを扱っていてネット予約できるもっとも近くの診療所を予約した。オフィスから自転車で15分ぐらいのところ。16:30の予約なのに16時過ぎぐらいに行ったら普通に受け付けしてくれてすぐに接種もできた。16:05に接種終えて16:20まで待機してオフィスに戻ってきて普通にお仕事してた。その1時間半後に熱を測ったら37.0℃だった。その後もやや熱っぽいけど、平気とは言えば平気。</p>
-<h2 id=インフラ移行作業>インフラ移行作業</h2>
-<p>昨日の続き。フロントエンドのテスト環境が壊れる可能性があるため、他メンバーが使っていない夜に移行作業を行う。POの人たちがQA検証を19-21時ぐらいにやっていることが多いので21時以降に作業すると連絡しておいた。なかなか大変だった。最悪の場合、数時間テスト環境を使えませんと伝えていたものの、その通りで4時間ぐらい検証作業をしていた。cloudfront の distribution 設定を CloudFrontWebDistribution から Distribution へ移行して、新しいやり方であるマネージドポリシーを使うようにした。この設定が意図した振る舞いにならなくて検証作業に時間を割いた。</p>
-<p>cloudfront 経由で web api を呼び出すルートがあってキャッシュを無効にしたいのだが、無効にしたキャッシュポリシー (ttl をゼロにする) を作るとヘッダーの設定ができない。次のようなエラーになる。</p>
-<pre tabindex=0><code>The parameter HeaderBehavior is invalid for policy with caching disabled.
-</code></pre><p><a href=https://github.com/aws/aws-cdk/issues/13441>(cloudfront): Cache Policy cannot forward Authorization header. #13441</a> によると、maxTTL を1秒にして <code>Authorization</code> ヘッダーをオリジンに転送するようには設定できる。キャッシュメソッドは GET と HEAD なので実運用上は問題ないとは思うが、この回避策がないかどうかを調べて検証していた。結果としてはなかった。<a href=https://docs.amazonaws.cn/en_us/AmazonCloudFront/latest/DeveloperGuide/add-origin-custom-headers.html#add-origin-custom-headers-forward-authorization>Configuring CloudFront to forward the Authorization header</a> には <code>Authorization</code> ヘッダーを転送する方法は次の2通りとある。</p>
-<ol>
-<li>cache key に含める</li>
-<li>Managed-AllViewer という origin request policy をすべての viewer requests に含める</li>
-</ol>
-<p>最終的には1番目のやり方で対応はしたが、2番目のオリジンリクエストポリシーを設定する方法も検証してみた。オリジンリクエストポリシーを単体で設定することはできなくて、キャッシュポリシーも一緒に設定しないといけないことからキャッシュポリシーの設定の影響を受けて意図したように <code>Authorization</code> ヘッダーの転送はできなかった。</p>
-<ul>
-<li>cache policy: Managed-CachingDisabled</li>
-<li>origin request policy: Managed-AllViewer</li>
 </ul>
 </div>
 </div>

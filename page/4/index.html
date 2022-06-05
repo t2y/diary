@@ -57,6 +57,43 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0512/>cdk と eks と lambda と iam がわからん</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-05-12
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/cdk/>cdk</a>&nbsp;
+#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#eks-クラスターの-helm-管理>eks クラスターの helm 管理</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>0時に寝て3時に起きて漫画読んで5時に寝て8時に起きた。</p>
+<h2 id=eks-クラスターの-helm-管理>eks クラスターの helm 管理</h2>
+<p>昨日の続き。helm のよさはわかったので dapr を helm で管理しようとしている。その際になるべく cdk で管理できた方がよい。eks は cdk の外部で管理しているのだけど、既存の eks クラスターをインポートする機能も提供されていることに気付いた。</p>
+<ul>
+<li><a href=https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_eks-readme.html#using-existing-clusters>Using existing clusters</a></li>
+</ul>
+<p>それなら既存の eks クラスターをインポートして cdk で helm だけ管理しようと思って始めたものの、これがとても難しくて丸1日作業してわからなかった。設定項目は少ないけど、権限の問題で動かない。1回あたりの実行に15分ぐらいかかるのでトライ&エラーするのもなかなか大変。</p>
+<blockquote>
+<p><code>kubectlRoleArn</code> - the ARN of an IAM role mapped to the system:masters RBAC role. If the cluster you are importing was created using the AWS CDK, the CloudFormation stack has an output that includes an IAM role that can be used. Otherwise, you can create an IAM role and map it to system:masters manually. The trust policy of this role should include the the arn:aws::iam::${accountId}:root principal in order to allow the execution role of the kubectl resource to assume it.</p>
+</blockquote>
+<p><code>kubectlRoleArn</code> の設定をどうするかだけなんだが、この説明でどう設定していいか理解できなかった。cdk で新規に eks クラスターを作成するなら自動で作ってくれるけど、既存の eks クラスターの場合は自分で設定しないといけない。ややこしいことに cdk は kubectl の実行を lambda 経由で実行するので eks と lambda と iam のロールやポリシーを適切に設定する必要がある。lambda にどういう権限を設定するのが適切なのかは本当に難しい。サーバーレスはよいアイディアだとは思うけど、lambda は難し過ぎて私はなるべく使いたくないサービスではある。結局わからなくて翌日に持ち越し。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0511/>helm を調べた</a>
 </h1>
 <div class=post-meta>
@@ -281,39 +318,6 @@ forest nook
 <ul>
 <li><a href=https://flywaydb.org/documentation/tutorials/baselineMigrations>Tutorial: Baseline Migrations</a></li>
 </ul>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0505/>法人決算に着手</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-05-05
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/founding/>founding</a>&nbsp;
-#<a href=/diary/tags/tax/>tax</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#法人決算>法人決算</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>夜眠れなくてだらだらして朝もだらだらしてからお昼前ぐらいにオフィスに行った。</p>
-<h2 id=法人決算>法人決算</h2>
-<p>ようやく着手した。今日のところは前期の所得を求めて各種法人税の算出をした。所得を算出し終えて初めて決算書を作成できる。と言っても、前期は当社初の赤字となった。そのため、均等割以外の法人税はすべてゼロになる。法人県民税と法人市民税の均等割を合計すると7万2千円を納める必要がある。この税金は会社が赤字であろうと必ず支払う必要がある。他の法人税、地方法人税、法人事業税、特別法人事業税、法人県民税と法人市民税の法人税割は所得に対して税率を課すものなので赤字 = 所得がマイナスならゼロになる。ないに越したことはないけど、今後も赤字決算はあるかもしれないので今回は赤字決算のときの税制や会計処理について学ぶ機会となる。その1つとして前々期に納めた法人税を還付する仕組みがある。</p>
-<ul>
-<li><a href=https://www.nta.go.jp/taxes/shiraberu/taxanswer/hojin/5763.htm>No.5763 欠損金の繰戻しによる還付</a></li>
-</ul>
-<p>あと赤字でも支払う必要のある税金として消費税がある。これも3期目から支払う必要があるため、今回が初めてとなる。算はすべて会計システムがやってくれるので私がやることは書類を作ったり、実際の手続きをするだけだとは思う。ちなみにうちは簡易課税で消費税を支払う。その方が節税になることは <a href=/diary/posts/2021/1001/#インボイス制度の準備>インボイス制度を調べていた</a> ときにも書いた。</p>
 </div>
 </div>
 <div class=pagination>
