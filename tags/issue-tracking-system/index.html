@@ -56,6 +56,33 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0601/>手抜き</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-06-01
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/scrum/>scrum</a>&nbsp;
+#<a href=/diary/tags/information-exchange/>information exchange</a>&nbsp;
+#<a href=/diary/tags/issue-tracking-system/>issue tracking system</a>&nbsp;
+</span>
+<div class=post-content>
+<p>2時に寝て6時に起きた。疲れていたからよく眠れた。</p>
+<h2 id=mvpminimum-viable-productで対応した>mvp（minimum viable product）で対応した</h2>
+<p>スクラムに限った話しではないと思うが、プロダクト開発をしていると mvp（minimum viable product）という言葉を聞くことがままある。昔ながらのイテレーション開発よりも、アジャイル開発の文脈でよく使われるように思う。というのは、短い開発期間でプロトタイプを作ったり、最低限の動く機能を作ったりすることをよしとする考え方があるから。昔ながらのやり方だと、イテレーション期間の中でそういった段階的な開発はするものの、外部からみたとき (もしくはマイルストーン) においてはそこそこの機能が提供されているので mvp といった言い方をすることはなかった。もしかしたらアルファとかベータとか呼んでいたかもしれない。最近ある lambda 関数の移行作業を行った。serverless framework でデプロイしていたリソースを cdk で一元管理する。その過程で既存のコードを読むと、ある id をハードコーディングで指定して <em>FIXME</em> がこんな感じに書いてあった。この id が指すリソースはその後なくなっており、本番環境で不要な処理が定期実行でずっと動き続けていたのと、本来は複数の id リソースに対して行うべき処理を実行していなかった。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#75715e># FIXME 対象 id 一覧を取得する。(Phase2までに対応します)</span>
+id <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;ABC001&#39;</span>
+</code></pre></div><p>チームの開発リーダーはその存在を全く忘れていたし、このスクリプトを実装したさらに上位の開発リーダーからはこの処理の要否はよくわからないからチームで確認してという曖昧な返事が返ってきた。チームで確認したところ、この処理は必要だとわかり、この機に複数の id リソースに対して対応するようにした。何も知らない私が修正しても5分で対応を完了した。</p>
+<blockquote>
+<p>mvp で対応したんで</p>
+</blockquote>
+<p>このように実装者は話していたが、本当なのだろうか？と思えた。さらにこのスクリプトのエラーログのログストリームを監視して slack 通知する lambda 関数も移行対象で、コードの検証をしていたところ、slack 通知をするための lambda 関数が別途あり、その動作検証をしていたところ、その lambda 関数を呼び出す権限 <em>lambda:InvokeFunction</em> が足りないことに気付いた。これも実装者に問い合わせたところ、動作検証はやっていないし、過去に1度も slack 通知は発生していないという。状況証拠から考えると、権限が足りないために正常に動作していなかったと推測される。結果的に mvp で対応したという2つの lambda 関数は実運用で半年間、無駄にリソースを浪費して何の役にも立っていなかった。当然、引き継ぎも、課題管理システムのチケットも、ドキュメントも何ら残されていなかった。mvp で対応したという表現に開発で大事なものを誤魔化してはいないだろうか。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0309/>リーン思考？</a>
 </h1>
 <div class=post-meta>
