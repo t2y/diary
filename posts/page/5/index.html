@@ -56,6 +56,30 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0606/>aws sns を介した pubsub</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-06-06
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/cdk/>cdk</a>&nbsp;
+#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
+</span>
+<div class=post-content>
+<p>0時に寝て4時半に起きた。21時頃からオフィスで作業してたらそのまま寝落ちした。朝の掃除機をかける音で目覚めて、始業までワーケーションのふりかえりをしていた。</p>
+<h2 id=lambda-関数と-sns-の連携>lambda 関数と sns の連携</h2>
+<p>定期実行で数百程度の web api 呼び出しを行いたい。これまで定期実行を lambda 関数で実装してきたが、負荷分散を考慮して作ってほしいと言われたので sns を使ってメッセージ分割した上で1つ1つの lambda 関数は sns のメッセージを受け取って実行されるように構成した。lambda 関数を使って pubsub するときは sns を使えばよいらしい。sns はあまり使ったことがないので私自身ノウハウをもっていないし、運用の勘所もよくわかっていない。ドキュメントをいくつか読みながら cdk のコードを書いてた。producer と consumer を lambda 関数で作成し、sns を介してリクエストの負荷分散を図る。lambda 関数は同時並行数を設定できるのでこれがスロットル制限のような役割にもなる。インフラやスクリプトのコードはすぐに実装できたが、lambda 関数の destroy にやたら時間がかかる。権限周りでいくつか設定を試すために destroy しながら検証をしたかった。destroy するのに20分はかかるので deploy や設定の手作業などをやっていると1つの設定を試すのに平気で1時間ぐらいかかってしまう。3回ぐらいやって疲れて検証作業はやや妥協した。</p>
+<ul>
+<li><a href=https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/with-sns.html>Amazon SNS でのAWS Lambdaの使用</a></li>
+<li><a href=https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html>Managing Lambda reserved concurrency</a></li>
+<li><a href=https://docs.aws.amazon.com/sns/latest/dg/sns-security-best-practices.html>Amazon SNS security best practices</a></li>
+</ul>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0605/>ワーケーション 3日目</a>
 </h1>
 <div class=post-meta>

@@ -57,6 +57,35 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0328/>backlog-github-integration-action を運用し始めた</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-03-28
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/github/>github</a>&nbsp;
+#<a href=/diary/tags/ci/cd/>ci/cd</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#backlog-と-github-のインテグレーション-action-の試験運用>backlog と github のインテグレーション action の試験運用</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>2時に寝て6時半に起きた。</p>
+<h2 id=backlog-と-github-のインテグレーション-action-の試験運用>backlog と github のインテグレーション action の試験運用</h2>
+<p>昨日作った backlog-github-integration-action を早速お手伝い先の github リポジトリと backlog に導入した。いま暇な時期というのもあって、誰からもクレームが出なかった。この閑散とした間隙を「乗るしかない、このビッグウェーブに」というノリで導入して運用して既成事実を作る。ses でお手伝いに行って課題管理のツールを作っているというのは頭おかしいと思うけど、周りからクレームが出る前に電光石火で運用にのせてしまう。実際に運用で使うといくつかバグがあって、いま latest の docker イメージを使ってカスタム action が動いている。バグがあったら修正して、<code>./gradlew jib</code> (docker push) で新しい docker イメージを gihtub packages に push して、不具合があった pr のジョブを再実行すれば再現環境でテストもできる。いくつかバグ修正をした。実際の運用のデータを使うとばらばらとバグがみつかる。運用で実際に使われていないツールはダメ、絶対。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0327/>backlog-github-integration-action を作った</a>
 </h1>
 <div class=post-meta>
@@ -306,35 +335,6 @@ forest nook
 <ul>
 <li><a href=https://fortee.jp/jjug-ccc-2022-spring>JJUG CCC 2022 Spring</a></li>
 </ul>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0321/>github actions の課金金額</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-03-21
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/github/>github</a>&nbsp;
-#<a href=/diary/tags/ci/cd/>ci/cd</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#gihtub-api-tools-のリファクタリングとデータ分析>gihtub-api-tools のリファクタリングとデータ分析</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>2時に寝て何度か起きてだらだらしながら10時に起きた。</p>
-<h2 id=gihtub-api-tools-のリファクタリングとデータ分析>gihtub-api-tools のリファクタリングとデータ分析</h2>
-<p>実際に使ってみながらリファクタリングしたり、足りない機能を追加したりした。ツールに拡張した機能が使えるかどうかの検証のため、お仕事のプライベートリポジトリのデータを使って分析をし始めて、気付いたら分析ならびに分析結果の資料まで作ってしまった。軽く半日ぐらいのお仕事をやってしまっていた。過去5ヶ月分の課金時間の合計を算出し、単体テストの実行を github actions に追加することで増える課金時間の見積もりと金額を算出した。月間でいまより3時間30分、全体の課金時間に対して20%弱程度の追加が見込まれる。それによる課金金額を算出すると 210 * $0.008 = $1.68 になる。いままで無料枠を超えないように運用してきたわけだが、こんな200円程度の金額を節約するために github actions 上でテスト実行しないといった判断がくだされていた。開発者は誰も実際の課金金額を知らなかったし、課金金額を算出するとあほらしくなった。あと github actions はめちゃくちゃ安い。</p>
 </div>
 </div>
 <div class=pagination>

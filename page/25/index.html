@@ -57,6 +57,43 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2021/1220/>新型コロナワクチン接種証明書アプリを使ってみた</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2021-12-20
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/device/>device</a>&nbsp;
+#<a href=/diary/tags/workcation/>workcation</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#スマホのマイナンバーカードの読み取りは位置がシビア>スマホのマイナンバーカードの読み取りは位置がシビア</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>23時に寝て1時過ぎに起きて4時半に起きて6時半に起きた。寝てないわけじゃないけど、うまく眠れなくなった。</p>
+<h2 id=スマホのマイナンバーカードの読み取りは位置がシビア>スマホのマイナンバーカードの読み取りは位置がシビア</h2>
+<p>ワーケーションで <a href=https://www.hyogo-tourism.jp/furusato-ouen/>ふるさと応援！ひょうごを旅しようキャンペーン</a> を利用する条件の1つにワクチンの接種証明を提示する必要がある。ちょうどデジタル庁から <a href=https://www.digital.go.jp/policies/posts/vaccinecert>新型コロナワクチン接種証明書アプリ</a> がリリースされた。このアプリを使えば接種の原本の書類を持っていかなくて済む。</p>
+<p>朝からアプリをインストールしてマイナンバーカードを使って接種証明書を発行しようとしたのだけど、マイナンバーカードの読み取りができない。エラーも表示されなくてうんともすんとも動かない。パスワードがロックされていたらエラーが表示されるように思えるのでなんかおかしい状況だった。そのことをツィートしたら、とのきさんがマイナンバーカードの読み取りはシビアで位置があっていないと読み取りできないとアドバイスしてくれた。</p>
+<blockquote class=twitter-tweet><p lang=ja dir=ltr>スマホ機種によってNFCの搭載位置やカードの当て方などで読み取りが非常にシビアみたいです<br>NFCチップの位置をスマホとカードで正確に一致させてギリギリ読みとれた、など聞いたことがあります</p>&mdash; tonoki(demobird) (@tonoki) <a href="https://twitter.com/tonoki/status/1472760754332127235?ref_src=twsrc%5Etfw">December 20, 2021</a></blockquote>
+<script async src=https://platform.twitter.com/widgets.js></script>
+<p>午後から <a href=https://www.jpki.go.jp/download/howto_iphone/certificate_p02.html>JPKIMobile を用いた有効性の確認方法</a> を確認しながら再挑戦した。ここに書いてあるようにちょっと離したり、カードの位置を少しずつずらして調整したりしてたら読み取りできた。この時点でパスワードロックではないことを確認できた。</p>
+<blockquote>
+<p>iPhone端末にICカードをセットします。画面が変わらないようであれば、一度ICカードを離してから再度セットしてください。</p>
+</blockquote>
+<p>JPKIMobile で読み取りできたので同じ要領で接種証明書アプリでもやってみたら今度はすんなりと読み取りできて発行できた。位置さえあえば読み取りはすぐできた。今朝はたぶん机に置いて位置を調整せず、読み取りには時間がかかるのかな？とずっと動かさず待っていたのがよくなかったみたい。とのきさんのおかげで区役所に行く無駄な時間を削減できた。感謝。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2021/1219/>スクラム開発の所感</a>
 </h1>
 <div class=post-meta>
@@ -330,42 +367,6 @@ forest nook
 <li>workflow の再実行で途中の job から再実行できない</li>
 <li><a href=https://tech.guitarrapc.com/entry/2021/08/01/194007#2-runif-%E3%81%AF%E4%BD%BF%E3%81%88%E3%81%AA%E3%81%84-%E5%88%B6%E7%B4%84>カスタム action で run.if は使えない</a></li>
 </ul>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2021/1213/>log4j2 セキュリティ対応</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2021-12-13
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/java/>java</a>&nbsp;
-#<a href=/diary/tags/security/>security</a>&nbsp;
-#<a href=/diary/tags/founding/>founding</a>&nbsp;
-#<a href=/diary/tags/stone/>stone</a>&nbsp;
-</span>
-<img src=/diary/img/2021/1213-turquoise.jpg class=post-cover alt="log4j2 セキュリティ対応">
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#log4j2-セキュリティ対応>log4j2 セキュリティ対応</a></li>
-<li><a href=#ターコイズ>ターコイズ</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>23時に寝て5時に起きたが、だらだらしているうちに2度寝して6時半に起きた。</p>
-<h2 id=log4j2-セキュリティ対応>log4j2 セキュリティ対応</h2>
-<p><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-44228">CVE-2021-44228</a> が金曜日のお昼から私のタイムラインを賑わしている。私がお手伝いしているお仕事はイントラのシステムなのでやや余裕をもって情報を眺めていた。<a href=https://github.com/apache/logging-log4j2/pull/608#issuecomment-990494126>issue のコメント</a> をみても log4j 1.x にも影響があると書かれて、その後に実際には影響ないと書かれて、さらにその後に条件付きだけど影響はあると二転三転してた。自分で実際に試してなくて世の中の開発者の情報をみているだけ。そのため、公式の情報を信頼するといったポジションでしかない。関係者の方々には敬意を払いたい。私は spring の公式ブログで公開されている <a href=https://spring.io/blog/2021/12/10/log4j2-vulnerability-and-spring-boot>Log4J2 Vulnerability and Spring Boot</a> を読みながら対応した。</p>
-<h2 id=ターコイズ>ターコイズ</h2>
-<p>ふとしたきっかけで <a href=https://www.fu-stone.com/blog/turquoise/>ターコイズ</a> の記事を読んだ。12月の誕生石らしく、それでいまの時期に紹介されることも多いのだと推測する。別の記事でターコイズは喉によいと書かれていて、以前 <a href=/diary/posts/2021/1114/#傾斜枕>喉に違和感がある</a> ことを書いた。日常生活に困るほどではないけど、もうこの歳だから体調が良くなることはなく悪くなる一方だろうという見通しも含めて験担ぎのような感覚で喉というキーワードでつながったから購入してみた。</p>
-<p>近所の原石屋さんに行って尋ねてみたら1-2cmぐらいのサイズ1個240円ほどで売っていたので3個買って、近所のダイソーで入れものを買って、それっぽくオフィスに置いておくことにした。うちのコーポレートカラーはグリーンとブルーなんだけど、ターコイズも <a href=https://www.colordic.org/colorscheme/4115>ターコイズグリーン</a> と <a href=https://www.colordic.org/colorscheme/4129>ターコイズブルー</a> の2種類の色がある。創業も12月なので誕生石としても合致する。共通点があって相性がよさそうなのでうちのコーポレートストーン (そんな言葉ない) はターコイズでいいや。</p>
 </div>
 </div>
 <div class=pagination>
