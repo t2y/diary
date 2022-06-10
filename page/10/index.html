@@ -57,6 +57,60 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0406/>ecs の draining とタスクの停止時間</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-04-06
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#ecs-の-draining-に時間がかかる>ecs の draining に時間がかかる？</a>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>0時に寝て4時に起きた。なんか起きてから sns のタイムラインを眺めてた。6時半にはオフィスについて cdk のコードを読み始めた。</p>
+<h2 id=ecs-の-draining-に時間がかかる>ecs の draining に時間がかかる？</h2>
+<p>cdk でインフラのデプロイをしていて、ecs のタスクの置き換えにやたら時間がかかっているのに気付いた。調べてみると、aws のドキュメントがすぐにヒットした。デフォルトでは停止するまでに5分ぐらいかかってしまうようだけど、それを調整したかったらいくつかパラメーターがある。</p>
+<ul>
+<li><a href=https://aws.amazon.com/jp/premiumsupport/knowledge-center/ecs-tasks-stop-delayed-draining/>コンテナインスタンスが DRAINING に設定されているときに、Amazon ECS タスクが停止するのに時間がかかるトラブルシューティング方法を教えてください。</a></li>
+</ul>
+<h4 id=ecs-サービスの-deployment-configuration>ecs サービスの deployment configuration</h4>
+<ul>
+<li>minimumHealthyPercent: 同時に停止できるタスクの割合設定</li>
+<li>maximumPercent: draining されるタスクが停止するまで置き換えるタスクを開始するかどうかの設定？</li>
+</ul>
+<h4 id=ロードバランサーの-deregistration-delay>ロードバランサーの deregistration delay</h4>
+<ul>
+<li>deregistrationDelay: elb(nlb) が登録解除処理が完了するまでに待つ時間。タスクが draining の状態になってこの時間が過ぎた後に登録解除して target が未使用になる</li>
+</ul>
+<h4 id=ecs-タスク定義の-stop-timeout>ecs タスク定義の stop timeout</h4>
+<ul>
+<li>stopTimeout: コンテナーが正常終了しないときに ecs が強制的にプロセスを kill するまでの待ち時間</li>
+</ul>
+<p>それぞれのインフラの状況にあわせて適切なパラメーターを変更すればよい。私が管理しているのは次の2つを変更した。</p>
+<ul>
+<li>maximumPercent: 100 -> 200 (%)</li>
+<li>deregistrationDelay: 300 -> 30 (秒)</li>
+</ul>
+<p>これで18分ほどかかっていたデプロイ時間を8分ぐらいまで短縮できた。テスト環境の設定なので多少のエラーが発生したとしても速い方がよい。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0405/>再びのインフラエンジニア</a>
 </h1>
 <div class=post-meta>
@@ -289,39 +343,6 @@ hashnode.network.	46	IN	A	76.76.21.21
 <p>0時に寝て6時に起きた。昨日に引き続き、日中はフロントエンドのバグ修正をやって午後は本番リリースの守り神みたいなことをやって、夜は請求書を作ってた。</p>
 <h2 id=年度末>年度末</h2>
 <p>今年度最後の請求処理をして本当に四半期が終わるんだなぁとしみじみと感傷に浸ってた。財務の試算表と貸借対照表を軽く眺めてた。今期は赤字なので別によいところはないんだけど、また振り返りをやろうとは考えている。貸借対照表を「ちんしゃくたいしょうひょう」と読んでいて間違ってますよとツッコミもらった。なぜか素で間違えた。お仕事終えてから焼き鳥屋さんに寄ってマスターと2時間ほど雑談して帰ってきた。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0330/>暇つぶしのフロントエンド開発</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-03-30
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/vue.js/>vue.js</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#フロントエンド開発>フロントエンド開発</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>0時に寝て4時に起きた。起きてから sns のタイムラインを眺めてぼーっとしてた。</p>
-<h2 id=フロントエンド開発>フロントエンド開発</h2>
-<p>先週からタスクがなくて (社員さんが多忙で今スプリントのタスク洗い出しができていない) だらだらしていて、来週から引き取ろうと思っている cdk 周りのインフラ構築の調査を事前に始めようかと考えていた。そういう話を社員さんにしたらフロントエンドの開発を手伝ってほしいと言われた。</p>
-<p>種々雑多なフロントエンドの ui に関する改善要望が十数個あがっていて対応できないのでちょっとでもやってほしいという依頼。少し前に <a href=/diary/posts/2022/0315/##フロントエンド開発>初めてフロントエンド開発</a> に着手して、4つほど PR を送ってマージされた。にも関わらず、社員さんに「開発環境の作り方わかりますか？」と質問を受けた。ちょっときょとんとして「前に PR をいくつか送りましたが、なにか他にやらないといけないことがありますか？」と質問に質問で返した。社員さんもテンパっているのか、過去に私がフロントエンドの PR を出していたことを認識してなかったみたい。vue.js も nuxt も全くわからないので開発スタイルも以前のまま。</p>
-<blockquote>
-<p>全然わからない。俺たちは雰囲気で開発している。</p>
-</blockquote>
-<p>5つほど ui 改善のチケットを fix した。難しいことはわからないので私でもできそうな簡単なものから選択して直していった。そしたら、翌日のデイリースクラムで業務の人たちからすごい勢いで直してくれてるみたいにめっちゃ感謝された。もともと社員さんが他のタスクに忙しくていまできないって業務の人たちに前日断っていたタスク群を、いま手持ちのタスクが何もないので暇を持て余してますという私が fix しているんだから、世の中、訳がわからない。私は普段バックエンド開発している人間だから業務の人たちに感謝されることはおろか、やっていることさえ理解されない方なんだけど、たまに ui とか改善すると感謝されて嬉しいという気持ちは他の開発者よりも強いかもしれない。</p>
 </div>
 </div>
 <div class=pagination>
