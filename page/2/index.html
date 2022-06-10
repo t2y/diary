@@ -57,6 +57,37 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0531/>締め切りの45分前</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-05-31
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/founding/>founding</a>&nbsp;
+#<a href=/diary/tags/tax/>tax</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#法人決算の間違い>法人決算の間違い</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>0時に寝て4時に起きて7時に起きた。最近は4時に一回起きることも多くなってきた。ちょっとゲームしていつの間にか、寝たりもするけど。</p>
+<h2 id=法人決算の間違い>法人決算の間違い</h2>
+<p>5月の最終日なのでお昼休みに社会保険の引き落としの明細を手動で入力していた。ufj 銀行 (法人口座) の api 連携は有償サービスで、主に社会保険や経営セーフティ共済の引き落としにしか使っていないのでうちの会社は有償サービスを使っていない。通帳もしくは当日残高の明細をみて、それを手入力で freee の口座に登録する。そこで稀に利息がつくというのを失念していた。2月の利息15円の明細登録が漏れていることに気付いた。freee には登録残高という自動計算された口座残高をもっているので、それと明細の残高を見比べれば気付けるようになっているのだけど、たった15円の差異だったのでこれまで私が見落としていた。</p>
+<p>法人決算の確定申告をすでに終えているのに15円の受取利息が漏れていることに気付いてしまった。ひとまず税務署に電話してどうしたらいいかを相談した。今日中に訂正するなら上書き更新、明日以降なら修正申告と言われた。所得や税引き前純利益の金額に15円の差異があり、3つか4つぐらいの帳票の項目の値が変わる。法人税の金額計算には影響しない。欠損金の繰り戻し還付の申請でも15円の違いから2円の差額になった。銀行の受け取り利息の消費税は非課税なので消費税の申告には影響しない。</p>
+<p>e-tax で送信したデータをコピーして、元データがある状態で誤り箇所を修正して再送信するのはすぐできて30分ぐらいで訂正送信できた。電子申告の良さを実感した。紙だとこうはいかなかったかもしれない。財務諸表は紙で提出しないといけないので、e-tax の修正送信後に慌てて税務署へ行って再提出してきた。それが16時15分。法人決算締め切りの45分前。オフィスから税務署まで自転車で5分の距離だから間に合った。思いの他、最終日に落とし穴にはまったものの、ちゃちゃっと訂正できたので行政の事務手続きスキルは上がってきたなと自信ももてた。こんな失敗をしておけば今後は登録残高と明細残高のチェックも忘れることはないだろう。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0530/>aws サービスと ipv6</a>
 </h1>
 <div class=post-meta>
@@ -307,61 +338,6 @@ forest nook
 <li><a href=https://dev.to/tastefulelk/serverless-framework-vs-sam-vs-aws-cdk-1g9g>Serverless Framework vs SAM vs AWS CDK</a></li>
 </ul>
 <p>結論から言うと、将来的に cdk を使うならまず cdk を使った方がよい。本当にシンプルな要件で lambda 関数のインフラしか扱わないなら serverless framework でもいいかもしれない。serverless framework は cdk がない時代に作られたツールだろうからいまから新規に導入する場合は、多少の学習コストを払っても cdk を学んでおけば、将来的に役に立つ場面が多いと思う。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0524/>法人として消費税を納めた</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-05-24
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/founding/>founding</a>&nbsp;
-#<a href=/diary/tags/tax/>tax</a>&nbsp;
-#<a href=/diary/tags/kubernetes/>kubernetes</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#消費税と地方消費税の申告>消費税と地方消費税の申告</a></li>
-<li><a href=#eks-k8s-から-alb-の管理>eks (k8s) から alb の管理</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>5時に寝て7時過ぎに起きた。前日の夜から法人決算の電子申告に取り組み始めた。本当は紙でやるつもりだったんだけど、eltax が快適だったので e-tax も衝動的にやってみたくなった。</p>
-<h2 id=消費税と地方消費税の申告>消費税と地方消費税の申告</h2>
-<p><a href=/diary/posts/2022/0505/#法人決算>法人決算</a> の一部。今回が初めての消費税と地方消費税の申告になる。簡易課税で支払う。</p>
-<blockquote>
-<p>消費税は、国税（国に納付する税金）であり消費税の納税義務がある事業者が納付します。地方消費税とは、 <strong>消費税と同様で商品の販売やサービスの提供などの取引にかかる税金</strong> です。消費税との違いは、 <strong>地方消費税は国税ではなく地方税（都道府県や市町村に納付する税金）という点です。</strong> しかし実際に納付するときは消費税と分けて納付はせずに、 <strong>消費税と一緒に地方消費税を所管税務署へ納付します。</strong></p>
-<p><a href=https://biz.moneyforward.com/tax_return/basic/70/#i>消費税と地方消費税の違いは？納付対象者や納付方法、計算の仕方まで徹底解説！</a></p>
-</blockquote>
-<p>freee で出力した書類をみながら e-tax の画面で同じ書類の項目を埋めていくだけの作業。1つだけバリデーションエラーが発生して、何度やり直しても数値は正しいようにみえるので無視して処理を継続することにした。メッセージにも値が正しければ継続してくださいと書いてあるのでバリデーションがバグっているのだろうと推測する。書類を作成して、署名して、送信して、納付情報が返ってきて、pay-easy で納付額を振り込む。1時間ほどで完了できた。</p>
-<h2 id=eks-k8s-から-alb-の管理>eks (k8s) から alb の管理</h2>
-<p>eks (k8s) に aws-load-balancer-controller をインストールすると k8s 上のリソースとして alb を管理できるようになる。</p>
-<ul>
-<li><a href=https://docs.aws.amazon.com/ja_jp/eks/latest/userguide/aws-load-balancer-controller.html>AWS Load Balancer Controller アドオンのインストール</a></li>
-</ul>
-<p>具体的には k8s の Ingress と Nodepoint リソースから次の3つのリソースを生成してくれる。</p>
-<ul>
-<li>application load balancer</li>
-<li>http listener</li>
-<li>target groups</li>
-</ul>
-<p>alb からのヘルスチェックは次のようにエンドポイントを記述する。spring boot だと <a href=https://docs.spring.io/spring-boot/docs/current/actuator-api/htmlsingle/>Actuator</a> という web api がヘルスチェックの機能を提供している。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>alb.ingress.kubernetes.io/healthcheck-path</span>: <span style=color:#ae81ff>/actuator/health</span>
-</code></pre></div><p><code>alb.ingress.kubernetes.io/scheme</code> の設定で alb を配置するサブネットを指定できる。デフォルトは <code>internal</code> になる。</p>
-<p>private subnet に配置するとき</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>alb.ingress.kubernetes.io/scheme</span>: <span style=color:#ae81ff>internal</span>
-</code></pre></div><p>public subnet に配置するとき</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>alb.ingress.kubernetes.io/scheme</span>: <span style=color:#ae81ff>internet-facing</span>
-</code></pre></div>
 </div>
 </div>
 <div class=pagination>
