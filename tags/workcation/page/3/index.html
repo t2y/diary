@@ -1,12 +1,12 @@
 <!doctype html><html lang=en>
 <head>
-<title>2022/06 :: forest nook</title>
+<title>workcation :: forest nook</title>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content>
 <meta name=keywords content>
 <meta name=robots content="noodp">
-<link rel=canonical href=/diary/dates/2022/06/>
+<link rel=canonical href=/diary/tags/workcation/>
 <link rel=stylesheet href=/diary/assets/style.css>
 <link rel=stylesheet href=/diary/assets/green.css>
 <link rel=stylesheet href=/diary/style.css>
@@ -17,14 +17,14 @@
 <meta name=twitter:creator content>
 <meta property="og:locale" content="en">
 <meta property="og:type" content="website">
-<meta property="og:title" content="2022/06">
+<meta property="og:title" content="workcation">
 <meta property="og:description" content>
-<meta property="og:url" content="/diary/dates/2022/06/">
+<meta property="og:url" content="/diary/tags/workcation/">
 <meta property="og:site_name" content="forest nook">
 <meta property="og:image" content="/diary/favicon.ico">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
-<link href=/diary/dates/2022/06/index.xml rel=alternate type=application/rss+xml title="forest nook">
+<link href=/diary/tags/workcation/index.xml rel=alternate type=application/rss+xml title="forest nook">
 </head>
 <body class=green>
 <div class="container full headings--one-size">
@@ -126,115 +126,6 @@ forest nook
 <li><a href=https://www.reloclub.jp/relotimes/article/14803>役員に福利厚生は存在しない？迷いやすいポイントを解説</a></li>
 </ul>
 <p>高速道路の料金を etc の利用履歴から取得できないかな？と考えてググると、<a href=https://www.etc-meisai.jp/index.html>ETC利用照会サービス</a> というのをみつけた。初期登録するにはカード番号と直近の利用履歴、車両番号と車載器管理番号が必要になる。レンタカーの領収書には車載器管理番号までは記載されていなかったので店舗に電話して尋ねると快く教えてくれた。これでETC利用照会サービスに登録できたものの、登録後に利用明細が表示されるまで4時間かかるという。バッチ処理のタイミングなのか、なにかわからないけど、4時間は長過ぎでしょとか思いながら待った。待った甲斐があって明細は csv と pdf 出力できた。記録としてデータを残す上でダウンロード機能はありがたい。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0610/>リファクタリングとオブジェクト指向プログラミング</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-06-10
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/refactoring/>refactoring</a>&nbsp;
-</span>
-<div class=post-content>
-<p>0時に寝て8時に起きた。先週末の疲れが溜まってバテバテ。直近の1週間で睡眠時間が短いときは3-4時間しか寝てないのでなんか朝起きれなくて調子悪いなと思ったら単純に睡眠不足よね。なんか安心した。</p>
-<h2 id=既存ロジックのリファクタリング>既存ロジックのリファクタリング</h2>
-<p>ちょっと前にタイムラインで「値オブジェクト」の定義の話題で盛り上がっていた。私は詳しくないのでどちらが正しいのかの白黒を付けられないが、値オブジェクトがどういうものかの定義を知らなくても、オブジェクト指向プログラミングとしてデータ + メソッドでカプセル化していくモジュールの概念からすると普通のことであって、それの特殊ケースに名前が付いている・付いていないという議論だったのではないかと思う。</p>
-<p>今日たまたま既存のある処理に機能を拡張するため、既存のコードを読んでいて、ロジックを扱うコンポーネントが肥大化していて、ここに手を入れていくとさらにコードの見通しが悪くなるように思えた。そのロジックコンポーネントの半分は出力用の DTO を生成する処理が占めていて、DTO を生成する処理をオブジェクトとして切り出すことでロジックコンポーネントを半分に分割できることに気付いた。パラメーターとして7つの値をそのオブジェクトの入力として、そのオブジェクトの内部であれこれやって、最終的に必要な DTO を出力できればよい。1つのコンポーネントを2つのコンポーネントに分割したことで、それぞれのコンポーネントのスコープにおけるメソッドが半分になったというだけの話し。一般的なカプセル化の話し。難しい話しをしなくても設計やオブジェクト指向プログラミングの基本的な考え方などをメンバーに教えていければいいんだけど、私はあくまで協力会社のお手伝いなので、教える業務は担っていない。次の契約更新のときにインフラやプログラミングを経験の浅い人たちに教えましょうか？みたいな話しもしたいと考えている。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0609/>コンテンツは狙ってバズらない</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-06-09
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/scrum/>scrum</a>&nbsp;
-#<a href=/diary/tags/cdk/>cdk</a>&nbsp;
-#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
-#<a href=/diary/tags/podcast/>podcast</a>&nbsp;
-#<a href=/diary/tags/marketing/>marketing</a>&nbsp;
-</span>
-<div class=post-content>
-<p>1時に寝て8時に起きた。昨晩はたくさん話してテンション上がって眠れなくてバテ気味。</p>
-<h2 id=serverless-framework-から-cdk-移行の背景>serverless framework から cdk 移行の背景</h2>
-<p>木曜日はスプリントレビューがある。ステークホルダーが出席する唯一のスプリントイベントなので、大半はステークホルダーとの情報共有や質疑応答、プロジェクトにとっての大きい括りでの現状の共有になる。大半はお手伝い先の社員さん同士のやり取りで、協力会社の開発者は詳細が必要になったときだけ説明するといったイベント。前スプリントで <a href=/diary/posts/2022/0601/#mvpminimum-viable-productで対応した>既存の lambda 関数を serverless framework から cdk へ移行</a> した。プロジェクトメンバーではないのだけど、業務のリーダークラスの方が cdk に関心をもって質問してくれた。聞くところによると、他プロジェクトでも cdk を使うようになってきているらしく、なぜいま移行しているのか？という質問だった。普段インフラ作業を孤独にやっているのもあって、業務の人が関心を示してくれたのが嬉しくて、変なスイッチが入っていろいろ説明した。serverless framework は2015年10月リリース、cdk は2018年7月リリースで、歴史的に serverless framework が普及して、その後に cdk が台頭してきたので実績や機能性から serverless framework が広く利用されている。但し、いま aws のインフラ管理をするのであれば、cdk は serverless framework 以上の管理ができることから cdk に一元管理した方がツールの学習コストを減らし、保守コストを下げることにつながるといった話しを丁寧に説明した。相手がそこまでの回答を求めていたかはわからないけど、関心を示してくれたことそのもので私が救われた気がした。</p>
-<h2 id=terapyon-channel-のコンテンツ公開>terapyon channel のコンテンツ公開</h2>
-<p>昨日の今日で公開された。ほとんど無編集だったのかな。web サイトのコンテンツ紹介の内容も手伝って夕方には公開された。</p>
-<blockquote class=twitter-tweet><p lang=ja dir=ltr>Podcast terapyon channel 「#58 もりもとさんの年1ゲスト会 マイクロ法人と開発ワークフローのカイゼン話ほか」を共有 <a href=https://t.co/aQfbuA6XrO>https://t.co/aQfbuA6XrO</a> <a href="https://twitter.com/hashtag/terapyon_channel?src=hash&ref_src=twsrc%5Etfw">#terapyon_channel</a></p>&mdash; terapyon (@terapyon) <a href="https://twitter.com/terapyon/status/1534817292080451584?ref_src=twsrc%5Etfw">June 9, 2022</a></blockquote>
-<script async src=https://platform.twitter.com/widgets.js></script>
-<p>私の中ではいろんな話題を楽しく話せて充実感があった。一部にだけ関心をもつ人にも聞きたいところだけ聞けていいんじゃないかと思えた。基本的に自分の podcast を聞き直すことはないんだけど、今回は自分が充実感をもって話せたせいか、2回ほど聞き直しておもしろい話だなぁと自画自賛してた (笑) 。自分がよいものは周りもそう思うはずだと、ついつい先入観で考えがちだけど、全然そうじゃなかった。全くいいねがつかなかったので周りからみたら私の自己満足のコンテンツでしかなかった (笑) 。コンテンツあるあるだけど、狙ってコンテンツをバズらせるのは難しい。ブログでもがんばって書いた記事が全く読まれないことはあるし、手間暇かけずに軽く書いた記事がめっちゃバズったこともある。コンテンツがバズるかどうかは、最初にみた人たちが拡散するかにも依ってくる。いずれにしても、他者が関心をもつようなコンテンツかどうかは本人ではわからないというのは確かかな。</p>
-<p>今期から会社のマーケティングも少しずつやっていく予定になる。自分がよいと思ったコンテンツに全く関心を示されないことは今後も多々あるだろう。作ったコンテンツを多くの人に見聞きしてもらおうと思ったらやることは1つだけで、当たるまでひたすら作り続けて、いつか当たるのを気長に待つという戦略しか、いまのところ思いつかない。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0608/>書いた後に話して</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-06-08
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/scrum/>scrum</a>&nbsp;
-#<a href=/diary/tags/podcast/>podcast</a>&nbsp;
-</span>
-<div class=post-content>
-<p>3時に寝て7時に起きた。ワーケーションの記事まとめで1時ぐらいまでオフィスにいたので帰ってきてから寝るのが遅くなった。</p>
-<h2 id=開発チームで設計の話し>開発チームで設計の話し</h2>
-<p>昨日のスクラムイベントのふりかえりでスプリントゴール未達の話題があった。うちのチームはスプリントが1週間と短いのもあるけど、スプリントゴールが未達になることがままある。というか、メンバーも本当の意味でスプリントゴールを守ろうとしていない。守れそうにないと分かっても残業も延期もせずに最終日を迎えて未達で終わるだけでしかない。それはともかく、ゴールに含めるタスクの見積もりの精度が悪いのではないかという話題が出たときに、私の周りではプランニングにもっと時間を割いてがっつり設計までやるという話しを聞くので、うちらのプランニングはチケットを選択して適当に割り当てたストーリーポイントで曖昧な見積もりをしているのでそれが悪いのではないかという意見を上げた。そしたら開発者だけで設計のミーティングをやろうという話しになって、今日から毎週やっていくのかな。会議が増えて実務をやる時間が減るというデメリットはあるものの、チームとして学ぶ時間が少ないとは前から思っていたので、チームとして学びの時間を使ってメンバーのスキルを高めていくきっかけの1つとしてはよいかもしれないと思った。あるチケットで議論していて、本質的にはどうなるべき？という議論をして、直近のマイルストーンでは実装できないが将来的に対応するときのためにチケットを作っておいたりした。そういう1つずつの積み重ねが将来の品質をあげていく糧になる。開発者だけで設計という枠組で話すこと自体は大事な時間だとは思えた。</p>
-<h2 id=terapyon-channel-の収録>terapyon channel の収録</h2>
-<p>21時過ぎから <a href=https://podcast.terapyon.net/>terapyon channel</a> の収録を行った。たまたまだけど、私は年に1回出演していて、今後もそのペースがいいなという思えた。6月は法人決算を終えて気楽になっているし、1年に1回なら近況報告として話題もたくさんある。前回からのツールのアップグレードとして <a href=https://iris.fm/>iris</a> というツールで収録した。これまではローカルで音声ファイルを録音して、終わった後に寺田さんへその録音ファイルを送信していた。iris を使うと、ブラウザだけでそれをやってくれるのでゲスト側の作業が減ってお手軽になる。ホスト側もゲスト側で録音に失敗するという最悪の事態のリスクを軽減できるので望ましいという。iris のホスト側の画面にはゲスト側の音声が録音されていることを表すインジケーターもみえるらしい。それが安心感を与えているとのこと。久しぶりに寺田さんと話して、podcast の収録というよりも寺田さんと普通に近況の雑談をしたぐらいの感覚でしかない。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0607/>変哲もない1日</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-06-07
-</span>
-</div>
-<div class=post-content>
-<p>0時に寝て7時に起きた。もうバテバテ。</p>
-<h2 id=開発の隙間>開発の隙間</h2>
-<p>インフラタスクも一段落したのでアプリケーション開発の手伝いをしている。言うてももうすぐ feature freeze で大半の機能は fix しているのでサービスインに向けての運用系のタスクを先行して取っているだけ。簡単なサーバーサイドの修正を行い、割り当てられたタスクの内容を確認したり、スクラムイベントのふりかえりをしたり、ドキュメントを書いたりしたら1日が終わってしまった。ワーケーションへ行ってきた疲れが残っているのか、インフラタスクが落ち着いて次のタスクへの切り替わりのせいか、あまり集中できなかった。6月の週末はちょっと休んでもいいかもしれない。</p>
-<h2 id=ワーケーションのまとめ>ワーケーションのまとめ</h2>
-<p>3日目のワーケーションの記事を書き終えた。明日 podcast の収録があるからそれまでに終えようと思って無理して書き上げた。日が変わるぐらいまでは作業してたと思う。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0606/>aws sns を介した pubsub</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-06-06
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/cdk/>cdk</a>&nbsp;
-#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
-</span>
-<div class=post-content>
-<p>0時に寝て4時半に起きた。21時頃からオフィスで作業してたらそのまま寝落ちした。朝の掃除機をかける音で目覚めて、始業までワーケーションのふりかえりをしていた。</p>
-<h2 id=lambda-関数と-sns-の連携>lambda 関数と sns の連携</h2>
-<p>定期実行で数百程度の web api 呼び出しを行いたい。これまで定期実行を lambda 関数で実装してきたが、負荷分散を考慮して作ってほしいと言われたので sns を使ってメッセージ分割した上で1つ1つの lambda 関数は sns のメッセージを受け取って実行されるように構成した。lambda 関数を使って pubsub するときは sns を使えばよいらしい。sns はあまり使ったことがないので私自身ノウハウをもっていないし、運用の勘所もよくわかっていない。ドキュメントをいくつか読みながら cdk のコードを書いてた。producer と consumer を lambda 関数で作成し、sns を介してリクエストの負荷分散を図る。lambda 関数は同時並行数を設定できるのでこれがスロットル制限のような役割にもなる。インフラやスクリプトのコードはすぐに実装できたが、lambda 関数の destroy にやたら時間がかかる。権限周りでいくつか設定を試すために destroy しながら検証をしたかった。destroy するのに20分はかかるので deploy や設定の手作業などをやっていると1つの設定を試すのに平気で1時間ぐらいかかってしまう。3回ぐらいやって疲れて検証作業はやや妥協した。</p>
-<ul>
-<li><a href=https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/with-sns.html>Amazon SNS でのAWS Lambdaの使用</a></li>
-<li><a href=https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html>Managing Lambda reserved concurrency</a></li>
-<li><a href=https://docs.aws.amazon.com/sns/latest/dg/sns-security-best-practices.html>Amazon SNS security best practices</a></li>
-</ul>
 </div>
 </div>
 <div class="post on-list">
@@ -454,61 +345,257 @@ forest nook
 </div>
 <div class="post on-list">
 <h1 class=post-title>
-<a href=/diary/posts/2022/0602/>draw.io で描いたインフラ構成図</a>
+<a href=/diary/posts/2022/0529/>レンタカーで気分転換</a>
 </h1>
 <div class=post-meta>
 <span class=post-date>
-2022-06-02
+2022-05-29
 </span>
 </div>
 <span class=post-tags>
-#<a href=/diary/tags/diagram/>diagram</a>&nbsp;
-#<a href=/diary/tags/vscode/>vscode</a>&nbsp;
-#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
+#<a href=/diary/tags/founding/>founding</a>&nbsp;
+#<a href=/diary/tags/workcation/>workcation</a>&nbsp;
 </span>
 <div class=post-content>
-<p>0時に寝て4時に起きて7時までだらだらしてた。なんか調子悪い。</p>
-<h2 id=drawio-を描いてみた>draw.io を描いてみた</h2>
-<p>先日、<a href=/diary/posts/2022/0523/>draw.io で aws 構成図を描く調査</a> をした。割り込みの作業をやっていてシステム構成図の作成を先延ばししていた。だいたいの調査は終わっていたのであとは根を詰めて描くだけ。次のサンプル構成図をみながら同じように描いていく。</p>
-<ul>
-<li><a href=https://aws.amazon.com/jp/builders-flash/202204/way-to-draw-architecture/>AWS のアーキテクチャ図を描きたい ! でもどうすれば良いの ?</a></li>
-</ul>
-<p>2つの環境があって、そのうちの1つを作成した。新規構築した環境でスクラッチから描いたものの、インフラリソースの構成要素が少なかったのでサンプル構成図を参考にしながらすぐに描けた。半角スペースで文字位置を調整したりすると、github 上で svg 表示したときに文字の位置がずれたりするのでそういうやり方はダメだとわかった。あと draw.io の振る舞いなのか、vscode のプラグインのせいなのかわからないけど、オブジェクトの配置の前後関係をうまく調整できなくてコピペし直したり、なにかの操作をしたタイミングでインフラリソースのアイコンが後ろに隠蔽されていたりもした。リソース間の接続のための線も自動的に繋がるときもあって便利なのだが、誤動作して変な位置にレイアウトされることもあって制御が難しい。私の感覚では、多少の利便性のために自動化されるよりも、自分で思い通りに制御出来る方を好む。draw.io の自動調整機能の制御が難しいなと思った。</p>
+<p>0時に寝て7時に起きた。</p>
+<h2 id=レンタカーで運転の練習>レンタカーで運転の練習</h2>
+<p>ふと思い立って8時からレンタカーを借りて運転の練習をしてきた。今週末に <a href=/diary/posts/2022/0515/#ワーケーションの打ち合わせ>ワーケーション</a> を予定しているが、城崎温泉との往復を私が参加者を乗せて車で運転しないといけない。たまに実家に帰ったときに家にある車を運転する程度なので私の運転スキルには不安しかない。言うても田舎の交通量の少ないところを走る分には問題ないはずだけど、それでも準備しておくに越したことはない。レンタカーの慣れない車だと予期しないことで失敗することもあるだろう。そういうリハーサルも兼ねてレンタカーを借りて六甲山、六甲アイランド、灘五郷と50kmぐらい、5時間ほど走って、時間貸駐車場での駐車して料金支払いをやってみた。普段は週末を自社のお仕事で過ごしているし、今月は法人決算に時間をとられていて、その鬱屈した気持ちの気分転換にもなってよかった。</p>
+<h2 id=資料作成の準備>資料作成の準備</h2>
+<p>ワーケーションでは、参加者の親睦も兼ねて内容自由のプレゼン大会を企画している。その準備で資料を作り始めた。なんの話しをしようかなぁと考えて、私は会社紹介をすることに決めた。営業さんと一緒に初めて訪問する会社へ行ったり、ピッチなどに参加すると、発表者が会社紹介をしているのを過去にもよくみかけていた。うちにお仕事を依頼してくれる会社は基本的に知人なので会社に依頼しているというよりも、私個人に仕事を依頼している。だからこれまで会社紹介を必要とされなかった。今後のマーケティングやプロダクト開発をしていくにあたり、いずれ様々な場面で知らない人たちに会社紹介をしなければいけなくなることが想定される。直近で必要はないけど、いまから数ヶ月かけて少しずつ会社紹介を作っていって「ぼくのかんがえたさいきょうのかいしゃしょうかい」ができればいいかなといったところ。その最初の叩き台をつくって、参加者にレビューしてもらおうと考えた。ちょうど <a href=posts/2022/0509.md#%E3%82%B9%E3%83%A9%E3%82%A4%E3%83%89%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC%E3%81%AE%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3%E4%BD%9C%E6%88%90>スライドマスターのデザイン</a> もできたばかりなのでスライドに熟れる必要もあった。3時間ほど資料作りして続きはまた翌日に持ち越し。</p>
 </div>
 </div>
 <div class="post on-list">
 <h1 class=post-title>
-<a href=/diary/posts/2022/0601/>手抜き</a>
+<a href=/diary/posts/2022/0515/>オフラインのもくもく会</a>
 </h1>
 <div class=post-meta>
 <span class=post-date>
-2022-06-01
+2022-05-15
 </span>
 </div>
 <span class=post-tags>
-#<a href=/diary/tags/scrum/>scrum</a>&nbsp;
-#<a href=/diary/tags/information-exchange/>information exchange</a>&nbsp;
-#<a href=/diary/tags/issue-tracking-system/>issue tracking system</a>&nbsp;
+#<a href=/diary/tags/workcation/>workcation</a>&nbsp;
+#<a href=/diary/tags/event/>event</a>&nbsp;
 </span>
 <div class=post-content>
-<p>2時に寝て6時に起きた。疲れていたからよく眠れた。</p>
-<h2 id=mvpminimum-viable-productで対応した>mvp（minimum viable product）で対応した</h2>
-<p>スクラムに限った話しではないと思うが、プロダクト開発をしていると mvp（minimum viable product）という言葉を聞くことがままある。昔ながらのイテレーション開発よりも、アジャイル開発の文脈でよく使われるように思う。というのは、短い開発期間でプロトタイプを作ったり、最低限の動く機能を作ったりすることをよしとする考え方があるから。昔ながらのやり方だと、イテレーション期間の中でそういった段階的な開発はするものの、外部からみたとき (もしくはマイルストーン) においてはそこそこの機能が提供されているので mvp といった言い方をすることはなかった。もしかしたらアルファとかベータとか呼んでいたかもしれない。最近ある lambda 関数の移行作業を行った。serverless framework でデプロイしていたリソースを cdk で一元管理する。その過程で既存のコードを読むと、ある id をハードコーディングで指定して <em>FIXME</em> がこんな感じに書いてあった。この id が指すリソースはその後なくなっており、本番環境で不要な処理が定期実行でずっと動き続けていたのと、本来は複数の id リソースに対して行うべき処理を実行していなかった。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#75715e># FIXME 対象 id 一覧を取得する。(Phase2までに対応します)</span>
-id <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;ABC001&#39;</span>
-</code></pre></div><p>チームの開発リーダーはその存在を全く忘れていたし、このスクリプトを実装したさらに上位の開発リーダーからはこの処理の要否はよくわからないからチームで確認してという曖昧な返事が返ってきた。チームで確認したところ、この処理は必要だとわかり、この機に複数の id リソースに対して対応するようにした。何も知らない私が修正しても5分で対応を完了した。</p>
+<p>6時半に起きて漫画読んで8時に起きた。</p>
+<h2 id=ワーケーションの打ち合わせ>ワーケーションの打ち合わせ</h2>
+<p>参加者で <a href=/diary/posts/2022/0422/#ワーケーションのリトライ>ワーケーションのリトライ</a> の最終確認ならびに共有事項の打ち合わせをした。今回は3回目のワクチン接種をし終えたばかりだし、オミクロン株も一応は収束したみたいな雰囲気になっているので延期することはないはず。旅程の確認を一通りしつつ、少し雑談していた。今後の開発合宿のような取り組みをコミュニティでやるのか、会社でやるのかはまだわからないけど、そういう取り組みも非日常の刺激を受ける機会だったり、普段やらないことでなにか新しい価値を見い出す行動だったりにつなげられればと考えている。今回はそのためのリハーサルなのでたくさん失敗しつつノウハウを溜めていきたい。</p>
+<h2 id=もくもく会>もくもく会</h2>
+<p><a href=https://kobe-sannomiya-dev.connpass.com/event/246658/>【三宮.dev】もくもく会</a> に参加した。オフライン開催で参加者は6人。他者と雑談しながら作業するというのを、久しぶりにやった感じだった。私は jjug ccc 2022 spring の資料作りをしていた。骨子レベルの内容はだいたいできたので後はスライド資料を作り込むだけ。今回はビデオ撮影を事前しないといけないのが初めての試み。でも、当日は質疑応答だけでよいから楽になってこれはこれで有りだとは思う。終わってからワーケーションの参加者3人で軽く飲みに行ってきた。勉強会へ行って飲み会でわいわいやって帰るみたいな昔の勉強会の雰囲気に戻った感じがして懐かしかった。地域コミュニティはこういうつながりもあっていいと思う。バックエンド周りのバッチ処理の最適化で話題になったときに「私を雇え、値段は高いけど」と宣伝したりもしてた。自分の会社をやっていると、こういうノリでお仕事がきてもまぁいっかみたいな気持ちになれるからそれも含めて楽しい。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
+<a href=/diary/posts/2022/0422/>カスタム action の開発再開</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-04-22
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/workcation/>workcation</a>&nbsp;
+#<a href=/diary/tags/github/>github</a>&nbsp;
+#<a href=/diary/tags/ci/cd/>ci/cd</a>&nbsp;
+</span>
+<div class=post-content>
+<p>22時に寝て0時に起きて3時に起きて5時半に起きた。</p>
+<h2 id=ワーケーションのリトライ>ワーケーションのリトライ</h2>
+<p>オミクロン株の流行で延期していた開発合宿を行う。レンタカーと <a href=https://kinosaki-kinoie.com/>きのいえ</a> の予約を6月3-5日で確定させた。3回目のワクチンを接種したばかりだし、世の中の雰囲気も with コロナへの取り組みになってきている気がする。行き先は同じなので前回作った旅のしおりをコピーしていくつか修正しながら再計画していく。<a href=https://goto.jata-net.or.jp/>Go To トラベル</a> 再開が6月ではないかという噂もある。</p>
+<h2 id=backlog-github-integration-action-の機能拡張>backlog-github-integration-action の機能拡張</h2>
+<p>先日作った <a href=/diary/posts/2022/0327/>backlog-github-integration-action</a> に push という新たなサブコマンドを追加した。コミットをリポジトリに push したときのイベントをフックしてカスタム action を実行する。インプットが github から取得できるデータになるため、<a href=https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows>GitHub Events</a> 単位にサブコマンドを作ればトリガーと扱えるインプットデータが一致してわかりやすい機能分割になるんじゃないかと思えた。ひとまずそれでやってみる。今日のところはローカルで動かしてコミット連携ができることを確認して、いくつかテストを書いていた。また明日、結合レベルのテストをやってみる。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
+<a href=/diary/posts/2022/0115/>ワーケーション延期</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-01-15
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/life/>life</a>&nbsp;
+#<a href=/diary/tags/workcation/>workcation</a>&nbsp;
+#<a href=/diary/tags/drinking/>drinking</a>&nbsp;
+</span>
+<div class=post-content>
+<p>1時に寝て8時に起きた。</p>
+<h2 id=ストレッチ>ストレッチ</h2>
+<p>今週も開発に集中していてあまりストレッチができなかった。今日の開脚幅は開始前165cmで、ストレッチ後166.5cmだった。先週と同じぐらい、もしくはちょっとよくなったぐらい。先週から引き続き、ふくらはぎとふとももの後ろが張っている。ここ最近は開発に集中していて1日あたり10-12時間ぐらい椅子に座っているので疲労しているのだと推測する。毎週ストレッチを受けていると疲労改善になってよい。</p>
+<h2 id=ワーケーション延期>ワーケーション延期</h2>
+<p>これまで <a href=/diary/posts/2021/1225/#ワーケーション準備>準備を進めてきたワーケーション</a> が2週間後になった。もともとこの企画はオミクロン株が発見される前だったので1月末に予定していた。年末年始を挟んでオミクロン株の感染流行を今週みてきて延期することに決定した。<a href=https://web.pref.hyogo.lg.jp/kf16/coronavirus_data.html>兵庫県 新型コロナウイルスの検査・陽性者の状況</a> によると、直近の陽性者数は次のように推移している。2週間後は5,000人ぐらいの陽性者数になるのではないか。諸外国の推移をみていると兵庫県のピークの陽性者数は1日1万人ぐらいまで増える可能性がある。</p>
+<ul>
+<li>1/10: 167</li>
+<li>1/11: 113</li>
+<li>1/12: 511</li>
+<li>1/13: 903</li>
+<li>1/14: 929</li>
+<li>1/15: 1191</li>
+</ul>
+<p>残念だけど、次回の目処は5-6月ぐらいに3回目のワクチン接種を終えてからになるだろう。</p>
+<h2 id=呑み>呑み</h2>
+<p>21時から勉強会に参加して23時過ぎに終わって晩ご飯食べてなかったので、帰りに仲のよい焼き鳥屋さんのお店に寄って晩ご飯を食べた。26時までやっているので24時頃に言っても普通に食べものを出してくれる。1時間ほど飲み食いして法人決算や消費税、共済のこととかを話してた。マスターも個人事業主から法人成りしたようで、話してみたら私と同じで創業2年だった。業界は違っても行政手続きは共通点も多いだろうから情報共有できそう。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
+<a href=/diary/posts/2021/1225/>ワーケーションの情報共有</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2021-12-25
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/life/>life</a>&nbsp;
+#<a href=/diary/tags/workcation/>workcation</a>&nbsp;
+</span>
+<div class=post-content>
+<p>23時に寝て2時前に起きてまた寝て6時に起きてまた寝て8時に起きた。</p>
+<h2 id=ストレッチ>ストレッチ</h2>
+<p>今週もお仕事がいっぱいいっぱいで全然ストレッチできなかった。今日の開脚幅は開始前167cmで、ストレッチ後169.5cmと前回よりも数値が悪くなった。さぼっていたから仕方ない。一方で右股関節の不可動領域が週ごとによくなっていて、可動していなかった領域が稼働することによって、内転筋に張りが出るようになっているとのこと。システムで例えると、ある地点のパフォーマンスが改善することで別の地点にニーポイントが移動するような話しだと思う。日常生活でもなんか違和感があると思ってはいたので改善していきたい。</p>
+<h2 id=ワーケーション準備>ワーケーション準備</h2>
+<p><a href=/diary/posts/2021/1217/#ワーケーション準備>これまで準備してきた</a> 内容を旅のしおりにまとめている。その内容を参加者4人で共有するための打ち合わせをした。これまで私が更新してきた旅のしおりの内容を一通り確認して、みんなで付近の観光案内などをみたりしていた。城崎温泉は720年開湯というくだりを話すと、歴史好きの人たちは反応して平安京やら平城京やらの年号で盛り上がった。私はもともと学校の書架に置いてある「日本の歴史」というタイトルの漫画を3回ぐらい読み込んでいた児童だったので観光地は歴史から入る癖がある。そんな人じゃなくても、人間、歳をとると歴史の重みみたいなのを感じるようになって、歴史に敬意を払うようになるんじゃないかと勝手に思っている。1泊目の宿は予約済みだけど、2泊目どうする？という話しをしていたら、たまたま宿泊予約サイトで <a href=https://www.bookstoreichi.com/guesthouse>Book store iChi ゲストハウス</a> をみつけた。1部屋4人で宿泊できるし、料金も安いし、ゲストハウスとか泊まったことないという参加者もいるし、おもしろそうみたいなノリになって、ノリのまま予約した。<a href=https://www.hyogo-tourism.jp/furusato-ouen/>ふるさと応援！ひょうごを旅しようキャンペーン</a> も適用できるという話しなので兵庫在住なら2000円/人の割り引きを受けられる。なにかしら情報共有で他人と話すと新しい行動や調査のヒントがあったりしてモノゴトが進むきっかけになると実感した打ち合わせだった。</p>
+<blockquote class=twitter-tweet><p lang=ja dir=ltr>たまたま話していて「794 鳴くよウグイス平安京」は共通認識だけど、私は「710 なんと都を移す平城京」で覚えてたんだけど、平城京の語呂合わせはバリエーションがあるみたい。しかもヤフー知恵袋みたら「南都」という名詞バージョンもあるとのこと。へー。<a href=https://t.co/IvBLJ30inP>https://t.co/IvBLJ30inP</a></p>&mdash; Tetsuya Morimoto (@t2y) <a href="https://twitter.com/t2y/status/1474655368387371008?ref_src=twsrc%5Etfw">December 25, 2021</a></blockquote>
+<script async src=https://platform.twitter.com/widgets.js></script>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
+<a href=/diary/posts/2021/1220/>新型コロナワクチン接種証明書アプリを使ってみた</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2021-12-20
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/device/>device</a>&nbsp;
+#<a href=/diary/tags/workcation/>workcation</a>&nbsp;
+</span>
+<div class=post-content>
+<p>23時に寝て1時過ぎに起きて4時半に起きて6時半に起きた。寝てないわけじゃないけど、うまく眠れなくなった。</p>
+<h2 id=スマホのマイナンバーカードの読み取りは位置がシビア>スマホのマイナンバーカードの読み取りは位置がシビア</h2>
+<p>ワーケーションで <a href=https://www.hyogo-tourism.jp/furusato-ouen/>ふるさと応援！ひょうごを旅しようキャンペーン</a> を利用する条件の1つにワクチンの接種証明を提示する必要がある。ちょうどデジタル庁から <a href=https://www.digital.go.jp/policies/posts/vaccinecert>新型コロナワクチン接種証明書アプリ</a> がリリースされた。このアプリを使えば接種の原本の書類を持っていかなくて済む。</p>
+<p>朝からアプリをインストールしてマイナンバーカードを使って接種証明書を発行しようとしたのだけど、マイナンバーカードの読み取りができない。エラーも表示されなくてうんともすんとも動かない。パスワードがロックされていたらエラーが表示されるように思えるのでなんかおかしい状況だった。そのことをツィートしたら、とのきさんがマイナンバーカードの読み取りはシビアで位置があっていないと読み取りできないとアドバイスしてくれた。</p>
+<blockquote class=twitter-tweet><p lang=ja dir=ltr>スマホ機種によってNFCの搭載位置やカードの当て方などで読み取りが非常にシビアみたいです<br>NFCチップの位置をスマホとカードで正確に一致させてギリギリ読みとれた、など聞いたことがあります</p>&mdash; tonoki(demobird) (@tonoki) <a href="https://twitter.com/tonoki/status/1472760754332127235?ref_src=twsrc%5Etfw">December 20, 2021</a></blockquote>
+<script async src=https://platform.twitter.com/widgets.js></script>
+<p>午後から <a href=https://www.jpki.go.jp/download/howto_iphone/certificate_p02.html>JPKIMobile を用いた有効性の確認方法</a> を確認しながら再挑戦した。ここに書いてあるようにちょっと離したり、カードの位置を少しずつずらして調整したりしてたら読み取りできた。この時点でパスワードロックではないことを確認できた。</p>
 <blockquote>
-<p>mvp で対応したんで</p>
+<p>iPhone端末にICカードをセットします。画面が変わらないようであれば、一度ICカードを離してから再度セットしてください。</p>
 </blockquote>
-<p>このように実装者は話していたが、本当なのだろうか？と思えた。さらにこのスクリプトのエラーログのログストリームを監視して slack 通知する lambda 関数も移行対象で、コードの検証をしていたところ、slack 通知をするための lambda 関数が別途あり、その動作検証をしていたところ、その lambda 関数を呼び出す権限 <em>lambda:InvokeFunction</em> が足りないことに気付いた。これも実装者に問い合わせたところ、動作検証はやっていないし、過去に1度も slack 通知は発生していないという。状況証拠から考えると、権限が足りないために正常に動作していなかったと推測される。結果的に mvp で対応したという2つの lambda 関数は実運用で半年間、無駄にリソースを浪費して何の役にも立っていなかった。当然、引き継ぎも、課題管理システムのチケットも、ドキュメントも何ら残されていなかった。mvp で対応したという表現に開発で大事なものを誤魔化してはいないだろうか。</p>
+<p>JPKIMobile で読み取りできたので同じ要領で接種証明書アプリでもやってみたら今度はすんなりと読み取りできて発行できた。位置さえあえば読み取りはすぐできた。今朝はたぶん机に置いて位置を調整せず、読み取りには時間がかかるのかな？とずっと動かさず待っていたのがよくなかったみたい。とのきさんのおかげで区役所に行く無駄な時間を削減できた。感謝。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
+<a href=/diary/posts/2021/1217/>知識創造と実践知の考察</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2021-12-17
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/morning-activity/>morning activity</a>&nbsp;
+#<a href=/diary/tags/book/>book</a>&nbsp;
+#<a href=/diary/tags/scrum/>scrum</a>&nbsp;
+#<a href=/diary/tags/workcation/>workcation</a>&nbsp;
+</span>
+<div class=post-content>
+<p>0時に寝て6時に起きた。ここ最近は晩ご飯作って食べてアイスクリーム食べてドラクエタクトやって寝るみたいな業後の過ごし方が多い。</p>
+<h2 id=朝活-アジャイル開発とスクラム-第2版>朝活: アジャイル開発とスクラム 第2版</h2>
+<p><a href=https://t.co/0erAzQpDzk>金朝ツメトギ 2021-12-17 AM 6 金曜朝6時開催のもくもく会</a> で第11章スクラムと知識創造と第12章スクラムと実践知リーダーを読んだ。</p>
+<p>第11章では知識想像モデルとして SECI モデルが紹介されている。ふと読んでいて、私が課題管理システムでやっていたのはこの「表出化」の活動で、多くのスクラムをやっているチームは「共同化」を主にやっているように思えた。ソフトウェア開発方法論の歴史的に、チケット駆動開発 → イテレーション開発 → アジャイル開発/スクラムの時系列に発展してきた経緯から、私のようなチケット駆動開発をがっつりやってきた開発者が言う対話が重要だと言うことと、最初からスクラム開発で「共同化」しかやらず「表出化」していない開発者が言う対話が重要だと言うことは、背景事情からして根本的に指している内容が違うのではないか？という仮説を思いついた。対話が重要だと言う開発者がドキュメントや文章を書くことをなおざりにするのを見かけて違和感を感じていた。チケット駆動開発をがっつりやってきた開発者は文章を書いた上でそれだけでは解決できなかった問題を解決するために対話が必要だと言っているわけであり、文章すら書けない開発者は対話だけで開発を進められるわけではないと考えると、これまでスクラム開発に抱いていた私の違和感の正体に近づいたように思えた。</p>
+<figure><img src=/diary/img/2021/1217_seci-model.png>
+</figure>
+<p>第12章では実践知という概念とそのリーダーシップが紹介されている。以前 <a href=https://b.kobe-u.ac.jp/books/b007/>実践知 — エキスパートの知性</a> という本を読んで、メタ認知も含めた認知心理学の知見を踏まえた知識創造や実践知を獲得するに至る背景や教育と課題管理との間にある関係性を考えていたことがあった。スクラムにおいても実践知という概念を扱っているのを読んで、ここにはなにかしらの関係性を見出したり体系化を行う余地があるように考えている。やや哲学的な話題も出てくるので人によって賛否がわかれるかもしれないが、私は自分の考えている中長期的な思考や教育への考え方の価値観が合致していて、これが日本的な経営スタイルの鍵だという意見には一定の同意ができる。自分自身も中長期的な展望を大事にしながら課題解決していきたいという想いもあるからだ。</p>
+<h2 id=ワーケーション準備>ワーケーション準備</h2>
+<p><a href=/diary/posts/2021/1212/#ワーケーション予約>ワーケーション準備</a> の残タスクを少しずつやっていく。宿泊先の <a href=https://kinosaki-kinoie.com/>きのいえ</a> に電話してチェックイン前に駐車場にレンタカーをとめさせてもらえないかを問い合わせた。当日に宿泊客がいれば13時以降、いなければそれよりも早めにとめてもよいとのこと。スタッフがいれば声をかけていなくても勝手にとめてよいと教えてもらった。先方からも <a href=https://www.hyogo-tourism.jp/furusato-ouen/>ふるさと応援！ひょうごを旅しようキャンペーン</a> が本来は12月末で終了だったのが2月28日まで延長されたため、宿泊者が兵庫県在住であればその手続きをしたいとのこと。一旦、オンラインで決済済みの予約をキャンセルして、現地決済で兵庫県の割り引きの手続きをしてくれるという。メンバーは4人中3人が兵庫県在住なので4,000円/人の割り引きで合計12,000円の割り引きになった。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
+<a href=/diary/posts/2021/1212/>ワーケーション準備</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2021-12-12
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/workcation/>workcation</a>&nbsp;
+#<a href=/diary/tags/drink/>drink</a>&nbsp;
+</span>
+<div class=post-content>
+<p>2時半に寝て7時に起きた。なんか眠れなくてだらだらしてた。</p>
+<h2 id=ワーケーション予約>ワーケーション予約</h2>
+<p>参加予定者に最終確認をとって3人参加してくれることになった。感謝。私を含めて4人で行ってくる。レンタカーと <a href=https://kinosaki-kinoie.com/>きのいえ</a> の予約を確定させた。1月28-30日で <a href=https://kinosaki-spa.gr.jp/>城崎温泉</a> でワーケーションしてくる。宿泊は金曜日の夜しか予約があいてなくて4月まで土曜日の夜はすでに予約が埋まっていた。もし金土と連泊で予約するときは3ヶ月以上前に予約をとらないといけないということがわかった。宿泊人数によって料金が変わってくるため、多少の人数変更に対応できる条件で予約できるのが望ましい。今回泊まることでオーナーの人とやり取りできればそういったことも聞いてみようと思う。その後、旅のしおりを作り始めた。まだ1ヶ月あるので調べながらゆっくり準備を進めていく。移動や作業のための時間、食事、親睦会などタイムラインを作りながらやり方を検討していく。</p>
+<h2 id=ショコラシュバルツ>ショコラ・シュバルツ</h2>
+<p><a href="https://www.satofull.jp/products/detail.php?product_id=1256650">山梨県北杜市のふるさと納税</a> の返礼品として <a href="https://www.yatsugatake-beer.com/?mode=grp&gid=1059669">ショコラ・シュバルツ（Chocolat Schwartz）</a> が届いた。試しに1本飲んでみた。香りがよくて黒ビールなんだけど、普通の黒ビールとは異なる風味でそれがショコラなのかどうか、私にはよくわかってないけど、あまり味わったことのない黒ビールという点からはおいしかった。毎日飲むようなビールではないと思うが、イベントや記念日など普通のビールとは異なるビールを試したいときには向きそう。お土産などにもよさそう。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
+<a href=/diary/posts/2021/1211/>ワーケーションのシミュレーション</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2021-12-11
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/life/>life</a>&nbsp;
+#<a href=/diary/tags/workcation/>workcation</a>&nbsp;
+</span>
+<div class=post-content>
+<p>1時に寝て7時に起きた。久しぶりに遅くまで飲んでたのでやや気分が悪い。全体としてあまり大したことしてなかったんだけど、日記のふりかえりしたり、スクラム談義したり、log4j の脆弱性のその後の状況を静観したりしてた。</p>
+<h2 id=ストレッチ>ストレッチ</h2>
+<p>今週もお仕事に注力してたらストレッチは2日/週とあまりできなかった。夜も外に出掛けるのが億劫になったり、勉強会に参加してたりしてウォーキングもやってない。今日の開脚幅は開始前167cmで、ストレッチ後169.5cmだった。さぼってたわりにはまぁまぁだった。特別なことはなにもしてなかったけど、右太もも後ろの筋がやや張っていて右足はあまりよくない。一方で右股関節の不可動領域がよくなっていることが自分でストレッチしててもわかるようになってきて半年以上やってきた甲斐があったと言える。</p>
+<h2 id=ワーケーション計画>ワーケーション計画</h2>
+<p>参加者の目処がついてきたので城崎温泉に出掛けるワーケーションの計画をシミュレーションしていた。たとえば電車とレンタカーでどのぐらい料金の差になるかというと、三ノ宮発でレンタカーを借りて移動 (2泊3日) するときの料金 (高速道路/ガソリン代含む) は 35,648 円、電車は往復11,000円/人になる。3人いればレンタカーと同じぐらいの料金で、4人いればレンタカーで移動した方が安くなる。3人だったとしても移動の勝手の良さを考慮するとレンタカーの方がよさそうに思えた。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
+<a href=/diary/posts/2021/1210/>ワーケーションの思いつき</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2021-12-10
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/morning-activity/>morning activity</a>&nbsp;
+#<a href=/diary/tags/book/>book</a>&nbsp;
+#<a href=/diary/tags/scrum/>scrum</a>&nbsp;
+#<a href=/diary/tags/event/>event</a>&nbsp;
+#<a href=/diary/tags/workcation/>workcation</a>&nbsp;
+</span>
+<div class=post-content>
+<p>0時に寝て6時に起きた。</p>
+<h2 id=朝活-アジャイル開発とスクラム-第2版>朝活: アジャイル開発とスクラム 第2版</h2>
+<p><a href="https://www.youtube.com/watch?v=MbpX1LF1fto">金朝ツメトギ 2021-12-10 AM 6 金曜朝6時開催のもくもく会</a> に参加した。今回はてらださんも来られていた。第9章を読んだ。KDDI さんの事例紹介で2013年から取り組みしているらしい。<a href=/diary/posts/2021/1029/#フラクタルスプリント>フラクタルスプリント</a> を実際の業務で実践している稀な事例としておもしろかった。1週間のスプリントの中に1日のスプリントが4回あるといったフラクタル構造のスプリント。また金曜日は「仕事をしない日」としてレトロスペクティブと OST (オープンスペーステクノロジー、自由な発表と議論の時間) に割当てている。20%ルールに近いものと言えるかもしれないが、自己研鑽のための時間をスプリントの中に組み込むという、組織の理解があってこそできる取り組みを実践していてすごいなと感心した。</p>
+<figure><img src=/diary/img/2021/1210-weekly-sprint.png>
+</figure>
+<h2 id=隔週の雑談>隔週の雑談</h2>
+<p>顧問のはらさんと隔週の打ち合わせ。スクラムの話題として <a href=https://chatwork.connpass.com/event/231183/>だいくしーのスクラム Bar #1</a> や <a href=https://smn.connpass.com/event/226002/>Scrum Masters Night! Online 〜第10夜〜</a> に参加してやり取りした内容や考察したことなどをいろいろ話してた。そのうちの話題の1つに、スクラムマスターの役割とは何だろうかがある。スクラムマスターはプロダクトをよくすることに責任をもち、メンバーが働きやすいように支えるような役割である。ここまでは共通認識として、その範囲がどこまでかは人によって意見が異なるように思えた。あくまでプロダクトやチームの範囲内で行動するスクラムマスターと、スクラムを組織全体に広めたり、人事・評価制度や経営にも参加していくスクラムマスターがある。スクラムマスターは社外の人間でもできるという考え方があるが、必然的に後者の役割も担うなら社内の人間に限定される。後者の役割は越権行為ではないか、いやいや、チームのために働いたメンバーの評価が下がってしまえば現場でよりよいプロダクト開発はできないから大事ではないかという意見も出た。便宜上、前者を (普通の) スクラムマスター、後者を「意識の高い」スクラムマスターと呼ぶ。私の考えでは、意識の高いスクラムマスターの言わんとしていることはわかるが、それをやりたいなら部長や役員などになってから職責とともに改善すべきであり、スクラムマスターという組織におけるラインではない人が経営に口出ししたりすることによる、組織の歪みはまた別の問題を引き起こすのではないかとも思えた。私も経営をやっていて経営側の視点でみるとやはりおかしい。</p>
+<p>その後にワーケーションについて相談した。城崎温泉にある <a href=https://kinosaki-kinoie.com/>きのいえ</a> でワーケーションをやってみようかと考えている。参加のお誘いややり方についていくつか相談しながら前向きに検討しようということになった。</p>
+<h2 id=忘年会>忘年会</h2>
+<p><a href=https://kobe-sannomiya-dev.connpass.com/event/231602/>【初参加大歓迎】三宮.dev＆bizpy 合同忘年会</a> に参加してきた。忘年会の前に運営に入ってもらった、わたなべさんと軽く bizpy の運営について話してきた。1月はわたなべさんに機械学習の勉強会をやってもらう。私は昨年も三宮.devの忘年会に出てた。昨年は3人だったのが今年は4人になった。名物の大きなポークカツレツ。4人とも勉強会の常連みたいな人たちなのでお酒を飲みながらわいわいやって、コロナ禍になる前のコミュニティの勉強会の飲み会を思い出したりしてた。ワーケーションの話をしたら2人は興味を示してくれて、メンバーが4人集まったので開発合宿の企画をしてみることに決めた。</p>
+<figure><img src=/diary/img/2021/1210-katsu.jpg>
+</figure>
 </div>
 </div>
 <div class=pagination>
 <div class=pagination__buttons>
-<span class="button next">
-<a href=/diary/dates/2022/06/page/2/>
-<span class=button__text>過去の日記</span>
-<span class=button__icon>→</span>
+<span class="button previous">
+<a href=/diary/tags/workcation/page/2/>
+<span class=button__icon>←</span>
+<span class=button__text>最近の日記</span>
 </a>
 </span>
 </div>
