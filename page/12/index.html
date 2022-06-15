@@ -57,6 +57,49 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0329/>backlog の認可の仕組み</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-03-29
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/auth/>auth</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#backlog-の-oauth-20-の仕組み>backlog の oauth 2.0 の仕組み</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>0時に寝て6時に起きた。</p>
+<h2 id=backlog-の-oauth-20-の仕組み>backlog の oauth 2.0 の仕組み</h2>
+<p>ユーザー単位の API キーの他、oauth 2.0 の認可の仕組みもある。<a href=https://oauth.net/2/grant-types/>OAuth Grant Types</a> は Authorization Code と Refresh Token の2つをサポートしている。</p>
+<ul>
+<li><a href=https://developer.nulab.com/ja/docs/backlog/auth/>https://developer.nulab.com/ja/docs/backlog/auth/</a></li>
+<li><a href=https://backlog.com/developer/applications/>https://backlog.com/developer/applications/</a></li>
+</ul>
+<p>手順はざっくりこんな感じ。</p>
+<p>開発者向けのサイトからアプリケーションを作成して認可コードのリクエストを送る。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>https://YOUR-SPACE.backlog.com/OAuth2AccessRequest.action?response_type<span style=color:#f92672>=</span>code&amp;client_id<span style=color:#f92672>=</span>xxx&amp;redirect_uri<span style=color:#f92672>=</span>http://localhost:18080/callback
+</code></pre></div><p>リダイレクト先に <code>query='code=zzz'</code> な認可コードが届く。それを使ってアクセストークンを取得する。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{<span style=color:#960050;background-color:#1e0010>&#39;access_token&#39;:</span> <span style=color:#960050;background-color:#1e0010>&#39;xxx&#39;,</span>
+ <span style=color:#960050;background-color:#1e0010>&#39;expires_in&#39;:</span> <span style=color:#960050;background-color:#1e0010>3599,</span>
+ <span style=color:#960050;background-color:#1e0010>&#39;refresh_token&#39;:</span> <span style=color:#960050;background-color:#1e0010>&#39;xxx&#39;,</span>
+ <span style=color:#960050;background-color:#1e0010>&#39;token_type&#39;:</span> <span style=color:#960050;background-color:#1e0010>&#39;Bearer&#39;</span>}
+</code></pre></div><p>有効期限が1時間のアクセストークンを取得できる。次のようにして認証をパスできる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ curl -s -H <span style=color:#e6db74>&#34;Authorization: Bearer xxx&#34;</span> <span style=color:#e6db74>&#39;https://YOUR-SPACE.backlog.com/api/v2/space&#39;</span> 
+</code></pre></div><p>基本的にはユーザー単位の認証しかなくてアプリケーションアカウントの運用はできないみたい。backlog の課金プランをみると、基本的にはユーザー無制限っぽいのでアプリケーションアカウントを一般ユーザーで作成すれば、運用上問題にならないからアプリケーションアカウントを設けていないのではないかと思う。お手伝い先の管理者にインテグレーション向けの専用ユーザーを作成して API キーを github の secrets に登録してほしいという依頼を出した。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0328/>backlog-github-integration-action を運用し始めた</a>
 </h1>
 <div class=post-meta>
@@ -302,39 +345,6 @@ forest nook
 <p>開発のロードマップ全体の計画が遅れているのに私のタスクが全くないみたいな状態になっている。昨日、開発のリーダーにタスクがないので適当なタスクをアサインしてくださいとお願いして、すぐアサインされるんだと思ってたら1日待ってもアサインされなかった。現スプリントのチケットはたくさんあるのにアサイン可能なチケットがないのか、アサインしなくても他の開発者で間に合うのか、その両方なのか、開発チームは5人いて、そのうち4人が外部の協力会社になる。私の感覚的には2人は余剰でタイミングが悪いとタスクがないみたいな状況になる。期限までにやらないといけないことは溜まっているのに。</p>
 <h2 id=workrooms-雑談>workrooms 雑談</h2>
 <p>月に1回の <a href=https://hannari-python.connpass.com/event/242619/>はんなりPython メタバース会 #4</a> に参加した。workrooms で雑談会するのもだいぶ慣れてきた。毎月1-2回はやっている。Brave というプライバシーを重視したブラウザがよいみたいな話しがあって、とくに <a href=https://brave.com/ja/talk/>Brave Talk</a> のビデオ通話がよく出来ているという話しがあった。課金しないと4人まで参加できて、$7/月でプレミアムプランになるみたい。コミュニティ用途なら zoom から Brave Talk に移行した方がよいとまで言ってたので、そんなによいものなのか、また後日触ってみたいと思う。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0322/>イベント登壇のススメ</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-03-22
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/java/>java</a>&nbsp;
-#<a href=/diary/tags/event/>event</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#cfp-のススメ>cfp のススメ</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>1時に寝て7時に起きた。今日も雨。雨降りの日が増えると春が来たなって感じがしてきた。</p>
-<h2 id=cfp-のススメ>cfp のススメ</h2>
-<p>先日、過去に私が jjug ccc に登壇した資料を紹介していて、そう言えば jjug ccc とかいまぐらいの時期かな？と思って調べたら、ちょうど3月27日が cfp の締め切りになる。「ぼくのかんがえたさいきょうのでぷろい」は java アプリケーション開発の基本には沿っていないやり方なので発表したらおもしろいかもしれないと、slack に軽く書き込んだらわりといいねが付いたので社員さんに cfp 送ったら？と勧めた。その社員さんは島根県在住なのでリモートで登壇できるならいいかも？という話しになってイベントの要項を確認したらオンライン開催なので大丈夫そう。</p>
-<p>今日がスクラムのプランニングだったのでチームに共有して業務として cfp を送るための工数も確保した。私が発表してもよいのだけど、なるべく若い人がイベントに登壇すべきだし、業務でやったことはその会社の人が発表すべきだろうというのもあって、私はバックアップにまわって発表は社員さんに任せようと思う。今月末に事例紹介させてほしいという交渉をする予定なので、それがうまくいったら、技術協力として当社のクレジットだけスライドに入れてもらえればみたいところが私の狙い。いずれにしても cfp が採択されないとその展望もないので cfp 作りにも協力していきたい。</p>
-<ul>
-<li><a href=https://fortee.jp/jjug-ccc-2022-spring>JJUG CCC 2022 Spring</a></li>
-</ul>
 </div>
 </div>
 <div class=pagination>
