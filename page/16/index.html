@@ -57,6 +57,61 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0302/>シェルスクリプトも進化する</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-03-02
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/shell/>shell</a>&nbsp;
+#<a href=/diary/tags/event/>event</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#シェルスクリプト再考>シェルスクリプト再考</a></li>
+<li><a href=#bizpy-勉強会>bizpy 勉強会</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>23時に寝て2時に起きて6時に起きた。</p>
+<h2 id=シェルスクリプト再考>シェルスクリプト再考</h2>
+<p>久しぶりにシュルスクリプトを書いていて、ユーティリティ関数をうまいこと実装できないかを調べていたら <strong>nameref</strong> という仕組みが bash 4.3 以降で使えるらしい。私の bash 環境は 5.0.17 なので、bash 5 以上という制約にしてしまってもよいだろうと思う。例えば、こんなことができる。シェルスクリプトで split を実装するの面倒よね。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#66d9ef>function</span> split<span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+    local -n arr<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;</span>$1<span style=color:#e6db74>&#34;</span>
+    local values<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;</span>$2<span style=color:#e6db74>&#34;</span>
+    local sep<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>${</span>3<span style=color:#66d9ef>:-</span>,<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>
+    IFS<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>${</span>sep<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>
+    read -a arr <span style=color:#f92672>&lt;&lt;&lt;</span> <span style=color:#66d9ef>$(</span>echo <span style=color:#e6db74>&#34;</span>$values<span style=color:#e6db74>&#34;</span> | tr -d <span style=color:#e6db74>&#39;[:space:]&#39;</span><span style=color:#66d9ef>)</span>
+<span style=color:#f92672>}</span>
+
+<span style=color:#66d9ef>function</span> test<span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+    split mylist <span style=color:#e6db74>&#34;a, b, c&#34;</span>
+    echo <span style=color:#e6db74>&#34;&#39;</span><span style=color:#e6db74>${</span>mylist[0]<span style=color:#e6db74>}</span><span style=color:#e6db74>&#39;&#34;</span>
+    echo <span style=color:#e6db74>&#34;&#39;</span><span style=color:#e6db74>${</span>mylist[1]<span style=color:#e6db74>}</span><span style=color:#e6db74>&#39;&#34;</span>
+    echo <span style=color:#e6db74>&#34;&#39;</span><span style=color:#e6db74>${</span>mylist[2]<span style=color:#e6db74>}</span><span style=color:#e6db74>&#39;&#34;</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><p>実行結果。ちょっと感動した。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ test
+<span style=color:#e6db74>&#39;a&#39;</span>
+<span style=color:#e6db74>&#39;b&#39;</span>
+<span style=color:#e6db74>&#39;c&#39;</span>
+</code></pre></div><ul>
+<li><a href=https://stackoverflow.com/questions/10582763/how-to-return-an-array-in-bash-without-using-globals>How to return an array in bash without using globals?</a></li>
+<li><a href=https://www.gnu.org/software/bash/manual/html_node/Shell-Parameters.html>3.4 Shell Parameters</a></li>
+</ul>
+<h2 id=bizpy-勉強会>bizpy 勉強会</h2>
+<p><a href=https://bizpy.connpass.com/event/239471/>Python で機械学習の前処理をやってみる勉強会</a> を開催した。今回も講師をわたなべさんにお願いした。私が余裕なくて全くなにもできていない。運営が2人いるとすごく助かる。今回は機械学習の前処理に着目して pandas や scikit-learn を使って実際にどういったプログラミングをするかを解説してもらった。<a href=https://colab.research.google.com/>Colab</a> を使ってデモするのがいまどきのやり方なのかな？私は全く触ったことがないけど、そういうやり方の違いも含めて関心をもてた。Colab 上で普通に git コマンドも使えるのでリポジトリのクローンなんかもできる。次回は私もなにかしら発表をしたいなとは思う。いまのお仕事が一段落ついたら。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0301/>github apps を調べた</a>
 </h1>
 <div class=post-meta>
@@ -295,37 +350,6 @@ ci/cd で使うような認可の仕組みとして github には oauth apps と
 <p>0時に寝て6時に起きた。</p>
 <h2 id=docker-object-labels-と-git-リビジョン>docker object labels と git リビジョン</h2>
 <p>継続的デリバリーのために snapshot jar のマニフェストから取得した git のリビジョンを docker イメージの <a href=https://docs.docker.com/config/labels-custom-metadata/>labels</a> に追加するサンプルコードを <a href=https://github.com/t2y/jib-sample>jib-sample</a> に実装してみた。jib の gradle プラグインを作って簡略化すれば便利かもしれない。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0223/>java アプリケーションの継続的デリバリー</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-02-23
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/java/>java</a>&nbsp;
-#<a href=/diary/tags/ci/cd/>ci/cd</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#snapshot-jar-と継続的デリバリー>snapshot jar と継続的デリバリー</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>0時に寝て3時に起きて6時ぐらいまでだらだらして寝て7時に起きた。</p>
-<h2 id=snapshot-jar-と継続的デリバリー>snapshot jar と継続的デリバリー</h2>
-<p>昨日 <a href=/diary/posts/2022/0222/#jar-ファイルと-git-のリビジョン>jar に git のリビジョン番号を含める</a> ことについて書いた。jar から git のリビジョン番号を取得できれば、docker イメージを生成するときに <a href=https://docs.docker.com/config/labels-custom-metadata/>labels</a> に jar の artifact id と git のリビジョン番号のラベルを追加して、docker イメージからもソースコードの追跡ができるようになる。いまデプロイは docker イメージのみで運用しているため、maven のバージョン管理ができなくても docker イメージの追跡可能性さえあれば現実の運用で問題にならないのではないかと考えた。つまり、snapshot jar で開発したものをそのまま本番環境にデプロイするということを意味する。こうすれば特定のバージョン番号を付けるだけのビルドとデプロイが不要になって、テスト環境にデプロイされた docker イメージのテストを完了すれば、そのイメージをいつでも本番環境にデプロイできるようになる。デプロイするタイミングでビルドする必要がなくなるので継続的デリバリーに近づくのではないかと考えた。</p>
-<p>今日、開発の偉い人やインフラ担当者も含めて、みんなでわいわい打ち合わせして、現状の開発では、インターフェースや互換性の変更にあわせてバージョン番号を付けていないし、古いバージョンに戻すことも現実にはなく、保守は常に最新のリビジョンを更新していくから maven でバージョン管理できなくなっても snapshot jar の運用でがんがん開発していけばいいんちゃうという合意を得られた。</p>
-<p>実際にこのやり方がうまくいくかどうか、私も初めての試みなのでやってみないとわからないが、この運用によるワークフローの効率化のメリットも大きいので、引き続き、イニシアティブをもって取り組んでいきたい。</p>
 </div>
 </div>
 <div class=pagination>
