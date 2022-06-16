@@ -56,6 +56,29 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0616/>バッチ処理のインフラ構築に着手</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-06-16
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
+#<a href=/diary/tags/event/>event</a>&nbsp;
+</span>
+<div class=post-content>
+<p>0時に寝て5時に起きた。なんか体調がいまいちな雰囲気。</p>
+<h2 id=ブログ記事のレビュー>ブログ記事のレビュー</h2>
+<p>昨日の続き。会社ブログの担当者にもレビューも通って体裁を整えて会社ブログにも転記された。あとは情シスグループのリーダーレビューが最終チェックになるみたい。</p>
+<h2 id=aws-batch>aws batch</h2>
+<p>バッチ処理のインフラを構築しようと考えていて、これまで aws lambda で作られているのが非効率だなと思うようになってきた。<a href=https://aws.amazon.com/jp/batch/>aws batch</a> を使えないかを検討している。いまバッチ処理のための web api のエンドポイントを実装するスタイルになっていて、この流れでやっていくと将来的にバッチ処理が api サーバーに増えていく。たまたま負荷の高いバッチ処理と通常のリクエストがスパイクするとサーバーを過負荷にして通常業務に影響を及ぼす懸念がある。ec2 を作って cron でバッチ処理動かせばいいやんという気もするけど、せっかく cdk を使っているのでフルマネージドな仕組みで構築できればカッコいいなとも思ったりする。</p>
+<h2 id=インフレ研究会>インフレ研究会</h2>
+<p>たまたまみかけたので <a href=https://fin-py.connpass.com/>fin-py</a> のインフレ研究会に参加した。前は twitter spaces でやっていて、私はスマホに twitter アプリが入っていないから参加しにくくて微妙だった。最近は <a href=https://brave.com/ja/talk/>brave talk</a> でやっているのでパソコンからも参加しやすくなった。物価、金利、中央銀行の金融政策などの話しを私はまったくわからないのでほとんど聞いているだけ。聞いているうちに世の中のお金の流れが少しずつわかってくればいいかな。国債の値段が下がれば金利が上がるみたいなそういう話しを聞いてそうなんだという感じ。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0615/>設計談義は楽しい</a>
 </h1>
 <div class=post-meta>

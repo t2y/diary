@@ -57,6 +57,45 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0526/>aws-lambda-python-alpha を使っておけばいい</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-05-26
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/cdk/>cdk</a>&nbsp;
+#<a href=/diary/tags/event/>event</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#aws-lambda-python-alpha>aws-lambda-python-alpha</a></li>
+<li><a href=#jjug-ccc-2022-spring-のタイムテーブル>JJUG CCC 2022 Spring のタイムテーブル</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>0時に寝て6時に起きて7時半に起きた。なんかバテバテ。</p>
+<h2 id=aws-lambda-python-alpha>aws-lambda-python-alpha</h2>
+<p>cdk 標準の lambda モジュールで python スクリプトをデプロイすることはもちろんできるが、その python スクリプト内でサードパーティのライブラリを使いたい場合、layer という機能を使って複数の lambda 関数で再利用するというのがもともとのやり方っぽい。とはいえ、サードパーティの依存ライブラリも python スクリプトによって使うものが違ったりするので lambda 関数単位に管理したいという場合もある。その要件を考慮した場合、python のパッケージングを lambda 関数のデプロイ時に再利用できるのが望ましくて、そのためのモジュールが aws-lambda-python-alpha になる。説明が長い。</p>
+<ul>
+<li><a href=https://www.npmjs.com/package/@aws-cdk/aws-lambda-python-alpha>@aws-cdk/aws-lambda-python-alpha</a></li>
+<li><a href=https://docs.aws.amazon.com/cdk/api/v2/docs/aws-lambda-python-alpha-readme.html#packaging>Amazon Lambda Python Library - Packaging</a></li>
+</ul>
+<h2 id=jjug-ccc-2022-spring-のタイムテーブル>JJUG CCC 2022 Spring のタイムテーブル</h2>
+<p>タイムテーブルが公開された。</p>
+<blockquote class=twitter-tweet><p lang=ja dir=ltr>タイムテーブルが公開されたみたい。2022/06/19 10:25〜 Track C <a href="https://twitter.com/hashtag/jjug_ccc_c?src=hash&ref_src=twsrc%5Etfw">#jjug_ccc_c</a> でカスタム github actions の話しをします。よかったらご覧ください。スライド資料も主催のチェック完了後に公開予定です。<a href=https://t.co/AjP1aLt9EM>https://t.co/AjP1aLt9EM</a></p>&mdash; Tetsuya Morimoto (@t2y) <a href="https://twitter.com/t2y/status/1529788493895188480?ref_src=twsrc%5Etfw">May 26, 2022</a></blockquote>
+<script async src=https://platform.twitter.com/widgets.js></script>
+<p>私の前の発表が大橋さんという、一緒のチームでお仕事している方で github actions で運用している開発のワークフロー全般を改善したという話しをされる。その大半は私が設計して既存のワークフローを作り直したものなので応援している。改善の前後におけるワークフローの実行時間の比較や資料のレビューなども手伝っていて、私が主導してやったんだから内容についての責任は私にあると考えていろいろサポートしていた。おそらく github actions つながりで連続しているのかなと推測する。当初はお互いに送客すればいいかなと考えていたけど、普通のセッションの規定が厳しくて、スポンサーじゃなければ会社や製品の宣伝はダメという話しなので送客は断念した。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0525/>severless framework vs cdk</a>
 </h1>
 <div class=post-meta>
@@ -314,40 +353,6 @@ forest nook
 <h2 id=jjug-の発表資料作り>jjug の発表資料作り</h2>
 <p><a href=https://99designs.jp/profiles/dsevarika>Ševarika™</a> というデザイナーさんに <a href=/diary/posts/2022/0509/#スライドマスターのデザイン作成>スライドマスターの作成</a> を4月30日に依頼して5月19日に納品された。納期は1ヶ月程度を見込んでいたのに早く仕上げてくれた。こちらから急かしたわけではない。ちょうど <a href=/diary/posts/2022/0402/#jjug-ccc-2022-spring-の-cfp-応募>JJUG CCC 2022 Spring</a> の発表ビデオの提出期限が5月19日で間に合えばいいなぁぐらいの感覚で静観していて、ちょうど同じ時期に納品できそうだったので、jjug のスタッフさんに発表ビデオの提出期限を週末まで待ってもらうようにお願いしていた。私は自社のロゴをめちゃくちゃ気に入っているんだけど、同じデザイナーさんに作ってもらったスライドマスターのデザインもやはりめちゃくちゃ気に入っている。今後うちの会社が儲かってお金に余裕ができたら Ševarika™ さんにもっと色んなものをデザインしてもらおうと思うようになった。いつになるかはわからんが。</p>
 <p>発表のコンテンツのアウトラインは八割ほどは事前に作っていた。新しいスライドデザインに配置したり、レイアウトを調整したり、デザインとのバランスを考えたりすることに主に時間を費やした。20時ぐらいから始めて2時ぐらいまでやっていた。ここ1-2週間、19時以降にオフィスで居残り作業みたいなことをやってなくて、なんかだらだらしていた。コンテキストスイッチを切り替えてやるぞとなったら集中して6時間ほど作業できた。それで気付いたんだけど、私は毎日大量のお仕事をすることがあまり得意ではない。平均ぐらいに毎日コツコツ積み重ねるのはできるけど、それ以上のパフォーマンスを出す爆発力にはメリハリがいる。いまは構想1ヶ月、実装2日みたいな作業のやり方になる。そのうちの2日は18時間/日ぐらい没頭しているみたいな。昔からそうだったのか、加齢で体力が落ちたせいかわからないけど、メリハリのある働き方が自分には向いていることを再認識した。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0519/>ドキュメントをちゃんと書く</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-05-19
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
-#<a href=/diary/tags/document/>document</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#インフラのドキュメント作成>インフラのドキュメント作成</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>20時に寝て22時に起きて、それから作業して3時に寝て6時に起きた。</p>
-<h2 id=インフラのドキュメント作成>インフラのドキュメント作成</h2>
-<p>今日からインフラのドキュメント作成に着手した。4月から1ヶ月以上に渡って <a href=/diary/posts/2022/0405/>インフラエンジニア</a> のようなお仕事をしていた。具体的には新しい環境のインフラ構築、ならびに既存インフラのリファクタリングというよりは再構築といった作業をしていた。約1ヶ月で大きなインフラのタスクは完了して、その後もこれまで cdk 管理していなかったインフラリソースの管理なども含め、より再現可能な管理されたインフラとなるように改善してきた。それもだいたい終えてきたので、そろそろ他の開発者にも引き継げるようにドキュメントを書くことにした。私以外は若い開発者が多いせいか、cdk/cf の知識というよりもインフラそのもののやネットワークの知識が少ないメンバーが多い。そういった運用経験の浅い開発者にも適切な教育が行えるよう、ドキュメントやチュートリアルなどを書いていく。数日ぐらいかけてしっかり書いてから勉強会を開催する。それをもって引き継ぎしていくかなぁ。</p>
-<p>私が前任者から引き継いだ README に helm の説明が次のように書かれてた。</p>
-<blockquote>
-<p>まず helm がわかってない人はググってくること。</p>
-</blockquote>
-<p>こんな README を私はみたことなくて書いている人が訳分からず作業しているんだなという印象を受けた。私が書くドキュメントには cdk とは何か？から説明している。もちろん aws のドキュメントをすべて読めばよいのだが、それはコストがかかる。私の経験と私が理解した cdk の概念を簡潔に、なるべく自分たちの業務にとって大事なことを要約して書くことに意義があると私は考えている。README にググれみたいなことを書いて誰もなにも言わない開発文化を改善していきたい。</p>
 </div>
 </div>
 <div class=pagination>
