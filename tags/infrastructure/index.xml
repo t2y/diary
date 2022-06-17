@@ -1,4 +1,33 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>infrastructure on forest nook</title><link>/diary/tags/infrastructure/</link><description>Recent content in infrastructure on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 16 Jun 2022 12:23:17 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/infrastructure/index.xml" rel="self" type="application/rss+xml"/><item><title>バッチ処理のインフラ構築に着手</title><link>/diary/posts/2022/0616/</link><pubDate>Thu, 16 Jun 2022 12:23:17 +0900</pubDate><guid>/diary/posts/2022/0616/</guid><description>0時に寝て5時に起きた。なんか体調がいまいちな雰囲気。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>infrastructure on forest nook</title><link>/diary/tags/infrastructure/</link><description>Recent content in infrastructure on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Fri, 17 Jun 2022 19:15:58 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/infrastructure/index.xml" rel="self" type="application/rss+xml"/><item><title>接待もどき</title><link>/diary/posts/2022/0617/</link><pubDate>Fri, 17 Jun 2022 19:15:58 +0900</pubDate><guid>/diary/posts/2022/0617/</guid><description>親戚と親の来訪 姪が体調悪くて病院で検査を受けるという話しで姉夫婦が車で神戸にやってきて、それに便乗して親もやってきた。朝から道案内したりとかしてた。お昼ご飯は ヒシミツ醤油 というお店に行った。週末とか前を通ると10人は並んでいる。なんでこんなに人気があるんだろう？とずっと不思議に思ってた。どうやら醤油も売っているんだけど、醤油によくあう和食の定食も食べられる飲食店らしい。ご飯が8種類あってお替り自由なのでバリエーションの広さを楽しめる。普通のランチよりちょっと贅沢な雰囲気がするので接待などにも向きそう。但し、ランチのピーク時間外さないと並ばないといけない。
+その後、親戚のお土産に 亀井堂総本店のバターサンド を買ってきた。西元町にあるお店で、4年ほど前にたまたまお店の前の通りかかったきっかけで買ってみたらおいしかったのでそれからずっと印象に残っていて、4年ぶりに買ってみた。老舗のお菓子なので接待のお土産にはちょうどよさそうな気がする。たまたま親戚がきたから接待モードになってお店とお土産を開拓してた。
+バッチ処理のプラットフォーム検討 昨日の続き。aws batch の機能説明や faq を読んでいたらよさそうなので触ってみた。事前に次の3つのリソースを設定しないといけない。
+コンピューティング環境 ジョブキュー ジョブ定義 これらの設定をした後、ジョブというリソースを発行することでジョブ定義の処理が実行される。ecs, fargate, ec2, ec2 spot instace から環境を選べる。ec2 spot instance を使えば安くていいかと思っていたんだけど、セキュリティを考慮すると外部のよく分からんインスタンスでバッチ処理を実行するのは懸念があるなぁと思い始めてやめることにした。aws lambda の代わりに aws batch を使うのはセキュリティの懸念さえなければ悪くはないんだけど、インフラの面倒さはどっちも同じぐらいで immutable infrastructure でバッチ処理のようなものを作るのはなかなか面倒くさい。
+チームメンバーと3つの選択肢について議論した。
+aws batch を使う eks (k8s) を使う github actions を使う github actions の self-hosted runner に ec2 spot instance を使う記事もみかけた。これもいいかなと思ったんだけど、aws batch 同様、セキュリティの懸念は払拭できないのでダメだと断念した。
+Extra CI flexibility with Github Runner on AWS Spot Instances 消去法で eks (k8s) でやることにした。CronJob を使って実装していくことになりそう。</description><content>&lt;h2 id="親戚と親の来訪">親戚と親の来訪&lt;/h2>
+&lt;p>姪が体調悪くて病院で検査を受けるという話しで姉夫婦が車で神戸にやってきて、それに便乗して親もやってきた。朝から道案内したりとかしてた。お昼ご飯は &lt;a href="https://hisimitu.thebase.in/">ヒシミツ醤油&lt;/a> というお店に行った。週末とか前を通ると10人は並んでいる。なんでこんなに人気があるんだろう？とずっと不思議に思ってた。どうやら醤油も売っているんだけど、醤油によくあう和食の定食も食べられる飲食店らしい。ご飯が8種類あってお替り自由なのでバリエーションの広さを楽しめる。普通のランチよりちょっと贅沢な雰囲気がするので接待などにも向きそう。但し、ランチのピーク時間外さないと並ばないといけない。&lt;/p>
+&lt;figure>&lt;img src="/diary/diary/img/2022/0617_lunch.jpg"/>
+&lt;/figure>
+&lt;p>その後、親戚のお土産に &lt;a href="https://www.kameido.co.jp/tonowa-index.html">亀井堂総本店のバターサンド&lt;/a> を買ってきた。西元町にあるお店で、4年ほど前にたまたまお店の前の通りかかったきっかけで買ってみたらおいしかったのでそれからずっと印象に残っていて、4年ぶりに買ってみた。老舗のお菓子なので接待のお土産にはちょうどよさそうな気がする。たまたま親戚がきたから接待モードになってお店とお土産を開拓してた。&lt;/p>
+&lt;h2 id="バッチ処理のプラットフォーム検討">バッチ処理のプラットフォーム検討&lt;/h2>
+&lt;p>昨日の続き。aws batch の機能説明や faq を読んでいたらよさそうなので触ってみた。事前に次の3つのリソースを設定しないといけない。&lt;/p>
+&lt;ul>
+&lt;li>コンピューティング環境&lt;/li>
+&lt;li>ジョブキュー&lt;/li>
+&lt;li>ジョブ定義&lt;/li>
+&lt;/ul>
+&lt;p>これらの設定をした後、ジョブというリソースを発行することでジョブ定義の処理が実行される。ecs, fargate, ec2, ec2 spot instace から環境を選べる。ec2 spot instance を使えば安くていいかと思っていたんだけど、セキュリティを考慮すると外部のよく分からんインスタンスでバッチ処理を実行するのは懸念があるなぁと思い始めてやめることにした。aws lambda の代わりに aws batch を使うのはセキュリティの懸念さえなければ悪くはないんだけど、インフラの面倒さはどっちも同じぐらいで immutable infrastructure でバッチ処理のようなものを作るのはなかなか面倒くさい。&lt;/p>
+&lt;p>チームメンバーと3つの選択肢について議論した。&lt;/p>
+&lt;ul>
+&lt;li>aws batch を使う&lt;/li>
+&lt;li>eks (k8s) を使う&lt;/li>
+&lt;li>github actions を使う&lt;/li>
+&lt;/ul>
+&lt;p>github actions の self-hosted runner に ec2 spot instance を使う記事もみかけた。これもいいかなと思ったんだけど、aws batch 同様、セキュリティの懸念は払拭できないのでダメだと断念した。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://www.incredibuild.com/blog/extra-ci-flexibility-with-github-runner-on-aws-spot-instances">Extra CI flexibility with Github Runner on AWS Spot Instances&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>消去法で eks (k8s) でやることにした。&lt;a href="https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/">CronJob&lt;/a> を使って実装していくことになりそう。&lt;/p></content></item><item><title>バッチ処理のインフラ構築に着手</title><link>/diary/posts/2022/0616/</link><pubDate>Thu, 16 Jun 2022 12:23:17 +0900</pubDate><guid>/diary/posts/2022/0616/</guid><description>0時に寝て5時に起きた。なんか体調がいまいちな雰囲気。
 ブログ記事のレビュー 昨日の続き。会社ブログの担当者にもレビューも通って体裁を整えて会社ブログにも転記された。あとは情シスグループのリーダーレビューが最終チェックになるみたい。
 aws batch バッチ処理のインフラを構築しようと考えていて、これまで aws lambda で作られているのが非効率だなと思うようになってきた。aws batch を使えないかを検討している。いまバッチ処理のための web api のエンドポイントを実装するスタイルになっていて、この流れでやっていくと将来的にバッチ処理が api サーバーに増えていく。たまたま負荷の高いバッチ処理と通常のリクエストがスパイクするとサーバーを過負荷にして通常業務に影響を及ぼす懸念がある。ec2 を作って cron でバッチ処理動かせばいいやんという気もするけど、せっかく cdk を使っているのでフルマネージドな仕組みで構築できればカッコいいなとも思ったりする。
 インフレ研究会 たまたまみかけたので fin-py のインフレ研究会に参加した。前は twitter spaces でやっていて、私はスマホに twitter アプリが入っていないから参加しにくくて微妙だった。最近は brave talk でやっているのでパソコンからも参加しやすくなった。物価、金利、中央銀行の金融政策などの話しを私はまったくわからないのでほとんど聞いているだけ。聞いているうちに世の中のお金の流れが少しずつわかってくればいいかな。国債の値段が下がれば金利が上がるみたいなそういう話しを聞いてそうなんだという感じ。</description><content>&lt;p>0時に寝て5時に起きた。なんか体調がいまいちな雰囲気。&lt;/p>
