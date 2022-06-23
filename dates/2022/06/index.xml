@@ -1,4 +1,60 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2022/06 on forest nook</title><link>/diary/dates/2022/06/</link><description>Recent content in 2022/06 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2022/06/index.xml" rel="self" type="application/rss+xml"/><item><title>maven で executable jar を作る</title><link>/diary/posts/2022/0621/</link><pubDate>Tue, 21 Jun 2022 10:28:55 +0900</pubDate><guid>/diary/posts/2022/0621/</guid><description>4時に寝て7時に起きた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2022/06 on forest nook</title><link>/diary/dates/2022/06/</link><description>Recent content in 2022/06 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2022/06/index.xml" rel="self" type="application/rss+xml"/><item><title>k8s の cronjob を検証中</title><link>/diary/posts/2022/0622/</link><pubDate>Wed, 22 Jun 2022 18:58:20 +0900</pubDate><guid>/diary/posts/2022/0622/</guid><description>0時に寝て6時に起きた。寝不足を解消して体調が戻ってきた。
+k8s の cronjob バッチ処理を Kubernetes: CronJob で作る。一通り設定して minikube で検証して eks 上でも動くようになった。
+apiVersion: batch/v1 kind: CronJob metadata: name: my-app-hourly-job spec: schedule: &amp;#34;5 */1 * * *&amp;#34; concurrencyPolicy: Forbid startingDeadlineSeconds: 600 jobTemplate: spec: backoffLimit: 0 template: metadata: labels: app: my-app-hourly annotations: dapr.io/enabled: &amp;#34;true&amp;#34; dapr.io/app-id: &amp;#34;my-app-hourly&amp;#34; spec: containers: - name: my-app-hourly-job image: my-app-image imagePullPolicy: Always env: - name: BATCH_ENV value: &amp;#34;dev&amp;#34; command: - &amp;#34;/bin/sh&amp;#34; - &amp;#34;/app/scripts/my-app.sh&amp;#34; - &amp;#34;param1&amp;#34; - &amp;#34;param2&amp;#34; restartPolicy: Never command の設定がわかりにくい。さらに k8s のドキュメントのサンプル設定も誤解を招くような例になっている。どうも実行できるのは1つの cli だけで、複数コマンドを指定できるわけではない。シェルスクリプトを docker イメージに含めて、そこで任意のスクリプトを実装した方がよいだろう。</description><content>&lt;p>0時に寝て6時に起きた。寝不足を解消して体調が戻ってきた。&lt;/p>
+&lt;h2 id="k8s-の-cronjob">k8s の cronjob&lt;/h2>
+&lt;p>バッチ処理を &lt;a href="https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/">Kubernetes: CronJob&lt;/a> で作る。一通り設定して minikube で検証して eks 上でも動くようになった。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yml" data-lang="yml">&lt;span style="color:#f92672">apiVersion&lt;/span>: &lt;span style="color:#ae81ff">batch/v1&lt;/span>
+&lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">CronJob&lt;/span>
+&lt;span style="color:#f92672">metadata&lt;/span>:
+&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-app-hourly-job&lt;/span>
+&lt;span style="color:#f92672">spec&lt;/span>:
+&lt;span style="color:#f92672">schedule&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;5 */1 * * *&amp;#34;&lt;/span>
+&lt;span style="color:#f92672">concurrencyPolicy&lt;/span>: &lt;span style="color:#ae81ff">Forbid&lt;/span>
+&lt;span style="color:#f92672">startingDeadlineSeconds&lt;/span>: &lt;span style="color:#ae81ff">600&lt;/span>
+&lt;span style="color:#f92672">jobTemplate&lt;/span>:
+&lt;span style="color:#f92672">spec&lt;/span>:
+&lt;span style="color:#f92672">backoffLimit&lt;/span>: &lt;span style="color:#ae81ff">0&lt;/span>
+&lt;span style="color:#f92672">template&lt;/span>:
+&lt;span style="color:#f92672">metadata&lt;/span>:
+&lt;span style="color:#f92672">labels&lt;/span>:
+&lt;span style="color:#f92672">app&lt;/span>: &lt;span style="color:#ae81ff">my-app-hourly&lt;/span>
+&lt;span style="color:#f92672">annotations&lt;/span>:
+&lt;span style="color:#f92672">dapr.io/enabled&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;true&amp;#34;&lt;/span>
+&lt;span style="color:#f92672">dapr.io/app-id&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;my-app-hourly&amp;#34;&lt;/span>
+&lt;span style="color:#f92672">spec&lt;/span>:
+&lt;span style="color:#f92672">containers&lt;/span>:
+- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-app-hourly-job&lt;/span>
+&lt;span style="color:#f92672">image&lt;/span>: &lt;span style="color:#ae81ff">my-app-image&lt;/span>
+&lt;span style="color:#f92672">imagePullPolicy&lt;/span>: &lt;span style="color:#ae81ff">Always&lt;/span>
+&lt;span style="color:#f92672">env&lt;/span>:
+- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">BATCH_ENV&lt;/span>
+&lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;dev&amp;#34;&lt;/span>
+&lt;span style="color:#f92672">command&lt;/span>:
+- &lt;span style="color:#e6db74">&amp;#34;/bin/sh&amp;#34;&lt;/span>
+- &lt;span style="color:#e6db74">&amp;#34;/app/scripts/my-app.sh&amp;#34;&lt;/span>
+- &lt;span style="color:#e6db74">&amp;#34;param1&amp;#34;&lt;/span>
+- &lt;span style="color:#e6db74">&amp;#34;param2&amp;#34;&lt;/span>
+&lt;span style="color:#f92672">restartPolicy&lt;/span>: &lt;span style="color:#ae81ff">Never&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>command の設定がわかりにくい。さらに k8s のドキュメントのサンプル設定も誤解を招くような例になっている。どうも実行できるのは1つの cli だけで、複数コマンドを指定できるわけではない。シェルスクリプトを docker イメージに含めて、そこで任意のスクリプトを実装した方がよいだろう。&lt;/p>
+&lt;ul>
+&lt;li>&amp;ldquo;/bin/sh&amp;rdquo;&lt;/li>
+&lt;li>&amp;ldquo;/app/scripts/my-app.sh&amp;rdquo;&lt;/li>
+&lt;li>&amp;ldquo;param1&amp;rdquo;&lt;/li>
+&lt;li>&amp;ldquo;param2&amp;rdquo;&lt;/li>
+&lt;/ul>
+&lt;p>この設定は次の cli として実行される。&lt;/p>
+&lt;blockquote>
+&lt;p>/bin/sh /app/scripts/my-app.sh param1 param2&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;a href="https://stackoverflow.com/questions/51657105/how-to-ensure-kubernetes-cronjob-does-not-restart-on-failure">How to ensure kubernetes cronjob does not restart on failure&lt;/a> によると、バッチ処理が失敗したときに再実行したくないときは次の3つの設定をする。&lt;/p>
+&lt;ul>
+&lt;li>concurrencyPolicy: Forbid&lt;/li>
+&lt;li>backoffLimit: 0&lt;/li>
+&lt;li>restartPolicy: Never&lt;/li>
+&lt;/ul>
+&lt;p>restartPolicy が Never 以外だと、エラーが発生すると永遠に再実行されてしまうので障害時に2次被害を増やしてしまう懸念があったような気がする。&lt;/p>
+&lt;p>あと、うちの環境は dapr 経由で他の pod サービスと通信しているので dapr を有効にしないと pod 間通信ができない。dapr はデーモンでずっと起動しているからバッチ処理の終了時に daprd も shutdown してやらないといけない。&lt;a href="https://docs.dapr.io/operations/hosting/kubernetes/kubernetes-job/">Running Dapr with a Kubernetes Job&lt;/a> にその方法が書いてある。daprd を shutdown しないと、pod のステータスが NotReady のままで Completed にならない。&lt;/p>
+&lt;p>まだまだよくわかってないので &lt;a href="https://kubernetes.io/docs/concepts/workloads/controllers/job/">Jobs&lt;/a> のドキュメントに一通り目を通そうと思っている。&lt;/p></content></item><item><title>maven で executable jar を作る</title><link>/diary/posts/2022/0621/</link><pubDate>Tue, 21 Jun 2022 10:28:55 +0900</pubDate><guid>/diary/posts/2022/0621/</guid><description>4時に寝て7時に起きた。
 maven での executable jar の作り方 gradle では作ったことがあったけど、maven では初めてなので要領がわかっていない。
 How to Create an Executable JAR with Maven How can I create an executable JAR with dependencies using Maven? これらの記事を読むと、maven-assembly-plugin を使えばいいのかな？とまずはこのプラグインで検証を始めた。古くからあるプラグインなので実績は十分なのだけど、もうあまり保守されていないのか、他プラグインから jar のマニフェストに書き込んで git のリビジョン番号が連携できてなかったり、通常の jar の生成処理を置き換えられなかったりと、あまり使い勝手のよいものではなかった。あと log4j2 と相性が悪くて意図したように設定ファイルを読み込んで初期化ができない。
 main ERROR Error processing element EcsLayout: CLASS_NOT_FOUND main ERROR Unable to locate plugin type for EcsLayout main ERROR Unable to locate plugin for EcsLayout main ERROR Could not create plugin of type class org.</description><content>&lt;p>4時に寝て7時に起きた。&lt;/p>

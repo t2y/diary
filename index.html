@@ -57,6 +57,87 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0622/>k8s の cronjob を検証中</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-06-22
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/kubernetes/>kubernetes</a>&nbsp;
+#<a href=/diary/tags/cli/>cli</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#k8s-の-cronjob>k8s の cronjob</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>0時に寝て6時に起きた。寝不足を解消して体調が戻ってきた。</p>
+<h2 id=k8s-の-cronjob>k8s の cronjob</h2>
+<p>バッチ処理を <a href=https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/>Kubernetes: CronJob</a> で作る。一通り設定して minikube で検証して eks 上でも動くようになった。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>batch/v1</span>
+<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>CronJob</span>
+<span style=color:#f92672>metadata</span>:
+  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>my-app-hourly-job</span>
+<span style=color:#f92672>spec</span>:
+  <span style=color:#f92672>schedule</span>: <span style=color:#e6db74>&#34;5 */1 * * *&#34;</span>
+  <span style=color:#f92672>concurrencyPolicy</span>: <span style=color:#ae81ff>Forbid</span>
+  <span style=color:#f92672>startingDeadlineSeconds</span>: <span style=color:#ae81ff>600</span>
+  <span style=color:#f92672>jobTemplate</span>:
+    <span style=color:#f92672>spec</span>:
+      <span style=color:#f92672>backoffLimit</span>: <span style=color:#ae81ff>0</span>
+      <span style=color:#f92672>template</span>:
+        <span style=color:#f92672>metadata</span>:
+          <span style=color:#f92672>labels</span>:
+            <span style=color:#f92672>app</span>: <span style=color:#ae81ff>my-app-hourly</span>
+          <span style=color:#f92672>annotations</span>:
+            <span style=color:#f92672>dapr.io/enabled</span>: <span style=color:#e6db74>&#34;true&#34;</span>
+            <span style=color:#f92672>dapr.io/app-id</span>: <span style=color:#e6db74>&#34;my-app-hourly&#34;</span>
+        <span style=color:#f92672>spec</span>:
+          <span style=color:#f92672>containers</span>:
+          - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>my-app-hourly-job</span>
+            <span style=color:#f92672>image</span>: <span style=color:#ae81ff>my-app-image</span>
+            <span style=color:#f92672>imagePullPolicy</span>: <span style=color:#ae81ff>Always</span>
+            <span style=color:#f92672>env</span>:
+            - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>BATCH_ENV</span>
+              <span style=color:#f92672>value</span>: <span style=color:#e6db74>&#34;dev&#34;</span>
+            <span style=color:#f92672>command</span>:
+            - <span style=color:#e6db74>&#34;/bin/sh&#34;</span>
+            - <span style=color:#e6db74>&#34;/app/scripts/my-app.sh&#34;</span>
+            - <span style=color:#e6db74>&#34;param1&#34;</span>
+            - <span style=color:#e6db74>&#34;param2&#34;</span>
+          <span style=color:#f92672>restartPolicy</span>: <span style=color:#ae81ff>Never</span>
+</code></pre></div><p>command の設定がわかりにくい。さらに k8s のドキュメントのサンプル設定も誤解を招くような例になっている。どうも実行できるのは1つの cli だけで、複数コマンドを指定できるわけではない。シェルスクリプトを docker イメージに含めて、そこで任意のスクリプトを実装した方がよいだろう。</p>
+<ul>
+<li>&ldquo;/bin/sh&rdquo;</li>
+<li>&ldquo;/app/scripts/my-app.sh&rdquo;</li>
+<li>&ldquo;param1&rdquo;</li>
+<li>&ldquo;param2&rdquo;</li>
+</ul>
+<p>この設定は次の cli として実行される。</p>
+<blockquote>
+<p>/bin/sh /app/scripts/my-app.sh param1 param2</p>
+</blockquote>
+<p><a href=https://stackoverflow.com/questions/51657105/how-to-ensure-kubernetes-cronjob-does-not-restart-on-failure>How to ensure kubernetes cronjob does not restart on failure</a> によると、バッチ処理が失敗したときに再実行したくないときは次の3つの設定をする。</p>
+<ul>
+<li>concurrencyPolicy: Forbid</li>
+<li>backoffLimit: 0</li>
+<li>restartPolicy: Never</li>
+</ul>
+<p>restartPolicy が Never 以外だと、エラーが発生すると永遠に再実行されてしまうので障害時に2次被害を増やしてしまう懸念があったような気がする。</p>
+<p>あと、うちの環境は dapr 経由で他の pod サービスと通信しているので dapr を有効にしないと pod 間通信ができない。dapr はデーモンでずっと起動しているからバッチ処理の終了時に daprd も shutdown してやらないといけない。<a href=https://docs.dapr.io/operations/hosting/kubernetes/kubernetes-job/>Running Dapr with a Kubernetes Job</a> にその方法が書いてある。daprd を shutdown しないと、pod のステータスが NotReady のままで Completed にならない。</p>
+<p>まだまだよくわかってないので <a href=https://kubernetes.io/docs/concepts/workloads/controllers/job/>Jobs</a> のドキュメントに一通り目を通そうと思っている。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0621/>maven で executable jar を作る</a>
 </h1>
 <div class=post-meta>
@@ -334,43 +415,6 @@ main ERROR Could not create plugin of type class org.apache.logging.log4j.core.a
 <p>バッチ処理のインフラを構築しようと考えていて、これまで aws lambda で作られているのが非効率だなと思うようになってきた。<a href=https://aws.amazon.com/jp/batch/>aws batch</a> を使えないかを検討している。いまバッチ処理のための web api のエンドポイントを実装するスタイルになっていて、この流れでやっていくと将来的にバッチ処理が api サーバーに増えていく。たまたま負荷の高いバッチ処理と通常のリクエストがスパイクするとサーバーを過負荷にして通常業務に影響を及ぼす懸念がある。ec2 を作って cron でバッチ処理動かせばいいやんという気もするけど、せっかく cdk を使っているのでフルマネージドな仕組みで構築できればカッコいいなとも思ったりする。</p>
 <h2 id=インフレ研究会>インフレ研究会</h2>
 <p>たまたまみかけたので <a href=https://fin-py.connpass.com/>fin-py</a> のインフレ研究会に参加した。前は twitter spaces でやっていて、私はスマホに twitter アプリが入っていないから参加しにくくて微妙だった。最近は <a href=https://brave.com/ja/talk/>brave talk</a> でやっているのでパソコンからも参加しやすくなった。物価、金利、中央銀行の金融政策などの話しを私はまったくわからないのでほとんど聞いているだけ。聞いているうちに世の中のお金の流れが少しずつわかってくればいいかな。国債の値段が下がれば金利が上がるみたいなそういう話しを聞いてそうなんだという感じ。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0615/>設計談義は楽しい</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-06-15
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/event/>event</a>&nbsp;
-#<a href=/diary/tags/communication/>communication</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#jjug-のセッションの紹介>jjug のセッションの紹介</a></li>
-<li><a href=#ブログ記事のレビュー>ブログ記事のレビュー</a></li>
-<li><a href=#設計ミーティング>設計ミーティング</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>0時に寝て4時半に起きてだらだらして2度寝して8時に起きた。</p>
-<h2 id=jjug-のセッションの紹介>jjug のセッションの紹介</h2>
-<p>jjug の公式アカウントがランダムにセッションのページを紹介している。私のセッションのリンクが今日ツィートされた。この日記を書いている時点で3つの「いいね」が付いている (1つは私なので除く) 。大して人気の出るような内容ではないし、なにかを期待しているわけでもないけど、誰からも関心を持たれなかったらそれはそれで発表者として寂しいなという気持ちもあって、ついつい見てしまった。ほんの2-3人でもいいから当日は発表を聴いてくれると嬉しい。そして、その流れで質問をしてくれればと考えている。もし当日、誰も聴いてくれなかったらスタッフの人が質問してくれるんやろか？</p>
-<blockquote class=twitter-tweet><p lang=ja dir=ltr>JJUG CCC 2022 Spring 6月19日開催<br>[Track C] 10:25- <a href="https://twitter.com/hashtag/jjug_ccc_c?src=hash&ref_src=twsrc%5Etfw">#jjug_ccc_c</a><a href="https://twitter.com/hashtag/jjug_ccc?src=hash&ref_src=twsrc%5Etfw">#jjug_ccc</a><br>Java で作るカスタム GitHub Actions<a href=https://t.co/cwpuR7dPmJ>https://t.co/cwpuR7dPmJ</a></p>&mdash; JJUG (@JJUG) <a href="https://twitter.com/JJUG/status/1536868086938099715?ref_src=twsrc%5Etfw">June 15, 2022</a></blockquote>
-<script async src=https://platform.twitter.com/widgets.js></script>
-<h2 id=ブログ記事のレビュー>ブログ記事のレビュー</h2>
-<p>朝一で昨日書いた記事を読み返しながら推敲した。やっぱり一晩寝ると、文章の粗が目立ってみえて細かい表現をあちこち直していた。その後に身近な人たちに記事のレビューをお願いして、概ね問題なさそうなので会社ブログの担当者にもレビュー依頼した。その返事はまだ返ってきていない。</p>
-<h2 id=設計ミーティング>設計ミーティング</h2>
-<p>先週から始めた <a href=/diary/posts/2022/0608/#開発チームで設計の話し>設計ミーティング</a> の2回目。時間は2時間も抑えられていて話題がなければ解散するといったやり方。今日もなんだかんだで2時間丸々話していた。うちらの開発チームは開発者で共有すべき開発情報や設計の考え方などの情報共有が不足しているんだなと、多くの時間を割いても話題が尽きないことからも実感した。私は設計を練るのが好きなのでそれ自体も楽しい。スクラムイベントで会議の時間が多い上にこのミーティングは追加で実務の時間を奪うという懸念が大いにある。しかし、2-3ヶ月やったらアプリケーションの設計や品質に何かしらよい影響を与えそうな雰囲気はしている。代わりに他のスクラムイベントを削ることはできないだろうか。</p>
 </div>
 </div>
 <div class=pagination>
