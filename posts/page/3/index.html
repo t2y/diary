@@ -56,6 +56,50 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0620/>log4j2 の設定ファイルの動的な読み込み</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-06-20
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/cli/>cli</a>&nbsp;
+#<a href=/diary/tags/logging/>logging</a>&nbsp;
+#<a href=/diary/tags/tax/>tax</a>&nbsp;
+</span>
+<div class=post-content>
+<p>0時に寝て7時に起きた。</p>
+<h2 id=バッチ処理モジュール>バッチ処理モジュール</h2>
+<p>cli でバッチ処理モジュールを作った。コマンドラインの引数パーサーと yml のパーサーを使うことにした。</p>
+<ul>
+<li><a href=https://picocli.info/>picocli</a></li>
+<li><a href=https://bitbucket.org/snakeyaml/>snakeyaml</a></li>
+</ul>
+<p>ロガー実装に <a href=https://logging.apache.org/log4j/2.x/>log4j2</a> を使っているので設定ファイルはアプリケーションの設定ファイルと log4j2 の設定ファイルの2つになる。それぞれ環境ごとに用意してエントリーポイントから起動したタイミングで明示的に設定ファイルを読み込むようにした。</p>
+<p>log4j2 の yml 設定ファイルを動的にどうやって設定するかはドキュメントにもとくに書いてなかった気がする。log4j2 のソースコードやテストコードを読みながら次のようにしたら反映された。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> Config <span style=color:#a6e22e>load</span><span style=color:#f92672>(</span>BatchEnvironment env<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    var path <span style=color:#f92672>=</span> String<span style=color:#f92672>.</span><span style=color:#a6e22e>format</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;config-%s.yml&#34;</span><span style=color:#f92672>,</span> env<span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>());</span>
+    var inputStream <span style=color:#f92672>=</span> ConfigUtil<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getClassLoader</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getResourceAsStream</span><span style=color:#f92672>(</span>path<span style=color:#f92672>);</span>
+    var yaml <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Yaml<span style=color:#f92672>(</span><span style=color:#66d9ef>new</span> Constructor<span style=color:#f92672>(</span>Config<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>));</span>
+    <span style=color:#66d9ef>return</span> yaml<span style=color:#f92672>.</span><span style=color:#a6e22e>load</span><span style=color:#f92672>(</span>inputStream<span style=color:#f92672>);</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><p>アプリケーションの設定は yml 設定に対応する <code>Config</code> クラスを定義しておいて次のようにして読み込む。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>initializeLogSettings</span><span style=color:#f92672>(</span>BatchEnvironment env<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> IOException <span style=color:#f92672>{</span>
+    var path <span style=color:#f92672>=</span> String<span style=color:#f92672>.</span><span style=color:#a6e22e>format</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;log4j2-%s.yml&#34;</span><span style=color:#f92672>,</span> env<span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>());</span>
+    var inputStream <span style=color:#f92672>=</span> ConfigUtil<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getClassLoader</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getResourceAsStream</span><span style=color:#f92672>(</span>path<span style=color:#f92672>);</span>
+    var source <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ConfigurationSource<span style=color:#f92672>(</span>inputStream<span style=color:#f92672>);</span>
+    var configuration <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> YamlConfigurationFactory<span style=color:#f92672>().</span><span style=color:#a6e22e>getConfiguration</span><span style=color:#f92672>(</span><span style=color:#66d9ef>null</span><span style=color:#f92672>,</span> source<span style=color:#f92672>);</span>
+    Configurator<span style=color:#f92672>.</span><span style=color:#a6e22e>initialize</span><span style=color:#f92672>(</span>configuration<span style=color:#f92672>);</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><p>ちょっとした cli を作るときにちょっとしたライブラリがあると楽でよい。</p>
+<h2 id=欠損金の繰り戻し還付の申請の誤り>欠損金の繰り戻し還付の申請の誤り</h2>
+<p>国税局から電話がかかってきた。初めて提出した欠損金の繰り戻し還付の申請があちこち間違ってますよと。申請書類と一緒に法人税の申告書もみてもらっていて、還付申請した金額も申告の別表1に記入する必要があって、それも一緒に修正してねという話し。法人税の修正申告と還付の訂正依頼の2つが必要とのこと。税務署の人たちは本当に丁寧で親切にあれが間違っている、これが間違っていると教えてくれる。素人が法人決算やっているので初めて行う手続きの間違いはつきものだけど、税務署の人たちが教えてくれるので本当に助かる。感謝。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0619/>jjug ccc 2022 spring 参加</a>
 </h1>
 <div class=post-meta>
@@ -7473,7 +7517,7 @@ Changing F6:9D:A5:80:B7:1F trust succeeded
 <p>2時から <a href=https://www.facebookconnect.com/ja-jp/>Connect 2021</a> のイベントをみてた。3時過ぎぐらいには眠くて耐えられなくなってそのまま寝落ちしたら7時に起きた。本当は6時から金朝ツメトギの朝活の日だったのに寝坊して参加できなかった。なんか疲れて家に帰って13時から17時まで寝てた。生活のリズムを崩すと大きく集中力がなくなる。その後、またオフィスに行って作業してた。</p>
 <h2 id=connect-2021>Connect 2021</h2>
 <p>マーク・ザッカーバーグの基調講演を聞いていると、機械学習の次のテックの波はメタバースなのかなぁとか思ったりもしたけど、あとで <a href=https://nianticlabs.com/blog/real-world-metaverse/>メタバースはディストピアの悪夢です。より良い現実の構築に焦点を当てましょう。</a> を読んでいて、やっぱり違うよなぁとも思った。自分がメタバースの世界で活動したり、アプリケーション開発をやってないから他人の意見に引っ張らられる。いずれにしても自分でちょっとやってみて、メタバースとの今後の付き合い方を考えないといけないということだけは理解した。今日の時点ではこのツィートがおもしろかった。</p>
-<blockquote class=twitter-tweet><p lang=zxx dir=ltr><a href=https://t.co/4UHSycJ9HR>pic.twitter.com/4UHSycJ9HR</a></p>&mdash; seya (@sekikazu01) <a href="https://twitter.com/sekikazu01/status/1453963389420531714?ref_src=twsrc%5Etfw">October 29, 2021</a></blockquote>
+<blockquote class=twitter-tweet><p lang=und dir=ltr><a href=https://t.co/4UHSycJ9HR>pic.twitter.com/4UHSycJ9HR</a></p>&mdash; seya (@sekikazu01) <a href="https://twitter.com/sekikazu01/status/1453963389420531714?ref_src=twsrc%5Etfw">October 29, 2021</a></blockquote>
 <script async src=https://platform.twitter.com/widgets.js></script>
 <h2 id=みんなの-python-勉強会>みんなの Python 勉強会</h2>
 <p>あべさんから依頼がきて <a href=https://startpython.connpass.com/event/228136/>みんなのPython勉強会#75</a> で発表することになった。いつだったか忘れたけど、コロナ禍になる前だったと思うけど、いつか発表してほしいみたいな話しをしたりしながら機会がなくていまに至るというのもあって、内容があうならいっかという感じで引き受けた。20-30分程度でできるPyとエキPy第3版の話しを半々ずつみたいな内容でやるつもり。週末に内容を詰めて資料を作るつもり。Python は普段使いのツールとして使っているものの、お仕事で Go や Java で開発するようになってからあまり深く関わらないようになってしまった。ずっと Python コミュニティの勉強会に行ってたから、いまでも Python の人とみられるのは仕方ないかなとも思う。</p>

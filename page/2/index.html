@@ -57,6 +57,39 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0613/>データベースを介したテストではまった話し</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-06-13
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/spring-boot/>spring boot</a>&nbsp;
+#<a href=/diary/tags/testing/>testing</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#spring-の-transactional-アノテーション>spring の Transactional アノテーション</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>1時に寝て7時に起きた。帰りにふらっと仲のよい焼き鳥屋さんに寄ったらちょっとしたハプニングがあって長居してしまった。他に来ていたお客さんのカップルが別れ話を始め、こじれてややこしい状況になって、この騒動が一段落しないと席を立てない空気になってしまって終わるのを待ってた。マスターの知り合いらしくて、そのお客さんが帰ってから当事者たちの背景を聞いたりしてた。人生いろいろあるよなぁ。</p>
+<h2 id=spring-の-transactional-アノテーション>spring の Transactional アノテーション</h2>
+<p>spring フレームワークには <a href=https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html>Transactional</a> というアノテーションがある。<a href=https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/test/context/SpringBootTest.html>SpringBootTest</a> を使ったテストのときに使うと、テストメソッドの終了時に自動的にデータベースへの書き込みがロールバックされて便利なことを <a href=/diary/posts/2022/0208/#テストコードのリファクタリング>テストコードのリファクタリング</a> をしていたときに気付いた。</p>
+<p>スレッドプールを使ってマルチスレッドで並行実行する処理を書いてそのテストを書いてみたら意図した結果にならない。なんでだろう？と2時間ほどはまってデバッグしていた。テストデータの書き込みが、実際にはデータベースにコミットされていないので、テストを実行しているスレッド以外のワーカースレッドからデータベースにアクセスしてもテストデータを参照できないからだと気付いた。データベースのトランザクションに細工すると、こういうはまりどころがあるなぁと気付いて Transactional を使わずに普通にテストを書いた。その分、自分でテストメソッドが呼ばれてコミットされたテストデータを削除する必要がある。調べていたときに他にも副作用がいろいろあるよという記事もみつけた。</p>
+<ul>
+<li><a href=https://dev.to/henrykeys/don-t-use-transactional-in-tests-40eb>Don’t Use @Transactional in Tests</a></li>
+</ul>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0612/>オーディオコンテンツにお金を払う</a>
 </h1>
 <div class=post-meta>
@@ -277,40 +310,6 @@ forest nook
 <p>インフラタスクも一段落したのでアプリケーション開発の手伝いをしている。言うてももうすぐ feature freeze で大半の機能は fix しているのでサービスインに向けての運用系のタスクを先行して取っているだけ。簡単なサーバーサイドの修正を行い、割り当てられたタスクの内容を確認したり、スクラムイベントのふりかえりをしたり、ドキュメントを書いたりしたら1日が終わってしまった。ワーケーションへ行ってきた疲れが残っているのか、インフラタスクが落ち着いて次のタスクへの切り替わりのせいか、あまり集中できなかった。6月の週末はちょっと休んでもいいかもしれない。</p>
 <h2 id=ワーケーションのまとめ>ワーケーションのまとめ</h2>
 <p>3日目のワーケーションの記事を書き終えた。明日 podcast の収録があるからそれまでに終えようと思って無理して書き上げた。日が変わるぐらいまでは作業してたと思う。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0606/>aws sns を介した pubsub</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-06-06
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/cdk/>cdk</a>&nbsp;
-#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#lambda-関数と-sns-の連携>lambda 関数と sns の連携</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>0時に寝て4時半に起きた。21時頃からオフィスで作業してたらそのまま寝落ちした。朝の掃除機をかける音で目覚めて、始業までワーケーションのふりかえりをしていた。</p>
-<h2 id=lambda-関数と-sns-の連携>lambda 関数と sns の連携</h2>
-<p>定期実行で数百程度の web api 呼び出しを行いたい。これまで定期実行を lambda 関数で実装してきたが、負荷分散を考慮して作ってほしいと言われたので sns を使ってメッセージ分割した上で1つ1つの lambda 関数は sns のメッセージを受け取って実行されるように構成した。lambda 関数を使って pubsub するときは sns を使えばよいらしい。sns はあまり使ったことがないので私自身ノウハウをもっていないし、運用の勘所もよくわかっていない。ドキュメントをいくつか読みながら cdk のコードを書いてた。producer と consumer を lambda 関数で作成し、sns を介してリクエストの負荷分散を図る。lambda 関数は同時並行数を設定できるのでこれがスロットル制限のような役割にもなる。インフラやスクリプトのコードはすぐに実装できたが、lambda 関数の destroy にやたら時間がかかる。権限周りでいくつか設定を試すために destroy しながら検証をしたかった。destroy するのに20分はかかるので deploy や設定の手作業などをやっていると1つの設定を試すのに平気で1時間ぐらいかかってしまう。3回ぐらいやって疲れて検証作業はやや妥協した。</p>
-<ul>
-<li><a href=https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/with-sns.html>Amazon SNS でのAWS Lambdaの使用</a></li>
-<li><a href=https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html>Managing Lambda reserved concurrency</a></li>
-<li><a href=https://docs.aws.amazon.com/sns/latest/dg/sns-security-best-practices.html>Amazon SNS security best practices</a></li>
-</ul>
 </div>
 </div>
 <div class=pagination>

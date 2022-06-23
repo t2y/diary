@@ -57,6 +57,34 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0502/>新規メンバー</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-05-02
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/scrum/>scrum</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#開発メンバーの加入>開発メンバーの加入</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>23時に寝て5時に起きて2度寝して6時に起きた。今年の連休はカレンダー通りに過ごすので月曜日と金曜日の飛び石のお仕事。</p>
+<h2 id=開発メンバーの加入>開発メンバーの加入</h2>
+<p>今日から開発者が新たに加わった。6月から正社員になるそうだけど、手続きの問題なのか、5月から1ヶ月間は業務委託として働くという。正社員の開発者がいないために要件定義がうまく進まず、外部の協力会社の開発者が遊休するといった状況があったのだけど、それが改善されていくかもしれない。聞くところによると、シニア開発者らしいのでこれからバリバリ活躍されるはず。一方で1つのチームの開発者が6人というのは中途半端なサイズにもみえる。2チームに分割した方が実際の作業はやりやすいかもしれない。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0501/>chatbot やめて slack apps</a>
 </h1>
 <div class=post-meta>
@@ -280,35 +308,6 @@ forest nook
 <h2 id=ふりかえり>ふりかえり</h2>
 <p>スクラムのふりかえりで pull request のルール適用による成果について共有した。ルール適用前まで pull request のレビューに正社員のレビューを必須としていた。開発チームは協力会社主体であり、正社員は1人しかいなかった。そのため、レビュー負荷がその正社員に集中し、その人が多忙だと pull request のレビューが2-3日停滞するというのが常だった。そこで協力会社の approve でもマージできるような条件を設定したり、そもそも approve を必要としない pull request の条件を追加したり、pull request を作らずに main に直接コミットしてよい内容なども作った。ルール適用の前後で1ヶ月間のチームの平均値を比較した。</p>
 <p>その結果、findy teams の pull request の作成からクローズにかかる時間が30%に短縮された。3倍近くクローズが早くなった。私個人の「1プルリクあたりの平均マージ・クローズ時間」においても 14.7h → 4.1h に短縮された。平均で1日待たないと approve をもらえなかったのがその日中にもらえるようになったと言える。ふりかえりで成果を共有したところ、わりと成果の大きさに驚かれたのに私が驚いた。経験が浅いチームの当たり前には価値基準や手順などに乖離があるんだろうなと思えた。私にとっては当たり前のことをやって、当たり前の成果が出て、当然こうなるって話しでしかないのだが、開発を数字でしか把握できない人たちにとっては斬新にみえるのかもしれない。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0425/>本番環境反映の監督</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-04-25
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/cdk/>cdk</a>&nbsp;
-#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#インフラ作業の本番反映>インフラ作業の本番反映</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>昨日は思いっきり昼寝してしまったせいか、夜に眠れなくて3時ぐらいまで起きてて、寝たのか寝てのかよくわからない雰囲気で7時前に起きた。</p>
-<h2 id=インフラ作業の本番反映>インフラ作業の本番反映</h2>
-<p>先週対応した <a href=/diary/posts/2022/0419/>api gateway のコード化</a> を本番環境に反映した。手動で作成されていた api gateway, vpc link, セキュリティグループとそれに関連するリソース群を cdk 管理のコードで置き換える。既存のリソースを削除してから cdk でデプロイするため、失敗しても切り戻しできないのでプレッシャーがかかる。とはいえ、想定通りに作業が進捗して2時間ほどで完了した。それと並行してテスト環境では、手動で作成された rds を cdk 管理のコードで置き換える移行作業をしていた。これも一筋縄ではいかなくて右往左往しながら作業してた。これを本番環境でやるのもまた億劫だなぁと思いながら発生したエラーや事象を書き綴っていた。あと本番環境で行う大きな移行作業はこれだけ。</p>
 </div>
 </div>
 <div class=pagination>
