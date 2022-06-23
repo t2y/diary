@@ -1,4 +1,37 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>cli on forest nook</title><link>/diary/tags/cli/</link><description>Recent content in cli on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Mon, 20 Jun 2022 08:23:37 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/cli/index.xml" rel="self" type="application/rss+xml"/><item><title>log4j2 の設定ファイルの動的な読み込み</title><link>/diary/posts/2022/0620/</link><pubDate>Mon, 20 Jun 2022 08:23:37 +0900</pubDate><guid>/diary/posts/2022/0620/</guid><description>0時に寝て7時に起きた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>cli on forest nook</title><link>/diary/tags/cli/</link><description>Recent content in cli on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Tue, 21 Jun 2022 10:28:55 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/cli/index.xml" rel="self" type="application/rss+xml"/><item><title>maven で executable jar を作る</title><link>/diary/posts/2022/0621/</link><pubDate>Tue, 21 Jun 2022 10:28:55 +0900</pubDate><guid>/diary/posts/2022/0621/</guid><description>4時に寝て7時に起きた。
+maven での executable jar の作り方 gradle では作ったことがあったけど、maven では初めてなので要領がわかっていない。
+How to Create an Executable JAR with Maven How can I create an executable JAR with dependencies using Maven? これらの記事を読むと、maven-assembly-plugin を使えばいいのかな？とまずはこのプラグインで検証を始めた。古くからあるプラグインなので実績は十分なのだけど、もうあまり保守されていないのか、他プラグインから jar のマニフェストに書き込んで git のリビジョン番号が連携できてなかったり、通常の jar の生成処理を置き換えられなかったりと、あまり使い勝手のよいものではなかった。あと log4j2 と相性が悪くて意図したように設定ファイルを読み込んで初期化ができない。
+main ERROR Error processing element EcsLayout: CLASS_NOT_FOUND main ERROR Unable to locate plugin type for EcsLayout main ERROR Unable to locate plugin for EcsLayout main ERROR Could not create plugin of type class org.</description><content>&lt;p>4時に寝て7時に起きた。&lt;/p>
+&lt;h2 id="maven-での-executable-jar-の作り方">maven での executable jar の作り方&lt;/h2>
+&lt;p>gradle では作ったことがあったけど、maven では初めてなので要領がわかっていない。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://www.baeldung.com/executable-jar-with-maven">How to Create an Executable JAR with Maven&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://stackoverflow.com/questions/574594/how-can-i-create-an-executable-jar-with-dependencies-using-maven">How can I create an executable JAR with dependencies using Maven?&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>これらの記事を読むと、&lt;a href="https://maven.apache.org/plugins/maven-assembly-plugin/">maven-assembly-plugin&lt;/a> を使えばいいのかな？とまずはこのプラグインで検証を始めた。古くからあるプラグインなので実績は十分なのだけど、もうあまり保守されていないのか、他プラグインから jar のマニフェストに書き込んで git のリビジョン番号が連携できてなかったり、通常の jar の生成処理を置き換えられなかったりと、あまり使い勝手のよいものではなかった。あと log4j2 と相性が悪くて意図したように設定ファイルを読み込んで初期化ができない。&lt;/p>
+&lt;pre tabindex="0">&lt;code>main ERROR Error processing element EcsLayout: CLASS_NOT_FOUND
+main ERROR Unable to locate plugin type for EcsLayout
+main ERROR Unable to locate plugin for EcsLayout
+main ERROR Could not create plugin of type class org.apache.logging.log4j.core.appender.ConsoleAppender for element Console:
+java.lang.NullPointerException: Cannot invoke &amp;quot;org.apache.logging.log4j.core.config.plugins.util.PluginType.getElementName()&amp;quot;
+because &amp;quot;childType&amp;quot; is null java.lang.NullPointerException:
+Cannot invoke &amp;quot;org.apache.logging.log4j.core.config.plugins.util.PluginType.getElementName()&amp;quot; because &amp;quot;childType&amp;quot; is null
+&lt;/code>&lt;/pre>&lt;p>この厄介な問題をデバッグするよりも、すでにうまくいくことがわかっている &lt;a href="https://docs.spring.io/spring-boot/docs/current/maven-plugin/reference/htmlsingle/">spring-boot-maven-plugin&lt;/a> を使った方が簡単そうだったのでそうすることにした。不要な spring boot 関連の jar なども executable jar や docker イメージに含まれてしまうことだけがデメリット。そこだけ目を瞑れば log4j2 の初期化エラーも起きず、正常に動作した。やっぱり最近のアプリケーションで使われているプラグインはちゃんとしてるねみたいな話しにしておく。次の設定だけでうまくいった。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-xml" data-lang="xml">&lt;span style="color:#f92672">&amp;lt;plugin&amp;gt;&lt;/span>
+&lt;span style="color:#f92672">&amp;lt;groupId&amp;gt;&lt;/span>org.springframework.boot&lt;span style="color:#f92672">&amp;lt;/groupId&amp;gt;&lt;/span>
+&lt;span style="color:#f92672">&amp;lt;artifactId&amp;gt;&lt;/span>spring-boot-maven-plugin&lt;span style="color:#f92672">&amp;lt;/artifactId&amp;gt;&lt;/span>
+&lt;span style="color:#f92672">&amp;lt;configuration&amp;gt;&lt;/span>
+&lt;span style="color:#f92672">&amp;lt;mainClass&amp;gt;&lt;/span>com.example.myapp.Main&lt;span style="color:#f92672">&amp;lt;/mainClass&amp;gt;&lt;/span>
+&lt;span style="color:#f92672">&amp;lt;/configuration&amp;gt;&lt;/span>
+&lt;span style="color:#f92672">&amp;lt;executions&amp;gt;&lt;/span>
+&lt;span style="color:#f92672">&amp;lt;execution&amp;gt;&lt;/span>
+&lt;span style="color:#f92672">&amp;lt;goals&amp;gt;&lt;/span>
+&lt;span style="color:#f92672">&amp;lt;goal&amp;gt;&lt;/span>repackage&lt;span style="color:#f92672">&amp;lt;/goal&amp;gt;&lt;/span>
+&lt;span style="color:#f92672">&amp;lt;/goals&amp;gt;&lt;/span>
+&lt;span style="color:#f92672">&amp;lt;/execution&amp;gt;&lt;/span>
+&lt;span style="color:#f92672">&amp;lt;/executions&amp;gt;&lt;/span>
+&lt;span style="color:#f92672">&amp;lt;/plugin&amp;gt;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>log4j2 の設定ファイルの動的な読み込み</title><link>/diary/posts/2022/0620/</link><pubDate>Mon, 20 Jun 2022 08:23:37 +0900</pubDate><guid>/diary/posts/2022/0620/</guid><description>0時に寝て7時に起きた。
 バッチ処理モジュール cli でバッチ処理モジュールを作った。コマンドラインの引数パーサーと yml のパーサーを使うことにした。
 picocli snakeyaml ロガー実装に log4j2 を使っているので設定ファイルはアプリケーションの設定ファイルと log4j2 の設定ファイルの2つになる。それぞれ環境ごとに用意してエントリーポイントから起動したタイミングで明示的に設定ファイルを読み込むようにした。
 log4j2 の yml 設定ファイルを動的にどうやって設定するかはドキュメントにもとくに書いてなかった気がする。log4j2 のソースコードやテストコードを読みながら次のようにしたら反映された。

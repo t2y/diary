@@ -57,6 +57,64 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0621/>maven で executable jar を作る</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-06-21
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/cli/>cli</a>&nbsp;
+#<a href=/diary/tags/maven/>maven</a>&nbsp;
+#<a href=/diary/tags/java/>java</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#maven-での-executable-jar-の作り方>maven での executable jar の作り方</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>4時に寝て7時に起きた。</p>
+<h2 id=maven-での-executable-jar-の作り方>maven での executable jar の作り方</h2>
+<p>gradle では作ったことがあったけど、maven では初めてなので要領がわかっていない。</p>
+<ul>
+<li><a href=https://www.baeldung.com/executable-jar-with-maven>How to Create an Executable JAR with Maven</a></li>
+<li><a href=https://stackoverflow.com/questions/574594/how-can-i-create-an-executable-jar-with-dependencies-using-maven>How can I create an executable JAR with dependencies using Maven?</a></li>
+</ul>
+<p>これらの記事を読むと、<a href=https://maven.apache.org/plugins/maven-assembly-plugin/>maven-assembly-plugin</a> を使えばいいのかな？とまずはこのプラグインで検証を始めた。古くからあるプラグインなので実績は十分なのだけど、もうあまり保守されていないのか、他プラグインから jar のマニフェストに書き込んで git のリビジョン番号が連携できてなかったり、通常の jar の生成処理を置き換えられなかったりと、あまり使い勝手のよいものではなかった。あと log4j2 と相性が悪くて意図したように設定ファイルを読み込んで初期化ができない。</p>
+<pre tabindex=0><code>main ERROR Error processing element EcsLayout: CLASS_NOT_FOUND
+main ERROR Unable to locate plugin type for EcsLayout
+main ERROR Unable to locate plugin for EcsLayout
+main ERROR Could not create plugin of type class org.apache.logging.log4j.core.appender.ConsoleAppender for element Console:
+  java.lang.NullPointerException: Cannot invoke &quot;org.apache.logging.log4j.core.config.plugins.util.PluginType.getElementName()&quot;
+  because &quot;childType&quot; is null java.lang.NullPointerException:
+    Cannot invoke &quot;org.apache.logging.log4j.core.config.plugins.util.PluginType.getElementName()&quot; because &quot;childType&quot; is null
+</code></pre><p>この厄介な問題をデバッグするよりも、すでにうまくいくことがわかっている <a href=https://docs.spring.io/spring-boot/docs/current/maven-plugin/reference/htmlsingle/>spring-boot-maven-plugin</a> を使った方が簡単そうだったのでそうすることにした。不要な spring boot 関連の jar なども executable jar や docker イメージに含まれてしまうことだけがデメリット。そこだけ目を瞑れば log4j2 の初期化エラーも起きず、正常に動作した。やっぱり最近のアプリケーションで使われているプラグインはちゃんとしてるねみたいな話しにしておく。次の設定だけでうまくいった。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=color:#f92672>&lt;plugin&gt;</span>
+    <span style=color:#f92672>&lt;groupId&gt;</span>org.springframework.boot<span style=color:#f92672>&lt;/groupId&gt;</span>
+    <span style=color:#f92672>&lt;artifactId&gt;</span>spring-boot-maven-plugin<span style=color:#f92672>&lt;/artifactId&gt;</span>
+    <span style=color:#f92672>&lt;configuration&gt;</span>
+        <span style=color:#f92672>&lt;mainClass&gt;</span>com.example.myapp.Main<span style=color:#f92672>&lt;/mainClass&gt;</span>
+    <span style=color:#f92672>&lt;/configuration&gt;</span>
+    <span style=color:#f92672>&lt;executions&gt;</span>
+        <span style=color:#f92672>&lt;execution&gt;</span>
+            <span style=color:#f92672>&lt;goals&gt;</span>
+                <span style=color:#f92672>&lt;goal&gt;</span>repackage<span style=color:#f92672>&lt;/goal&gt;</span>
+            <span style=color:#f92672>&lt;/goals&gt;</span>
+        <span style=color:#f92672>&lt;/execution&gt;</span>
+    <span style=color:#f92672>&lt;/executions&gt;</span>
+<span style=color:#f92672>&lt;/plugin&gt;</span>
+</code></pre></div>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0620/>log4j2 の設定ファイルの動的な読み込み</a>
 </h1>
 <div class=post-meta>
@@ -313,35 +371,6 @@ forest nook
 <p>朝一で昨日書いた記事を読み返しながら推敲した。やっぱり一晩寝ると、文章の粗が目立ってみえて細かい表現をあちこち直していた。その後に身近な人たちに記事のレビューをお願いして、概ね問題なさそうなので会社ブログの担当者にもレビュー依頼した。その返事はまだ返ってきていない。</p>
 <h2 id=設計ミーティング>設計ミーティング</h2>
 <p>先週から始めた <a href=/diary/posts/2022/0608/#開発チームで設計の話し>設計ミーティング</a> の2回目。時間は2時間も抑えられていて話題がなければ解散するといったやり方。今日もなんだかんだで2時間丸々話していた。うちらの開発チームは開発者で共有すべき開発情報や設計の考え方などの情報共有が不足しているんだなと、多くの時間を割いても話題が尽きないことからも実感した。私は設計を練るのが好きなのでそれ自体も楽しい。スクラムイベントで会議の時間が多い上にこのミーティングは追加で実務の時間を奪うという懸念が大いにある。しかし、2-3ヶ月やったらアプリケーションの設計や品質に何かしらよい影響を与えそうな雰囲気はしている。代わりに他のスクラムイベントを削ることはできないだろうか。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0614/>ゴーストライター</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-06-14
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/writing/>writing</a>&nbsp;
-#<a href=/diary/tags/event/>event</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#ブログ記事の執筆>ブログ記事の執筆</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>0時に寝て6時に起きた。夜になにか作業をしようと考えていたけど、帰って晩ご飯食べたらだらだらしてた。</p>
-<h2 id=ブログ記事の執筆>ブログ記事の執筆</h2>
-<p>今度の jjug ccc にチームの同僚と一緒に登壇する。同僚の発表スライドをみていて15分で話すには詳細を説明できないことに気付いた。せっかくイベントで発表して、よいプラクティスもできたのにもったいないとか思い始めて、発表の補足資料となるブログ記事を書きたいと私が言い始めた。先方ものってきてくれて、会社ブログを管理している社内の担当者を紹介してくれてそこに技術記事を書こうという打ち合わせをした。聞くところによると会社のテックブログはまだなく、技術記事も1つもないという話し。今回が初めての技術記事を公開する試みになるらしい。それはともかく、<a href=https://note.com/info/n/nfa4a65bd08ea>note の新エディタ</a> が使えるようになっていたので初めて試してみた。新エディタの紹介記事を眺めてて画像のキャプションも入れられるようになったのにも気付いた。箇条書きの機能が増えたところはよいけど、勝手に段落がフォーマットされる感じが私の好みではない。エディタが勝手にフォーマットするのではなく、書き手が明示的に指示したときだけフォーマットされるような仕組みを私は好む。とはいえ、一般人は自動的によしなにやってくれる方がよいのかもしれない。半日ぐらいあーでもない、こーでもないと試行錯誤しながら一通りアウトラインに沿った草稿を書き上げた。</p>
 </div>
 </div>
 <div class=pagination>

@@ -57,6 +57,35 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0517/>datadog のログアーカイブ</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-05-17
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/datadog/>datadog</a>&nbsp;
+#<a href=/diary/tags/logging/>logging</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#datadog-のログアーカイブ>datadog のログアーカイブ</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>1時に寝て5時半に起きた。</p>
+<h2 id=datadog-のログアーカイブ>datadog のログアーカイブ</h2>
+<p>datadog には <a href="https://docs.datadoghq.com/logs/log_configuration/archives/?tab=awss3">Log Archives</a> という機能があって、datadog 経由でログをどこかのストレージに永続化できる。datadog プラットフォーム上では設定した期間内のログしか検索できず、おそらく料金の予算にあわせて期間を設定して、それが過ぎたら消えていくのだと思う。aws なら s3 に datadog に連携されたログをパイプライン処理してそのまま永続化できる。そのための s3 バケットの作成、s3 バケットへの datadog からのアクセス権限ロールの設定、datadog の aws インテグレーションの設定などをした。ドキュメントを読みながら1日あれば設定できたので難しくはない。もう cdk の設定にも慣れた感じで必要な権限を cdk の Stack としてコードで管理できるようにした。保守もばっちり。永続化されるログは gzip 圧縮されて時系列に s3 に永続化されるみたい。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0516/>helm 調査の一時中断</a>
 </h1>
 <div class=post-meta>
@@ -345,44 +374,6 @@ forest nook
 <li>helm は k8s 向けのパッケージマネージャとレポジトリマネージャーとマーケットプレイスを組み合わせたみたいなもの</li>
 </ul>
 <p>k8s 上でサードパーティのパッケージを自分で設定したい特別な理由がない限りは helm を使うのがよさそうという結論になった。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0510/>スライドデザインのレビュー</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-05-10
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/founding/>founding</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#スライドマスターのデザインレビュー>スライドマスターのデザインレビュー</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>1時に寝て6時半に起きた。</p>
-<h2 id=スライドマスターのデザインレビュー>スライドマスターのデザインレビュー</h2>
-<p>はらさんと一緒にレビューした。私とは全然視点が違うので参考になった。自分が得意ではない分野の相談相手がいると本当に助かる。いくつか取り上げる。あれこれ、私が気になったところもヒアリングしながら意見をもらった。あとでデザイナーさんにフィードバックする。</p>
-<ul>
-<li>外国人が作ると文字のレイアウトが日本語と異なることを考慮する必要がある
-<ul>
-<li>日本語には y や q のような下にはみ出る文字がない</li>
-</ul>
-</li>
-<li>スライド全体の色使いで目立たせるときの注目色を作ってもらった方がよい</li>
-<li>インジケーターのようなデザインがあると聴衆がいま発表のどの辺りかわかって嬉しい</li>
-<li>会社の自己主張が強過ぎない方がよさそう</li>
-</ul>
 </div>
 </div>
 <div class=pagination>
