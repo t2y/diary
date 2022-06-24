@@ -56,6 +56,50 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0623/>assertj を使ってみた</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-06-23
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/testing/>testing</a>&nbsp;
+</span>
+<div class=post-content>
+<p>0時に寝て6時に起きた。</p>
+<h2 id=assertdeepequals-を作った>assertDeepEquals を作った</h2>
+<p><a href=https://assertj.github.io/doc/>AssertJ</a> というアサーションライブラリを使って <code>assertDeepEquals</code> を実装した。</p>
+<p>junit4 では hamcrest という matcher が使われていて、それが <code>assertDeepEquals</code> 相当の機能を提供していたが、それが junit5 では提供されなくなったので自分で実装するか、アサーションライブラリを別途使う必要がある。</p>
+<blockquote>
+<p>現時点でJUnit5ではHamcrestのMatcherは提供せず、使用者が自由に選択する方針で進んでいます。そうなった場合、標準でサポートされるassertTrueやassertEquelsなどだけでは、ちょっと頼りなく車輪の再発明になりそうなので、候補になりそうなHamcrestとAssertJのよく使いそうなメソッド比較表を作りました。</p>
+<p><a href=https://qiita.com/disc99/items/31fa7abb724f63602dc9>JUnitのアサーションライブラリHamcrest,AssertJ比較</a></p>
+</blockquote>
+<p><a href=https://junit.org/junit5/docs/snapshot/user-guide/#writing-tests-assertions-third-party>2.4.2. Third-party Assertion Libraries</a> によると、junit は基本的なアサーション機能を提供し、より強力なアサーションはサードパーティ製の好きなライブラリを使ってくれみたいなことが書いてある。軽く github でソースコード検索しても、みんな自前で作っているんやなということも分かる。</p>
+<ul>
+<li><a href="https://github.com/search?l=Java&q=assertDeepEquals&type=Code">https://github.com/search?l=Java&q=assertDeepEquals&type=Code</a></li>
+</ul>
+<p>hamcrest はもう保守されていないようにみえるので assertj を使うことにした。assertj の機能を使うと <code>assertDeepEquals</code> を次のように実装できる。直接 assertj を使ってもよいのだけど、assertXxx という名前で使えた方が junit ベースのテストのアサートの統合性があるし、いまお手伝い先では myapp-test のような、テスト向けの共通ライブラリを提供していて、すべてのプロジェクトで既に使っているので assertj の依存関係を追加しなくてもすぐに使えるというぐらいの利便性を提供するだけのユーティリティになる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Assertions</span> <span style=color:#f92672>{</span>
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>assertDeepEquals</span><span style=color:#f92672>(</span>Object expected<span style=color:#f92672>,</span> Object actual<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        assertThat<span style=color:#f92672>(</span>expected<span style=color:#f92672>).</span><span style=color:#a6e22e>usingRecursiveComparison</span><span style=color:#f92672>().</span><span style=color:#a6e22e>isEqualTo</span><span style=color:#f92672>(</span>actual<span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span>
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>assertDeepEquals</span><span style=color:#f92672>(</span>Object expected<span style=color:#f92672>,</span> Object actual<span style=color:#f92672>,</span> String<span style=color:#f92672>...</span> fields<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        assertThat<span style=color:#f92672>(</span>expected<span style=color:#f92672>).</span><span style=color:#a6e22e>usingRecursiveComparison</span><span style=color:#f92672>().</span><span style=color:#a6e22e>comparingOnlyFields</span><span style=color:#f92672>(</span>fields<span style=color:#f92672>).</span><span style=color:#a6e22e>isEqualTo</span><span style=color:#f92672>(</span>actual<span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span>
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>assertDeepEqualsIgnoringFields</span><span style=color:#f92672>(</span>Object expected<span style=color:#f92672>,</span> Object actual<span style=color:#f92672>,</span> String<span style=color:#f92672>...</span> fields<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        assertThat<span style=color:#f92672>(</span>expected<span style=color:#f92672>).</span><span style=color:#a6e22e>usingRecursiveComparison</span><span style=color:#f92672>().</span><span style=color:#a6e22e>ignoringFields</span><span style=color:#f92672>(</span>fields<span style=color:#f92672>).</span><span style=color:#a6e22e>isEqualTo</span><span style=color:#f92672>(</span>actual<span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+</code></pre></div>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0622/>k8s の cronjob を検証中</a>
 </h1>
 <div class=post-meta>

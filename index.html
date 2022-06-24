@@ -57,6 +57,60 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0623/>assertj を使ってみた</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-06-23
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/testing/>testing</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#assertdeepequals-を作った>assertDeepEquals を作った</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>0時に寝て6時に起きた。</p>
+<h2 id=assertdeepequals-を作った>assertDeepEquals を作った</h2>
+<p><a href=https://assertj.github.io/doc/>AssertJ</a> というアサーションライブラリを使って <code>assertDeepEquals</code> を実装した。</p>
+<p>junit4 では hamcrest という matcher が使われていて、それが <code>assertDeepEquals</code> 相当の機能を提供していたが、それが junit5 では提供されなくなったので自分で実装するか、アサーションライブラリを別途使う必要がある。</p>
+<blockquote>
+<p>現時点でJUnit5ではHamcrestのMatcherは提供せず、使用者が自由に選択する方針で進んでいます。そうなった場合、標準でサポートされるassertTrueやassertEquelsなどだけでは、ちょっと頼りなく車輪の再発明になりそうなので、候補になりそうなHamcrestとAssertJのよく使いそうなメソッド比較表を作りました。</p>
+<p><a href=https://qiita.com/disc99/items/31fa7abb724f63602dc9>JUnitのアサーションライブラリHamcrest,AssertJ比較</a></p>
+</blockquote>
+<p><a href=https://junit.org/junit5/docs/snapshot/user-guide/#writing-tests-assertions-third-party>2.4.2. Third-party Assertion Libraries</a> によると、junit は基本的なアサーション機能を提供し、より強力なアサーションはサードパーティ製の好きなライブラリを使ってくれみたいなことが書いてある。軽く github でソースコード検索しても、みんな自前で作っているんやなということも分かる。</p>
+<ul>
+<li><a href="https://github.com/search?l=Java&q=assertDeepEquals&type=Code">https://github.com/search?l=Java&q=assertDeepEquals&type=Code</a></li>
+</ul>
+<p>hamcrest はもう保守されていないようにみえるので assertj を使うことにした。assertj の機能を使うと <code>assertDeepEquals</code> を次のように実装できる。直接 assertj を使ってもよいのだけど、assertXxx という名前で使えた方が junit ベースのテストのアサートの統合性があるし、いまお手伝い先では myapp-test のような、テスト向けの共通ライブラリを提供していて、すべてのプロジェクトで既に使っているので assertj の依存関係を追加しなくてもすぐに使えるというぐらいの利便性を提供するだけのユーティリティになる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Assertions</span> <span style=color:#f92672>{</span>
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>assertDeepEquals</span><span style=color:#f92672>(</span>Object expected<span style=color:#f92672>,</span> Object actual<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        assertThat<span style=color:#f92672>(</span>expected<span style=color:#f92672>).</span><span style=color:#a6e22e>usingRecursiveComparison</span><span style=color:#f92672>().</span><span style=color:#a6e22e>isEqualTo</span><span style=color:#f92672>(</span>actual<span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span>
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>assertDeepEquals</span><span style=color:#f92672>(</span>Object expected<span style=color:#f92672>,</span> Object actual<span style=color:#f92672>,</span> String<span style=color:#f92672>...</span> fields<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        assertThat<span style=color:#f92672>(</span>expected<span style=color:#f92672>).</span><span style=color:#a6e22e>usingRecursiveComparison</span><span style=color:#f92672>().</span><span style=color:#a6e22e>comparingOnlyFields</span><span style=color:#f92672>(</span>fields<span style=color:#f92672>).</span><span style=color:#a6e22e>isEqualTo</span><span style=color:#f92672>(</span>actual<span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span>
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>assertDeepEqualsIgnoringFields</span><span style=color:#f92672>(</span>Object expected<span style=color:#f92672>,</span> Object actual<span style=color:#f92672>,</span> String<span style=color:#f92672>...</span> fields<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        assertThat<span style=color:#f92672>(</span>expected<span style=color:#f92672>).</span><span style=color:#a6e22e>usingRecursiveComparison</span><span style=color:#f92672>().</span><span style=color:#a6e22e>ignoringFields</span><span style=color:#f92672>(</span>fields<span style=color:#f92672>).</span><span style=color:#a6e22e>isEqualTo</span><span style=color:#f92672>(</span>actual<span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+</code></pre></div>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0622/>k8s の cronjob を検証中</a>
 </h1>
 <div class=post-meta>
@@ -380,41 +434,6 @@ main ERROR Could not create plugin of type class org.apache.logging.log4j.core.a
 <li><a href=https://www.incredibuild.com/blog/extra-ci-flexibility-with-github-runner-on-aws-spot-instances>Extra CI flexibility with Github Runner on AWS Spot Instances</a></li>
 </ul>
 <p>消去法で eks (k8s) でやることにした。<a href=https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/>CronJob</a> を使って実装していくことになりそう。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0616/>バッチ処理のインフラ構築に着手</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-06-16
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
-#<a href=/diary/tags/event/>event</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#ブログ記事のレビュー>ブログ記事のレビュー</a></li>
-<li><a href=#aws-batch>aws batch</a></li>
-<li><a href=#インフレ研究会>インフレ研究会</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>0時に寝て5時に起きた。なんか体調がいまいちな雰囲気。</p>
-<h2 id=ブログ記事のレビュー>ブログ記事のレビュー</h2>
-<p>昨日の続き。会社ブログの担当者にもレビューも通って体裁を整えて会社ブログにも転記された。あとは情シスグループのリーダーレビューが最終チェックになるみたい。</p>
-<h2 id=aws-batch>aws batch</h2>
-<p>バッチ処理のインフラを構築しようと考えていて、これまで aws lambda で作られているのが非効率だなと思うようになってきた。<a href=https://aws.amazon.com/jp/batch/>aws batch</a> を使えないかを検討している。いまバッチ処理のための web api のエンドポイントを実装するスタイルになっていて、この流れでやっていくと将来的にバッチ処理が api サーバーに増えていく。たまたま負荷の高いバッチ処理と通常のリクエストがスパイクするとサーバーを過負荷にして通常業務に影響を及ぼす懸念がある。ec2 を作って cron でバッチ処理動かせばいいやんという気もするけど、せっかく cdk を使っているのでフルマネージドな仕組みで構築できればカッコいいなとも思ったりする。</p>
-<h2 id=インフレ研究会>インフレ研究会</h2>
-<p>たまたまみかけたので <a href=https://fin-py.connpass.com/>fin-py</a> のインフレ研究会に参加した。前は twitter spaces でやっていて、私はスマホに twitter アプリが入っていないから参加しにくくて微妙だった。最近は <a href=https://brave.com/ja/talk/>brave talk</a> でやっているのでパソコンからも参加しやすくなった。物価、金利、中央銀行の金融政策などの話しを私はまったくわからないのでほとんど聞いているだけ。聞いているうちに世の中のお金の流れが少しずつわかってくればいいかな。国債の値段が下がれば金利が上がるみたいなそういう話しを聞いてそうなんだという感じ。</p>
 </div>
 </div>
 <div class=pagination>

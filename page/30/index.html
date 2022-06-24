@@ -57,6 +57,42 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2021/1202/>スクラムイベントにもの思い</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2021-12-02
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/scrum/>scrum</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#スクラムイベント>スクラムイベント</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<p>23時に寝て6時半に起きた。昨日は疲労困憊だったのでなんもせずすぐ寝た。</p>
+<h2 id=スクラムイベント>スクラムイベント</h2>
+<p>お仕事のスクラム開発で木曜日はスプリントレビューとプロダクトバックログリファインメントを行う。主にステークホルダーとプロジェクトオーナーがプロダクトバックログアイテムの優先度を議論したり、タスクに細分化されていない課題をタスクにしていくための作業に当てたりしている。本当はタスク化されたイシューをさらにリファイメントするイベントなのだろうだけど、まだそこまで業務やチームの体制が成熟していないため、タスクの細分化のための時間になっていたりしている。</p>
+<p>これらのイベントで開発者がイニシアティブをとることはないけど、プロダクトオーナーやその業務チームにいるメンバーたちがどうやって業務をタスク化しているかのやり取りもみえたりする。開発者にとってそのやり取りをみていることに意味があるかどうかはまだ私にはわからないが、業務チームのメンバーがどういった働き方をしているかを知るきっかけにはなる。業務チームは <a href=https://miro.com/>miro</a> を使ってメンバーみんなで同時編集しながら課題を付箋代わりのメモに落としていく。その個々のメモがタスクに近いものになるのだろうけど、私からみたら業務すべてを知っている人がまとめて細分化してドキュメントに書き記して2-3回みんなでレビューすれば終わるようなものを、みんなで付箋紙に書いていって整合性が取れているのかどうかわからないメモの固まりを作っているようにみえる。この作業はみんなでやらないと進捗しないので1週間に1回とかになる。</p>
+<ul>
+<li>チームが扱うすべての業務を知っているメンバーはいない</li>
+<li>業務に必要な機能の優先順位や優先度を決める権限をもっていない</li>
+<li>情報が足りないと思ったときにメンバーが自律的に動いて補う体制が整っていない</li>
+</ul>
+<p>あとステークホルダーが話す要件や仕様に関わってくる話の大半が口頭で行われていてドキュメントや課題管理に文章として書き記されていない。だから同じ話しを何度も繰り返し聞くようなケースも発生する。わからないことを聞くことも、繰り返し聞くことも問題ではないが、議事録以外にそこで話す内容がドキュメント化されないのはどうしてだろう？という気もした。もっともっと文章を書かないと情報共有やノウハウをためることにはつながっていかないだろうということも垣間みえる。</p>
+<p>総括すれば、どんな開発方法論を使っても、リーダーやマネージャークラスが圧倒的に文章を書けないと、その配下のメンバーは自律的に行動できないというだけの話しでしかないが、どうやったら解消できるか？はまだまだこれからの私の課題でもある。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2021/1201/>師走入り</a>
 </h1>
 <div class=post-meta>
@@ -328,43 +364,6 @@ forest nook
 <ul>
 <li><a href=https://github.com/github/roadmap/issues/74>Actions: Use actions from internal repositories #74</a></li>
 </ul>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2021/1125/>コーディングスタイルの共通化</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2021-11-25
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/java/>java</a>&nbsp;
-#<a href=/diary/tags/ide/>ide</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#ソースコードのフォーマッター>ソースコードのフォーマッター</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>1時半に寝て6時に起きた</p>
-<h2 id=ソースコードのフォーマッター>ソースコードのフォーマッター</h2>
-<p>go 言語の <a href=https://pkg.go.dev/cmd/gofmt>gofmt</a> が成功をおさめたことからどんなプログラミング言語でもコーディングスタイルはツールで自動整形するのがよいという雰囲気が醸成され、とくに業務の開発においては統一すべしというルールを設けている組織が多いと思う。java はこの領域では後塵を拝していると言ってよいと思う。歴史的に java の言語仕様と ide は相性がよかったため、ide がコーディングスタイルを自動整形していた結果、ide ごとに互換性のない異なるコーディングスタイルが使われるようになってしまった。私がアリエルで開発していた頃、開発者はみんな eclipse しか使ってなかったので問題にならなかった。しかし、いまや私が知っている ide だけでも次のものがある。</p>
-<ul>
-<li><a href=https://www.eclipse.org/>eclipse</a></li>
-<li><a href=https://www.jetbrains.com/idea/>intellij idea</a></li>
-<li><a href=https://netbeans.apache.org/>netbeans</a></li>
-<li><a href=https://code.visualstudio.com/>vscode</a></li>
-</ul>
-<p>この問題を解決するツールとして最もメジャーなのは <a href=https://github.com/google/google-java-format>google-java-format</a> で、当初はこのツールを導入しようと考えていた。しかし、開発チームのテックリードから google-java-format のコーディングスタイルはひどい、一番優れているのは intellij idea だというお気持ちを表明された。導入を止めろと言われたわけではないが、チームに入ったばかりの私はテックリードのお気持ちに忖度して google-java-format の導入を断念した。代わりに intellij idea のデフォルトフォーマットをどうやって他の ide を共有するかを調べたところ、<a href=https://www.jetbrains.com/help/idea/configuring-code-style.html#editorconfig>Manage code style on a directory level with EditorConfig</a> で <a href=https://editorconfig.org/>EditorConfig</a> の設定 (<code>.editorconfig</code>) を intellij idea で再利用できることがわかった。</p>
-<p>うちの開発チームのメンバーは intellij idea と vscode しか使っていないため、現状はこれで解決できるように思えた。intellij idea にはデフォルトで EditorConfig プラグインがバンドルされていて有効になっている。リポジトリのルートディレクトリに <code>.editorconfig</code> があれば自動的にそれを読み込んでくれる。そこで intellij idea のデフォルト設定を <code>.editorconfig</code> 形式でエクスポートして、それをリポジトリのルートディレクトリに配置することでコーディングスタイルのフォーマッターを共通化できた。</p>
 </div>
 </div>
 <div class=pagination>
