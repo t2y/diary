@@ -57,6 +57,57 @@ forest nook
 <div class=posts>
 <div class="post on-list">
 <h1 class=post-title>
+<a href=/diary/posts/2022/0617/>接待もどき</a>
+</h1>
+<div class=post-meta>
+<span class=post-date>
+2022-06-17
+</span>
+</div>
+<span class=post-tags>
+#<a href=/diary/tags/hospitality/>hospitality</a>&nbsp;
+#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
+</span>
+<div class=table-of-contents>
+<h2>
+目次
+</h2>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#親戚と親の来訪>親戚と親の来訪</a></li>
+<li><a href=#バッチ処理のプラットフォーム検討>バッチ処理のプラットフォーム検討</a></li>
+</ul>
+</nav>
+</div>
+<div class=post-content>
+<h2 id=親戚と親の来訪>親戚と親の来訪</h2>
+<p>姪が体調悪くて病院で検査を受けるという話しで姉夫婦が車で神戸にやってきて、それに便乗して親もやってきた。朝から道案内したりとかしてた。お昼ご飯は <a href=https://hisimitu.thebase.in/>ヒシミツ醤油</a> というお店に行った。週末とか前を通ると10人は並んでいる。なんでこんなに人気があるんだろう？とずっと不思議に思ってた。どうやら醤油も売っているんだけど、醤油によくあう和食の定食も食べられる飲食店らしい。ご飯が8種類あってお替り自由なのでバリエーションの広さを楽しめる。普通のランチよりちょっと贅沢な雰囲気がするので接待などにも向きそう。但し、ランチのピーク時間外さないと並ばないといけない。</p>
+<figure><img src=/diary/img/2022/0617_lunch.jpg>
+</figure>
+<p>その後、親戚のお土産に <a href=https://www.kameido.co.jp/tonowa-index.html>亀井堂総本店のバターサンド</a> を買ってきた。西元町にあるお店で、4年ほど前にたまたまお店の前の通りかかったきっかけで買ってみたらおいしかったのでそれからずっと印象に残っていて、4年ぶりに買ってみた。老舗のお菓子なので接待のお土産にはちょうどよさそうな気がする。たまたま親戚がきたから接待モードになってお店とお土産を開拓してた。</p>
+<h2 id=バッチ処理のプラットフォーム検討>バッチ処理のプラットフォーム検討</h2>
+<p>昨日の続き。aws batch の機能説明や faq を読んでいたらよさそうなので触ってみた。事前に次の3つのリソースを設定しないといけない。</p>
+<ul>
+<li>コンピューティング環境</li>
+<li>ジョブキュー</li>
+<li>ジョブ定義</li>
+</ul>
+<p>これらの設定をした後、ジョブというリソースを発行することでジョブ定義の処理が実行される。ecs, fargate, ec2, ec2 spot instace から環境を選べる。ec2 spot instance を使えば安くていいかと思っていたんだけど、セキュリティを考慮すると外部のよく分からんインスタンスでバッチ処理を実行するのは懸念があるなぁと思い始めてやめることにした。aws lambda の代わりに aws batch を使うのはセキュリティの懸念さえなければ悪くはないんだけど、インフラの面倒さはどっちも同じぐらいで immutable infrastructure でバッチ処理のようなものを作るのはなかなか面倒くさい。</p>
+<p>チームメンバーと3つの選択肢について議論した。</p>
+<ul>
+<li>aws batch を使う</li>
+<li>eks (k8s) を使う</li>
+<li>github actions を使う</li>
+</ul>
+<p>github actions の self-hosted runner に ec2 spot instance を使う記事もみかけた。これもいいかなと思ったんだけど、aws batch 同様、セキュリティの懸念は払拭できないのでダメだと断念した。</p>
+<ul>
+<li><a href=https://www.incredibuild.com/blog/extra-ci-flexibility-with-github-runner-on-aws-spot-instances>Extra CI flexibility with Github Runner on AWS Spot Instances</a></li>
+</ul>
+<p>消去法で eks (k8s) でやることにした。<a href=https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/>CronJob</a> を使って実装していくことになりそう。</p>
+</div>
+</div>
+<div class="post on-list">
+<h1 class=post-title>
 <a href=/diary/posts/2022/0616/>バッチ処理のインフラ構築に着手</a>
 </h1>
 <div class=post-meta>
@@ -283,35 +334,6 @@ forest nook
 <li><a href=https://www.reloclub.jp/relotimes/article/14803>役員に福利厚生は存在しない？迷いやすいポイントを解説</a></li>
 </ul>
 <p>高速道路の料金を etc の利用履歴から取得できないかな？と考えてググると、<a href=https://www.etc-meisai.jp/index.html>ETC利用照会サービス</a> というのをみつけた。初期登録するにはカード番号と直近の利用履歴、車両番号と車載器管理番号が必要になる。レンタカーの領収書には車載器管理番号までは記載されていなかったので店舗に電話して尋ねると快く教えてくれた。これでETC利用照会サービスに登録できたものの、登録後に利用明細が表示されるまで4時間かかるという。バッチ処理のタイミングなのか、なにかわからないけど、4時間は長過ぎでしょとか思いながら待った。待った甲斐があって明細は csv と pdf 出力できた。記録としてデータを残す上でダウンロード機能はありがたい。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0610/>リファクタリングとオブジェクト指向プログラミング</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-06-10
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/refactoring/>refactoring</a>&nbsp;
-</span>
-<div class=table-of-contents>
-<h2>
-目次
-</h2>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#既存ロジックのリファクタリング>既存ロジックのリファクタリング</a></li>
-</ul>
-</nav>
-</div>
-<div class=post-content>
-<p>0時に寝て8時に起きた。先週末の疲れが溜まってバテバテ。直近の1週間で睡眠時間が短いときは3-4時間しか寝てないのでなんか朝起きれなくて調子悪いなと思ったら単純に睡眠不足よね。なんか安心した。</p>
-<h2 id=既存ロジックのリファクタリング>既存ロジックのリファクタリング</h2>
-<p>ちょっと前にタイムラインで「値オブジェクト」の定義の話題で盛り上がっていた。私は詳しくないのでどちらが正しいのかの白黒を付けられないが、値オブジェクトがどういうものかの定義を知らなくても、オブジェクト指向プログラミングとしてデータ + メソッドでカプセル化していくモジュールの概念からすると普通のことであって、それの特殊ケースに名前が付いている・付いていないという議論だったのではないかと思う。</p>
-<p>今日たまたま既存のある処理に機能を拡張するため、既存のコードを読んでいて、ロジックを扱うコンポーネントが肥大化していて、ここに手を入れていくとさらにコードの見通しが悪くなるように思えた。そのロジックコンポーネントの半分は出力用の DTO を生成する処理が占めていて、DTO を生成する処理をオブジェクトとして切り出すことでロジックコンポーネントを半分に分割できることに気付いた。パラメーターとして7つの値をそのオブジェクトの入力として、そのオブジェクトの内部であれこれやって、最終的に必要な DTO を出力できればよい。1つのコンポーネントを2つのコンポーネントに分割したことで、それぞれのコンポーネントのスコープにおけるメソッドが半分になったというだけの話し。一般的なカプセル化の話し。難しい話しをしなくても設計やオブジェクト指向プログラミングの基本的な考え方などをメンバーに教えていければいいんだけど、私はあくまで協力会社のお手伝いなので、教える業務は担っていない。次の契約更新のときにインフラやプログラミングを経験の浅い人たちに教えましょうか？みたいな話しもしたいと考えている。</p>
 </div>
 </div>
 <div class=pagination>
