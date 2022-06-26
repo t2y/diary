@@ -1,131 +1,25 @@
-<!doctype html><html lang=en>
-<head>
-<title>最低1000万件のデータがあると思え :: forest nook</title>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="0時に寝て6時半に起きた。
+<!doctype html><html lang=en><head><title>最低1000万件のデータがあると思え :: forest nook</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="0時に寝て6時半に起きた。
 映像研には手を出すな お奨めされたので 映像研には手を出すな を見始めた。あまり現実と空想が入り交じる展開が新鮮と言えば新鮮だし、ストーリーがわかりにくい気もしてもやもやする。浅草氏も「アニメは設定が命」と言っているし、この設定はどうなの？とか思いながら、それでもみているんだからいいんだろうって感じ？最初はごちゃごちゃしててわかりにくい感じがしたんだけど、見続けていると徐々に独特の世界観に慣れてきたのか、ところどころおもしろいなと思うようにはなってきた。また全話みてから総括する。
 サブクエリで group by お仕事でたまたま触っているところの sql をみたら次のようなものがあった。サブクエリで group by 句を使っている。仮に mytable_detail が1億件ぐらいあったらこんな sql 動くわけがない。データが溜まるごとに遅くなっていって、しきい値を超えると急激にパフォーマンスが悪化する時限爆弾みたいな sql だと思う。お手伝い先は or mapper を使っていないので開発者が sql を手で書いているにも関わらず、こんな sql が実運用されてしまうような開発体制には大きな課題があるなぁとか考え込んでしまった。
 SELECT mytable.*, t.is_some FROM mytable LEFT JOIN LATERAL ( SELECT mytable_id, bool_or(mytable_detail.is_some) as is_some FROM mytable_detail WHERE mytable_detail.mytable_id = mytable.mytable_id GROUP BY mytable_detail.mytable_id ) as t on t.mytable_id = mytable.mytable_id WHERE mytable.foreign_key_id = :foreignKeyId ORDER BY mytable.mytable_id; 以前、お手伝いしていた会社の CTO が社内の開発者のデータの取り扱いの指針として書いた記事が次になる。社内では 最低 1000万件のデータがあると思ってコードを書けと強く啓蒙していた。いまどきのデータ量として1000万件というのはよい指標だと思う。
- 1000万件オーバーのレコードのデータをカジュアルに扱うための心構え  ">
-<meta name=keywords content>
-<meta name=robots content="noodp">
-<link rel=canonical href=/diary/posts/2022/0316/>
-<link rel=stylesheet href=/diary/assets/style.css>
-<link rel=stylesheet href=/diary/assets/green.css>
-<link rel=stylesheet href=/diary/style.css>
-<link rel=apple-touch-icon href=/diary/img/apple-touch-icon-192x192.png>
-<link rel="shortcut icon" href=/diary/favicon.ico>
-<meta name=twitter:card content="summary">
-<meta name=twitter:site content="t2y">
-<meta name=twitter:creator content>
-<meta property="og:locale" content="en">
-<meta property="og:type" content="article">
-<meta property="og:title" content="最低1000万件のデータがあると思え">
-<meta property="og:description" content="0時に寝て6時半に起きた。
+1000万件オーバーのレコードのデータをカジュアルに扱うための心構え "><meta name=keywords content><meta name=robots content="noodp"><link rel=canonical href=/diary/posts/2022/0316/><link rel=stylesheet href=/diary/assets/style.css><link rel=stylesheet href=/diary/assets/green.css><link rel=stylesheet href=/diary/style.css><link rel=apple-touch-icon href=/diary/img/apple-touch-icon-192x192.png><link rel="shortcut icon" href=/diary/favicon.ico><meta name=twitter:card content="summary"><meta name=twitter:site content="t2y"><meta name=twitter:creator content><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="og:title" content="最低1000万件のデータがあると思え"><meta property="og:description" content="0時に寝て6時半に起きた。
 映像研には手を出すな お奨めされたので 映像研には手を出すな を見始めた。あまり現実と空想が入り交じる展開が新鮮と言えば新鮮だし、ストーリーがわかりにくい気もしてもやもやする。浅草氏も「アニメは設定が命」と言っているし、この設定はどうなの？とか思いながら、それでもみているんだからいいんだろうって感じ？最初はごちゃごちゃしててわかりにくい感じがしたんだけど、見続けていると徐々に独特の世界観に慣れてきたのか、ところどころおもしろいなと思うようにはなってきた。また全話みてから総括する。
 サブクエリで group by お仕事でたまたま触っているところの sql をみたら次のようなものがあった。サブクエリで group by 句を使っている。仮に mytable_detail が1億件ぐらいあったらこんな sql 動くわけがない。データが溜まるごとに遅くなっていって、しきい値を超えると急激にパフォーマンスが悪化する時限爆弾みたいな sql だと思う。お手伝い先は or mapper を使っていないので開発者が sql を手で書いているにも関わらず、こんな sql が実運用されてしまうような開発体制には大きな課題があるなぁとか考え込んでしまった。
 SELECT mytable.*, t.is_some FROM mytable LEFT JOIN LATERAL ( SELECT mytable_id, bool_or(mytable_detail.is_some) as is_some FROM mytable_detail WHERE mytable_detail.mytable_id = mytable.mytable_id GROUP BY mytable_detail.mytable_id ) as t on t.mytable_id = mytable.mytable_id WHERE mytable.foreign_key_id = :foreignKeyId ORDER BY mytable.mytable_id; 以前、お手伝いしていた会社の CTO が社内の開発者のデータの取り扱いの指針として書いた記事が次になる。社内では 最低 1000万件のデータがあると思ってコードを書けと強く啓蒙していた。いまどきのデータ量として1000万件というのはよい指標だと思う。
- 1000万件オーバーのレコードのデータをカジュアルに扱うための心構え  ">
-<meta property="og:url" content="/diary/posts/2022/0316/">
-<meta property="og:site_name" content="forest nook">
-<meta property="og:image" content="/diary">
-<meta property="og:image:width" content="2048">
-<meta property="og:image:height" content="1024">
-<meta property="article:published_time" content="2022-03-16 07:33:00 +0900 +0900">
-</head>
-<body class=green>
-<div class="container full headings--one-size">
-<header class=header>
-<div class=header__inner>
-<div class=header__logo>
-<a href=/diary>
-<div class=logo>
-forest nook
-</div>
-</a>
-</div>
-<div class=menu-trigger>menu</div>
-</div>
-<nav class=menu>
-<ul class="menu__inner menu__inner--desktop">
-<li><a href=/diary/about>自己紹介</a></li>
-<li><a href=/diary/dates>月別一覧</a></li>
-<li><a href=/diary/tags>タグ一覧</a></li>
-</ul>
-<ul class="menu__inner menu__inner--mobile">
-<li><a href=/diary/about>自己紹介</a></li>
-<li><a href=/diary/dates>月別一覧</a></li>
-<li><a href=/diary/tags>タグ一覧</a></li>
-</ul>
-</nav>
-</header>
-<div class=content>
-<div class=post>
-<h1 class=post-title>
-<a href=/diary/posts/2022/0316/>最低1000万件のデータがあると思え</a></h1>
-<div class=post-meta>
-<span class=post-date>
-2022-03-16
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/animation/>animation</a>&nbsp;
-#<a href=/diary/tags/sql/>sql</a>&nbsp;
-</span>
-<div class=post-content><div>
-<p>0時に寝て6時半に起きた。</p>
-<h2 id=映像研には手を出すな>映像研には手を出すな<a href=#映像研には手を出すな class=hanchor arialabel=Anchor>&#8983;</a> </h2>
-<p>お奨めされたので <a href=http://eizouken-anime.com/>映像研には手を出すな</a> を見始めた。あまり現実と空想が入り交じる展開が新鮮と言えば新鮮だし、ストーリーがわかりにくい気もしてもやもやする。浅草氏も「アニメは設定が命」と言っているし、この設定はどうなの？とか思いながら、それでもみているんだからいいんだろうって感じ？最初はごちゃごちゃしててわかりにくい感じがしたんだけど、見続けていると徐々に独特の世界観に慣れてきたのか、ところどころおもしろいなと思うようにはなってきた。また全話みてから総括する。</p>
-<h2 id=サブクエリで-group-by>サブクエリで group by<a href=#サブクエリで-group-by class=hanchor arialabel=Anchor>&#8983;</a> </h2>
-<p>お仕事でたまたま触っているところの sql をみたら次のようなものがあった。サブクエリで group by 句を使っている。仮に mytable_detail が1億件ぐらいあったらこんな sql 動くわけがない。データが溜まるごとに遅くなっていって、しきい値を超えると急激にパフォーマンスが悪化する時限爆弾みたいな sql だと思う。お手伝い先は or mapper を使っていないので開発者が sql を手で書いているにも関わらず、こんな sql が実運用されてしまうような開発体制には大きな課題があるなぁとか考え込んでしまった。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style=color:#66d9ef>SELECT</span> mytable.<span style=color:#f92672>*</span>, t.is_some
-<span style=color:#66d9ef>FROM</span> mytable
-<span style=color:#66d9ef>LEFT</span> <span style=color:#66d9ef>JOIN</span> <span style=color:#66d9ef>LATERAL</span> (
-    <span style=color:#66d9ef>SELECT</span> mytable_id, bool_or(mytable_detail.is_some) <span style=color:#66d9ef>as</span> is_some
-    <span style=color:#66d9ef>FROM</span> mytable_detail
-    <span style=color:#66d9ef>WHERE</span> mytable_detail.mytable_id <span style=color:#f92672>=</span> mytable.mytable_id
-    <span style=color:#66d9ef>GROUP</span> <span style=color:#66d9ef>BY</span> mytable_detail.mytable_id
-) <span style=color:#66d9ef>as</span> t <span style=color:#66d9ef>on</span> t.mytable_id <span style=color:#f92672>=</span> mytable.mytable_id
-<span style=color:#66d9ef>WHERE</span> mytable.foreign_key_id <span style=color:#f92672>=</span> :foreignKeyId
-<span style=color:#66d9ef>ORDER</span> <span style=color:#66d9ef>BY</span> mytable.mytable_id;
-</code></pre></div><p>以前、お手伝いしていた会社の CTO が社内の開発者のデータの取り扱いの指針として書いた記事が次になる。社内では <strong>最低</strong> 1000万件のデータがあると思ってコードを書けと強く啓蒙していた。いまどきのデータ量として1000万件というのはよい指標だと思う。</p>
-<ul>
-<li><a href=https://joker1007.hatenablog.com/entry/2020/11/04/214646>1000万件オーバーのレコードのデータをカジュアルに扱うための心構え</a></li>
-</ul>
-</div></div>
-<div class=pagination>
-<div class=pagination__title>
-<span class=pagination__title-h>Read other posts</span>
-<hr>
-</div>
-<div class=pagination__buttons>
-<span class="button previous">
-<a href=/diary/posts/2022/0317/>
-<span class=button__icon>←</span>
-<span class=button__text>マージできると開発が楽しい</span>
-</a>
-</span>
-<span class="button next">
-<a href=/diary/posts/2022/0315/>
-<span class=button__text>フロントエンド開発着手</span>
-<span class=button__icon>→</span>
-</a>
-</span>
-</div>
-</div>
-</div>
-</div>
-<footer class=footer>
-<div class=footer__inner>
-<div class="copyright copyright--user">
-<span>© 2021 Tetsuya Morimoto</span>
-<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span>
-</div>
-</div>
-</footer>
-<script src=/diary/assets/main.js></script>
-<script src=/diary/assets/prism.js></script>
-</div>
-</body>
-</html>
+1000万件オーバーのレコードのデータをカジュアルに扱うための心構え "><meta property="og:url" content="/diary/posts/2022/0316/"><meta property="og:site_name" content="forest nook"><meta property="og:image" content="/diary"><meta property="og:image:width" content="2048"><meta property="og:image:height" content="1024"><meta property="article:published_time" content="2022-03-16 07:33:00 +0900 +0900"></head><body class=green><div class="container full headings--one-size"><header class=header><div class=header__inner><div class=header__logo><a href=/diary><div class=logo>forest nook</div></a></div><div class=menu-trigger>menu</div></div><nav class=menu><ul class="menu__inner menu__inner--desktop"><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul><ul class="menu__inner menu__inner--mobile"><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul></nav></header><div class=content><div class=post><h1 class=post-title><a href=/diary/posts/2022/0316/>最低1000万件のデータがあると思え</a></h1><div class=post-meta><span class=post-date>2022-03-16</span></div><span class=post-tags>#<a href=/diary/tags/animation/>animation</a>&nbsp;
+#<a href=/diary/tags/sql/>sql</a>&nbsp;</span><div class=post-content><div><p>0時に寝て6時半に起きた。</p><h2 id=映像研には手を出すな>映像研には手を出すな<a href=#映像研には手を出すな class=hanchor arialabel=Anchor>&#8983;</a></h2><p>お奨めされたので <a href=http://eizouken-anime.com/>映像研には手を出すな</a> を見始めた。あまり現実と空想が入り交じる展開が新鮮と言えば新鮮だし、ストーリーがわかりにくい気もしてもやもやする。浅草氏も「アニメは設定が命」と言っているし、この設定はどうなの？とか思いながら、それでもみているんだからいいんだろうって感じ？最初はごちゃごちゃしててわかりにくい感じがしたんだけど、見続けていると徐々に独特の世界観に慣れてきたのか、ところどころおもしろいなと思うようにはなってきた。また全話みてから総括する。</p><h2 id=サブクエリで-group-by>サブクエリで group by<a href=#サブクエリで-group-by class=hanchor arialabel=Anchor>&#8983;</a></h2><p>お仕事でたまたま触っているところの sql をみたら次のようなものがあった。サブクエリで group by 句を使っている。仮に mytable_detail が1億件ぐらいあったらこんな sql 動くわけがない。データが溜まるごとに遅くなっていって、しきい値を超えると急激にパフォーマンスが悪化する時限爆弾みたいな sql だと思う。お手伝い先は or mapper を使っていないので開発者が sql を手で書いているにも関わらず、こんな sql が実運用されてしまうような開発体制には大きな課題があるなぁとか考え込んでしまった。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style=display:flex><span><span style=color:#66d9ef>SELECT</span> mytable.<span style=color:#f92672>*</span>, t.is_some
+</span></span><span style=display:flex><span><span style=color:#66d9ef>FROM</span> mytable
+</span></span><span style=display:flex><span><span style=color:#66d9ef>LEFT</span> <span style=color:#66d9ef>JOIN</span> <span style=color:#66d9ef>LATERAL</span> (
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>SELECT</span> mytable_id, bool_or(mytable_detail.is_some) <span style=color:#66d9ef>as</span> is_some
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>FROM</span> mytable_detail
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>WHERE</span> mytable_detail.mytable_id <span style=color:#f92672>=</span> mytable.mytable_id
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>GROUP</span> <span style=color:#66d9ef>BY</span> mytable_detail.mytable_id
+</span></span><span style=display:flex><span>) <span style=color:#66d9ef>as</span> t <span style=color:#66d9ef>on</span> t.mytable_id <span style=color:#f92672>=</span> mytable.mytable_id
+</span></span><span style=display:flex><span><span style=color:#66d9ef>WHERE</span> mytable.foreign_key_id <span style=color:#f92672>=</span> :foreignKeyId
+</span></span><span style=display:flex><span><span style=color:#66d9ef>ORDER</span> <span style=color:#66d9ef>BY</span> mytable.mytable_id;
+</span></span></code></pre></div><p>以前、お手伝いしていた会社の CTO が社内の開発者のデータの取り扱いの指針として書いた記事が次になる。社内では <strong>最低</strong> 1000万件のデータがあると思ってコードを書けと強く啓蒙していた。いまどきのデータ量として1000万件というのはよい指標だと思う。</p><ul><li><a href=https://joker1007.hatenablog.com/entry/2020/11/04/214646>1000万件オーバーのレコードのデータをカジュアルに扱うための心構え</a></li></ul></div></div><div class=pagination><div class=pagination__title><span class=pagination__title-h>Read other posts</span><hr></div><div class=pagination__buttons><span class="button previous"><a href=/diary/posts/2022/0317/><span class=button__icon>←</span>
+<span class=button__text>マージできると開発が楽しい</span></a></span>
+<span class="button next"><a href=/diary/posts/2022/0315/><span class=button__text>フロントエンド開発着手</span>
+<span class=button__icon>→</span></a></span></div></div></div></div><footer class=footer><div class=footer__inner><div class="copyright copyright--user"><span>© 2021 Tetsuya Morimoto</span>
+<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span></div></div></footer><script src=/diary/assets/main.js></script>
+<script src=/diary/assets/prism.js></script></div></body></html>

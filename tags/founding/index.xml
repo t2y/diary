@@ -1,4 +1,46 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>founding on forest nook</title><link>/diary/tags/founding/</link><description>Recent content in founding on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Fri, 24 Jun 2022 10:28:17 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/founding/index.xml" rel="self" type="application/rss+xml"/><item><title>余白談義</title><link>/diary/posts/2022/0624/</link><pubDate>Fri, 24 Jun 2022 10:28:17 +0900</pubDate><guid>/diary/posts/2022/0624/</guid><description>0時に寝て6時に起きた。だいぶ復調してきて朝起きれるようになってきた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>founding on forest nook</title><link>/diary/tags/founding/</link><description>Recent content in founding on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sun, 26 Jun 2022 10:51:10 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/founding/index.xml" rel="self" type="application/rss+xml"/><item><title>法人税の修正申告</title><link>/diary/posts/2022/0626/</link><pubDate>Sun, 26 Jun 2022 10:51:10 +0900</pubDate><guid>/diary/posts/2022/0626/</guid><description>1時に寝て7時に起きた。
+源泉所得税の納付 ちょうど給料日を過ぎたので所得税徴収高計算書 (納期特例分) の申請を行った。これまでも e-tax で電子申請して振り込みしていたのだけれど、e-tax ソフト (web版) でブラウザから申請していた。今回は windows マシンにインストールされている e-tax ソフトから申請してみることにした。e-tax ソフトは起動時に「追加インストール」という機能があって、申請に必要なモジュールのみをダウンロードしてインストールできるようになっている。20年前で言うところの saas はこうだった。「源泉所得税関係」というモジュールをインストールしないと、所得税徴収高計算書の申請ができない (e-tax ソフトに帳票がインストールされない) 。モジュールを追加インストールすれば、「源泉所得税」という税目から「所得税徴収高計算書 (納期特例分) 」という帳票を選択して、あとは数字を記入して送信するだけ。この申請に電子署名は不要。
+法人税の修正申告と欠損金の繰り戻し還付の訂正依頼 国税局の職員さんからの指摘 で提出した書類が誤っていることに気付いた。いくつか訂正箇所を書いておく。
+欠損金額とは 正: 税引き後の欠損金額 = 別表1の1の数字をそのまま使えばよい 誤: 税引き前の所得 (税務上は負の所得を欠損金と呼ぶ) を使っていた 法人税と地方法人税の計算は別 欠損金の繰り戻し還付の申請は法人税のみの還付金を算出 ↑で求めた還付金に対して(令和元年以降は)10.3%を地方法人税の還付金とする この手続きは不要で別表一に算出した数字を記載すればよい まずこの申請書の誤りを修正して訂正依頼とする。
+さらにこの欠損金の繰り戻し還付の申請の数字を別表1に記載しなければならない。それらが漏れているのと還付申請のためには別表七も提出しないといけない。あと細かい数字の記入漏れの指摘もあった。法人税の確定申告に対して次の5つの書類を修正申告として提出する。
+別表一 別表一 次葉 別表四 別表五 (一) 別表七 (一) 税務署の職員さんが訂正する数字を書いてくれていたので、それをみながら e-tax ソフトで数字を修正して紙に印刷してそれを再提出する。おかげで赤字のときの別表書類の書き方もわかった。大半は欠損金の繰り返し還付に関する数字の記入漏れなので今後も赤字の年度があったときにこの内容を踏襲しながら申告すればよい。また1つ行政手続きのノウハウを得ることができた。税務署の職員さんに感謝。
+企業サイトの更新 企業サイトを作成してから3年近く経つのでそろそろ初期の頃に書いた内容が現状とあわなくなってきた。あちこち現状とあっていない内容を更新した。本当はデザインを刷新したいと思っている。デザイン刷新のためのチケットを作ったのが2021年7月28日 20:04なのでもうすぐ1年経とうとしている。どんどん時間が過ぎるな。今日のところは、主には 企業情報 の構成を作り直した。それと同時に過去に働いていた会社での業務外発表を除去した。今後は自社の発表のみを掲載する。これには会社としてマーケティング活動をやっていくという意気込みと過去との決別の意味合いもある。トップページに news を5件表示しているところがビルドするタイミングによってそうならないときがあって、実行タイミングによってページングがされたりされなかったりする現象に悩まされている。ワークアラウンドとしては、何回かビルドをやり直せばページングされるときもあるのでそれを待つみたいな、どうしようもないやり方でこの場は凌いでいる。</description><content>&lt;p>1時に寝て7時に起きた。&lt;/p>
+&lt;h2 id="源泉所得税の納付">源泉所得税の納付&lt;/h2>
+&lt;p>ちょうど給料日を過ぎたので所得税徴収高計算書 (納期特例分) の申請を行った。これまでも e-tax で電子申請して振り込みしていたのだけれど、e-tax ソフト (web版) でブラウザから申請していた。今回は windows マシンにインストールされている e-tax ソフトから申請してみることにした。e-tax ソフトは起動時に「追加インストール」という機能があって、申請に必要なモジュールのみをダウンロードしてインストールできるようになっている。20年前で言うところの saas はこうだった。「源泉所得税関係」というモジュールをインストールしないと、所得税徴収高計算書の申請ができない (e-tax ソフトに帳票がインストールされない) 。モジュールを追加インストールすれば、「源泉所得税」という税目から「所得税徴収高計算書 (納期特例分) 」という帳票を選択して、あとは数字を記入して送信するだけ。この申請に電子署名は不要。&lt;/p>
+&lt;figure>&lt;img src="/diary/diary/img/2022/0626_e-tax.png"/>
+&lt;/figure>
+&lt;h2 id="法人税の修正申告と欠損金の繰り戻し還付の訂正依頼">法人税の修正申告と欠損金の繰り戻し還付の訂正依頼&lt;/h2>
+&lt;p>&lt;a href="/diary/diary/posts/2022/0620/#欠損金の繰り戻し還付の申請の誤り">国税局の職員さんからの指摘&lt;/a> で提出した書類が誤っていることに気付いた。いくつか訂正箇所を書いておく。&lt;/p>
+&lt;ul>
+&lt;li>欠損金額とは
+&lt;ul>
+&lt;li>正: 税引き後の欠損金額 = 別表1の1の数字をそのまま使えばよい&lt;/li>
+&lt;li>誤: 税引き前の所得 (税務上は負の所得を欠損金と呼ぶ) を使っていた&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>法人税と地方法人税の計算は別
+&lt;ul>
+&lt;li>欠損金の繰り戻し還付の申請は法人税のみの還付金を算出&lt;/li>
+&lt;li>↑で求めた還付金に対して(令和元年以降は)10.3%を地方法人税の還付金とする
+&lt;ul>
+&lt;li>この手続きは不要で別表一に算出した数字を記載すればよい&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>まずこの申請書の誤りを修正して訂正依頼とする。&lt;/p>
+&lt;p>さらにこの欠損金の繰り戻し還付の申請の数字を別表1に記載しなければならない。それらが漏れているのと還付申請のためには別表七も提出しないといけない。あと細かい数字の記入漏れの指摘もあった。法人税の確定申告に対して次の5つの書類を修正申告として提出する。&lt;/p>
+&lt;ul>
+&lt;li>別表一&lt;/li>
+&lt;li>別表一 次葉&lt;/li>
+&lt;li>別表四&lt;/li>
+&lt;li>別表五 (一)&lt;/li>
+&lt;li>別表七 (一)&lt;/li>
+&lt;/ul>
+&lt;p>税務署の職員さんが訂正する数字を書いてくれていたので、それをみながら e-tax ソフトで数字を修正して紙に印刷してそれを再提出する。おかげで赤字のときの別表書類の書き方もわかった。大半は欠損金の繰り返し還付に関する数字の記入漏れなので今後も赤字の年度があったときにこの内容を踏襲しながら申告すればよい。また1つ行政手続きのノウハウを得ることができた。税務署の職員さんに感謝。&lt;/p>
+&lt;h2 id="企業サイトの更新">企業サイトの更新&lt;/h2>
+&lt;p>企業サイトを作成してから3年近く経つのでそろそろ初期の頃に書いた内容が現状とあわなくなってきた。あちこち現状とあっていない内容を更新した。本当はデザインを刷新したいと思っている。デザイン刷新のためのチケットを作ったのが2021年7月28日 20:04なのでもうすぐ1年経とうとしている。どんどん時間が過ぎるな。今日のところは、主には &lt;a href="https://kazamori.jp/about/">企業情報&lt;/a> の構成を作り直した。それと同時に過去に働いていた会社での業務外発表を除去した。今後は自社の発表のみを掲載する。これには会社としてマーケティング活動をやっていくという意気込みと過去との決別の意味合いもある。トップページに news を5件表示しているところがビルドするタイミングによってそうならないときがあって、実行タイミングによってページングがされたりされなかったりする現象に悩まされている。ワークアラウンドとしては、何回かビルドをやり直せばページングされるときもあるのでそれを待つみたいな、どうしようもないやり方でこの場は凌いでいる。&lt;/p></content></item><item><title>余白談義</title><link>/diary/posts/2022/0624/</link><pubDate>Fri, 24 Jun 2022 10:28:17 +0900</pubDate><guid>/diary/posts/2022/0624/</guid><description>0時に寝て6時に起きた。だいぶ復調してきて朝起きれるようになってきた。
 歯科検診 3ヶ月ごとの定期検診。前回 は2年ぶりにレントゲンをとったので新しい歯のレントゲン写真をみせていただいた。とくに変わりなく、親知らずにゴミが溜まるスポットがあるから、親知らずを抜いた方がいいのはいいけど、下側の親知らずを抜くのは大変だから痛くなってからでもよいかも？みたいな話しをした。いま3ヶ月ごとに定期検診して親知らずのゴミスポットの掃除をしてもらっているからそれでもしかしたら大丈夫なのかもしれない。あと1箇所だけ銀の詰めものと歯が精密に一致していないところがあって、その隙間にゴミが溜まりやすいとのこと。急がなくてもよいけど、いずれ付け直した方がよいらしい。
 隔週の雑談 顧問のはらさんと隔週の打ち合わせ。今日の議題は次の3つ。
 お手伝い先の契約更新についての話題 カフーツさんとワーケーションの話題 jjug ccc 2022 spring ふりかえり 先日の記事 でも「余白」という概念が個人的にはまったのであちこちで余白談義をしている。デザインで言うところの余白とは何かをはらさんに聞いてみたところ、次のようなものだという。
@@ -32,7 +74,8 @@
 私はまったく出石城のことを知らなくて、もともとのお殿様ではないが、なんやらかんやらで 仙石秀久 が城主になったらしい。センゴク の漫画の主人公。城跡に上る鳥居の裏に作者の宮下英樹さんの名前もあった。仙石秀久：鈴鳴り武者、またの名を蕎麦の伝道師…、あんたはいったい何者だ!? の記事によると、出石そばも仙石秀久が信州から出石へ転封したときに一緒に付いてきた信濃のそば職人が発祥になっているらしい。はーん。
 西紀サービスエリア ワーケーション1日目の反省点 にも書いたが、車の移動で行きはどこで休憩するかを決めていなかった。そうすると、どのタイミングでどこのサービスエリアに入っていいかがわからなくなってしまった。帰りは下調べして、休憩によさそうな設備があって中間の適切な位置として、舞鶴若狭自動車道の西紀サービスエリアがよさそうと調べていた。そして最初からナビの目的地をサービスエリアにしてしまうことで走り過ぎや休憩までのペースなども走りながら考える必要がない。当たり前のことなんだけど、自分で運転してみて初日はうまく段取りできなかったのでこれも大事な事前準備だと気付いた。
 小さなふりかえりと神戸空港 神戸に戻ってきてから雨がぱらぱらし始めた。天候も何とかもってちょうどよかった。1時間ほどドトールさんで休憩しながら軽いふりかえりみたいになった。
-朝と夜に温泉入るのは疲れる 7つの外湯があり、パスポートを購入していても連続でお風呂に入る人はいなかった 開発合宿は2泊3日が限界 非日常の慣れない生活は楽しさととも緊張もあるので疲労も大きい 実際にやってみることから得られる経験や体験はとても大きい 城崎温泉がどういう場所か、その文化や歴史の一端を垣間見えた 主催としてやらなければならない段取りや準備の経験を大きく積めた 今回の経験をベースにして今後も課題管理システムに積み重なっていく 今後の開発合宿イベントの展望 オープン版は三ノ宮.devでやりそうなのでそこに便乗する うちの会社の関係者や知人に声をかけてクローズドなイベントを1回/年でやる (当面は) bizpy ではやらないかなぁ その後、解散してはらさんを神戸空港まで送っていった。空港の場所は知っていたけど、実際に行ったことなかったので車で空港への行き方がわかってよかった。これで飛行機で神戸に来る人がいても送迎ができる。18時半にレンタカーを返却した。今回は日産 NOTE e-Power というハイブリッド車を初めて運転した。今回の旅程で約350km走って消費したガソリンは約15リットルだった。燃費は23.</description><content>&lt;p>3時に寝て6時前に起きた。起きて作業しようと思って階下に降りた (寝室は2階) ものの、なんかバテてて、畳の部屋で寝転がっていた。涼しくて気持ちよかった。2度寝もしてたかもしれない。起きてからは帰りの高速道路のサービスエリアを調べたり、丹波篠山市か、六甲山天覧台に寄り道するならどういうルートになるかシミュレーションしたりした。&lt;/p>
+朝と夜に温泉入るのは疲れる 7つの外湯があり、パスポートを購入していても連続でお風呂に入る人はいなかった 開発合宿は2泊3日が限界 非日常の慣れない生活は楽しさととも緊張もあるので疲労も大きい 実際にやってみることから得られる経験や体験はとても大きい 城崎温泉がどういう場所か、その文化や歴史の一端を垣間見えた 主催としてやらなければならない段取りや準備の経験を大きく積めた 今回の経験をベースにして今後も課題管理システムに積み重なっていく 今後の開発合宿イベントの展望 オープン版は三ノ宮.devでやりそうなのでそこに便乗する うちの会社の関係者や知人に声をかけてクローズドなイベントを1回/年でやる (当面は) bizpy ではやらないかなぁ その後、解散してはらさんを神戸空港まで送っていった。空港の場所は知っていたけど、実際に行ったことなかったので車で空港への行き方がわかってよかった。これで飛行機で神戸に来る人がいても送迎ができる。18時半にレンタカーを返却した。今回は日産 NOTE e-Power というハイブリッド車を初めて運転した。今回の旅程で約350km走って消費したガソリンは約15リットルだった。燃費は23.3/リットルだった。レンタカーを返して家に着いたらやり終えたなって感じで気分がよかった。
+ストレッチ いつもは土曜日の10時に通っているストレッチを、ワーケーションがあったので日曜日の19時半に変更してもらっていた。温泉に入った後に多少はストレッチをしたものの、運転疲れで体が硬くなってしまっていた。今日の開脚幅は開始前155cmで、ストレッチ後160cmだった。ワーケーションへ行ってきて疲れた後にストレッチを受けられるのは、疲弊した箇所がわかってとてもよかった。外湯に入るために普段より歩いたのものあって腰とふくらはぎの張りが強かった。その上で座椅子や車の運転なども相乗効果があって疲れが溜まっていた感じ。トレーナーさんと旅のふりかえりを雑談しながらストレッチを受けていて、週末どこかへ行ってきた後にストレッチを受けるのはすごくいいと思ってしまった。この場合、私の中ではストレッチがマッサージに置き換わってしまっている。</description><content>&lt;p>3時に寝て6時前に起きた。起きて作業しようと思って階下に降りた (寝室は2階) ものの、なんかバテてて、畳の部屋で寝転がっていた。涼しくて気持ちよかった。2度寝もしてたかもしれない。起きてからは帰りの高速道路のサービスエリアを調べたり、丹波篠山市か、六甲山天覧台に寄り道するならどういうルートになるかシミュレーションしたりした。&lt;/p>
 &lt;h2 id="朝風呂とモーニング">朝風呂とモーニング&lt;/h2>
 &lt;p>昨日と同じように7時を過ぎてから朝風呂に出掛けていく。今日は「地蔵湯」に入った。子ども向けの浅いお風呂と大きなお風呂があった。座椅子でやや腰に負担がかかっていたのでジャグジーで腰の療養をした。昨日3時まで雑談して疲れていたせいか、2泊を終えてバーンアウトしてしまったのか、3日目の旅程の考えがうまくまとまらなくて、お風呂に入りながらぼーっとしていた。喫茶店の &lt;a href="https://tabelog.com/hyogo/A2808/A280801/28014933/">萠阿 (のあ)&lt;/a> さんでモーニングを食べた。&lt;/p>
 &lt;figure>&lt;img src="/diary/diary/img/2022/0605_morning1.jpg"/>
@@ -271,7 +314,8 @@ freee で出力した書類をみながら e-tax の画面で同じ書類の項�
 eks (k8s) から alb の管理 eks (k8s) に aws-load-balancer-controller をインストールすると k8s 上のリソースとして alb を管理できるようになる。
 AWS Load Balancer Controller アドオンのインストール 具体的には k8s の Ingress と Nodepoint リソースから次の3つのリソースを生成してくれる。
 application load balancer http listener target groups alb からのヘルスチェックは次のようにエンドポイントを記述する。spring boot だと Actuator という web api がヘルスチェックの機能を提供している。
-alb.ingress.kubernetes.io/healthcheck-path: /actuator/health alb.ingress.kubernetes.io/scheme の設定で alb を配置するサブネットを指定できる。デフォルトは internal になる。</description><content>&lt;p>5時に寝て7時過ぎに起きた。前日の夜から法人決算の電子申告に取り組み始めた。本当は紙でやるつもりだったんだけど、eltax が快適だったので e-tax も衝動的にやってみたくなった。&lt;/p>
+alb.ingress.kubernetes.io/healthcheck-path: /actuator/health alb.ingress.kubernetes.io/scheme の設定で alb を配置するサブネットを指定できる。デフォルトは internal になる。
+private subnet に配置するとき</description><content>&lt;p>5時に寝て7時過ぎに起きた。前日の夜から法人決算の電子申告に取り組み始めた。本当は紙でやるつもりだったんだけど、eltax が快適だったので e-tax も衝動的にやってみたくなった。&lt;/p>
 &lt;h2 id="消費税と地方消費税の申告">消費税と地方消費税の申告&lt;/h2>
 &lt;p>&lt;a href="/diary/diary/posts/2022/0505/#法人決算">法人決算&lt;/a> の一部。今回が初めての消費税と地方消費税の申告になる。簡易課税で支払う。&lt;/p>
 &lt;blockquote>
@@ -291,13 +335,13 @@ alb.ingress.kubernetes.io/healthcheck-path: /actuator/health alb.ingress.kuberne
 &lt;li>target groups&lt;/li>
 &lt;/ul>
 &lt;p>alb からのヘルスチェックは次のようにエンドポイントを記述する。spring boot だと &lt;a href="https://docs.spring.io/spring-boot/docs/current/actuator-api/htmlsingle/">Actuator&lt;/a> という web api がヘルスチェックの機能を提供している。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#f92672">alb.ingress.kubernetes.io/healthcheck-path&lt;/span>: &lt;span style="color:#ae81ff">/actuator/health&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>alb.ingress.kubernetes.io/scheme&lt;/code> の設定で alb を配置するサブネットを指定できる。デフォルトは &lt;code>internal&lt;/code> になる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">alb.ingress.kubernetes.io/healthcheck-path&lt;/span>: &lt;span style="color:#ae81ff">/actuator/health&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>alb.ingress.kubernetes.io/scheme&lt;/code> の設定で alb を配置するサブネットを指定できる。デフォルトは &lt;code>internal&lt;/code> になる。&lt;/p>
 &lt;p>private subnet に配置するとき&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#f92672">alb.ingress.kubernetes.io/scheme&lt;/span>: &lt;span style="color:#ae81ff">internal&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>public subnet に配置するとき&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#f92672">alb.ingress.kubernetes.io/scheme&lt;/span>: &lt;span style="color:#ae81ff">internet-facing&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>他社のお仕事半分、自社のお仕事半分</title><link>/diary/posts/2022/0520/</link><pubDate>Fri, 20 May 2022 15:23:55 +0900</pubDate><guid>/diary/posts/2022/0520/</guid><description>なんか22時ぐらいから寝たり起きたりを繰り返して7時に起きた。午前中はお手伝い先のドキュメント作成やレビューを行い、午後から自社の事務手続きなどをしていた。
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">alb.ingress.kubernetes.io/scheme&lt;/span>: &lt;span style="color:#ae81ff">internal&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>public subnet に配置するとき&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">alb.ingress.kubernetes.io/scheme&lt;/span>: &lt;span style="color:#ae81ff">internet-facing&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>他社のお仕事半分、自社のお仕事半分</title><link>/diary/posts/2022/0520/</link><pubDate>Fri, 20 May 2022 15:23:55 +0900</pubDate><guid>/diary/posts/2022/0520/</guid><description>なんか22時ぐらいから寝たり起きたりを繰り返して7時に起きた。午前中はお手伝い先のドキュメント作成やレビューを行い、午後から自社の事務手続きなどをしていた。
 法人決算の手続き 決算そのものはすでに完了しているのだけど、申告手続きをまだ終えていない。本気を出せば1日で終わるのがわかっているのでだらだら先延ばししていた。今回は地方自治体への納税手続きを eltax でやってみることに決めていた。先延ばしにしていた理由の1つとして eltax が土日祝は運用していない。平日は24時まで運用しているので、平日にお仕事を終えてからやればいいのだけど、なんか気乗りしなくて先送りしていた。神戸市に対して法人市民税を、兵庫県に対して法人県民税、法人事業税、特別法人事業税の申告を行う。eltax の画面は実際の書類様式とまったく同じ画面で入力するため、書類作成を知っている人には何も難しくない。前回の書類をみながら必要な入力欄に今回の値を入力していくだけの作業。作成後にプリンターで印刷すれば書類も手に入る。今回の納税手続きは eltax で初めて触る画面を操作したのだけど、2時間もあれば2つの申告手続きを終えられた。1度誤った内容で申告したので再申告もした。後優先になってくれることを願う。言うても簡単ではある。昨年まではこれらの申告のために電車で3駅離れた庁舎へ出向いていたが、今後はそうする必要はなさそうだ。一方で申告手続きを含めてもオフィスからの庁舎の往復に2時間もかからないのも事実ではあるが。
 jjug の発表資料作り Ševarika™ というデザイナーさんに スライドマスターの作成 を4月30日に依頼して5月19日に納品された。納期は1ヶ月程度を見込んでいたのに早く仕上げてくれた。こちらから急かしたわけではない。ちょうど JJUG CCC 2022 Spring の発表ビデオの提出期限が5月19日で間に合えばいいなぁぐらいの感覚で静観していて、ちょうど同じ時期に納品できそうだったので、jjug のスタッフさんに発表ビデオの提出期限を週末まで待ってもらうようにお願いしていた。私は自社のロゴをめちゃくちゃ気に入っているんだけど、同じデザイナーさんに作ってもらったスライドマスターのデザインもやはりめちゃくちゃ気に入っている。今後うちの会社が儲かってお金に余裕ができたら Ševarika™ さんにもっと色んなものをデザインしてもらおうと思うようになった。いつになるかはわからんが。
 発表のコンテンツのアウトラインは八割ほどは事前に作っていた。新しいスライドデザインに配置したり、レイアウトを調整したり、デザインとのバランスを考えたりすることに主に時間を費やした。20時ぐらいから始めて2時ぐらいまでやっていた。ここ1-2週間、19時以降にオフィスで居残り作業みたいなことをやってなくて、なんかだらだらしていた。コンテキストスイッチを切り替えてやるぞとなったら集中して6時間ほど作業できた。それで気付いたんだけど、私は毎日大量のお仕事をすることがあまり得意ではない。平均ぐらいに毎日コツコツ積み重ねるのはできるけど、それ以上のパフォーマンスを出す爆発力にはメリハリがいる。いまは構想1ヶ月、実装2日みたいな作業のやり方になる。そのうちの2日は18時間/日ぐらい没頭しているみたいな。昔からそうだったのか、加齢で体力が落ちたせいかわからないけど、メリハリのある働き方が自分には向いていることを再認識した。</description><content>&lt;p>なんか22時ぐらいから寝たり起きたりを繰り返して7時に起きた。午前中はお手伝い先のドキュメント作成やレビューを行い、午後から自社の事務手続きなどをしていた。&lt;/p>
@@ -317,82 +361,82 @@ CreationRole というのが設定されて trust relationships に次のよう�
 &lt;h2 id="eks-クラスターの-helm-管理の調査">eks クラスターの helm 管理の調査&lt;/h2>
 &lt;p>昨日の続き。権限設定がなんもわからんみたいな様相になったので調査のやり方を変えることにした。検証用の eks クラスターを cdk から新規に作成して helm をインストールするときのリソースや権限設定がどうなるのかを調査した。lambda 関数が5個ぐらい、ロールは10個ぐらい作成された。lambda の生成に時間がかかるのか？新規作成するのに25分、削除するときは30分ぐらいかかった。rds もそうだけど、eks のような複雑なインフラを cdk で管理すると実行するのにけっこう時間がかかる。設定が難しくなければ別によいけど、eks のような権限やリソースの設定が複雑なインフラはトライ&amp;amp;エラーで何度も実行する必要があるから、こういうものは cdk で管理するのには向かないインフラだと言えると思う。一定の設定のプラクティスが溜まるまでは eks は cdk で管理しない方がよいかもしれない。&lt;/p>
 &lt;p>CreationRole というのが設定されて trust relationships に次のような設定が追加される。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-json" data-lang="json">{
-&lt;span style="color:#f92672">&amp;#34;Version&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;2012-10-17&amp;#34;&lt;/span>,
-&lt;span style="color:#f92672">&amp;#34;Statement&amp;#34;&lt;/span>: [
-{
-&lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>,
-&lt;span style="color:#f92672">&amp;#34;Principal&amp;#34;&lt;/span>: {
-&lt;span style="color:#f92672">&amp;#34;AWS&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;arn:aws:iam::${accountId}:root&amp;#34;&lt;/span>
-},
-&lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;sts:AssumeRole&amp;#34;&lt;/span>
-}
-]
-}
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>このロールに含まれるカスタムポリシーには次のような設定がある。たぶんこんな感じのロールを新規に作成して &lt;code>kubectlRoleArn&lt;/code> として指定してやればいいんじゃないかと思う。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-json" data-lang="json">{
-&lt;span style="color:#f92672">&amp;#34;Version&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;2012-10-17&amp;#34;&lt;/span>,
-&lt;span style="color:#f92672">&amp;#34;Statement&amp;#34;&lt;/span>: [
-{
-&lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;iam:PassRole&amp;#34;&lt;/span>,
-&lt;span style="color:#f92672">&amp;#34;Resource&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;arn:aws:iam::${accountId}:role/${EksClusterIamRole}&amp;#34;&lt;/span>,
-&lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>
-},
-{
-&lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: [
-&lt;span style="color:#e6db74">&amp;#34;eks:CreateCluster&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">&amp;#34;eks:DescribeCluster&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">&amp;#34;eks:DescribeUpdate&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">&amp;#34;eks:DeleteCluster&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">&amp;#34;eks:UpdateClusterVersion&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">&amp;#34;eks:UpdateClusterConfig&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">&amp;#34;eks:CreateFargateProfile&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">&amp;#34;eks:TagResource&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">&amp;#34;eks:UntagResource&amp;#34;&lt;/span>
-],
-&lt;span style="color:#f92672">&amp;#34;Resource&amp;#34;&lt;/span>: [
-&lt;span style="color:#e6db74">&amp;#34;arn:aws:eks:ap-northeast-1:${accountId}:cluster/tmp-test-eks-cluster-by-morimoto&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">&amp;#34;arn:aws:eks:ap-northeast-1:${accountId}:cluster/tmp-test-eks-cluster-by-morimoto/*&amp;#34;&lt;/span>
-],
-&lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>
-},
-{
-&lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: [
-&lt;span style="color:#e6db74">&amp;#34;eks:DescribeFargateProfile&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">&amp;#34;eks:DeleteFargateProfile&amp;#34;&lt;/span>
-],
-&lt;span style="color:#f92672">&amp;#34;Resource&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;arn:aws:eks:ap-northeast-1:${accountId}:fargateprofile/tmp-test-eks-cluster-by-morimoto/*&amp;#34;&lt;/span>,
-&lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>
-},
-{
-&lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: [
-&lt;span style="color:#e6db74">&amp;#34;iam:GetRole&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">&amp;#34;iam:listAttachedRolePolicies&amp;#34;&lt;/span>
-],
-&lt;span style="color:#f92672">&amp;#34;Resource&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;*&amp;#34;&lt;/span>,
-&lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>
-},
-{
-&lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;iam:CreateServiceLinkedRole&amp;#34;&lt;/span>,
-&lt;span style="color:#f92672">&amp;#34;Resource&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;*&amp;#34;&lt;/span>,
-&lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>
-},
-{
-&lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: [
-&lt;span style="color:#e6db74">&amp;#34;ec2:DescribeInstances&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">&amp;#34;ec2:DescribeNetworkInterfaces&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">&amp;#34;ec2:DescribeSecurityGroups&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">&amp;#34;ec2:DescribeSubnets&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">&amp;#34;ec2:DescribeRouteTables&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">&amp;#34;ec2:DescribeDhcpOptions&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">&amp;#34;ec2:DescribeVpcs&amp;#34;&lt;/span>
-],
-&lt;span style="color:#f92672">&amp;#34;Resource&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;*&amp;#34;&lt;/span>,
-&lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>
-}
-]
-}
-&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>スライドデザインのレビュー</title><link>/diary/posts/2022/0510/</link><pubDate>Tue, 10 May 2022 07:34:55 +0900</pubDate><guid>/diary/posts/2022/0510/</guid><description>1時に寝て6時半に起きた。
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Version&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;2012-10-17&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Statement&amp;#34;&lt;/span>: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Principal&amp;#34;&lt;/span>: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;AWS&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;arn:aws:iam::${accountId}:root&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;sts:AssumeRole&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>このロールに含まれるカスタムポリシーには次のような設定がある。たぶんこんな感じのロールを新規に作成して &lt;code>kubectlRoleArn&lt;/code> として指定してやればいいんじゃないかと思う。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Version&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;2012-10-17&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Statement&amp;#34;&lt;/span>: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;iam:PassRole&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Resource&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;arn:aws:iam::${accountId}:role/${EksClusterIamRole}&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;eks:CreateCluster&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;eks:DescribeCluster&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;eks:DescribeUpdate&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;eks:DeleteCluster&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;eks:UpdateClusterVersion&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;eks:UpdateClusterConfig&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;eks:CreateFargateProfile&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;eks:TagResource&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;eks:UntagResource&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Resource&amp;#34;&lt;/span>: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;arn:aws:eks:ap-northeast-1:${accountId}:cluster/tmp-test-eks-cluster-by-morimoto&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;arn:aws:eks:ap-northeast-1:${accountId}:cluster/tmp-test-eks-cluster-by-morimoto/*&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;eks:DescribeFargateProfile&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;eks:DeleteFargateProfile&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Resource&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;arn:aws:eks:ap-northeast-1:${accountId}:fargateprofile/tmp-test-eks-cluster-by-morimoto/*&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;iam:GetRole&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;iam:listAttachedRolePolicies&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Resource&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;*&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;iam:CreateServiceLinkedRole&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Resource&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;*&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;ec2:DescribeInstances&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;ec2:DescribeNetworkInterfaces&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;ec2:DescribeSecurityGroups&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;ec2:DescribeSubnets&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;ec2:DescribeRouteTables&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;ec2:DescribeDhcpOptions&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;ec2:DescribeVpcs&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Resource&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;*&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>スライドデザインのレビュー</title><link>/diary/posts/2022/0510/</link><pubDate>Tue, 10 May 2022 07:34:55 +0900</pubDate><guid>/diary/posts/2022/0510/</guid><description>1時に寝て6時半に起きた。
 スライドマスターのデザインレビュー はらさんと一緒にレビューした。私とは全然視点が違うので参考になった。自分が得意ではない分野の相談相手がいると本当に助かる。いくつか取り上げる。あれこれ、私が気になったところもヒアリングしながら意見をもらった。あとでデザイナーさんにフィードバックする。
 外国人が作ると文字のレイアウトが日本語と異なることを考慮する必要がある 日本語には y や q のような下にはみ出る文字がない スライド全体の色使いで目立たせるときの注目色を作ってもらった方がよい インジケーターのようなデザインがあると聴衆がいま発表のどの辺りかわかって嬉しい 会社の自己主張が強過ぎない方がよさそう</description><content>&lt;p>1時に寝て6時半に起きた。&lt;/p>
 &lt;h2 id="スライドマスターのデザインレビュー">スライドマスターのデザインレビュー&lt;/h2>

@@ -1,107 +1,12 @@
-<!doctype html><html lang=en>
-<head>
-<title>database :: forest nook</title>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content>
-<meta name=keywords content>
-<meta name=robots content="noodp">
-<link rel=canonical href=/diary/tags/database/>
-<link rel=stylesheet href=/diary/assets/style.css>
-<link rel=stylesheet href=/diary/assets/green.css>
-<link rel=stylesheet href=/diary/style.css>
-<link rel=apple-touch-icon href=/diary/img/apple-touch-icon-192x192.png>
-<link rel="shortcut icon" href=/diary/favicon.ico>
-<meta name=twitter:card content="summary">
-<meta name=twitter:site content="t2y">
-<meta name=twitter:creator content>
-<meta property="og:locale" content="en">
-<meta property="og:type" content="website">
-<meta property="og:title" content="database">
-<meta property="og:description" content>
-<meta property="og:url" content="/diary/tags/database/">
-<meta property="og:site_name" content="forest nook">
-<meta property="og:image" content="/diary/favicon.ico">
-<meta property="og:image:width" content="2048">
-<meta property="og:image:height" content="1024">
-<link href=/diary/tags/database/index.xml rel=alternate type=application/rss+xml title="forest nook">
-</head>
-<body class=green>
-<div class="container full headings--one-size">
-<header class=header>
-<div class=header__inner>
-<div class=header__logo>
-<a href=/diary>
-<div class=logo>
-forest nook
-</div>
-</a>
-</div>
-<div class=menu-trigger>menu</div>
-</div>
-<nav class=menu>
-<ul class="menu__inner menu__inner--desktop">
-<li><a href=/diary/about>自己紹介</a></li>
-<li><a href=/diary/dates>月別一覧</a></li>
-<li><a href=/diary/tags>タグ一覧</a></li>
-</ul>
-<ul class="menu__inner menu__inner--mobile">
-<li><a href=/diary/about>自己紹介</a></li>
-<li><a href=/diary/dates>月別一覧</a></li>
-<li><a href=/diary/tags>タグ一覧</a></li>
-</ul>
-</nav>
-</header>
-<div class=content>
-<div class=posts>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0506/>flyway を触ってみた</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-05-06
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/java/>java</a>&nbsp;
+<!doctype html><html lang=en><head><title>database :: forest nook</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=keywords content><meta name=robots content="noodp"><link rel=canonical href=/diary/tags/database/><link rel=stylesheet href=/diary/assets/style.css><link rel=stylesheet href=/diary/assets/green.css><link rel=stylesheet href=/diary/style.css><link rel=apple-touch-icon href=/diary/img/apple-touch-icon-192x192.png><link rel="shortcut icon" href=/diary/favicon.ico><meta name=twitter:card content="summary"><meta name=twitter:site content="t2y"><meta name=twitter:creator content><meta property="og:locale" content="en"><meta property="og:type" content="website"><meta property="og:title" content="database"><meta property="og:description" content><meta property="og:url" content="/diary/tags/database/"><meta property="og:site_name" content="forest nook"><meta property="og:image" content="/diary/favicon.ico"><meta property="og:image:width" content="2048"><meta property="og:image:height" content="1024"><link href=/diary/tags/database/index.xml rel=alternate type=application/rss+xml title="forest nook"></head><body class=green><div class="container full headings--one-size"><header class=header><div class=header__inner><div class=header__logo><a href=/diary><div class=logo>forest nook</div></a></div><div class=menu-trigger>menu</div></div><nav class=menu><ul class="menu__inner menu__inner--desktop"><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul><ul class="menu__inner menu__inner--mobile"><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul></nav></header><div class=content><div class=posts><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2022/0506/>flyway を触ってみた</a></h1><div class=post-meta><span class=post-date>2022-05-06</span></div><span class=post-tags>#<a href=/diary/tags/java/>java</a>&nbsp;
 #<a href=/diary/tags/database/>database</a>&nbsp;
-#<a href=/diary/tags/migration/>migration</a>&nbsp;
-</span>
-<div class=post-content>
-<p>0時に寝て4時に起きてタイムライン眺めながらだらだらして6時半に起き上がった。</p>
-<h2 id=データベースの移行処理>データベースの移行処理</h2>
-<p>半年前から導入したいという話しは聞いていたものの、先送りになっていたライブラリに <a href=https://flywaydb.org/>flyway</a> がある。データベースの移行処理のためのスクリプト (sql) を管理するツールでどの移行スクリプトを実行したかを記録したり、未適用の処理を自動で適用してくれたりする。spring boot だとすぐ組み込める状態になっていて <a href=https://flywaydb.org/documentation/usage/plugins/springboot>Community Plugins and Integrations: Spring Boot</a> をみながら設定したらすぐに動いた。flyway 自体の設定も <a href=https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html>Common Application Properties</a> を参考に spring boot の設定ファイルで行える。</p>
-<p>例えば、こんな感じ。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#f92672>spring</span>:
-  <span style=color:#f92672>flyway</span>:
-<span style=color:#f92672>￼    enabled</span>: <span style=color:#66d9ef>true</span>
-<span style=color:#f92672>￼    schemas</span>: <span style=color:#ae81ff>public</span>
-<span style=color:#f92672>￼    locations</span>: <span style=color:#ae81ff>classpath:db/migration</span>
-<span style=color:#f92672>￼    baseline-version</span>: <span style=color:#ae81ff>0</span>
-<span style=color:#f92672>￼    baseline-on-migrate</span>: <span style=color:#66d9ef>true</span>
-</code></pre></div><p>移行処理の履歴情報は <code>flyway_schema_history</code> テーブルに保持される。既存のテーブルが存在して flyway の履歴データがない場合 (初回起動時) に移行処理を実行するかどうかを baseline-on-migrate で決める。実行するなら baseline-version でどのバージョンをベースラインとするかも設定できる。ゼロにすることで <code>V1</code> からの sql ファイルを適用してくれる。ベースラインの考え方は実際に何度かデータベースの初期状態を変えて実行しないとわかりにくいかもしれない。</p>
-<ul>
-<li><a href=https://flywaydb.org/documentation/tutorials/baselineMigrations>Tutorial: Baseline Migrations</a></li>
-</ul>
-</div>
-</div>
-<div class=pagination>
-<div class=pagination__buttons>
-</div>
-</div>
-</div>
-</div>
-<footer class=footer>
-<div class=footer__inner>
-<div class="copyright copyright--user">
-<span>© 2021 Tetsuya Morimoto</span>
-<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span>
-</div>
-</div>
-</footer>
-<script src=/diary/assets/main.js></script>
-<script src=/diary/assets/prism.js></script>
-</div>
-</body>
-</html>
+#<a href=/diary/tags/migration/>migration</a>&nbsp;</span><div class=post-content><p>0時に寝て4時に起きてタイムライン眺めながらだらだらして6時半に起き上がった。</p><h2 id=データベースの移行処理>データベースの移行処理</h2><p>半年前から導入したいという話しは聞いていたものの、先送りになっていたライブラリに <a href=https://flywaydb.org/>flyway</a> がある。データベースの移行処理のためのスクリプト (sql) を管理するツールでどの移行スクリプトを実行したかを記録したり、未適用の処理を自動で適用してくれたりする。spring boot だとすぐ組み込める状態になっていて <a href=https://flywaydb.org/documentation/usage/plugins/springboot>Community Plugins and Integrations: Spring Boot</a> をみながら設定したらすぐに動いた。flyway 自体の設定も <a href=https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html>Common Application Properties</a> を参考に spring boot の設定ファイルで行える。</p><p>例えば、こんな感じ。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=display:flex><span><span style=color:#f92672>spring</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>flyway</span>:
+</span></span><span style=display:flex><span><span style=color:#f92672>￼    enabled</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>￼    schemas</span>: <span style=color:#ae81ff>public</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>￼    locations</span>: <span style=color:#ae81ff>classpath:db/migration</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>￼    baseline-version</span>: <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>￼    baseline-on-migrate</span>: <span style=color:#66d9ef>true</span>
+</span></span></code></pre></div><p>移行処理の履歴情報は <code>flyway_schema_history</code> テーブルに保持される。既存のテーブルが存在して flyway の履歴データがない場合 (初回起動時) に移行処理を実行するかどうかを baseline-on-migrate で決める。実行するなら baseline-version でどのバージョンをベースラインとするかも設定できる。ゼロにすることで <code>V1</code> からの sql ファイルを適用してくれる。ベースラインの考え方は実際に何度かデータベースの初期状態を変えて実行しないとわかりにくいかもしれない。</p><ul><li><a href=https://flywaydb.org/documentation/tutorials/baselineMigrations>Tutorial: Baseline Migrations</a></li></ul></div></div><div class=pagination><div class=pagination__buttons></div></div></div></div><footer class=footer><div class=footer__inner><div class="copyright copyright--user"><span>© 2021 Tetsuya Morimoto</span>
+<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span></div></div></footer><script src=/diary/assets/main.js></script>
+<script src=/diary/assets/prism.js></script></div></body></html>

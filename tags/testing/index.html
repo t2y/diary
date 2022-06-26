@@ -1,288 +1,104 @@
-<!doctype html><html lang=en>
-<head>
-<title>testing :: forest nook</title>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content>
-<meta name=keywords content>
-<meta name=robots content="noodp">
-<link rel=canonical href=/diary/tags/testing/>
-<link rel=stylesheet href=/diary/assets/style.css>
-<link rel=stylesheet href=/diary/assets/green.css>
-<link rel=stylesheet href=/diary/style.css>
-<link rel=apple-touch-icon href=/diary/img/apple-touch-icon-192x192.png>
-<link rel="shortcut icon" href=/diary/favicon.ico>
-<meta name=twitter:card content="summary">
-<meta name=twitter:site content="t2y">
-<meta name=twitter:creator content>
-<meta property="og:locale" content="en">
-<meta property="og:type" content="website">
-<meta property="og:title" content="testing">
-<meta property="og:description" content>
-<meta property="og:url" content="/diary/tags/testing/">
-<meta property="og:site_name" content="forest nook">
-<meta property="og:image" content="/diary/favicon.ico">
-<meta property="og:image:width" content="2048">
-<meta property="og:image:height" content="1024">
-<link href=/diary/tags/testing/index.xml rel=alternate type=application/rss+xml title="forest nook">
-</head>
-<body class=green>
-<div class="container full headings--one-size">
-<header class=header>
-<div class=header__inner>
-<div class=header__logo>
-<a href=/diary>
-<div class=logo>
-forest nook
-</div>
-</a>
-</div>
-<div class=menu-trigger>menu</div>
-</div>
-<nav class=menu>
-<ul class="menu__inner menu__inner--desktop">
-<li><a href=/diary/about>自己紹介</a></li>
-<li><a href=/diary/dates>月別一覧</a></li>
-<li><a href=/diary/tags>タグ一覧</a></li>
-</ul>
-<ul class="menu__inner menu__inner--mobile">
-<li><a href=/diary/about>自己紹介</a></li>
-<li><a href=/diary/dates>月別一覧</a></li>
-<li><a href=/diary/tags>タグ一覧</a></li>
-</ul>
-</nav>
-</header>
-<div class=content>
-<div class=posts>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0623/>assertj を使ってみた</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-06-23
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/java/>java</a>&nbsp;
-#<a href=/diary/tags/testing/>testing</a>&nbsp;
-</span>
-<div class=post-content>
-<p>0時に寝て6時に起きた。</p>
-<h2 id=assertdeepequals-を作った>assertDeepEquals を作った</h2>
-<p><a href=https://assertj.github.io/doc/>AssertJ</a> というアサーションライブラリを使って <code>assertDeepEquals</code> を実装した。</p>
-<p>junit4 では hamcrest という matcher が使われていて、それが <code>assertDeepEquals</code> 相当の機能を提供していたが、それが junit5 では提供されなくなったので自分で実装するか、アサーションライブラリを別途使う必要がある。</p>
-<blockquote>
-<p>現時点でJUnit5ではHamcrestのMatcherは提供せず、使用者が自由に選択する方針で進んでいます。そうなった場合、標準でサポートされるassertTrueやassertEquelsなどだけでは、ちょっと頼りなく車輪の再発明になりそうなので、候補になりそうなHamcrestとAssertJのよく使いそうなメソッド比較表を作りました。</p>
-<p><a href=https://qiita.com/disc99/items/31fa7abb724f63602dc9>JUnitのアサーションライブラリHamcrest,AssertJ比較</a></p>
-</blockquote>
-<p><a href=https://junit.org/junit5/docs/snapshot/user-guide/#writing-tests-assertions-third-party>2.4.2. Third-party Assertion Libraries</a> によると、junit は基本的なアサーション機能を提供し、より強力なアサーションはサードパーティ製の好きなライブラリを使ってくれみたいなことが書いてある。軽く github でソースコード検索しても、みんな自前で作っているんやなということも分かる。</p>
-<ul>
-<li><a href="https://github.com/search?l=Java&q=assertDeepEquals&type=Code">https://github.com/search?l=Java&q=assertDeepEquals&type=Code</a></li>
-</ul>
-<p>hamcrest はもう保守されていないようにみえるので assertj を使うことにした。assertj の機能を使うと <code>assertDeepEquals</code> を次のように実装できる。直接 assertj を使ってもよいのだけど、assertXxx という名前で使えた方が junit ベースのテストのアサートの統合性があるし、いまお手伝い先では myapp-test のような、テスト向けの共通ライブラリを提供していて、すべてのプロジェクトで既に使っているので assertj の依存関係を追加しなくてもすぐに使えるというぐらいの利便性を提供するだけのユーティリティになる。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Assertions</span> <span style=color:#f92672>{</span>
-
-    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>assertDeepEquals</span><span style=color:#f92672>(</span>Object expected<span style=color:#f92672>,</span> Object actual<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-        assertThat<span style=color:#f92672>(</span>expected<span style=color:#f92672>).</span><span style=color:#a6e22e>usingRecursiveComparison</span><span style=color:#f92672>().</span><span style=color:#a6e22e>isEqualTo</span><span style=color:#f92672>(</span>actual<span style=color:#f92672>);</span>
-    <span style=color:#f92672>}</span>
-
-    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>assertDeepEquals</span><span style=color:#f92672>(</span>Object expected<span style=color:#f92672>,</span> Object actual<span style=color:#f92672>,</span> String<span style=color:#f92672>...</span> fields<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-        assertThat<span style=color:#f92672>(</span>expected<span style=color:#f92672>).</span><span style=color:#a6e22e>usingRecursiveComparison</span><span style=color:#f92672>().</span><span style=color:#a6e22e>comparingOnlyFields</span><span style=color:#f92672>(</span>fields<span style=color:#f92672>).</span><span style=color:#a6e22e>isEqualTo</span><span style=color:#f92672>(</span>actual<span style=color:#f92672>);</span>
-    <span style=color:#f92672>}</span>
-
-    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>assertDeepEqualsIgnoringFields</span><span style=color:#f92672>(</span>Object expected<span style=color:#f92672>,</span> Object actual<span style=color:#f92672>,</span> String<span style=color:#f92672>...</span> fields<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-        assertThat<span style=color:#f92672>(</span>expected<span style=color:#f92672>).</span><span style=color:#a6e22e>usingRecursiveComparison</span><span style=color:#f92672>().</span><span style=color:#a6e22e>ignoringFields</span><span style=color:#f92672>(</span>fields<span style=color:#f92672>).</span><span style=color:#a6e22e>isEqualTo</span><span style=color:#f92672>(</span>actual<span style=color:#f92672>);</span>
-    <span style=color:#f92672>}</span>
-<span style=color:#f92672>}</span>
-</code></pre></div>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0613/>データベースを介したテストではまった話し</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-06-13
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/spring-boot/>spring boot</a>&nbsp;
-#<a href=/diary/tags/testing/>testing</a>&nbsp;
-</span>
-<div class=post-content>
-<p>1時に寝て7時に起きた。帰りにふらっと仲のよい焼き鳥屋さんに寄ったらちょっとしたハプニングがあって長居してしまった。他に来ていたお客さんのカップルが別れ話を始め、こじれてややこしい状況になって、この騒動が一段落しないと席を立てない空気になってしまって終わるのを待ってた。マスターの知り合いらしくて、そのお客さんが帰ってから当事者たちの背景を聞いたりしてた。人生いろいろあるよなぁ。</p>
-<h2 id=spring-の-transactional-アノテーション>spring の Transactional アノテーション</h2>
-<p>spring フレームワークには <a href=https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html>Transactional</a> というアノテーションがある。<a href=https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/test/context/SpringBootTest.html>SpringBootTest</a> を使ったテストのときに使うと、テストメソッドの終了時に自動的にデータベースへの書き込みがロールバックされて便利なことを <a href=/diary/posts/2022/0208/#テストコードのリファクタリング>テストコードのリファクタリング</a> をしていたときに気付いた。</p>
-<p>スレッドプールを使ってマルチスレッドで並行実行する処理を書いてそのテストを書いてみたら意図した結果にならない。なんでだろう？と2時間ほどはまってデバッグしていた。テストデータの書き込みが、実際にはデータベースにコミットされていないので、テストを実行しているスレッド以外のワーカースレッドからデータベースにアクセスしてもテストデータを参照できないからだと気付いた。データベースのトランザクションに細工すると、こういうはまりどころがあるなぁと気付いて Transactional を使わずに普通にテストを書いた。その分、自分でテストメソッドが呼ばれてコミットされたテストデータを削除する必要がある。調べていたときに他にも副作用がいろいろあるよという記事もみつけた。</p>
-<ul>
-<li><a href=https://dev.to/henrykeys/don-t-use-transactional-in-tests-40eb>Don’t Use @Transactional in Tests</a></li>
-</ul>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0217/>Mockito を触ってみた</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-02-17
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/java/>java</a>&nbsp;
+<!doctype html><html lang=en><head><title>testing :: forest nook</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=keywords content><meta name=robots content="noodp"><link rel=canonical href=/diary/tags/testing/><link rel=stylesheet href=/diary/assets/style.css><link rel=stylesheet href=/diary/assets/green.css><link rel=stylesheet href=/diary/style.css><link rel=apple-touch-icon href=/diary/img/apple-touch-icon-192x192.png><link rel="shortcut icon" href=/diary/favicon.ico><meta name=twitter:card content="summary"><meta name=twitter:site content="t2y"><meta name=twitter:creator content><meta property="og:locale" content="en"><meta property="og:type" content="website"><meta property="og:title" content="testing"><meta property="og:description" content><meta property="og:url" content="/diary/tags/testing/"><meta property="og:site_name" content="forest nook"><meta property="og:image" content="/diary/favicon.ico"><meta property="og:image:width" content="2048"><meta property="og:image:height" content="1024"><link href=/diary/tags/testing/index.xml rel=alternate type=application/rss+xml title="forest nook"></head><body class=green><div class="container full headings--one-size"><header class=header><div class=header__inner><div class=header__logo><a href=/diary><div class=logo>forest nook</div></a></div><div class=menu-trigger>menu</div></div><nav class=menu><ul class="menu__inner menu__inner--desktop"><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul><ul class="menu__inner menu__inner--mobile"><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul></nav></header><div class=content><div class=posts><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2022/0623/>assertj を使ってみた</a></h1><div class=post-meta><span class=post-date>2022-06-23</span></div><span class=post-tags>#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/testing/>testing</a>&nbsp;</span><div class=post-content><p>0時に寝て6時に起きた。</p><h2 id=assertdeepequals-を作った>assertDeepEquals を作った</h2><p><a href=https://assertj.github.io/doc/>AssertJ</a> というアサーションライブラリを使って <code>assertDeepEquals</code> を実装した。</p><p>junit4 では hamcrest という matcher が使われていて、それが <code>assertDeepEquals</code> 相当の機能を提供していたが、それが junit5 では提供されなくなったので自分で実装するか、アサーションライブラリを別途使う必要がある。</p><blockquote><p>現時点でJUnit5ではHamcrestのMatcherは提供せず、使用者が自由に選択する方針で進んでいます。そうなった場合、標準でサポートされるassertTrueやassertEquelsなどだけでは、ちょっと頼りなく車輪の再発明になりそうなので、候補になりそうなHamcrestとAssertJのよく使いそうなメソッド比較表を作りました。</p><p><a href=https://qiita.com/disc99/items/31fa7abb724f63602dc9>JUnitのアサーションライブラリHamcrest,AssertJ比較</a></p></blockquote><p><a href=https://junit.org/junit5/docs/snapshot/user-guide/#writing-tests-assertions-third-party>2.4.2. Third-party Assertion Libraries</a> によると、junit は基本的なアサーション機能を提供し、より強力なアサーションはサードパーティ製の好きなライブラリを使ってくれみたいなことが書いてある。軽く github でソースコード検索しても、みんな自前で作っているんやなということも分かる。</p><ul><li><a href="https://github.com/search?l=Java&q=assertDeepEquals&type=Code">https://github.com/search?l=Java&q=assertDeepEquals&type=Code</a></li></ul><p>hamcrest はもう保守されていないようにみえるので assertj を使うことにした。assertj の機能を使うと <code>assertDeepEquals</code> を次のように実装できる。直接 assertj を使ってもよいのだけど、assertXxx という名前で使えた方が junit ベースのテストのアサートの統合性があるし、いまお手伝い先では myapp-test のような、テスト向けの共通ライブラリを提供していて、すべてのプロジェクトで既に使っているので assertj の依存関係を追加しなくてもすぐに使えるというぐらいの利便性を提供するだけのユーティリティになる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Assertions</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>assertDeepEquals</span><span style=color:#f92672>(</span>Object expected<span style=color:#f92672>,</span> Object actual<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        assertThat<span style=color:#f92672>(</span>expected<span style=color:#f92672>).</span><span style=color:#a6e22e>usingRecursiveComparison</span><span style=color:#f92672>().</span><span style=color:#a6e22e>isEqualTo</span><span style=color:#f92672>(</span>actual<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>assertDeepEquals</span><span style=color:#f92672>(</span>Object expected<span style=color:#f92672>,</span> Object actual<span style=color:#f92672>,</span> String<span style=color:#f92672>...</span> fields<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        assertThat<span style=color:#f92672>(</span>expected<span style=color:#f92672>).</span><span style=color:#a6e22e>usingRecursiveComparison</span><span style=color:#f92672>().</span><span style=color:#a6e22e>comparingOnlyFields</span><span style=color:#f92672>(</span>fields<span style=color:#f92672>).</span><span style=color:#a6e22e>isEqualTo</span><span style=color:#f92672>(</span>actual<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>assertDeepEqualsIgnoringFields</span><span style=color:#f92672>(</span>Object expected<span style=color:#f92672>,</span> Object actual<span style=color:#f92672>,</span> String<span style=color:#f92672>...</span> fields<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        assertThat<span style=color:#f92672>(</span>expected<span style=color:#f92672>).</span><span style=color:#a6e22e>usingRecursiveComparison</span><span style=color:#f92672>().</span><span style=color:#a6e22e>ignoringFields</span><span style=color:#f92672>(</span>fields<span style=color:#f92672>).</span><span style=color:#a6e22e>isEqualTo</span><span style=color:#f92672>(</span>actual<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span></code></pre></div></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2022/0613/>データベースを介したテストではまった話し</a></h1><div class=post-meta><span class=post-date>2022-06-13</span></div><span class=post-tags>#<a href=/diary/tags/spring-boot/>spring boot</a>&nbsp;
+#<a href=/diary/tags/testing/>testing</a>&nbsp;</span><div class=post-content><p>1時に寝て7時に起きた。帰りにふらっと仲のよい焼き鳥屋さんに寄ったらちょっとしたハプニングがあって長居してしまった。他に来ていたお客さんのカップルが別れ話を始め、こじれてややこしい状況になって、この騒動が一段落しないと席を立てない空気になってしまって終わるのを待ってた。マスターの知り合いらしくて、そのお客さんが帰ってから当事者たちの背景を聞いたりしてた。人生いろいろあるよなぁ。</p><h2 id=spring-の-transactional-アノテーション>spring の Transactional アノテーション</h2><p>spring フレームワークには <a href=https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html>Transactional</a> というアノテーションがある。<a href=https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/test/context/SpringBootTest.html>SpringBootTest</a> を使ったテストのときに使うと、テストメソッドの終了時に自動的にデータベースへの書き込みがロールバックされて便利なことを <a href=/diary/posts/2022/0208/#テストコードのリファクタリング>テストコードのリファクタリング</a> をしていたときに気付いた。</p><p>スレッドプールを使ってマルチスレッドで並行実行する処理を書いてそのテストを書いてみたら意図した結果にならない。なんでだろう？と2時間ほどはまってデバッグしていた。テストデータの書き込みが、実際にはデータベースにコミットされていないので、テストを実行しているスレッド以外のワーカースレッドからデータベースにアクセスしてもテストデータを参照できないからだと気付いた。データベースのトランザクションに細工すると、こういうはまりどころがあるなぁと気付いて Transactional を使わずに普通にテストを書いた。その分、自分でテストメソッドが呼ばれてコミットされたテストデータを削除する必要がある。調べていたときに他にも副作用がいろいろあるよという記事もみつけた。</p><ul><li><a href=https://dev.to/henrykeys/don-t-use-transactional-in-tests-40eb>Don’t Use @Transactional in Tests</a></li></ul></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2022/0217/>Mockito を触ってみた</a></h1><div class=post-meta><span class=post-date>2022-02-17</span></div><span class=post-tags>#<a href=/diary/tags/java/>java</a>&nbsp;
 #<a href=/diary/tags/mock/>mock</a>&nbsp;
-#<a href=/diary/tags/testing/>testing</a>&nbsp;
-</span>
-<div class=post-content>
-<p>0時に寝て4時に起きて6時に起きた。6時過ぎに slack でインフラ担当者から作業の報告があってその対応してた。</p>
-<h2 id=mockito-のモック作成>Mockito のモック作成</h2>
-<p><a href=https://www.baeldung.com/spring-5-webclient>Spring 5 WebClient</a> のテストコードを書いてみた。<a href=https://site.mockito.org/>Mockito</a> というモックライブラリを使っているのをみかけたのでそれを使うことにした。当初は WebClient そのもののモックを用意して、どんなメソッドを呼び出しても Null オブジェクトのように無視すればいいんじゃないかと思ってたんだけど、Mockito はそういう用途に使うものではなく、それぞれのメソッドごとにモックを返すような設定ができる。次のような WebClient のメソッドチェーンでリクエストするようなモックを考える。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>var response <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>client</span>
-        <span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>()</span>
-        <span style=color:#f92672>.</span><span style=color:#a6e22e>uri</span><span style=color:#f92672>(</span>uriBuilder <span style=color:#f92672>-&gt;</span> uriBuilder
-                <span style=color:#f92672>.</span><span style=color:#a6e22e>path</span><span style=color:#f92672>(</span>path<span style=color:#f92672>)</span>
-                <span style=color:#f92672>.</span><span style=color:#a6e22e>queryParam</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;param&#34;</span><span style=color:#f92672>,</span> param<span style=color:#f92672>)</span>
-                <span style=color:#f92672>.</span><span style=color:#a6e22e>build</span><span style=color:#f92672>())</span>
-        <span style=color:#f92672>.</span><span style=color:#a6e22e>retrieve</span><span style=color:#f92672>()</span>
-        <span style=color:#f92672>.</span><span style=color:#a6e22e>bodyToMono</span><span style=color:#f92672>(</span>MyResponse<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)</span>
-        <span style=color:#f92672>.</span><span style=color:#a6e22e>block</span><span style=color:#f92672>();</span>
-</code></pre></div><p>他にもっとよいやり方があるかもしれないけど、私がよくわかってなくてこんなやり方しかできなかった。最終的には <code>block()</code> を呼び出したときに任意のレスポンスを取得できればよいのだけど、メソッド単位にモックを呼び出していかないと型チェックやら実行時エラーやらで意図したようにテストできなかった。これだけをみたらメソッドチェーンのモック作りは面倒にみえる。Mockito がどうやってこれを実現しているのかわからないけど、すごい仕組みだなとは思った。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    <span style=color:#a6e22e>@MockBean</span>
-    WebClient client<span style=color:#f92672>;</span>
-    <span style=color:#a6e22e>@Mock</span>
-    WebClient<span style=color:#f92672>.</span><span style=color:#a6e22e>RequestHeadersUriSpec</span> requestHeadersUriSpec<span style=color:#f92672>;</span>
-    <span style=color:#a6e22e>@Mock</span>
-    WebClient<span style=color:#f92672>.</span><span style=color:#a6e22e>RequestHeadersSpec</span> requestHeadersSpec<span style=color:#f92672>;</span>
-    <span style=color:#a6e22e>@Mock</span>
-    WebClient<span style=color:#f92672>.</span><span style=color:#a6e22e>ResponseSpec</span> responseSpec<span style=color:#f92672>;</span>
-    <span style=color:#a6e22e>@Mock</span>
-    Mono<span style=color:#f92672>&lt;</span>MyResponse<span style=color:#f92672>&gt;</span> mono<span style=color:#f92672>;</span>
-
-    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>mockWebClientMethodChain</span><span style=color:#f92672>(</span>MyResponse response<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-        Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>when</span><span style=color:#f92672>(</span>client<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>()).</span><span style=color:#a6e22e>thenReturn</span><span style=color:#f92672>(</span>requestHeadersUriSpec<span style=color:#f92672>);</span>
-        Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>when</span><span style=color:#f92672>(</span>requestHeadersUriSpec<span style=color:#f92672>.</span><span style=color:#a6e22e>uri</span><span style=color:#f92672>((</span>Function<span style=color:#f92672>&lt;</span>UriBuilder<span style=color:#f92672>,</span> URI<span style=color:#f92672>&gt;)</span> Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>any</span><span style=color:#f92672>())).</span><span style=color:#a6e22e>thenReturn</span><span style=color:#f92672>(</span>requestHeadersSpec<span style=color:#f92672>);</span>
-        Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>when</span><span style=color:#f92672>(</span>requestHeadersSpec<span style=color:#f92672>.</span><span style=color:#a6e22e>retrieve</span><span style=color:#f92672>()).</span><span style=color:#a6e22e>thenReturn</span><span style=color:#f92672>(</span>responseSpec<span style=color:#f92672>);</span>
-        Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>when</span><span style=color:#f92672>(</span>responseSpec<span style=color:#f92672>.</span><span style=color:#a6e22e>bodyToMono</span><span style=color:#f92672>(</span>MyResponse<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)).</span><span style=color:#a6e22e>thenReturn</span><span style=color:#f92672>(</span>mono<span style=color:#f92672>);</span>
-        Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>when</span><span style=color:#f92672>(</span>mono<span style=color:#f92672>.</span><span style=color:#a6e22e>block</span><span style=color:#f92672>()).</span><span style=color:#a6e22e>thenReturn</span><span style=color:#f92672>(</span>response<span style=color:#f92672>);</span>
-    <span style=color:#f92672>}</span>
-</code></pre></div>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0208/>テストコードのリファクタリング</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-02-08
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/testing/>testing</a>&nbsp;</span><div class=post-content><p>0時に寝て4時に起きて6時に起きた。6時過ぎに slack でインフラ担当者から作業の報告があってその対応してた。</p><h2 id=mockito-のモック作成>Mockito のモック作成</h2><p><a href=https://www.baeldung.com/spring-5-webclient>Spring 5 WebClient</a> のテストコードを書いてみた。<a href=https://site.mockito.org/>Mockito</a> というモックライブラリを使っているのをみかけたのでそれを使うことにした。当初は WebClient そのもののモックを用意して、どんなメソッドを呼び出しても Null オブジェクトのように無視すればいいんじゃないかと思ってたんだけど、Mockito はそういう用途に使うものではなく、それぞれのメソッドごとにモックを返すような設定ができる。次のような WebClient のメソッドチェーンでリクエストするようなモックを考える。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span>var response <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>client</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>()</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>.</span><span style=color:#a6e22e>uri</span><span style=color:#f92672>(</span>uriBuilder <span style=color:#f92672>-&gt;</span> uriBuilder
+</span></span><span style=display:flex><span>                <span style=color:#f92672>.</span><span style=color:#a6e22e>path</span><span style=color:#f92672>(</span>path<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>                <span style=color:#f92672>.</span><span style=color:#a6e22e>queryParam</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;param&#34;</span><span style=color:#f92672>,</span> param<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>                <span style=color:#f92672>.</span><span style=color:#a6e22e>build</span><span style=color:#f92672>())</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>.</span><span style=color:#a6e22e>retrieve</span><span style=color:#f92672>()</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>.</span><span style=color:#a6e22e>bodyToMono</span><span style=color:#f92672>(</span>MyResponse<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>.</span><span style=color:#a6e22e>block</span><span style=color:#f92672>();</span>
+</span></span></code></pre></div><p>他にもっとよいやり方があるかもしれないけど、私がよくわかってなくてこんなやり方しかできなかった。最終的には <code>block()</code> を呼び出したときに任意のレスポンスを取得できればよいのだけど、メソッド単位にモックを呼び出していかないと型チェックやら実行時エラーやらで意図したようにテストできなかった。これだけをみたらメソッドチェーンのモック作りは面倒にみえる。Mockito がどうやってこれを実現しているのかわからないけど、すごい仕組みだなとは思った。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span>    <span style=color:#a6e22e>@MockBean</span>
+</span></span><span style=display:flex><span>    WebClient client<span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@Mock</span>
+</span></span><span style=display:flex><span>    WebClient<span style=color:#f92672>.</span><span style=color:#a6e22e>RequestHeadersUriSpec</span> requestHeadersUriSpec<span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@Mock</span>
+</span></span><span style=display:flex><span>    WebClient<span style=color:#f92672>.</span><span style=color:#a6e22e>RequestHeadersSpec</span> requestHeadersSpec<span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@Mock</span>
+</span></span><span style=display:flex><span>    WebClient<span style=color:#f92672>.</span><span style=color:#a6e22e>ResponseSpec</span> responseSpec<span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@Mock</span>
+</span></span><span style=display:flex><span>    Mono<span style=color:#f92672>&lt;</span>MyResponse<span style=color:#f92672>&gt;</span> mono<span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>mockWebClientMethodChain</span><span style=color:#f92672>(</span>MyResponse response<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>when</span><span style=color:#f92672>(</span>client<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>()).</span><span style=color:#a6e22e>thenReturn</span><span style=color:#f92672>(</span>requestHeadersUriSpec<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>        Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>when</span><span style=color:#f92672>(</span>requestHeadersUriSpec<span style=color:#f92672>.</span><span style=color:#a6e22e>uri</span><span style=color:#f92672>((</span>Function<span style=color:#f92672>&lt;</span>UriBuilder<span style=color:#f92672>,</span> URI<span style=color:#f92672>&gt;)</span> Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>any</span><span style=color:#f92672>())).</span><span style=color:#a6e22e>thenReturn</span><span style=color:#f92672>(</span>requestHeadersSpec<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>        Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>when</span><span style=color:#f92672>(</span>requestHeadersSpec<span style=color:#f92672>.</span><span style=color:#a6e22e>retrieve</span><span style=color:#f92672>()).</span><span style=color:#a6e22e>thenReturn</span><span style=color:#f92672>(</span>responseSpec<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>        Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>when</span><span style=color:#f92672>(</span>responseSpec<span style=color:#f92672>.</span><span style=color:#a6e22e>bodyToMono</span><span style=color:#f92672>(</span>MyResponse<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)).</span><span style=color:#a6e22e>thenReturn</span><span style=color:#f92672>(</span>mono<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>        Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>when</span><span style=color:#f92672>(</span>mono<span style=color:#f92672>.</span><span style=color:#a6e22e>block</span><span style=color:#f92672>()).</span><span style=color:#a6e22e>thenReturn</span><span style=color:#f92672>(</span>response<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span></code></pre></div></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2022/0208/>テストコードのリファクタリング</a></h1><div class=post-meta><span class=post-date>2022-02-08</span></div><span class=post-tags>#<a href=/diary/tags/java/>java</a>&nbsp;
 #<a href=/diary/tags/spring-boot/>spring boot</a>&nbsp;
-#<a href=/diary/tags/testing/>testing</a>&nbsp;
-</span>
-<div class=post-content>
-<p>0時に寝て6時に起きた。今日は7時半から23時過ぎまで集中してコードを書いてた。最近は19-20時には帰って、晩ご飯食べて、ドラクエタクトやったり漫画読んだりだらだらしている。そんな暇あったら積ん読の本読めって感じだ。</p>
-<h2 id=テストコードのリファクタリング>テストコードのリファクタリング</h2>
-<p>業務機能の開発をするにあたって、既存のテストコードをみていて、<code>@BeforeEach</code> というテストメソッド単位に呼ばれるメソッドでテストデータの削除と postgresql の sequence のリセット処理をしていた。こんなの共通処理ですべてのテーブルの truncate と sequence のリセット処理をすればいいやんとか思って、いろいろ調べて2つのリファクタリングの PR を作成した。先日 <a href=/diary/posts/2022/0116/>JUnit5 の拡張</a> を調べたばかりだから、テストの共通化のノウハウが溜まっている。<a href=https://www.testcontainers.org/modules/databases/postgres/>Testcontainers Postgres Module</a> と連携して、postgresql コンテナに接続して sequence のリセット処理を汎用のテスト拡張として実装した。テストを実装する開発者は、次のように <code>@ExtendWith(DatabaseInitializer.class)</code> をアノテーションに付与すれば、自分で sequence のリセット処理を <code>@BeforeEach</code> のメソッドに実装する必要がなくなる。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@SpringBootTest</span>
-<span style=color:#a6e22e>@Transactional</span>
-<span style=color:#a6e22e>@ExtendWith</span><span style=color:#f92672>(</span>SetupDatabaseContainer<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)</span>
-<span style=color:#a6e22e>@ExtendWith</span><span style=color:#f92672>(</span>DatabaseInitializer<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)</span>
-<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyTest</span> <span style=color:#f92672>{</span>
-    <span style=color:#f92672>...</span>
-<span style=color:#f92672>}</span>
-</code></pre></div><p>この作業の過程で spring boot の <a href=https://spring.pleiades.io/spring-framework/docs/current/reference/html/testing.html#testcontext-tx-enabling-transactions>@Transactional</a> はデフォルトでテストメソッドの実行後にロールバックする機能が提供されていて、いままで <code>@BeforeEach</code> のメソッドで明示的にテーブルのデータを削除する必要はなかったんやと気付いた。じゃあ、なぜ削除するコードを書いてたかと言うと、テストの外部で初期データを作成する仕組みがあるから、初期データを削除する目的でそうしていたことが判明した。そして、一部のコードはそこで作った外部の初期データに依存して実装されていた。テストコードの一部が外部のデータに依存しつつ、テストメソッドでは外部のデータに依存しないように削除のコードが書いてある。書いていて何を言っているのかわからないと思うけど、私も調べてて訳がわからんくて、PR に「いまの状況はかなりややこしい」と前置きしつつ、無駄なコードや仕組みを取り除くための修正を行った。本当は機能開発やらないといけないのにテストコードのリファクタリングするのに大きな時間をかけるわけにはいかないだろうという意図で、半日掛けてリファクタリングして23時過ぎまで作業して、既存のテストコードも含めて全部直した。このリファクタリングで数十のテストケースの約300行ぐらいの初期化コードをなくせた。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0116/>JUnit5 のテスト拡張</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-01-16
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/java/>java</a>&nbsp;
-#<a href=/diary/tags/testing/>testing</a>&nbsp;
-</span>
-<div class=post-content>
-<p>1時に寝て5時に起きて2度寝して9時に起きた。前日呑んでたのであまり眠れなくて体調よくない。</p>
-<h2 id=junit5-的なロガーのテスト>JUnit5 的なロガーのテスト</h2>
-<p>お仕事でログ管理の機能開発をしている。カスタムロガーを使って出力するメッセージを加工している。設計が固まってきて機能も作り込むようになってきたので出力内容が意図した構造化ログになっているかをテストしたい。JUnit5 の機能と log4j の機能を組み合わせてカスタムロガーのテストの仕組みを作ってみた。</p>
-<p>まずログ出力した内容を取得するオブジェクトを特定するためのアノテーションを定義する。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Documented</span>
-<span style=color:#a6e22e>@Target</span><span style=color:#f92672>(</span>ElementType<span style=color:#f92672>.</span><span style=color:#a6e22e>FIELD</span><span style=color:#f92672>)</span>
-<span style=color:#a6e22e>@Retention</span><span style=color:#f92672>(</span>RetentionPolicy<span style=color:#f92672>.</span><span style=color:#a6e22e>RUNTIME</span><span style=color:#f92672>)</span>
-<span style=color:#66d9ef>public</span> <span style=color:#a6e22e>@interface</span> LoggerTestWriter <span style=color:#f92672>{</span>
-<span style=color:#f92672>}</span>
-</code></pre></div><p>JUnit5 の <a href=https://junit.org/junit5/docs/current/user-guide/#extensions-registration-declarative>Declarative Extension Registration</a> の仕組みを使って、テストケース非依存な setup/teadown のメソッドを定義する。<a href=https://junit.org/junit5/docs/current/api/org.junit.jupiter.api/org/junit/jupiter/api/extension/ExtensionContext.html>ExtensionContext</a> から拡張するテストケースのインスタンスを取得できる。テストケースインスタンスに定義されている <code>@LoggerTestWriter</code> アノテーションがついたオブジェクトを lgo4j の Appender としてインジェクションするようなコードを setup/teardown (beforeEach/afterEach メソッド) で定義する。Appender のインジェクション周りは <a href=https://qiita.com/kazurof/items/abbd42f11bfc125f3190>Log4j 2でログ出力をテストするサンプルソース</a> の記事を参考にした。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>SetupLogAppender</span> <span style=color:#66d9ef>implements</span> BeforeEachCallback<span style=color:#f92672>,</span> AfterEachCallback <span style=color:#f92672>{</span>
-    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> String APPENDER_NAME <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;logger-test-appender&#34;</span><span style=color:#f92672>;</span>
-
-    <span style=color:#66d9ef>private</span> Optional<span style=color:#f92672>&lt;</span>Writer<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>getWriter</span><span style=color:#f92672>(</span>ExtensionContext context<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> IllegalAccessException <span style=color:#f92672>{</span>
-        var testInstance <span style=color:#f92672>=</span> context<span style=color:#f92672>.</span><span style=color:#a6e22e>getRequiredTestInstance</span><span style=color:#f92672>();</span>
-        <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span>var field <span style=color:#f92672>:</span> testInstance<span style=color:#f92672>.</span><span style=color:#a6e22e>getClass</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getDeclaredFields</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
-            <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>field<span style=color:#f92672>.</span><span style=color:#a6e22e>isAnnotationPresent</span><span style=color:#f92672>(</span>LoggerTestWriter<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>))</span> <span style=color:#f92672>{</span>
-                <span style=color:#66d9ef>return</span> Optional<span style=color:#f92672>.</span><span style=color:#a6e22e>of</span><span style=color:#f92672>((</span>Writer<span style=color:#f92672>)</span> field<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>testInstance<span style=color:#f92672>));</span>
-            <span style=color:#f92672>}</span>
-        <span style=color:#f92672>}</span>
-        <span style=color:#66d9ef>return</span> Optional<span style=color:#f92672>.</span><span style=color:#a6e22e>empty</span><span style=color:#f92672>();</span>
-    <span style=color:#f92672>}</span>
-
-    <span style=color:#a6e22e>@Override</span>
-    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>beforeEach</span><span style=color:#f92672>(</span>ExtensionContext context<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> Exception <span style=color:#f92672>{</span>
-        var writer <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getWriter</span><span style=color:#f92672>(</span>context<span style=color:#f92672>).</span><span style=color:#a6e22e>orElseThrow</span><span style=color:#f92672>(()</span> <span style=color:#f92672>-&gt;</span>
-                <span style=color:#66d9ef>new</span> IllegalStateException<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;@LoggerTestWriter のアノテーションをもつ Writer を定義してください&#34;</span><span style=color:#f92672>));</span>
-        addAppender<span style=color:#f92672>(</span>writer<span style=color:#f92672>,</span> APPENDER_NAME<span style=color:#f92672>);</span>
-    <span style=color:#f92672>}</span>
-
-    <span style=color:#a6e22e>@Override</span>
-    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>afterEach</span><span style=color:#f92672>(</span>ExtensionContext context<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> Exception <span style=color:#f92672>{</span>
-        var writer <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getWriter</span><span style=color:#f92672>(</span>context<span style=color:#f92672>).</span><span style=color:#a6e22e>orElseThrow</span><span style=color:#f92672>(</span>IllegalStateException<span style=color:#f92672>::</span><span style=color:#66d9ef>new</span><span style=color:#f92672>);</span>
-        removeAppender<span style=color:#f92672>(</span>APPENDER_NAME<span style=color:#f92672>);</span>
-        <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>writer <span style=color:#66d9ef>instanceof</span> StringWriter<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-            var stringWriter <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>StringWriter<span style=color:#f92672>)</span> writer<span style=color:#f92672>;</span>
-            stringWriter<span style=color:#f92672>.</span><span style=color:#a6e22e>getBuffer</span><span style=color:#f92672>().</span><span style=color:#a6e22e>delete</span><span style=color:#f92672>(</span>0<span style=color:#f92672>,</span> stringWriter<span style=color:#f92672>.</span><span style=color:#a6e22e>getBuffer</span><span style=color:#f92672>().</span><span style=color:#a6e22e>length</span><span style=color:#f92672>());</span>
-        <span style=color:#f92672>}</span>
-    <span style=color:#f92672>}</span>
-</code></pre></div><p>実際にテストを書くテストクラスは次のようになる。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@ExtendWith</span><span style=color:#f92672>(</span>SetupLogAppender<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)</span>
-<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyLoggerTest</span> <span style=color:#f92672>{</span>
-    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> MyLogger logger <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> MyLogger<span style=color:#f92672>(</span>MyLoggerTest<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>());</span>
-
-    <span style=color:#a6e22e>@LoggerTestWriter</span>
-    StringWriter writer <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> StringWriter<span style=color:#f92672>();</span>
-
-    <span style=color:#a6e22e>@Test</span>
-    <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>testDebugMap</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
-        logger<span style=color:#f92672>.</span><span style=color:#a6e22e>debug</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;my-message&#34;</span><span style=color:#f92672>)</span>
-        assertEquals<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;my-message&#34;</span> writer<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>());</span>
-    <span style=color:#f92672>}</span>
-</code></pre></div><p><code>@ExtendWith</code> で指定した <code>SetupLogAppender</code> クラスの beforeEach や afterEach がそれぞれのテストメソッドごとに呼ばれて、Appender のインジェクションが <code>@LoggerTestWriter</code> のアノテーションをもつ writer を使って行われる。この writer にはログ出力した文字列が記録されるようになる。これで、テストメソッドで logger に対して出力したメッセージを writer から取得できるので意図したメッセージが出力されていることをテストできる。カスタムロガーのテストケースごとに再利用可能な拡張をきれいに実装できた。</p>
-</div>
-</div>
-<div class=pagination>
-<div class=pagination__buttons>
-</div>
-</div>
-</div>
-</div>
-<footer class=footer>
-<div class=footer__inner>
-<div class="copyright copyright--user">
-<span>© 2021 Tetsuya Morimoto</span>
-<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span>
-</div>
-</div>
-</footer>
-<script src=/diary/assets/main.js></script>
-<script src=/diary/assets/prism.js></script>
-</div>
-</body>
-</html>
+#<a href=/diary/tags/testing/>testing</a>&nbsp;</span><div class=post-content><p>0時に寝て6時に起きた。今日は7時半から23時過ぎまで集中してコードを書いてた。最近は19-20時には帰って、晩ご飯食べて、ドラクエタクトやったり漫画読んだりだらだらしている。そんな暇あったら積ん読の本読めって感じだ。</p><h2 id=テストコードのリファクタリング>テストコードのリファクタリング</h2><p>業務機能の開発をするにあたって、既存のテストコードをみていて、<code>@BeforeEach</code> というテストメソッド単位に呼ばれるメソッドでテストデータの削除と postgresql の sequence のリセット処理をしていた。こんなの共通処理ですべてのテーブルの truncate と sequence のリセット処理をすればいいやんとか思って、いろいろ調べて2つのリファクタリングの PR を作成した。先日 <a href=/diary/posts/2022/0116/>JUnit5 の拡張</a> を調べたばかりだから、テストの共通化のノウハウが溜まっている。<a href=https://www.testcontainers.org/modules/databases/postgres/>Testcontainers Postgres Module</a> と連携して、postgresql コンテナに接続して sequence のリセット処理を汎用のテスト拡張として実装した。テストを実装する開発者は、次のように <code>@ExtendWith(DatabaseInitializer.class)</code> をアノテーションに付与すれば、自分で sequence のリセット処理を <code>@BeforeEach</code> のメソッドに実装する必要がなくなる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#a6e22e>@SpringBootTest</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@Transactional</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@ExtendWith</span><span style=color:#f92672>(</span>SetupDatabaseContainer<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@ExtendWith</span><span style=color:#f92672>(</span>DatabaseInitializer<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyTest</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span></code></pre></div><p>この作業の過程で spring boot の <a href=https://spring.pleiades.io/spring-framework/docs/current/reference/html/testing.html#testcontext-tx-enabling-transactions>@Transactional</a> はデフォルトでテストメソッドの実行後にロールバックする機能が提供されていて、いままで <code>@BeforeEach</code> のメソッドで明示的にテーブルのデータを削除する必要はなかったんやと気付いた。じゃあ、なぜ削除するコードを書いてたかと言うと、テストの外部で初期データを作成する仕組みがあるから、初期データを削除する目的でそうしていたことが判明した。そして、一部のコードはそこで作った外部の初期データに依存して実装されていた。テストコードの一部が外部のデータに依存しつつ、テストメソッドでは外部のデータに依存しないように削除のコードが書いてある。書いていて何を言っているのかわからないと思うけど、私も調べてて訳がわからんくて、PR に「いまの状況はかなりややこしい」と前置きしつつ、無駄なコードや仕組みを取り除くための修正を行った。本当は機能開発やらないといけないのにテストコードのリファクタリングするのに大きな時間をかけるわけにはいかないだろうという意図で、半日掛けてリファクタリングして23時過ぎまで作業して、既存のテストコードも含めて全部直した。このリファクタリングで数十のテストケースの約300行ぐらいの初期化コードをなくせた。</p></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2022/0116/>JUnit5 のテスト拡張</a></h1><div class=post-meta><span class=post-date>2022-01-16</span></div><span class=post-tags>#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/testing/>testing</a>&nbsp;</span><div class=post-content><p>1時に寝て5時に起きて2度寝して9時に起きた。前日呑んでたのであまり眠れなくて体調よくない。</p><h2 id=junit5-的なロガーのテスト>JUnit5 的なロガーのテスト</h2><p>お仕事でログ管理の機能開発をしている。カスタムロガーを使って出力するメッセージを加工している。設計が固まってきて機能も作り込むようになってきたので出力内容が意図した構造化ログになっているかをテストしたい。JUnit5 の機能と log4j の機能を組み合わせてカスタムロガーのテストの仕組みを作ってみた。</p><p>まずログ出力した内容を取得するオブジェクトを特定するためのアノテーションを定義する。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#a6e22e>@Documented</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@Target</span><span style=color:#f92672>(</span>ElementType<span style=color:#f92672>.</span><span style=color:#a6e22e>FIELD</span><span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@Retention</span><span style=color:#f92672>(</span>RetentionPolicy<span style=color:#f92672>.</span><span style=color:#a6e22e>RUNTIME</span><span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#a6e22e>@interface</span> LoggerTestWriter <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span></code></pre></div><p>JUnit5 の <a href=https://junit.org/junit5/docs/current/user-guide/#extensions-registration-declarative>Declarative Extension Registration</a> の仕組みを使って、テストケース非依存な setup/teadown のメソッドを定義する。<a href=https://junit.org/junit5/docs/current/api/org.junit.jupiter.api/org/junit/jupiter/api/extension/ExtensionContext.html>ExtensionContext</a> から拡張するテストケースのインスタンスを取得できる。テストケースインスタンスに定義されている <code>@LoggerTestWriter</code> アノテーションがついたオブジェクトを lgo4j の Appender としてインジェクションするようなコードを setup/teardown (beforeEach/afterEach メソッド) で定義する。Appender のインジェクション周りは <a href=https://qiita.com/kazurof/items/abbd42f11bfc125f3190>Log4j 2でログ出力をテストするサンプルソース</a> の記事を参考にした。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>SetupLogAppender</span> <span style=color:#66d9ef>implements</span> BeforeEachCallback<span style=color:#f92672>,</span> AfterEachCallback <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> String APPENDER_NAME <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;logger-test-appender&#34;</span><span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> Optional<span style=color:#f92672>&lt;</span>Writer<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>getWriter</span><span style=color:#f92672>(</span>ExtensionContext context<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> IllegalAccessException <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        var testInstance <span style=color:#f92672>=</span> context<span style=color:#f92672>.</span><span style=color:#a6e22e>getRequiredTestInstance</span><span style=color:#f92672>();</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span>var field <span style=color:#f92672>:</span> testInstance<span style=color:#f92672>.</span><span style=color:#a6e22e>getClass</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getDeclaredFields</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>field<span style=color:#f92672>.</span><span style=color:#a6e22e>isAnnotationPresent</span><span style=color:#f92672>(</span>LoggerTestWriter<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>))</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span> Optional<span style=color:#f92672>.</span><span style=color:#a6e22e>of</span><span style=color:#f92672>((</span>Writer<span style=color:#f92672>)</span> field<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>testInstance<span style=color:#f92672>));</span>
+</span></span><span style=display:flex><span>            <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> Optional<span style=color:#f92672>.</span><span style=color:#a6e22e>empty</span><span style=color:#f92672>();</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@Override</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>beforeEach</span><span style=color:#f92672>(</span>ExtensionContext context<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> Exception <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        var writer <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getWriter</span><span style=color:#f92672>(</span>context<span style=color:#f92672>).</span><span style=color:#a6e22e>orElseThrow</span><span style=color:#f92672>(()</span> <span style=color:#f92672>-&gt;</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>new</span> IllegalStateException<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;@LoggerTestWriter のアノテーションをもつ Writer を定義してください&#34;</span><span style=color:#f92672>));</span>
+</span></span><span style=display:flex><span>        addAppender<span style=color:#f92672>(</span>writer<span style=color:#f92672>,</span> APPENDER_NAME<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@Override</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>afterEach</span><span style=color:#f92672>(</span>ExtensionContext context<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> Exception <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        var writer <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getWriter</span><span style=color:#f92672>(</span>context<span style=color:#f92672>).</span><span style=color:#a6e22e>orElseThrow</span><span style=color:#f92672>(</span>IllegalStateException<span style=color:#f92672>::</span><span style=color:#66d9ef>new</span><span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>        removeAppender<span style=color:#f92672>(</span>APPENDER_NAME<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>writer <span style=color:#66d9ef>instanceof</span> StringWriter<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>            var stringWriter <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>StringWriter<span style=color:#f92672>)</span> writer<span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>            stringWriter<span style=color:#f92672>.</span><span style=color:#a6e22e>getBuffer</span><span style=color:#f92672>().</span><span style=color:#a6e22e>delete</span><span style=color:#f92672>(</span>0<span style=color:#f92672>,</span> stringWriter<span style=color:#f92672>.</span><span style=color:#a6e22e>getBuffer</span><span style=color:#f92672>().</span><span style=color:#a6e22e>length</span><span style=color:#f92672>());</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span></code></pre></div><p>実際にテストを書くテストクラスは次のようになる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#a6e22e>@ExtendWith</span><span style=color:#f92672>(</span>SetupLogAppender<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyLoggerTest</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> MyLogger logger <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> MyLogger<span style=color:#f92672>(</span>MyLoggerTest<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>());</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@LoggerTestWriter</span>
+</span></span><span style=display:flex><span>    StringWriter writer <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> StringWriter<span style=color:#f92672>();</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@Test</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>testDebugMap</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        logger<span style=color:#f92672>.</span><span style=color:#a6e22e>debug</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;my-message&#34;</span><span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>        assertEquals<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;my-message&#34;</span> writer<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>());</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span></code></pre></div><p><code>@ExtendWith</code> で指定した <code>SetupLogAppender</code> クラスの beforeEach や afterEach がそれぞれのテストメソッドごとに呼ばれて、Appender のインジェクションが <code>@LoggerTestWriter</code> のアノテーションをもつ writer を使って行われる。この writer にはログ出力した文字列が記録されるようになる。これで、テストメソッドで logger に対して出力したメッセージを writer から取得できるので意図したメッセージが出力されていることをテストできる。カスタムロガーのテストケースごとに再利用可能な拡張をきれいに実装できた。</p></div></div><div class=pagination><div class=pagination__buttons></div></div></div></div><footer class=footer><div class=footer__inner><div class="copyright copyright--user"><span>© 2021 Tetsuya Morimoto</span>
+<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span></div></div></footer><script src=/diary/assets/main.js></script>
+<script src=/diary/assets/prism.js></script></div></body></html>

@@ -44,7 +44,7 @@ TED に デレク・シヴァーズ 「社会運動はどうやって起こす�
 dapr の pubsub の dead letter サポート お仕事で dapr を触っている。pubsub で dead letter queue の仕組みを導入しようとしているが、PubSub&amp;rsquo;s DeadLetter Topic #2217 によると v1.6 (2022年1月20日リリース予定) のマイルストーンになっている。本当にその予定ならそろそろベータ版が実装されていて、開発ブランチあったらテストしようかと考えていた。調べてたら rabbitmq はすでに v1.5 で dead letter のサポートがマージされているのを発見した。
 Add dead letter support for RabbitMQ pubsub #1844 たまたま、いま使っている pubsub も rabbitmq だった。ドキュメントをみたら確かにその設定が追加されている。
 dapr RabbitMQ
-Field Required Details Example enableDeadLetter N Enable forwarding Messages that cannot be handled to a dead-letter topic.</description><content>&lt;p>1時から1時間ほど仮眠をとって2時から4時過ぎまで作業して帰ってお風呂に入ってそのまま6時から &lt;a href="https://kobe-sannomiya-dev.connpass.com/event/232426/">【三宮.dev オンライン】リモート朝活もくもく会&lt;/a> の朝活に参加した。30分ほど雑談して眠くなって7時過ぎから9時前まで寝てた。&lt;/p>
+Field Required Details Example enableDeadLetter N Enable forwarding Messages that cannot be handled to a dead-letter topic. Defaults to &amp;ldquo;false&amp;rdquo; &amp;ldquo;true&amp;rdquo;, &amp;ldquo;false&amp;rdquo; maxLen N The maximum number of messages of a queue and its dead letter queue (if dead letter enabled).</description><content>&lt;p>1時から1時間ほど仮眠をとって2時から4時過ぎまで作業して帰ってお風呂に入ってそのまま6時から &lt;a href="https://kobe-sannomiya-dev.connpass.com/event/232426/">【三宮.dev オンライン】リモート朝活もくもく会&lt;/a> の朝活に参加した。30分ほど雑談して眠くなって7時過ぎから9時前まで寝てた。&lt;/p>
 &lt;h2 id="dapr-の-pubsub-の-dead-letter-サポート">dapr の pubsub の dead letter サポート&lt;/h2>
 &lt;p>お仕事で dapr を触っている。pubsub で dead letter queue の仕組みを導入しようとしているが、&lt;a href="https://github.com/dapr/dapr/issues/2217">PubSub&amp;rsquo;s DeadLetter Topic #2217&lt;/a> によると v1.6 (2022年1月20日リリース予定) のマイルストーンになっている。本当にその予定ならそろそろベータ版が実装されていて、開発ブランチあったらテストしようかと考えていた。調べてたら rabbitmq はすでに v1.5 で dead letter のサポートがマージされているのを発見した。&lt;/p>
 &lt;ul>
@@ -196,46 +196,47 @@ Control Plane (API サーバー) 複数の Worker (Kubelet) yaml で設定する
 &lt;p>一番需要なこととして、k8s は理想状態と現実状態を比較して、理想状態に近づけようとする。app.yaml の理想状態を kubectl を用いて api サーバーを介して etcd に格納する。現実状態は kubelet から api サーバーを介して etcd に格納される。c-m は理想状態と現実状態のチェックを行い、異なっていれば理想状態に近づけることをしていく。&lt;/p>
 &lt;h3 id="セクション4-kubectl">セクション4 kubectl&lt;/h3>
 &lt;p>minikube で最初に起動しているのは Control Plane を起動していることが理解できた。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ minikube start
-$ kubectl config current-context
-minikube
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>同時に ~/.kube/config に kubectl の設定も追加される。&lt;code>minikube&lt;/code> という名前でクラスター、ユーザー、コンテキストが設定される。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ minikube start
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ kubectl config current-context
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>minikube
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>同時に ~/.kube/config に kubectl の設定も追加される。&lt;code>minikube&lt;/code> という名前でクラスター、ユーザー、コンテキストが設定される。&lt;/p>
 &lt;p>リソース一覧の確認。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl api-resources
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>出力フォーマットも様々。例えば、デフォルトの表示は次になる。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl get node
-NAME STATUS ROLES AGE VERSION
-minikube Ready control-plane,master 7m21s v1.22.2
-$ kubectl get node -o wide
-NAME STATUS ROLES AGE VERSION INTERNAL-IP EXTERNAL-IP OS-IMAGE KERNEL-VERSION CONTAINER-RUNTIME
-minikube Ready control-plane,master 8m38s v1.22.2 192.168.49.2 &amp;lt;none&amp;gt; Ubuntu 20.04.2 LTS 5.11.0-38-generic docker://20.10.8
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>より詳細な情報をそれぞれのフォーマットで表示する。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl get node -o json
-$ kubectl get node -o yaml
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>namespace を確認する。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl get namespace
-NAME STATUS AGE
-default Active 10m
-kube-node-lease Active 10m
-kube-public Active 10m
-kube-system Active 10m
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>namespace を指定して pod 一覧を取得する。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl get pod --namespace kube-system
-NAME READY STATUS RESTARTS AGE
-coredns-78fcd69978-qxqbn 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
-etcd-minikube 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
-kube-apiserver-minikube 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
-kube-controller-manager-minikube 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
-kube-proxy-g55hg 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
-kube-scheduler-minikube 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
-storage-provisioner 1/1 Running &lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">(&lt;/span>10m ago&lt;span style="color:#f92672">)&lt;/span> 11m
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>グローバルな CLI のオプションを確認する。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl options
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>ノードの詳細を表示する。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl describe node
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>describe は名前の接頭辞を指定できるので namespace ならこんな感じに実行できる。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl describe namespace kube-
-&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="セクション5-kubernetes-リソース">セクション5 Kubernetes リソース&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl api-resources
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>出力フォーマットも様々。例えば、デフォルトの表示は次になる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl get node
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>NAME STATUS ROLES AGE VERSION
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>minikube Ready control-plane,master 7m21s v1.22.2
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ kubectl get node -o wide
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>NAME STATUS ROLES AGE VERSION INTERNAL-IP EXTERNAL-IP OS-IMAGE KERNEL-VERSION CONTAINER-RUNTIME
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>minikube Ready control-plane,master 8m38s v1.22.2 192.168.49.2 &amp;lt;none&amp;gt; Ubuntu 20.04.2 LTS 5.11.0-38-generic docker://20.10.8
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>より詳細な情報をそれぞれのフォーマットで表示する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl get node -o json
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ kubectl get node -o yaml
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>namespace を確認する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl get namespace
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>NAME STATUS AGE
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>default Active 10m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>kube-node-lease Active 10m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>kube-public Active 10m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>kube-system Active 10m
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>namespace を指定して pod 一覧を取得する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl get pod --namespace kube-system
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>NAME READY STATUS RESTARTS AGE
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>coredns-78fcd69978-qxqbn 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>etcd-minikube 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>kube-apiserver-minikube 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>kube-controller-manager-minikube 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>kube-proxy-g55hg 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>kube-scheduler-minikube 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>storage-provisioner 1/1 Running &lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">(&lt;/span>10m ago&lt;span style="color:#f92672">)&lt;/span> 11m
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>グローバルな CLI のオプションを確認する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl options
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>ノードの詳細を表示する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl describe node
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>describe は名前の接頭辞を指定できるので namespace ならこんな感じに実行できる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl describe namespace kube-
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="セクション5-kubernetes-リソース">セクション5 Kubernetes リソース&lt;/h3>
 &lt;p>pod とは k8s 上のデプロイの最小単位である。&lt;/p>
 &lt;ul>
 &lt;li>1つまたは複数のコンテナをもつ&lt;/li>
@@ -301,10 +302,10 @@ storage-provisioner 1/1 Running &lt;span style="color:#ae81ff">1&lt;/span> &lt;s
 &lt;/li>
 &lt;/ul>
 &lt;p>次のコマンドで確認できる。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl api-resources --namespaced&lt;span style="color:#f92672">=&lt;/span>true
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>namespace の作成&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl create namespace my-namespace
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>ワークロードリソースとは複数の pod を作成・管理するためのリソース。ワークロードリソースは pod テンプレートを使って pod を作成する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl api-resources --namespaced&lt;span style="color:#f92672">=&lt;/span>true
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>namespace の作成&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl create namespace my-namespace
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>ワークロードリソースとは複数の pod を作成・管理するためのリソース。ワークロードリソースは pod テンプレートを使って pod を作成する。&lt;/p>
 &lt;ul>
 &lt;li>ReplicaSet
 &lt;ul>
@@ -348,7 +349,17 @@ storage-provisioner 1/1 Running &lt;span style="color:#ae81ff">1&lt;/span> &lt;s
 収穫逓減 (しゅうかくていげん): 製品をより多く生産するのにかかる経費が増大していくこと 生産活動において2倍の生産量を生み出すには2倍以上の経費がかかる 費用関数: 生産量と費用との関係をあらわす 限界費用: 追加的に1単位生産する費用 3個を生産する費用は、1個目の限界費用 + 2個目の限界費用 + 3個目の限界費用 個数が増えるごとに費用は高くなっていく 費用を図示するときは限界費用に分解した方が視覚的にわかりやすい 限界費用逓増: 生産するごとに限界費用が高まっていくこと 「逓」という漢字は「つぎつぎ」や「だんだん」という意味をもつ。
 プライステイカー: 自分の生産量が価格に影響を与えられない 減産により希少価値を高め価格を吊り上げる市場操作ができない 独占企業: プライステイカーの反対。 利潤: 売上 - 経費 最適解: 利潤を最大化する生産量 あと1個追加して生産すると利益がマイナスになるところ 生産者余剰: すべての企業の利潤の和 供給曲線: すべての企業の限界費用をヨコに足し合わせた曲線 データ指向アプリケーションデザイン 昨日の続き。8.4 を読んで8章分散システムの問題を読み終えた。全体としても学びになったけれど、とくに 8.3 信頼性の低いクロックの節が全く開発・運用で意識したことがなかったので私にとっては学びになった。
 分散システムにおいて発生する厄介な問題がある。
-ネットワーク経由でパケットを送信しようとした場合、そのパケットはロストしたり、どれほど遅延するか分からない。同様に、レスポンスもロストしたり遅延したりするので、レスポンスを受け取れなかった場合には元々のメッセージが到達したかどうかも分からない</description><content>&lt;p>2時に寝て6時に起きた。前日の夜にウォーキングしたせいか、よく眠れた。朝活を終えてから朝ご飯を作って食べてそのままオフィスに出社した。6時起きを日課にした方が生活のリズムがよい。夕方に眠くなって1時間ほど昼寝した。&lt;/p>
+ネットワーク経由でパケットを送信しようとした場合、そのパケットはロストしたり、どれほど遅延するか分からない。同様に、レスポンスもロストしたり遅延したりするので、レスポンスを受け取れなかった場合には元々のメッセージが到達したかどうかも分からない
+ノードのクロックは他のノードと大きくずれているかもしれない（できる限りの努力をして NTP をセットアップしたとしても）。クロックは急に進んだり戻ったりするかもしれず、たいていはクロックの誤差をうまく計る方法がないので、クロックに依存するのは危険
+プロセスは処理中にいつどれほどの長さ一時停止するかもしれず（おそらくはstop-the-worldガベージコレクタのため）、他のノードから落ちていると見なされた後に自身に一時停止があったことを理解しないままに復活するかもしれない。
+こういった 部分障害 が生じうるのが分散システムの特徴と言える。ソフトウェアが他のノードが関わる何かをしようとした場合、それは時おり失敗したり、ランダムに速度が落ちたり、まったくレスポンスが返されない（そして最終的にはタイムアウトする）といった可能性がある。分散システムでは、部分障害への耐性をソフトウェアに組み込み、システムの構成要素が一部破損していてもシステム全体としては機能し続けられるようにする。
+フォールトに耐えるための最初のステップはフォールトを 検出 することだが、それさえも難しい。多くのシステムは、ノードに障害が生じていることを検出する正確な仕組みを持たないので、ほとんどの分散アルゴリズムはリモートノードが生きているかどうかを判断するのにタイムアウトに頼る。しかし、タイムアウトはネットワークの障害とノードの障害を区別できず、ネットワークの遅延変動のために間違ってノードがクラッシュしていると誤検知することもある。弱っているものの落ちてはいないノードは、きれいに落ちているノードよりもさらに扱いが難しくなる可能性がある。
+フォールトが検出されたとして、システムがそれに耐えられるようにすることも簡単ではない。マシン間にはグローバルな変数も、共有メモリも、共通の情報やその他何らかの共有された状態もない。ノードは現在の時刻についてさえ合意できず、ましてやもっと重大なことに合意することなどできない。あるノードから他のノードへ情報を流せる唯一の方法は、その情報を信頼できないネットワークを通じて送ることだけである。重要な判断は単一のノードだけで安全に下すことができないので、他のノードの助けを得てクオラムが合意に至るようにするためのプロトコルが必要となる。
+同じ操作をすれば決まって同じ結果を返してくれるような、単一コンピュータにおける理想化された数学的な完全さの中でソフトウェアを書くのに慣れていると、分散システムの雑然とした物理的な現実への移行はちょっとしたショックを伴う。一方、分散システムのエンジニアは、しばしば単一のコンピュータ上で解決できる問題を簡単なものだと見なすが、実際のところ今日では単一のコンピュータがこなせる仕事量はかなりのものになっている。単一のマシンでシンプルにことを済ませられるなら、概してそうする価値はある。
+分散システムを利用する理由はスケーラビリティだけではない。耐障害性や低レイテンシ（地理的にユーザーの近くにデータを置けることによる）も同様に重要な目標であり、こういったことは単一ノードでは実現できない。本章ではネットワーク、クロック、プロセスの信頼性の低さが避けがたい自然の法則なのかも調べた。安全ではなく、クリティカルではないシステムの多くでは、高価な高信頼性よりも安価な低信頼性が選択される。また、信頼性の高いコンポーネントを前提としているスーパーコンピュータも取り上げました。スーパーコンピュータはその前提が故に、コンポーネントに障害が生じてしまった場合には完全に停止させて再起動することになる。これに対し、分散システムはサービスレベルでは中断することなくいつまでも動作し続けられる。これは、少なくとも理論上はすべてのフォールトやメンテナンスはノードレベルで処理できるためである。
+お昼ご飯 気分でスーパー寄って買いものして家に帰り、お昼ご飯を作って食べた。前に適当に作った かぼちゃの煮物 がおいしかったので再挑戦してみた。今度は圧力鍋を使っていろいろ具材を入れてみた。過去に作っておいしかった料理のレシピを evernote に書いたりしていたけど、もういまは書いてないので気が向いたら日記に書くようにする。
+材料
+A 水 900cc めんつゆ 100c 醤油 適量 B かぼちゃ 1/4切れ なす 3個 にんじん 2本 玉ねぎ 1個 しめじ 1パック C 卵 2個 豆苗 せみ餃子 作り方</description><content>&lt;p>2時に寝て6時に起きた。前日の夜にウォーキングしたせいか、よく眠れた。朝活を終えてから朝ご飯を作って食べてそのままオフィスに出社した。6時起きを日課にした方が生活のリズムがよい。夕方に眠くなって1時間ほど昼寝した。&lt;/p>
 &lt;h2 id="朝活-ミクロ経済学入門の入門">朝活: ミクロ経済学入門の入門&lt;/h2>
 &lt;p>&lt;a href="https://kobe-sannomiya-dev.connpass.com/event/228969/">【三宮.dev オンライン】リモート朝活もくもく会&lt;/a> で第4章の供給曲線を読んだ。需要曲線の逆からの視点なので考え方は同じで図の形が異なる。用語がいくつか出てきたのでまとめる。&lt;/p>
 &lt;ul>

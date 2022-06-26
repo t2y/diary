@@ -4,7 +4,7 @@ eks (k8s) のアップグレード お手伝い先のお仕事がもうすぐサ
 Updating an Amazon EKS cluster Kubernetes version 何が起きるか分からなくても、土曜日から始めて致命的なトラブルに見舞われても1日もあれば解決できるだろうという見通しで作業を始めた。その見通しも「私がやれば」という前提に成り立っている。良くも悪くも私がやろうと言ったことに反対されることはほとんどないが、それは私が言ったことは一定時間に私がすべてやり切るという信頼に基づいている。本当の意味でできるかどうか分からないことを必要以上に抱え込んでしまうときもあるのでバランス感覚は必要かもしれない。言わばサービス休日出勤だし、なぜ私がやっているかと言うと、システムの運用や保守の展望を考えたら、サービスインの前にインフラのバージョンを上げておく方が将来の保守コストを下げることに繋がるという1点のみに重要性を見い出していて、それをもっとも強く主張しているのが私だからという理由。
 結論から言って2時間でアップグレード作業を完了した。1つ手順漏れがあって、アプリケーションの pod がすべてエラーになるというトラブルに見舞われたものの、すぐ手順漏れに気付いて難なく復旧できた。今日はテスト環境のアップグレードをしたわけだけど、また後日、本番向けの作業手順書を作れば、ほぼタウンタイムなしで1時間もあればアップグレード作業を完了できそうな見通しではある。
 実際はミスもあったので次の順番でやったわけではないが、おそらくこの手順でやれば正しいはず。
-aws cli と eksctl コマンドのインストール aws のアップグレードドキュメンを読む cert-manager のアップグレード (1.1.1 から 1.5.4) aws-load-balancer-controller のアップグレード (2.2.0 から 2.4.2) k8s control plane のアップグレード (1.21 から 1.22) (オプション: 不要) autoscaler のアップグレード (オプション: 不要) gpu サポートノードのアップグレード vpc cni プラグインのアップグレード (1.7.5 から 1.11.2) coredns プラグインのアップグレード (1.8.4 から 1.</description><content>&lt;p>0時に寝て6時半に起きた。起きてから1時間ほどだらだらしてた。&lt;/p>
+aws cli と eksctl コマンドのインストール aws のアップグレードドキュメンを読む cert-manager のアップグレード (1.1.1 から 1.5.4) aws-load-balancer-controller のアップグレード (2.2.0 から 2.4.2) k8s control plane のアップグレード (1.21 から 1.22) (オプション: 不要) autoscaler のアップグレード (オプション: 不要) gpu サポートノードのアップグレード vpc cni プラグインのアップグレード (1.7.5 から 1.11.2) coredns プラグインのアップグレード (1.8.4 から 1.8.7) kube-proxy のアップグレード (1.</description><content>&lt;p>0時に寝て6時半に起きた。起きてから1時間ほどだらだらしてた。&lt;/p>
 &lt;h2 id="ストレッチ">ストレッチ&lt;/h2>
 &lt;p>今日の開脚幅は開始前161cmで、ストレッチ後163cmだった。先週と同じなので現状維持とも言えるし、よい状態を維持しているとも言えるかもしれない。もう1年以上通っているせいか、なにかポイントが溜まっていて使わないといけないという話しで今日は20分延長でやってくれた。とは言っても、基本的なストレッチ項目が変わるわけではなく、いつもより伸ばす時間や手順が少し増えているぐらいだった気がする。今週はとくに腰の負荷もあまり感じなかったせいか、いつもの右腰の張りもなかったように思う。トレーナーさんに聞くと、暑くなると筋肉は伸びやすくなるので季節要因でストレッチをしたときの伸び具合が変わるのは普通とのこと。調子がよくなってきたのでこのまま好調を維持したい。&lt;/p>
 &lt;h2 id="eks-k8s-のアップグレード">eks (k8s) のアップグレード&lt;/h2>
@@ -41,39 +41,39 @@ k8s の cronjob バッチ処理を Kubernetes: CronJob で作る。一通り設�
 apiVersion: batch/v1 kind: CronJob metadata: name: my-app-hourly-job spec: schedule: &amp;#34;5 */1 * * *&amp;#34; concurrencyPolicy: Forbid startingDeadlineSeconds: 600 jobTemplate: spec: backoffLimit: 0 template: metadata: labels: app: my-app-hourly annotations: dapr.io/enabled: &amp;#34;true&amp;#34; dapr.io/app-id: &amp;#34;my-app-hourly&amp;#34; spec: containers: - name: my-app-hourly-job image: my-app-image imagePullPolicy: Always env: - name: BATCH_ENV value: &amp;#34;dev&amp;#34; command: - &amp;#34;/bin/sh&amp;#34; - &amp;#34;/app/scripts/my-app.sh&amp;#34; - &amp;#34;param1&amp;#34; - &amp;#34;param2&amp;#34; restartPolicy: Never command の設定がわかりにくい。さらに k8s のドキュメントのサンプル設定も誤解を招くような例になっている。どうも実行できるのは1つの cli だけで、複数コマンドを指定できるわけではない。シェルスクリプトを docker イメージに含めて、そこで任意のスクリプトを実装した方がよいだろう。</description><content>&lt;p>0時に寝て6時に起きた。寝不足を解消して体調が戻ってきた。&lt;/p>
 &lt;h2 id="k8s-の-cronjob">k8s の cronjob&lt;/h2>
 &lt;p>バッチ処理を &lt;a href="https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/">Kubernetes: CronJob&lt;/a> で作る。一通り設定して minikube で検証して eks 上でも動くようになった。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yml" data-lang="yml">&lt;span style="color:#f92672">apiVersion&lt;/span>: &lt;span style="color:#ae81ff">batch/v1&lt;/span>
-&lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">CronJob&lt;/span>
-&lt;span style="color:#f92672">metadata&lt;/span>:
-&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-app-hourly-job&lt;/span>
-&lt;span style="color:#f92672">spec&lt;/span>:
-&lt;span style="color:#f92672">schedule&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;5 */1 * * *&amp;#34;&lt;/span>
-&lt;span style="color:#f92672">concurrencyPolicy&lt;/span>: &lt;span style="color:#ae81ff">Forbid&lt;/span>
-&lt;span style="color:#f92672">startingDeadlineSeconds&lt;/span>: &lt;span style="color:#ae81ff">600&lt;/span>
-&lt;span style="color:#f92672">jobTemplate&lt;/span>:
-&lt;span style="color:#f92672">spec&lt;/span>:
-&lt;span style="color:#f92672">backoffLimit&lt;/span>: &lt;span style="color:#ae81ff">0&lt;/span>
-&lt;span style="color:#f92672">template&lt;/span>:
-&lt;span style="color:#f92672">metadata&lt;/span>:
-&lt;span style="color:#f92672">labels&lt;/span>:
-&lt;span style="color:#f92672">app&lt;/span>: &lt;span style="color:#ae81ff">my-app-hourly&lt;/span>
-&lt;span style="color:#f92672">annotations&lt;/span>:
-&lt;span style="color:#f92672">dapr.io/enabled&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;true&amp;#34;&lt;/span>
-&lt;span style="color:#f92672">dapr.io/app-id&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;my-app-hourly&amp;#34;&lt;/span>
-&lt;span style="color:#f92672">spec&lt;/span>:
-&lt;span style="color:#f92672">containers&lt;/span>:
-- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-app-hourly-job&lt;/span>
-&lt;span style="color:#f92672">image&lt;/span>: &lt;span style="color:#ae81ff">my-app-image&lt;/span>
-&lt;span style="color:#f92672">imagePullPolicy&lt;/span>: &lt;span style="color:#ae81ff">Always&lt;/span>
-&lt;span style="color:#f92672">env&lt;/span>:
-- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">BATCH_ENV&lt;/span>
-&lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;dev&amp;#34;&lt;/span>
-&lt;span style="color:#f92672">command&lt;/span>:
-- &lt;span style="color:#e6db74">&amp;#34;/bin/sh&amp;#34;&lt;/span>
-- &lt;span style="color:#e6db74">&amp;#34;/app/scripts/my-app.sh&amp;#34;&lt;/span>
-- &lt;span style="color:#e6db74">&amp;#34;param1&amp;#34;&lt;/span>
-- &lt;span style="color:#e6db74">&amp;#34;param2&amp;#34;&lt;/span>
-&lt;span style="color:#f92672">restartPolicy&lt;/span>: &lt;span style="color:#ae81ff">Never&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>command の設定がわかりにくい。さらに k8s のドキュメントのサンプル設定も誤解を招くような例になっている。どうも実行できるのは1つの cli だけで、複数コマンドを指定できるわけではない。シェルスクリプトを docker イメージに含めて、そこで任意のスクリプトを実装した方がよいだろう。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">apiVersion&lt;/span>: &lt;span style="color:#ae81ff">batch/v1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">CronJob&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">metadata&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-app-hourly-job&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">spec&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">schedule&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;5 */1 * * *&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">concurrencyPolicy&lt;/span>: &lt;span style="color:#ae81ff">Forbid&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">startingDeadlineSeconds&lt;/span>: &lt;span style="color:#ae81ff">600&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">jobTemplate&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">spec&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">backoffLimit&lt;/span>: &lt;span style="color:#ae81ff">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">template&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">metadata&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">labels&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">app&lt;/span>: &lt;span style="color:#ae81ff">my-app-hourly&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">annotations&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">dapr.io/enabled&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;true&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">dapr.io/app-id&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;my-app-hourly&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">spec&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">containers&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-app-hourly-job&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">image&lt;/span>: &lt;span style="color:#ae81ff">my-app-image&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">imagePullPolicy&lt;/span>: &lt;span style="color:#ae81ff">Always&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">env&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">BATCH_ENV&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;dev&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">command&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#e6db74">&amp;#34;/bin/sh&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#e6db74">&amp;#34;/app/scripts/my-app.sh&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#e6db74">&amp;#34;param1&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#e6db74">&amp;#34;param2&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">restartPolicy&lt;/span>: &lt;span style="color:#ae81ff">Never&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>command の設定がわかりにくい。さらに k8s のドキュメントのサンプル設定も誤解を招くような例になっている。どうも実行できるのは1つの cli だけで、複数コマンドを指定できるわけではない。シェルスクリプトを docker イメージに含めて、そこで任意のスクリプトを実装した方がよいだろう。&lt;/p>
 &lt;ul>
 &lt;li>&amp;ldquo;/bin/sh&amp;rdquo;&lt;/li>
 &lt;li>&amp;ldquo;/app/scripts/my-app.sh&amp;rdquo;&lt;/li>
@@ -100,7 +100,8 @@ freee で出力した書類をみながら e-tax の画面で同じ書類の項�
 eks (k8s) から alb の管理 eks (k8s) に aws-load-balancer-controller をインストールすると k8s 上のリソースとして alb を管理できるようになる。
 AWS Load Balancer Controller アドオンのインストール 具体的には k8s の Ingress と Nodepoint リソースから次の3つのリソースを生成してくれる。
 application load balancer http listener target groups alb からのヘルスチェックは次のようにエンドポイントを記述する。spring boot だと Actuator という web api がヘルスチェックの機能を提供している。
-alb.ingress.kubernetes.io/healthcheck-path: /actuator/health alb.ingress.kubernetes.io/scheme の設定で alb を配置するサブネットを指定できる。デフォルトは internal になる。</description><content>&lt;p>5時に寝て7時過ぎに起きた。前日の夜から法人決算の電子申告に取り組み始めた。本当は紙でやるつもりだったんだけど、eltax が快適だったので e-tax も衝動的にやってみたくなった。&lt;/p>
+alb.ingress.kubernetes.io/healthcheck-path: /actuator/health alb.ingress.kubernetes.io/scheme の設定で alb を配置するサブネットを指定できる。デフォルトは internal になる。
+private subnet に配置するとき</description><content>&lt;p>5時に寝て7時過ぎに起きた。前日の夜から法人決算の電子申告に取り組み始めた。本当は紙でやるつもりだったんだけど、eltax が快適だったので e-tax も衝動的にやってみたくなった。&lt;/p>
 &lt;h2 id="消費税と地方消費税の申告">消費税と地方消費税の申告&lt;/h2>
 &lt;p>&lt;a href="/diary/diary/posts/2022/0505/#法人決算">法人決算&lt;/a> の一部。今回が初めての消費税と地方消費税の申告になる。簡易課税で支払う。&lt;/p>
 &lt;blockquote>
@@ -120,13 +121,13 @@ alb.ingress.kubernetes.io/healthcheck-path: /actuator/health alb.ingress.kuberne
 &lt;li>target groups&lt;/li>
 &lt;/ul>
 &lt;p>alb からのヘルスチェックは次のようにエンドポイントを記述する。spring boot だと &lt;a href="https://docs.spring.io/spring-boot/docs/current/actuator-api/htmlsingle/">Actuator&lt;/a> という web api がヘルスチェックの機能を提供している。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#f92672">alb.ingress.kubernetes.io/healthcheck-path&lt;/span>: &lt;span style="color:#ae81ff">/actuator/health&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>alb.ingress.kubernetes.io/scheme&lt;/code> の設定で alb を配置するサブネットを指定できる。デフォルトは &lt;code>internal&lt;/code> になる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">alb.ingress.kubernetes.io/healthcheck-path&lt;/span>: &lt;span style="color:#ae81ff">/actuator/health&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>alb.ingress.kubernetes.io/scheme&lt;/code> の設定で alb を配置するサブネットを指定できる。デフォルトは &lt;code>internal&lt;/code> になる。&lt;/p>
 &lt;p>private subnet に配置するとき&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#f92672">alb.ingress.kubernetes.io/scheme&lt;/span>: &lt;span style="color:#ae81ff">internal&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>public subnet に配置するとき&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#f92672">alb.ingress.kubernetes.io/scheme&lt;/span>: &lt;span style="color:#ae81ff">internet-facing&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>helm を調べた</title><link>/diary/posts/2022/0511/</link><pubDate>Wed, 11 May 2022 08:31:36 +0900</pubDate><guid>/diary/posts/2022/0511/</guid><description>1時に寝て6時半に起きて8時に起きた。前日は資料づくりで遅くまでオフィスに残っていたせいか、なんか寝坊した。
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">alb.ingress.kubernetes.io/scheme&lt;/span>: &lt;span style="color:#ae81ff">internal&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>public subnet に配置するとき&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">alb.ingress.kubernetes.io/scheme&lt;/span>: &lt;span style="color:#ae81ff">internet-facing&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>helm を調べた</title><link>/diary/posts/2022/0511/</link><pubDate>Wed, 11 May 2022 08:31:36 +0900</pubDate><guid>/diary/posts/2022/0511/</guid><description>1時に寝て6時半に起きて8時に起きた。前日は資料づくりで遅くまでオフィスに残っていたせいか、なんか寝坊した。
 helm 調査 k8s 上の datadog-agent が helm で管理されていて、あるバージョンから dapr も helm 管理できる ようになった。dapr は cli からもインストールできるけど、helm のことをよくわかってなかったので調べることにした。そんなたくさん記事をみたわけではないけど、いくつか記事を読んで quora のやり取りが一番よかった。
 When should you use Kubernetes Helm and not use it? ざっくりまとめるとこうかな。
 helm は oss 且つ cncf の公式プロジェクトだからまぁ安心 helm はサードパーティのパッケージのインストールや設定の利便性を高める k8s はテンプレート機能が弱いので共通設定と特定環境向けの設定を管理するのがあまり得意ではない セキュリティを考慮した k8s 設定は自分でやるよりコミュニティに任せた方がよい場合もある パッケージなのでバージョン管理は得意 helm は k8s 向けのパッケージマネージャとレポジトリマネージャーとマーケットプレイスを組み合わせたみたいなもの k8s 上でサードパーティのパッケージを自分で設定したい特別な理由がない限りは helm を使うのがよさそうという結論になった。</description><content>&lt;p>1時に寝て6時半に起きて8時に起きた。前日は資料づくりで遅くまでオフィスに残っていたせいか、なんか寝坊した。&lt;/p>
@@ -157,92 +158,93 @@ Configuration: status: warn name: YAMLConfig appenders: Console: name: STDOUT ta
 &lt;p>spring の &lt;a href="https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.profiles">Profiles&lt;/a> の仕組みを使って環境ごとの設定を作る。デプロイは k8s で管理しているため、spring boot の &lt;a href="https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config">Externalized Configuration&lt;/a> の仕組みを使って、環境変数から application.yml に定義された設定を書き換える。k8s は kustomize で管理していて prod, test, dev の3つの環境で任意の設定を記述できる。&lt;/p>
 &lt;p>問題はログ出力の設定を環境ごとに変えたい。具体的には datadog に連携されるログは構造化ログ (json lines) を、ローカルの開発ではコンソールログをみたい。&lt;a href="https://logging.apache.org/log4j/2.x/log4j-spring-boot/index.html">Log4j Spring Boot Support&lt;/a> によると、1つの設定ファイルに複数のプロファイル設定を記述できるようにもみえるけど、実際にやってみたらうまく動かなかった。xml ではなく yml を使っているせいかもしれないし、私の記述方法が誤っているのかもしれない。いずれにしても yml で複数のプロファイルを設定しているサンプルをみつけられなかった。&lt;/p>
 &lt;p>そこで &lt;a href="https://www.baeldung.com/spring-log4j2-config-per-profile">Different Log4j2 Configurations per Spring Profile&lt;/a> をみて、環境ごとにログ設定ファイルも分割することにした。application.yml には次のように記述する。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yml" data-lang="yml">&lt;span style="color:#f92672">spring&lt;/span>:
-&lt;span style="color:#f92672">profiles&lt;/span>:
-&lt;span style="color:#f92672">active&lt;/span>: &lt;span style="color:#ae81ff">dev&lt;/span>
-&lt;span style="color:#f92672">logging&lt;/span>:
-&lt;span style="color:#f92672">config&lt;/span>: &lt;span style="color:#ae81ff">classpath:log4j2-${spring.profiles.active}.yml&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>ローカル開発向けの lgo4j2-dev.yml は次のようになる。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yml" data-lang="yml">&lt;span style="color:#f92672">Configuration&lt;/span>:
-&lt;span style="color:#f92672">status&lt;/span>: &lt;span style="color:#ae81ff">warn&lt;/span>
-&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">YAMLConfig&lt;/span>
-&lt;span style="color:#f92672">appenders&lt;/span>:
-&lt;span style="color:#f92672">Console&lt;/span>:
-&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">STDOUT&lt;/span>
-&lt;span style="color:#f92672">target&lt;/span>: &lt;span style="color:#ae81ff">SYSTEM_OUT&lt;/span>
-&lt;span style="color:#f92672">PatternLayout&lt;/span>:
-&lt;span style="color:#f92672">Pattern&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;%d{yyyy-MM-dd HH:mm:ss.SSS}[%t]%-5level %logger{36} - %msg%n&amp;#34;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>k8s のマニフェストで環境変数を次のように定義すれば prod というプロファイルが設定される。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yml" data-lang="yml">&lt;span style="color:#f92672">apiVersion&lt;/span>: &lt;span style="color:#ae81ff">apps/v1&lt;/span>
-&lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">Deployment&lt;/span>
-&lt;span style="color:#f92672">metadata&lt;/span>:
-&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-service&lt;/span>
-&lt;span style="color:#f92672">spec&lt;/span>:
-&lt;span style="color:#f92672">template&lt;/span>:
-&lt;span style="color:#f92672">spec&lt;/span>:
-&lt;span style="color:#f92672">containers&lt;/span>:
-- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-service&lt;/span>
-&lt;span style="color:#f92672">env&lt;/span>:
-- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">spring.profiles.active&lt;/span>
-&lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;prod&amp;#34;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>クラウド環境向けの log4j2-prod.yml は次のようになる。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yml" data-lang="yml">&lt;span style="color:#f92672">Configuration&lt;/span>:
-&lt;span style="color:#f92672">status&lt;/span>: &lt;span style="color:#ae81ff">warn&lt;/span>
-&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">YAMLConfig&lt;/span>
-&lt;span style="color:#f92672">appenders&lt;/span>:
-&lt;span style="color:#f92672">Console&lt;/span>:
-&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">STDOUT&lt;/span>
-&lt;span style="color:#f92672">target&lt;/span>: &lt;span style="color:#ae81ff">SYSTEM_OUT&lt;/span>
-&lt;span style="color:#f92672">EcsLayout&lt;/span>:
-&lt;span style="color:#f92672">serviceName&lt;/span>: &lt;span style="color:#ae81ff">my-service&lt;/span>
-&lt;span style="color:#f92672">serviceNodeName&lt;/span>: &lt;span style="color:#66d9ef">null&lt;/span>
-&lt;span style="color:#f92672">includeMarkers&lt;/span>: &lt;span style="color:#66d9ef">true&lt;/span>
-&lt;span style="color:#f92672">KeyValuePair&lt;/span>:
-- &lt;span style="color:#f92672">key&lt;/span>: &lt;span style="color:#ae81ff">type&lt;/span>
-&lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#ae81ff">app&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>k8s のロールバック</title><link>/diary/posts/2022/0313/</link><pubDate>Sun, 13 Mar 2022 12:07:00 +0900</pubDate><guid>/diary/posts/2022/0313/</guid><description>0時に寝て7時に起きた。
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">spring&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">profiles&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">active&lt;/span>: &lt;span style="color:#ae81ff">dev&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">logging&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">config&lt;/span>: &lt;span style="color:#ae81ff">classpath:log4j2-${spring.profiles.active}.yml&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>ローカル開発向けの lgo4j2-dev.yml は次のようになる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">Configuration&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">status&lt;/span>: &lt;span style="color:#ae81ff">warn&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">YAMLConfig&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">appenders&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">Console&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">STDOUT&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">target&lt;/span>: &lt;span style="color:#ae81ff">SYSTEM_OUT&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">PatternLayout&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">Pattern&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;%d{yyyy-MM-dd HH:mm:ss.SSS}[%t]%-5level %logger{36} - %msg%n&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>k8s のマニフェストで環境変数を次のように定義すれば prod というプロファイルが設定される。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">apiVersion&lt;/span>: &lt;span style="color:#ae81ff">apps/v1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">Deployment&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">metadata&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-service&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">spec&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">template&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">spec&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">containers&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-service&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">env&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">spring.profiles.active&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;prod&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>クラウド環境向けの log4j2-prod.yml は次のようになる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">Configuration&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">status&lt;/span>: &lt;span style="color:#ae81ff">warn&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">YAMLConfig&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">appenders&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">Console&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">STDOUT&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">target&lt;/span>: &lt;span style="color:#ae81ff">SYSTEM_OUT&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">EcsLayout&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">serviceName&lt;/span>: &lt;span style="color:#ae81ff">my-service&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">serviceNodeName&lt;/span>: &lt;span style="color:#66d9ef">null&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">includeMarkers&lt;/span>: &lt;span style="color:#66d9ef">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">KeyValuePair&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#f92672">key&lt;/span>: &lt;span style="color:#ae81ff">type&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#ae81ff">app&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>k8s のロールバック</title><link>/diary/posts/2022/0313/</link><pubDate>Sun, 13 Mar 2022 12:07:00 +0900</pubDate><guid>/diary/posts/2022/0313/</guid><description>0時に寝て7時に起きた。
 k8s のロールバック Rolling Back to a Previous Revision をみながらすぐできた。ロールバックもこれまでと同様、github actions の workflow dispatch で管理できるようにした。基本的にはこれだけでロールバックできる。
 $ kubectl rollout undo deployment/my-app-deploy ちょっと工夫したこととして、デプロイ時に kubernetes.io/change-cause というアノテーションに git のリビジョンもセットしておくと確認するときにちょっと楽ができる。apply した後の deployment リソースに docker イメージのタグ情報 (= git のリビジョン) を書き込んでおく。
 $ kubectl apply -k ${{ env.DEPLOYMENT_ENV }} $ kubectl annotate deployment my-app-deploy kubernetes.io/change-cause=${{ env.IMAGE_TAG }} --overwrite=true kubectl から履歴をみたときに k8s のリビジョンがどの git のリビジョンを使っているかがわかりやすい。デフォルトでは何も設定されていないかもしれない。
 $ kubectl rollout history deployment/my-app-deploy deployment.apps/my-app-deploy REVISION CHANGE-CAUSE 15 &amp;lt;none&amp;gt; 16 &amp;lt;none&amp;gt; 17 &amp;lt;none&amp;gt; 18 &amp;lt;none&amp;gt; 19 &amp;lt;none&amp;gt; 20 &amp;lt;none&amp;gt; 21 &amp;lt;none&amp;gt; 22 &amp;lt;none&amp;gt; 24 1f17a22a6659ea0714a21fca034645cd191e189b 27 a84e113d8b7c124178b58e2f40f57b00aae65485 28 dcf3552db0668d416ed880f6e896455d7bab194c</description><content>&lt;p>0時に寝て7時に起きた。&lt;/p>
 &lt;h2 id="k8s-のロールバック">k8s のロールバック&lt;/h2>
 &lt;p>&lt;a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-back-to-a-previous-revision">Rolling Back to a Previous Revision&lt;/a> をみながらすぐできた。ロールバックもこれまでと同様、github actions の workflow dispatch で管理できるようにした。基本的にはこれだけでロールバックできる。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl rollout undo deployment/my-app-deploy
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>ちょっと工夫したこととして、デプロイ時に &lt;a href="https://kubernetes.io/docs/reference/labels-annotations-taints/#change-cause">kubernetes.io/change-cause&lt;/a> というアノテーションに git のリビジョンもセットしておくと確認するときにちょっと楽ができる。apply した後の deployment リソースに docker イメージのタグ情報 (= git のリビジョン) を書き込んでおく。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl apply -k &lt;span style="color:#e6db74">${&lt;/span>{ env.DEPLOYMENT_ENV &lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#f92672">}&lt;/span>
-$ kubectl annotate deployment my-app-deploy kubernetes.io/change-cause&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">${&lt;/span>{ env.IMAGE_TAG &lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#f92672">}&lt;/span> --overwrite&lt;span style="color:#f92672">=&lt;/span>true
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>kubectl から履歴をみたときに k8s のリビジョンがどの git のリビジョンを使っているかがわかりやすい。デフォルトでは何も設定されていないかもしれない。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl rollout history deployment/my-app-deploy
-deployment.apps/my-app-deploy
-REVISION CHANGE-CAUSE
-&lt;span style="color:#ae81ff">15&lt;/span> &amp;lt;none&amp;gt;
-&lt;span style="color:#ae81ff">16&lt;/span> &amp;lt;none&amp;gt;
-&lt;span style="color:#ae81ff">17&lt;/span> &amp;lt;none&amp;gt;
-&lt;span style="color:#ae81ff">18&lt;/span> &amp;lt;none&amp;gt;
-&lt;span style="color:#ae81ff">19&lt;/span> &amp;lt;none&amp;gt;
-&lt;span style="color:#ae81ff">20&lt;/span> &amp;lt;none&amp;gt;
-&lt;span style="color:#ae81ff">21&lt;/span> &amp;lt;none&amp;gt;
-&lt;span style="color:#ae81ff">22&lt;/span> &amp;lt;none&amp;gt;
-&lt;span style="color:#ae81ff">24&lt;/span> 1f17a22a6659ea0714a21fca034645cd191e189b
-&lt;span style="color:#ae81ff">27&lt;/span> a84e113d8b7c124178b58e2f40f57b00aae65485
-&lt;span style="color:#ae81ff">28&lt;/span> dcf3552db0668d416ed880f6e896455d7bab194c
-&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>kustomize の動的な設定</title><link>/diary/posts/2022/0228/</link><pubDate>Mon, 28 Feb 2022 08:11:25 +0900</pubDate><guid>/diary/posts/2022/0228/</guid><description>23時に寝て2時に起きてそこから断続的に寝たり起きたりを繰り返して6時に半に起きた。ウクライナ情勢のニュースや記事ばかり読んでてあてられた。
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl rollout undo deployment/my-app-deploy
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>ちょっと工夫したこととして、デプロイ時に &lt;a href="https://kubernetes.io/docs/reference/labels-annotations-taints/#change-cause">kubernetes.io/change-cause&lt;/a> というアノテーションに git のリビジョンもセットしておくと確認するときにちょっと楽ができる。apply した後の deployment リソースに docker イメージのタグ情報 (= git のリビジョン) を書き込んでおく。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl apply -k &lt;span style="color:#e6db74">${&lt;/span>{ env.DEPLOYMENT_ENV &lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ kubectl annotate deployment my-app-deploy kubernetes.io/change-cause&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">${&lt;/span>{ env.IMAGE_TAG &lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#f92672">}&lt;/span> --overwrite&lt;span style="color:#f92672">=&lt;/span>true
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>kubectl から履歴をみたときに k8s のリビジョンがどの git のリビジョンを使っているかがわかりやすい。デフォルトでは何も設定されていないかもしれない。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl rollout history deployment/my-app-deploy
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>deployment.apps/my-app-deploy
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>REVISION CHANGE-CAUSE
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">15&lt;/span> &amp;lt;none&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">16&lt;/span> &amp;lt;none&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">17&lt;/span> &amp;lt;none&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">18&lt;/span> &amp;lt;none&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">19&lt;/span> &amp;lt;none&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">20&lt;/span> &amp;lt;none&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">21&lt;/span> &amp;lt;none&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">22&lt;/span> &amp;lt;none&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">24&lt;/span> 1f17a22a6659ea0714a21fca034645cd191e189b
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">27&lt;/span> a84e113d8b7c124178b58e2f40f57b00aae65485
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">28&lt;/span> dcf3552db0668d416ed880f6e896455d7bab194c
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>kustomize の動的な設定</title><link>/diary/posts/2022/0228/</link><pubDate>Mon, 28 Feb 2022 08:11:25 +0900</pubDate><guid>/diary/posts/2022/0228/</guid><description>23時に寝て2時に起きてそこから断続的に寝たり起きたりを繰り返して6時に半に起きた。ウクライナ情勢のニュースや記事ばかり読んでてあてられた。
 kustomize の動的な設定 kustomize で管理している image のタグをデプロイ処理の中で動的に変更したい。パラメーター渡しなり環境変数なり、なにかしらあるだろうとは予測している。Demo: change image names and tags のサンプルによると、次のように実行すればよいみたい。
 $ kustomize edit set image busybox=alpine:3.6 次のような kustomization.yaml をセットしてくれるみたい。
 images: - name: busybox newName: alpine newTag: 3.6 タグのところをリビジョン指定できればいいだけなのでとくに SECRET を使う必要もない。このやり方で書き換えた newTag が POD のデプロイ対象になってくれればよいはず。</description><content>&lt;p>23時に寝て2時に起きてそこから断続的に寝たり起きたりを繰り返して6時に半に起きた。ウクライナ情勢のニュースや記事ばかり読んでてあてられた。&lt;/p>
 &lt;h2 id="kustomize-の動的な設定">kustomize の動的な設定&lt;/h2>
 &lt;p>kustomize で管理している image のタグをデプロイ処理の中で動的に変更したい。パラメーター渡しなり環境変数なり、なにかしらあるだろうとは予測している。&lt;a href="https://github.com/kubernetes-sigs/kustomize/blob/master/examples/image.md">Demo: change image names and tags&lt;/a> のサンプルによると、次のように実行すればよいみたい。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kustomize edit set image busybox&lt;span style="color:#f92672">=&lt;/span>alpine:3.6
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>次のような &lt;code>kustomization.yaml&lt;/code> をセットしてくれるみたい。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yml" data-lang="yml">&lt;span style="color:#f92672">images&lt;/span>:
-- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">busybox&lt;/span>
-&lt;span style="color:#f92672">newName&lt;/span>: &lt;span style="color:#ae81ff">alpine&lt;/span>
-&lt;span style="color:#f92672">newTag&lt;/span>: &lt;span style="color:#ae81ff">3.6&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>タグのところをリビジョン指定できればいいだけなのでとくに SECRET を使う必要もない。このやり方で書き換えた &lt;code>newTag&lt;/code> が POD のデプロイ対象になってくれればよいはず。&lt;/p></content></item><item><title>wiki のドキュメント整理</title><link>/diary/posts/2022/0201/</link><pubDate>Tue, 01 Feb 2022 07:28:46 +0900</pubDate><guid>/diary/posts/2022/0201/</guid><description>23時に寝て4時半に起きた。昨日の帰りに自転車でこけて胸を強打してひたすら痛い。起き上がるのも痛い。安静にしてた。
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kustomize edit set image busybox&lt;span style="color:#f92672">=&lt;/span>alpine:3.6
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>次のような &lt;code>kustomization.yaml&lt;/code> をセットしてくれるみたい。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">images&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">busybox&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">newName&lt;/span>: &lt;span style="color:#ae81ff">alpine&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">newTag&lt;/span>: &lt;span style="color:#ae81ff">3.6&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>タグのところをリビジョン指定できればいいだけなのでとくに SECRET を使う必要もない。このやり方で書き換えた &lt;code>newTag&lt;/code> が POD のデプロイ対象になってくれればよいはず。&lt;/p></content></item><item><title>wiki のドキュメント整理</title><link>/diary/posts/2022/0201/</link><pubDate>Tue, 01 Feb 2022 07:28:46 +0900</pubDate><guid>/diary/posts/2022/0201/</guid><description>23時に寝て4時半に起きた。昨日の帰りに自転車でこけて胸を強打してひたすら痛い。起き上がるのも痛い。安静にしてた。
 kubernetes のログ管理と datadog-agent のログ連携不具合 先日、datadog にログ連携されていない不具合 が発生していて、その1次調査を終えたことについて書いた。緊急対応としては datadog-agent を再起動することで改善することはわかっていたので、その後、kubernetes のログ管理と datadog-agent がどうやって kubernetes クラスター上で実行されているアプリケーションのログを収集しているかを調査していた。今日は wiki に調査してわかったことなどをまとめていた。
 kubernetes クラスターはコンテナランタイムに docker を使っていて、アプリケーションの stdout/stderr を docker の logging driver にリダイレクトし、JSON Lines に設定された logging driver が kubernetes ノード上にログファイルとして出力する。datadog-agent は autodiscovery 機能で pod の情報を常にポーリングしていて、pod が新たにデプロイされたらログファイルを pod 内にマウントして、そのマウントしたログファイルを読み込んでログ収集していると思われる。datadog-agent から pod の情報を取得するには kubernetes のサービスアカウントを使っていて、その credential が projected volume としてマウントされて pod 内から利用できる。その credential を使って kubelet api にリクエストすることで pod の情報を取得している。
 文章で書けばたったこれだけのことなんだけど、たったこれだけのことを理解するのに次のドキュメントを読んだ。実際の調査のときはわからなかったのでもっと多くのドキュメントを読んでいる。いま書いたことを理解するならこのドキュメントを読めば理解できるはず。
-https://kubernetes.io/docs/concepts/overview/components/ https://kubernetes.io/docs/concepts/architecture/control-plane-node-communication/ https://kubernetes.io/docs/concepts/cluster-administration/logging/ https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/ https://kubernetes.io/docs/concepts/storage/projected-volumes/ https://docs.datadoghq.com/agent/kubernetes/log/?tab=helm https://docs.</description><content>&lt;p>23時に寝て4時半に起きた。昨日の帰りに自転車でこけて胸を強打してひたすら痛い。起き上がるのも痛い。安静にしてた。&lt;/p>
+https://kubernetes.io/docs/concepts/overview/components/ https://kubernetes.io/docs/concepts/architecture/control-plane-node-communication/ https://kubernetes.io/docs/concepts/cluster-administration/logging/ https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/ https://kubernetes.io/docs/concepts/storage/projected-volumes/ https://docs.datadoghq.com/agent/kubernetes/log/?tab=helm https://docs.datadoghq.com/getting_started/agent/autodiscovery/?tab=kubernetes ドキュメントに書いてあることを深く理解するために、kubernetes と datadog-agent のソースコードも読んだ。どちらも go 言語で実装されている。</description><content>&lt;p>23時に寝て4時半に起きた。昨日の帰りに自転車でこけて胸を強打してひたすら痛い。起き上がるのも痛い。安静にしてた。&lt;/p>
 &lt;h2 id="kubernetes-のログ管理と-datadog-agent-のログ連携不具合">kubernetes のログ管理と datadog-agent のログ連携不具合&lt;/h2>
 &lt;p>先日、&lt;a href="/diary/diary/posts/2022/0127/#ログ連携の不具合調査">datadog にログ連携されていない不具合&lt;/a> が発生していて、その1次調査を終えたことについて書いた。緊急対応としては datadog-agent を再起動することで改善することはわかっていたので、その後、kubernetes のログ管理と datadog-agent がどうやって kubernetes クラスター上で実行されているアプリケーションのログを収集しているかを調査していた。今日は wiki に調査してわかったことなどをまとめていた。&lt;/p>
 &lt;p>kubernetes クラスターはコンテナランタイムに docker を使っていて、アプリケーションの stdout/stderr を docker の logging driver にリダイレクトし、JSON Lines に設定された logging driver が kubernetes ノード上にログファイルとして出力する。datadog-agent は autodiscovery 機能で pod の情報を常にポーリングしていて、pod が新たにデプロイされたらログファイルを pod 内にマウントして、そのマウントしたログファイルを読み込んでログ収集していると思われる。datadog-agent から pod の情報を取得するには kubernetes のサービスアカウントを使っていて、その credential が projected volume としてマウントされて pod 内から利用できる。その credential を使って kubelet api にリクエストすることで pod の情報を取得している。&lt;/p>
@@ -286,12 +288,12 @@ $ kubectl get secret mydata -o json | jq &amp;#39;.</description><content>&lt;p>
 &lt;h2 id="dapr-の-api-トークンを使った認証">dapr の api トークンを使った認証&lt;/h2>
 &lt;p>&lt;a href="https://docs.dapr.io/operations/security/api-token/">Enable API token authentication in Dapr&lt;/a> を一通り読んだ。内容はとくに難しくなく、こんな風に dapr の manifest を書けば &lt;a href="https://jwt.io/">JWT&lt;/a> トークンを設定できますということを書いてある。私はずっとサーバーサイドばっかりやってきたからフロントエンドで使われる技術や仕組みに弱い。JWT トークンもその1つで、自分でちゃんと実装したことがないからちゃんとよく分かってない。これが OAuth2 なら provider を実装したこともあるからその仕組みも意図も理解できる。一度どこかで自分で JWT も実装してみないといけないのだろうな。&lt;/p>
 &lt;p>少し前にお仕事で kubernetes の secret の移行作業をやった。既存の secret にキーバリューを追加するときは patch を使う。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl patch secret mydata -p&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;{&amp;#34;stringData&amp;#34;:{&amp;#34;mykey&amp;#34;: &amp;#34;myvalue&amp;#34;}}&amp;#39;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>secret の内容を確認するときも2つのやり方がある。キーだけを確認するならこれでよい。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl describe secrets mydata
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>キーに対応する値もデコードして確認するならこうする。但し、閲覧注意。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl get secret mydata -o json | jq &lt;span style="color:#e6db74">&amp;#39;.data | map_values(@base64d)&amp;#39;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>kustomize のパッチ適用の違い</title><link>/diary/posts/2021/1122/</link><pubDate>Mon, 22 Nov 2021 13:40:40 +0900</pubDate><guid>/diary/posts/2021/1122/</guid><description>22時ぐらいには寝て6時半に起きた。昨日はお出かけしてきてバテたんで19時頃からうたた寝を繰り返してずっと寝てた。実家に帰っていた期間を除いて、土日のどちらかを休むのはここ3ヶ月はなかったと思うし、土日の2日間ほとんど仕事をしなかったのは半年ぐらいはなかったと思う。久しぶりに土日に仕事しなかったなという印象で、その理由は業務委託のお仕事の契約が決まって余裕があるからだと思う。
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl patch secret mydata -p&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;{&amp;#34;stringData&amp;#34;:{&amp;#34;mykey&amp;#34;: &amp;#34;myvalue&amp;#34;}}&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>secret の内容を確認するときも2つのやり方がある。キーだけを確認するならこれでよい。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl describe secrets mydata
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>キーに対応する値もデコードして確認するならこうする。但し、閲覧注意。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl get secret mydata -o json | jq &lt;span style="color:#e6db74">&amp;#39;.data | map_values(@base64d)&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>kustomize のパッチ適用の違い</title><link>/diary/posts/2021/1122/</link><pubDate>Mon, 22 Nov 2021 13:40:40 +0900</pubDate><guid>/diary/posts/2021/1122/</guid><description>22時ぐらいには寝て6時半に起きた。昨日はお出かけしてきてバテたんで19時頃からうたた寝を繰り返してずっと寝てた。実家に帰っていた期間を除いて、土日のどちらかを休むのはここ3ヶ月はなかったと思うし、土日の2日間ほとんど仕事をしなかったのは半年ぐらいはなかったと思う。久しぶりに土日に仕事しなかったなという印象で、その理由は業務委託のお仕事の契約が決まって余裕があるからだと思う。
 kustomize の Inline Patch Inline Patch に次の3つのやり方が説明されている。
 patchesStrategicMerge: Strategic Merge Patch として解析されるパッチファイルのリスト patchesJSON6902: 1つのターゲットリソースのみに適用可能な JSON Patch として解析されるパッチと関連付けされるターゲットのリスト patches: 関連付けされるターゲットとパッチのリスト。このパッチは複数のオブジェクトに適用でき、パッチが Strategic Merge Patch なのか JSON Patch かは自動的に検出 patches は patchesStrategicMerge と patchesJSON6902 の両方を記述できる。運用上は patchesStrategicMerge か patchesJSON6902 を適用したいパッチの内容によって使い分けることになる。おそらく前者は base にない要素を追加したり、base の要素をすべて置き換えたりするときに使う。後者は base にある map や list の一部の要素のみを限定して置き換えたり、削除したりするときに使う。ちなみに patchesJSON6902 の 6902 というのは RFC 6902 JavaScript Object Notation (JSON) Patch に由来する。
 patchesJson6902 の例として次のような設定にパッチを適用する。base から読まれた metadata の要素から namespace のみを削除したり、spec.metadata の1番目のリストの secretKeyRef が参照する Secret を my-secret で置き換えたりできる。こういったパッチを patchesStrategicMerge で実現することはできないのではないかと思う (詳しくないので私が間違っているかもしれない) 。</description><content>&lt;p>22時ぐらいには寝て6時半に起きた。昨日はお出かけしてきてバテたんで19時頃からうたた寝を繰り返してずっと寝てた。実家に帰っていた期間を除いて、土日のどちらかを休むのはここ3ヶ月はなかったと思うし、土日の2日間ほとんど仕事をしなかったのは半年ぐらいはなかったと思う。久しぶりに土日に仕事しなかったなという印象で、その理由は業務委託のお仕事の契約が決まって余裕があるからだと思う。&lt;/p>
@@ -307,36 +309,36 @@ patchesJson6902 の例として次のような設定にパッチを適用する�
 &lt;p>patches は patchesStrategicMerge と patchesJSON6902 の両方を記述できる。運用上は patchesStrategicMerge か patchesJSON6902 を適用したいパッチの内容によって使い分けることになる。おそらく前者は base にない要素を追加したり、base の要素をすべて置き換えたりするときに使う。後者は base にある map や list の一部の要素のみを限定して置き換えたり、削除したりするときに使う。ちなみに patchesJSON6902 の 6902 というのは &lt;a href="https://datatracker.ietf.org/doc/html/rfc6902">RFC 6902 JavaScript Object Notation (JSON) Patch&lt;/a> に由来する。&lt;/p>
 &lt;p>patchesJson6902 の例として次のような設定にパッチを適用する。base から読まれた metadata の要素から namespace のみを削除したり、spec.metadata の1番目のリストの secretKeyRef が参照する Secret を my-secret で置き換えたりできる。こういったパッチを patchesStrategicMerge で実現することはできないのではないかと思う (詳しくないので私が間違っているかもしれない) 。&lt;/p>
 &lt;h5 id="baseyml">base.yml&lt;/h5>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#f92672">apiVersion&lt;/span>: &lt;span style="color:#ae81ff">apps/v1&lt;/span>
-&lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">Component&lt;/span>
-&lt;span style="color:#f92672">metadata&lt;/span>:
-&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-component&lt;/span>
-&lt;span style="color:#f92672">namespace&lt;/span>: &lt;span style="color:#ae81ff">default&lt;/span>
-&lt;span style="color:#f92672">spec&lt;/span>:
-&lt;span style="color:#f92672">metadata&lt;/span>:
-- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">username&lt;/span>
-&lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#ae81ff">user&lt;/span>
-- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">password&lt;/span>
-&lt;span style="color:#f92672">secretKeyRef&lt;/span>:
-&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">base-secret&lt;/span>
-&lt;span style="color:#f92672">key&lt;/span>: &lt;span style="color:#ae81ff">password&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="kustomizationyml">kustomization.yml&lt;/h5>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">...
-&lt;span style="color:#f92672">patchesJson6902&lt;/span>:
-- &lt;span style="color:#f92672">path&lt;/span>: &lt;span style="color:#ae81ff">my-patch.yaml&lt;/span>
-&lt;span style="color:#f92672">target&lt;/span>:
-&lt;span style="color:#f92672">group&lt;/span>: &lt;span style="color:#ae81ff">apps&lt;/span>
-&lt;span style="color:#f92672">version&lt;/span>: &lt;span style="color:#ae81ff">v1&lt;/span>
-&lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">Component&lt;/span>
-&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-component&lt;/span>
-...
-&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="my-patchyaml">my-patch.yaml&lt;/h5>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">- &lt;span style="color:#f92672">op&lt;/span>: &lt;span style="color:#ae81ff">remove&lt;/span>
-&lt;span style="color:#f92672">path&lt;/span>: &lt;span style="color:#ae81ff">/metadata/namespace&lt;/span>
-- &lt;span style="color:#f92672">op&lt;/span>: &lt;span style="color:#ae81ff">replace&lt;/span>
-&lt;span style="color:#f92672">path&lt;/span>: &lt;span style="color:#ae81ff">/spec/metadata/1/secretKeyRef/name&lt;/span>
-&lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#ae81ff">my-secret&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="リーンキャンバスレビュー-前半">リーンキャンバスレビュー (前半)&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">apiVersion&lt;/span>: &lt;span style="color:#ae81ff">apps/v1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">Component&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">metadata&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-component&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">namespace&lt;/span>: &lt;span style="color:#ae81ff">default&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">spec&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">metadata&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">username&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#ae81ff">user&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">password&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">secretKeyRef&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">base-secret&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">key&lt;/span>: &lt;span style="color:#ae81ff">password&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="kustomizationyml">kustomization.yml&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">patchesJson6902&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#f92672">path&lt;/span>: &lt;span style="color:#ae81ff">my-patch.yaml&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">target&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">group&lt;/span>: &lt;span style="color:#ae81ff">apps&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">version&lt;/span>: &lt;span style="color:#ae81ff">v1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">Component&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-component&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="my-patchyaml">my-patch.yaml&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>- &lt;span style="color:#f92672">op&lt;/span>: &lt;span style="color:#ae81ff">remove&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">path&lt;/span>: &lt;span style="color:#ae81ff">/metadata/namespace&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>- &lt;span style="color:#f92672">op&lt;/span>: &lt;span style="color:#ae81ff">replace&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">path&lt;/span>: &lt;span style="color:#ae81ff">/spec/metadata/1/secretKeyRef/name&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#ae81ff">my-secret&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="リーンキャンバスレビュー-前半">リーンキャンバスレビュー (前半)&lt;/h2>
 &lt;p>&lt;a href="/diary/diary/posts/2021/1114/#リーンキャンバス">前に作ったリーンキャンバス&lt;/a> を使って友だちにプロダクトの設計をレビューしてもらった。私がリーンキャンバスを作ったことがなかったので、この項目にはどういった内容を書くか、それぞれの項目がどういった関連付けや粒度で整理するかといった、リーンキャンバスの書き方そのものも含めて教えてもらった。&lt;/p>
 &lt;p>私が設計のために作った40枚のスライドを話すと2時間必要とするが、リーンキャンバスを使えば要点のみ15分で話せるようになるのが狙いになるみたい。とはいえ、リーンキャンバスの書いてある内容の半分を確認するだけで今日は2時間弱かかってしまった。議事録を取りながらだったので話すだけならもっと短くなったかもしれないし、その背景や根拠を細かくツッコミしていくとそれなりの時間はかかるのかもしれない。リーンキャンバス上は数枚の付箋で簡潔に書いてあるが、これどういうこと？みたいな問いになると詳細を説明しないといけないので時間がかかったように思う。リーンキャンバスの精度や品質が上がれば、読み手が詳細を確認しなくても意図を理解しやすくて詳細のツッコミが不要になるのかもしれない。これまで使ったことがないツールでおもしろいので週末に後半を行う。課題管理の背景には実践知、認知心理学、情報共有、組織論といった様々な分野にまたがるのでそのコンテキストを共有するのはなかなか難しいのではないかという思いもある。&lt;/p></content></item><item><title>お仕事しかしなかった一日</title><link>/diary/posts/2021/1115/</link><pubDate>Mon, 15 Nov 2021 13:13:44 +0900</pubDate><guid>/diary/posts/2021/1115/</guid><description>2時に寝て6時半に起きた。寝る前にウォーキングしてくるとよく眠れる気がする。お仕事で簡単に終わると思ってた作業にちょっとはまってトラブルシューティングしてたら疲れた。原因はわかって自己解決できたのはよかったけど、消耗して早くお仕事を終えて帰ってくつろいでた。
 ローカル開発環境の整備 お仕事でローカルの k8s 環境の保守の作業をしている。minikube でローカルの k8s クラスターを作成して kubectl コマンドで制御する。k8s の yaml の設定ファイルのことをマニフェストと呼ぶのかな？そのテンプレート？ジェネレーター的なツールに kustomize を使っている。先週から1週間触っていたので cli の操作にはだいぶ慣れてきた。
@@ -353,9 +355,9 @@ $ kubectl get pod -A $ kubectl get pod -A --selector run=nginx k8s 上で実行�
 &lt;p>&lt;a href="/diary/diary/posts/2021/1107/#udemy-kubernetes入門">昨日&lt;/a> の続き。今日はセクション6から最後まで。CI/CD のセクションだけスキップして、他は一通り目を通した。&lt;/p>
 &lt;h3 id="セクション6-kubernetes実践">セクション6 Kubernetes実践&lt;/h3>
 &lt;p>1つずつ書くのは大変だけど、数をこなして徐々に覚えていけばよい。手で書くのもよいが、別のやり方としてクライアント側で dry run すると、設定のひな型を作ってくれるのでそれに必要な設定を足すのもよい。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl create deploy mysql --image&lt;span style="color:#f92672">=&lt;/span>mysql:5.7 --dry-run&lt;span style="color:#f92672">=&lt;/span>client -o yaml
-&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl exec -n database -it mysql-787f86d65c-nflxx -- mysql -uroot -ppassword
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>データベースとアプリケーションを異なる namespace にデプロイして、それらが通信できるような設定を行う。基本的には &lt;code>--dry-run=client&lt;/code> でひな型を作りつつ、必要な設定を追加していくやり方が簡単そうにみえた。とはいえ、実際に設定していくときはどういう設定を追加するとどういう振る舞いになるかを調べながら作業すると思うのでこんな簡単にはできないとは思う。次のようなアプリケーションをデプロイする一覧の流れを理解できた。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl create deploy mysql --image&lt;span style="color:#f92672">=&lt;/span>mysql:5.7 --dry-run&lt;span style="color:#f92672">=&lt;/span>client -o yaml
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl exec -n database -it mysql-787f86d65c-nflxx -- mysql -uroot -ppassword
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>データベースとアプリケーションを異なる namespace にデプロイして、それらが通信できるような設定を行う。基本的には &lt;code>--dry-run=client&lt;/code> でひな型を作りつつ、必要な設定を追加していくやり方が簡単そうにみえた。とはいえ、実際に設定していくときはどういう設定を追加するとどういう振る舞いになるかを調べながら作業すると思うのでこんな簡単にはできないとは思う。次のようなアプリケーションをデプロイする一覧の流れを理解できた。&lt;/p>
 &lt;ol>
 &lt;li>namespace 作成&lt;/li>
 &lt;li>Deployment 作成&lt;/li>
@@ -368,14 +370,14 @@ $ kubectl get pod -A $ kubectl get pod -A --selector run=nginx k8s 上で実行�
 &lt;/ol>
 &lt;h3 id="セクション7-kubernetesのdebug">セクション7 KubernetesのDebug&lt;/h3>
 &lt;p>基本は pod のステータスを確認しながら問題があれば、その箇所を追いかけていって原因を調査する。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl get pod -A
-$ kubectl get pod -A --selector run&lt;span style="color:#f92672">=&lt;/span>nginx
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>k8s 上で実行しているアプリケーションの依存先へ接続できない場合は Service の確認が必要となる。kubectl の get, describe, logs などのサブコマンドをあれこれみながらエラーの原因を把握して、yaml の設定を変更していく。k8s のアーキテクチャとコマンドを覚えていないとなかなか難しそう。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl get pod -A
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ kubectl get pod -A --selector run&lt;span style="color:#f92672">=&lt;/span>nginx
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>k8s 上で実行しているアプリケーションの依存先へ接続できない場合は Service の確認が必要となる。kubectl の get, describe, logs などのサブコマンドをあれこれみながらエラーの原因を把握して、yaml の設定を変更していく。k8s のアーキテクチャとコマンドを覚えていないとなかなか難しそう。&lt;/p>
 &lt;p>とりあえず動かした後にまとめて全部削除できるのがテストやデバッグに便利そう。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl delete -f .
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>もしくは開発用に独自の namespace を作成して、あとで丸ごと namespace を削除するのでもよさそう。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl delete ns mynamespace
-&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="k8s-の調査">k8s の調査&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl delete -f .
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>もしくは開発用に独自の namespace を作成して、あとで丸ごと namespace を削除するのでもよさそう。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl delete ns mynamespace
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="k8s-の調査">k8s の調査&lt;/h2>
 &lt;p>業務のアプリケーションを minikube で作ったローカル k8s クラスターで動かしてみた。ローカルの開発環境の構築方法をメンテナンスして、自分でも一通り k8s の yaml を書いて、デプロイして、振る舞いを確認したりしていた。最初なのでおもしろい。自分で一通りやってみて、k8s が難しいとみんなが言っているのは k8s クラスターを自前で構築するのが難しいのだとようやく理解できた。k8s クラスターがすでにある状態なら kubectl の使い方を覚えるだけで全く難しくない。GKE や EKS を使って運用するなら k8s の運用コストは大したことがないと理解できた。k8s クラスター向けの yaml はたくさん書かないといけないけど、どうせ ECS や EC2 でやっていても CDK や Terraform などのインフラ設定を書くのは同じなのでそこはあまり差がない。k8s はコンテナオーケストレーションをやってくれるメリットが大きいので minikube と EKS の環境の差異があまり問題にならないようなアプリケーション開発であれば、普通に使っていって問題ないように思えた。ローカルで環境作るのが大変なんじゃないかという先入観があったけど、全然そんなことはなかった。コンテナのイメージをビルドしないといけないのが追加のコストかな。&lt;/p></content></item><item><title>普通の休日の翌日</title><link>/diary/posts/2021/1107/</link><pubDate>Sun, 07 Nov 2021 11:21:21 +0900</pubDate><guid>/diary/posts/2021/1107/</guid><description>5時に寝て10時に起きた。昨日は夕方に2-3時間寝てたのでその分、夜に調べものをしていた。休みたい気持ちもあるけど、調べるものが多過ぎて全然時間が足りない。
 bizpy 勉強会の資料作り 昨日 の続き。昨日サンプルコードを実装したので、その設定や要点を 資料 に作成した。現時点で Python で Slack のインテグレーションをやってみる勉強会 #2 の参加者は10人。連続シリーズは回を重ねるごとに減っていくものなのでこんなもんかな。あともう1回やったら終わりにする。
 udemy: Kubernetes入門 友だちから udemy の k8s のコースがよいと聞いたんだけど、そのコースはいまは提供されていなくて、せっかくなので適当に検索してヒットした Kubernetes入門 を受講することに決めた。本当は英語の本格的なコースを受講した方がよいのだろうけど、余裕のあるときはそれでいいけど、いま数日で概要を把握して使えるようにしたいので日本語のコースにしてみた。
@@ -460,46 +462,47 @@ Control Plane (API サーバー) 複数の Worker (Kubelet) yaml で設定する
 &lt;p>一番需要なこととして、k8s は理想状態と現実状態を比較して、理想状態に近づけようとする。app.yaml の理想状態を kubectl を用いて api サーバーを介して etcd に格納する。現実状態は kubelet から api サーバーを介して etcd に格納される。c-m は理想状態と現実状態のチェックを行い、異なっていれば理想状態に近づけることをしていく。&lt;/p>
 &lt;h3 id="セクション4-kubectl">セクション4 kubectl&lt;/h3>
 &lt;p>minikube で最初に起動しているのは Control Plane を起動していることが理解できた。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ minikube start
-$ kubectl config current-context
-minikube
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>同時に ~/.kube/config に kubectl の設定も追加される。&lt;code>minikube&lt;/code> という名前でクラスター、ユーザー、コンテキストが設定される。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ minikube start
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ kubectl config current-context
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>minikube
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>同時に ~/.kube/config に kubectl の設定も追加される。&lt;code>minikube&lt;/code> という名前でクラスター、ユーザー、コンテキストが設定される。&lt;/p>
 &lt;p>リソース一覧の確認。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl api-resources
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>出力フォーマットも様々。例えば、デフォルトの表示は次になる。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl get node
-NAME STATUS ROLES AGE VERSION
-minikube Ready control-plane,master 7m21s v1.22.2
-$ kubectl get node -o wide
-NAME STATUS ROLES AGE VERSION INTERNAL-IP EXTERNAL-IP OS-IMAGE KERNEL-VERSION CONTAINER-RUNTIME
-minikube Ready control-plane,master 8m38s v1.22.2 192.168.49.2 &amp;lt;none&amp;gt; Ubuntu 20.04.2 LTS 5.11.0-38-generic docker://20.10.8
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>より詳細な情報をそれぞれのフォーマットで表示する。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl get node -o json
-$ kubectl get node -o yaml
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>namespace を確認する。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl get namespace
-NAME STATUS AGE
-default Active 10m
-kube-node-lease Active 10m
-kube-public Active 10m
-kube-system Active 10m
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>namespace を指定して pod 一覧を取得する。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl get pod --namespace kube-system
-NAME READY STATUS RESTARTS AGE
-coredns-78fcd69978-qxqbn 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
-etcd-minikube 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
-kube-apiserver-minikube 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
-kube-controller-manager-minikube 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
-kube-proxy-g55hg 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
-kube-scheduler-minikube 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
-storage-provisioner 1/1 Running &lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">(&lt;/span>10m ago&lt;span style="color:#f92672">)&lt;/span> 11m
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>グローバルな CLI のオプションを確認する。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl options
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>ノードの詳細を表示する。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl describe node
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>describe は名前の接頭辞を指定できるので namespace ならこんな感じに実行できる。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl describe namespace kube-
-&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="セクション5-kubernetes-リソース">セクション5 Kubernetes リソース&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl api-resources
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>出力フォーマットも様々。例えば、デフォルトの表示は次になる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl get node
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>NAME STATUS ROLES AGE VERSION
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>minikube Ready control-plane,master 7m21s v1.22.2
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ kubectl get node -o wide
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>NAME STATUS ROLES AGE VERSION INTERNAL-IP EXTERNAL-IP OS-IMAGE KERNEL-VERSION CONTAINER-RUNTIME
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>minikube Ready control-plane,master 8m38s v1.22.2 192.168.49.2 &amp;lt;none&amp;gt; Ubuntu 20.04.2 LTS 5.11.0-38-generic docker://20.10.8
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>より詳細な情報をそれぞれのフォーマットで表示する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl get node -o json
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ kubectl get node -o yaml
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>namespace を確認する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl get namespace
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>NAME STATUS AGE
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>default Active 10m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>kube-node-lease Active 10m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>kube-public Active 10m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>kube-system Active 10m
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>namespace を指定して pod 一覧を取得する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl get pod --namespace kube-system
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>NAME READY STATUS RESTARTS AGE
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>coredns-78fcd69978-qxqbn 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>etcd-minikube 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>kube-apiserver-minikube 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>kube-controller-manager-minikube 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>kube-proxy-g55hg 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>kube-scheduler-minikube 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>storage-provisioner 1/1 Running &lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">(&lt;/span>10m ago&lt;span style="color:#f92672">)&lt;/span> 11m
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>グローバルな CLI のオプションを確認する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl options
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>ノードの詳細を表示する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl describe node
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>describe は名前の接頭辞を指定できるので namespace ならこんな感じに実行できる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl describe namespace kube-
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="セクション5-kubernetes-リソース">セクション5 Kubernetes リソース&lt;/h3>
 &lt;p>pod とは k8s 上のデプロイの最小単位である。&lt;/p>
 &lt;ul>
 &lt;li>1つまたは複数のコンテナをもつ&lt;/li>
@@ -565,10 +568,10 @@ storage-provisioner 1/1 Running &lt;span style="color:#ae81ff">1&lt;/span> &lt;s
 &lt;/li>
 &lt;/ul>
 &lt;p>次のコマンドで確認できる。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl api-resources --namespaced&lt;span style="color:#f92672">=&lt;/span>true
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>namespace の作成&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl create namespace my-namespace
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>ワークロードリソースとは複数の pod を作成・管理するためのリソース。ワークロードリソースは pod テンプレートを使って pod を作成する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl api-resources --namespaced&lt;span style="color:#f92672">=&lt;/span>true
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>namespace の作成&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl create namespace my-namespace
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>ワークロードリソースとは複数の pod を作成・管理するためのリソース。ワークロードリソースは pod テンプレートを使って pod を作成する。&lt;/p>
 &lt;ul>
 &lt;li>ReplicaSet
 &lt;ul>

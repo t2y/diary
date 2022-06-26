@@ -7,17 +7,17 @@ SELECT mytable.*, t.is_some FROM mytable LEFT JOIN LATERAL ( SELECT mytable_id, 
 &lt;p>お奨めされたので &lt;a href="http://eizouken-anime.com/">映像研には手を出すな&lt;/a> を見始めた。あまり現実と空想が入り交じる展開が新鮮と言えば新鮮だし、ストーリーがわかりにくい気もしてもやもやする。浅草氏も「アニメは設定が命」と言っているし、この設定はどうなの？とか思いながら、それでもみているんだからいいんだろうって感じ？最初はごちゃごちゃしててわかりにくい感じがしたんだけど、見続けていると徐々に独特の世界観に慣れてきたのか、ところどころおもしろいなと思うようにはなってきた。また全話みてから総括する。&lt;/p>
 &lt;h2 id="サブクエリで-group-by">サブクエリで group by&lt;/h2>
 &lt;p>お仕事でたまたま触っているところの sql をみたら次のようなものがあった。サブクエリで group by 句を使っている。仮に mytable_detail が1億件ぐらいあったらこんな sql 動くわけがない。データが溜まるごとに遅くなっていって、しきい値を超えると急激にパフォーマンスが悪化する時限爆弾みたいな sql だと思う。お手伝い先は or mapper を使っていないので開発者が sql を手で書いているにも関わらず、こんな sql が実運用されてしまうような開発体制には大きな課題があるなぁとか考え込んでしまった。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sql" data-lang="sql">&lt;span style="color:#66d9ef">SELECT&lt;/span> mytable.&lt;span style="color:#f92672">*&lt;/span>, t.is_some
-&lt;span style="color:#66d9ef">FROM&lt;/span> mytable
-&lt;span style="color:#66d9ef">LEFT&lt;/span> &lt;span style="color:#66d9ef">JOIN&lt;/span> &lt;span style="color:#66d9ef">LATERAL&lt;/span> (
-&lt;span style="color:#66d9ef">SELECT&lt;/span> mytable_id, bool_or(mytable_detail.is_some) &lt;span style="color:#66d9ef">as&lt;/span> is_some
-&lt;span style="color:#66d9ef">FROM&lt;/span> mytable_detail
-&lt;span style="color:#66d9ef">WHERE&lt;/span> mytable_detail.mytable_id &lt;span style="color:#f92672">=&lt;/span> mytable.mytable_id
-&lt;span style="color:#66d9ef">GROUP&lt;/span> &lt;span style="color:#66d9ef">BY&lt;/span> mytable_detail.mytable_id
-) &lt;span style="color:#66d9ef">as&lt;/span> t &lt;span style="color:#66d9ef">on&lt;/span> t.mytable_id &lt;span style="color:#f92672">=&lt;/span> mytable.mytable_id
-&lt;span style="color:#66d9ef">WHERE&lt;/span> mytable.foreign_key_id &lt;span style="color:#f92672">=&lt;/span> :foreignKeyId
-&lt;span style="color:#66d9ef">ORDER&lt;/span> &lt;span style="color:#66d9ef">BY&lt;/span> mytable.mytable_id;
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>以前、お手伝いしていた会社の CTO が社内の開発者のデータの取り扱いの指針として書いた記事が次になる。社内では &lt;strong>最低&lt;/strong> 1000万件のデータがあると思ってコードを書けと強く啓蒙していた。いまどきのデータ量として1000万件というのはよい指標だと思う。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sql" data-lang="sql">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">SELECT&lt;/span> mytable.&lt;span style="color:#f92672">*&lt;/span>, t.is_some
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">FROM&lt;/span> mytable
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">LEFT&lt;/span> &lt;span style="color:#66d9ef">JOIN&lt;/span> &lt;span style="color:#66d9ef">LATERAL&lt;/span> (
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">SELECT&lt;/span> mytable_id, bool_or(mytable_detail.is_some) &lt;span style="color:#66d9ef">as&lt;/span> is_some
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">FROM&lt;/span> mytable_detail
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">WHERE&lt;/span> mytable_detail.mytable_id &lt;span style="color:#f92672">=&lt;/span> mytable.mytable_id
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">GROUP&lt;/span> &lt;span style="color:#66d9ef">BY&lt;/span> mytable_detail.mytable_id
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>) &lt;span style="color:#66d9ef">as&lt;/span> t &lt;span style="color:#66d9ef">on&lt;/span> t.mytable_id &lt;span style="color:#f92672">=&lt;/span> mytable.mytable_id
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">WHERE&lt;/span> mytable.foreign_key_id &lt;span style="color:#f92672">=&lt;/span> :foreignKeyId
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">ORDER&lt;/span> &lt;span style="color:#66d9ef">BY&lt;/span> mytable.mytable_id;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>以前、お手伝いしていた会社の CTO が社内の開発者のデータの取り扱いの指針として書いた記事が次になる。社内では &lt;strong>最低&lt;/strong> 1000万件のデータがあると思ってコードを書けと強く啓蒙していた。いまどきのデータ量として1000万件というのはよい指標だと思う。&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="https://joker1007.hatenablog.com/entry/2020/11/04/214646">1000万件オーバーのレコードのデータをカジュアルに扱うための心構え&lt;/a>&lt;/li>
 &lt;/ul></content></item></channel></rss>

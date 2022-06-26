@@ -79,7 +79,8 @@ serverless framework メリット
 cdk より学習コストが低い yaml 設定だけで簡単にデプロイできる デメリット
 リソース管理のための s3 バケットを必要とする lambda に関連するリソースしかデプロイできない 開発者が明示的に設定しなくても裏でリソースを勝手に生成するので意図せず適切に管理されていないインフラを作ってしまう懸念がある 大半の実務レベルのアプリケーションでは cf テンプレートの dsl を yaml に設定する必要があり、設定が煩雑になったり見通しが悪くなる cdk メリット
 任意の aws インフラのリソースを管理できる プログラミング言語で記述できるので動的なリソースの依存関係を定義できる cf は裏に隠蔽されているが、serverless framework のような dsl を記述する必要はない デメリット
-学習コストが高い リファレンス</description><content>&lt;p>22時に寝て1時に起きて5時半に起きた。前日はあまり寝てなかったので知らないうちに寝てしまった。&lt;/p>
+学習コストが高い リファレンス
+AWS CDK vs Serverless Framework Serverless Framework vs SAM vs AWS CDK 結論から言うと、将来的に cdk を使うならまず cdk を使った方がよい。本当にシンプルな要件で lambda 関数のインフラしか扱わないなら serverless framework でもいいかもしれない。serverless framework は cdk がない時代に作られたツールだろうからいまから新規に導入する場合は、多少の学習コストを払っても cdk を学んでおけば、将来的に役に立つ場面が多いと思う。</description><content>&lt;p>22時に寝て1時に起きて5時半に起きた。前日はあまり寝てなかったので知らないうちに寝てしまった。&lt;/p>
 &lt;h2 id="severless-framework-と-cdk-の比較">severless framework と cdk の比較&lt;/h2>
 &lt;p>&lt;a href="https://www.serverless.com/">serverless framework&lt;/a> というツールがある。マルチクラウド対応で aws で言えば lambda のような、サーバーレスのアプリケーションを簡単にデプロイするためのツール。よく使われているようで、私がお手伝いしている会社でも lambda 関数のデプロイにこのツールを使っている。いろいろ調べていたら、serverless framework は cdk と真正面から競合になるツールで、cdk をすでに使っているなら cdk に一元管理した方が保守コストが下がっていいだろうと考え、新たに lambda 関数を作る作業を cdk でやってみた。私はほとんど serverless framework を使ったことがないので正しく理解できていない可能性は高いが、ざっくり比較すると次になる。&lt;/p>
 &lt;h4 id="serverless-framework">serverless framework&lt;/h4>
@@ -119,7 +120,8 @@ freee で出力した書類をみながら e-tax の画面で同じ書類の項�
 eks (k8s) から alb の管理 eks (k8s) に aws-load-balancer-controller をインストールすると k8s 上のリソースとして alb を管理できるようになる。
 AWS Load Balancer Controller アドオンのインストール 具体的には k8s の Ingress と Nodepoint リソースから次の3つのリソースを生成してくれる。
 application load balancer http listener target groups alb からのヘルスチェックは次のようにエンドポイントを記述する。spring boot だと Actuator という web api がヘルスチェックの機能を提供している。
-alb.ingress.kubernetes.io/healthcheck-path: /actuator/health alb.ingress.kubernetes.io/scheme の設定で alb を配置するサブネットを指定できる。デフォルトは internal になる。</description><content>&lt;p>5時に寝て7時過ぎに起きた。前日の夜から法人決算の電子申告に取り組み始めた。本当は紙でやるつもりだったんだけど、eltax が快適だったので e-tax も衝動的にやってみたくなった。&lt;/p>
+alb.ingress.kubernetes.io/healthcheck-path: /actuator/health alb.ingress.kubernetes.io/scheme の設定で alb を配置するサブネットを指定できる。デフォルトは internal になる。
+private subnet に配置するとき</description><content>&lt;p>5時に寝て7時過ぎに起きた。前日の夜から法人決算の電子申告に取り組み始めた。本当は紙でやるつもりだったんだけど、eltax が快適だったので e-tax も衝動的にやってみたくなった。&lt;/p>
 &lt;h2 id="消費税と地方消費税の申告">消費税と地方消費税の申告&lt;/h2>
 &lt;p>&lt;a href="/diary/diary/posts/2022/0505/#法人決算">法人決算&lt;/a> の一部。今回が初めての消費税と地方消費税の申告になる。簡易課税で支払う。&lt;/p>
 &lt;blockquote>
@@ -139,13 +141,13 @@ alb.ingress.kubernetes.io/healthcheck-path: /actuator/health alb.ingress.kuberne
 &lt;li>target groups&lt;/li>
 &lt;/ul>
 &lt;p>alb からのヘルスチェックは次のようにエンドポイントを記述する。spring boot だと &lt;a href="https://docs.spring.io/spring-boot/docs/current/actuator-api/htmlsingle/">Actuator&lt;/a> という web api がヘルスチェックの機能を提供している。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#f92672">alb.ingress.kubernetes.io/healthcheck-path&lt;/span>: &lt;span style="color:#ae81ff">/actuator/health&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>alb.ingress.kubernetes.io/scheme&lt;/code> の設定で alb を配置するサブネットを指定できる。デフォルトは &lt;code>internal&lt;/code> になる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">alb.ingress.kubernetes.io/healthcheck-path&lt;/span>: &lt;span style="color:#ae81ff">/actuator/health&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>alb.ingress.kubernetes.io/scheme&lt;/code> の設定で alb を配置するサブネットを指定できる。デフォルトは &lt;code>internal&lt;/code> になる。&lt;/p>
 &lt;p>private subnet に配置するとき&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#f92672">alb.ingress.kubernetes.io/scheme&lt;/span>: &lt;span style="color:#ae81ff">internal&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>public subnet に配置するとき&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#f92672">alb.ingress.kubernetes.io/scheme&lt;/span>: &lt;span style="color:#ae81ff">internet-facing&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>aws のシステム構成図に挑戦</title><link>/diary/posts/2022/0523/</link><pubDate>Mon, 23 May 2022 23:15:10 +0900</pubDate><guid>/diary/posts/2022/0523/</guid><description>0時に寝て5時半に起きた。
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">alb.ingress.kubernetes.io/scheme&lt;/span>: &lt;span style="color:#ae81ff">internal&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>public subnet に配置するとき&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">alb.ingress.kubernetes.io/scheme&lt;/span>: &lt;span style="color:#ae81ff">internet-facing&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>aws のシステム構成図に挑戦</title><link>/diary/posts/2022/0523/</link><pubDate>Mon, 23 May 2022 23:15:10 +0900</pubDate><guid>/diary/posts/2022/0523/</guid><description>0時に寝て5時半に起きた。
 draw.io を触ってみた 先週末から着手している インフラのドキュメント作成 の続き。aws のシステム構成図を書こうと思ったものの、書いたことがないので次の記事を読み始めた。
 AWS のアーキテクチャ図を描きたい ! でもどうすれば良いの ? そこから AWS アーキテクチャアイコン のダイアグラム作成ツールとして紹介されているツールを一通りみてみた。書いたことがないのでどのツールを使えばいいのかすらわかっていない。見た目だけ比べればどれも似たり寄ったりで何でもいいやと思えた。既存の cdk コードからインポートして自動生成できるツールもあったけど、なんか出力結果がいまいちでそれよりは手で書いた方がいいように思えた。前任者は draw.io で書いていたので、それでいいかと思って draw.io を触り始めた。前任者はリポジトリに svg ファイルのみをコミットしていた。なぜ draw.io の web サイトのリンクがないのだろう？と不思議に思いつつ、draw.io でユーザーアカウントをどうやって作るのかを調べていて気付いた。draw.io って ui ですべて作図していてサーバー側に情報をもってないみたい。だからユーザーアカウントを作る必要もなくて、ブラウザを単なる gui のインターフェースにしているだけみたい。有償プランもユーザーが管理しているストレージに対するアクセス管理機能のようなものを提供している。先入観から web ベースのツールだと思い込んでいたので新鮮な気持ちになった。
 前任者は web ブラウザも使っていなくて vscode の Draw.io Integration で書いたらしい。ui 側のロジックが再利用できるなら vscode でもブラウザで書くのと同じ品質レベルの操作ができるのだろうと推測する。vscode の方がローカルで書いている実感がわくかもしれない。svg ファイルをコミットしていたのも github の rich diff を使うと svg ファイルの画像差分も表示してくれるから。当初は xml でバージョン管理しようと思っていたんだけど、差分表示ができるなら svg ファイルでもいいと思えた。今日のところは draw.io を使おうということだけ決定した。
@@ -246,85 +248,85 @@ CreationRole というのが設定されて trust relationships に次のよう�
 &lt;h2 id="eks-クラスターの-helm-管理の調査">eks クラスターの helm 管理の調査&lt;/h2>
 &lt;p>昨日の続き。権限設定がなんもわからんみたいな様相になったので調査のやり方を変えることにした。検証用の eks クラスターを cdk から新規に作成して helm をインストールするときのリソースや権限設定がどうなるのかを調査した。lambda 関数が5個ぐらい、ロールは10個ぐらい作成された。lambda の生成に時間がかかるのか？新規作成するのに25分、削除するときは30分ぐらいかかった。rds もそうだけど、eks のような複雑なインフラを cdk で管理すると実行するのにけっこう時間がかかる。設定が難しくなければ別によいけど、eks のような権限やリソースの設定が複雑なインフラはトライ&amp;amp;エラーで何度も実行する必要があるから、こういうものは cdk で管理するのには向かないインフラだと言えると思う。一定の設定のプラクティスが溜まるまでは eks は cdk で管理しない方がよいかもしれない。&lt;/p>
 &lt;p>CreationRole というのが設定されて trust relationships に次のような設定が追加される。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-json" data-lang="json">{
-&lt;span style="color:#f92672">&amp;#34;Version&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;2012-10-17&amp;#34;&lt;/span>,
-&lt;span style="color:#f92672">&amp;#34;Statement&amp;#34;&lt;/span>: [
-{
-&lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>,
-&lt;span style="color:#f92672">&amp;#34;Principal&amp;#34;&lt;/span>: {
-&lt;span style="color:#f92672">&amp;#34;AWS&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;arn:aws:iam::${accountId}:root&amp;#34;&lt;/span>
-},
-&lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;sts:AssumeRole&amp;#34;&lt;/span>
-}
-]
-}
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>このロールに含まれるカスタムポリシーには次のような設定がある。たぶんこんな感じのロールを新規に作成して &lt;code>kubectlRoleArn&lt;/code> として指定してやればいいんじゃないかと思う。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-json" data-lang="json">{
-&lt;span style="color:#f92672">&amp;#34;Version&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;2012-10-17&amp;#34;&lt;/span>,
-&lt;span style="color:#f92672">&amp;#34;Statement&amp;#34;&lt;/span>: [
-{
-&lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;iam:PassRole&amp;#34;&lt;/span>,
-&lt;span style="color:#f92672">&amp;#34;Resource&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;arn:aws:iam::${accountId}:role/${EksClusterIamRole}&amp;#34;&lt;/span>,
-&lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>
-},
-{
-&lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: [
-&lt;span style="color:#e6db74">&amp;#34;eks:CreateCluster&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">&amp;#34;eks:DescribeCluster&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">&amp;#34;eks:DescribeUpdate&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">&amp;#34;eks:DeleteCluster&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">&amp;#34;eks:UpdateClusterVersion&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">&amp;#34;eks:UpdateClusterConfig&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">&amp;#34;eks:CreateFargateProfile&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">&amp;#34;eks:TagResource&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">&amp;#34;eks:UntagResource&amp;#34;&lt;/span>
-],
-&lt;span style="color:#f92672">&amp;#34;Resource&amp;#34;&lt;/span>: [
-&lt;span style="color:#e6db74">&amp;#34;arn:aws:eks:ap-northeast-1:${accountId}:cluster/tmp-test-eks-cluster-by-morimoto&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">&amp;#34;arn:aws:eks:ap-northeast-1:${accountId}:cluster/tmp-test-eks-cluster-by-morimoto/*&amp;#34;&lt;/span>
-],
-&lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>
-},
-{
-&lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: [
-&lt;span style="color:#e6db74">&amp;#34;eks:DescribeFargateProfile&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">&amp;#34;eks:DeleteFargateProfile&amp;#34;&lt;/span>
-],
-&lt;span style="color:#f92672">&amp;#34;Resource&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;arn:aws:eks:ap-northeast-1:${accountId}:fargateprofile/tmp-test-eks-cluster-by-morimoto/*&amp;#34;&lt;/span>,
-&lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>
-},
-{
-&lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: [
-&lt;span style="color:#e6db74">&amp;#34;iam:GetRole&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">&amp;#34;iam:listAttachedRolePolicies&amp;#34;&lt;/span>
-],
-&lt;span style="color:#f92672">&amp;#34;Resource&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;*&amp;#34;&lt;/span>,
-&lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>
-},
-{
-&lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;iam:CreateServiceLinkedRole&amp;#34;&lt;/span>,
-&lt;span style="color:#f92672">&amp;#34;Resource&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;*&amp;#34;&lt;/span>,
-&lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>
-},
-{
-&lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: [
-&lt;span style="color:#e6db74">&amp;#34;ec2:DescribeInstances&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">&amp;#34;ec2:DescribeNetworkInterfaces&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">&amp;#34;ec2:DescribeSecurityGroups&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">&amp;#34;ec2:DescribeSubnets&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">&amp;#34;ec2:DescribeRouteTables&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">&amp;#34;ec2:DescribeDhcpOptions&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">&amp;#34;ec2:DescribeVpcs&amp;#34;&lt;/span>
-],
-&lt;span style="color:#f92672">&amp;#34;Resource&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;*&amp;#34;&lt;/span>,
-&lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>
-}
-]
-}
-&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>cdk と eks と lambda と iam がわからん</title><link>/diary/posts/2022/0512/</link><pubDate>Thu, 12 May 2022 11:42:54 +0900</pubDate><guid>/diary/posts/2022/0512/</guid><description>0時に寝て3時に起きて漫画読んで5時に寝て8時に起きた。
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Version&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;2012-10-17&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Statement&amp;#34;&lt;/span>: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Principal&amp;#34;&lt;/span>: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;AWS&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;arn:aws:iam::${accountId}:root&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;sts:AssumeRole&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>このロールに含まれるカスタムポリシーには次のような設定がある。たぶんこんな感じのロールを新規に作成して &lt;code>kubectlRoleArn&lt;/code> として指定してやればいいんじゃないかと思う。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Version&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;2012-10-17&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Statement&amp;#34;&lt;/span>: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;iam:PassRole&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Resource&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;arn:aws:iam::${accountId}:role/${EksClusterIamRole}&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;eks:CreateCluster&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;eks:DescribeCluster&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;eks:DescribeUpdate&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;eks:DeleteCluster&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;eks:UpdateClusterVersion&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;eks:UpdateClusterConfig&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;eks:CreateFargateProfile&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;eks:TagResource&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;eks:UntagResource&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Resource&amp;#34;&lt;/span>: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;arn:aws:eks:ap-northeast-1:${accountId}:cluster/tmp-test-eks-cluster-by-morimoto&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;arn:aws:eks:ap-northeast-1:${accountId}:cluster/tmp-test-eks-cluster-by-morimoto/*&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;eks:DescribeFargateProfile&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;eks:DeleteFargateProfile&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Resource&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;arn:aws:eks:ap-northeast-1:${accountId}:fargateprofile/tmp-test-eks-cluster-by-morimoto/*&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;iam:GetRole&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;iam:listAttachedRolePolicies&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Resource&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;*&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;iam:CreateServiceLinkedRole&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Resource&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;*&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Action&amp;#34;&lt;/span>: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;ec2:DescribeInstances&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;ec2:DescribeNetworkInterfaces&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;ec2:DescribeSecurityGroups&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;ec2:DescribeSubnets&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;ec2:DescribeRouteTables&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;ec2:DescribeDhcpOptions&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;ec2:DescribeVpcs&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Resource&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;*&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Allow&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>cdk と eks と lambda と iam がわからん</title><link>/diary/posts/2022/0512/</link><pubDate>Thu, 12 May 2022 11:42:54 +0900</pubDate><guid>/diary/posts/2022/0512/</guid><description>0時に寝て3時に起きて漫画読んで5時に寝て8時に起きた。
 eks クラスターの helm 管理 昨日の続き。helm のよさはわかったので dapr を helm で管理しようとしている。その際になるべく cdk で管理できた方がよい。eks は cdk の外部で管理しているのだけど、既存の eks クラスターをインポートする機能も提供されていることに気付いた。
 Using existing clusters それなら既存の eks クラスターをインポートして cdk で helm だけ管理しようと思って始めたものの、これがとても難しくて丸1日作業してわからなかった。設定項目は少ないけど、権限の問題で動かない。1回あたりの実行に15分ぐらいかかるのでトライ&amp;amp;エラーするのもなかなか大変。
-kubectlRoleArn - the ARN of an IAM role mapped to the system:masters RBAC role. If the cluster you are importing was created using the AWS CDK, the CloudFormation stack has an output that includes an IAM role that can be used.</description><content>&lt;p>0時に寝て3時に起きて漫画読んで5時に寝て8時に起きた。&lt;/p>
+kubectlRoleArn - the ARN of an IAM role mapped to the system:masters RBAC role. If the cluster you are importing was created using the AWS CDK, the CloudFormation stack has an output that includes an IAM role that can be used. Otherwise, you can create an IAM role and map it to system:masters manually.</description><content>&lt;p>0時に寝て3時に起きて漫画読んで5時に寝て8時に起きた。&lt;/p>
 &lt;h2 id="eks-クラスターの-helm-管理">eks クラスターの helm 管理&lt;/h2>
 &lt;p>昨日の続き。helm のよさはわかったので dapr を helm で管理しようとしている。その際になるべく cdk で管理できた方がよい。eks は cdk の外部で管理しているのだけど、既存の eks クラスターをインポートする機能も提供されていることに気付いた。&lt;/p>
 &lt;ul>
@@ -405,14 +407,14 @@ Tutorial: Baseline Migrations</description><content>&lt;p>0時に寝て4時に�
 &lt;h2 id="データベースの移行処理">データベースの移行処理&lt;/h2>
 &lt;p>半年前から導入したいという話しは聞いていたものの、先送りになっていたライブラリに &lt;a href="https://flywaydb.org/">flyway&lt;/a> がある。データベースの移行処理のためのスクリプト (sql) を管理するツールでどの移行スクリプトを実行したかを記録したり、未適用の処理を自動で適用してくれたりする。spring boot だとすぐ組み込める状態になっていて &lt;a href="https://flywaydb.org/documentation/usage/plugins/springboot">Community Plugins and Integrations: Spring Boot&lt;/a> をみながら設定したらすぐに動いた。flyway 自体の設定も &lt;a href="https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html">Common Application Properties&lt;/a> を参考に spring boot の設定ファイルで行える。&lt;/p>
 &lt;p>例えば、こんな感じ。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yml" data-lang="yml">&lt;span style="color:#f92672">spring&lt;/span>:
-&lt;span style="color:#f92672">flyway&lt;/span>:
-&lt;span style="color:#f92672">￼ enabled&lt;/span>: &lt;span style="color:#66d9ef">true&lt;/span>
-&lt;span style="color:#f92672">￼ schemas&lt;/span>: &lt;span style="color:#ae81ff">public&lt;/span>
-&lt;span style="color:#f92672">￼ locations&lt;/span>: &lt;span style="color:#ae81ff">classpath:db/migration&lt;/span>
-&lt;span style="color:#f92672">￼ baseline-version&lt;/span>: &lt;span style="color:#ae81ff">0&lt;/span>
-&lt;span style="color:#f92672">￼ baseline-on-migrate&lt;/span>: &lt;span style="color:#66d9ef">true&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>移行処理の履歴情報は &lt;code>flyway_schema_history&lt;/code> テーブルに保持される。既存のテーブルが存在して flyway の履歴データがない場合 (初回起動時) に移行処理を実行するかどうかを baseline-on-migrate で決める。実行するなら baseline-version でどのバージョンをベースラインとするかも設定できる。ゼロにすることで &lt;code>V1&lt;/code> からの sql ファイルを適用してくれる。ベースラインの考え方は実際に何度かデータベースの初期状態を変えて実行しないとわかりにくいかもしれない。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">spring&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">flyway&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">￼ enabled&lt;/span>: &lt;span style="color:#66d9ef">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">￼ schemas&lt;/span>: &lt;span style="color:#ae81ff">public&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">￼ locations&lt;/span>: &lt;span style="color:#ae81ff">classpath:db/migration&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">￼ baseline-version&lt;/span>: &lt;span style="color:#ae81ff">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">￼ baseline-on-migrate&lt;/span>: &lt;span style="color:#66d9ef">true&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>移行処理の履歴情報は &lt;code>flyway_schema_history&lt;/code> テーブルに保持される。既存のテーブルが存在して flyway の履歴データがない場合 (初回起動時) に移行処理を実行するかどうかを baseline-on-migrate で決める。実行するなら baseline-version でどのバージョンをベースラインとするかも設定できる。ゼロにすることで &lt;code>V1&lt;/code> からの sql ファイルを適用してくれる。ベースラインの考え方は実際に何度かデータベースの初期状態を変えて実行しないとわかりにくいかもしれない。&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="https://flywaydb.org/documentation/tutorials/baselineMigrations">Tutorial: Baseline Migrations&lt;/a>&lt;/li>
 &lt;/ul></content></item><item><title>法人決算に着手</title><link>/diary/posts/2022/0505/</link><pubDate>Thu, 05 May 2022 17:39:28 +0900</pubDate><guid>/diary/posts/2022/0505/</guid><description>夜眠れなくてだらだらして朝もだらだらしてからお昼前ぐらいにオフィスに行った。

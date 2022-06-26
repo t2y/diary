@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>iostat on forest nook</title><link>/diary/tags/iostat/</link><description>Recent content in iostat on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sun, 26 Sep 2021 21:35:06 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/iostat/index.xml" rel="self" type="application/rss+xml"/><item><title>iostat-tool メンテ</title><link>/diary/posts/2021/0926/</link><pubDate>Sun, 26 Sep 2021 21:35:06 +0900</pubDate><guid>/diary/posts/2021/0926/</guid><description>再現調査 お昼ぐらいオフィスに行って事前に下調べしてあった iostat-tool の不具合修正をする。
 https://github.com/t2y/iostat-tool/issues/3 前職でディスクI/Oの振る舞いを調査していたときに iostat のアウトプットを直接みてもわからないので視覚化するツールを作った。例えば、iostat -ymxt 1 のアウトプットは次のようなログになる。
-06/13/2018 02:10:50 PM avg-cpu: %user %nice %system %iowait %steal %idle 0.47 0.00 0.24 0.18 0.00 99.11 Device: rrqm/s wrqm/s r/s w/s rMB/s wMB/s avgrq-sz avgqu-sz await r_await w_await svctm %util sdd 0.07 45.88 1.57 0.59 0.08 0.18 246.55 0.26 121.04 1.28 436.94 2.07 0.45 sdh 0.07 45.78 1.59 0.60 0.08 0.18 245.64 0.22 101.97 1.17 367.51 1.89 0.</description><content>&lt;h2 id="再現調査">再現調査&lt;/h2>
+06/13/2018 02:10:50 PM avg-cpu: %user %nice %system %iowait %steal %idle 0.47 0.00 0.24 0.18 0.00 99.11 Device: rrqm/s wrqm/s r/s w/s rMB/s wMB/s avgrq-sz avgqu-sz await r_await w_await svctm %util sdd 0.07 45.88 1.57 0.59 0.08 0.18 246.55 0.26 121.04 1.28 436.94 2.07 0.45 sdh 0.07 45.78 1.59 0.60 0.08 0.18 245.64 0.22 101.97 1.17 367.51 1.89 0.41 sdb 0.</description><content>&lt;h2 id="再現調査">再現調査&lt;/h2>
 &lt;p>お昼ぐらいオフィスに行って事前に下調べしてあった iostat-tool の不具合修正をする。&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="https://github.com/t2y/iostat-tool/issues/3">https://github.com/t2y/iostat-tool/issues/3&lt;/a>&lt;/li>
@@ -30,8 +30,8 @@ Device r/s w/s rMB/s wMB/s rrqm/s wrqm/s %rrqm %wrqm r_await w_await aqu-sz rare
 sda 1.00 0.00 0.01 0.00 0.00 0.00 0.00 0.00 1.00 0.00 0.00 8.00 0.00 2.00 0.20
 &lt;/code>&lt;/pre>&lt;h2 id="時刻のフォーマットが違う">時刻のフォーマットが違う&lt;/h2>
 &lt;p>これは sysstat のバージョンによるものではないけど、ロケールの &lt;code>LC_TIME&lt;/code> のエンコーディング指定を変えると時刻のフォーマットが変わることに気づいた。これも en 環境しかチェックしてなかったから今回 ja でも正しく時刻をパースできるように修正した。&lt;/p>
-&lt;pre tabindex="0">&lt;code>old: 06/13/2018 02:10:50 PM # LC_TIME=&amp;quot;en_US.UTF-8&amp;quot;
-new: 09/26/21 03:35:19 # LC_TIME=&amp;quot;ja_JP.UTF-8&amp;quot;
+&lt;pre tabindex="0">&lt;code>old: 06/13/2018 02:10:50 PM # LC_TIME=&amp;#34;en_US.UTF-8&amp;#34;
+new: 09/26/21 03:35:19 # LC_TIME=&amp;#34;ja_JP.UTF-8&amp;#34;
 &lt;/code>&lt;/pre>&lt;h2 id="device-の軽微な変更と項目の変更">Device の軽微な変更と項目の変更&lt;/h2>
 &lt;p>新しいフォーマットだと &lt;code>Device:&lt;/code> のコロン文字がなくなってたりしてパースできなくなっていた。あと次の項目が名前変更、または新規追加されてた。&lt;/p>
 &lt;ul>

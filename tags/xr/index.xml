@@ -115,7 +115,7 @@ macbook を Oculus リモートデスクトップで接続して、ホワイト�
 リモートデスクトップと画面共有 目の前の画面を大きくできるのでホワイトボード (スクリーン) よりみやすい 眼の前の画面をみて説明すると、相手の顔が見えないので vr のメリットが半減する 半仮想モードで話しながらメモをとるのは可能ではあるが、現実でやるよりも難しいので効率が悪化する パソコンの操作が現実よりも難しいので、操作しないインセンティブになりがち リモートデスクトップで画面共有をしていたせいか、
 フル充電した状態から1.5 時間ぐらいでバッテリーが少ない警告が出た ヘッドセットの位置調整がうまくいかないと画面の文字がぼやけたりする ヘッドセットの固定がうまくいかないと、会議に集中できず、ストレスになる 1時間程度の会議であれば、とくに vr による疲れなどは気にならない 打ち合わせ終わってから NeosVR をするために Linux マシンと Oculus Quest 2 を接続する方法を検討。
 https://neosvrjp.memo.wiki/ Oculus Link アプリを PC にインストールする必要があるが、Windows 向けにしか提供されていない。wine で動かない、一通りツール類をインストールして試してみたつもりだけど、このエラーを解決できなかった。諦める。
-$ wine --version wine-5.0 (Ubuntu 5.0-3ubuntu1) $ wine ~/Downloads/OculusSetup.</description><content>&lt;p>土曜日は昼寝してたくさん寝たせいか、昨日はうまく寝れなかった。4時頃に &lt;a href="https://bunkyosha.com/books/9784866510149">「手で書くこと」が知性を引き出す 心を整え、思考を解き放つ新習慣「ジャーナリング」入門&lt;/a> の序章と1章を読んだ。手で書くのとキーボードをタイピングするのでは前者の方が脳が活性化されるらしい。指先の細かい制御が脳に効果的なようだ。5時ぐらいから寝て8時前に起きる。&lt;/p>
+$ wine --version wine-5.0 (Ubuntu 5.0-3ubuntu1) $ wine ~/Downloads/OculusSetup.exe 002a:err:mscoree:CLRRuntimeInfo_GetRuntimeHost Wine Mono is not installed Windows マシンを買うにしても PCVR をするにはそこそこのスペックが必要になり、ざっと調べると10-20万円ぐらい。ノートPCでも15-16インチぐらいのを購入すればスペック的には大丈夫そうといった記事がいくつかみつかった。</description><content>&lt;p>土曜日は昼寝してたくさん寝たせいか、昨日はうまく寝れなかった。4時頃に &lt;a href="https://bunkyosha.com/books/9784866510149">「手で書くこと」が知性を引き出す 心を整え、思考を解き放つ新習慣「ジャーナリング」入門&lt;/a> の序章と1章を読んだ。手で書くのとキーボードをタイピングするのでは前者の方が脳が活性化されるらしい。指先の細かい制御が脳に効果的なようだ。5時ぐらいから寝て8時前に起きる。&lt;/p>
 &lt;h2 id="horizon-workrooms">Horizon Workrooms&lt;/h2>
 &lt;p>Oculus Quest 2 を使って顧問の知人と workrooms を使って仕事の打ち合わせをやってみた。&lt;/p>
 &lt;ul>
@@ -143,11 +143,12 @@ $ wine --version wine-5.0 (Ubuntu 5.0-3ubuntu1) $ wine ~/Downloads/OculusSetup.<
 &lt;li>&lt;a href="https://neosvrjp.memo.wiki/">https://neosvrjp.memo.wiki/&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;p>Oculus Link アプリを PC にインストールする必要があるが、Windows 向けにしか提供されていない。wine で動かない、一通りツール類をインストールして試してみたつもりだけど、このエラーを解決できなかった。諦める。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ wine --version
-wine-5.0 &lt;span style="color:#f92672">(&lt;/span>Ubuntu 5.0-3ubuntu1&lt;span style="color:#f92672">)&lt;/span>
-$ wine ~/Downloads/OculusSetup.exe
-002a:err:mscoree:CLRRuntimeInfo_GetRuntimeHost Wine Mono is not installed
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>Windows マシンを買うにしても PCVR をするにはそこそこのスペックが必要になり、ざっと調べると10-20万円ぐらい。ノートPCでも15-16インチぐらいのを購入すればスペック的には大丈夫そうといった記事がいくつかみつかった。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ wine --version
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>wine-5.0 &lt;span style="color:#f92672">(&lt;/span>Ubuntu 5.0-3ubuntu1&lt;span style="color:#f92672">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ wine ~/Downloads/OculusSetup.exe
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>002a:err:mscoree:CLRRuntimeInfo_GetRuntimeHost Wine Mono is not installed
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Windows マシンを買うにしても PCVR をするにはそこそこのスペックが必要になり、ざっと調べると10-20万円ぐらい。ノートPCでも15-16インチぐらいのを購入すればスペック的には大丈夫そうといった記事がいくつかみつかった。&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="https://vr-game.pw/blog/how-to-chooes-vr-pc/">https://vr-game.pw/blog/how-to-chooes-vr-pc/&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://kimono-oyaji.com/laptoppc-for-hmd-01/">https://kimono-oyaji.com/laptoppc-for-hmd-01/&lt;/a>&lt;/li>

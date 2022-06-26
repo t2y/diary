@@ -3,39 +3,39 @@ k8s の cronjob バッチ処理を Kubernetes: CronJob で作る。一通り設�
 apiVersion: batch/v1 kind: CronJob metadata: name: my-app-hourly-job spec: schedule: &amp;#34;5 */1 * * *&amp;#34; concurrencyPolicy: Forbid startingDeadlineSeconds: 600 jobTemplate: spec: backoffLimit: 0 template: metadata: labels: app: my-app-hourly annotations: dapr.io/enabled: &amp;#34;true&amp;#34; dapr.io/app-id: &amp;#34;my-app-hourly&amp;#34; spec: containers: - name: my-app-hourly-job image: my-app-image imagePullPolicy: Always env: - name: BATCH_ENV value: &amp;#34;dev&amp;#34; command: - &amp;#34;/bin/sh&amp;#34; - &amp;#34;/app/scripts/my-app.sh&amp;#34; - &amp;#34;param1&amp;#34; - &amp;#34;param2&amp;#34; restartPolicy: Never command の設定がわかりにくい。さらに k8s のドキュメントのサンプル設定も誤解を招くような例になっている。どうも実行できるのは1つの cli だけで、複数コマンドを指定できるわけではない。シェルスクリプトを docker イメージに含めて、そこで任意のスクリプトを実装した方がよいだろう。</description><content>&lt;p>0時に寝て6時に起きた。寝不足を解消して体調が戻ってきた。&lt;/p>
 &lt;h2 id="k8s-の-cronjob">k8s の cronjob&lt;/h2>
 &lt;p>バッチ処理を &lt;a href="https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/">Kubernetes: CronJob&lt;/a> で作る。一通り設定して minikube で検証して eks 上でも動くようになった。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yml" data-lang="yml">&lt;span style="color:#f92672">apiVersion&lt;/span>: &lt;span style="color:#ae81ff">batch/v1&lt;/span>
-&lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">CronJob&lt;/span>
-&lt;span style="color:#f92672">metadata&lt;/span>:
-&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-app-hourly-job&lt;/span>
-&lt;span style="color:#f92672">spec&lt;/span>:
-&lt;span style="color:#f92672">schedule&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;5 */1 * * *&amp;#34;&lt;/span>
-&lt;span style="color:#f92672">concurrencyPolicy&lt;/span>: &lt;span style="color:#ae81ff">Forbid&lt;/span>
-&lt;span style="color:#f92672">startingDeadlineSeconds&lt;/span>: &lt;span style="color:#ae81ff">600&lt;/span>
-&lt;span style="color:#f92672">jobTemplate&lt;/span>:
-&lt;span style="color:#f92672">spec&lt;/span>:
-&lt;span style="color:#f92672">backoffLimit&lt;/span>: &lt;span style="color:#ae81ff">0&lt;/span>
-&lt;span style="color:#f92672">template&lt;/span>:
-&lt;span style="color:#f92672">metadata&lt;/span>:
-&lt;span style="color:#f92672">labels&lt;/span>:
-&lt;span style="color:#f92672">app&lt;/span>: &lt;span style="color:#ae81ff">my-app-hourly&lt;/span>
-&lt;span style="color:#f92672">annotations&lt;/span>:
-&lt;span style="color:#f92672">dapr.io/enabled&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;true&amp;#34;&lt;/span>
-&lt;span style="color:#f92672">dapr.io/app-id&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;my-app-hourly&amp;#34;&lt;/span>
-&lt;span style="color:#f92672">spec&lt;/span>:
-&lt;span style="color:#f92672">containers&lt;/span>:
-- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-app-hourly-job&lt;/span>
-&lt;span style="color:#f92672">image&lt;/span>: &lt;span style="color:#ae81ff">my-app-image&lt;/span>
-&lt;span style="color:#f92672">imagePullPolicy&lt;/span>: &lt;span style="color:#ae81ff">Always&lt;/span>
-&lt;span style="color:#f92672">env&lt;/span>:
-- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">BATCH_ENV&lt;/span>
-&lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;dev&amp;#34;&lt;/span>
-&lt;span style="color:#f92672">command&lt;/span>:
-- &lt;span style="color:#e6db74">&amp;#34;/bin/sh&amp;#34;&lt;/span>
-- &lt;span style="color:#e6db74">&amp;#34;/app/scripts/my-app.sh&amp;#34;&lt;/span>
-- &lt;span style="color:#e6db74">&amp;#34;param1&amp;#34;&lt;/span>
-- &lt;span style="color:#e6db74">&amp;#34;param2&amp;#34;&lt;/span>
-&lt;span style="color:#f92672">restartPolicy&lt;/span>: &lt;span style="color:#ae81ff">Never&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>command の設定がわかりにくい。さらに k8s のドキュメントのサンプル設定も誤解を招くような例になっている。どうも実行できるのは1つの cli だけで、複数コマンドを指定できるわけではない。シェルスクリプトを docker イメージに含めて、そこで任意のスクリプトを実装した方がよいだろう。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">apiVersion&lt;/span>: &lt;span style="color:#ae81ff">batch/v1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">CronJob&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">metadata&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-app-hourly-job&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">spec&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">schedule&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;5 */1 * * *&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">concurrencyPolicy&lt;/span>: &lt;span style="color:#ae81ff">Forbid&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">startingDeadlineSeconds&lt;/span>: &lt;span style="color:#ae81ff">600&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">jobTemplate&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">spec&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">backoffLimit&lt;/span>: &lt;span style="color:#ae81ff">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">template&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">metadata&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">labels&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">app&lt;/span>: &lt;span style="color:#ae81ff">my-app-hourly&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">annotations&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">dapr.io/enabled&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;true&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">dapr.io/app-id&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;my-app-hourly&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">spec&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">containers&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-app-hourly-job&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">image&lt;/span>: &lt;span style="color:#ae81ff">my-app-image&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">imagePullPolicy&lt;/span>: &lt;span style="color:#ae81ff">Always&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">env&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">BATCH_ENV&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;dev&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">command&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#e6db74">&amp;#34;/bin/sh&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#e6db74">&amp;#34;/app/scripts/my-app.sh&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#e6db74">&amp;#34;param1&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#e6db74">&amp;#34;param2&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">restartPolicy&lt;/span>: &lt;span style="color:#ae81ff">Never&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>command の設定がわかりにくい。さらに k8s のドキュメントのサンプル設定も誤解を招くような例になっている。どうも実行できるのは1つの cli だけで、複数コマンドを指定できるわけではない。シェルスクリプトを docker イメージに含めて、そこで任意のスクリプトを実装した方がよいだろう。&lt;/p>
 &lt;ul>
 &lt;li>&amp;ldquo;/bin/sh&amp;rdquo;&lt;/li>
 &lt;li>&amp;ldquo;/app/scripts/my-app.sh&amp;rdquo;&lt;/li>
@@ -69,25 +69,25 @@ main ERROR Error processing element EcsLayout: CLASS_NOT_FOUND main ERROR Unable
 main ERROR Unable to locate plugin type for EcsLayout
 main ERROR Unable to locate plugin for EcsLayout
 main ERROR Could not create plugin of type class org.apache.logging.log4j.core.appender.ConsoleAppender for element Console:
-java.lang.NullPointerException: Cannot invoke &amp;quot;org.apache.logging.log4j.core.config.plugins.util.PluginType.getElementName()&amp;quot;
-because &amp;quot;childType&amp;quot; is null java.lang.NullPointerException:
-Cannot invoke &amp;quot;org.apache.logging.log4j.core.config.plugins.util.PluginType.getElementName()&amp;quot; because &amp;quot;childType&amp;quot; is null
+java.lang.NullPointerException: Cannot invoke &amp;#34;org.apache.logging.log4j.core.config.plugins.util.PluginType.getElementName()&amp;#34;
+because &amp;#34;childType&amp;#34; is null java.lang.NullPointerException:
+Cannot invoke &amp;#34;org.apache.logging.log4j.core.config.plugins.util.PluginType.getElementName()&amp;#34; because &amp;#34;childType&amp;#34; is null
 &lt;/code>&lt;/pre>&lt;p>この厄介な問題をデバッグするよりも、すでにうまくいくことがわかっている &lt;a href="https://docs.spring.io/spring-boot/docs/current/maven-plugin/reference/htmlsingle/">spring-boot-maven-plugin&lt;/a> を使った方が簡単そうだったのでそうすることにした。不要な spring boot 関連の jar なども executable jar や docker イメージに含まれてしまうことだけがデメリット。そこだけ目を瞑れば log4j2 の初期化エラーも起きず、正常に動作した。やっぱり最近のアプリケーションで使われているプラグインはちゃんとしてるねみたいな話しにしておく。次の設定だけでうまくいった。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-xml" data-lang="xml">&lt;span style="color:#f92672">&amp;lt;plugin&amp;gt;&lt;/span>
-&lt;span style="color:#f92672">&amp;lt;groupId&amp;gt;&lt;/span>org.springframework.boot&lt;span style="color:#f92672">&amp;lt;/groupId&amp;gt;&lt;/span>
-&lt;span style="color:#f92672">&amp;lt;artifactId&amp;gt;&lt;/span>spring-boot-maven-plugin&lt;span style="color:#f92672">&amp;lt;/artifactId&amp;gt;&lt;/span>
-&lt;span style="color:#f92672">&amp;lt;configuration&amp;gt;&lt;/span>
-&lt;span style="color:#f92672">&amp;lt;mainClass&amp;gt;&lt;/span>com.example.myapp.Main&lt;span style="color:#f92672">&amp;lt;/mainClass&amp;gt;&lt;/span>
-&lt;span style="color:#f92672">&amp;lt;/configuration&amp;gt;&lt;/span>
-&lt;span style="color:#f92672">&amp;lt;executions&amp;gt;&lt;/span>
-&lt;span style="color:#f92672">&amp;lt;execution&amp;gt;&lt;/span>
-&lt;span style="color:#f92672">&amp;lt;goals&amp;gt;&lt;/span>
-&lt;span style="color:#f92672">&amp;lt;goal&amp;gt;&lt;/span>repackage&lt;span style="color:#f92672">&amp;lt;/goal&amp;gt;&lt;/span>
-&lt;span style="color:#f92672">&amp;lt;/goals&amp;gt;&lt;/span>
-&lt;span style="color:#f92672">&amp;lt;/execution&amp;gt;&lt;/span>
-&lt;span style="color:#f92672">&amp;lt;/executions&amp;gt;&lt;/span>
-&lt;span style="color:#f92672">&amp;lt;/plugin&amp;gt;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>log4j2 の設定ファイルの動的な読み込み</title><link>/diary/posts/2022/0620/</link><pubDate>Mon, 20 Jun 2022 08:23:37 +0900</pubDate><guid>/diary/posts/2022/0620/</guid><description>0時に寝て7時に起きた。
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-xml" data-lang="xml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">&amp;lt;plugin&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;lt;groupId&amp;gt;&lt;/span>org.springframework.boot&lt;span style="color:#f92672">&amp;lt;/groupId&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;lt;artifactId&amp;gt;&lt;/span>spring-boot-maven-plugin&lt;span style="color:#f92672">&amp;lt;/artifactId&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;lt;configuration&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;lt;mainClass&amp;gt;&lt;/span>com.example.myapp.Main&lt;span style="color:#f92672">&amp;lt;/mainClass&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;lt;/configuration&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;lt;executions&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;lt;execution&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;lt;goals&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;lt;goal&amp;gt;&lt;/span>repackage&lt;span style="color:#f92672">&amp;lt;/goal&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;lt;/goals&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;lt;/execution&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;lt;/executions&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">&amp;lt;/plugin&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>log4j2 の設定ファイルの動的な読み込み</title><link>/diary/posts/2022/0620/</link><pubDate>Mon, 20 Jun 2022 08:23:37 +0900</pubDate><guid>/diary/posts/2022/0620/</guid><description>0時に寝て7時に起きた。
 バッチ処理モジュール cli でバッチ処理モジュールを作った。コマンドラインの引数パーサーと yml のパーサーを使うことにした。
 picocli snakeyaml ロガー実装に log4j2 を使っているので設定ファイルはアプリケーションの設定ファイルと log4j2 の設定ファイルの2つになる。それぞれ環境ごとに用意してエントリーポイントから起動したタイミングで明示的に設定ファイルを読み込むようにした。
 log4j2 の yml 設定ファイルを動的にどうやって設定するかはドキュメントにもとくに書いてなかった気がする。log4j2 のソースコードやテストコードを読みながら次のようにしたら反映された。
@@ -101,20 +101,20 @@ public static void initializeLogSettings(BatchEnvironment env) throws IOExceptio
 &lt;/ul>
 &lt;p>ロガー実装に &lt;a href="https://logging.apache.org/log4j/2.x/">log4j2&lt;/a> を使っているので設定ファイルはアプリケーションの設定ファイルと log4j2 の設定ファイルの2つになる。それぞれ環境ごとに用意してエントリーポイントから起動したタイミングで明示的に設定ファイルを読み込むようにした。&lt;/p>
 &lt;p>log4j2 の yml 設定ファイルを動的にどうやって設定するかはドキュメントにもとくに書いてなかった気がする。log4j2 のソースコードやテストコードを読みながら次のようにしたら反映された。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-java" data-lang="java">&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">static&lt;/span> Config &lt;span style="color:#a6e22e">load&lt;/span>&lt;span style="color:#f92672">(&lt;/span>BatchEnvironment env&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
-var path &lt;span style="color:#f92672">=&lt;/span> String&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">format&lt;/span>&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#e6db74">&amp;#34;config-%s.yml&amp;#34;&lt;/span>&lt;span style="color:#f92672">,&lt;/span> env&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">getName&lt;/span>&lt;span style="color:#f92672">());&lt;/span>
-var inputStream &lt;span style="color:#f92672">=&lt;/span> ConfigUtil&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">getClassLoader&lt;/span>&lt;span style="color:#f92672">().&lt;/span>&lt;span style="color:#a6e22e">getResourceAsStream&lt;/span>&lt;span style="color:#f92672">(&lt;/span>path&lt;span style="color:#f92672">);&lt;/span>
-var yaml &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> Yaml&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#66d9ef">new&lt;/span> Constructor&lt;span style="color:#f92672">(&lt;/span>Config&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">));&lt;/span>
-&lt;span style="color:#66d9ef">return&lt;/span> yaml&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">load&lt;/span>&lt;span style="color:#f92672">(&lt;/span>inputStream&lt;span style="color:#f92672">);&lt;/span>
-&lt;span style="color:#f92672">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>アプリケーションの設定は yml 設定に対応する &lt;code>Config&lt;/code> クラスを定義しておいて次のようにして読み込む。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-java" data-lang="java">&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">static&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">initializeLogSettings&lt;/span>&lt;span style="color:#f92672">(&lt;/span>BatchEnvironment env&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#66d9ef">throws&lt;/span> IOException &lt;span style="color:#f92672">{&lt;/span>
-var path &lt;span style="color:#f92672">=&lt;/span> String&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">format&lt;/span>&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#e6db74">&amp;#34;log4j2-%s.yml&amp;#34;&lt;/span>&lt;span style="color:#f92672">,&lt;/span> env&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">getName&lt;/span>&lt;span style="color:#f92672">());&lt;/span>
-var inputStream &lt;span style="color:#f92672">=&lt;/span> ConfigUtil&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">getClassLoader&lt;/span>&lt;span style="color:#f92672">().&lt;/span>&lt;span style="color:#a6e22e">getResourceAsStream&lt;/span>&lt;span style="color:#f92672">(&lt;/span>path&lt;span style="color:#f92672">);&lt;/span>
-var source &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> ConfigurationSource&lt;span style="color:#f92672">(&lt;/span>inputStream&lt;span style="color:#f92672">);&lt;/span>
-var configuration &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> YamlConfigurationFactory&lt;span style="color:#f92672">().&lt;/span>&lt;span style="color:#a6e22e">getConfiguration&lt;/span>&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#66d9ef">null&lt;/span>&lt;span style="color:#f92672">,&lt;/span> source&lt;span style="color:#f92672">);&lt;/span>
-Configurator&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">initialize&lt;/span>&lt;span style="color:#f92672">(&lt;/span>configuration&lt;span style="color:#f92672">);&lt;/span>
-&lt;span style="color:#f92672">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>ちょっとした cli を作るときにちょっとしたライブラリがあると楽でよい。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">static&lt;/span> Config &lt;span style="color:#a6e22e">load&lt;/span>&lt;span style="color:#f92672">(&lt;/span>BatchEnvironment env&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> var path &lt;span style="color:#f92672">=&lt;/span> String&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">format&lt;/span>&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#e6db74">&amp;#34;config-%s.yml&amp;#34;&lt;/span>&lt;span style="color:#f92672">,&lt;/span> env&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">getName&lt;/span>&lt;span style="color:#f92672">());&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> var inputStream &lt;span style="color:#f92672">=&lt;/span> ConfigUtil&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">getClassLoader&lt;/span>&lt;span style="color:#f92672">().&lt;/span>&lt;span style="color:#a6e22e">getResourceAsStream&lt;/span>&lt;span style="color:#f92672">(&lt;/span>path&lt;span style="color:#f92672">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> var yaml &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> Yaml&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#66d9ef">new&lt;/span> Constructor&lt;span style="color:#f92672">(&lt;/span>Config&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">));&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> yaml&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">load&lt;/span>&lt;span style="color:#f92672">(&lt;/span>inputStream&lt;span style="color:#f92672">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>アプリケーションの設定は yml 設定に対応する &lt;code>Config&lt;/code> クラスを定義しておいて次のようにして読み込む。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">static&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">initializeLogSettings&lt;/span>&lt;span style="color:#f92672">(&lt;/span>BatchEnvironment env&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#66d9ef">throws&lt;/span> IOException &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> var path &lt;span style="color:#f92672">=&lt;/span> String&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">format&lt;/span>&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#e6db74">&amp;#34;log4j2-%s.yml&amp;#34;&lt;/span>&lt;span style="color:#f92672">,&lt;/span> env&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">getName&lt;/span>&lt;span style="color:#f92672">());&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> var inputStream &lt;span style="color:#f92672">=&lt;/span> ConfigUtil&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">getClassLoader&lt;/span>&lt;span style="color:#f92672">().&lt;/span>&lt;span style="color:#a6e22e">getResourceAsStream&lt;/span>&lt;span style="color:#f92672">(&lt;/span>path&lt;span style="color:#f92672">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> var source &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> ConfigurationSource&lt;span style="color:#f92672">(&lt;/span>inputStream&lt;span style="color:#f92672">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> var configuration &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> YamlConfigurationFactory&lt;span style="color:#f92672">().&lt;/span>&lt;span style="color:#a6e22e">getConfiguration&lt;/span>&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#66d9ef">null&lt;/span>&lt;span style="color:#f92672">,&lt;/span> source&lt;span style="color:#f92672">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Configurator&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">initialize&lt;/span>&lt;span style="color:#f92672">(&lt;/span>configuration&lt;span style="color:#f92672">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>ちょっとした cli を作るときにちょっとしたライブラリがあると楽でよい。&lt;/p>
 &lt;h2 id="欠損金の繰り戻し還付の申請の誤り">欠損金の繰り戻し還付の申請の誤り&lt;/h2>
 &lt;p>国税局から電話がかかってきた。初めて提出した欠損金の繰り戻し還付の申請があちこち間違ってますよと。申請書類と一緒に法人税の申告書もみてもらっていて、還付申請した金額も申告の別表1に記入する必要があって、それも一緒に修正してねという話し。法人税の修正申告と還付の訂正依頼の2つが必要とのこと。税務署の人たちは本当に丁寧で親切にあれが間違っている、これが間違っていると教えてくれる。素人が法人決算やっているので初めて行う手続きの間違いはつきものだけど、税務署の人たちが教えてくれるので本当に助かる。感謝。&lt;/p></content></item></channel></rss>

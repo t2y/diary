@@ -1,170 +1,19 @@
-<!doctype html><html lang=en>
-<head>
-<title>スクラムの起源 :: forest nook</title>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="5時に寝て7時半に起きた。前週末は遊んでたので夜はいろいろ作業してた。朝起きる習慣がついてきたので何時に寝ても起きれる感じになってきた。うまく体調管理もできている。
+<!doctype html><html lang=en><head><title>スクラムの起源 :: forest nook</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="5時に寝て7時半に起きた。前週末は遊んでたので夜はいろいろ作業してた。朝起きる習慣がついてきたので何時に寝ても起きれる感じになってきた。うまく体調管理もできている。
 年末調整と住民税の納付 年末調整は1月末まで、住民税の特別徴収は納付の特例を使うと6-11月の6ヶ月分を12月10日までに納める。年末調整も11月の給与を確定したら調整額を算出して12月の給与に反映する。必要な情報を入力したら会計システム (freee) で自動算出してくれて書類も一通り作ってくれるので難しくない。ここで出力される給与支払報告書を市役所と税務署のそれぞれに申請する。市役所向けの手続きは eLTAX で行い、税務署向けの手続きは e-Tax で行う。先日 Windows マシンを購入 したので、今回は eLTAX の DL 版で完全な手続きができるはず。ただし、e-Tax も eLTAX も祝日・日曜日は利用できないのでやろうと思ったものの、今日は祝日だからできなかった。
 住民税の特別徴収の納付も今回が初めての試み。企業が社員に代わり住民税を納付するのが原則であり、これを特別徴収と呼ぶ。昨年は特別徴収への切り替え申請をしないといけないのを私が知らなくて手続きが遅れた結果、個人宛に届いた納付書でそのまま支払いした。納付自体はそれでも問題はない。おそらく徴税側からみたら源泉徴収して企業の担当者が納付した方が誤りがなく確実でサポートコストを削減できるという狙いなんだろうと推測する。住民税の納付も eLTAX でできるようなので後日挑戦してみる。
 アジャイル開発とスクラム 第2版 顧客・技術・経営をつなぐ協調的ソフトウェア開発マネジメント 4日前から読み進めていて、第1部アジャイル開発とは何か、スクラムとは何か (第1章から第5章) を読み終えた。
 冒頭の序論を読んでいて、スクラムは 1980 年代の日本の製造業の (革新的な) 製品開発スタイルの論文がオリジナルだというのを知った。ソフトウェア開発の文脈だと、米国から輸入した方法論のようにみえるが、もとは日本で編み出された方法論だったという。1986年に書かれたハーバード・ビジネス・レビューに投稿された論文がオリジナルらしい。
- The New New Product Development Game by Hirotaka Takeuchi and Ikujiro Nonaka  前に スクラムガイド2020 を一通り読んでいたので、スクラムについての内容はだいたい理解できた。補足でよかったのは、スクラムガイド 2017 から 2020 で改訂された内容やその背景や意図などがコラムで紹介されていた。それらを知ることで、よりスクラムで陥りやすい失敗や誤解されがちなところを理解できた。たとえば「開発チーム」という用語から「開発者」に改められた。スクラムチームの中に別のチームがあるようにみえ、プロダクトオーナー vs 開発チームのような対立構造にならないよう、チームはスクラムチームという1つしかないという意図だという。そして、開発チームの自己組織化 (Self-organized) というキーワードが、スクラムチームの自己管理型 (Self-managed) へといったように、主体である開発チームだけ自律的且つ協働するように読めたのを、スクラムチームという1つのチームしかないと強調されている。
- コラム: 2020 スクラムガイド改訂とスクラムの3つの罠  スクラムが形式的、儀式的になってしまっている  目的を理解せずにハウツーをなぞるだけのチームが増えたので抽象的な表現に変更した 例) デイリースクラムがただの報告するだけになっている  デイリースクラムの目的は状況にあわせた再計画であるため、形式的な報告ではいけない     プロダクトオーナー vs 開発チームの構図に陥ってしまっている  チーム内の分断をなくし、ワンチームになることが強調されている 開発チームから開発者へ、チームはスクラムチームが唯一 プロダクトオーナー vs 開発者が対立構図になることが多かった  「開発チームの自己組織化」から「スクラムチームの自己管理」へ スクラムは役割を超えて協力していくことが欠かせない  問題 vs 私たち (スクラムチーム) という構図を引き出すことが重要       スクラムマスターがスクラム警察もしくは雑用係になってしまっている  スクラムマスターが「サーバントリーダー」とされていたが、単にサーバントになってしまうことがあった スクラムマスターはプロダクトの成果や組織の目標にコミットメントしないといけない  ただスクラムルールを守らせたり、会議の司会役をするだけではない   「真のリーダー」としての資質とプロダクトの成果や組織の目標にコミットメントしていくための熱量を重視して専任していく必要がある     これらのコラムを読むと、私が傍からみていたスクラムは本来の意図したスクラムの開発方法論ではなく、正しく運用されていなかったスクラムなのかもしれないとも思えてきた。本書の第1部を読み進めてみて、スクラムの意図している目的や価値には私が共感できるところが多々あった。">
-<meta name=keywords content>
-<meta name=robots content="noodp">
-<link rel=canonical href=/diary/posts/2021/1123/>
-<link rel=stylesheet href=/diary/assets/style.css>
-<link rel=stylesheet href=/diary/assets/green.css>
-<link rel=stylesheet href=/diary/style.css>
-<link rel=apple-touch-icon href=/diary/img/apple-touch-icon-192x192.png>
-<link rel="shortcut icon" href=/diary/favicon.ico>
-<meta name=twitter:card content="summary">
-<meta name=twitter:site content="t2y">
-<meta name=twitter:creator content>
-<meta property="og:locale" content="en">
-<meta property="og:type" content="article">
-<meta property="og:title" content="スクラムの起源">
-<meta property="og:description" content="5時に寝て7時半に起きた。前週末は遊んでたので夜はいろいろ作業してた。朝起きる習慣がついてきたので何時に寝ても起きれる感じになってきた。うまく体調管理もできている。
+The New New Product Development Game by Hirotaka Takeuchi and Ikujiro Nonaka 前に スクラムガイド2020 を一通り読んでいたので、スクラムについての内容はだいたい理解できた。補足でよかったのは、スクラムガイド 2017 から 2020 で改訂された内容やその背景や意図などがコラムで紹介されていた。それらを知ることで、よりスクラムで陥りやすい失敗や誤解されがちなところを理解できた。たとえば「開発チーム」という用語から「開発者」に改められた。スクラムチームの中に別のチームがあるようにみえ、プロダクトオーナー vs 開発チームのような対立構造にならないよう、チームはスクラムチームという1つしかないという意図だという。そして、開発チームの自己組織化 (Self-organized) というキーワードが、スクラムチームの自己管理型 (Self-managed) へといったように、主体である開発チームだけ自律的且つ協働するように読めたのを、スクラムチームという1つのチームしかないと強調されている。
+コラム: 2020 スクラムガイド改訂とスクラムの3つの罠 スクラムが形式的、儀式的になってしまっている 目的を理解せずにハウツーをなぞるだけのチームが増えたので抽象的な表現に変更した 例) デイリースクラムがただの報告するだけになっている デイリースクラムの目的は状況にあわせた再計画であるため、形式的な報告ではいけない プロダクトオーナー vs 開発チームの構図に陥ってしまっている チーム内の分断をなくし、ワンチームになることが強調されている 開発チームから開発者へ、チームはスクラムチームが唯一 プロダクトオーナー vs 開発者が対立構図になることが多かった 「開発チームの自己組織化」から「スクラムチームの自己管理」へ スクラムは役割を超えて協力していくことが欠かせない 問題 vs 私たち (スクラムチーム) という構図を引き出すことが重要 スクラムマスターがスクラム警察もしくは雑用係になってしまっている スクラムマスターが「サーバントリーダー」とされていたが、単にサーバントになってしまうことがあった スクラムマスターはプロダクトの成果や組織の目標にコミットメントしないといけない ただスクラムルールを守らせたり、会議の司会役をするだけではない 「真のリーダー」としての資質とプロダクトの成果や組織の目標にコミットメントしていくための熱量を重視して専任していく必要がある これらのコラムを読むと、私が傍からみていたスクラムは本来の意図したスクラムの開発方法論ではなく、正しく運用されていなかったスクラムなのかもしれないとも思えてきた。本書の第1部を読み進めてみて、スクラムの意図している目的や価値には私が共感できるところが多々あった。"><meta name=keywords content><meta name=robots content="noodp"><link rel=canonical href=/diary/posts/2021/1123/><link rel=stylesheet href=/diary/assets/style.css><link rel=stylesheet href=/diary/assets/green.css><link rel=stylesheet href=/diary/style.css><link rel=apple-touch-icon href=/diary/img/apple-touch-icon-192x192.png><link rel="shortcut icon" href=/diary/favicon.ico><meta name=twitter:card content="summary"><meta name=twitter:site content="t2y"><meta name=twitter:creator content><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="og:title" content="スクラムの起源"><meta property="og:description" content="5時に寝て7時半に起きた。前週末は遊んでたので夜はいろいろ作業してた。朝起きる習慣がついてきたので何時に寝ても起きれる感じになってきた。うまく体調管理もできている。
 年末調整と住民税の納付 年末調整は1月末まで、住民税の特別徴収は納付の特例を使うと6-11月の6ヶ月分を12月10日までに納める。年末調整も11月の給与を確定したら調整額を算出して12月の給与に反映する。必要な情報を入力したら会計システム (freee) で自動算出してくれて書類も一通り作ってくれるので難しくない。ここで出力される給与支払報告書を市役所と税務署のそれぞれに申請する。市役所向けの手続きは eLTAX で行い、税務署向けの手続きは e-Tax で行う。先日 Windows マシンを購入 したので、今回は eLTAX の DL 版で完全な手続きができるはず。ただし、e-Tax も eLTAX も祝日・日曜日は利用できないのでやろうと思ったものの、今日は祝日だからできなかった。
 住民税の特別徴収の納付も今回が初めての試み。企業が社員に代わり住民税を納付するのが原則であり、これを特別徴収と呼ぶ。昨年は特別徴収への切り替え申請をしないといけないのを私が知らなくて手続きが遅れた結果、個人宛に届いた納付書でそのまま支払いした。納付自体はそれでも問題はない。おそらく徴税側からみたら源泉徴収して企業の担当者が納付した方が誤りがなく確実でサポートコストを削減できるという狙いなんだろうと推測する。住民税の納付も eLTAX でできるようなので後日挑戦してみる。
 アジャイル開発とスクラム 第2版 顧客・技術・経営をつなぐ協調的ソフトウェア開発マネジメント 4日前から読み進めていて、第1部アジャイル開発とは何か、スクラムとは何か (第1章から第5章) を読み終えた。
 冒頭の序論を読んでいて、スクラムは 1980 年代の日本の製造業の (革新的な) 製品開発スタイルの論文がオリジナルだというのを知った。ソフトウェア開発の文脈だと、米国から輸入した方法論のようにみえるが、もとは日本で編み出された方法論だったという。1986年に書かれたハーバード・ビジネス・レビューに投稿された論文がオリジナルらしい。
- The New New Product Development Game by Hirotaka Takeuchi and Ikujiro Nonaka  前に スクラムガイド2020 を一通り読んでいたので、スクラムについての内容はだいたい理解できた。補足でよかったのは、スクラムガイド 2017 から 2020 で改訂された内容やその背景や意図などがコラムで紹介されていた。それらを知ることで、よりスクラムで陥りやすい失敗や誤解されがちなところを理解できた。たとえば「開発チーム」という用語から「開発者」に改められた。スクラムチームの中に別のチームがあるようにみえ、プロダクトオーナー vs 開発チームのような対立構造にならないよう、チームはスクラムチームという1つしかないという意図だという。そして、開発チームの自己組織化 (Self-organized) というキーワードが、スクラムチームの自己管理型 (Self-managed) へといったように、主体である開発チームだけ自律的且つ協働するように読めたのを、スクラムチームという1つのチームしかないと強調されている。
- コラム: 2020 スクラムガイド改訂とスクラムの3つの罠  スクラムが形式的、儀式的になってしまっている  目的を理解せずにハウツーをなぞるだけのチームが増えたので抽象的な表現に変更した 例) デイリースクラムがただの報告するだけになっている  デイリースクラムの目的は状況にあわせた再計画であるため、形式的な報告ではいけない     プロダクトオーナー vs 開発チームの構図に陥ってしまっている  チーム内の分断をなくし、ワンチームになることが強調されている 開発チームから開発者へ、チームはスクラムチームが唯一 プロダクトオーナー vs 開発者が対立構図になることが多かった  「開発チームの自己組織化」から「スクラムチームの自己管理」へ スクラムは役割を超えて協力していくことが欠かせない  問題 vs 私たち (スクラムチーム) という構図を引き出すことが重要       スクラムマスターがスクラム警察もしくは雑用係になってしまっている  スクラムマスターが「サーバントリーダー」とされていたが、単にサーバントになってしまうことがあった スクラムマスターはプロダクトの成果や組織の目標にコミットメントしないといけない  ただスクラムルールを守らせたり、会議の司会役をするだけではない   「真のリーダー」としての資質とプロダクトの成果や組織の目標にコミットメントしていくための熱量を重視して専任していく必要がある     これらのコラムを読むと、私が傍からみていたスクラムは本来の意図したスクラムの開発方法論ではなく、正しく運用されていなかったスクラムなのかもしれないとも思えてきた。本書の第1部を読み進めてみて、スクラムの意図している目的や価値には私が共感できるところが多々あった。">
-<meta property="og:url" content="/diary/posts/2021/1123/">
-<meta property="og:site_name" content="forest nook">
-<meta property="og:image" content="/diary">
-<meta property="og:image:width" content="2048">
-<meta property="og:image:height" content="1024">
-<meta property="article:published_time" content="2021-11-23 10:57:15 +0900 +0900">
-</head>
-<body class=green>
-<div class="container full headings--one-size">
-<header class=header>
-<div class=header__inner>
-<div class=header__logo>
-<a href=/diary>
-<div class=logo>
-forest nook
-</div>
-</a>
-</div>
-<div class=menu-trigger>menu</div>
-</div>
-<nav class=menu>
-<ul class="menu__inner menu__inner--desktop">
-<li><a href=/diary/about>自己紹介</a></li>
-<li><a href=/diary/dates>月別一覧</a></li>
-<li><a href=/diary/tags>タグ一覧</a></li>
-</ul>
-<ul class="menu__inner menu__inner--mobile">
-<li><a href=/diary/about>自己紹介</a></li>
-<li><a href=/diary/dates>月別一覧</a></li>
-<li><a href=/diary/tags>タグ一覧</a></li>
-</ul>
-</nav>
-</header>
-<div class=content>
-<div class=post>
-<h1 class=post-title>
-<a href=/diary/posts/2021/1123/>スクラムの起源</a></h1>
-<div class=post-meta>
-<span class=post-date>
-2021-11-23
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/tax/>tax</a>&nbsp;
-#<a href=/diary/tags/book/>book</a>&nbsp;
-</span>
-<div class=post-content><div>
-<p>5時に寝て7時半に起きた。前週末は遊んでたので夜はいろいろ作業してた。朝起きる習慣がついてきたので何時に寝ても起きれる感じになってきた。うまく体調管理もできている。</p>
-<h2 id=年末調整と住民税の納付>年末調整と住民税の納付<a href=#年末調整と住民税の納付 class=hanchor arialabel=Anchor>&#8983;</a> </h2>
-<p>年末調整は1月末まで、住民税の特別徴収は納付の特例を使うと6-11月の6ヶ月分を12月10日までに納める。年末調整も11月の給与を確定したら調整額を算出して12月の給与に反映する。必要な情報を入力したら会計システム (freee) で自動算出してくれて書類も一通り作ってくれるので難しくない。ここで出力される給与支払報告書を市役所と税務署のそれぞれに申請する。市役所向けの手続きは <a href=https://www.eltax.lta.go.jp/>eLTAX</a> で行い、税務署向けの手続きは <a href=https://www.e-tax.nta.go.jp/>e-Tax</a> で行う。先日 <a href=/diary/posts/2021/1103/#asus-rog-zephyrus-g15-ga503qr>Windows マシンを購入</a> したので、今回は eLTAX の DL 版で完全な手続きができるはず。ただし、e-Tax も eLTAX も祝日・日曜日は利用できないのでやろうと思ったものの、今日は祝日だからできなかった。</p>
-<p>住民税の特別徴収の納付も今回が初めての試み。企業が社員に代わり住民税を納付するのが原則であり、これを特別徴収と呼ぶ。昨年は特別徴収への切り替え申請をしないといけないのを私が知らなくて手続きが遅れた結果、個人宛に届いた納付書でそのまま支払いした。納付自体はそれでも問題はない。おそらく徴税側からみたら源泉徴収して企業の担当者が納付した方が誤りがなく確実でサポートコストを削減できるという狙いなんだろうと推測する。住民税の納付も eLTAX でできるようなので後日挑戦してみる。</p>
-<h2 id=アジャイル開発とスクラム-第2版-顧客技術経営をつなぐ協調的ソフトウェア開発マネジメント>アジャイル開発とスクラム 第2版 顧客・技術・経営をつなぐ協調的ソフトウェア開発マネジメント<a href=#アジャイル開発とスクラム-第2版-顧客技術経営をつなぐ協調的ソフトウェア開発マネジメント class=hanchor arialabel=Anchor>&#8983;</a> </h2>
-<p>4日前から読み進めていて、第1部アジャイル開発とは何か、スクラムとは何か (第1章から第5章) を読み終えた。</p>
-<p>冒頭の序論を読んでいて、スクラムは 1980 年代の日本の製造業の (革新的な) 製品開発スタイルの論文がオリジナルだというのを知った。ソフトウェア開発の文脈だと、米国から輸入した方法論のようにみえるが、もとは日本で編み出された方法論だったという。1986年に書かれたハーバード・ビジネス・レビューに投稿された論文がオリジナルらしい。</p>
-<ul>
-<li><a href=https://hbr.org/1986/01/the-new-new-product-development-game>The New New Product Development Game by Hirotaka Takeuchi and Ikujiro Nonaka</a></li>
-</ul>
-<p>前に <a href=https://scrumguides.org/docs/scrumguide/v2020/2020-Scrum-Guide-Japanese.pdf>スクラムガイド2020</a> を一通り読んでいたので、スクラムについての内容はだいたい理解できた。補足でよかったのは、スクラムガイド 2017 から 2020 で改訂された内容やその背景や意図などがコラムで紹介されていた。それらを知ることで、よりスクラムで陥りやすい失敗や誤解されがちなところを理解できた。たとえば「開発チーム」という用語から「開発者」に改められた。スクラムチームの中に別のチームがあるようにみえ、プロダクトオーナー vs 開発チームのような対立構造にならないよう、チームはスクラムチームという1つしかないという意図だという。そして、開発チームの自己組織化 (Self-organized) というキーワードが、スクラムチームの自己管理型 (Self-managed) へといったように、主体である開発チームだけ自律的且つ協働するように読めたのを、スクラムチームという1つのチームしかないと強調されている。</p>
-<blockquote>
-<h5 id=コラム-2020-スクラムガイド改訂とスクラムの3つの罠>コラム: 2020 スクラムガイド改訂とスクラムの3つの罠<a href=#コラム-2020-スクラムガイド改訂とスクラムの3つの罠 class=hanchor arialabel=Anchor>&#8983;</a> </h5>
-<ul>
-<li>スクラムが形式的、儀式的になってしまっている
-<ul>
-<li>目的を理解せずにハウツーをなぞるだけのチームが増えたので抽象的な表現に変更した</li>
-<li>例) デイリースクラムがただの報告するだけになっている
-<ul>
-<li>デイリースクラムの目的は状況にあわせた再計画であるため、形式的な報告ではいけない</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>プロダクトオーナー vs 開発チームの構図に陥ってしまっている
-<ul>
-<li>チーム内の分断をなくし、ワンチームになることが強調されている</li>
-<li>開発チームから開発者へ、チームはスクラムチームが唯一</li>
-<li>プロダクトオーナー vs 開発者が対立構図になることが多かった
-<ul>
-<li>「開発チームの自己組織化」から「スクラムチームの自己管理」へ</li>
-<li>スクラムは役割を超えて協力していくことが欠かせない
-<ul>
-<li>問題 vs 私たち (スクラムチーム) という構図を引き出すことが重要</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>スクラムマスターがスクラム警察もしくは雑用係になってしまっている
-<ul>
-<li>スクラムマスターが「サーバントリーダー」とされていたが、単にサーバントになってしまうことがあった</li>
-<li>スクラムマスターはプロダクトの成果や組織の目標にコミットメントしないといけない
-<ul>
-<li>ただスクラムルールを守らせたり、会議の司会役をするだけではない</li>
-</ul>
-</li>
-<li>「真のリーダー」としての資質とプロダクトの成果や組織の目標にコミットメントしていくための熱量を重視して専任していく必要がある</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<p>これらのコラムを読むと、私が傍からみていたスクラムは本来の意図したスクラムの開発方法論ではなく、正しく運用されていなかったスクラムなのかもしれないとも思えてきた。本書の第1部を読み進めてみて、スクラムの意図している目的や価値には私が共感できるところが多々あった。</p>
-</div></div>
-<div class=pagination>
-<div class=pagination__title>
-<span class=pagination__title-h>Read other posts</span>
-<hr>
-</div>
-<div class=pagination__buttons>
-<span class="button previous">
-<a href=/diary/posts/2021/1124/>
-<span class=button__icon>←</span>
-<span class=button__text>eLTAX 触ってみた</span>
-</a>
-</span>
-<span class="button next">
-<a href=/diary/posts/2021/1122/>
-<span class=button__text>kustomize のパッチ適用の違い</span>
-<span class=button__icon>→</span>
-</a>
-</span>
-</div>
-</div>
-</div>
-</div>
-<footer class=footer>
-<div class=footer__inner>
-<div class="copyright copyright--user">
-<span>© 2021 Tetsuya Morimoto</span>
-<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span>
-</div>
-</div>
-</footer>
-<script src=/diary/assets/main.js></script>
-<script src=/diary/assets/prism.js></script>
-</div>
-</body>
-</html>
+The New New Product Development Game by Hirotaka Takeuchi and Ikujiro Nonaka 前に スクラムガイド2020 を一通り読んでいたので、スクラムについての内容はだいたい理解できた。補足でよかったのは、スクラムガイド 2017 から 2020 で改訂された内容やその背景や意図などがコラムで紹介されていた。それらを知ることで、よりスクラムで陥りやすい失敗や誤解されがちなところを理解できた。たとえば「開発チーム」という用語から「開発者」に改められた。スクラムチームの中に別のチームがあるようにみえ、プロダクトオーナー vs 開発チームのような対立構造にならないよう、チームはスクラムチームという1つしかないという意図だという。そして、開発チームの自己組織化 (Self-organized) というキーワードが、スクラムチームの自己管理型 (Self-managed) へといったように、主体である開発チームだけ自律的且つ協働するように読めたのを、スクラムチームという1つのチームしかないと強調されている。
+コラム: 2020 スクラムガイド改訂とスクラムの3つの罠 スクラムが形式的、儀式的になってしまっている 目的を理解せずにハウツーをなぞるだけのチームが増えたので抽象的な表現に変更した 例) デイリースクラムがただの報告するだけになっている デイリースクラムの目的は状況にあわせた再計画であるため、形式的な報告ではいけない プロダクトオーナー vs 開発チームの構図に陥ってしまっている チーム内の分断をなくし、ワンチームになることが強調されている 開発チームから開発者へ、チームはスクラムチームが唯一 プロダクトオーナー vs 開発者が対立構図になることが多かった 「開発チームの自己組織化」から「スクラムチームの自己管理」へ スクラムは役割を超えて協力していくことが欠かせない 問題 vs 私たち (スクラムチーム) という構図を引き出すことが重要 スクラムマスターがスクラム警察もしくは雑用係になってしまっている スクラムマスターが「サーバントリーダー」とされていたが、単にサーバントになってしまうことがあった スクラムマスターはプロダクトの成果や組織の目標にコミットメントしないといけない ただスクラムルールを守らせたり、会議の司会役をするだけではない 「真のリーダー」としての資質とプロダクトの成果や組織の目標にコミットメントしていくための熱量を重視して専任していく必要がある これらのコラムを読むと、私が傍からみていたスクラムは本来の意図したスクラムの開発方法論ではなく、正しく運用されていなかったスクラムなのかもしれないとも思えてきた。本書の第1部を読み進めてみて、スクラムの意図している目的や価値には私が共感できるところが多々あった。"><meta property="og:url" content="/diary/posts/2021/1123/"><meta property="og:site_name" content="forest nook"><meta property="og:image" content="/diary"><meta property="og:image:width" content="2048"><meta property="og:image:height" content="1024"><meta property="article:published_time" content="2021-11-23 10:57:15 +0900 +0900"></head><body class=green><div class="container full headings--one-size"><header class=header><div class=header__inner><div class=header__logo><a href=/diary><div class=logo>forest nook</div></a></div><div class=menu-trigger>menu</div></div><nav class=menu><ul class="menu__inner menu__inner--desktop"><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul><ul class="menu__inner menu__inner--mobile"><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul></nav></header><div class=content><div class=post><h1 class=post-title><a href=/diary/posts/2021/1123/>スクラムの起源</a></h1><div class=post-meta><span class=post-date>2021-11-23</span></div><span class=post-tags>#<a href=/diary/tags/tax/>tax</a>&nbsp;
+#<a href=/diary/tags/book/>book</a>&nbsp;</span><div class=post-content><div><p>5時に寝て7時半に起きた。前週末は遊んでたので夜はいろいろ作業してた。朝起きる習慣がついてきたので何時に寝ても起きれる感じになってきた。うまく体調管理もできている。</p><h2 id=年末調整と住民税の納付>年末調整と住民税の納付<a href=#年末調整と住民税の納付 class=hanchor arialabel=Anchor>&#8983;</a></h2><p>年末調整は1月末まで、住民税の特別徴収は納付の特例を使うと6-11月の6ヶ月分を12月10日までに納める。年末調整も11月の給与を確定したら調整額を算出して12月の給与に反映する。必要な情報を入力したら会計システム (freee) で自動算出してくれて書類も一通り作ってくれるので難しくない。ここで出力される給与支払報告書を市役所と税務署のそれぞれに申請する。市役所向けの手続きは <a href=https://www.eltax.lta.go.jp/>eLTAX</a> で行い、税務署向けの手続きは <a href=https://www.e-tax.nta.go.jp/>e-Tax</a> で行う。先日 <a href=/diary/posts/2021/1103/#asus-rog-zephyrus-g15-ga503qr>Windows マシンを購入</a> したので、今回は eLTAX の DL 版で完全な手続きができるはず。ただし、e-Tax も eLTAX も祝日・日曜日は利用できないのでやろうと思ったものの、今日は祝日だからできなかった。</p><p>住民税の特別徴収の納付も今回が初めての試み。企業が社員に代わり住民税を納付するのが原則であり、これを特別徴収と呼ぶ。昨年は特別徴収への切り替え申請をしないといけないのを私が知らなくて手続きが遅れた結果、個人宛に届いた納付書でそのまま支払いした。納付自体はそれでも問題はない。おそらく徴税側からみたら源泉徴収して企業の担当者が納付した方が誤りがなく確実でサポートコストを削減できるという狙いなんだろうと推測する。住民税の納付も eLTAX でできるようなので後日挑戦してみる。</p><h2 id=アジャイル開発とスクラム-第2版-顧客技術経営をつなぐ協調的ソフトウェア開発マネジメント>アジャイル開発とスクラム 第2版 顧客・技術・経営をつなぐ協調的ソフトウェア開発マネジメント<a href=#アジャイル開発とスクラム-第2版-顧客技術経営をつなぐ協調的ソフトウェア開発マネジメント class=hanchor arialabel=Anchor>&#8983;</a></h2><p>4日前から読み進めていて、第1部アジャイル開発とは何か、スクラムとは何か (第1章から第5章) を読み終えた。</p><p>冒頭の序論を読んでいて、スクラムは 1980 年代の日本の製造業の (革新的な) 製品開発スタイルの論文がオリジナルだというのを知った。ソフトウェア開発の文脈だと、米国から輸入した方法論のようにみえるが、もとは日本で編み出された方法論だったという。1986年に書かれたハーバード・ビジネス・レビューに投稿された論文がオリジナルらしい。</p><ul><li><a href=https://hbr.org/1986/01/the-new-new-product-development-game>The New New Product Development Game by Hirotaka Takeuchi and Ikujiro Nonaka</a></li></ul><p>前に <a href=https://scrumguides.org/docs/scrumguide/v2020/2020-Scrum-Guide-Japanese.pdf>スクラムガイド2020</a> を一通り読んでいたので、スクラムについての内容はだいたい理解できた。補足でよかったのは、スクラムガイド 2017 から 2020 で改訂された内容やその背景や意図などがコラムで紹介されていた。それらを知ることで、よりスクラムで陥りやすい失敗や誤解されがちなところを理解できた。たとえば「開発チーム」という用語から「開発者」に改められた。スクラムチームの中に別のチームがあるようにみえ、プロダクトオーナー vs 開発チームのような対立構造にならないよう、チームはスクラムチームという1つしかないという意図だという。そして、開発チームの自己組織化 (Self-organized) というキーワードが、スクラムチームの自己管理型 (Self-managed) へといったように、主体である開発チームだけ自律的且つ協働するように読めたのを、スクラムチームという1つのチームしかないと強調されている。</p><blockquote><h5 id=コラム-2020-スクラムガイド改訂とスクラムの3つの罠>コラム: 2020 スクラムガイド改訂とスクラムの3つの罠<a href=#コラム-2020-スクラムガイド改訂とスクラムの3つの罠 class=hanchor arialabel=Anchor>&#8983;</a></h5><ul><li>スクラムが形式的、儀式的になってしまっている<ul><li>目的を理解せずにハウツーをなぞるだけのチームが増えたので抽象的な表現に変更した</li><li>例) デイリースクラムがただの報告するだけになっている<ul><li>デイリースクラムの目的は状況にあわせた再計画であるため、形式的な報告ではいけない</li></ul></li></ul></li><li>プロダクトオーナー vs 開発チームの構図に陥ってしまっている<ul><li>チーム内の分断をなくし、ワンチームになることが強調されている</li><li>開発チームから開発者へ、チームはスクラムチームが唯一</li><li>プロダクトオーナー vs 開発者が対立構図になることが多かった<ul><li>「開発チームの自己組織化」から「スクラムチームの自己管理」へ</li><li>スクラムは役割を超えて協力していくことが欠かせない<ul><li>問題 vs 私たち (スクラムチーム) という構図を引き出すことが重要</li></ul></li></ul></li></ul></li><li>スクラムマスターがスクラム警察もしくは雑用係になってしまっている<ul><li>スクラムマスターが「サーバントリーダー」とされていたが、単にサーバントになってしまうことがあった</li><li>スクラムマスターはプロダクトの成果や組織の目標にコミットメントしないといけない<ul><li>ただスクラムルールを守らせたり、会議の司会役をするだけではない</li></ul></li><li>「真のリーダー」としての資質とプロダクトの成果や組織の目標にコミットメントしていくための熱量を重視して専任していく必要がある</li></ul></li></ul></blockquote><p>これらのコラムを読むと、私が傍からみていたスクラムは本来の意図したスクラムの開発方法論ではなく、正しく運用されていなかったスクラムなのかもしれないとも思えてきた。本書の第1部を読み進めてみて、スクラムの意図している目的や価値には私が共感できるところが多々あった。</p></div></div><div class=pagination><div class=pagination__title><span class=pagination__title-h>Read other posts</span><hr></div><div class=pagination__buttons><span class="button previous"><a href=/diary/posts/2021/1124/><span class=button__icon>←</span>
+<span class=button__text>eLTAX 触ってみた</span></a></span>
+<span class="button next"><a href=/diary/posts/2021/1122/><span class=button__text>kustomize のパッチ適用の違い</span>
+<span class=button__icon>→</span></a></span></div></div></div></div><footer class=footer><div class=footer__inner><div class="copyright copyright--user"><span>© 2021 Tetsuya Morimoto</span>
+<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span></div></div></footer><script src=/diary/assets/main.js></script>
+<script src=/diary/assets/prism.js></script></div></body></html>

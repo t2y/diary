@@ -37,62 +37,63 @@ Configuration: status: warn name: YAMLConfig appenders: Console: name: STDOUT ta
 &lt;p>spring の &lt;a href="https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.profiles">Profiles&lt;/a> の仕組みを使って環境ごとの設定を作る。デプロイは k8s で管理しているため、spring boot の &lt;a href="https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config">Externalized Configuration&lt;/a> の仕組みを使って、環境変数から application.yml に定義された設定を書き換える。k8s は kustomize で管理していて prod, test, dev の3つの環境で任意の設定を記述できる。&lt;/p>
 &lt;p>問題はログ出力の設定を環境ごとに変えたい。具体的には datadog に連携されるログは構造化ログ (json lines) を、ローカルの開発ではコンソールログをみたい。&lt;a href="https://logging.apache.org/log4j/2.x/log4j-spring-boot/index.html">Log4j Spring Boot Support&lt;/a> によると、1つの設定ファイルに複数のプロファイル設定を記述できるようにもみえるけど、実際にやってみたらうまく動かなかった。xml ではなく yml を使っているせいかもしれないし、私の記述方法が誤っているのかもしれない。いずれにしても yml で複数のプロファイルを設定しているサンプルをみつけられなかった。&lt;/p>
 &lt;p>そこで &lt;a href="https://www.baeldung.com/spring-log4j2-config-per-profile">Different Log4j2 Configurations per Spring Profile&lt;/a> をみて、環境ごとにログ設定ファイルも分割することにした。application.yml には次のように記述する。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yml" data-lang="yml">&lt;span style="color:#f92672">spring&lt;/span>:
-&lt;span style="color:#f92672">profiles&lt;/span>:
-&lt;span style="color:#f92672">active&lt;/span>: &lt;span style="color:#ae81ff">dev&lt;/span>
-&lt;span style="color:#f92672">logging&lt;/span>:
-&lt;span style="color:#f92672">config&lt;/span>: &lt;span style="color:#ae81ff">classpath:log4j2-${spring.profiles.active}.yml&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>ローカル開発向けの lgo4j2-dev.yml は次のようになる。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yml" data-lang="yml">&lt;span style="color:#f92672">Configuration&lt;/span>:
-&lt;span style="color:#f92672">status&lt;/span>: &lt;span style="color:#ae81ff">warn&lt;/span>
-&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">YAMLConfig&lt;/span>
-&lt;span style="color:#f92672">appenders&lt;/span>:
-&lt;span style="color:#f92672">Console&lt;/span>:
-&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">STDOUT&lt;/span>
-&lt;span style="color:#f92672">target&lt;/span>: &lt;span style="color:#ae81ff">SYSTEM_OUT&lt;/span>
-&lt;span style="color:#f92672">PatternLayout&lt;/span>:
-&lt;span style="color:#f92672">Pattern&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;%d{yyyy-MM-dd HH:mm:ss.SSS}[%t]%-5level %logger{36} - %msg%n&amp;#34;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>k8s のマニフェストで環境変数を次のように定義すれば prod というプロファイルが設定される。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yml" data-lang="yml">&lt;span style="color:#f92672">apiVersion&lt;/span>: &lt;span style="color:#ae81ff">apps/v1&lt;/span>
-&lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">Deployment&lt;/span>
-&lt;span style="color:#f92672">metadata&lt;/span>:
-&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-service&lt;/span>
-&lt;span style="color:#f92672">spec&lt;/span>:
-&lt;span style="color:#f92672">template&lt;/span>:
-&lt;span style="color:#f92672">spec&lt;/span>:
-&lt;span style="color:#f92672">containers&lt;/span>:
-- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-service&lt;/span>
-&lt;span style="color:#f92672">env&lt;/span>:
-- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">spring.profiles.active&lt;/span>
-&lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;prod&amp;#34;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>クラウド環境向けの log4j2-prod.yml は次のようになる。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yml" data-lang="yml">&lt;span style="color:#f92672">Configuration&lt;/span>:
-&lt;span style="color:#f92672">status&lt;/span>: &lt;span style="color:#ae81ff">warn&lt;/span>
-&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">YAMLConfig&lt;/span>
-&lt;span style="color:#f92672">appenders&lt;/span>:
-&lt;span style="color:#f92672">Console&lt;/span>:
-&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">STDOUT&lt;/span>
-&lt;span style="color:#f92672">target&lt;/span>: &lt;span style="color:#ae81ff">SYSTEM_OUT&lt;/span>
-&lt;span style="color:#f92672">EcsLayout&lt;/span>:
-&lt;span style="color:#f92672">serviceName&lt;/span>: &lt;span style="color:#ae81ff">my-service&lt;/span>
-&lt;span style="color:#f92672">serviceNodeName&lt;/span>: &lt;span style="color:#66d9ef">null&lt;/span>
-&lt;span style="color:#f92672">includeMarkers&lt;/span>: &lt;span style="color:#66d9ef">true&lt;/span>
-&lt;span style="color:#f92672">KeyValuePair&lt;/span>:
-- &lt;span style="color:#f92672">key&lt;/span>: &lt;span style="color:#ae81ff">type&lt;/span>
-&lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#ae81ff">app&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>テストコードのリファクタリング</title><link>/diary/posts/2022/0208/</link><pubDate>Tue, 08 Feb 2022 09:04:49 +0900</pubDate><guid>/diary/posts/2022/0208/</guid><description>0時に寝て6時に起きた。今日は7時半から23時過ぎまで集中してコードを書いてた。最近は19-20時には帰って、晩ご飯食べて、ドラクエタクトやったり漫画読んだりだらだらしている。そんな暇あったら積ん読の本読めって感じだ。
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">spring&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">profiles&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">active&lt;/span>: &lt;span style="color:#ae81ff">dev&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">logging&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">config&lt;/span>: &lt;span style="color:#ae81ff">classpath:log4j2-${spring.profiles.active}.yml&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>ローカル開発向けの lgo4j2-dev.yml は次のようになる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">Configuration&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">status&lt;/span>: &lt;span style="color:#ae81ff">warn&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">YAMLConfig&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">appenders&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">Console&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">STDOUT&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">target&lt;/span>: &lt;span style="color:#ae81ff">SYSTEM_OUT&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">PatternLayout&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">Pattern&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;%d{yyyy-MM-dd HH:mm:ss.SSS}[%t]%-5level %logger{36} - %msg%n&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>k8s のマニフェストで環境変数を次のように定義すれば prod というプロファイルが設定される。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">apiVersion&lt;/span>: &lt;span style="color:#ae81ff">apps/v1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">Deployment&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">metadata&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-service&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">spec&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">template&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">spec&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">containers&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-service&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">env&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">spring.profiles.active&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;prod&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>クラウド環境向けの log4j2-prod.yml は次のようになる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">Configuration&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">status&lt;/span>: &lt;span style="color:#ae81ff">warn&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">YAMLConfig&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">appenders&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">Console&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">STDOUT&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">target&lt;/span>: &lt;span style="color:#ae81ff">SYSTEM_OUT&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">EcsLayout&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">serviceName&lt;/span>: &lt;span style="color:#ae81ff">my-service&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">serviceNodeName&lt;/span>: &lt;span style="color:#66d9ef">null&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">includeMarkers&lt;/span>: &lt;span style="color:#66d9ef">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">KeyValuePair&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#f92672">key&lt;/span>: &lt;span style="color:#ae81ff">type&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#ae81ff">app&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>テストコードのリファクタリング</title><link>/diary/posts/2022/0208/</link><pubDate>Tue, 08 Feb 2022 09:04:49 +0900</pubDate><guid>/diary/posts/2022/0208/</guid><description>0時に寝て6時に起きた。今日は7時半から23時過ぎまで集中してコードを書いてた。最近は19-20時には帰って、晩ご飯食べて、ドラクエタクトやったり漫画読んだりだらだらしている。そんな暇あったら積ん読の本読めって感じだ。
 テストコードのリファクタリング 業務機能の開発をするにあたって、既存のテストコードをみていて、@BeforeEach というテストメソッド単位に呼ばれるメソッドでテストデータの削除と postgresql の sequence のリセット処理をしていた。こんなの共通処理ですべてのテーブルの truncate と sequence のリセット処理をすればいいやんとか思って、いろいろ調べて2つのリファクタリングの PR を作成した。先日 JUnit5 の拡張 を調べたばかりだから、テストの共通化のノウハウが溜まっている。Testcontainers Postgres Module と連携して、postgresql コンテナに接続して sequence のリセット処理を汎用のテスト拡張として実装した。テストを実装する開発者は、次のように @ExtendWith(DatabaseInitializer.class) をアノテーションに付与すれば、自分で sequence のリセット処理を @BeforeEach のメソッドに実装する必要がなくなる。
 @SpringBootTest @Transactional @ExtendWith(SetupDatabaseContainer.class) @ExtendWith(DatabaseInitializer.class) class MyTest { ... } この作業の過程で spring boot の @Transactional はデフォルトでテストメソッドの実行後にロールバックする機能が提供されていて、いままで @BeforeEach のメソッドで明示的にテーブルのデータを削除する必要はなかったんやと気付いた。じゃあ、なぜ削除するコードを書いてたかと言うと、テストの外部で初期データを作成する仕組みがあるから、初期データを削除する目的でそうしていたことが判明した。そして、一部のコードはそこで作った外部の初期データに依存して実装されていた。テストコードの一部が外部のデータに依存しつつ、テストメソッドでは外部のデータに依存しないように削除のコードが書いてある。書いていて何を言っているのかわからないと思うけど、私も調べてて訳がわからんくて、PR に「いまの状況はかなりややこしい」と前置きしつつ、無駄なコードや仕組みを取り除くための修正を行った。本当は機能開発やらないといけないのにテストコードのリファクタリングするのに大きな時間をかけるわけにはいかないだろうという意図で、半日掛けてリファクタリングして23時過ぎまで作業して、既存のテストコードも含めて全部直した。このリファクタリングで数十のテストケースの約300行ぐらいの初期化コードをなくせた。</description><content>&lt;p>0時に寝て6時に起きた。今日は7時半から23時過ぎまで集中してコードを書いてた。最近は19-20時には帰って、晩ご飯食べて、ドラクエタクトやったり漫画読んだりだらだらしている。そんな暇あったら積ん読の本読めって感じだ。&lt;/p>
 &lt;h2 id="テストコードのリファクタリング">テストコードのリファクタリング&lt;/h2>
 &lt;p>業務機能の開発をするにあたって、既存のテストコードをみていて、&lt;code>@BeforeEach&lt;/code> というテストメソッド単位に呼ばれるメソッドでテストデータの削除と postgresql の sequence のリセット処理をしていた。こんなの共通処理ですべてのテーブルの truncate と sequence のリセット処理をすればいいやんとか思って、いろいろ調べて2つのリファクタリングの PR を作成した。先日 &lt;a href="/diary/diary/posts/2022/0116/">JUnit5 の拡張&lt;/a> を調べたばかりだから、テストの共通化のノウハウが溜まっている。&lt;a href="https://www.testcontainers.org/modules/databases/postgres/">Testcontainers Postgres Module&lt;/a> と連携して、postgresql コンテナに接続して sequence のリセット処理を汎用のテスト拡張として実装した。テストを実装する開発者は、次のように &lt;code>@ExtendWith(DatabaseInitializer.class)&lt;/code> をアノテーションに付与すれば、自分で sequence のリセット処理を &lt;code>@BeforeEach&lt;/code> のメソッドに実装する必要がなくなる。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-java" data-lang="java">&lt;span style="color:#a6e22e">@SpringBootTest&lt;/span>
-&lt;span style="color:#a6e22e">@Transactional&lt;/span>
-&lt;span style="color:#a6e22e">@ExtendWith&lt;/span>&lt;span style="color:#f92672">(&lt;/span>SetupDatabaseContainer&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">)&lt;/span>
-&lt;span style="color:#a6e22e">@ExtendWith&lt;/span>&lt;span style="color:#f92672">(&lt;/span>DatabaseInitializer&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">)&lt;/span>
-&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">MyTest&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
-&lt;span style="color:#f92672">...&lt;/span>
-&lt;span style="color:#f92672">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>この作業の過程で spring boot の &lt;a href="https://spring.pleiades.io/spring-framework/docs/current/reference/html/testing.html#testcontext-tx-enabling-transactions">@Transactional&lt;/a> はデフォルトでテストメソッドの実行後にロールバックする機能が提供されていて、いままで &lt;code>@BeforeEach&lt;/code> のメソッドで明示的にテーブルのデータを削除する必要はなかったんやと気付いた。じゃあ、なぜ削除するコードを書いてたかと言うと、テストの外部で初期データを作成する仕組みがあるから、初期データを削除する目的でそうしていたことが判明した。そして、一部のコードはそこで作った外部の初期データに依存して実装されていた。テストコードの一部が外部のデータに依存しつつ、テストメソッドでは外部のデータに依存しないように削除のコードが書いてある。書いていて何を言っているのかわからないと思うけど、私も調べてて訳がわからんくて、PR に「いまの状況はかなりややこしい」と前置きしつつ、無駄なコードや仕組みを取り除くための修正を行った。本当は機能開発やらないといけないのにテストコードのリファクタリングするのに大きな時間をかけるわけにはいかないだろうという意図で、半日掛けてリファクタリングして23時過ぎまで作業して、既存のテストコードも含めて全部直した。このリファクタリングで数十のテストケースの約300行ぐらいの初期化コードをなくせた。&lt;/p></content></item><item><title>spring boot の xml 変換の仕組み</title><link>/diary/posts/2022/0120/</link><pubDate>Thu, 20 Jan 2022 07:39:24 +0900</pubDate><guid>/diary/posts/2022/0120/</guid><description>0時に寝て吐き気がして3時に起きて、断続的に仮眠をとってみたけど、それでも気分悪くて5時から起きてた。昨日の晩ご飯食べて寝てから吐き気が出てきた。なにかの食べ合わせなのだろうか。コロッケとその後にチョコレート食べたのが悪かったのか。普通にオフィスへ行ってお仕事してたら直った。
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@SpringBootTest&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@Transactional&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@ExtendWith&lt;/span>&lt;span style="color:#f92672">(&lt;/span>SetupDatabaseContainer&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@ExtendWith&lt;/span>&lt;span style="color:#f92672">(&lt;/span>DatabaseInitializer&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">MyTest&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>この作業の過程で spring boot の &lt;a href="https://spring.pleiades.io/spring-framework/docs/current/reference/html/testing.html#testcontext-tx-enabling-transactions">@Transactional&lt;/a> はデフォルトでテストメソッドの実行後にロールバックする機能が提供されていて、いままで &lt;code>@BeforeEach&lt;/code> のメソッドで明示的にテーブルのデータを削除する必要はなかったんやと気付いた。じゃあ、なぜ削除するコードを書いてたかと言うと、テストの外部で初期データを作成する仕組みがあるから、初期データを削除する目的でそうしていたことが判明した。そして、一部のコードはそこで作った外部の初期データに依存して実装されていた。テストコードの一部が外部のデータに依存しつつ、テストメソッドでは外部のデータに依存しないように削除のコードが書いてある。書いていて何を言っているのかわからないと思うけど、私も調べてて訳がわからんくて、PR に「いまの状況はかなりややこしい」と前置きしつつ、無駄なコードや仕組みを取り除くための修正を行った。本当は機能開発やらないといけないのにテストコードのリファクタリングするのに大きな時間をかけるわけにはいかないだろうという意図で、半日掛けてリファクタリングして23時過ぎまで作業して、既存のテストコードも含めて全部直した。このリファクタリングで数十のテストケースの約300行ぐらいの初期化コードをなくせた。&lt;/p></content></item><item><title>spring boot の xml 変換の仕組み</title><link>/diary/posts/2022/0120/</link><pubDate>Thu, 20 Jan 2022 07:39:24 +0900</pubDate><guid>/diary/posts/2022/0120/</guid><description>0時に寝て吐き気がして3時に起きて、断続的に仮眠をとってみたけど、それでも気分悪くて5時から起きてた。昨日の晩ご飯食べて寝てから吐き気が出てきた。なにかの食べ合わせなのだろうか。コロッケとその後にチョコレート食べたのが悪かったのか。普通にオフィスへ行ってお仕事してたら直った。
 spring boot の xml 変換 いまお手伝いしているお仕事で spring boot で SOAP の xml 通信しているサービスがある。任意の文字列を受け取って任意の文字列を返すような仕組みで設計されていて、xml の変換処理を jackson を使ってアプリケーションコードで書いていた。
 これをやるならミドルウェアでやるべきだなと思って spring boot のドキュメントを調べてみた。Error Handling のように例外が発生したときの処理をフックする ResponseEntityExceptionHandler のようなミドルウェアに近い仕組みはあるが、通常のレスポンスに対して行う処理はなかった。代わりに HttpMessageConverters という、レスポンスを変換する仕組み自体は操作できないが、変換する変換器は置き換えたり拡張したりできるようになっている。レスポンスのデータフォーマットのカスタマイズをしたい場合は HttpMessageConverters で行うというのが spring boot 的なやり方にみえる。
 さらに調べていると Write an XML REST Service に jackson-dataformat-xml がクラスパスにあれば jackson の ObjectMapper を使って xml に変換するよと書いてあって、試しにレスポンスのオブジェクトを返したら自動的に xml に変換されるという振る舞いを確認できた。つまり、アプリケーションコードで xml の変換処理を自前で実装しなくてもほぼ同じことを spring boot のデフォルトの仕組みでやってくれるというわけだ。jackson の ObjectMapper のカスタマイズがしたいときもいくつかやり方がある。例えば、 @Configuration をもつ Config オブジェクトで次のような bean を生成すれば任意の設定にカスタマイズした ObjectMapper が使われるようになる。
@@ -101,10 +102,10 @@ spring boot の xml 変換 いまお手伝いしているお仕事で spring boo
 &lt;p>いまお手伝いしているお仕事で spring boot で &lt;a href="https://en.wikipedia.org/wiki/SOAP">SOAP&lt;/a> の xml 通信しているサービスがある。任意の文字列を受け取って任意の文字列を返すような仕組みで設計されていて、xml の変換処理を jackson を使ってアプリケーションコードで書いていた。&lt;/p>
 &lt;p>これをやるならミドルウェアでやるべきだなと思って spring boot のドキュメントを調べてみた。&lt;a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#web.servlet.spring-mvc.error-handling">Error Handling&lt;/a> のように例外が発生したときの処理をフックする ResponseEntityExceptionHandler のようなミドルウェアに近い仕組みはあるが、通常のレスポンスに対して行う処理はなかった。代わりに &lt;a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#web.servlet.spring-mvc.message-converters">HttpMessageConverters&lt;/a> という、レスポンスを変換する仕組み自体は操作できないが、変換する変換器は置き換えたり拡張したりできるようになっている。レスポンスのデータフォーマットのカスタマイズをしたい場合は HttpMessageConverters で行うというのが spring boot 的なやり方にみえる。&lt;/p>
 &lt;p>さらに調べていると &lt;a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#howto.spring-mvc.write-xml-rest-service">Write an XML REST Service&lt;/a> に &lt;code>jackson-dataformat-xml&lt;/code> がクラスパスにあれば jackson の ObjectMapper を使って xml に変換するよと書いてあって、試しにレスポンスのオブジェクトを返したら自動的に xml に変換されるという振る舞いを確認できた。つまり、アプリケーションコードで xml の変換処理を自前で実装しなくてもほぼ同じことを spring boot のデフォルトの仕組みでやってくれるというわけだ。jackson の ObjectMapper のカスタマイズがしたいときもいくつかやり方がある。例えば、 &lt;code>@Configuration&lt;/code> をもつ Config オブジェクトで次のような bean を生成すれば任意の設定にカスタマイズした ObjectMapper が使われるようになる。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-java" data-lang="java">&lt;span style="color:#a6e22e">@Bean&lt;/span>
-&lt;span style="color:#66d9ef">public&lt;/span> Jackson2ObjectMapperBuilderCustomizer &lt;span style="color:#a6e22e">configureObjectMapper&lt;/span>&lt;span style="color:#f92672">()&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
-&lt;span style="color:#66d9ef">return&lt;/span> builder &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
-builder&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">serializationInclusion&lt;/span>&lt;span style="color:#f92672">(&lt;/span>JsonInclude&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">Include&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">NON_EMPTY&lt;/span>&lt;span style="color:#f92672">);&lt;/span>
-&lt;span style="color:#f92672">};&lt;/span>
-&lt;span style="color:#f92672">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div></content></item></channel></rss>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@Bean&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span> Jackson2ObjectMapperBuilderCustomizer &lt;span style="color:#a6e22e">configureObjectMapper&lt;/span>&lt;span style="color:#f92672">()&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> builder &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> builder&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">serializationInclusion&lt;/span>&lt;span style="color:#f92672">(&lt;/span>JsonInclude&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">Include&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">NON_EMPTY&lt;/span>&lt;span style="color:#f92672">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item></channel></rss>

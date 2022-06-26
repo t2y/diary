@@ -12,21 +12,21 @@ public static void initializeLogSettings(BatchEnvironment env) throws IOExceptio
 &lt;/ul>
 &lt;p>ロガー実装に &lt;a href="https://logging.apache.org/log4j/2.x/">log4j2&lt;/a> を使っているので設定ファイルはアプリケーションの設定ファイルと log4j2 の設定ファイルの2つになる。それぞれ環境ごとに用意してエントリーポイントから起動したタイミングで明示的に設定ファイルを読み込むようにした。&lt;/p>
 &lt;p>log4j2 の yml 設定ファイルを動的にどうやって設定するかはドキュメントにもとくに書いてなかった気がする。log4j2 のソースコードやテストコードを読みながら次のようにしたら反映された。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-java" data-lang="java">&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">static&lt;/span> Config &lt;span style="color:#a6e22e">load&lt;/span>&lt;span style="color:#f92672">(&lt;/span>BatchEnvironment env&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
-var path &lt;span style="color:#f92672">=&lt;/span> String&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">format&lt;/span>&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#e6db74">&amp;#34;config-%s.yml&amp;#34;&lt;/span>&lt;span style="color:#f92672">,&lt;/span> env&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">getName&lt;/span>&lt;span style="color:#f92672">());&lt;/span>
-var inputStream &lt;span style="color:#f92672">=&lt;/span> ConfigUtil&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">getClassLoader&lt;/span>&lt;span style="color:#f92672">().&lt;/span>&lt;span style="color:#a6e22e">getResourceAsStream&lt;/span>&lt;span style="color:#f92672">(&lt;/span>path&lt;span style="color:#f92672">);&lt;/span>
-var yaml &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> Yaml&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#66d9ef">new&lt;/span> Constructor&lt;span style="color:#f92672">(&lt;/span>Config&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">));&lt;/span>
-&lt;span style="color:#66d9ef">return&lt;/span> yaml&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">load&lt;/span>&lt;span style="color:#f92672">(&lt;/span>inputStream&lt;span style="color:#f92672">);&lt;/span>
-&lt;span style="color:#f92672">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>アプリケーションの設定は yml 設定に対応する &lt;code>Config&lt;/code> クラスを定義しておいて次のようにして読み込む。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-java" data-lang="java">&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">static&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">initializeLogSettings&lt;/span>&lt;span style="color:#f92672">(&lt;/span>BatchEnvironment env&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#66d9ef">throws&lt;/span> IOException &lt;span style="color:#f92672">{&lt;/span>
-var path &lt;span style="color:#f92672">=&lt;/span> String&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">format&lt;/span>&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#e6db74">&amp;#34;log4j2-%s.yml&amp;#34;&lt;/span>&lt;span style="color:#f92672">,&lt;/span> env&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">getName&lt;/span>&lt;span style="color:#f92672">());&lt;/span>
-var inputStream &lt;span style="color:#f92672">=&lt;/span> ConfigUtil&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">getClassLoader&lt;/span>&lt;span style="color:#f92672">().&lt;/span>&lt;span style="color:#a6e22e">getResourceAsStream&lt;/span>&lt;span style="color:#f92672">(&lt;/span>path&lt;span style="color:#f92672">);&lt;/span>
-var source &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> ConfigurationSource&lt;span style="color:#f92672">(&lt;/span>inputStream&lt;span style="color:#f92672">);&lt;/span>
-var configuration &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> YamlConfigurationFactory&lt;span style="color:#f92672">().&lt;/span>&lt;span style="color:#a6e22e">getConfiguration&lt;/span>&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#66d9ef">null&lt;/span>&lt;span style="color:#f92672">,&lt;/span> source&lt;span style="color:#f92672">);&lt;/span>
-Configurator&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">initialize&lt;/span>&lt;span style="color:#f92672">(&lt;/span>configuration&lt;span style="color:#f92672">);&lt;/span>
-&lt;span style="color:#f92672">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>ちょっとした cli を作るときにちょっとしたライブラリがあると楽でよい。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">static&lt;/span> Config &lt;span style="color:#a6e22e">load&lt;/span>&lt;span style="color:#f92672">(&lt;/span>BatchEnvironment env&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> var path &lt;span style="color:#f92672">=&lt;/span> String&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">format&lt;/span>&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#e6db74">&amp;#34;config-%s.yml&amp;#34;&lt;/span>&lt;span style="color:#f92672">,&lt;/span> env&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">getName&lt;/span>&lt;span style="color:#f92672">());&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> var inputStream &lt;span style="color:#f92672">=&lt;/span> ConfigUtil&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">getClassLoader&lt;/span>&lt;span style="color:#f92672">().&lt;/span>&lt;span style="color:#a6e22e">getResourceAsStream&lt;/span>&lt;span style="color:#f92672">(&lt;/span>path&lt;span style="color:#f92672">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> var yaml &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> Yaml&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#66d9ef">new&lt;/span> Constructor&lt;span style="color:#f92672">(&lt;/span>Config&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">));&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> yaml&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">load&lt;/span>&lt;span style="color:#f92672">(&lt;/span>inputStream&lt;span style="color:#f92672">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>アプリケーションの設定は yml 設定に対応する &lt;code>Config&lt;/code> クラスを定義しておいて次のようにして読み込む。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">static&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">initializeLogSettings&lt;/span>&lt;span style="color:#f92672">(&lt;/span>BatchEnvironment env&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#66d9ef">throws&lt;/span> IOException &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> var path &lt;span style="color:#f92672">=&lt;/span> String&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">format&lt;/span>&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#e6db74">&amp;#34;log4j2-%s.yml&amp;#34;&lt;/span>&lt;span style="color:#f92672">,&lt;/span> env&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">getName&lt;/span>&lt;span style="color:#f92672">());&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> var inputStream &lt;span style="color:#f92672">=&lt;/span> ConfigUtil&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">getClassLoader&lt;/span>&lt;span style="color:#f92672">().&lt;/span>&lt;span style="color:#a6e22e">getResourceAsStream&lt;/span>&lt;span style="color:#f92672">(&lt;/span>path&lt;span style="color:#f92672">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> var source &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> ConfigurationSource&lt;span style="color:#f92672">(&lt;/span>inputStream&lt;span style="color:#f92672">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> var configuration &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> YamlConfigurationFactory&lt;span style="color:#f92672">().&lt;/span>&lt;span style="color:#a6e22e">getConfiguration&lt;/span>&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#66d9ef">null&lt;/span>&lt;span style="color:#f92672">,&lt;/span> source&lt;span style="color:#f92672">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Configurator&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">initialize&lt;/span>&lt;span style="color:#f92672">(&lt;/span>configuration&lt;span style="color:#f92672">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>ちょっとした cli を作るときにちょっとしたライブラリがあると楽でよい。&lt;/p>
 &lt;h2 id="欠損金の繰り戻し還付の申請の誤り">欠損金の繰り戻し還付の申請の誤り&lt;/h2>
 &lt;p>国税局から電話がかかってきた。初めて提出した欠損金の繰り戻し還付の申請があちこち間違ってますよと。申請書類と一緒に法人税の申告書もみてもらっていて、還付申請した金額も申告の別表1に記入する必要があって、それも一緒に修正してねという話し。法人税の修正申告と還付の訂正依頼の2つが必要とのこと。税務署の人たちは本当に丁寧で親切にあれが間違っている、これが間違っていると教えてくれる。素人が法人決算やっているので初めて行う手続きの間違いはつきものだけど、税務署の人たちが教えてくれるので本当に助かる。感謝。&lt;/p></content></item><item><title>datadog のログアーカイブ</title><link>/diary/posts/2022/0517/</link><pubDate>Tue, 17 May 2022 11:11:11 +0900</pubDate><guid>/diary/posts/2022/0517/</guid><description>1時に寝て5時半に起きた。
 datadog のログアーカイブ datadog には Log Archives という機能があって、datadog 経由でログをどこかのストレージに永続化できる。datadog プラットフォーム上では設定した期間内のログしか検索できず、おそらく料金の予算にあわせて期間を設定して、それが過ぎたら消えていくのだと思う。aws なら s3 に datadog に連携されたログをパイプライン処理してそのまま永続化できる。そのための s3 バケットの作成、s3 バケットへの datadog からのアクセス権限ロールの設定、datadog の aws インテグレーションの設定などをした。ドキュメントを読みながら1日あれば設定できたので難しくはない。もう cdk の設定にも慣れた感じで必要な権限を cdk の Stack としてコードで管理できるようにした。保守もばっちり。永続化されるログは gzip 圧縮されて時系列に s3 に永続化されるみたい。</description><content>&lt;p>1時に寝て5時半に起きた。&lt;/p>
@@ -41,50 +41,51 @@ Configuration: status: warn name: YAMLConfig appenders: Console: name: STDOUT ta
 &lt;p>spring の &lt;a href="https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.profiles">Profiles&lt;/a> の仕組みを使って環境ごとの設定を作る。デプロイは k8s で管理しているため、spring boot の &lt;a href="https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config">Externalized Configuration&lt;/a> の仕組みを使って、環境変数から application.yml に定義された設定を書き換える。k8s は kustomize で管理していて prod, test, dev の3つの環境で任意の設定を記述できる。&lt;/p>
 &lt;p>問題はログ出力の設定を環境ごとに変えたい。具体的には datadog に連携されるログは構造化ログ (json lines) を、ローカルの開発ではコンソールログをみたい。&lt;a href="https://logging.apache.org/log4j/2.x/log4j-spring-boot/index.html">Log4j Spring Boot Support&lt;/a> によると、1つの設定ファイルに複数のプロファイル設定を記述できるようにもみえるけど、実際にやってみたらうまく動かなかった。xml ではなく yml を使っているせいかもしれないし、私の記述方法が誤っているのかもしれない。いずれにしても yml で複数のプロファイルを設定しているサンプルをみつけられなかった。&lt;/p>
 &lt;p>そこで &lt;a href="https://www.baeldung.com/spring-log4j2-config-per-profile">Different Log4j2 Configurations per Spring Profile&lt;/a> をみて、環境ごとにログ設定ファイルも分割することにした。application.yml には次のように記述する。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yml" data-lang="yml">&lt;span style="color:#f92672">spring&lt;/span>:
-&lt;span style="color:#f92672">profiles&lt;/span>:
-&lt;span style="color:#f92672">active&lt;/span>: &lt;span style="color:#ae81ff">dev&lt;/span>
-&lt;span style="color:#f92672">logging&lt;/span>:
-&lt;span style="color:#f92672">config&lt;/span>: &lt;span style="color:#ae81ff">classpath:log4j2-${spring.profiles.active}.yml&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>ローカル開発向けの lgo4j2-dev.yml は次のようになる。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yml" data-lang="yml">&lt;span style="color:#f92672">Configuration&lt;/span>:
-&lt;span style="color:#f92672">status&lt;/span>: &lt;span style="color:#ae81ff">warn&lt;/span>
-&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">YAMLConfig&lt;/span>
-&lt;span style="color:#f92672">appenders&lt;/span>:
-&lt;span style="color:#f92672">Console&lt;/span>:
-&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">STDOUT&lt;/span>
-&lt;span style="color:#f92672">target&lt;/span>: &lt;span style="color:#ae81ff">SYSTEM_OUT&lt;/span>
-&lt;span style="color:#f92672">PatternLayout&lt;/span>:
-&lt;span style="color:#f92672">Pattern&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;%d{yyyy-MM-dd HH:mm:ss.SSS}[%t]%-5level %logger{36} - %msg%n&amp;#34;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>k8s のマニフェストで環境変数を次のように定義すれば prod というプロファイルが設定される。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yml" data-lang="yml">&lt;span style="color:#f92672">apiVersion&lt;/span>: &lt;span style="color:#ae81ff">apps/v1&lt;/span>
-&lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">Deployment&lt;/span>
-&lt;span style="color:#f92672">metadata&lt;/span>:
-&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-service&lt;/span>
-&lt;span style="color:#f92672">spec&lt;/span>:
-&lt;span style="color:#f92672">template&lt;/span>:
-&lt;span style="color:#f92672">spec&lt;/span>:
-&lt;span style="color:#f92672">containers&lt;/span>:
-- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-service&lt;/span>
-&lt;span style="color:#f92672">env&lt;/span>:
-- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">spring.profiles.active&lt;/span>
-&lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;prod&amp;#34;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>クラウド環境向けの log4j2-prod.yml は次のようになる。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yml" data-lang="yml">&lt;span style="color:#f92672">Configuration&lt;/span>:
-&lt;span style="color:#f92672">status&lt;/span>: &lt;span style="color:#ae81ff">warn&lt;/span>
-&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">YAMLConfig&lt;/span>
-&lt;span style="color:#f92672">appenders&lt;/span>:
-&lt;span style="color:#f92672">Console&lt;/span>:
-&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">STDOUT&lt;/span>
-&lt;span style="color:#f92672">target&lt;/span>: &lt;span style="color:#ae81ff">SYSTEM_OUT&lt;/span>
-&lt;span style="color:#f92672">EcsLayout&lt;/span>:
-&lt;span style="color:#f92672">serviceName&lt;/span>: &lt;span style="color:#ae81ff">my-service&lt;/span>
-&lt;span style="color:#f92672">serviceNodeName&lt;/span>: &lt;span style="color:#66d9ef">null&lt;/span>
-&lt;span style="color:#f92672">includeMarkers&lt;/span>: &lt;span style="color:#66d9ef">true&lt;/span>
-&lt;span style="color:#f92672">KeyValuePair&lt;/span>:
-- &lt;span style="color:#f92672">key&lt;/span>: &lt;span style="color:#ae81ff">type&lt;/span>
-&lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#ae81ff">app&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>クロスデフォルト</title><link>/diary/posts/2021/1207/</link><pubDate>Tue, 07 Dec 2021 08:14:52 +0900</pubDate><guid>/diary/posts/2021/1207/</guid><description>0時に寝て6時半に起きた。5時台には起きているんだけど、起き上がるところまではなかなかいけない。
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">spring&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">profiles&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">active&lt;/span>: &lt;span style="color:#ae81ff">dev&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">logging&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">config&lt;/span>: &lt;span style="color:#ae81ff">classpath:log4j2-${spring.profiles.active}.yml&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>ローカル開発向けの lgo4j2-dev.yml は次のようになる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">Configuration&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">status&lt;/span>: &lt;span style="color:#ae81ff">warn&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">YAMLConfig&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">appenders&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">Console&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">STDOUT&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">target&lt;/span>: &lt;span style="color:#ae81ff">SYSTEM_OUT&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">PatternLayout&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">Pattern&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;%d{yyyy-MM-dd HH:mm:ss.SSS}[%t]%-5level %logger{36} - %msg%n&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>k8s のマニフェストで環境変数を次のように定義すれば prod というプロファイルが設定される。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">apiVersion&lt;/span>: &lt;span style="color:#ae81ff">apps/v1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">Deployment&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">metadata&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-service&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">spec&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">template&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">spec&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">containers&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-service&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">env&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">spring.profiles.active&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;prod&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>クラウド環境向けの log4j2-prod.yml は次のようになる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">Configuration&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">status&lt;/span>: &lt;span style="color:#ae81ff">warn&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">YAMLConfig&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">appenders&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">Console&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">STDOUT&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">target&lt;/span>: &lt;span style="color:#ae81ff">SYSTEM_OUT&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">EcsLayout&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">serviceName&lt;/span>: &lt;span style="color:#ae81ff">my-service&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">serviceNodeName&lt;/span>: &lt;span style="color:#66d9ef">null&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">includeMarkers&lt;/span>: &lt;span style="color:#66d9ef">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">KeyValuePair&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#f92672">key&lt;/span>: &lt;span style="color:#ae81ff">type&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#ae81ff">app&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>クロスデフォルト</title><link>/diary/posts/2021/1207/</link><pubDate>Tue, 07 Dec 2021 08:14:52 +0900</pubDate><guid>/diary/posts/2021/1207/</guid><description>0時に寝て6時半に起きた。5時台には起きているんだけど、起き上がるところまではなかなかいけない。
 恒大集団のデフォルト 11月から利払の期日の日はチェックしていて、支払うときは2-3日前には支払いを完了したというニュースが出ていたように思う。今日の支払いは前日に支払いしたというニュースが出ないからダメなんだろうなと様子をみていた。
 中国恒大、猶予期間終了までにオフショア債利払いできず＝関係筋 1つの債務がデフォルトした場合、残りの債務も一括返済しないといけないことを クロスデフォルト と呼ぶらしい。契約書にクロスデフォルト条項として書いてあるらしい。記事によると、クロスデフォルトによって約190億ドル (約2.1兆円) のオフショア債の返済を一括でしないといけないらしい。リーマンショックのようなことは起きないという見通しだけど、うちみたいな零細企業は世の中の影響を諸に受けるのでお仕事に影響がでなければいいなぁといったところ。
 アプリケーションログの調査 昨日の続き。ecs-logging-java で JSON Lines でログを制御するところで spring-boot の設定で tomcat のアクセスログの設定ができる。tomcat のアクセスログを log4j のレイアウトの仕組みを使って ecs-logging-java が提供する EcsLayout に変更できないかを3時間ほど調査して、どうもできないようだというのを教えてもらった。tomcat は apache のログを出力するという目的で実装されているから log4j の柔軟なログに対応していないという理屈。

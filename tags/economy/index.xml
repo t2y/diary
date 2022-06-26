@@ -37,12 +37,12 @@ $ dig blog.kazamori.jp ... ;; ANSWER SECTION: blog.kazamori.jp. 198 IN CNAME has
 &lt;/code>&lt;/pre>&lt;p>正しい設定&lt;/p>
 &lt;pre tabindex="0">&lt;code>cname blog hashnode.network.
 &lt;/code>&lt;/pre>&lt;p>最後にドット &lt;code>.&lt;/code> が必要になる。これで blog.kazamori.jp の名前解決が hashnode.network として解決される。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ dig blog.kazamori.jp
-...
-;; ANSWER SECTION:
-blog.kazamori.jp. 198 IN CNAME hashnode.network.
-hashnode.network. 46 IN A 76.76.21.21
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>CNAME レコードを滅多に設定しないのでドットで終わらないといけない規則を忘れてた。設定後、dns の propagation に最大24時間ほどかかる。世界のどこからでもアクセスできるようになるには24時間ぐらいかかるかもしれないけど、ローカルで動作検証するなら数分で反映されてた。&lt;/p></content></item><item><title>クロスデフォルト</title><link>/diary/posts/2021/1207/</link><pubDate>Tue, 07 Dec 2021 08:14:52 +0900</pubDate><guid>/diary/posts/2021/1207/</guid><description>0時に寝て6時半に起きた。5時台には起きているんだけど、起き上がるところまではなかなかいけない。
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ dig blog.kazamori.jp
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; ANSWER SECTION:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>blog.kazamori.jp. 198 IN CNAME hashnode.network.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>hashnode.network. 46 IN A 76.76.21.21
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>CNAME レコードを滅多に設定しないのでドットで終わらないといけない規則を忘れてた。設定後、dns の propagation に最大24時間ほどかかる。世界のどこからでもアクセスできるようになるには24時間ぐらいかかるかもしれないけど、ローカルで動作検証するなら数分で反映されてた。&lt;/p></content></item><item><title>クロスデフォルト</title><link>/diary/posts/2021/1207/</link><pubDate>Tue, 07 Dec 2021 08:14:52 +0900</pubDate><guid>/diary/posts/2021/1207/</guid><description>0時に寝て6時半に起きた。5時台には起きているんだけど、起き上がるところまではなかなかいけない。
 恒大集団のデフォルト 11月から利払の期日の日はチェックしていて、支払うときは2-3日前には支払いを完了したというニュースが出ていたように思う。今日の支払いは前日に支払いしたというニュースが出ないからダメなんだろうなと様子をみていた。
 中国恒大、猶予期間終了までにオフショア債利払いできず＝関係筋 1つの債務がデフォルトした場合、残りの債務も一括返済しないといけないことを クロスデフォルト と呼ぶらしい。契約書にクロスデフォルト条項として書いてあるらしい。記事によると、クロスデフォルトによって約190億ドル (約2.1兆円) のオフショア債の返済を一括でしないといけないらしい。リーマンショックのようなことは起きないという見通しだけど、うちみたいな零細企業は世の中の影響を諸に受けるのでお仕事に影響がでなければいいなぁといったところ。
 アプリケーションログの調査 昨日の続き。ecs-logging-java で JSON Lines でログを制御するところで spring-boot の設定で tomcat のアクセスログの設定ができる。tomcat のアクセスログを log4j のレイアウトの仕組みを使って ecs-logging-java が提供する EcsLayout に変更できないかを3時間ほど調査して、どうもできないようだというのを教えてもらった。tomcat は apache のログを出力するという目的で実装されているから log4j の柔軟なログに対応していないという理屈。

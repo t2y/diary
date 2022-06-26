@@ -126,9 +126,9 @@ $ pg_dump --host mydb.xxx.ap-northeast-1.rds.amazonaws.com --username user mydb 
 &lt;/li>
 &lt;/ul>
 &lt;p>rds を壊して、バージョンを aurora postgresql 最新の 13.x にアップグレードして、cf のテンプレートで小細工をしながら既存の環境を移行したりしていた。&lt;a href="https://www.postgresql.org/docs/13/app-pgdump.html">pg_dump&lt;/a> を使ってテキストに dump したデータを、psql を使ってリストアしたりもした。データ量が少なかったらこれで移行してもいいかもしれない。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ pg_dump --host mydb.xxx.ap-northeast-1.rds.amazonaws.com --username user mydb &amp;gt; mydb.dump
-$ psql --host mydb.xxx.ap-northeast-1.rds.amazonaws.com --username user --dbname mydb --file ./mydb.dump
-&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>堅牢なインフラコード</title><link>/diary/posts/2022/0420/</link><pubDate>Wed, 20 Apr 2022 07:38:23 +0900</pubDate><guid>/diary/posts/2022/0420/</guid><description>23時に寝て5時に起きた。
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ pg_dump --host mydb.xxx.ap-northeast-1.rds.amazonaws.com --username user mydb &amp;gt; mydb.dump
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ psql --host mydb.xxx.ap-northeast-1.rds.amazonaws.com --username user --dbname mydb --file ./mydb.dump
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>堅牢なインフラコード</title><link>/diary/posts/2022/0420/</link><pubDate>Wed, 20 Apr 2022 07:38:23 +0900</pubDate><guid>/diary/posts/2022/0420/</guid><description>23時に寝て5時に起きた。
 駐輪場の定期更新 3ヶ月ごとの更新。ちょうどいまのお仕事の契約と同じ更新月になっている。前回と同じ金額だったのでまだ駐輪場の料金は値上げされていない。世界的にインフレしているのに日本が全然インフレしていない理由の1つとして不動産が値上げしていないからというのを日銀の記事で見かけた気がする。どこかのタイミングで不動産関連の値上げも始まるのかもしれない。
 インフラコードの抜本的リファクタリング 約2週間かけて、新規インフラ環境の構築、既存インフラの cdk/cf と同期されていなかったインフラ (rds, security group, croudfront, api gateway, waf) の同期など、インフラコードの大きな変更をやり終えた。一部 fromLookup でインポートしているリソースもあるが、いま完全に cdk/cf 管理なインフラとなった。ここからはせっかく cdk でコードを書いているので、モジュール化や共通化など、再利用可能なリソースとして定義して、複数の Stack でコードを再利用するといったリファクタリングをしていく。ひとまずこのことをボーナスステージと呼ぼう。いま完全に同期されたインフラがあるため、インフラ上のリソースの差分が出なければリファクタリングは正しいことが保証される。cdk は Stack 間の依存関係 も定義できるため、適切な依存関係を定義することでより堅牢なインフラコードとなるはずである。具体的には次のような依存関係になる。然るべき堅牢なインフラコードに書き換えていく。
 DatabaseStack BackendStack GatewayStack FrontendStack</description><content>&lt;p>23時に寝て5時に起きた。&lt;/p>
@@ -338,7 +338,7 @@ rds をスナップショットからリストアしたので cf が管理して
 AWS CloudFormation スタックを削除したときにリソースの一部を保持する方法を教えてください。 ざっくり手順をまとめると次になる。
 対象のリソースに DeletetionPolicy=Retain にセットする テンプレートからリソースを削除して、スタックの更新を実行する テンプレート内のリソースの実際の状態を describe して、スタック内に既存のリソースをインポートする リソースの設定ぐらいなら既存のリソースからインポートしなくても cf のテンプレートを直接書き換えたものをアップロードしてスタックを更新するのでも大丈夫だったりする。しかし、cdk もそのテンプレートにあうように修正しないといけないため、cdk のコードとテンプレートのコードの両方をチェックしながら検証する必要がある。cdk でリソース管理ができるようになったからといって、それが変更前の既存のリソースの設定と同じかどうかは人間が目でみて検証しないといけない。これがあちこちで参照されているリソースだと追跡するのが面倒くさいといった手間暇がかかる。
 cdk がよいものかどうか、私はまだ判断がつかないけど、cf を抽象化して便利になっているところは認めるものの、cf のスタックが壊れたときのトラブルシューティングが必要以上に複雑で厄介というのも事実ではある。一方で壊れた cf スタックを5時間ぐらいかけて直したのではまりポイントはいくつかも学ぶことができた。しんどかったけど。例えば、あるセキュリティグループのインバウンドルールに別のセキュリティグループを関連付けるとき、1つの設定ではうまくいかなくて次の2つの設定を追加した。これが適切かどうかわからないが、この設定で cdk でデプロイしたスタックの環境と既存リソースとの環境が整合した状態 (ドリフトが解消される) になった。こういうのが cdk の抽象化による訳のわからないところの1つ。
-otherSecurityGroup.addIngressRule( ec2.SecurityGroup.fromSecurityGroupId(this, &amp;#39;my security group&amp;#39;, mySgId), ec2.Port.tcp(80), &amp;#34;my inboud rule&amp;#34;, ) otherSecurityGroup.</description><content>&lt;p>2時に寝て6時半に起きた。インフラエンジニアになったのでみんなが作業していない時間にインフラの保守作業をするようにしている。昼はアプリケーションエンジニア、夜はインフラエンジニアみたいな生活になっていてしんどい。&lt;/p>
+otherSecurityGroup.addIngressRule( ec2.SecurityGroup.fromSecurityGroupId(this, &amp;#39;my security group&amp;#39;, mySgId), ec2.Port.tcp(80), &amp;#34;my inboud rule&amp;#34;, ) otherSecurityGroup.addIngressRule( ec2.Peer.securityGroupId(mySgId), ec2.Port.tcp(80), &amp;#34;my inboud rule&amp;#34;, )</description><content>&lt;p>2時に寝て6時半に起きた。インフラエンジニアになったのでみんなが作業していない時間にインフラの保守作業をするようにしている。昼はアプリケーションエンジニア、夜はインフラエンジニアみたいな生活になっていてしんどい。&lt;/p>
 &lt;h2 id="壊れた-cf-スタックの更新">壊れた cf スタックの更新&lt;/h2>
 &lt;p>テスト環境の cf スタックを手動で更新して壊れているのを cdk で管理できるように直した。壊れていたのは次の3つ。&lt;/p>
 &lt;ul>
@@ -358,17 +358,17 @@ otherSecurityGroup.addIngressRule( ec2.SecurityGroup.fromSecurityGroupId(this, &
 &lt;/ol>
 &lt;p>リソースの設定ぐらいなら既存のリソースからインポートしなくても cf のテンプレートを直接書き換えたものをアップロードしてスタックを更新するのでも大丈夫だったりする。しかし、cdk もそのテンプレートにあうように修正しないといけないため、cdk のコードとテンプレートのコードの両方をチェックしながら検証する必要がある。cdk でリソース管理ができるようになったからといって、それが変更前の既存のリソースの設定と同じかどうかは人間が目でみて検証しないといけない。これがあちこちで参照されているリソースだと追跡するのが面倒くさいといった手間暇がかかる。&lt;/p>
 &lt;p>cdk がよいものかどうか、私はまだ判断がつかないけど、cf を抽象化して便利になっているところは認めるものの、cf のスタックが壊れたときのトラブルシューティングが必要以上に複雑で厄介というのも事実ではある。一方で壊れた cf スタックを5時間ぐらいかけて直したのではまりポイントはいくつかも学ぶことができた。しんどかったけど。例えば、あるセキュリティグループのインバウンドルールに別のセキュリティグループを関連付けるとき、1つの設定ではうまくいかなくて次の2つの設定を追加した。これが適切かどうかわからないが、この設定で cdk でデプロイしたスタックの環境と既存リソースとの環境が整合した状態 (ドリフトが解消される) になった。こういうのが cdk の抽象化による訳のわからないところの1つ。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-typescript" data-lang="typescript">&lt;span style="color:#a6e22e">otherSecurityGroup&lt;/span>.&lt;span style="color:#a6e22e">addIngressRule&lt;/span>(
-&lt;span style="color:#a6e22e">ec2&lt;/span>.&lt;span style="color:#a6e22e">SecurityGroup&lt;/span>.&lt;span style="color:#a6e22e">fromSecurityGroupId&lt;/span>(&lt;span style="color:#66d9ef">this&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;my security group&amp;#39;&lt;/span>, &lt;span style="color:#a6e22e">mySgId&lt;/span>),
-&lt;span style="color:#a6e22e">ec2&lt;/span>.&lt;span style="color:#a6e22e">Port&lt;/span>.&lt;span style="color:#a6e22e">tcp&lt;/span>(&lt;span style="color:#ae81ff">80&lt;/span>),
-&lt;span style="color:#e6db74">&amp;#34;my inboud rule&amp;#34;&lt;/span>,
-)
-&lt;span style="color:#a6e22e">otherSecurityGroup&lt;/span>.&lt;span style="color:#a6e22e">addIngressRule&lt;/span>(
-&lt;span style="color:#a6e22e">ec2&lt;/span>.&lt;span style="color:#a6e22e">Peer&lt;/span>.&lt;span style="color:#a6e22e">securityGroupId&lt;/span>(&lt;span style="color:#a6e22e">mySgId&lt;/span>),
-&lt;span style="color:#a6e22e">ec2&lt;/span>.&lt;span style="color:#a6e22e">Port&lt;/span>.&lt;span style="color:#a6e22e">tcp&lt;/span>(&lt;span style="color:#ae81ff">80&lt;/span>),
-&lt;span style="color:#e6db74">&amp;#34;my inboud rule&amp;#34;&lt;/span>,
-)
-&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>cdk のメジャーバージョンのマイグレーション</title><link>/diary/posts/2022/0407/</link><pubDate>Thu, 07 Apr 2022 06:10:00 +0900</pubDate><guid>/diary/posts/2022/0407/</guid><description>0時に寝て5時に起きた。開発者にインフラ変更の影響を出さないように6時半からインフラのお仕事してた。
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-typescript" data-lang="typescript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">otherSecurityGroup&lt;/span>.&lt;span style="color:#a6e22e">addIngressRule&lt;/span>(
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">ec2&lt;/span>.&lt;span style="color:#a6e22e">SecurityGroup&lt;/span>.&lt;span style="color:#a6e22e">fromSecurityGroupId&lt;/span>(&lt;span style="color:#66d9ef">this&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;my security group&amp;#39;&lt;/span>, &lt;span style="color:#a6e22e">mySgId&lt;/span>),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">ec2&lt;/span>.&lt;span style="color:#a6e22e">Port&lt;/span>.&lt;span style="color:#a6e22e">tcp&lt;/span>(&lt;span style="color:#ae81ff">80&lt;/span>),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;my inboud rule&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">otherSecurityGroup&lt;/span>.&lt;span style="color:#a6e22e">addIngressRule&lt;/span>(
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">ec2&lt;/span>.&lt;span style="color:#a6e22e">Peer&lt;/span>.&lt;span style="color:#a6e22e">securityGroupId&lt;/span>(&lt;span style="color:#a6e22e">mySgId&lt;/span>),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">ec2&lt;/span>.&lt;span style="color:#a6e22e">Port&lt;/span>.&lt;span style="color:#a6e22e">tcp&lt;/span>(&lt;span style="color:#ae81ff">80&lt;/span>),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;my inboud rule&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>cdk のメジャーバージョンのマイグレーション</title><link>/diary/posts/2022/0407/</link><pubDate>Thu, 07 Apr 2022 06:10:00 +0900</pubDate><guid>/diary/posts/2022/0407/</guid><description>0時に寝て5時に起きた。開発者にインフラ変更の影響を出さないように6時半からインフラのお仕事してた。
 cdk v1 と v2 の違い AWS CDK Versions には v1 と v2 の2つがある。新規で作るものは v2 を選択すればよいけど、既存のスタックが v1 だとマイグレーションが必要になる。cdk は bootstrap したときに CDKToolkit というスタックを生成する。cdk をアップグレードするというのはこのスタックの設定も更新する必要がある。デフォルト設定をそのまま使っていればマイグレーションはそんなに難しくはないはずだけど、設定をカスタマイズしていたりするといくつかパラメーターを調整したりしなかったりしてややこしいかもしれない。
 Migrating to AWS CDK v2 Bootstrapping また v2 は v1 の experimental な機能は移行されていないため、v1 のライブラリを直接使うか、自前でその機能を実装するといったことも必要になる可能性がある。
 cdk v2 を使っていて v1 にある機能が v2 になくてあれー？って感じで調べてたら experimental な機能はまだ移行されてないらしい。https://t.co/SbRZ5ddrTj
@@ -386,15 +386,15 @@ cdk v2 を使っていて v1 にある機能が v2 になくてあれー？っ�
 &lt;ul>
 &lt;li>&lt;a href="https://github.com/aws/aws-cdk/pull/10531/files#diff-1cf3aaf7b2b6b2e72123b93cb3108eb9e9a3291e588d62eb2cd34dd0509d3045">https://github.com/aws/aws-cdk/pull/10531/files#diff-1cf3aaf7b2b6b2e72123b93cb3108eb9e9a3291e588d62eb2cd34dd0509d3045&lt;/a>&lt;/li>
 &lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-diff" data-lang="diff">&lt;span style="color:#f92672">- const apiGwVpcLink = new apigwv2.VpcLink(this, &amp;#39;ApiGwVpcLink&amp;#39;, {
-&lt;/span>&lt;span style="color:#f92672">- vpc: vpc,
-&lt;/span>&lt;span style="color:#f92672">- vpcLinkName: &amp;#39;my-vpc-link&amp;#39;,
-&lt;/span>&lt;span style="color:#f92672">- securityGroups: [mySecurityGroup]
-&lt;/span>&lt;span style="color:#f92672">&lt;/span>&lt;span style="color:#a6e22e">+ const apiGwVpcLink = new apigwv2.CfnVpcLink(this, &amp;#39;ApiGwVpcLink&amp;#39;, {
-&lt;/span>&lt;span style="color:#a6e22e">+ name: &amp;#39;my-vpc-link&amp;#39;,
-&lt;/span>&lt;span style="color:#a6e22e">+ subnetIds: vpc.privateSubnets.map(sb =&amp;gt; sb.subnetId),
-&lt;/span>&lt;span style="color:#a6e22e">+ securityGroupIds: [mySecurityGroup.securityGroupId]
-&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>ecs の draining とタスクの停止時間</title><link>/diary/posts/2022/0406/</link><pubDate>Wed, 06 Apr 2022 06:30:16 +0900</pubDate><guid>/diary/posts/2022/0406/</guid><description>0時に寝て4時に起きた。なんか起きてから sns のタイムラインを眺めてた。6時半にはオフィスについて cdk のコードを読み始めた。
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-diff" data-lang="diff">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">- const apiGwVpcLink = new apigwv2.VpcLink(this, &amp;#39;ApiGwVpcLink&amp;#39;, {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">- vpc: vpc,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">- vpcLinkName: &amp;#39;my-vpc-link&amp;#39;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">- securityGroups: [mySecurityGroup]
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">&lt;/span>&lt;span style="color:#a6e22e">+ const apiGwVpcLink = new apigwv2.CfnVpcLink(this, &amp;#39;ApiGwVpcLink&amp;#39;, {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">+ name: &amp;#39;my-vpc-link&amp;#39;,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">+ subnetIds: vpc.privateSubnets.map(sb =&amp;gt; sb.subnetId),
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">+ securityGroupIds: [mySecurityGroup.securityGroupId]
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>ecs の draining とタスクの停止時間</title><link>/diary/posts/2022/0406/</link><pubDate>Wed, 06 Apr 2022 06:30:16 +0900</pubDate><guid>/diary/posts/2022/0406/</guid><description>0時に寝て4時に起きた。なんか起きてから sns のタイムラインを眺めてた。6時半にはオフィスについて cdk のコードを読み始めた。
 ecs の draining に時間がかかる？ cdk でインフラのデプロイをしていて、ecs のタスクの置き換えにやたら時間がかかっているのに気付いた。調べてみると、aws のドキュメントがすぐにヒットした。デフォルトでは停止するまでに5分ぐらいかかってしまうようだけど、それを調整したかったらいくつかパラメーターがある。
 コンテナインスタンスが DRAINING に設定されているときに、Amazon ECS タスクが停止するのに時間がかかるトラブルシューティング方法を教えてください。 ecs サービスの deployment configuration minimumHealthyPercent: 同時に停止できるタスクの割合設定 maximumPercent: draining されるタスクが停止するまで置き換えるタスクを開始するかどうかの設定？ ロードバランサーの deregistration delay deregistrationDelay: elb(nlb) が登録解除処理が完了するまでに待つ時間。タスクが draining の状態になってこの時間が過ぎた後に登録解除して target が未使用になる ecs タスク定義の stop timeout stopTimeout: コンテナーが正常終了しないときに ecs が強制的にプロセスを kill するまでの待ち時間 それぞれのインフラの状況にあわせて適切なパラメーターを変更すればよい。私が管理しているのは次の2つを変更した。
 maximumPercent: 100 -&amp;gt; 200 (%) deregistrationDelay: 300 -&amp;gt; 30 (秒) これで18分ほどかかっていたデプロイ時間を8分ぐらいまで短縮できた。テスト環境の設定なので多少のエラーが発生したとしても速い方がよい。</description><content>&lt;p>0時に寝て4時に起きた。なんか起きてから sns のタイムラインを眺めてた。6時半にはオフィスについて cdk のコードを読み始めた。&lt;/p>
@@ -470,12 +470,12 @@ $ dig blog.kazamori.jp ... ;; ANSWER SECTION: blog.kazamori.jp. 198 IN CNAME has
 &lt;/code>&lt;/pre>&lt;p>正しい設定&lt;/p>
 &lt;pre tabindex="0">&lt;code>cname blog hashnode.network.
 &lt;/code>&lt;/pre>&lt;p>最後にドット &lt;code>.&lt;/code> が必要になる。これで blog.kazamori.jp の名前解決が hashnode.network として解決される。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ dig blog.kazamori.jp
-...
-;; ANSWER SECTION:
-blog.kazamori.jp. 198 IN CNAME hashnode.network.
-hashnode.network. 46 IN A 76.76.21.21
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>CNAME レコードを滅多に設定しないのでドットで終わらないといけない規則を忘れてた。設定後、dns の propagation に最大24時間ほどかかる。世界のどこからでもアクセスできるようになるには24時間ぐらいかかるかもしれないけど、ローカルで動作検証するなら数分で反映されてた。&lt;/p></content></item><item><title>jjug の cfp に応募した</title><link>/diary/posts/2022/0402/</link><pubDate>Sat, 02 Apr 2022 09:46:52 +0900</pubDate><guid>/diary/posts/2022/0402/</guid><description>0時に寝て5時に起きた。
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ dig blog.kazamori.jp
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; ANSWER SECTION:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>blog.kazamori.jp. 198 IN CNAME hashnode.network.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>hashnode.network. 46 IN A 76.76.21.21
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>CNAME レコードを滅多に設定しないのでドットで終わらないといけない規則を忘れてた。設定後、dns の propagation に最大24時間ほどかかる。世界のどこからでもアクセスできるようになるには24時間ぐらいかかるかもしれないけど、ローカルで動作検証するなら数分で反映されてた。&lt;/p></content></item><item><title>jjug の cfp に応募した</title><link>/diary/posts/2022/0402/</link><pubDate>Sat, 02 Apr 2022 09:46:52 +0900</pubDate><guid>/diary/posts/2022/0402/</guid><description>0時に寝て5時に起きた。
 ストレッチ 今日の開脚幅は開始前161cmで、ストレッチ後164cmだった。先週とあまり変わらずといったところ。今日は腰の張りが強かった。トレーナーさんは左の張りが強いと言ってたんだけど、私は右の方が体感的に張りが強いように感じた。もう1年以上担当してくれたトレーナーさんが4月いっぱいで転勤になるらしい。社内制度で広島に最低でも半年間は転勤になるという。広島が終わっても神戸に戻ってくるとは限らず、また別の地域へ転勤になる可能性もあるという。きっと優秀な社員だから転勤するんだろうなと思えた。20代後半ぐらいの若もので個人でも筋トレが好きでボディービルダーの大会などにも参加していると聞いた。趣味と業務が近いのでトレーナーとしてのパフォーマンスも高いのだろうと推測する。若い人はなんでも挑戦して経験した方がよいと私も応援した。5月から後任で別のトレーナーに変わる。新しいトレーナーさんに変わることで前のトレーナーさんとの相対評価もできる。これはこれで楽しみでもある。
 JJUG CCC 2022 Spring の cfp 応募 本当は締め切りが先週末だったんだけど、募集期間が1週間伸びたのでちょうど作ったばかりのツールで応募してみた。今回はオンラインイベントなので事前にビデオを撮って送るらしい。当日は質疑応答の時間 (10分間) だけオンラインで参加すればよいという感じ。地方在住で物理的に東京に行けないという開発者にも発表しやすいと言えるかもしれない。内容的には初心者向けなので GitHub Actions というネタがいまどきどのぐらい参加者の関心を集めるか、他のプロポーザルとの競争がどのぐらいか次第かな。
 Java で作るカスタム GitHub Actions 生田川公園のお花見予定 cfp を投稿して14時頃に気分転換がてら生田川公園に再訪した。今日は絶好のお花見日和なのでどのぐらい人がいるかを調べるために行ってきた。昨日の夜よりはたくさん人がいて、そこそこ賑わっていた。だいたいの桜の木の下は集団にスペースをとられていた。とはいえ、お花見をするためのスペースが全くないというわけでもないのでよい場所を気にしないなら普通に10人ぐらいの集団でお花見はできそう。個人的には川に入って川遊びしているのが楽しそうにみえた。公園管理者に怒られないならちょっとやってみたい。

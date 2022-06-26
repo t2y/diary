@@ -86,7 +86,7 @@ Actions: Use actions from internal repositories #74</description><content>&lt;p>
 &lt;/ul></content></item><item><title>コーディングスタイルの共通化</title><link>/diary/posts/2021/1125/</link><pubDate>Thu, 25 Nov 2021 07:58:17 +0900</pubDate><guid>/diary/posts/2021/1125/</guid><description>1時半に寝て6時に起きた
 ソースコードのフォーマッター go 言語の gofmt が成功をおさめたことからどんなプログラミング言語でもコーディングスタイルはツールで自動整形するのがよいという雰囲気が醸成され、とくに業務の開発においては統一すべしというルールを設けている組織が多いと思う。java はこの領域では後塵を拝していると言ってよいと思う。歴史的に java の言語仕様と ide は相性がよかったため、ide がコーディングスタイルを自動整形していた結果、ide ごとに互換性のない異なるコーディングスタイルが使われるようになってしまった。私がアリエルで開発していた頃、開発者はみんな eclipse しか使ってなかったので問題にならなかった。しかし、いまや私が知っている ide だけでも次のものがある。
 eclipse intellij idea netbeans vscode この問題を解決するツールとして最もメジャーなのは google-java-format で、当初はこのツールを導入しようと考えていた。しかし、開発チームのテックリードから google-java-format のコーディングスタイルはひどい、一番優れているのは intellij idea だというお気持ちを表明された。導入を止めろと言われたわけではないが、チームに入ったばかりの私はテックリードのお気持ちに忖度して google-java-format の導入を断念した。代わりに intellij idea のデフォルトフォーマットをどうやって他の ide を共有するかを調べたところ、Manage code style on a directory level with EditorConfig で EditorConfig の設定 (.editorconfig) を intellij idea で再利用できることがわかった。
-うちの開発チームのメンバーは intellij idea と vscode しか使っていないため、現状はこれで解決できるように思えた。intellij idea にはデフォルトで EditorConfig プラグインがバンドルされていて有効になっている。リポジトリのルートディレクトリに .editorconfig があれば自動的にそれを読み込んでくれる。そこで intellij idea のデフォルト設定を .</description><content>&lt;p>1時半に寝て6時に起きた&lt;/p>
+うちの開発チームのメンバーは intellij idea と vscode しか使っていないため、現状はこれで解決できるように思えた。intellij idea にはデフォルトで EditorConfig プラグインがバンドルされていて有効になっている。リポジトリのルートディレクトリに .editorconfig があれば自動的にそれを読み込んでくれる。そこで intellij idea のデフォルト設定を .editorconfig 形式でエクスポートして、それをリポジトリのルートディレクトリに配置することでコーディングスタイルのフォーマッターを共通化できた。</description><content>&lt;p>1時半に寝て6時に起きた&lt;/p>
 &lt;h2 id="ソースコードのフォーマッター">ソースコードのフォーマッター&lt;/h2>
 &lt;p>go 言語の &lt;a href="https://pkg.go.dev/cmd/gofmt">gofmt&lt;/a> が成功をおさめたことからどんなプログラミング言語でもコーディングスタイルはツールで自動整形するのがよいという雰囲気が醸成され、とくに業務の開発においては統一すべしというルールを設けている組織が多いと思う。java はこの領域では後塵を拝していると言ってよいと思う。歴史的に java の言語仕様と ide は相性がよかったため、ide がコーディングスタイルを自動整形していた結果、ide ごとに互換性のない異なるコーディングスタイルが使われるようになってしまった。私がアリエルで開発していた頃、開発者はみんな eclipse しか使ってなかったので問題にならなかった。しかし、いまや私が知っている ide だけでも次のものがある。&lt;/p>
 &lt;ul>
@@ -179,36 +179,36 @@ patchesJson6902 の例として次のような設定にパッチを適用する�
 &lt;p>patches は patchesStrategicMerge と patchesJSON6902 の両方を記述できる。運用上は patchesStrategicMerge か patchesJSON6902 を適用したいパッチの内容によって使い分けることになる。おそらく前者は base にない要素を追加したり、base の要素をすべて置き換えたりするときに使う。後者は base にある map や list の一部の要素のみを限定して置き換えたり、削除したりするときに使う。ちなみに patchesJSON6902 の 6902 というのは &lt;a href="https://datatracker.ietf.org/doc/html/rfc6902">RFC 6902 JavaScript Object Notation (JSON) Patch&lt;/a> に由来する。&lt;/p>
 &lt;p>patchesJson6902 の例として次のような設定にパッチを適用する。base から読まれた metadata の要素から namespace のみを削除したり、spec.metadata の1番目のリストの secretKeyRef が参照する Secret を my-secret で置き換えたりできる。こういったパッチを patchesStrategicMerge で実現することはできないのではないかと思う (詳しくないので私が間違っているかもしれない) 。&lt;/p>
 &lt;h5 id="baseyml">base.yml&lt;/h5>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#f92672">apiVersion&lt;/span>: &lt;span style="color:#ae81ff">apps/v1&lt;/span>
-&lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">Component&lt;/span>
-&lt;span style="color:#f92672">metadata&lt;/span>:
-&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-component&lt;/span>
-&lt;span style="color:#f92672">namespace&lt;/span>: &lt;span style="color:#ae81ff">default&lt;/span>
-&lt;span style="color:#f92672">spec&lt;/span>:
-&lt;span style="color:#f92672">metadata&lt;/span>:
-- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">username&lt;/span>
-&lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#ae81ff">user&lt;/span>
-- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">password&lt;/span>
-&lt;span style="color:#f92672">secretKeyRef&lt;/span>:
-&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">base-secret&lt;/span>
-&lt;span style="color:#f92672">key&lt;/span>: &lt;span style="color:#ae81ff">password&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="kustomizationyml">kustomization.yml&lt;/h5>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">...
-&lt;span style="color:#f92672">patchesJson6902&lt;/span>:
-- &lt;span style="color:#f92672">path&lt;/span>: &lt;span style="color:#ae81ff">my-patch.yaml&lt;/span>
-&lt;span style="color:#f92672">target&lt;/span>:
-&lt;span style="color:#f92672">group&lt;/span>: &lt;span style="color:#ae81ff">apps&lt;/span>
-&lt;span style="color:#f92672">version&lt;/span>: &lt;span style="color:#ae81ff">v1&lt;/span>
-&lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">Component&lt;/span>
-&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-component&lt;/span>
-...
-&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="my-patchyaml">my-patch.yaml&lt;/h5>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">- &lt;span style="color:#f92672">op&lt;/span>: &lt;span style="color:#ae81ff">remove&lt;/span>
-&lt;span style="color:#f92672">path&lt;/span>: &lt;span style="color:#ae81ff">/metadata/namespace&lt;/span>
-- &lt;span style="color:#f92672">op&lt;/span>: &lt;span style="color:#ae81ff">replace&lt;/span>
-&lt;span style="color:#f92672">path&lt;/span>: &lt;span style="color:#ae81ff">/spec/metadata/1/secretKeyRef/name&lt;/span>
-&lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#ae81ff">my-secret&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="リーンキャンバスレビュー-前半">リーンキャンバスレビュー (前半)&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">apiVersion&lt;/span>: &lt;span style="color:#ae81ff">apps/v1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">Component&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">metadata&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-component&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">namespace&lt;/span>: &lt;span style="color:#ae81ff">default&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">spec&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">metadata&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">username&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#ae81ff">user&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">password&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">secretKeyRef&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">base-secret&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">key&lt;/span>: &lt;span style="color:#ae81ff">password&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="kustomizationyml">kustomization.yml&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">patchesJson6902&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#f92672">path&lt;/span>: &lt;span style="color:#ae81ff">my-patch.yaml&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">target&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">group&lt;/span>: &lt;span style="color:#ae81ff">apps&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">version&lt;/span>: &lt;span style="color:#ae81ff">v1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">Component&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-component&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="my-patchyaml">my-patch.yaml&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>- &lt;span style="color:#f92672">op&lt;/span>: &lt;span style="color:#ae81ff">remove&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">path&lt;/span>: &lt;span style="color:#ae81ff">/metadata/namespace&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>- &lt;span style="color:#f92672">op&lt;/span>: &lt;span style="color:#ae81ff">replace&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">path&lt;/span>: &lt;span style="color:#ae81ff">/spec/metadata/1/secretKeyRef/name&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#ae81ff">my-secret&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="リーンキャンバスレビュー-前半">リーンキャンバスレビュー (前半)&lt;/h2>
 &lt;p>&lt;a href="/diary/diary/posts/2021/1114/#リーンキャンバス">前に作ったリーンキャンバス&lt;/a> を使って友だちにプロダクトの設計をレビューしてもらった。私がリーンキャンバスを作ったことがなかったので、この項目にはどういった内容を書くか、それぞれの項目がどういった関連付けや粒度で整理するかといった、リーンキャンバスの書き方そのものも含めて教えてもらった。&lt;/p>
 &lt;p>私が設計のために作った40枚のスライドを話すと2時間必要とするが、リーンキャンバスを使えば要点のみ15分で話せるようになるのが狙いになるみたい。とはいえ、リーンキャンバスの書いてある内容の半分を確認するだけで今日は2時間弱かかってしまった。議事録を取りながらだったので話すだけならもっと短くなったかもしれないし、その背景や根拠を細かくツッコミしていくとそれなりの時間はかかるのかもしれない。リーンキャンバス上は数枚の付箋で簡潔に書いてあるが、これどういうこと？みたいな問いになると詳細を説明しないといけないので時間がかかったように思う。リーンキャンバスの精度や品質が上がれば、読み手が詳細を確認しなくても意図を理解しやすくて詳細のツッコミが不要になるのかもしれない。これまで使ったことがないツールでおもしろいので週末に後半を行う。課題管理の背景には実践知、認知心理学、情報共有、組織論といった様々な分野にまたがるのでそのコンテキストを共有するのはなかなか難しいのではないかという思いもある。&lt;/p></content></item><item><title>六甲山と灘五郷</title><link>/diary/posts/2021/1121/</link><pubDate>Sun, 21 Nov 2021 13:40:43 +0900</pubDate><guid>/diary/posts/2021/1121/</guid><description>1時ぐらいに寝て6時に起きた。
 オリックスレンタカー 昨日、9:00 - 17:00 で予約したものの、8時には出掛けられる状態になったので電話で確認したら早くてもよいと言う話だったので 8:15 から車を借りる。車種は トヨタ・ヴィッツ 1.3l だった。wikipedia によると、2020年3月31日で販売終了になっているみたい。六甲山のような山登りを普通に走る分にはコンパクトな車体で快適に走行できた。私は車に全くこだわりがないのでこのぐらいのサイズの車で十分だと感じた。保険やWeb割引を含めて8時間レンタルして7,700円だった。
@@ -300,7 +300,8 @@ patchesJson6902 の例として次のような設定にパッチを適用する�
 ミクロ経済学入門の入門 第9章の公共財を読んだ。市場を考察するときに扱う財は一般論として 私的財 を想定している。私的財は次の2つの性質を満たす。
 競合的: 複数の人々が同時に利用できない 排除的: 拠出に貢献した特定のメンバーしか利用できない 一方で私的財と対偶の関係にある競合的でも排除的でもない財を 公共財 と呼ぶ。例えば、国防サービスや一般道路などが相当する。侵攻してくる敵国から自国を防衛するときにすべての国民、納税していない人であっても国防の利益にあずかれる。非競合的だが、排除的である財を クラブ財 と呼ぶ。高速道路などが相当する。みんなが利用できるが、利用料金を収めないと利用できない。競合的だが非排除的な財を コモンプール財 と呼ぶ。漁場などが相当する。どの漁師が魚を獲るかは競合しているが、漁業権をもっている限り漁そのものは制限されない。
 これをまとめると、財は次の4つの分類になる。
-競合的 非競合的 排除的 私的財 クラブ財 非排除的 コモンプール財 公共財 公共財の自発的供給の問いとして、排除的でも競合的でもない公共財が人々の自発的な行動で十分に供給できるかを考える。自分のお金を寄付する・寄付しないの2択でマトリクスを作成する。自分は寄付せず、他人の寄付から利益を得ることを フリーライド と呼ぶ。みんながフリーライドをしようとすると公共財はまったく供給されない。A と B の2者間における利得表を表すと次のようになる。相手が寄付して、自分が寄付しないときに最大の利益となり、どちらも寄付しないよりは両者が寄付した方が利益が大きくなる。</description><content>&lt;p>1時に寝て3時に起きて2度寝して6時に起きた。起き上がれなくて6時半までだらだらしてから起きた。&lt;/p>
+競合的 非競合的 排除的 私的財 クラブ財 非排除的 コモンプール財 公共財 公共財の自発的供給の問いとして、排除的でも競合的でもない公共財が人々の自発的な行動で十分に供給できるかを考える。自分のお金を寄付する・寄付しないの2択でマトリクスを作成する。自分は寄付せず、他人の寄付から利益を得ることを フリーライド と呼ぶ。みんながフリーライドをしようとすると公共財はまったく供給されない。A と B の2者間における利得表を表すと次のようになる。相手が寄付して、自分が寄付しないときに最大の利益となり、どちらも寄付しないよりは両者が寄付した方が利益が大きくなる。
+A \ B 寄付する 寄付しない 寄付する 4, 4 2, 5 寄付しない 5, 2 3, 3 A が寄付するか・しないかの選択は、B の寄付の有無に関係なく、A は寄付しない方が寄付したよりもトクすることになる。相手がどういった選択をしても自分にとって一番トクな選択肢が同じときにその選択肢を 支配戦略 という。この話は B からみても同じになる。A も B も寄付しないがトクする状態のことを 支配戦略均衡 という。この状態が最善かと言えば、そうではなく、両者が寄付した方が両者が寄付しないよりもトクする状態になる。このように公共財の供給を個々のプレイヤーに任せていては パレート劣位 な結果となってしまう。この状態からどうやって両者が寄付する パレート優位 な状態に移行できるかを考えるのが、政府の徴税の方策と言える。</description><content>&lt;p>1時に寝て3時に起きて2度寝して6時に起きた。起き上がれなくて6時半までだらだらしてから起きた。&lt;/p>
 &lt;h2 id="リポジトリの改行コード指定">リポジトリの改行コード指定&lt;/h2>
 &lt;p>git のリポジトリ設定で &lt;a href="https://git-scm.com/docs/gitattributes">.gitattributes&lt;/a> という設定方法がある。ざっくり理解するには &lt;a href="https://kiririmode.hatenablog.jp/entry/20170416/1492300735">.gitattributesによる改行コードの変換設定&lt;/a> を読むのが早い。とりあえずこんな設定にしてみた。すでに crlf の改行コードでコミットされたファイルがあるため、それらを lf に変換しないといけない。&lt;code>eol=lf&lt;/code> にすると crlf でコミットされている既存ファイルも変換してくれるみたい。おそらくチェックアウトしたときにそうなるのかな？&lt;/p>
 &lt;pre tabindex="0">&lt;code>* text=auto eol=lf
@@ -506,7 +507,7 @@ github の slack 連携のときの commits:all が commits:* に変更された
 &amp;mdash; Tetsuya Morimoto (@t2y) April 30, 2021 その後、追いかけてなかったけど、いま README をみたら次の5つのイベントはデフォルトで有効になるみたい。
 issues pulls commits releases deployments 必要に応じて他のイベントも追加するとよいみたい。私は次の3つかな。
 reviews comments commits:* デフォルトのイベントは指定しなくてもよいけど、コピペですべて明示的に設定するならこんな感じ。
-/github subscribe owner/repo issues,pulls,commits:*,releases,deployments,reviews,comments みんなの Python 勉強会 みんなのPython勉強会#75 で発表した。参加者は190人となっているけど、実際に zoom に参加していた人の最高値は110人ぐらいだったかな。190 * 0.</description><content>&lt;p>1時半に寝て6時に起きた。夜にウォーキングに出かけようとしたらたまたま雨が降ってきて諦めた。そしたら寝付けなかった。やっぱり歩いて疲弊すると寝付けやすいのかもしれない。ストレッチしたりしてたら寝るの遅くなった。&lt;/p>
+/github subscribe owner/repo issues,pulls,commits:*,releases,deployments,reviews,comments みんなの Python 勉強会 みんなのPython勉強会#75 で発表した。参加者は190人となっているけど、実際に zoom に参加していた人の最高値は110人ぐらいだったかな。190 * 0.6 = 114 なので無料イベントの参加者数は6割前後の法則に合致する。人数が増えるほどこの法則は精度が高いように思う。発表者は3人いて、私は2番目に発表して、持ち時間は30分だった。録画していたので後でアーカイブをみれるようにするみたい。私は録画否定派で録画すると参加者がオンタイムで見なくなるのと、いつでも見れるものは見ないということもあるので勉強会のレベルは録画しなくてもいいんじゃないかと考えている。もちろん大きなカンファレンスは録画があった方が参加できない人も後から興味のある発表を見返せていいとは思う。25分発表で質疑応答5分で発表の時間配分はうまくいった。あまり準備できなかった割には伝えたいことはだいたい話せたと思う。なんか質疑応答で「カザモリ社は python のお仕事を受けてくれますか？」といった質問があってちょっと驚いた。ここ数年 python をメインにしたお仕事してなくて、仕事は java, go が多いと言っているせいか、python の仕事はやってないようにみえてしまうのかもしれない。python, java, go の3つの言語のお仕事は受けますよと回答した。発表終わってから1時間ほど懇親会をした。ほとんどコミュニティの主催者と発表者で雑談してた。久しぶりに外部の勉強会でいろんな人とお話することができて楽しかった。たまには外に出かけていくことに重要性も認識できた。またネタがあったら発表したいなとは思う。</description><content>&lt;p>1時半に寝て6時に起きた。夜にウォーキングに出かけようとしたらたまたま雨が降ってきて諦めた。そしたら寝付けなかった。やっぱり歩いて疲弊すると寝付けやすいのかもしれない。ストレッチしたりしてたら寝るの遅くなった。&lt;/p>
 &lt;h2 id="中間申告の納付">中間申告の納付&lt;/h2>
 &lt;p>法人税・地方法人税の申告用紙が届いていたので内容を確認しながら e-tax で申請して pay-easy で税金の支払いを完了した。国税は一番最後に書類が届く。今年の書類が届いた日はこんな感じ。毎年記録しているから届く時期に準備していて慌てなくて済む。&lt;/p>
 &lt;ul>
@@ -534,8 +535,8 @@ reviews comments commits:* デフォルトのイベントは指定しなくて�
 &lt;li>commits:*&lt;/li>
 &lt;/ul>
 &lt;p>デフォルトのイベントは指定しなくてもよいけど、コピペですべて明示的に設定するならこんな感じ。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">/github subscribe owner/repo issues,pulls,commits:*,releases,deployments,reviews,comments
-&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="みんなの-python-勉強会">みんなの Python 勉強会&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>/github subscribe owner/repo issues,pulls,commits:*,releases,deployments,reviews,comments
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="みんなの-python-勉強会">みんなの Python 勉強会&lt;/h2>
 &lt;p>&lt;a href="https://startpython.connpass.com/event/228136/">みんなのPython勉強会#75&lt;/a> で発表した。参加者は190人となっているけど、実際に zoom に参加していた人の最高値は110人ぐらいだったかな。190 * 0.6 = 114 なので無料イベントの参加者数は6割前後の法則に合致する。人数が増えるほどこの法則は精度が高いように思う。発表者は3人いて、私は2番目に発表して、持ち時間は30分だった。録画していたので後でアーカイブをみれるようにするみたい。私は録画否定派で録画すると参加者がオンタイムで見なくなるのと、いつでも見れるものは見ないということもあるので勉強会のレベルは録画しなくてもいいんじゃないかと考えている。もちろん大きなカンファレンスは録画があった方が参加できない人も後から興味のある発表を見返せていいとは思う。25分発表で質疑応答5分で発表の時間配分はうまくいった。あまり準備できなかった割には伝えたいことはだいたい話せたと思う。なんか質疑応答で「カザモリ社は python のお仕事を受けてくれますか？」といった質問があってちょっと驚いた。ここ数年 python をメインにしたお仕事してなくて、仕事は java, go が多いと言っているせいか、python の仕事はやってないようにみえてしまうのかもしれない。python, java, go の3つの言語のお仕事は受けますよと回答した。発表終わってから1時間ほど懇親会をした。ほとんどコミュニティの主催者と発表者で雑談してた。久しぶりに外部の勉強会でいろんな人とお話することができて楽しかった。たまには外に出かけていくことに重要性も認識できた。またネタがあったら発表したいなとは思う。&lt;/p>
 &lt;h2 id="呑み">呑み&lt;/h2>
 &lt;p>懇親会が終わったのが22時で、疲れと空腹から仲のよい焼き鳥屋さんのお店に寄って晩ご飯を食べることにした。時短が終わっているので22時からでも飲みに行ける。お店は翌2時まで営業している。22時過ぎに行ったらお客さんは誰もいなくて、野菜サラダと焼き鳥を注文してマスターと雑談してた。&lt;/p>
@@ -550,9 +551,9 @@ $ kubectl get pod -A $ kubectl get pod -A --selector run=nginx k8s 上で実行�
 &lt;p>&lt;a href="/diary/diary/posts/2021/1107/#udemy-kubernetes入門">昨日&lt;/a> の続き。今日はセクション6から最後まで。CI/CD のセクションだけスキップして、他は一通り目を通した。&lt;/p>
 &lt;h3 id="セクション6-kubernetes実践">セクション6 Kubernetes実践&lt;/h3>
 &lt;p>1つずつ書くのは大変だけど、数をこなして徐々に覚えていけばよい。手で書くのもよいが、別のやり方としてクライアント側で dry run すると、設定のひな型を作ってくれるのでそれに必要な設定を足すのもよい。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl create deploy mysql --image&lt;span style="color:#f92672">=&lt;/span>mysql:5.7 --dry-run&lt;span style="color:#f92672">=&lt;/span>client -o yaml
-&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl exec -n database -it mysql-787f86d65c-nflxx -- mysql -uroot -ppassword
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>データベースとアプリケーションを異なる namespace にデプロイして、それらが通信できるような設定を行う。基本的には &lt;code>--dry-run=client&lt;/code> でひな型を作りつつ、必要な設定を追加していくやり方が簡単そうにみえた。とはいえ、実際に設定していくときはどういう設定を追加するとどういう振る舞いになるかを調べながら作業すると思うのでこんな簡単にはできないとは思う。次のようなアプリケーションをデプロイする一覧の流れを理解できた。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl create deploy mysql --image&lt;span style="color:#f92672">=&lt;/span>mysql:5.7 --dry-run&lt;span style="color:#f92672">=&lt;/span>client -o yaml
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl exec -n database -it mysql-787f86d65c-nflxx -- mysql -uroot -ppassword
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>データベースとアプリケーションを異なる namespace にデプロイして、それらが通信できるような設定を行う。基本的には &lt;code>--dry-run=client&lt;/code> でひな型を作りつつ、必要な設定を追加していくやり方が簡単そうにみえた。とはいえ、実際に設定していくときはどういう設定を追加するとどういう振る舞いになるかを調べながら作業すると思うのでこんな簡単にはできないとは思う。次のようなアプリケーションをデプロイする一覧の流れを理解できた。&lt;/p>
 &lt;ol>
 &lt;li>namespace 作成&lt;/li>
 &lt;li>Deployment 作成&lt;/li>
@@ -565,14 +566,14 @@ $ kubectl get pod -A $ kubectl get pod -A --selector run=nginx k8s 上で実行�
 &lt;/ol>
 &lt;h3 id="セクション7-kubernetesのdebug">セクション7 KubernetesのDebug&lt;/h3>
 &lt;p>基本は pod のステータスを確認しながら問題があれば、その箇所を追いかけていって原因を調査する。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl get pod -A
-$ kubectl get pod -A --selector run&lt;span style="color:#f92672">=&lt;/span>nginx
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>k8s 上で実行しているアプリケーションの依存先へ接続できない場合は Service の確認が必要となる。kubectl の get, describe, logs などのサブコマンドをあれこれみながらエラーの原因を把握して、yaml の設定を変更していく。k8s のアーキテクチャとコマンドを覚えていないとなかなか難しそう。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl get pod -A
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ kubectl get pod -A --selector run&lt;span style="color:#f92672">=&lt;/span>nginx
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>k8s 上で実行しているアプリケーションの依存先へ接続できない場合は Service の確認が必要となる。kubectl の get, describe, logs などのサブコマンドをあれこれみながらエラーの原因を把握して、yaml の設定を変更していく。k8s のアーキテクチャとコマンドを覚えていないとなかなか難しそう。&lt;/p>
 &lt;p>とりあえず動かした後にまとめて全部削除できるのがテストやデバッグに便利そう。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl delete -f .
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>もしくは開発用に独自の namespace を作成して、あとで丸ごと namespace を削除するのでもよさそう。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl delete ns mynamespace
-&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="k8s-の調査">k8s の調査&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl delete -f .
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>もしくは開発用に独自の namespace を作成して、あとで丸ごと namespace を削除するのでもよさそう。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl delete ns mynamespace
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="k8s-の調査">k8s の調査&lt;/h2>
 &lt;p>業務のアプリケーションを minikube で作ったローカル k8s クラスターで動かしてみた。ローカルの開発環境の構築方法をメンテナンスして、自分でも一通り k8s の yaml を書いて、デプロイして、振る舞いを確認したりしていた。最初なのでおもしろい。自分で一通りやってみて、k8s が難しいとみんなが言っているのは k8s クラスターを自前で構築するのが難しいのだとようやく理解できた。k8s クラスターがすでにある状態なら kubectl の使い方を覚えるだけで全く難しくない。GKE や EKS を使って運用するなら k8s の運用コストは大したことがないと理解できた。k8s クラスター向けの yaml はたくさん書かないといけないけど、どうせ ECS や EC2 でやっていても CDK や Terraform などのインフラ設定を書くのは同じなのでそこはあまり差がない。k8s はコンテナオーケストレーションをやってくれるメリットが大きいので minikube と EKS の環境の差異があまり問題にならないようなアプリケーション開発であれば、普通に使っていって問題ないように思えた。ローカルで環境作るのが大変なんじゃないかという先入観があったけど、全然そんなことはなかった。コンテナのイメージをビルドしないといけないのが追加のコストかな。&lt;/p></content></item><item><title>普通の休日の翌日</title><link>/diary/posts/2021/1107/</link><pubDate>Sun, 07 Nov 2021 11:21:21 +0900</pubDate><guid>/diary/posts/2021/1107/</guid><description>5時に寝て10時に起きた。昨日は夕方に2-3時間寝てたのでその分、夜に調べものをしていた。休みたい気持ちもあるけど、調べるものが多過ぎて全然時間が足りない。
 bizpy 勉強会の資料作り 昨日 の続き。昨日サンプルコードを実装したので、その設定や要点を 資料 に作成した。現時点で Python で Slack のインテグレーションをやってみる勉強会 #2 の参加者は10人。連続シリーズは回を重ねるごとに減っていくものなのでこんなもんかな。あともう1回やったら終わりにする。
 udemy: Kubernetes入門 友だちから udemy の k8s のコースがよいと聞いたんだけど、そのコースはいまは提供されていなくて、せっかくなので適当に検索してヒットした Kubernetes入門 を受講することに決めた。本当は英語の本格的なコースを受講した方がよいのだろうけど、余裕のあるときはそれでいいけど、いま数日で概要を把握して使えるようにしたいので日本語のコースにしてみた。
@@ -657,46 +658,47 @@ Control Plane (API サーバー) 複数の Worker (Kubelet) yaml で設定する
 &lt;p>一番需要なこととして、k8s は理想状態と現実状態を比較して、理想状態に近づけようとする。app.yaml の理想状態を kubectl を用いて api サーバーを介して etcd に格納する。現実状態は kubelet から api サーバーを介して etcd に格納される。c-m は理想状態と現実状態のチェックを行い、異なっていれば理想状態に近づけることをしていく。&lt;/p>
 &lt;h3 id="セクション4-kubectl">セクション4 kubectl&lt;/h3>
 &lt;p>minikube で最初に起動しているのは Control Plane を起動していることが理解できた。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ minikube start
-$ kubectl config current-context
-minikube
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>同時に ~/.kube/config に kubectl の設定も追加される。&lt;code>minikube&lt;/code> という名前でクラスター、ユーザー、コンテキストが設定される。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ minikube start
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ kubectl config current-context
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>minikube
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>同時に ~/.kube/config に kubectl の設定も追加される。&lt;code>minikube&lt;/code> という名前でクラスター、ユーザー、コンテキストが設定される。&lt;/p>
 &lt;p>リソース一覧の確認。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl api-resources
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>出力フォーマットも様々。例えば、デフォルトの表示は次になる。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl get node
-NAME STATUS ROLES AGE VERSION
-minikube Ready control-plane,master 7m21s v1.22.2
-$ kubectl get node -o wide
-NAME STATUS ROLES AGE VERSION INTERNAL-IP EXTERNAL-IP OS-IMAGE KERNEL-VERSION CONTAINER-RUNTIME
-minikube Ready control-plane,master 8m38s v1.22.2 192.168.49.2 &amp;lt;none&amp;gt; Ubuntu 20.04.2 LTS 5.11.0-38-generic docker://20.10.8
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>より詳細な情報をそれぞれのフォーマットで表示する。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl get node -o json
-$ kubectl get node -o yaml
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>namespace を確認する。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl get namespace
-NAME STATUS AGE
-default Active 10m
-kube-node-lease Active 10m
-kube-public Active 10m
-kube-system Active 10m
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>namespace を指定して pod 一覧を取得する。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl get pod --namespace kube-system
-NAME READY STATUS RESTARTS AGE
-coredns-78fcd69978-qxqbn 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
-etcd-minikube 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
-kube-apiserver-minikube 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
-kube-controller-manager-minikube 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
-kube-proxy-g55hg 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
-kube-scheduler-minikube 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
-storage-provisioner 1/1 Running &lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">(&lt;/span>10m ago&lt;span style="color:#f92672">)&lt;/span> 11m
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>グローバルな CLI のオプションを確認する。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl options
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>ノードの詳細を表示する。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl describe node
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>describe は名前の接頭辞を指定できるので namespace ならこんな感じに実行できる。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl describe namespace kube-
-&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="セクション5-kubernetes-リソース">セクション5 Kubernetes リソース&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl api-resources
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>出力フォーマットも様々。例えば、デフォルトの表示は次になる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl get node
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>NAME STATUS ROLES AGE VERSION
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>minikube Ready control-plane,master 7m21s v1.22.2
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ kubectl get node -o wide
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>NAME STATUS ROLES AGE VERSION INTERNAL-IP EXTERNAL-IP OS-IMAGE KERNEL-VERSION CONTAINER-RUNTIME
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>minikube Ready control-plane,master 8m38s v1.22.2 192.168.49.2 &amp;lt;none&amp;gt; Ubuntu 20.04.2 LTS 5.11.0-38-generic docker://20.10.8
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>より詳細な情報をそれぞれのフォーマットで表示する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl get node -o json
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ kubectl get node -o yaml
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>namespace を確認する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl get namespace
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>NAME STATUS AGE
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>default Active 10m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>kube-node-lease Active 10m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>kube-public Active 10m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>kube-system Active 10m
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>namespace を指定して pod 一覧を取得する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl get pod --namespace kube-system
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>NAME READY STATUS RESTARTS AGE
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>coredns-78fcd69978-qxqbn 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>etcd-minikube 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>kube-apiserver-minikube 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>kube-controller-manager-minikube 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>kube-proxy-g55hg 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>kube-scheduler-minikube 1/1 Running &lt;span style="color:#ae81ff">0&lt;/span> 11m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>storage-provisioner 1/1 Running &lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">(&lt;/span>10m ago&lt;span style="color:#f92672">)&lt;/span> 11m
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>グローバルな CLI のオプションを確認する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl options
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>ノードの詳細を表示する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl describe node
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>describe は名前の接頭辞を指定できるので namespace ならこんな感じに実行できる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl describe namespace kube-
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="セクション5-kubernetes-リソース">セクション5 Kubernetes リソース&lt;/h3>
 &lt;p>pod とは k8s 上のデプロイの最小単位である。&lt;/p>
 &lt;ul>
 &lt;li>1つまたは複数のコンテナをもつ&lt;/li>
@@ -762,10 +764,10 @@ storage-provisioner 1/1 Running &lt;span style="color:#ae81ff">1&lt;/span> &lt;s
 &lt;/li>
 &lt;/ul>
 &lt;p>次のコマンドで確認できる。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl api-resources --namespaced&lt;span style="color:#f92672">=&lt;/span>true
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>namespace の作成&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl create namespace my-namespace
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>ワークロードリソースとは複数の pod を作成・管理するためのリソース。ワークロードリソースは pod テンプレートを使って pod を作成する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl api-resources --namespaced&lt;span style="color:#f92672">=&lt;/span>true
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>namespace の作成&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl create namespace my-namespace
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>ワークロードリソースとは複数の pod を作成・管理するためのリソース。ワークロードリソースは pod テンプレートを使って pod を作成する。&lt;/p>
 &lt;ul>
 &lt;li>ReplicaSet
 &lt;ul>
@@ -836,7 +838,9 @@ Slack apps の調査 次回の bizpy 勉強会向けに 新機能、アプリの
 プライステイカー: 生産量を増やしたり減らしたりしても価格に影響を与えられない会社 完全市場: すべての会社がプライステイカーである市場 不完全市場: 完全市場ではない市場、プライステイカーではない会社がいる 独占市場: 1つの独占企業だけが存在する市場 クルーノー寡占市場: 同じ財を生産する少数の会社の総生産量から市場の価格が決まる市場 寡占: 少数の企業がいる市場 複占: 企業が2つだけの市場 前に出てきた市場均衡の話から、供給量を下げると価格が上昇する。生産者余剰がが大きくなり、生産者は得をする。実際にあった事例として、2016年に石油輸出機構 (OPEC) が石油の減産に合意して価格が上昇した。2012年に豊作だった歳に値崩れが起きるのをおそれて、全国農業組合連合会は価格を上げるために農家に野菜の廃棄処分を要請した。
 独占市場にいる会社は高い価格で高い利潤を得ることはできるが、やがて価格競争を仕掛けてくる新規参入者を招き、長期的な利益を低めてしまう懸念がある。一方で高品質な財を低い利潤で販売していると、新規参入者が現れずに長期的な利益を得られる可能性がある。一概にどちらが正しいとは言えない。こうした状況を端的に描く 展開型ゲーム を考えると、財を高値にするか安値にするかの思考実験ができるう。 ゲームツリー という図でこのゲームを表している。
 A は安値を選び、B が参入しないという選択の組み合わせは、「自分がこう選択したら相手はこう選択してくる」とプレイヤーが予想して、そのうえで自分にとって最も利潤が高まる選択をする状況を表している。これを サブゲーム完全均衡 の結果と呼ぶ。また、このような推論のやり方を 逆向き帰納法 (バックワード・インダクション) と呼ぶ。サブゲーム完全均衡の結果は逆向き帰納法により求められる。
-RabbitMQ の dead letter exchange の調査 昨日の続き。RabbitMQ には exchange という概念がある。私が過去に使ったメッセージキュー (Kafka, AWS SQS) にはない概念でトピックをグルーピングしたり、メッセージのルーティングを制御する仕組みになる。普通のメッセージキューではデッドレターキューと呼ばれるものが RabbitMQ だと Dead Letter Exchanges になる。ドキュメントの概要はこんな感じ。</description><content>&lt;p>1時半に寝て6時に起きた。昨日の夜はウォーキングして (朝活あるから) すぐに寝たんで早く起きた分、朝からストレッチをしてた。今週はバタバタしていてあまりストレッチできてない。&lt;/p>
+RabbitMQ の dead letter exchange の調査 昨日の続き。RabbitMQ には exchange という概念がある。私が過去に使ったメッセージキュー (Kafka, AWS SQS) にはない概念でトピックをグルーピングしたり、メッセージのルーティングを制御する仕組みになる。普通のメッセージキューではデッドレターキューと呼ばれるものが RabbitMQ だと Dead Letter Exchanges になる。ドキュメントの概要はこんな感じ。
+次のイベントが発生したときに &amp;ldquo;デッドレター&amp;rdquo; とみなす。
+consumer が basic.reject または requeue=false の basic.</description><content>&lt;p>1時半に寝て6時に起きた。昨日の夜はウォーキングして (朝活あるから) すぐに寝たんで早く起きた分、朝からストレッチをしてた。今週はバタバタしていてあまりストレッチできてない。&lt;/p>
 &lt;h2 id="朝活-ミクロ経済学入門の入門">朝活: ミクロ経済学入門の入門&lt;/h2>
 &lt;p>&lt;a href="https://www.youtube.com/watch?v=33vXvmnAHq0">[金朝ツメトギ] 2021-11-05 AM 6 金曜朝6時開催のもくもく会&lt;/a> で第7章の独占と寡占を読んだ。用語を次にまとめる。&lt;/p>
 &lt;ul>
@@ -913,7 +917,9 @@ RabbitMQ のチュートリアル を1から5までやった。チュートリ�
 生産者や消費者に従量税を課すと市場にどのようなことが起きるかを考察する。納税方法として、生産者が納税する方式 (価格に税を含める) と消費者が納税する方式 (価格と税は別) があるが、どちらも社会的余剰が C の分だけ減少するグラフとなり、社会的損失が発生していると言える。余剰の視点からはどちらの方式も全く同じだが、政府が徴税するしやすさの視点だと、相対的に数の少ない生産者から納税する方が管理しやすい。
 狙い撃ち課税のダメな点として酒税を例にあげている。ビールの酒税を逃れるために、メーカーは1990年代に発泡酒、2003年に第3のビールを開発した。2016年時点での350ml (1缶) あたりの酒税は、ビール77円、発泡酒47円、第3のビール28円となった。同年、政府はすべて55円へ統一していく方針を発表した。ビールへの従量税が与えた社会的損失として死荷重だけでなく、発泡酒や第3のビールのような劣化ビールの技術開発のコストがあげられる。特定の品目を狙い撃つ従量税は社会的損失を生みやすいと述べられてる。
 次に第6章から。用語を次にまとめる。
-負の外部性: ある生産活動が他者へマイナスの影響を与える 例) 公害や花粉症など 正の外部生: ある生産活動が市場取引を経ずにプラスの影響を与える 例) 電鉄会社が駅や路線を開通させるとその地域に経済効果をもたらすなど 限界被害: 企業の生産活動が住民に与える被害の生産量に対する総和の金額 ピグー税: 住民に補償を与える環境税 ネットワーク外部性: SNS など、サービスの価値がユーザー数に大きく既存する性質 調整ゲーム: 何を選ぶかよりも、他人と同じものを選ぶことが重要な状況 ナッシュ均衡: 自分の行動を変えると損になるので誰も行動を変えない状況 企業の生産活動が住民に被害をもたらせていた場合、その被害をピグー税を通じて企業が支払う。これを 外部性の内部化 と呼ぶ。負の外部性は社会問題となるが、対して正の外部性は社会問題とならない。</description><content>&lt;p>1時に寝て6時に起きた。朝活があると起きれるな。&lt;/p>
+負の外部性: ある生産活動が他者へマイナスの影響を与える 例) 公害や花粉症など 正の外部生: ある生産活動が市場取引を経ずにプラスの影響を与える 例) 電鉄会社が駅や路線を開通させるとその地域に経済効果をもたらすなど 限界被害: 企業の生産活動が住民に与える被害の生産量に対する総和の金額 ピグー税: 住民に補償を与える環境税 ネットワーク外部性: SNS など、サービスの価値がユーザー数に大きく既存する性質 調整ゲーム: 何を選ぶかよりも、他人と同じものを選ぶことが重要な状況 ナッシュ均衡: 自分の行動を変えると損になるので誰も行動を変えない状況 企業の生産活動が住民に被害をもたらせていた場合、その被害をピグー税を通じて企業が支払う。これを 外部性の内部化 と呼ぶ。負の外部性は社会問題となるが、対して正の外部性は社会問題とならない。
+調整ゲームにおいて、一方がもう一方よりも好ましい状態を パレート優位、またその逆の状態を パレート劣位 と呼ぶ。ネットワーク外部性においては優勝劣敗が必ずしも正しいとは限らない。先行者としてユーザー数を獲得し、ナッシュ均衡の座をつかむことが勝ちにつながる。
+ASUS ROG Zephyrus G15 GA503QR 今日届いたのでセットアップだけ終えた。Windows アップデートすると次々に更新が出てくる仕組みは昔と変わってなかった。4回再起動した。</description><content>&lt;p>1時に寝て6時に起きた。朝活があると起きれるな。&lt;/p>
 &lt;h2 id="朝活-ミクロ経済学入門の入門">朝活: ミクロ経済学入門の入門&lt;/h2>
 &lt;p>&lt;a href="https://kobe-sannomiya-dev.connpass.com/event/229642/">【三宮.dev オンライン】リモート朝活もくもく会&lt;/a> で第5章の市場均衡と第6章の外部性を読んだ。&lt;/p>
 &lt;p>まず第5章から。用語を次にまとめる。&lt;/p>

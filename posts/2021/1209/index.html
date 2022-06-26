@@ -1,119 +1,13 @@
-<!doctype html><html lang=en>
-<head>
-<title>2年目の創立記念日 :: forest nook</title>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="0時半に寝て6時半に起きた。久しぶりに22時までお仕事やって区切りもよかったからそれからお惣菜を買って23時頃から晩ご飯を食べてた。生活が乱れるなぁ。
+<!doctype html><html lang=en><head><title>2年目の創立記念日 :: forest nook</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="0時半に寝て6時半に起きた。久しぶりに22時までお仕事やって区切りもよかったからそれからお惣菜を買って23時頃から晩ご飯を食べてた。生活が乱れるなぁ。
 dapr の分散トレーシングと W3C trace context お仕事で dapr の分散トレーシングを検証してた。知らない人は Dapr Advent Calendar 8日目 - DaprとZipkinで分散トレーシング のチュートリアルをお勧めする。dapr は W3C Trace Context を使って分散トレーシングを扱う。rest api では、具体的には traceparent と tracestore という http ヘッダーにトレース用途の情報を付けて転送する。すごいところは pubsub のメッセージングを経由してもそれらの情報を転送できる。pubsub 間でこれらの情報は CloudEvents という標準化されたデータのフォーマットでやり取りされる。実際には CloudEvents の中に traceparent と tracestore の値を含めて通信するけれど、外部からみたら http ヘッダーを転送できているようにみえる。しかし、http ヘッダーの任意の値を転送したい場合、それができない。tracestore はトレースのためのベンダー独自情報を付与できるとあったので、ここに任意の値をセットして送ってみたけど、http ヘッダーの付け替えは行われなかった。あとで dapr のソースを読んだら publish するときはそのまま送っているけど、subscribe するときに tracestore の仕様を満たしているか検証しながらパースしていて、任意の値を送っても仕様に沿っていなければ捨てられてしまうことがわかった。dapr の issue でも要望として登録されてた。誰もやってないならコントリビュートするチャンスかもしれない。
- Propagate arbitrary/configurable http headers from publisher to subscribers #3642  創立記念日 今日が会社の創立記念日。無事に2周年を迎えた。創立記念日をお休みにするしないを考えたのだけど、いま休日も普通に働いている状況で、且つ役員は勤怠管理をする必要はないので平日になんの意味もなく休むメリットが何もないということに行き着いた。創立記念日だから休むのではなく、いつでも必要なときに休めばいい。もっと言うと、休む理由がなければ働くという逆転現象が生じていて、休む理由は私用か疲労ぐらいしかなくて、基本的に疲れてない限りはずっと働くみたいな理屈になってしまっている。社員が増えて会社に余裕が出てから創立記念日は休みみたいな制度を作ればいい。それまではたぶん来年もそれ以降も普通に働いていると思う。
-1年目は訳分からず働いていたから経営的なことは全くわからなかったけど、2年目は経営上の諸問題が出てきて、経営的な意思決定や考察も増えてきて、行政手続きも熟れて、会社の実績も増えていっていて、会社を育てるという意識もかなり出てきた。率直に言えば、いまの経営状態は可もなく不可もなくといったものなので何もアピールすることはない。しかし、経営したことない人間が経営というキャリアを積み重ねていることには大きな意義があって、自身のキャリアアップには確かな手応えも感じつつある。これからもがんばっていこう。">
-<meta name=keywords content>
-<meta name=robots content="noodp">
-<link rel=canonical href=/diary/posts/2021/1209/>
-<link rel=stylesheet href=/diary/assets/style.css>
-<link rel=stylesheet href=/diary/assets/green.css>
-<link rel=stylesheet href=/diary/style.css>
-<link rel=apple-touch-icon href=/diary/img/apple-touch-icon-192x192.png>
-<link rel="shortcut icon" href=/diary/favicon.ico>
-<meta name=twitter:card content="summary">
-<meta name=twitter:site content="t2y">
-<meta name=twitter:creator content>
-<meta property="og:locale" content="en">
-<meta property="og:type" content="article">
-<meta property="og:title" content="2年目の創立記念日">
-<meta property="og:description" content="0時半に寝て6時半に起きた。久しぶりに22時までお仕事やって区切りもよかったからそれからお惣菜を買って23時頃から晩ご飯を食べてた。生活が乱れるなぁ。
+Propagate arbitrary/configurable http headers from publisher to subscribers #3642 創立記念日 今日が会社の創立記念日。無事に2周年を迎えた。創立記念日をお休みにするしないを考えたのだけど、いま休日も普通に働いている状況で、且つ役員は勤怠管理をする必要はないので平日になんの意味もなく休むメリットが何もないということに行き着いた。創立記念日だから休むのではなく、いつでも必要なときに休めばいい。もっと言うと、休む理由がなければ働くという逆転現象が生じていて、休む理由は私用か疲労ぐらいしかなくて、基本的に疲れてない限りはずっと働くみたいな理屈になってしまっている。社員が増えて会社に余裕が出てから創立記念日は休みみたいな制度を作ればいい。それまではたぶん来年もそれ以降も普通に働いていると思う。
+1年目は訳分からず働いていたから経営的なことは全くわからなかったけど、2年目は経営上の諸問題が出てきて、経営的な意思決定や考察も増えてきて、行政手続きも熟れて、会社の実績も増えていっていて、会社を育てるという意識もかなり出てきた。率直に言えば、いまの経営状態は可もなく不可もなくといったものなので何もアピールすることはない。しかし、経営したことない人間が経営というキャリアを積み重ねていることには大きな意義があって、自身のキャリアアップには確かな手応えも感じつつある。これからもがんばっていこう。"><meta name=keywords content><meta name=robots content="noodp"><link rel=canonical href=/diary/posts/2021/1209/><link rel=stylesheet href=/diary/assets/style.css><link rel=stylesheet href=/diary/assets/green.css><link rel=stylesheet href=/diary/style.css><link rel=apple-touch-icon href=/diary/img/apple-touch-icon-192x192.png><link rel="shortcut icon" href=/diary/favicon.ico><meta name=twitter:card content="summary"><meta name=twitter:site content="t2y"><meta name=twitter:creator content><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="og:title" content="2年目の創立記念日"><meta property="og:description" content="0時半に寝て6時半に起きた。久しぶりに22時までお仕事やって区切りもよかったからそれからお惣菜を買って23時頃から晩ご飯を食べてた。生活が乱れるなぁ。
 dapr の分散トレーシングと W3C trace context お仕事で dapr の分散トレーシングを検証してた。知らない人は Dapr Advent Calendar 8日目 - DaprとZipkinで分散トレーシング のチュートリアルをお勧めする。dapr は W3C Trace Context を使って分散トレーシングを扱う。rest api では、具体的には traceparent と tracestore という http ヘッダーにトレース用途の情報を付けて転送する。すごいところは pubsub のメッセージングを経由してもそれらの情報を転送できる。pubsub 間でこれらの情報は CloudEvents という標準化されたデータのフォーマットでやり取りされる。実際には CloudEvents の中に traceparent と tracestore の値を含めて通信するけれど、外部からみたら http ヘッダーを転送できているようにみえる。しかし、http ヘッダーの任意の値を転送したい場合、それができない。tracestore はトレースのためのベンダー独自情報を付与できるとあったので、ここに任意の値をセットして送ってみたけど、http ヘッダーの付け替えは行われなかった。あとで dapr のソースを読んだら publish するときはそのまま送っているけど、subscribe するときに tracestore の仕様を満たしているか検証しながらパースしていて、任意の値を送っても仕様に沿っていなければ捨てられてしまうことがわかった。dapr の issue でも要望として登録されてた。誰もやってないならコントリビュートするチャンスかもしれない。
- Propagate arbitrary/configurable http headers from publisher to subscribers #3642  創立記念日 今日が会社の創立記念日。無事に2周年を迎えた。創立記念日をお休みにするしないを考えたのだけど、いま休日も普通に働いている状況で、且つ役員は勤怠管理をする必要はないので平日になんの意味もなく休むメリットが何もないということに行き着いた。創立記念日だから休むのではなく、いつでも必要なときに休めばいい。もっと言うと、休む理由がなければ働くという逆転現象が生じていて、休む理由は私用か疲労ぐらいしかなくて、基本的に疲れてない限りはずっと働くみたいな理屈になってしまっている。社員が増えて会社に余裕が出てから創立記念日は休みみたいな制度を作ればいい。それまではたぶん来年もそれ以降も普通に働いていると思う。
-1年目は訳分からず働いていたから経営的なことは全くわからなかったけど、2年目は経営上の諸問題が出てきて、経営的な意思決定や考察も増えてきて、行政手続きも熟れて、会社の実績も増えていっていて、会社を育てるという意識もかなり出てきた。率直に言えば、いまの経営状態は可もなく不可もなくといったものなので何もアピールすることはない。しかし、経営したことない人間が経営というキャリアを積み重ねていることには大きな意義があって、自身のキャリアアップには確かな手応えも感じつつある。これからもがんばっていこう。">
-<meta property="og:url" content="/diary/posts/2021/1209/">
-<meta property="og:site_name" content="forest nook">
-<meta property="og:image" content="/diary">
-<meta property="og:image:width" content="2048">
-<meta property="og:image:height" content="1024">
-<meta property="article:published_time" content="2021-12-09 11:24:30 +0900 +0900">
-</head>
-<body class=green>
-<div class="container full headings--one-size">
-<header class=header>
-<div class=header__inner>
-<div class=header__logo>
-<a href=/diary>
-<div class=logo>
-forest nook
-</div>
-</a>
-</div>
-<div class=menu-trigger>menu</div>
-</div>
-<nav class=menu>
-<ul class="menu__inner menu__inner--desktop">
-<li><a href=/diary/about>自己紹介</a></li>
-<li><a href=/diary/dates>月別一覧</a></li>
-<li><a href=/diary/tags>タグ一覧</a></li>
-</ul>
-<ul class="menu__inner menu__inner--mobile">
-<li><a href=/diary/about>自己紹介</a></li>
-<li><a href=/diary/dates>月別一覧</a></li>
-<li><a href=/diary/tags>タグ一覧</a></li>
-</ul>
-</nav>
-</header>
-<div class=content>
-<div class=post>
-<h1 class=post-title>
-<a href=/diary/posts/2021/1209/>2年目の創立記念日</a></h1>
-<div class=post-meta>
-<span class=post-date>
-2021-12-09
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/dapr/>dapr</a>&nbsp;
-#<a href=/diary/tags/founding/>founding</a>&nbsp;
-</span>
-<div class=post-content><div>
-<p>0時半に寝て6時半に起きた。久しぶりに22時までお仕事やって区切りもよかったからそれからお惣菜を買って23時頃から晩ご飯を食べてた。生活が乱れるなぁ。</p>
-<h2 id=dapr-の分散トレーシングと-w3c-trace-context>dapr の分散トレーシングと W3C trace context<a href=#dapr-の分散トレーシングと-w3c-trace-context class=hanchor arialabel=Anchor>&#8983;</a> </h2>
-<p>お仕事で dapr の分散トレーシングを検証してた。知らない人は <a href=https://cero-t.hatenadiary.jp/entry/2021/12/08/071742>Dapr Advent Calendar 8日目 - DaprとZipkinで分散トレーシング</a> のチュートリアルをお勧めする。dapr は <a href=https://www.w3.org/TR/trace-context/>W3C Trace Context</a> を使って分散トレーシングを扱う。rest api では、具体的には <code>traceparent</code> と <code>tracestore</code> という http ヘッダーにトレース用途の情報を付けて転送する。すごいところは pubsub のメッセージングを経由してもそれらの情報を転送できる。pubsub 間でこれらの情報は <a href=https://github.com/cloudevents/spec>CloudEvents</a> という標準化されたデータのフォーマットでやり取りされる。実際には CloudEvents の中に <code>traceparent</code> と <code>tracestore</code> の値を含めて通信するけれど、外部からみたら http ヘッダーを転送できているようにみえる。しかし、http ヘッダーの任意の値を転送したい場合、それができない。<code>tracestore</code> はトレースのためのベンダー独自情報を付与できるとあったので、ここに任意の値をセットして送ってみたけど、http ヘッダーの付け替えは行われなかった。あとで dapr のソースを読んだら publish するときはそのまま送っているけど、subscribe するときに <code>tracestore</code> の仕様を満たしているか検証しながらパースしていて、任意の値を送っても仕様に沿っていなければ捨てられてしまうことがわかった。dapr の issue でも要望として登録されてた。誰もやってないならコントリビュートするチャンスかもしれない。</p>
-<ul>
-<li><a href=https://github.com/dapr/dapr/issues/3642>Propagate arbitrary/configurable http headers from publisher to subscribers #3642</a></li>
-</ul>
-<h2 id=創立記念日>創立記念日<a href=#創立記念日 class=hanchor arialabel=Anchor>&#8983;</a> </h2>
-<p>今日が会社の創立記念日。無事に2周年を迎えた。創立記念日をお休みにするしないを考えたのだけど、いま休日も普通に働いている状況で、且つ役員は勤怠管理をする必要はないので平日になんの意味もなく休むメリットが何もないということに行き着いた。創立記念日だから休むのではなく、いつでも必要なときに休めばいい。もっと言うと、休む理由がなければ働くという逆転現象が生じていて、休む理由は私用か疲労ぐらいしかなくて、基本的に疲れてない限りはずっと働くみたいな理屈になってしまっている。社員が増えて会社に余裕が出てから創立記念日は休みみたいな制度を作ればいい。それまではたぶん来年もそれ以降も普通に働いていると思う。</p>
-<p>1年目は訳分からず働いていたから経営的なことは全くわからなかったけど、2年目は経営上の諸問題が出てきて、経営的な意思決定や考察も増えてきて、行政手続きも熟れて、会社の実績も増えていっていて、会社を育てるという意識もかなり出てきた。率直に言えば、いまの経営状態は可もなく不可もなくといったものなので何もアピールすることはない。しかし、経営したことない人間が経営というキャリアを積み重ねていることには大きな意義があって、自身のキャリアアップには確かな手応えも感じつつある。これからもがんばっていこう。</p>
-</div></div>
-<div class=pagination>
-<div class=pagination__title>
-<span class=pagination__title-h>Read other posts</span>
-<hr>
-</div>
-<div class=pagination__buttons>
-<span class="button previous">
-<a href=/diary/posts/2021/1210/>
-<span class=button__icon>←</span>
-<span class=button__text>ワーケーションの思いつき</span>
-</a>
-</span>
-<span class="button next">
-<a href=/diary/posts/2021/1208/>
-<span class=button__text>整理・整頓・清掃・清潔・躾</span>
-<span class=button__icon>→</span>
-</a>
-</span>
-</div>
-</div>
-</div>
-</div>
-<footer class=footer>
-<div class=footer__inner>
-<div class="copyright copyright--user">
-<span>© 2021 Tetsuya Morimoto</span>
-<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span>
-</div>
-</div>
-</footer>
-<script src=/diary/assets/main.js></script>
-<script src=/diary/assets/prism.js></script>
-</div>
-</body>
-</html>
+Propagate arbitrary/configurable http headers from publisher to subscribers #3642 創立記念日 今日が会社の創立記念日。無事に2周年を迎えた。創立記念日をお休みにするしないを考えたのだけど、いま休日も普通に働いている状況で、且つ役員は勤怠管理をする必要はないので平日になんの意味もなく休むメリットが何もないということに行き着いた。創立記念日だから休むのではなく、いつでも必要なときに休めばいい。もっと言うと、休む理由がなければ働くという逆転現象が生じていて、休む理由は私用か疲労ぐらいしかなくて、基本的に疲れてない限りはずっと働くみたいな理屈になってしまっている。社員が増えて会社に余裕が出てから創立記念日は休みみたいな制度を作ればいい。それまではたぶん来年もそれ以降も普通に働いていると思う。
+1年目は訳分からず働いていたから経営的なことは全くわからなかったけど、2年目は経営上の諸問題が出てきて、経営的な意思決定や考察も増えてきて、行政手続きも熟れて、会社の実績も増えていっていて、会社を育てるという意識もかなり出てきた。率直に言えば、いまの経営状態は可もなく不可もなくといったものなので何もアピールすることはない。しかし、経営したことない人間が経営というキャリアを積み重ねていることには大きな意義があって、自身のキャリアアップには確かな手応えも感じつつある。これからもがんばっていこう。"><meta property="og:url" content="/diary/posts/2021/1209/"><meta property="og:site_name" content="forest nook"><meta property="og:image" content="/diary"><meta property="og:image:width" content="2048"><meta property="og:image:height" content="1024"><meta property="article:published_time" content="2021-12-09 11:24:30 +0900 +0900"></head><body class=green><div class="container full headings--one-size"><header class=header><div class=header__inner><div class=header__logo><a href=/diary><div class=logo>forest nook</div></a></div><div class=menu-trigger>menu</div></div><nav class=menu><ul class="menu__inner menu__inner--desktop"><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul><ul class="menu__inner menu__inner--mobile"><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul></nav></header><div class=content><div class=post><h1 class=post-title><a href=/diary/posts/2021/1209/>2年目の創立記念日</a></h1><div class=post-meta><span class=post-date>2021-12-09</span></div><span class=post-tags>#<a href=/diary/tags/dapr/>dapr</a>&nbsp;
+#<a href=/diary/tags/founding/>founding</a>&nbsp;</span><div class=post-content><div><p>0時半に寝て6時半に起きた。久しぶりに22時までお仕事やって区切りもよかったからそれからお惣菜を買って23時頃から晩ご飯を食べてた。生活が乱れるなぁ。</p><h2 id=dapr-の分散トレーシングと-w3c-trace-context>dapr の分散トレーシングと W3C trace context<a href=#dapr-の分散トレーシングと-w3c-trace-context class=hanchor arialabel=Anchor>&#8983;</a></h2><p>お仕事で dapr の分散トレーシングを検証してた。知らない人は <a href=https://cero-t.hatenadiary.jp/entry/2021/12/08/071742>Dapr Advent Calendar 8日目 - DaprとZipkinで分散トレーシング</a> のチュートリアルをお勧めする。dapr は <a href=https://www.w3.org/TR/trace-context/>W3C Trace Context</a> を使って分散トレーシングを扱う。rest api では、具体的には <code>traceparent</code> と <code>tracestore</code> という http ヘッダーにトレース用途の情報を付けて転送する。すごいところは pubsub のメッセージングを経由してもそれらの情報を転送できる。pubsub 間でこれらの情報は <a href=https://github.com/cloudevents/spec>CloudEvents</a> という標準化されたデータのフォーマットでやり取りされる。実際には CloudEvents の中に <code>traceparent</code> と <code>tracestore</code> の値を含めて通信するけれど、外部からみたら http ヘッダーを転送できているようにみえる。しかし、http ヘッダーの任意の値を転送したい場合、それができない。<code>tracestore</code> はトレースのためのベンダー独自情報を付与できるとあったので、ここに任意の値をセットして送ってみたけど、http ヘッダーの付け替えは行われなかった。あとで dapr のソースを読んだら publish するときはそのまま送っているけど、subscribe するときに <code>tracestore</code> の仕様を満たしているか検証しながらパースしていて、任意の値を送っても仕様に沿っていなければ捨てられてしまうことがわかった。dapr の issue でも要望として登録されてた。誰もやってないならコントリビュートするチャンスかもしれない。</p><ul><li><a href=https://github.com/dapr/dapr/issues/3642>Propagate arbitrary/configurable http headers from publisher to subscribers #3642</a></li></ul><h2 id=創立記念日>創立記念日<a href=#創立記念日 class=hanchor arialabel=Anchor>&#8983;</a></h2><p>今日が会社の創立記念日。無事に2周年を迎えた。創立記念日をお休みにするしないを考えたのだけど、いま休日も普通に働いている状況で、且つ役員は勤怠管理をする必要はないので平日になんの意味もなく休むメリットが何もないということに行き着いた。創立記念日だから休むのではなく、いつでも必要なときに休めばいい。もっと言うと、休む理由がなければ働くという逆転現象が生じていて、休む理由は私用か疲労ぐらいしかなくて、基本的に疲れてない限りはずっと働くみたいな理屈になってしまっている。社員が増えて会社に余裕が出てから創立記念日は休みみたいな制度を作ればいい。それまではたぶん来年もそれ以降も普通に働いていると思う。</p><p>1年目は訳分からず働いていたから経営的なことは全くわからなかったけど、2年目は経営上の諸問題が出てきて、経営的な意思決定や考察も増えてきて、行政手続きも熟れて、会社の実績も増えていっていて、会社を育てるという意識もかなり出てきた。率直に言えば、いまの経営状態は可もなく不可もなくといったものなので何もアピールすることはない。しかし、経営したことない人間が経営というキャリアを積み重ねていることには大きな意義があって、自身のキャリアアップには確かな手応えも感じつつある。これからもがんばっていこう。</p></div></div><div class=pagination><div class=pagination__title><span class=pagination__title-h>Read other posts</span><hr></div><div class=pagination__buttons><span class="button previous"><a href=/diary/posts/2021/1210/><span class=button__icon>←</span>
+<span class=button__text>ワーケーションの思いつき</span></a></span>
+<span class="button next"><a href=/diary/posts/2021/1208/><span class=button__text>整理・整頓・清掃・清潔・躾</span>
+<span class=button__icon>→</span></a></span></div></div></div></div><footer class=footer><div class=footer__inner><div class="copyright copyright--user"><span>© 2021 Tetsuya Morimoto</span>
+<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span></div></div></footer><script src=/diary/assets/main.js></script>
+<script src=/diary/assets/prism.js></script></div></body></html>

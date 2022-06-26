@@ -4,7 +4,7 @@ eks (k8s) のアップグレード お手伝い先のお仕事がもうすぐサ
 Updating an Amazon EKS cluster Kubernetes version 何が起きるか分からなくても、土曜日から始めて致命的なトラブルに見舞われても1日もあれば解決できるだろうという見通しで作業を始めた。その見通しも「私がやれば」という前提に成り立っている。良くも悪くも私がやろうと言ったことに反対されることはほとんどないが、それは私が言ったことは一定時間に私がすべてやり切るという信頼に基づいている。本当の意味でできるかどうか分からないことを必要以上に抱え込んでしまうときもあるのでバランス感覚は必要かもしれない。言わばサービス休日出勤だし、なぜ私がやっているかと言うと、システムの運用や保守の展望を考えたら、サービスインの前にインフラのバージョンを上げておく方が将来の保守コストを下げることに繋がるという1点のみに重要性を見い出していて、それをもっとも強く主張しているのが私だからという理由。
 結論から言って2時間でアップグレード作業を完了した。1つ手順漏れがあって、アプリケーションの pod がすべてエラーになるというトラブルに見舞われたものの、すぐ手順漏れに気付いて難なく復旧できた。今日はテスト環境のアップグレードをしたわけだけど、また後日、本番向けの作業手順書を作れば、ほぼタウンタイムなしで1時間もあればアップグレード作業を完了できそうな見通しではある。
 実際はミスもあったので次の順番でやったわけではないが、おそらくこの手順でやれば正しいはず。
-aws cli と eksctl コマンドのインストール aws のアップグレードドキュメンを読む cert-manager のアップグレード (1.1.1 から 1.5.4) aws-load-balancer-controller のアップグレード (2.2.0 から 2.4.2) k8s control plane のアップグレード (1.21 から 1.22) (オプション: 不要) autoscaler のアップグレード (オプション: 不要) gpu サポートノードのアップグレード vpc cni プラグインのアップグレード (1.7.5 から 1.11.2) coredns プラグインのアップグレード (1.8.4 から 1.</description><content>&lt;p>0時に寝て6時半に起きた。起きてから1時間ほどだらだらしてた。&lt;/p>
+aws cli と eksctl コマンドのインストール aws のアップグレードドキュメンを読む cert-manager のアップグレード (1.1.1 から 1.5.4) aws-load-balancer-controller のアップグレード (2.2.0 から 2.4.2) k8s control plane のアップグレード (1.21 から 1.22) (オプション: 不要) autoscaler のアップグレード (オプション: 不要) gpu サポートノードのアップグレード vpc cni プラグインのアップグレード (1.7.5 から 1.11.2) coredns プラグインのアップグレード (1.8.4 から 1.8.7) kube-proxy のアップグレード (1.</description><content>&lt;p>0時に寝て6時半に起きた。起きてから1時間ほどだらだらしてた。&lt;/p>
 &lt;h2 id="ストレッチ">ストレッチ&lt;/h2>
 &lt;p>今日の開脚幅は開始前161cmで、ストレッチ後163cmだった。先週と同じなので現状維持とも言えるし、よい状態を維持しているとも言えるかもしれない。もう1年以上通っているせいか、なにかポイントが溜まっていて使わないといけないという話しで今日は20分延長でやってくれた。とは言っても、基本的なストレッチ項目が変わるわけではなく、いつもより伸ばす時間や手順が少し増えているぐらいだった気がする。今週はとくに腰の負荷もあまり感じなかったせいか、いつもの右腰の張りもなかったように思う。トレーナーさんに聞くと、暑くなると筋肉は伸びやすくなるので季節要因でストレッチをしたときの伸び具合が変わるのは普通とのこと。調子がよくなってきたのでこのまま好調を維持したい。&lt;/p>
 &lt;h2 id="eks-k8s-のアップグレード">eks (k8s) のアップグレード&lt;/h2>
@@ -128,7 +128,8 @@ aws cli と eksctl コマンドのインストール aws のアップグレー�
 私はまったく出石城のことを知らなくて、もともとのお殿様ではないが、なんやらかんやらで 仙石秀久 が城主になったらしい。センゴク の漫画の主人公。城跡に上る鳥居の裏に作者の宮下英樹さんの名前もあった。仙石秀久：鈴鳴り武者、またの名を蕎麦の伝道師…、あんたはいったい何者だ!? の記事によると、出石そばも仙石秀久が信州から出石へ転封したときに一緒に付いてきた信濃のそば職人が発祥になっているらしい。はーん。
 西紀サービスエリア ワーケーション1日目の反省点 にも書いたが、車の移動で行きはどこで休憩するかを決めていなかった。そうすると、どのタイミングでどこのサービスエリアに入っていいかがわからなくなってしまった。帰りは下調べして、休憩によさそうな設備があって中間の適切な位置として、舞鶴若狭自動車道の西紀サービスエリアがよさそうと調べていた。そして最初からナビの目的地をサービスエリアにしてしまうことで走り過ぎや休憩までのペースなども走りながら考える必要がない。当たり前のことなんだけど、自分で運転してみて初日はうまく段取りできなかったのでこれも大事な事前準備だと気付いた。
 小さなふりかえりと神戸空港 神戸に戻ってきてから雨がぱらぱらし始めた。天候も何とかもってちょうどよかった。1時間ほどドトールさんで休憩しながら軽いふりかえりみたいになった。
-朝と夜に温泉入るのは疲れる 7つの外湯があり、パスポートを購入していても連続でお風呂に入る人はいなかった 開発合宿は2泊3日が限界 非日常の慣れない生活は楽しさととも緊張もあるので疲労も大きい 実際にやってみることから得られる経験や体験はとても大きい 城崎温泉がどういう場所か、その文化や歴史の一端を垣間見えた 主催としてやらなければならない段取りや準備の経験を大きく積めた 今回の経験をベースにして今後も課題管理システムに積み重なっていく 今後の開発合宿イベントの展望 オープン版は三ノ宮.devでやりそうなのでそこに便乗する うちの会社の関係者や知人に声をかけてクローズドなイベントを1回/年でやる (当面は) bizpy ではやらないかなぁ その後、解散してはらさんを神戸空港まで送っていった。空港の場所は知っていたけど、実際に行ったことなかったので車で空港への行き方がわかってよかった。これで飛行機で神戸に来る人がいても送迎ができる。18時半にレンタカーを返却した。今回は日産 NOTE e-Power というハイブリッド車を初めて運転した。今回の旅程で約350km走って消費したガソリンは約15リットルだった。燃費は23.</description><content>&lt;p>3時に寝て6時前に起きた。起きて作業しようと思って階下に降りた (寝室は2階) ものの、なんかバテてて、畳の部屋で寝転がっていた。涼しくて気持ちよかった。2度寝もしてたかもしれない。起きてからは帰りの高速道路のサービスエリアを調べたり、丹波篠山市か、六甲山天覧台に寄り道するならどういうルートになるかシミュレーションしたりした。&lt;/p>
+朝と夜に温泉入るのは疲れる 7つの外湯があり、パスポートを購入していても連続でお風呂に入る人はいなかった 開発合宿は2泊3日が限界 非日常の慣れない生活は楽しさととも緊張もあるので疲労も大きい 実際にやってみることから得られる経験や体験はとても大きい 城崎温泉がどういう場所か、その文化や歴史の一端を垣間見えた 主催としてやらなければならない段取りや準備の経験を大きく積めた 今回の経験をベースにして今後も課題管理システムに積み重なっていく 今後の開発合宿イベントの展望 オープン版は三ノ宮.devでやりそうなのでそこに便乗する うちの会社の関係者や知人に声をかけてクローズドなイベントを1回/年でやる (当面は) bizpy ではやらないかなぁ その後、解散してはらさんを神戸空港まで送っていった。空港の場所は知っていたけど、実際に行ったことなかったので車で空港への行き方がわかってよかった。これで飛行機で神戸に来る人がいても送迎ができる。18時半にレンタカーを返却した。今回は日産 NOTE e-Power というハイブリッド車を初めて運転した。今回の旅程で約350km走って消費したガソリンは約15リットルだった。燃費は23.3/リットルだった。レンタカーを返して家に着いたらやり終えたなって感じで気分がよかった。
+ストレッチ いつもは土曜日の10時に通っているストレッチを、ワーケーションがあったので日曜日の19時半に変更してもらっていた。温泉に入った後に多少はストレッチをしたものの、運転疲れで体が硬くなってしまっていた。今日の開脚幅は開始前155cmで、ストレッチ後160cmだった。ワーケーションへ行ってきて疲れた後にストレッチを受けられるのは、疲弊した箇所がわかってとてもよかった。外湯に入るために普段より歩いたのものあって腰とふくらはぎの張りが強かった。その上で座椅子や車の運転なども相乗効果があって疲れが溜まっていた感じ。トレーナーさんと旅のふりかえりを雑談しながらストレッチを受けていて、週末どこかへ行ってきた後にストレッチを受けるのはすごくいいと思ってしまった。この場合、私の中ではストレッチがマッサージに置き換わってしまっている。</description><content>&lt;p>3時に寝て6時前に起きた。起きて作業しようと思って階下に降りた (寝室は2階) ものの、なんかバテてて、畳の部屋で寝転がっていた。涼しくて気持ちよかった。2度寝もしてたかもしれない。起きてからは帰りの高速道路のサービスエリアを調べたり、丹波篠山市か、六甲山天覧台に寄り道するならどういうルートになるかシミュレーションしたりした。&lt;/p>
 &lt;h2 id="朝風呂とモーニング">朝風呂とモーニング&lt;/h2>
 &lt;p>昨日と同じように7時を過ぎてから朝風呂に出掛けていく。今日は「地蔵湯」に入った。子ども向けの浅いお風呂と大きなお風呂があった。座椅子でやや腰に負担がかかっていたのでジャグジーで腰の療養をした。昨日3時まで雑談して疲れていたせいか、2泊を終えてバーンアウトしてしまったのか、3日目の旅程の考えがうまくまとまらなくて、お風呂に入りながらぼーっとしていた。喫茶店の &lt;a href="https://tabelog.com/hyogo/A2808/A280801/28014933/">萠阿 (のあ)&lt;/a> さんでモーニングを食べた。&lt;/p>
 &lt;figure>&lt;img src="/diary/diary/img/2022/0605_morning1.jpg"/>
@@ -520,7 +521,7 @@ github はどこまでいってもリポジトリ単位というのがボトル�
 github packages で docker イメージを公開する docker が流行りだした頃に勤めていた会社の貸与端末が docker 禁止だったので私は docker に乗り遅れて、これまでも誰かが用意してくれたコンテナを使うだけでよかったため、最低限の docker コマンドや docker-compose の使い方しか知らなかった。ちょうどインフラの運用を見直す過程で docker コンテナの作成方法から見直すお仕事ができたのでこの機にいろいろ勉強する。いまどき当たり前なんだろうけど、docker の マルチステージビルド をやってみる。
 最初に go のバイナリを選択したのは間違いだったのかもしれない。go のビルド環境を作るベースイメージの選択が難しくて、ビルドはできるけど、作成したバイナリが動かないという状況にはまった。ECSのタスク起動時に「standard_init_linux.go」関連のエラーが出た場合の対処方法 であるように、いろんな不具合がある。ベースイメージの選択やビルドに必要なライブラリがないとそういうエラーになるんだと気付くまでに時間がかかった。
 最終的に次のような Dockerfile でマルチステージビルドができた。builder としてのベースイメージの選択によってやり方はいろいろ変わってくるように思える。
-FROM golang:alpine as builder RUN apk add --no-cache git make gcc musl-dev WORKDIR /work COPY . . RUN go mod download RUN make build FROM alpine:latest WORKDIR / COPY --from=builder /work/bin/sql-executor . CMD [ &amp;quot;/sql-executor&amp;quot; ] Dockerfile ができたら Publishing Docker images を読みながら github actions で自動的に docker イメージを github packages に公開する設定をやってみた。リリースを作成したときに docker イメージをビルドして公開する workflow yml を作成した。ほとんどドキュメントのまま。</description><content>&lt;p>0時に寝て6時に起きた。&lt;/p>
+FROM golang:alpine as builder RUN apk add --no-cache git make gcc musl-dev WORKDIR /work COPY . . RUN go mod download RUN make build FROM alpine:latest WORKDIR / COPY --from=builder /work/bin/sql-executor . CMD [ &amp;#34;/sql-executor&amp;#34; ] Dockerfile ができたら Publishing Docker images を読みながら github actions で自動的に docker イメージを github packages に公開する設定をやってみた。リリースを作成したときに docker イメージをビルドして公開する workflow yml を作成した。ほとんどドキュメントのまま。</description><content>&lt;p>0時に寝て6時に起きた。&lt;/p>
 &lt;h2 id="ストレッチ">ストレッチ&lt;/h2>
 &lt;p>ここ1ヶ月ほどお仕事に集中しているのもあるけど、あまりストレッチに意識を割いていない。やるときは集中して注力するのだけど、飽きてくると怠ける性格的なところがある。とはいえ、やめずに続けているといいことがあると経験則からわかっているのでなるべく継続していきたい。今週も特別なことはなにもしていないのだけど、右足の股関節周りに張りがあってあまり調子がよくなかった。今日の開脚幅は開始前163cmで、ストレッチ後167cmで先週よりも数値が悪化している。良くなるときもあれば悪くなるときもある。毎週ストレッチを受けて計測しているとそういう気付きがあること自体、この機会は健康のために役立っているように考えている。&lt;/p>
 &lt;h2 id="github-packages-で-docker-イメージを公開する">github packages で docker イメージを公開する&lt;/h2>
@@ -536,7 +537,7 @@ RUN make build
 FROM alpine:latest
 WORKDIR /
 COPY --from=builder /work/bin/sql-executor .
-CMD [ &amp;quot;/sql-executor&amp;quot; ]
+CMD [ &amp;#34;/sql-executor&amp;#34; ]
 &lt;/code>&lt;/pre>&lt;p>Dockerfile ができたら &lt;a href="https://docs.github.com/en/actions/publishing-packages/publishing-docker-images">Publishing Docker images&lt;/a> を読みながら github actions で自動的に docker イメージを github packages に公開する設定をやってみた。リリースを作成したときに docker イメージをビルドして公開する &lt;a href="https://github.com/kazamori/go-sql-executor/blob/main/.github/workflows/publish.yml">workflow yml&lt;/a> を作成した。ほとんどドキュメントのまま。&lt;/p>
 &lt;p>github actions の実行結果。&lt;/p>
 &lt;ul>
@@ -557,10 +558,10 @@ $ docker-compose exec -T mydb mysql -h localhost -u root -proot $DB &amp;lt; dum
 &lt;p>&lt;a href="https://kobe-sannomiya-dev.connpass.com/event/235747/">【三宮.dev】もくもく会&lt;/a> に参加した。もともとオフラインの予定だったけど、オミクロン株の流行でオンラインに変更された。&lt;/p>
 &lt;p>お仕事である開発環境の構築をしていて docker-compose を使って mysql の環境構築や共有の開発環境にある db2 に接続するために &lt;a href="https://www.ibm.com/docs/en/db2/10.5?topic=commands-command-line-processor-plus-clpplus">clpplus&lt;/a> のインストール方法などを wiki にまとめてた。コンテナにある mysqldump や mysql コマンドを使ってこんな風にデータ移行もできた。&lt;/p>
 &lt;p>共有の開発環境からデータをエクスポート。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ docker-compose exec -T mydb mysqldump -h $DB_HOST -C --set-gtid-purged&lt;span style="color:#f92672">=&lt;/span>OFF --skip-triggers $DB &amp;gt; dump.sql
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>ローカルの mysql にデータをインポート。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ docker-compose exec -T mydb mysql -h localhost -u root -proot $DB &amp;lt; dump.sql
-&lt;/code>&lt;/pre>&lt;/div>&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">コンテナにある mysqldump と mysql コマンドを使ってデータのインポートするには -T を指定すればいいみたい。そうしないと WARNING とかの文字列が sql ファイルに含まれてしまってインポートできない。&lt;a href="https://t.co/JGeDNsWjhx">https://t.co/JGeDNsWjhx&lt;/a>&lt;/p>&amp;mdash; Tetsuya Morimoto (@t2y) &lt;a href="https://twitter.com/t2y/status/1492391598612959234?ref_src=twsrc%5Etfw">February 12, 2022&lt;/a>&lt;/blockquote>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ docker-compose exec -T mydb mysqldump -h $DB_HOST -C --set-gtid-purged&lt;span style="color:#f92672">=&lt;/span>OFF --skip-triggers $DB &amp;gt; dump.sql
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>ローカルの mysql にデータをインポート。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ docker-compose exec -T mydb mysql -h localhost -u root -proot $DB &amp;lt; dump.sql
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">コンテナにある mysqldump と mysql コマンドを使ってデータのインポートするには -T を指定すればいいみたい。そうしないと WARNING とかの文字列が sql ファイルに含まれてしまってインポートできない。&lt;a href="https://t.co/JGeDNsWjhx">https://t.co/JGeDNsWjhx&lt;/a>&lt;/p>&amp;mdash; Tetsuya Morimoto (@t2y) &lt;a href="https://twitter.com/t2y/status/1492391598612959234?ref_src=twsrc%5Etfw">February 12, 2022&lt;/a>&lt;/blockquote>
 &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script>
 &lt;h2 id="ストレッチ">ストレッチ&lt;/h2>
 &lt;p>いつもは11時からなんやけど、今日は17時40分からだった。カレンダーの予定を変更し忘れてて11時に行って間違えた。今週は2日間ぐらいストレッチしたかな。今日の開脚幅は開始前164cmで、ストレッチ後168cmだった。いつも時間帯が違うので数値も変わる。今日は右太ももの内転筋や内側やらがすごく張ってた。あまり調子はよくない。&lt;/p></content></item><item><title>見積もりの考察</title><link>/diary/posts/2022/0205/</link><pubDate>Sat, 05 Feb 2022 13:03:48 +0900</pubDate><guid>/diary/posts/2022/0205/</guid><description>23時に寝て8時半に起きた。夜中に胃酸が逆流してむせてしんどかった。
@@ -773,17 +774,17 @@ $ kubectl get secret mydata -o json | jq &amp;#39;.</description><content>&lt;p>
 &lt;h2 id="dapr-の-api-トークンを使った認証">dapr の api トークンを使った認証&lt;/h2>
 &lt;p>&lt;a href="https://docs.dapr.io/operations/security/api-token/">Enable API token authentication in Dapr&lt;/a> を一通り読んだ。内容はとくに難しくなく、こんな風に dapr の manifest を書けば &lt;a href="https://jwt.io/">JWT&lt;/a> トークンを設定できますということを書いてある。私はずっとサーバーサイドばっかりやってきたからフロントエンドで使われる技術や仕組みに弱い。JWT トークンもその1つで、自分でちゃんと実装したことがないからちゃんとよく分かってない。これが OAuth2 なら provider を実装したこともあるからその仕組みも意図も理解できる。一度どこかで自分で JWT も実装してみないといけないのだろうな。&lt;/p>
 &lt;p>少し前にお仕事で kubernetes の secret の移行作業をやった。既存の secret にキーバリューを追加するときは patch を使う。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl patch secret mydata -p&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;{&amp;#34;stringData&amp;#34;:{&amp;#34;mykey&amp;#34;: &amp;#34;myvalue&amp;#34;}}&amp;#39;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>secret の内容を確認するときも2つのやり方がある。キーだけを確認するならこれでよい。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl describe secrets mydata
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>キーに対応する値もデコードして確認するならこうする。但し、閲覧注意。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ kubectl get secret mydata -o json | jq &lt;span style="color:#e6db74">&amp;#39;.data | map_values(@base64d)&amp;#39;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>github actions のビルドキャッシュ運用</title><link>/diary/posts/2021/1204/</link><pubDate>Sat, 04 Dec 2021 13:20:21 +0900</pubDate><guid>/diary/posts/2021/1204/</guid><description>23時に寝て5時に起きてちょっと作業してまた寝て7時に起きた。お仕事も働き始めて1ヶ月が経過して、だいぶチームの雰囲気や業務に慣れてきたところ。稼働日の18日間で作成した pr が16件。入ったときに割当てられた3つの課題から10数件の issue を派生させてちょうどすべて fix した。来週から新しい課題に取り組む。
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl patch secret mydata -p&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;{&amp;#34;stringData&amp;#34;:{&amp;#34;mykey&amp;#34;: &amp;#34;myvalue&amp;#34;}}&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>secret の内容を確認するときも2つのやり方がある。キーだけを確認するならこれでよい。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl describe secrets mydata
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>キーに対応する値もデコードして確認するならこうする。但し、閲覧注意。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl get secret mydata -o json | jq &lt;span style="color:#e6db74">&amp;#39;.data | map_values(@base64d)&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>github actions のビルドキャッシュ運用</title><link>/diary/posts/2021/1204/</link><pubDate>Sat, 04 Dec 2021 13:20:21 +0900</pubDate><guid>/diary/posts/2021/1204/</guid><description>23時に寝て5時に起きてちょっと作業してまた寝て7時に起きた。お仕事も働き始めて1ヶ月が経過して、だいぶチームの雰囲気や業務に慣れてきたところ。稼働日の18日間で作成した pr が16件。入ったときに割当てられた3つの課題から10数件の issue を派生させてちょうどすべて fix した。来週から新しい課題に取り組む。
 ストレッチ 今週もお仕事に注力してたらストレッチは2日/週とあまりできなかった。ウォーキングもやってない。今日の開脚幅は開始前165cmで、ストレッチ後167cmだった。さぼってたせいか、数値が悪くなってしまった。右股関節の関節の可動域がよくないところは少しずつまがるようになってきてよくなってきている実感がある。一方で右太ももの後ろの筋が張りが大きいことに気付いた。トレーナーさんに聞くと、この筋は椅子に座っていると張りやすいという話しなので、最近はお仕事に注力して椅子に座っている時間が以前より伸びているせいだと思う。あと会議に出席している時間も増えているため、その時間は椅子に座っておかないといけないという制約も増えている。
 actions/cache の exclude 設定 github actions でビルドキャッシュを扱う方法は Caching dependencies to speed up workflows に書いてあって、それは actions/cache という github actions がキャッシュ機能を提供している。ここでドキュメントにはキャッシュの除外設定については何も書かれていないが、リポジトリに含まれる examples.md には次のような説明と設定例が出てくる。
 Depending on the environment, huge packages might be pre-installed in the global cache folder. With actions/cache@v2 you can now exclude unwanted packages with exclude pattern
 https://github.com/actions/cache/blob/main/examples.md#c---nuget
-- uses: actions/cache@v2 with: path: |~/.nuget/packages !~/.nuget/packages/unwanted key: ${{ runner.os }}-nuget-${{ hashFiles(&amp;#39;**/packages.lock.json&amp;#39;) }} restore-keys: | ${{ runner.</description><content>&lt;p>23時に寝て5時に起きてちょっと作業してまた寝て7時に起きた。お仕事も働き始めて1ヶ月が経過して、だいぶチームの雰囲気や業務に慣れてきたところ。稼働日の18日間で作成した pr が16件。入ったときに割当てられた3つの課題から10数件の issue を派生させてちょうどすべて fix した。来週から新しい課題に取り組む。&lt;/p>
+- uses: actions/cache@v2 with: path: | ~/.nuget/packages !~/.nuget/packages/unwanted key: ${{ runner.os }}-nuget-${{ hashFiles(&amp;#39;**/packages.lock.json&amp;#39;) }} restore-keys: | ${{ runner.</description><content>&lt;p>23時に寝て5時に起きてちょっと作業してまた寝て7時に起きた。お仕事も働き始めて1ヶ月が経過して、だいぶチームの雰囲気や業務に慣れてきたところ。稼働日の18日間で作成した pr が16件。入ったときに割当てられた3つの課題から10数件の issue を派生させてちょうどすべて fix した。来週から新しい課題に取り組む。&lt;/p>
 &lt;h2 id="ストレッチ">ストレッチ&lt;/h2>
 &lt;p>今週もお仕事に注力してたらストレッチは2日/週とあまりできなかった。ウォーキングもやってない。今日の開脚幅は開始前165cmで、ストレッチ後167cmだった。さぼってたせいか、数値が悪くなってしまった。右股関節の関節の可動域がよくないところは少しずつまがるようになってきてよくなってきている実感がある。一方で右太ももの後ろの筋が張りが大きいことに気付いた。トレーナーさんに聞くと、この筋は椅子に座っていると張りやすいという話しなので、最近はお仕事に注力して椅子に座っている時間が以前より伸びているせいだと思う。あと会議に出席している時間も増えているため、その時間は椅子に座っておかないといけないという制約も増えている。&lt;/p>
 &lt;h2 id="actionscache-の-exclude-設定">actions/cache の exclude 設定&lt;/h2>
@@ -792,29 +793,29 @@ https://github.com/actions/cache/blob/main/examples.md#c---nuget
 &lt;p>Depending on the environment, huge packages might be pre-installed in the global cache folder. With actions/cache@v2 you can now exclude unwanted packages with &lt;a href="https://github.com/actions/toolkit/tree/main/packages/glob#exclude-patterns">exclude pattern&lt;/a>&lt;/p>
 &lt;p>&lt;a href="https://github.com/actions/cache/blob/main/examples.md#c---nuget">https://github.com/actions/cache/blob/main/examples.md#c---nuget&lt;/a>&lt;/p>
 &lt;/blockquote>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yml" data-lang="yml">- &lt;span style="color:#f92672">uses&lt;/span>: &lt;span style="color:#ae81ff">actions/cache@v2&lt;/span>
-&lt;span style="color:#f92672">with&lt;/span>:
-&lt;span style="color:#f92672">path&lt;/span>: |&lt;span style="color:#e6db74">
-&lt;/span>&lt;span style="color:#e6db74"> ~/.nuget/packages
-&lt;/span>&lt;span style="color:#e6db74"> !~/.nuget/packages/unwanted&lt;/span>
-&lt;span style="color:#f92672">key&lt;/span>: &lt;span style="color:#ae81ff">${{ runner.os }}-nuget-${{ hashFiles(&amp;#39;**/packages.lock.json&amp;#39;) }}&lt;/span>
-&lt;span style="color:#f92672">restore-keys&lt;/span>: |&lt;span style="color:#e6db74">
-&lt;/span>&lt;span style="color:#e6db74"> &lt;/span> &lt;span style="color:#ae81ff">${{ runner.os }}-nuget-&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>!&lt;/code> を入れるだけかと思って検証してみたらどうも意図した振る舞いにならない。実はこの設定はバグっていて実際には動かない。なぜ動かないかを追いかけてないけど、issue にも登録されている。&lt;code>path&lt;/code> の記述方法によって動いたり動かなかったりするというのが現状の振る舞いになるらしい。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>- &lt;span style="color:#f92672">uses&lt;/span>: &lt;span style="color:#ae81ff">actions/cache@v2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">with&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">path&lt;/span>: |&lt;span style="color:#e6db74">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> ~/.nuget/packages
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> !~/.nuget/packages/unwanted&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">key&lt;/span>: &lt;span style="color:#ae81ff">${{ runner.os }}-nuget-${{ hashFiles(&amp;#39;**/packages.lock.json&amp;#39;) }}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">restore-keys&lt;/span>: |&lt;span style="color:#e6db74">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> &lt;/span> &lt;span style="color:#ae81ff">${{ runner.os }}-nuget-&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>!&lt;/code> を入れるだけかと思って検証してみたらどうも意図した振る舞いにならない。実はこの設定はバグっていて実際には動かない。なぜ動かないかを追いかけてないけど、issue にも登録されている。&lt;code>path&lt;/code> の記述方法によって動いたり動かなかったりするというのが現状の振る舞いになるらしい。&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="https://github.com/actions/cache/issues/494">Excluded sub directory not working #494&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://github.com/actions/toolkit/issues/713">Cache - excluding files or folders with ! not working #713&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;p>ちなみに正しい動く設定は次になる。ワイルドカードを使わないといけないらしい。ドキュメントに除外設定について書いていないのはバグってて中途半端な振る舞いをしているからかもしれない。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yml" data-lang="yml">- &lt;span style="color:#f92672">uses&lt;/span>: &lt;span style="color:#ae81ff">actions/cache@v2&lt;/span>
-&lt;span style="color:#f92672">with&lt;/span>:
-&lt;span style="color:#f92672">path&lt;/span>: |&lt;span style="color:#e6db74">
-&lt;/span>&lt;span style="color:#e6db74"> ~/.nuget/packages/*
-&lt;/span>&lt;span style="color:#e6db74"> !~/.nuget/packages/unwanted&lt;/span>
-&lt;span style="color:#f92672">key&lt;/span>: &lt;span style="color:#ae81ff">${{ runner.os }}-nuget-${{ hashFiles(&amp;#39;**/packages.lock.json&amp;#39;) }}&lt;/span>
-&lt;span style="color:#f92672">restore-keys&lt;/span>: |&lt;span style="color:#e6db74">
-&lt;/span>&lt;span style="color:#e6db74"> &lt;/span> &lt;span style="color:#ae81ff">${{ runner.os }}-nuget-&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>あとビルドキャッシュのキーにパッケージ管理のファイルのハッシュ値を取るようになっている。この背景も github actions がキャッシュをクリアする機能を提供していないからであろう。&lt;a href="https://github.com/actions/cache/issues/2">Clear cache #2&lt;/a> でも議論されているが、キャッシュをクリアできないため、同じキーにパッケージが溜まり続けるような運用は開発者にとっても github 社にとってもリソースを浪費するので好ましくない。いまは7日以上アクセスされていないキャッシュを削除する運用になっているため、なるべくフレッシュなキャッシュが生成されるような運用となるよう、ハッシュ値を取得するようなキーの運用が行われているように推測される。&lt;/p></content></item><item><title>66日目</title><link>/diary/posts/2021/1130/</link><pubDate>Tue, 30 Nov 2021 07:45:30 +0900</pubDate><guid>/diary/posts/2021/1130/</guid><description>23時に寝て3時過ぎに起きて作業しようと思ったものの、やっぱりそのまま寝てしまって7時に起きた。前々日にあまり寝てなかったせいか、睡眠不足を解消したとポジティブに考えとく。
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>- &lt;span style="color:#f92672">uses&lt;/span>: &lt;span style="color:#ae81ff">actions/cache@v2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">with&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">path&lt;/span>: |&lt;span style="color:#e6db74">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> ~/.nuget/packages/*
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> !~/.nuget/packages/unwanted&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">key&lt;/span>: &lt;span style="color:#ae81ff">${{ runner.os }}-nuget-${{ hashFiles(&amp;#39;**/packages.lock.json&amp;#39;) }}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">restore-keys&lt;/span>: |&lt;span style="color:#e6db74">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> &lt;/span> &lt;span style="color:#ae81ff">${{ runner.os }}-nuget-&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>あとビルドキャッシュのキーにパッケージ管理のファイルのハッシュ値を取るようになっている。この背景も github actions がキャッシュをクリアする機能を提供していないからであろう。&lt;a href="https://github.com/actions/cache/issues/2">Clear cache #2&lt;/a> でも議論されているが、キャッシュをクリアできないため、同じキーにパッケージが溜まり続けるような運用は開発者にとっても github 社にとってもリソースを浪費するので好ましくない。いまは7日以上アクセスされていないキャッシュを削除する運用になっているため、なるべくフレッシュなキャッシュが生成されるような運用となるよう、ハッシュ値を取得するようなキーの運用が行われているように推測される。&lt;/p></content></item><item><title>66日目</title><link>/diary/posts/2021/1130/</link><pubDate>Tue, 30 Nov 2021 07:45:30 +0900</pubDate><guid>/diary/posts/2021/1130/</guid><description>23時に寝て3時過ぎに起きて作業しようと思ったものの、やっぱりそのまま寝てしまって7時に起きた。前々日にあまり寝てなかったせいか、睡眠不足を解消したとポジティブに考えとく。
 習慣化のための平均66日 前に GIG MINDSET ギグ・マインドセット を読んだときにロンドン大学が行った研究で習慣になるには平均して66日かかるというのをみかけた。「平均して」というのが曖昧なところで、直観的に理解できるけど、対象の難易度によって習慣化に要する日数が異なる。簡単なことはすぐ習慣化できるし、難しいことには時間がかかる。それらをいくつも試してみて平均したら66日だったという話し。66日仮説 でも言及されているようにこの手の研究はあまり鵜呑みにするのもよくない。とはいえ、何らかの基準や目安があること自体は悪いことではないので一般論として参考にするのはよいと私は考えている。日記を書くというのは比較的簡単なことだと私は捉えるが、66日続いたので習慣と化したとみなしていいだろう。
 書くこと 日記に関連して「書くこと」そのものを研究対象としている。自分でも日記を書き続けて何が起こるのかを理解するために実践しているという意図もある。
 日記だけではなく、私は業務の過程で普通の開発者より、平均的な文章量よりも大量に書く。課題管理システムに私以上にコメントを書く開発者を、この10年で1人もみたことがない。私以上に課題管理システムを使いこなす開発者もこの10年みたことがない。課題管理システムの使い方や応用をメンバーにアドバイスするし、メンバーも私の使い方をみて真似してくれることもあった。これまでそういった行動は無意識にやっていたことだけど、それを意識化して形式知として体系化したいという狙いもある。
@@ -1038,7 +1039,10 @@ NTP を使っていてもクロックの同期はミリ秒から秒レベルで�
 食べものとか実際にボリュームディスカウントされることが多いので食べものだとイメージしやすい。スーパーで半額になった豚カツを2枚買うときの私の気持ちはこんな感じ。定価なら1枚しか買わないのに半額なら2枚買ってもいいかと思ったりする。たまに2枚を一度に食べて気分悪くなって後悔する。たいていは晩ご飯に1枚、翌日のお昼ゴハンに1枚を分けて食べる。
 余剰: 価格と消費者がお金を払ってもよい金額との差額 コーヒー1杯に400円払ってよいと考えていて、100円のコーヒーを買うなら300円が余剰といえる さらにコーヒー2杯目を50円で買ってよいと考えるなら350円が余剰と言える すべての消費者の余剰を計算したものを消費者余剰という。需要曲線からある価格 p を取るときの次のグラフにおける面積を消費者余剰と呼ぶ。グラフにすると直観的にわかりやすい。
 消費者余剰に対して、売る側の利潤の合計を生産者余剰と呼ぶ。消費者余剰と生産者余剰との和を社会的余剰と呼ぶ。社会的余剰を「市場のよさ」のモノサシとして使うと談合は禁止すべしということになる。
-ベルトラン価格競争 同品質で同費用の業者が価格競争をした場合、顧客は価格が安い方から商品を購入する。こうした市場をベルトラン寡占市場と呼ぶ このとき業者間の価格競争は最終的に「底辺への競争」が起こり、経費と同じ価格に近づく この状態をベルトラン均衡と呼ぶ 業者間で談合して価格を据え置けばよいが、業者の数が多くなるとこれは難しい 裏切りが発生したり、信頼関係を維持するのが難しかったりして、長期的な利益や全体の利益を追求するのが難しい ゲーム理論の話しのように読めた 価格弾力性 価格の変化によって需要がどのぐらい弾んで動くかをあらわす 弾力性が低いというと、価格が動いても需要はあまり変わらない状態をいう 弾力性が高い財は値上げすると需要が大幅に下がる 必需品は値上げしても需要が下がりにくい 課税で考えると、必需品への課税は貧しい人の生活に与えるダメージが大きい ギッフェン財 需要曲線は右下がりのカーブになるのが通常だが、経験的事実に即している そうした財を正常財と呼ぶ ごく稀に価格が上がるにつれ売れ行きが増すものがある、それをギッフェン財と呼ぶ 代替効果: ある商品が値上げしたときに別の商品に置き換えたくなる 所得効果: 生活にゆとりがなくなると、高いものは買えなくなり、安いものを買おうとする 内容はそう難しくないが、急にたくさんの用語が出てきて読み解くのに時間がかかった。</description><content>&lt;p>3時に寝て6時に起きた。今日はちゃんと起き上がって朝からお茶を煮出して粗熱とって冷やしたりしてた。その後、準備してオフィスに着いたのが7時20分。いつもより1時間早く起きているのでオフィスに着くのも1時間早くなる。&lt;a href="/diary/diary/posts/2021/1022/">先週&lt;/a> の水曜日と金曜日だけ朝活やってみて逆に生活のリズムが乱れてよくない感じがした。今週は毎日6時に起きて朝活に参加してみるのを試す。&lt;/p>
+ベルトラン価格競争 同品質で同費用の業者が価格競争をした場合、顧客は価格が安い方から商品を購入する。こうした市場をベルトラン寡占市場と呼ぶ このとき業者間の価格競争は最終的に「底辺への競争」が起こり、経費と同じ価格に近づく この状態をベルトラン均衡と呼ぶ 業者間で談合して価格を据え置けばよいが、業者の数が多くなるとこれは難しい 裏切りが発生したり、信頼関係を維持するのが難しかったりして、長期的な利益や全体の利益を追求するのが難しい ゲーム理論の話しのように読めた 価格弾力性 価格の変化によって需要がどのぐらい弾んで動くかをあらわす 弾力性が低いというと、価格が動いても需要はあまり変わらない状態をいう 弾力性が高い財は値上げすると需要が大幅に下がる 必需品は値上げしても需要が下がりにくい 課税で考えると、必需品への課税は貧しい人の生活に与えるダメージが大きい ギッフェン財 需要曲線は右下がりのカーブになるのが通常だが、経験的事実に即している そうした財を正常財と呼ぶ ごく稀に価格が上がるにつれ売れ行きが増すものがある、それをギッフェン財と呼ぶ 代替効果: ある商品が値上げしたときに別の商品に置き換えたくなる 所得効果: 生活にゆとりがなくなると、高いものは買えなくなり、安いものを買おうとする 内容はそう難しくないが、急にたくさんの用語が出てきて読み解くのに時間がかかった。
+設計ドキュメントレビュー 先週から作っていた設計ドキュメントを顧問さんと一緒にレビューした。スライド40枚を2時間がっつり話してめっちゃ疲れた。話し終えて20-30分抜け殻になって軽く散歩してきた。ここ3ヶ月、調べものをしてきた内容の集大成でもあり、頭の中にしかなかった課題管理の実践知を明文化するといった取り組みの (途中) 結果でもある。品質の良し悪しで言えば、たった3ヶ月で出来たものなので大したことはない。あくまで途上における段階でしかないのだけど、私の中でも納得感は出てきたし、レビューしてもらって厳しい指摘もなかったので方向性は出てきた感じがある。このまま時間のあるときに進めていく。
+Slack apps の調査 この水曜日にある勉強会の 資料作成 が完了した。Slack apps の調査を勢いよくやりたいので2週間ごとに開催することにする。ドキュメントを眺めていて次回は 新機能、アプリのホーム・ヴューを活用しよう:house_with_garden: のチュートリアルをやってみることに決めた。
+お昼寝 睡眠時間が短かったせいか、朝早かったせいか、夕方に集中力がなくなったので17時に切り上げて帰って寝てた。今日は雨だったので徒歩通勤だったのもありウォーキングにもなった。途中でスーパーに寄って買いものして帰った。運動目的だと1時間ぐらい歩いても平気なのに通勤だと15分歩くだけで疲れる。同じ行動をしていても目的意識で変わってくる。18時ぐらいには家に着いてそのまま4時間ほど寝てた。その後、また起きて夜の作業に入った。起きてからお腹すいて即席でめんつゆと醤油とかぼちゃとささみと卵で煮物を作ってみたら意外とおいしかった。お腹すいているとちょっとしたものでもおいしい。気に入ったのでカバー画像にしてみた。</description><content>&lt;p>3時に寝て6時に起きた。今日はちゃんと起き上がって朝からお茶を煮出して粗熱とって冷やしたりしてた。その後、準備してオフィスに着いたのが7時20分。いつもより1時間早く起きているのでオフィスに着くのも1時間早くなる。&lt;a href="/diary/diary/posts/2021/1022/">先週&lt;/a> の水曜日と金曜日だけ朝活やってみて逆に生活のリズムが乱れてよくない感じがした。今週は毎日6時に起きて朝活に参加してみるのを試す。&lt;/p>
 &lt;h2 id="ミクロ経済学入門の入門">ミクロ経済学入門の入門&lt;/h2>
 &lt;p>早起きしたので打ち合わせ前の隙間時間に第3章の需要曲線を読んだ。まずは用語の整理から。&lt;/p>
 &lt;ul>
@@ -1161,30 +1165,30 @@ Approval and Ticketing Workflows in Slack
 Terminal のカスタマイズ 月別一覧のページを作成した。Hugo には Taxonomies という仕組みがあって、任意のラベルでカテゴライズできる。デフォルトでは categories と tags が提供されている。設定ファイルに dates というカスタム Taxonomies を定義する。
 [taxonomies] date = &amp;#34;dates&amp;#34; tag = &amp;#34;tags&amp;#34; コンテンツのメタデータには次のように年月のラベルを付与する。
 dates: [2021/10] これは hugo new したときに自動生成されるので自分で明示的に設定する必要はない。
-dates: [{{ dateFormat &amp;quot;2006/01&amp;quot; .Date }}] ラベル名に / を含めると自動的に月ごとのサブディレクトリになってくれるので月別のアーカイブを生成するのに都合がよい。
+dates: [{{ dateFormat &amp;#34;2006/01&amp;#34; .Date }}] ラベル名に / を含めると自動的に月ごとのサブディレクトリになってくれるので月別のアーカイブを生成するのに都合がよい。
 $ tree -L 3 public/dates/ public/dates/ ├── 2021 │ ├── 09 │ │ ├── index.html │ │ ├── index.xml │ │ └── page │ └── 10 │ ├── index.html │ ├── index.</description><content>&lt;p>2時に寝て7時に起きる。昨日 &lt;a href="https://anime-86.com/">86―エイティシックス―&lt;/a> の第2クールの初回をみた。起きてから第1クールの後半の内容を見返したりしてた。内容がすごくおもしろいというわけではないんだけど、作品の世界観と音楽がよい。というか、&lt;a href="https://www.sawanohiroyuki.com/">澤野弘之&lt;/a> 氏のファンなので彼が音楽を手がける作品はみてしまう。第1クールの音楽も素晴らしかった。音楽がよいと映画やアニメのシーンが盛り上がるし、音楽だけを聞いているときにもそのシーンのイメージが想起されて音楽そのものにも深みが出るような気がする。&lt;/p>
 &lt;h2 id="terminal-のカスタマイズ">Terminal のカスタマイズ&lt;/h2>
 &lt;p>月別一覧のページを作成した。Hugo には &lt;a href="https://gohugo.io/content-management/taxonomies/">Taxonomies&lt;/a> という仕組みがあって、任意のラベルでカテゴライズできる。デフォルトでは &lt;code>categories&lt;/code> と &lt;code>tags&lt;/code> が提供されている。設定ファイルに &lt;code>dates&lt;/code> というカスタム Taxonomies を定義する。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-toml" data-lang="toml">[&lt;span style="color:#a6e22e">taxonomies&lt;/span>]
-&lt;span style="color:#a6e22e">date&lt;/span> = &lt;span style="color:#e6db74">&amp;#34;dates&amp;#34;&lt;/span>
-&lt;span style="color:#a6e22e">tag&lt;/span> = &lt;span style="color:#e6db74">&amp;#34;tags&amp;#34;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>コンテンツのメタデータには次のように年月のラベルを付与する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-toml" data-lang="toml">&lt;span style="display:flex;">&lt;span>[&lt;span style="color:#a6e22e">taxonomies&lt;/span>]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">date&lt;/span> = &lt;span style="color:#e6db74">&amp;#34;dates&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">tag&lt;/span> = &lt;span style="color:#e6db74">&amp;#34;tags&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>コンテンツのメタデータには次のように年月のラベルを付与する。&lt;/p>
 &lt;pre tabindex="0">&lt;code>dates: [2021/10]
 &lt;/code>&lt;/pre>&lt;p>これは &lt;code>hugo new&lt;/code> したときに自動生成されるので自分で明示的に設定する必要はない。&lt;/p>
-&lt;pre tabindex="0">&lt;code>dates: [{{ dateFormat &amp;quot;2006/01&amp;quot; .Date }}]
+&lt;pre tabindex="0">&lt;code>dates: [{{ dateFormat &amp;#34;2006/01&amp;#34; .Date }}]
 &lt;/code>&lt;/pre>&lt;p>ラベル名に &lt;code>/&lt;/code> を含めると自動的に月ごとのサブディレクトリになってくれるので月別のアーカイブを生成するのに都合がよい。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ tree -L &lt;span style="color:#ae81ff">3&lt;/span> public/dates/
-public/dates/
-├── &lt;span style="color:#ae81ff">2021&lt;/span>
-│   ├── &lt;span style="color:#ae81ff">09&lt;/span>
-│   │   ├── index.html
-│   │   ├── index.xml
-│   │   └── page
-│   └── &lt;span style="color:#ae81ff">10&lt;/span>
-│   ├── index.html
-│   ├── index.xml
-│   └── page
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>タグ一覧とは異なり、年単位・月単位にまとめて一覧表示するためにテンプレートをカスタマイズする。&lt;a href="https://gohugo.io/templates/taxonomy-templates/">Taxonomy Templates&lt;/a> は &lt;code>terms.html&lt;/code> によって提供されている。Terminal が提供しているこのテンプレートをカスタマイズすることで月別一覧を次のような表示になるようカスタマイズした。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ tree -L &lt;span style="color:#ae81ff">3&lt;/span> public/dates/
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>public/dates/
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>├── &lt;span style="color:#ae81ff">2021&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│   ├── &lt;span style="color:#ae81ff">09&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│   │   ├── index.html
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│   │   ├── index.xml
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│   │   └── page
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│   └── &lt;span style="color:#ae81ff">10&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│   ├── index.html
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│   ├── index.xml
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│   └── page
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>タグ一覧とは異なり、年単位・月単位にまとめて一覧表示するためにテンプレートをカスタマイズする。&lt;a href="https://gohugo.io/templates/taxonomy-templates/">Taxonomy Templates&lt;/a> は &lt;code>terms.html&lt;/code> によって提供されている。Terminal が提供しているこのテンプレートをカスタマイズすることで月別一覧を次のような表示になるようカスタマイズした。&lt;/p>
 &lt;figure>&lt;img src="/diary/diary/img/2021/1010_dates.png"/>
 &lt;/figure>
 &lt;p>実際の修正内容は次になる。&lt;/p>
@@ -1254,17 +1258,17 @@ blockquote { background: #eafff4; color: #2d3330; font-style: italic; } 変更�
 &lt;p>ここで、何をやってもいいとしたら、何をやりたいかという課題が出てくる。適当にあれこれやってみても、実際にやってみるとうまくいかなくて、やる気が持続しなかったりすることがある。多くのケースで、若い頃ほどなにかに夢中になってやっていた経験が誰しもあると思うが、あのときはなぜそんなに夢中になってできたのか。いま思い返しながら、自分にとっての動機づけの源泉を探るようなことをしていかないとわからないのだ。まったく自分のことなのに。2021年に入ってからそういったことを考え続けていたところ、このスライドを眺めてたら動機よりも価値観なんだよと書いてあって、私がこの9ヶ月間、掘り返し続けてた動機づけの源泉=価値観という考え方はしっくりきて、価値観がブレると動機づけもうまくいかないなと思えた。&lt;/p>
 &lt;h2 id="hugoterminalのカスタマイズ">Hugo/Terminalのカスタマイズ&lt;/h2>
 &lt;p>Speaker Deck のスライドの埋め込みができなくて調べた。&lt;a href="https://chizuchizu.com/blog/tag_hugo/">HUGOで埋め込みができない時の対処法&lt;/a> によると、&lt;code>config.toml&lt;/code> に次の設定を追加すると表示された。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-toml" data-lang="toml">[&lt;span style="color:#a6e22e">markup&lt;/span>]
-[&lt;span style="color:#a6e22e">markup&lt;/span>.&lt;span style="color:#a6e22e">goldmark&lt;/span>]
-[&lt;span style="color:#a6e22e">markup&lt;/span>.&lt;span style="color:#a6e22e">goldmark&lt;/span>.&lt;span style="color:#a6e22e">renderer&lt;/span>]
-&lt;span style="color:#a6e22e">unsafe&lt;/span> = &lt;span style="color:#66d9ef">true&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>Terminal のテーマだと本文と引用の違いわかりにくかったのでスタイルを変えてみた。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-css" data-lang="css">&lt;span style="color:#f92672">blockquote&lt;/span> {
-&lt;span style="color:#66d9ef">background&lt;/span>: &lt;span style="color:#ae81ff">#eafff4&lt;/span>;
-&lt;span style="color:#66d9ef">color&lt;/span>: &lt;span style="color:#ae81ff">#2d3330&lt;/span>;
-&lt;span style="color:#66d9ef">font-style&lt;/span>: &lt;span style="color:#66d9ef">italic&lt;/span>;
-}
-&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-toml" data-lang="toml">&lt;span style="display:flex;">&lt;span>[&lt;span style="color:#a6e22e">markup&lt;/span>]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> [&lt;span style="color:#a6e22e">markup&lt;/span>.&lt;span style="color:#a6e22e">goldmark&lt;/span>]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> [&lt;span style="color:#a6e22e">markup&lt;/span>.&lt;span style="color:#a6e22e">goldmark&lt;/span>.&lt;span style="color:#a6e22e">renderer&lt;/span>]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">unsafe&lt;/span> = &lt;span style="color:#66d9ef">true&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Terminal のテーマだと本文と引用の違いわかりにくかったのでスタイルを変えてみた。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-css" data-lang="css">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">blockquote&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">background&lt;/span>: &lt;span style="color:#ae81ff">#eafff4&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">color&lt;/span>: &lt;span style="color:#ae81ff">#2d3330&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">font-style&lt;/span>: &lt;span style="color:#66d9ef">italic&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
 &lt;li>
 &lt;p>変更前&lt;/p>
 &lt;figure>&lt;img src="/diary/diary/img/2021/1002_blockquote-before.png"/>
@@ -1277,11 +1281,11 @@ blockquote { background: #eafff4; color: #2d3330; font-style: italic; } 変更�
 &lt;/li>
 &lt;/ul>
 &lt;p>日付の表記を少し大きくして目立つようにした。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-css" data-lang="css">.&lt;span style="color:#a6e22e">post-date&lt;/span> {
-&lt;span style="color:#66d9ef">font-weight&lt;/span>: &lt;span style="color:#66d9ef">bold&lt;/span>;
-&lt;span style="color:#66d9ef">font-size&lt;/span>: &lt;span style="color:#ae81ff">1.3&lt;/span>&lt;span style="color:#66d9ef">rem&lt;/span>;
-}
-&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>副反応はいずこ？</title><link>/diary/posts/2021/0928/</link><pubDate>Tue, 28 Sep 2021 08:35:36 +0900</pubDate><guid>/diary/posts/2021/0928/</guid><description>2時過ぎぐらいに寝て5時前ぐらいに起きる。やや熱っぽいかなぁぐらいの印象でもう一度寝る。8時前に起きるともう平気になってた。昨日、書籍や macbook を持って帰ってきて引きこもり対策してたけど、体調が悪くないのでオフィスへ行くことにした。お昼から1時間おきに熱を測ってみたら37℃前後なので少し熱は出ていたみたい。とくにしんどくなかったので普通にお仕事してた。
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-css" data-lang="css">&lt;span style="display:flex;">&lt;span>.&lt;span style="color:#a6e22e">post-date&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">font-weight&lt;/span>: &lt;span style="color:#66d9ef">bold&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">font-size&lt;/span>: &lt;span style="color:#ae81ff">1.3&lt;/span>&lt;span style="color:#66d9ef">rem&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>副反応はいずこ？</title><link>/diary/posts/2021/0928/</link><pubDate>Tue, 28 Sep 2021 08:35:36 +0900</pubDate><guid>/diary/posts/2021/0928/</guid><description>2時過ぎぐらいに寝て5時前ぐらいに起きる。やや熱っぽいかなぁぐらいの印象でもう一度寝る。8時前に起きるともう平気になってた。昨日、書籍や macbook を持って帰ってきて引きこもり対策してたけど、体調が悪くないのでオフィスへ行くことにした。お昼から1時間おきに熱を測ってみたら37℃前後なので少し熱は出ていたみたい。とくにしんどくなかったので普通にお仕事してた。
 水分補給 副反応対策として、ポカリスエットイオンウォーターの粉末をウォーターサーバーの水に混ぜて飲んでみる。イオンウォーターと普通の ポカリスエットとの違いは何ですか？ によると、基本的な成分は同じで低カロリーという違いがあるらしい。
 日記サイト構築 diary リポジトリに push すると GitHub Actions で静的サイトをビルドして GitHub Pages で扱うための gh-pages ブランチに push される。GitHub Actions による GitHub Pages への自動デプロイ を参考にした。gh-pages ブランチにあるものが次の URL で参照される。リポジトリ名の diary がパスになるらしい。
 https://t2y.github.io/diary/ まだ設定は不完全だけど、運用しながらおいおい設定を詰めていく。Hugo は会社のホームページにも使っているので慣れているのと、使い心地も気に入っているのでこのまま使い続ける。会社のサイトはたまにしか更新しないので日記を書く方が更新頻度があがって Hugo を触るインセンティブになるかもしれない。
@@ -1319,7 +1323,7 @@ macbook を Oculus リモートデスクトップで接続して、ホワイト�
 リモートデスクトップと画面共有 目の前の画面を大きくできるのでホワイトボード (スクリーン) よりみやすい 眼の前の画面をみて説明すると、相手の顔が見えないので vr のメリットが半減する 半仮想モードで話しながらメモをとるのは可能ではあるが、現実でやるよりも難しいので効率が悪化する パソコンの操作が現実よりも難しいので、操作しないインセンティブになりがち リモートデスクトップで画面共有をしていたせいか、
 フル充電した状態から1.5 時間ぐらいでバッテリーが少ない警告が出た ヘッドセットの位置調整がうまくいかないと画面の文字がぼやけたりする ヘッドセットの固定がうまくいかないと、会議に集中できず、ストレスになる 1時間程度の会議であれば、とくに vr による疲れなどは気にならない 打ち合わせ終わってから NeosVR をするために Linux マシンと Oculus Quest 2 を接続する方法を検討。
 https://neosvrjp.memo.wiki/ Oculus Link アプリを PC にインストールする必要があるが、Windows 向けにしか提供されていない。wine で動かない、一通りツール類をインストールして試してみたつもりだけど、このエラーを解決できなかった。諦める。
-$ wine --version wine-5.0 (Ubuntu 5.0-3ubuntu1) $ wine ~/Downloads/OculusSetup.</description><content>&lt;p>土曜日は昼寝してたくさん寝たせいか、昨日はうまく寝れなかった。4時頃に &lt;a href="https://bunkyosha.com/books/9784866510149">「手で書くこと」が知性を引き出す 心を整え、思考を解き放つ新習慣「ジャーナリング」入門&lt;/a> の序章と1章を読んだ。手で書くのとキーボードをタイピングするのでは前者の方が脳が活性化されるらしい。指先の細かい制御が脳に効果的なようだ。5時ぐらいから寝て8時前に起きる。&lt;/p>
+$ wine --version wine-5.0 (Ubuntu 5.0-3ubuntu1) $ wine ~/Downloads/OculusSetup.exe 002a:err:mscoree:CLRRuntimeInfo_GetRuntimeHost Wine Mono is not installed Windows マシンを買うにしても PCVR をするにはそこそこのスペックが必要になり、ざっと調べると10-20万円ぐらい。ノートPCでも15-16インチぐらいのを購入すればスペック的には大丈夫そうといった記事がいくつかみつかった。</description><content>&lt;p>土曜日は昼寝してたくさん寝たせいか、昨日はうまく寝れなかった。4時頃に &lt;a href="https://bunkyosha.com/books/9784866510149">「手で書くこと」が知性を引き出す 心を整え、思考を解き放つ新習慣「ジャーナリング」入門&lt;/a> の序章と1章を読んだ。手で書くのとキーボードをタイピングするのでは前者の方が脳が活性化されるらしい。指先の細かい制御が脳に効果的なようだ。5時ぐらいから寝て8時前に起きる。&lt;/p>
 &lt;h2 id="horizon-workrooms">Horizon Workrooms&lt;/h2>
 &lt;p>Oculus Quest 2 を使って顧問の知人と workrooms を使って仕事の打ち合わせをやってみた。&lt;/p>
 &lt;ul>
@@ -1347,11 +1351,12 @@ $ wine --version wine-5.0 (Ubuntu 5.0-3ubuntu1) $ wine ~/Downloads/OculusSetup.<
 &lt;li>&lt;a href="https://neosvrjp.memo.wiki/">https://neosvrjp.memo.wiki/&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;p>Oculus Link アプリを PC にインストールする必要があるが、Windows 向けにしか提供されていない。wine で動かない、一通りツール類をインストールして試してみたつもりだけど、このエラーを解決できなかった。諦める。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ wine --version
-wine-5.0 &lt;span style="color:#f92672">(&lt;/span>Ubuntu 5.0-3ubuntu1&lt;span style="color:#f92672">)&lt;/span>
-$ wine ~/Downloads/OculusSetup.exe
-002a:err:mscoree:CLRRuntimeInfo_GetRuntimeHost Wine Mono is not installed
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>Windows マシンを買うにしても PCVR をするにはそこそこのスペックが必要になり、ざっと調べると10-20万円ぐらい。ノートPCでも15-16インチぐらいのを購入すればスペック的には大丈夫そうといった記事がいくつかみつかった。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ wine --version
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>wine-5.0 &lt;span style="color:#f92672">(&lt;/span>Ubuntu 5.0-3ubuntu1&lt;span style="color:#f92672">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ wine ~/Downloads/OculusSetup.exe
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>002a:err:mscoree:CLRRuntimeInfo_GetRuntimeHost Wine Mono is not installed
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Windows マシンを買うにしても PCVR をするにはそこそこのスペックが必要になり、ざっと調べると10-20万円ぐらい。ノートPCでも15-16インチぐらいのを購入すればスペック的には大丈夫そうといった記事がいくつかみつかった。&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="https://vr-game.pw/blog/how-to-chooes-vr-pc/">https://vr-game.pw/blog/how-to-chooes-vr-pc/&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://kimono-oyaji.com/laptoppc-for-hmd-01/">https://kimono-oyaji.com/laptoppc-for-hmd-01/&lt;/a>&lt;/li>

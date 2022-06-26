@@ -1,141 +1,25 @@
-<!doctype html><html lang=en>
-<head>
-<title>BizPy 再始動 :: forest nook</title>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="昨日は晩ご飯食べてからのんびりしていた。寝て起きての繰り返しだったので何時に寝たのかよくわからない。夜、本を読もうと思っていたのにダラダラ過ごしてしまった。朝は7時半に起きた。朝起きたら Python で Unicode 正規化 NFC/NFD の文字列を扱う がはてブでホットエントリ化してた。昨日、書評を書いたからその記事かと期待したけど、なぜか2年ほど前に書いた古い記事だった。なんかがっかり。そして、その理由は全くわからない。1日経って夜の時点ではてブが82個ついている。昔は10個もついたら嬉しかったものだけど、いまは100個ぐらいついてもなんとも思わない。
+<!doctype html><html lang=en><head><title>BizPy 再始動 :: forest nook</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="昨日は晩ご飯食べてからのんびりしていた。寝て起きての繰り返しだったので何時に寝たのかよくわからない。夜、本を読もうと思っていたのにダラダラ過ごしてしまった。朝は7時半に起きた。朝起きたら Python で Unicode 正規化 NFC/NFD の文字列を扱う がはてブでホットエントリ化してた。昨日、書評を書いたからその記事かと期待したけど、なぜか2年ほど前に書いた古い記事だった。なんかがっかり。そして、その理由は全くわからない。1日経って夜の時点ではてブが82個ついている。昔は10個もついたら嬉しかったものだけど、いまは100個ぐらいついてもなんとも思わない。
 fin-pyコードリーディング会に発表準備 fin-pyコードリーディング会#4 に参加することにした。過去にオブジェクトストレージの開発に関わっていたからデータストアやストレージに関することは興味がある。たまたまツールの store.py を題材にしていたので読んでしまった。簡単にコードを読んで気になったところをイベントの hackmd に記載した。やっていることの詳細をよくわかっていないので、コードレビューみたいになってしまった。
- https://hackmd.io/bFBFaPbYS1Kqfc97HMlp7Q?view  BizPy のコミュニティ活動を再開 前にやってたお仕事がうまくいかなくて他のことに時間を費やす余裕がなくてお休みしてた。本当はもっと早く再開してもよかったんだけど、新しいことに挑戦しているときにあまり他のことに注意を取られたくないという考えもあって少し保留していた。新しいことへの活動も一段落して方向性や展望もみえてきたので BizPy も再開することにした。ちょうど Slack のインテグレーションを調べようと思ったところだったので弾みを付ける意図でも都合がよい。複数の意味でタイミングがよかった。また参加者が戻ってきてくれると嬉しい。
- Python で Slack のインテグレーションをやってみる勉強会 #1  プロコンの続き ネットで話題になったせいか、当事者同士で話し合う場が設けられたという公式発表が行われた。
+https://hackmd.io/bFBFaPbYS1Kqfc97HMlp7Q?view BizPy のコミュニティ活動を再開 前にやってたお仕事がうまくいかなくて他のことに時間を費やす余裕がなくてお休みしてた。本当はもっと早く再開してもよかったんだけど、新しいことに挑戦しているときにあまり他のことに注意を取られたくないという考えもあって少し保留していた。新しいことへの活動も一段落して方向性や展望もみえてきたので BizPy も再開することにした。ちょうど Slack のインテグレーションを調べようと思ったところだったので弾みを付ける意図でも都合がよい。複数の意味でタイミングがよかった。また参加者が戻ってきてくれると嬉しい。
+Python で Slack のインテグレーションをやってみる勉強会 #1 プロコンの続き ネットで話題になったせいか、当事者同士で話し合う場が設けられたという公式発表が行われた。
 第32回高専プロコン秋田大会自由部門プレゼン審査発表順番号５の質疑応答について、発表者・質問者双方の相互理解の場を設けさせて頂きました。#procon32 pic.twitter.com/nlzujvJ7Hv
-&amp;mdash; KosenProcon (@KosenProcon) October 10, 2021  これ以上、外野がとやかく言う必要はないと思うけど、一方で立場の強い人が有利になってしまうため、運営はハラスメント行為を行った審査員へ然るべき措置をすべきといった意見もみられた。一理あるかもしれないが、そこまでするほどの問題かというのは個人的に思う。タイムラインを眺めていると、ハラスメントを問題視する人は、その背景や経緯や意図はすべて横に置いておいてハラスメント的言動や態度を糾弾する。この人たちと背景も考慮して整理しようとする人たちとは全く議論が噛み合わない。ハラスメントは絶対許すまじという社会の変化や誤った人への行き過ぎたキャンセルカルチャーに私はやや圧倒される。
+&amp;mdash; KosenProcon (@KosenProcon) October 10, 2021 これ以上、外野がとやかく言う必要はないと思うけど、一方で立場の強い人が有利になってしまうため、運営はハラスメント行為を行った審査員へ然るべき措置をすべきといった意見もみられた。一理あるかもしれないが、そこまでするほどの問題かというのは個人的に思う。タイムラインを眺めていると、ハラスメントを問題視する人は、その背景や経緯や意図はすべて横に置いておいてハラスメント的言動や態度を糾弾する。この人たちと背景も考慮して整理しようとする人たちとは全く議論が噛み合わない。ハラスメントは絶対許すまじという社会の変化や誤った人への行き過ぎたキャンセルカルチャーに私はやや圧倒される。
 そう思っていると、私のタイムラインでは「まさかりを投げる」という表現そのものや行為のハラスメントの是非の議論も巻き起こっていた。あまり最近はまさかりを投げるという表現は見かけないんだけど、「マウント禁止」というのをちょくちょくみかける。ハラスメントと根っこは同じで悪気の有無に関係なく発信側が責めを負うようになったんだなと感じる。
 まさかりの議論とは別に、最近勉強会で「マウント禁止」というルールもよくみかける。これもマウントされたと感じる人と、知っていることを教えようとする人との関係の難しさを感じる。多少の間違いやもっとこうした方がいいよといったアドバイスをしなくなる人も多いのでは？という気はする。
-&amp;mdash; Tetsuya Morimoto (@t2y) October 11, 2021  ">
-<meta name=keywords content>
-<meta name=robots content="noodp">
-<link rel=canonical href=/diary/posts/2021/1011/>
-<link rel=stylesheet href=/diary/assets/style.css>
-<link rel=stylesheet href=/diary/assets/green.css>
-<link rel=stylesheet href=/diary/style.css>
-<link rel=apple-touch-icon href=/diary/img/apple-touch-icon-192x192.png>
-<link rel="shortcut icon" href=/diary/favicon.ico>
-<meta name=twitter:card content="summary">
-<meta name=twitter:site content="t2y">
-<meta name=twitter:creator content>
-<meta property="og:locale" content="en">
-<meta property="og:type" content="article">
-<meta property="og:title" content="BizPy 再始動">
-<meta property="og:description" content="昨日は晩ご飯食べてからのんびりしていた。寝て起きての繰り返しだったので何時に寝たのかよくわからない。夜、本を読もうと思っていたのにダラダラ過ごしてしまった。朝は7時半に起きた。朝起きたら Python で Unicode 正規化 NFC/NFD の文字列を扱う がはてブでホットエントリ化してた。昨日、書評を書いたからその記事かと期待したけど、なぜか2年ほど前に書いた古い記事だった。なんかがっかり。そして、その理由は全くわからない。1日経って夜の時点ではてブが82個ついている。昔は10個もついたら嬉しかったものだけど、いまは100個ぐらいついてもなんとも思わない。
+&amp;mdash; Tetsuya Morimoto (@t2y) October 11, 2021 "><meta name=keywords content><meta name=robots content="noodp"><link rel=canonical href=/diary/posts/2021/1011/><link rel=stylesheet href=/diary/assets/style.css><link rel=stylesheet href=/diary/assets/green.css><link rel=stylesheet href=/diary/style.css><link rel=apple-touch-icon href=/diary/img/apple-touch-icon-192x192.png><link rel="shortcut icon" href=/diary/favicon.ico><meta name=twitter:card content="summary"><meta name=twitter:site content="t2y"><meta name=twitter:creator content><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="og:title" content="BizPy 再始動"><meta property="og:description" content="昨日は晩ご飯食べてからのんびりしていた。寝て起きての繰り返しだったので何時に寝たのかよくわからない。夜、本を読もうと思っていたのにダラダラ過ごしてしまった。朝は7時半に起きた。朝起きたら Python で Unicode 正規化 NFC/NFD の文字列を扱う がはてブでホットエントリ化してた。昨日、書評を書いたからその記事かと期待したけど、なぜか2年ほど前に書いた古い記事だった。なんかがっかり。そして、その理由は全くわからない。1日経って夜の時点ではてブが82個ついている。昔は10個もついたら嬉しかったものだけど、いまは100個ぐらいついてもなんとも思わない。
 fin-pyコードリーディング会に発表準備 fin-pyコードリーディング会#4 に参加することにした。過去にオブジェクトストレージの開発に関わっていたからデータストアやストレージに関することは興味がある。たまたまツールの store.py を題材にしていたので読んでしまった。簡単にコードを読んで気になったところをイベントの hackmd に記載した。やっていることの詳細をよくわかっていないので、コードレビューみたいになってしまった。
- https://hackmd.io/bFBFaPbYS1Kqfc97HMlp7Q?view  BizPy のコミュニティ活動を再開 前にやってたお仕事がうまくいかなくて他のことに時間を費やす余裕がなくてお休みしてた。本当はもっと早く再開してもよかったんだけど、新しいことに挑戦しているときにあまり他のことに注意を取られたくないという考えもあって少し保留していた。新しいことへの活動も一段落して方向性や展望もみえてきたので BizPy も再開することにした。ちょうど Slack のインテグレーションを調べようと思ったところだったので弾みを付ける意図でも都合がよい。複数の意味でタイミングがよかった。また参加者が戻ってきてくれると嬉しい。
- Python で Slack のインテグレーションをやってみる勉強会 #1  プロコンの続き ネットで話題になったせいか、当事者同士で話し合う場が設けられたという公式発表が行われた。
+https://hackmd.io/bFBFaPbYS1Kqfc97HMlp7Q?view BizPy のコミュニティ活動を再開 前にやってたお仕事がうまくいかなくて他のことに時間を費やす余裕がなくてお休みしてた。本当はもっと早く再開してもよかったんだけど、新しいことに挑戦しているときにあまり他のことに注意を取られたくないという考えもあって少し保留していた。新しいことへの活動も一段落して方向性や展望もみえてきたので BizPy も再開することにした。ちょうど Slack のインテグレーションを調べようと思ったところだったので弾みを付ける意図でも都合がよい。複数の意味でタイミングがよかった。また参加者が戻ってきてくれると嬉しい。
+Python で Slack のインテグレーションをやってみる勉強会 #1 プロコンの続き ネットで話題になったせいか、当事者同士で話し合う場が設けられたという公式発表が行われた。
 第32回高専プロコン秋田大会自由部門プレゼン審査発表順番号５の質疑応答について、発表者・質問者双方の相互理解の場を設けさせて頂きました。#procon32 pic.twitter.com/nlzujvJ7Hv
-&amp;mdash; KosenProcon (@KosenProcon) October 10, 2021  これ以上、外野がとやかく言う必要はないと思うけど、一方で立場の強い人が有利になってしまうため、運営はハラスメント行為を行った審査員へ然るべき措置をすべきといった意見もみられた。一理あるかもしれないが、そこまでするほどの問題かというのは個人的に思う。タイムラインを眺めていると、ハラスメントを問題視する人は、その背景や経緯や意図はすべて横に置いておいてハラスメント的言動や態度を糾弾する。この人たちと背景も考慮して整理しようとする人たちとは全く議論が噛み合わない。ハラスメントは絶対許すまじという社会の変化や誤った人への行き過ぎたキャンセルカルチャーに私はやや圧倒される。
+&amp;mdash; KosenProcon (@KosenProcon) October 10, 2021 これ以上、外野がとやかく言う必要はないと思うけど、一方で立場の強い人が有利になってしまうため、運営はハラスメント行為を行った審査員へ然るべき措置をすべきといった意見もみられた。一理あるかもしれないが、そこまでするほどの問題かというのは個人的に思う。タイムラインを眺めていると、ハラスメントを問題視する人は、その背景や経緯や意図はすべて横に置いておいてハラスメント的言動や態度を糾弾する。この人たちと背景も考慮して整理しようとする人たちとは全く議論が噛み合わない。ハラスメントは絶対許すまじという社会の変化や誤った人への行き過ぎたキャンセルカルチャーに私はやや圧倒される。
 そう思っていると、私のタイムラインでは「まさかりを投げる」という表現そのものや行為のハラスメントの是非の議論も巻き起こっていた。あまり最近はまさかりを投げるという表現は見かけないんだけど、「マウント禁止」というのをちょくちょくみかける。ハラスメントと根っこは同じで悪気の有無に関係なく発信側が責めを負うようになったんだなと感じる。
 まさかりの議論とは別に、最近勉強会で「マウント禁止」というルールもよくみかける。これもマウントされたと感じる人と、知っていることを教えようとする人との関係の難しさを感じる。多少の間違いやもっとこうした方がいいよといったアドバイスをしなくなる人も多いのでは？という気はする。
-&amp;mdash; Tetsuya Morimoto (@t2y) October 11, 2021  ">
-<meta property="og:url" content="/diary/posts/2021/1011/">
-<meta property="og:site_name" content="forest nook">
-<meta property="og:image" content="/diary/img/2021/1011_hot-entory.png">
-<meta property="og:image:width" content="2048">
-<meta property="og:image:height" content="1024">
-<meta property="article:published_time" content="2021-10-11 08:37:53 +0900 +0900">
-</head>
-<body class=green>
-<div class="container full headings--one-size">
-<header class=header>
-<div class=header__inner>
-<div class=header__logo>
-<a href=/diary>
-<div class=logo>
-forest nook
-</div>
-</a>
-</div>
-<div class=menu-trigger>menu</div>
-</div>
-<nav class=menu>
-<ul class="menu__inner menu__inner--desktop">
-<li><a href=/diary/about>自己紹介</a></li>
-<li><a href=/diary/dates>月別一覧</a></li>
-<li><a href=/diary/tags>タグ一覧</a></li>
-</ul>
-<ul class="menu__inner menu__inner--mobile">
-<li><a href=/diary/about>自己紹介</a></li>
-<li><a href=/diary/dates>月別一覧</a></li>
-<li><a href=/diary/tags>タグ一覧</a></li>
-</ul>
-</nav>
-</header>
-<div class=content>
-<div class=post>
-<h1 class=post-title>
-<a href=/diary/posts/2021/1011/>BizPy 再始動</a></h1>
-<div class=post-meta>
-<span class=post-date>
-2021-10-11
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/python/>python</a>&nbsp;
+&amp;mdash; Tetsuya Morimoto (@t2y) October 11, 2021 "><meta property="og:url" content="/diary/posts/2021/1011/"><meta property="og:site_name" content="forest nook"><meta property="og:image" content="/diary/img/2021/1011_hot-entory.png"><meta property="og:image:width" content="2048"><meta property="og:image:height" content="1024"><meta property="article:published_time" content="2021-10-11 08:37:53 +0900 +0900"></head><body class=green><div class="container full headings--one-size"><header class=header><div class=header__inner><div class=header__logo><a href=/diary><div class=logo>forest nook</div></a></div><div class=menu-trigger>menu</div></div><nav class=menu><ul class="menu__inner menu__inner--desktop"><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul><ul class="menu__inner menu__inner--mobile"><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul></nav></header><div class=content><div class=post><h1 class=post-title><a href=/diary/posts/2021/1011/>BizPy 再始動</a></h1><div class=post-meta><span class=post-date>2021-10-11</span></div><span class=post-tags>#<a href=/diary/tags/python/>python</a>&nbsp;
 #<a href=/diary/tags/bizpy/>bizpy</a>&nbsp;
-#<a href=/diary/tags/harassment/>harassment</a>&nbsp;
-</span>
-<img src=/diary/img/2021/1011_hot-entory.png class=post-cover alt="BizPy 再始動">
-<div class=post-content><div>
-<p>昨日は晩ご飯食べてからのんびりしていた。寝て起きての繰り返しだったので何時に寝たのかよくわからない。夜、本を読もうと思っていたのにダラダラ過ごしてしまった。朝は7時半に起きた。朝起きたら <a href=https://t2y.hatenablog.jp/entry/2019/06/29/150125>Python で Unicode 正規化 NFC/NFD の文字列を扱う</a> がはてブでホットエントリ化してた。昨日、書評を書いたからその記事かと期待したけど、なぜか2年ほど前に書いた古い記事だった。なんかがっかり。そして、その理由は全くわからない。1日経って夜の時点ではてブが82個ついている。昔は10個もついたら嬉しかったものだけど、いまは100個ぐらいついてもなんとも思わない。</p>
-<h2 id=fin-pyコードリーディング会に発表準備>fin-pyコードリーディング会に発表準備<a href=#fin-pyコードリーディング会に発表準備 class=hanchor arialabel=Anchor>&#8983;</a> </h2>
-<p><a href=https://fin-py.connpass.com/event/226933/>fin-pyコードリーディング会#4</a> に参加することにした。過去にオブジェクトストレージの開発に関わっていたからデータストアやストレージに関することは興味がある。たまたまツールの <code>store.py</code> を題材にしていたので読んでしまった。簡単にコードを読んで気になったところをイベントの hackmd に記載した。やっていることの詳細をよくわかっていないので、コードレビューみたいになってしまった。</p>
-<ul>
-<li><a href=https://hackmd.io/bFBFaPbYS1Kqfc97HMlp7Q?view>https://hackmd.io/bFBFaPbYS1Kqfc97HMlp7Q?view</a></li>
-</ul>
-<h2 id=bizpy-のコミュニティ活動を再開>BizPy のコミュニティ活動を再開<a href=#bizpy-のコミュニティ活動を再開 class=hanchor arialabel=Anchor>&#8983;</a> </h2>
-<p>前にやってたお仕事がうまくいかなくて他のことに時間を費やす余裕がなくてお休みしてた。本当はもっと早く再開してもよかったんだけど、新しいことに挑戦しているときにあまり他のことに注意を取られたくないという考えもあって少し保留していた。新しいことへの活動も一段落して方向性や展望もみえてきたので BizPy も再開することにした。ちょうど Slack のインテグレーションを調べようと思ったところだったので弾みを付ける意図でも都合がよい。複数の意味でタイミングがよかった。また参加者が戻ってきてくれると嬉しい。</p>
-<ul>
-<li><a href=https://bizpy.connpass.com/event/198717/>Python で Slack のインテグレーションをやってみる勉強会 #1</a></li>
-</ul>
-<h2 id=プロコンの続き>プロコンの続き<a href=#プロコンの続き class=hanchor arialabel=Anchor>&#8983;</a> </h2>
-<p>ネットで話題になったせいか、当事者同士で話し合う場が設けられたという公式発表が行われた。</p>
-<blockquote class=twitter-tweet><p lang=ja dir=ltr>第32回高専プロコン秋田大会自由部門プレゼン審査発表順番号５の質疑応答について、発表者・質問者双方の相互理解の場を設けさせて頂きました。<a href="https://twitter.com/hashtag/procon32?src=hash&ref_src=twsrc%5Etfw">#procon32</a> <a href=https://t.co/nlzujvJ7Hv>pic.twitter.com/nlzujvJ7Hv</a></p>&mdash; KosenProcon (@KosenProcon) <a href="https://twitter.com/KosenProcon/status/1447192976946384901?ref_src=twsrc%5Etfw">October 10, 2021</a></blockquote>
-<script async src=https://platform.twitter.com/widgets.js></script>
-<p>これ以上、外野がとやかく言う必要はないと思うけど、一方で立場の強い人が有利になってしまうため、運営はハラスメント行為を行った審査員へ然るべき措置をすべきといった意見もみられた。一理あるかもしれないが、そこまでするほどの問題かというのは個人的に思う。タイムラインを眺めていると、ハラスメントを問題視する人は、その背景や経緯や意図はすべて横に置いておいてハラスメント的言動や態度を糾弾する。この人たちと背景も考慮して整理しようとする人たちとは全く議論が噛み合わない。ハラスメントは絶対許すまじという社会の変化や誤った人への行き過ぎたキャンセルカルチャーに私はやや圧倒される。</p>
-<p>そう思っていると、私のタイムラインでは「まさかりを投げる」という表現そのものや行為のハラスメントの是非の議論も巻き起こっていた。あまり最近はまさかりを投げるという表現は見かけないんだけど、「マウント禁止」というのをちょくちょくみかける。ハラスメントと根っこは同じで悪気の有無に関係なく発信側が責めを負うようになったんだなと感じる。</p>
-<blockquote class=twitter-tweet><p lang=ja dir=ltr>まさかりの議論とは別に、最近勉強会で「マウント禁止」というルールもよくみかける。これもマウントされたと感じる人と、知っていることを教えようとする人との関係の難しさを感じる。多少の間違いやもっとこうした方がいいよといったアドバイスをしなくなる人も多いのでは？という気はする。</p>&mdash; Tetsuya Morimoto (@t2y) <a href="https://twitter.com/t2y/status/1447429693959860236?ref_src=twsrc%5Etfw">October 11, 2021</a></blockquote>
-<script async src=https://platform.twitter.com/widgets.js></script>
-</div></div>
-<div class=pagination>
-<div class=pagination__title>
-<span class=pagination__title-h>Read other posts</span>
-<hr>
-</div>
-<div class=pagination__buttons>
-<span class="button previous">
-<a href=/diary/posts/2021/1012/>
-<span class=button__icon>←</span>
-<span class=button__text>やや疲れ気味</span>
-</a>
-</span>
-<span class="button next">
-<a href=/diary/posts/2021/1010/>
-<span class=button__text>86―エイティシックス―</span>
-<span class=button__icon>→</span>
-</a>
-</span>
-</div>
-</div>
-</div>
-</div>
-<footer class=footer>
-<div class=footer__inner>
-<div class="copyright copyright--user">
-<span>© 2021 Tetsuya Morimoto</span>
-<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span>
-</div>
-</div>
-</footer>
-<script src=/diary/assets/main.js></script>
-<script src=/diary/assets/prism.js></script>
-</div>
-</body>
-</html>
+#<a href=/diary/tags/harassment/>harassment</a>&nbsp;</span>
+<img src=/diary/img/2021/1011_hot-entory.png class=post-cover alt="BizPy 再始動"><div class=post-content><div><p>昨日は晩ご飯食べてからのんびりしていた。寝て起きての繰り返しだったので何時に寝たのかよくわからない。夜、本を読もうと思っていたのにダラダラ過ごしてしまった。朝は7時半に起きた。朝起きたら <a href=https://t2y.hatenablog.jp/entry/2019/06/29/150125>Python で Unicode 正規化 NFC/NFD の文字列を扱う</a> がはてブでホットエントリ化してた。昨日、書評を書いたからその記事かと期待したけど、なぜか2年ほど前に書いた古い記事だった。なんかがっかり。そして、その理由は全くわからない。1日経って夜の時点ではてブが82個ついている。昔は10個もついたら嬉しかったものだけど、いまは100個ぐらいついてもなんとも思わない。</p><h2 id=fin-pyコードリーディング会に発表準備>fin-pyコードリーディング会に発表準備<a href=#fin-pyコードリーディング会に発表準備 class=hanchor arialabel=Anchor>&#8983;</a></h2><p><a href=https://fin-py.connpass.com/event/226933/>fin-pyコードリーディング会#4</a> に参加することにした。過去にオブジェクトストレージの開発に関わっていたからデータストアやストレージに関することは興味がある。たまたまツールの <code>store.py</code> を題材にしていたので読んでしまった。簡単にコードを読んで気になったところをイベントの hackmd に記載した。やっていることの詳細をよくわかっていないので、コードレビューみたいになってしまった。</p><ul><li><a href=https://hackmd.io/bFBFaPbYS1Kqfc97HMlp7Q?view>https://hackmd.io/bFBFaPbYS1Kqfc97HMlp7Q?view</a></li></ul><h2 id=bizpy-のコミュニティ活動を再開>BizPy のコミュニティ活動を再開<a href=#bizpy-のコミュニティ活動を再開 class=hanchor arialabel=Anchor>&#8983;</a></h2><p>前にやってたお仕事がうまくいかなくて他のことに時間を費やす余裕がなくてお休みしてた。本当はもっと早く再開してもよかったんだけど、新しいことに挑戦しているときにあまり他のことに注意を取られたくないという考えもあって少し保留していた。新しいことへの活動も一段落して方向性や展望もみえてきたので BizPy も再開することにした。ちょうど Slack のインテグレーションを調べようと思ったところだったので弾みを付ける意図でも都合がよい。複数の意味でタイミングがよかった。また参加者が戻ってきてくれると嬉しい。</p><ul><li><a href=https://bizpy.connpass.com/event/198717/>Python で Slack のインテグレーションをやってみる勉強会 #1</a></li></ul><h2 id=プロコンの続き>プロコンの続き<a href=#プロコンの続き class=hanchor arialabel=Anchor>&#8983;</a></h2><p>ネットで話題になったせいか、当事者同士で話し合う場が設けられたという公式発表が行われた。</p><blockquote class=twitter-tweet><p lang=ja dir=ltr>第32回高専プロコン秋田大会自由部門プレゼン審査発表順番号５の質疑応答について、発表者・質問者双方の相互理解の場を設けさせて頂きました。<a href="https://twitter.com/hashtag/procon32?src=hash&ref_src=twsrc%5Etfw">#procon32</a> <a href=https://t.co/nlzujvJ7Hv>pic.twitter.com/nlzujvJ7Hv</a></p>&mdash; KosenProcon (@KosenProcon) <a href="https://twitter.com/KosenProcon/status/1447192976946384901?ref_src=twsrc%5Etfw">October 10, 2021</a></blockquote><script async src=https://platform.twitter.com/widgets.js></script><p>これ以上、外野がとやかく言う必要はないと思うけど、一方で立場の強い人が有利になってしまうため、運営はハラスメント行為を行った審査員へ然るべき措置をすべきといった意見もみられた。一理あるかもしれないが、そこまでするほどの問題かというのは個人的に思う。タイムラインを眺めていると、ハラスメントを問題視する人は、その背景や経緯や意図はすべて横に置いておいてハラスメント的言動や態度を糾弾する。この人たちと背景も考慮して整理しようとする人たちとは全く議論が噛み合わない。ハラスメントは絶対許すまじという社会の変化や誤った人への行き過ぎたキャンセルカルチャーに私はやや圧倒される。</p><p>そう思っていると、私のタイムラインでは「まさかりを投げる」という表現そのものや行為のハラスメントの是非の議論も巻き起こっていた。あまり最近はまさかりを投げるという表現は見かけないんだけど、「マウント禁止」というのをちょくちょくみかける。ハラスメントと根っこは同じで悪気の有無に関係なく発信側が責めを負うようになったんだなと感じる。</p><blockquote class=twitter-tweet><p lang=ja dir=ltr>まさかりの議論とは別に、最近勉強会で「マウント禁止」というルールもよくみかける。これもマウントされたと感じる人と、知っていることを教えようとする人との関係の難しさを感じる。多少の間違いやもっとこうした方がいいよといったアドバイスをしなくなる人も多いのでは？という気はする。</p>&mdash; Tetsuya Morimoto (@t2y) <a href="https://twitter.com/t2y/status/1447429693959860236?ref_src=twsrc%5Etfw">October 11, 2021</a></blockquote><script async src=https://platform.twitter.com/widgets.js></script></div></div><div class=pagination><div class=pagination__title><span class=pagination__title-h>Read other posts</span><hr></div><div class=pagination__buttons><span class="button previous"><a href=/diary/posts/2021/1012/><span class=button__icon>←</span>
+<span class=button__text>やや疲れ気味</span></a></span>
+<span class="button next"><a href=/diary/posts/2021/1010/><span class=button__text>86―エイティシックス―</span>
+<span class=button__icon>→</span></a></span></div></div></div></div><footer class=footer><div class=footer__inner><div class="copyright copyright--user"><span>© 2021 Tetsuya Morimoto</span>
+<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span></div></div></footer><script src=/diary/assets/main.js></script>
+<script src=/diary/assets/prism.js></script></div></body></html>

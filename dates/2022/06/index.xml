@@ -1,10 +1,52 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2022/06 on forest nook</title><link>/diary/dates/2022/06/</link><description>Recent content in 2022/06 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2022/06/index.xml" rel="self" type="application/rss+xml"/><item><title>k8s のアップグレードをやってみた</title><link>/diary/posts/2022/0625/</link><pubDate>Sat, 25 Jun 2022 16:34:05 +0900</pubDate><guid>/diary/posts/2022/0625/</guid><description>0時に寝て6時半に起きた。起きてから1時間ほどだらだらしてた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2022/06 on forest nook</title><link>/diary/dates/2022/06/</link><description>Recent content in 2022/06 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2022/06/index.xml" rel="self" type="application/rss+xml"/><item><title>法人税の修正申告</title><link>/diary/posts/2022/0626/</link><pubDate>Sun, 26 Jun 2022 10:51:10 +0900</pubDate><guid>/diary/posts/2022/0626/</guid><description>1時に寝て7時に起きた。
+源泉所得税の納付 ちょうど給料日を過ぎたので所得税徴収高計算書 (納期特例分) の申請を行った。これまでも e-tax で電子申請して振り込みしていたのだけれど、e-tax ソフト (web版) でブラウザから申請していた。今回は windows マシンにインストールされている e-tax ソフトから申請してみることにした。e-tax ソフトは起動時に「追加インストール」という機能があって、申請に必要なモジュールのみをダウンロードしてインストールできるようになっている。20年前で言うところの saas はこうだった。「源泉所得税関係」というモジュールをインストールしないと、所得税徴収高計算書の申請ができない (e-tax ソフトに帳票がインストールされない) 。モジュールを追加インストールすれば、「源泉所得税」という税目から「所得税徴収高計算書 (納期特例分) 」という帳票を選択して、あとは数字を記入して送信するだけ。この申請に電子署名は不要。
+法人税の修正申告と欠損金の繰り戻し還付の訂正依頼 国税局の職員さんからの指摘 で提出した書類が誤っていることに気付いた。いくつか訂正箇所を書いておく。
+欠損金額とは 正: 税引き後の欠損金額 = 別表1の1の数字をそのまま使えばよい 誤: 税引き前の所得 (税務上は負の所得を欠損金と呼ぶ) を使っていた 法人税と地方法人税の計算は別 欠損金の繰り戻し還付の申請は法人税のみの還付金を算出 ↑で求めた還付金に対して(令和元年以降は)10.3%を地方法人税の還付金とする この手続きは不要で別表一に算出した数字を記載すればよい まずこの申請書の誤りを修正して訂正依頼とする。
+さらにこの欠損金の繰り戻し還付の申請の数字を別表1に記載しなければならない。それらが漏れているのと還付申請のためには別表七も提出しないといけない。あと細かい数字の記入漏れの指摘もあった。法人税の確定申告に対して次の5つの書類を修正申告として提出する。
+別表一 別表一 次葉 別表四 別表五 (一) 別表七 (一) 税務署の職員さんが訂正する数字を書いてくれていたので、それをみながら e-tax ソフトで数字を修正して紙に印刷してそれを再提出する。おかげで赤字のときの別表書類の書き方もわかった。大半は欠損金の繰り返し還付に関する数字の記入漏れなので今後も赤字の年度があったときにこの内容を踏襲しながら申告すればよい。また1つ行政手続きのノウハウを得ることができた。税務署の職員さんに感謝。
+企業サイトの更新 企業サイトを作成してから3年近く経つのでそろそろ初期の頃に書いた内容が現状とあわなくなってきた。あちこち現状とあっていない内容を更新した。本当はデザインを刷新したいと思っている。デザイン刷新のためのチケットを作ったのが2021年7月28日 20:04なのでもうすぐ1年経とうとしている。どんどん時間が過ぎるな。今日のところは、主には 企業情報 の構成を作り直した。それと同時に過去に働いていた会社での業務外発表を除去した。今後は自社の発表のみを掲載する。これには会社としてマーケティング活動をやっていくという意気込みと過去との決別の意味合いもある。トップページに news を5件表示しているところがビルドするタイミングによってそうならないときがあって、実行タイミングによってページングがされたりされなかったりする現象に悩まされている。ワークアラウンドとしては、何回かビルドをやり直せばページングされるときもあるのでそれを待つみたいな、どうしようもないやり方でこの場は凌いでいる。</description><content>&lt;p>1時に寝て7時に起きた。&lt;/p>
+&lt;h2 id="源泉所得税の納付">源泉所得税の納付&lt;/h2>
+&lt;p>ちょうど給料日を過ぎたので所得税徴収高計算書 (納期特例分) の申請を行った。これまでも e-tax で電子申請して振り込みしていたのだけれど、e-tax ソフト (web版) でブラウザから申請していた。今回は windows マシンにインストールされている e-tax ソフトから申請してみることにした。e-tax ソフトは起動時に「追加インストール」という機能があって、申請に必要なモジュールのみをダウンロードしてインストールできるようになっている。20年前で言うところの saas はこうだった。「源泉所得税関係」というモジュールをインストールしないと、所得税徴収高計算書の申請ができない (e-tax ソフトに帳票がインストールされない) 。モジュールを追加インストールすれば、「源泉所得税」という税目から「所得税徴収高計算書 (納期特例分) 」という帳票を選択して、あとは数字を記入して送信するだけ。この申請に電子署名は不要。&lt;/p>
+&lt;figure>&lt;img src="/diary/diary/img/2022/0626_e-tax.png"/>
+&lt;/figure>
+&lt;h2 id="法人税の修正申告と欠損金の繰り戻し還付の訂正依頼">法人税の修正申告と欠損金の繰り戻し還付の訂正依頼&lt;/h2>
+&lt;p>&lt;a href="/diary/diary/posts/2022/0620/#欠損金の繰り戻し還付の申請の誤り">国税局の職員さんからの指摘&lt;/a> で提出した書類が誤っていることに気付いた。いくつか訂正箇所を書いておく。&lt;/p>
+&lt;ul>
+&lt;li>欠損金額とは
+&lt;ul>
+&lt;li>正: 税引き後の欠損金額 = 別表1の1の数字をそのまま使えばよい&lt;/li>
+&lt;li>誤: 税引き前の所得 (税務上は負の所得を欠損金と呼ぶ) を使っていた&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>法人税と地方法人税の計算は別
+&lt;ul>
+&lt;li>欠損金の繰り戻し還付の申請は法人税のみの還付金を算出&lt;/li>
+&lt;li>↑で求めた還付金に対して(令和元年以降は)10.3%を地方法人税の還付金とする
+&lt;ul>
+&lt;li>この手続きは不要で別表一に算出した数字を記載すればよい&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>まずこの申請書の誤りを修正して訂正依頼とする。&lt;/p>
+&lt;p>さらにこの欠損金の繰り戻し還付の申請の数字を別表1に記載しなければならない。それらが漏れているのと還付申請のためには別表七も提出しないといけない。あと細かい数字の記入漏れの指摘もあった。法人税の確定申告に対して次の5つの書類を修正申告として提出する。&lt;/p>
+&lt;ul>
+&lt;li>別表一&lt;/li>
+&lt;li>別表一 次葉&lt;/li>
+&lt;li>別表四&lt;/li>
+&lt;li>別表五 (一)&lt;/li>
+&lt;li>別表七 (一)&lt;/li>
+&lt;/ul>
+&lt;p>税務署の職員さんが訂正する数字を書いてくれていたので、それをみながら e-tax ソフトで数字を修正して紙に印刷してそれを再提出する。おかげで赤字のときの別表書類の書き方もわかった。大半は欠損金の繰り返し還付に関する数字の記入漏れなので今後も赤字の年度があったときにこの内容を踏襲しながら申告すればよい。また1つ行政手続きのノウハウを得ることができた。税務署の職員さんに感謝。&lt;/p>
+&lt;h2 id="企業サイトの更新">企業サイトの更新&lt;/h2>
+&lt;p>企業サイトを作成してから3年近く経つのでそろそろ初期の頃に書いた内容が現状とあわなくなってきた。あちこち現状とあっていない内容を更新した。本当はデザインを刷新したいと思っている。デザイン刷新のためのチケットを作ったのが2021年7月28日 20:04なのでもうすぐ1年経とうとしている。どんどん時間が過ぎるな。今日のところは、主には &lt;a href="https://kazamori.jp/about/">企業情報&lt;/a> の構成を作り直した。それと同時に過去に働いていた会社での業務外発表を除去した。今後は自社の発表のみを掲載する。これには会社としてマーケティング活動をやっていくという意気込みと過去との決別の意味合いもある。トップページに news を5件表示しているところがビルドするタイミングによってそうならないときがあって、実行タイミングによってページングがされたりされなかったりする現象に悩まされている。ワークアラウンドとしては、何回かビルドをやり直せばページングされるときもあるのでそれを待つみたいな、どうしようもないやり方でこの場は凌いでいる。&lt;/p></content></item><item><title>k8s のアップグレードをやってみた</title><link>/diary/posts/2022/0625/</link><pubDate>Sat, 25 Jun 2022 16:34:05 +0900</pubDate><guid>/diary/posts/2022/0625/</guid><description>0時に寝て6時半に起きた。起きてから1時間ほどだらだらしてた。
 ストレッチ 今日の開脚幅は開始前161cmで、ストレッチ後163cmだった。先週と同じなので現状維持とも言えるし、よい状態を維持しているとも言えるかもしれない。もう1年以上通っているせいか、なにかポイントが溜まっていて使わないといけないという話しで今日は20分延長でやってくれた。とは言っても、基本的なストレッチ項目が変わるわけではなく、いつもより伸ばす時間や手順が少し増えているぐらいだった気がする。今週はとくに腰の負荷もあまり感じなかったせいか、いつもの右腰の張りもなかったように思う。トレーナーさんに聞くと、暑くなると筋肉は伸びやすくなるので季節要因でストレッチをしたときの伸び具合が変わるのは普通とのこと。調子がよくなってきたのでこのまま好調を維持したい。
 eks (k8s) のアップグレード お手伝い先のお仕事がもうすぐサービスインなのでそれまでにリスクのある作業をやっとこうみたいな状況にある。たまたま eks (k8s) のバージョンを 1.21 から 1.22 にあげようと思い立って、木曜日に提案したら、どんな障害が起きるかわからないので他メンバーがテスト環境を使っていない時間帯で作業した方がよいだろうという話になって土日にやることにした。
 Updating an Amazon EKS cluster Kubernetes version 何が起きるか分からなくても、土曜日から始めて致命的なトラブルに見舞われても1日もあれば解決できるだろうという見通しで作業を始めた。その見通しも「私がやれば」という前提に成り立っている。良くも悪くも私がやろうと言ったことに反対されることはほとんどないが、それは私が言ったことは一定時間に私がすべてやり切るという信頼に基づいている。本当の意味でできるかどうか分からないことを必要以上に抱え込んでしまうときもあるのでバランス感覚は必要かもしれない。言わばサービス休日出勤だし、なぜ私がやっているかと言うと、システムの運用や保守の展望を考えたら、サービスインの前にインフラのバージョンを上げておく方が将来の保守コストを下げることに繋がるという1点のみに重要性を見い出していて、それをもっとも強く主張しているのが私だからという理由。
 結論から言って2時間でアップグレード作業を完了した。1つ手順漏れがあって、アプリケーションの pod がすべてエラーになるというトラブルに見舞われたものの、すぐ手順漏れに気付いて難なく復旧できた。今日はテスト環境のアップグレードをしたわけだけど、また後日、本番向けの作業手順書を作れば、ほぼタウンタイムなしで1時間もあればアップグレード作業を完了できそうな見通しではある。
 実際はミスもあったので次の順番でやったわけではないが、おそらくこの手順でやれば正しいはず。
-aws cli と eksctl コマンドのインストール aws のアップグレードドキュメンを読む cert-manager のアップグレード (1.1.1 から 1.5.4) aws-load-balancer-controller のアップグレード (2.2.0 から 2.4.2) k8s control plane のアップグレード (1.21 から 1.22) (オプション: 不要) autoscaler のアップグレード (オプション: 不要) gpu サポートノードのアップグレード vpc cni プラグインのアップグレード (1.7.5 から 1.11.2) coredns プラグインのアップグレード (1.8.4 から 1.</description><content>&lt;p>0時に寝て6時半に起きた。起きてから1時間ほどだらだらしてた。&lt;/p>
+aws cli と eksctl コマンドのインストール aws のアップグレードドキュメンを読む cert-manager のアップグレード (1.1.1 から 1.5.4) aws-load-balancer-controller のアップグレード (2.2.0 から 2.4.2) k8s control plane のアップグレード (1.21 から 1.22) (オプション: 不要) autoscaler のアップグレード (オプション: 不要) gpu サポートノードのアップグレード vpc cni プラグインのアップグレード (1.7.5 から 1.11.2) coredns プラグインのアップグレード (1.8.4 から 1.8.7) kube-proxy のアップグレード (1.</description><content>&lt;p>0時に寝て6時半に起きた。起きてから1時間ほどだらだらしてた。&lt;/p>
 &lt;h2 id="ストレッチ">ストレッチ&lt;/h2>
 &lt;p>今日の開脚幅は開始前161cmで、ストレッチ後163cmだった。先週と同じなので現状維持とも言えるし、よい状態を維持しているとも言えるかもしれない。もう1年以上通っているせいか、なにかポイントが溜まっていて使わないといけないという話しで今日は20分延長でやってくれた。とは言っても、基本的なストレッチ項目が変わるわけではなく、いつもより伸ばす時間や手順が少し増えているぐらいだった気がする。今週はとくに腰の負荷もあまり感じなかったせいか、いつもの右腰の張りもなかったように思う。トレーナーさんに聞くと、暑くなると筋肉は伸びやすくなるので季節要因でストレッチをしたときの伸び具合が変わるのは普通とのこと。調子がよくなってきたのでこのまま好調を維持したい。&lt;/p>
 &lt;h2 id="eks-k8s-のアップグレード">eks (k8s) のアップグレード&lt;/h2>
@@ -66,7 +108,7 @@ junit4 では hamcrest という matcher が使われていて、それが asser
 JUnitのアサーションライブラリHamcrest,AssertJ比較
 2.4.2. Third-party Assertion Libraries によると、junit は基本的なアサーション機能を提供し、より強力なアサーションはサードパーティ製の好きなライブラリを使ってくれみたいなことが書いてある。軽く github でソースコード検索しても、みんな自前で作っているんやなということも分かる。
 https://github.com/search?l=Java&amp;amp;q=assertDeepEquals&amp;amp;type=Code hamcrest はもう保守されていないようにみえるので assertj を使うことにした。assertj の機能を使うと assertDeepEquals を次のように実装できる。直接 assertj を使ってもよいのだけど、assertXxx という名前で使えた方が junit ベースのテストのアサートの統合性があるし、いまお手伝い先では myapp-test のような、テスト向けの共通ライブラリを提供していて、すべてのプロジェクトで既に使っているので assertj の依存関係を追加しなくてもすぐに使えるというぐらいの利便性を提供するだけのユーティリティになる。
-public class Assertions { public static final void assertDeepEquals(Object expected, Object actual) { assertThat(expected).usingRecursiveComparison().isEqualTo(actual); } public static final void assertDeepEquals(Object expected, Object actual, String.</description><content>&lt;p>0時に寝て6時に起きた。&lt;/p>
+public class Assertions { public static final void assertDeepEquals(Object expected, Object actual) { assertThat(expected).usingRecursiveComparison().isEqualTo(actual); } public static final void assertDeepEquals(Object expected, Object actual, String... fields) { assertThat(expected).</description><content>&lt;p>0時に寝て6時に起きた。&lt;/p>
 &lt;h2 id="assertdeepequals-を作った">assertDeepEquals を作った&lt;/h2>
 &lt;p>&lt;a href="https://assertj.github.io/doc/">AssertJ&lt;/a> というアサーションライブラリを使って &lt;code>assertDeepEquals&lt;/code> を実装した。&lt;/p>
 &lt;p>junit4 では hamcrest という matcher が使われていて、それが &lt;code>assertDeepEquals&lt;/code> 相当の機能を提供していたが、それが junit5 では提供されなくなったので自分で実装するか、アサーションライブラリを別途使う必要がある。&lt;/p>
@@ -79,55 +121,58 @@ public class Assertions { public static final void assertDeepEquals(Object expec
 &lt;li>&lt;a href="https://github.com/search?l=Java&amp;amp;q=assertDeepEquals&amp;amp;type=Code">https://github.com/search?l=Java&amp;amp;q=assertDeepEquals&amp;amp;type=Code&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;p>hamcrest はもう保守されていないようにみえるので assertj を使うことにした。assertj の機能を使うと &lt;code>assertDeepEquals&lt;/code> を次のように実装できる。直接 assertj を使ってもよいのだけど、assertXxx という名前で使えた方が junit ベースのテストのアサートの統合性があるし、いまお手伝い先では myapp-test のような、テスト向けの共通ライブラリを提供していて、すべてのプロジェクトで既に使っているので assertj の依存関係を追加しなくてもすぐに使えるというぐらいの利便性を提供するだけのユーティリティになる。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-java" data-lang="java">&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Assertions&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
-&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">static&lt;/span> &lt;span style="color:#66d9ef">final&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">assertDeepEquals&lt;/span>&lt;span style="color:#f92672">(&lt;/span>Object expected&lt;span style="color:#f92672">,&lt;/span> Object actual&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
-assertThat&lt;span style="color:#f92672">(&lt;/span>expected&lt;span style="color:#f92672">).&lt;/span>&lt;span style="color:#a6e22e">usingRecursiveComparison&lt;/span>&lt;span style="color:#f92672">().&lt;/span>&lt;span style="color:#a6e22e">isEqualTo&lt;/span>&lt;span style="color:#f92672">(&lt;/span>actual&lt;span style="color:#f92672">);&lt;/span>
-&lt;span style="color:#f92672">}&lt;/span>
-&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">static&lt;/span> &lt;span style="color:#66d9ef">final&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">assertDeepEquals&lt;/span>&lt;span style="color:#f92672">(&lt;/span>Object expected&lt;span style="color:#f92672">,&lt;/span> Object actual&lt;span style="color:#f92672">,&lt;/span> String&lt;span style="color:#f92672">...&lt;/span> fields&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
-assertThat&lt;span style="color:#f92672">(&lt;/span>expected&lt;span style="color:#f92672">).&lt;/span>&lt;span style="color:#a6e22e">usingRecursiveComparison&lt;/span>&lt;span style="color:#f92672">().&lt;/span>&lt;span style="color:#a6e22e">comparingOnlyFields&lt;/span>&lt;span style="color:#f92672">(&lt;/span>fields&lt;span style="color:#f92672">).&lt;/span>&lt;span style="color:#a6e22e">isEqualTo&lt;/span>&lt;span style="color:#f92672">(&lt;/span>actual&lt;span style="color:#f92672">);&lt;/span>
-&lt;span style="color:#f92672">}&lt;/span>
-&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">static&lt;/span> &lt;span style="color:#66d9ef">final&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">assertDeepEqualsIgnoringFields&lt;/span>&lt;span style="color:#f92672">(&lt;/span>Object expected&lt;span style="color:#f92672">,&lt;/span> Object actual&lt;span style="color:#f92672">,&lt;/span> String&lt;span style="color:#f92672">...&lt;/span> fields&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
-assertThat&lt;span style="color:#f92672">(&lt;/span>expected&lt;span style="color:#f92672">).&lt;/span>&lt;span style="color:#a6e22e">usingRecursiveComparison&lt;/span>&lt;span style="color:#f92672">().&lt;/span>&lt;span style="color:#a6e22e">ignoringFields&lt;/span>&lt;span style="color:#f92672">(&lt;/span>fields&lt;span style="color:#f92672">).&lt;/span>&lt;span style="color:#a6e22e">isEqualTo&lt;/span>&lt;span style="color:#f92672">(&lt;/span>actual&lt;span style="color:#f92672">);&lt;/span>
-&lt;span style="color:#f92672">}&lt;/span>
-&lt;span style="color:#f92672">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>k8s の cronjob を検証中</title><link>/diary/posts/2022/0622/</link><pubDate>Wed, 22 Jun 2022 18:58:20 +0900</pubDate><guid>/diary/posts/2022/0622/</guid><description>0時に寝て6時に起きた。寝不足を解消して体調が戻ってきた。
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Assertions&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">static&lt;/span> &lt;span style="color:#66d9ef">final&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">assertDeepEquals&lt;/span>&lt;span style="color:#f92672">(&lt;/span>Object expected&lt;span style="color:#f92672">,&lt;/span> Object actual&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> assertThat&lt;span style="color:#f92672">(&lt;/span>expected&lt;span style="color:#f92672">).&lt;/span>&lt;span style="color:#a6e22e">usingRecursiveComparison&lt;/span>&lt;span style="color:#f92672">().&lt;/span>&lt;span style="color:#a6e22e">isEqualTo&lt;/span>&lt;span style="color:#f92672">(&lt;/span>actual&lt;span style="color:#f92672">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">static&lt;/span> &lt;span style="color:#66d9ef">final&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">assertDeepEquals&lt;/span>&lt;span style="color:#f92672">(&lt;/span>Object expected&lt;span style="color:#f92672">,&lt;/span> Object actual&lt;span style="color:#f92672">,&lt;/span> String&lt;span style="color:#f92672">...&lt;/span> fields&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> assertThat&lt;span style="color:#f92672">(&lt;/span>expected&lt;span style="color:#f92672">).&lt;/span>&lt;span style="color:#a6e22e">usingRecursiveComparison&lt;/span>&lt;span style="color:#f92672">().&lt;/span>&lt;span style="color:#a6e22e">comparingOnlyFields&lt;/span>&lt;span style="color:#f92672">(&lt;/span>fields&lt;span style="color:#f92672">).&lt;/span>&lt;span style="color:#a6e22e">isEqualTo&lt;/span>&lt;span style="color:#f92672">(&lt;/span>actual&lt;span style="color:#f92672">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">static&lt;/span> &lt;span style="color:#66d9ef">final&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">assertDeepEqualsIgnoringFields&lt;/span>&lt;span style="color:#f92672">(&lt;/span>Object expected&lt;span style="color:#f92672">,&lt;/span> Object actual&lt;span style="color:#f92672">,&lt;/span> String&lt;span style="color:#f92672">...&lt;/span> fields&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> assertThat&lt;span style="color:#f92672">(&lt;/span>expected&lt;span style="color:#f92672">).&lt;/span>&lt;span style="color:#a6e22e">usingRecursiveComparison&lt;/span>&lt;span style="color:#f92672">().&lt;/span>&lt;span style="color:#a6e22e">ignoringFields&lt;/span>&lt;span style="color:#f92672">(&lt;/span>fields&lt;span style="color:#f92672">).&lt;/span>&lt;span style="color:#a6e22e">isEqualTo&lt;/span>&lt;span style="color:#f92672">(&lt;/span>actual&lt;span style="color:#f92672">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>k8s の cronjob を検証中</title><link>/diary/posts/2022/0622/</link><pubDate>Wed, 22 Jun 2022 18:58:20 +0900</pubDate><guid>/diary/posts/2022/0622/</guid><description>0時に寝て6時に起きた。寝不足を解消して体調が戻ってきた。
 k8s の cronjob バッチ処理を Kubernetes: CronJob で作る。一通り設定して minikube で検証して eks 上でも動くようになった。
 apiVersion: batch/v1 kind: CronJob metadata: name: my-app-hourly-job spec: schedule: &amp;#34;5 */1 * * *&amp;#34; concurrencyPolicy: Forbid startingDeadlineSeconds: 600 jobTemplate: spec: backoffLimit: 0 template: metadata: labels: app: my-app-hourly annotations: dapr.io/enabled: &amp;#34;true&amp;#34; dapr.io/app-id: &amp;#34;my-app-hourly&amp;#34; spec: containers: - name: my-app-hourly-job image: my-app-image imagePullPolicy: Always env: - name: BATCH_ENV value: &amp;#34;dev&amp;#34; command: - &amp;#34;/bin/sh&amp;#34; - &amp;#34;/app/scripts/my-app.sh&amp;#34; - &amp;#34;param1&amp;#34; - &amp;#34;param2&amp;#34; restartPolicy: Never command の設定がわかりにくい。さらに k8s のドキュメントのサンプル設定も誤解を招くような例になっている。どうも実行できるのは1つの cli だけで、複数コマンドを指定できるわけではない。シェルスクリプトを docker イメージに含めて、そこで任意のスクリプトを実装した方がよいだろう。</description><content>&lt;p>0時に寝て6時に起きた。寝不足を解消して体調が戻ってきた。&lt;/p>
 &lt;h2 id="k8s-の-cronjob">k8s の cronjob&lt;/h2>
 &lt;p>バッチ処理を &lt;a href="https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/">Kubernetes: CronJob&lt;/a> で作る。一通り設定して minikube で検証して eks 上でも動くようになった。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yml" data-lang="yml">&lt;span style="color:#f92672">apiVersion&lt;/span>: &lt;span style="color:#ae81ff">batch/v1&lt;/span>
-&lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">CronJob&lt;/span>
-&lt;span style="color:#f92672">metadata&lt;/span>:
-&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-app-hourly-job&lt;/span>
-&lt;span style="color:#f92672">spec&lt;/span>:
-&lt;span style="color:#f92672">schedule&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;5 */1 * * *&amp;#34;&lt;/span>
-&lt;span style="color:#f92672">concurrencyPolicy&lt;/span>: &lt;span style="color:#ae81ff">Forbid&lt;/span>
-&lt;span style="color:#f92672">startingDeadlineSeconds&lt;/span>: &lt;span style="color:#ae81ff">600&lt;/span>
-&lt;span style="color:#f92672">jobTemplate&lt;/span>:
-&lt;span style="color:#f92672">spec&lt;/span>:
-&lt;span style="color:#f92672">backoffLimit&lt;/span>: &lt;span style="color:#ae81ff">0&lt;/span>
-&lt;span style="color:#f92672">template&lt;/span>:
-&lt;span style="color:#f92672">metadata&lt;/span>:
-&lt;span style="color:#f92672">labels&lt;/span>:
-&lt;span style="color:#f92672">app&lt;/span>: &lt;span style="color:#ae81ff">my-app-hourly&lt;/span>
-&lt;span style="color:#f92672">annotations&lt;/span>:
-&lt;span style="color:#f92672">dapr.io/enabled&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;true&amp;#34;&lt;/span>
-&lt;span style="color:#f92672">dapr.io/app-id&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;my-app-hourly&amp;#34;&lt;/span>
-&lt;span style="color:#f92672">spec&lt;/span>:
-&lt;span style="color:#f92672">containers&lt;/span>:
-- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-app-hourly-job&lt;/span>
-&lt;span style="color:#f92672">image&lt;/span>: &lt;span style="color:#ae81ff">my-app-image&lt;/span>
-&lt;span style="color:#f92672">imagePullPolicy&lt;/span>: &lt;span style="color:#ae81ff">Always&lt;/span>
-&lt;span style="color:#f92672">env&lt;/span>:
-- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">BATCH_ENV&lt;/span>
-&lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;dev&amp;#34;&lt;/span>
-&lt;span style="color:#f92672">command&lt;/span>:
-- &lt;span style="color:#e6db74">&amp;#34;/bin/sh&amp;#34;&lt;/span>
-- &lt;span style="color:#e6db74">&amp;#34;/app/scripts/my-app.sh&amp;#34;&lt;/span>
-- &lt;span style="color:#e6db74">&amp;#34;param1&amp;#34;&lt;/span>
-- &lt;span style="color:#e6db74">&amp;#34;param2&amp;#34;&lt;/span>
-&lt;span style="color:#f92672">restartPolicy&lt;/span>: &lt;span style="color:#ae81ff">Never&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>command の設定がわかりにくい。さらに k8s のドキュメントのサンプル設定も誤解を招くような例になっている。どうも実行できるのは1つの cli だけで、複数コマンドを指定できるわけではない。シェルスクリプトを docker イメージに含めて、そこで任意のスクリプトを実装した方がよいだろう。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">apiVersion&lt;/span>: &lt;span style="color:#ae81ff">batch/v1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">CronJob&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">metadata&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-app-hourly-job&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">spec&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">schedule&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;5 */1 * * *&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">concurrencyPolicy&lt;/span>: &lt;span style="color:#ae81ff">Forbid&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">startingDeadlineSeconds&lt;/span>: &lt;span style="color:#ae81ff">600&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">jobTemplate&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">spec&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">backoffLimit&lt;/span>: &lt;span style="color:#ae81ff">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">template&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">metadata&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">labels&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">app&lt;/span>: &lt;span style="color:#ae81ff">my-app-hourly&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">annotations&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">dapr.io/enabled&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;true&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">dapr.io/app-id&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;my-app-hourly&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">spec&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">containers&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-app-hourly-job&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">image&lt;/span>: &lt;span style="color:#ae81ff">my-app-image&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">imagePullPolicy&lt;/span>: &lt;span style="color:#ae81ff">Always&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">env&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">BATCH_ENV&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;dev&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">command&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#e6db74">&amp;#34;/bin/sh&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#e6db74">&amp;#34;/app/scripts/my-app.sh&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#e6db74">&amp;#34;param1&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#e6db74">&amp;#34;param2&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">restartPolicy&lt;/span>: &lt;span style="color:#ae81ff">Never&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>command の設定がわかりにくい。さらに k8s のドキュメントのサンプル設定も誤解を招くような例になっている。どうも実行できるのは1つの cli だけで、複数コマンドを指定できるわけではない。シェルスクリプトを docker イメージに含めて、そこで任意のスクリプトを実装した方がよいだろう。&lt;/p>
 &lt;ul>
 &lt;li>&amp;ldquo;/bin/sh&amp;rdquo;&lt;/li>
 &lt;li>&amp;ldquo;/app/scripts/my-app.sh&amp;rdquo;&lt;/li>
@@ -161,25 +206,25 @@ main ERROR Error processing element EcsLayout: CLASS_NOT_FOUND main ERROR Unable
 main ERROR Unable to locate plugin type for EcsLayout
 main ERROR Unable to locate plugin for EcsLayout
 main ERROR Could not create plugin of type class org.apache.logging.log4j.core.appender.ConsoleAppender for element Console:
-java.lang.NullPointerException: Cannot invoke &amp;quot;org.apache.logging.log4j.core.config.plugins.util.PluginType.getElementName()&amp;quot;
-because &amp;quot;childType&amp;quot; is null java.lang.NullPointerException:
-Cannot invoke &amp;quot;org.apache.logging.log4j.core.config.plugins.util.PluginType.getElementName()&amp;quot; because &amp;quot;childType&amp;quot; is null
+java.lang.NullPointerException: Cannot invoke &amp;#34;org.apache.logging.log4j.core.config.plugins.util.PluginType.getElementName()&amp;#34;
+because &amp;#34;childType&amp;#34; is null java.lang.NullPointerException:
+Cannot invoke &amp;#34;org.apache.logging.log4j.core.config.plugins.util.PluginType.getElementName()&amp;#34; because &amp;#34;childType&amp;#34; is null
 &lt;/code>&lt;/pre>&lt;p>この厄介な問題をデバッグするよりも、すでにうまくいくことがわかっている &lt;a href="https://docs.spring.io/spring-boot/docs/current/maven-plugin/reference/htmlsingle/">spring-boot-maven-plugin&lt;/a> を使った方が簡単そうだったのでそうすることにした。不要な spring boot 関連の jar なども executable jar や docker イメージに含まれてしまうことだけがデメリット。そこだけ目を瞑れば log4j2 の初期化エラーも起きず、正常に動作した。やっぱり最近のアプリケーションで使われているプラグインはちゃんとしてるねみたいな話しにしておく。次の設定だけでうまくいった。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-xml" data-lang="xml">&lt;span style="color:#f92672">&amp;lt;plugin&amp;gt;&lt;/span>
-&lt;span style="color:#f92672">&amp;lt;groupId&amp;gt;&lt;/span>org.springframework.boot&lt;span style="color:#f92672">&amp;lt;/groupId&amp;gt;&lt;/span>
-&lt;span style="color:#f92672">&amp;lt;artifactId&amp;gt;&lt;/span>spring-boot-maven-plugin&lt;span style="color:#f92672">&amp;lt;/artifactId&amp;gt;&lt;/span>
-&lt;span style="color:#f92672">&amp;lt;configuration&amp;gt;&lt;/span>
-&lt;span style="color:#f92672">&amp;lt;mainClass&amp;gt;&lt;/span>com.example.myapp.Main&lt;span style="color:#f92672">&amp;lt;/mainClass&amp;gt;&lt;/span>
-&lt;span style="color:#f92672">&amp;lt;/configuration&amp;gt;&lt;/span>
-&lt;span style="color:#f92672">&amp;lt;executions&amp;gt;&lt;/span>
-&lt;span style="color:#f92672">&amp;lt;execution&amp;gt;&lt;/span>
-&lt;span style="color:#f92672">&amp;lt;goals&amp;gt;&lt;/span>
-&lt;span style="color:#f92672">&amp;lt;goal&amp;gt;&lt;/span>repackage&lt;span style="color:#f92672">&amp;lt;/goal&amp;gt;&lt;/span>
-&lt;span style="color:#f92672">&amp;lt;/goals&amp;gt;&lt;/span>
-&lt;span style="color:#f92672">&amp;lt;/execution&amp;gt;&lt;/span>
-&lt;span style="color:#f92672">&amp;lt;/executions&amp;gt;&lt;/span>
-&lt;span style="color:#f92672">&amp;lt;/plugin&amp;gt;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>log4j2 の設定ファイルの動的な読み込み</title><link>/diary/posts/2022/0620/</link><pubDate>Mon, 20 Jun 2022 08:23:37 +0900</pubDate><guid>/diary/posts/2022/0620/</guid><description>0時に寝て7時に起きた。
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-xml" data-lang="xml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">&amp;lt;plugin&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;lt;groupId&amp;gt;&lt;/span>org.springframework.boot&lt;span style="color:#f92672">&amp;lt;/groupId&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;lt;artifactId&amp;gt;&lt;/span>spring-boot-maven-plugin&lt;span style="color:#f92672">&amp;lt;/artifactId&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;lt;configuration&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;lt;mainClass&amp;gt;&lt;/span>com.example.myapp.Main&lt;span style="color:#f92672">&amp;lt;/mainClass&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;lt;/configuration&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;lt;executions&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;lt;execution&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;lt;goals&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;lt;goal&amp;gt;&lt;/span>repackage&lt;span style="color:#f92672">&amp;lt;/goal&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;lt;/goals&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;lt;/execution&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;lt;/executions&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">&amp;lt;/plugin&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>log4j2 の設定ファイルの動的な読み込み</title><link>/diary/posts/2022/0620/</link><pubDate>Mon, 20 Jun 2022 08:23:37 +0900</pubDate><guid>/diary/posts/2022/0620/</guid><description>0時に寝て7時に起きた。
 バッチ処理モジュール cli でバッチ処理モジュールを作った。コマンドラインの引数パーサーと yml のパーサーを使うことにした。
 picocli snakeyaml ロガー実装に log4j2 を使っているので設定ファイルはアプリケーションの設定ファイルと log4j2 の設定ファイルの2つになる。それぞれ環境ごとに用意してエントリーポイントから起動したタイミングで明示的に設定ファイルを読み込むようにした。
 log4j2 の yml 設定ファイルを動的にどうやって設定するかはドキュメントにもとくに書いてなかった気がする。log4j2 のソースコードやテストコードを読みながら次のようにしたら反映された。
@@ -193,21 +238,21 @@ public static void initializeLogSettings(BatchEnvironment env) throws IOExceptio
 &lt;/ul>
 &lt;p>ロガー実装に &lt;a href="https://logging.apache.org/log4j/2.x/">log4j2&lt;/a> を使っているので設定ファイルはアプリケーションの設定ファイルと log4j2 の設定ファイルの2つになる。それぞれ環境ごとに用意してエントリーポイントから起動したタイミングで明示的に設定ファイルを読み込むようにした。&lt;/p>
 &lt;p>log4j2 の yml 設定ファイルを動的にどうやって設定するかはドキュメントにもとくに書いてなかった気がする。log4j2 のソースコードやテストコードを読みながら次のようにしたら反映された。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-java" data-lang="java">&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">static&lt;/span> Config &lt;span style="color:#a6e22e">load&lt;/span>&lt;span style="color:#f92672">(&lt;/span>BatchEnvironment env&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
-var path &lt;span style="color:#f92672">=&lt;/span> String&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">format&lt;/span>&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#e6db74">&amp;#34;config-%s.yml&amp;#34;&lt;/span>&lt;span style="color:#f92672">,&lt;/span> env&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">getName&lt;/span>&lt;span style="color:#f92672">());&lt;/span>
-var inputStream &lt;span style="color:#f92672">=&lt;/span> ConfigUtil&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">getClassLoader&lt;/span>&lt;span style="color:#f92672">().&lt;/span>&lt;span style="color:#a6e22e">getResourceAsStream&lt;/span>&lt;span style="color:#f92672">(&lt;/span>path&lt;span style="color:#f92672">);&lt;/span>
-var yaml &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> Yaml&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#66d9ef">new&lt;/span> Constructor&lt;span style="color:#f92672">(&lt;/span>Config&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">));&lt;/span>
-&lt;span style="color:#66d9ef">return&lt;/span> yaml&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">load&lt;/span>&lt;span style="color:#f92672">(&lt;/span>inputStream&lt;span style="color:#f92672">);&lt;/span>
-&lt;span style="color:#f92672">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>アプリケーションの設定は yml 設定に対応する &lt;code>Config&lt;/code> クラスを定義しておいて次のようにして読み込む。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-java" data-lang="java">&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">static&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">initializeLogSettings&lt;/span>&lt;span style="color:#f92672">(&lt;/span>BatchEnvironment env&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#66d9ef">throws&lt;/span> IOException &lt;span style="color:#f92672">{&lt;/span>
-var path &lt;span style="color:#f92672">=&lt;/span> String&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">format&lt;/span>&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#e6db74">&amp;#34;log4j2-%s.yml&amp;#34;&lt;/span>&lt;span style="color:#f92672">,&lt;/span> env&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">getName&lt;/span>&lt;span style="color:#f92672">());&lt;/span>
-var inputStream &lt;span style="color:#f92672">=&lt;/span> ConfigUtil&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">getClassLoader&lt;/span>&lt;span style="color:#f92672">().&lt;/span>&lt;span style="color:#a6e22e">getResourceAsStream&lt;/span>&lt;span style="color:#f92672">(&lt;/span>path&lt;span style="color:#f92672">);&lt;/span>
-var source &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> ConfigurationSource&lt;span style="color:#f92672">(&lt;/span>inputStream&lt;span style="color:#f92672">);&lt;/span>
-var configuration &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> YamlConfigurationFactory&lt;span style="color:#f92672">().&lt;/span>&lt;span style="color:#a6e22e">getConfiguration&lt;/span>&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#66d9ef">null&lt;/span>&lt;span style="color:#f92672">,&lt;/span> source&lt;span style="color:#f92672">);&lt;/span>
-Configurator&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">initialize&lt;/span>&lt;span style="color:#f92672">(&lt;/span>configuration&lt;span style="color:#f92672">);&lt;/span>
-&lt;span style="color:#f92672">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>ちょっとした cli を作るときにちょっとしたライブラリがあると楽でよい。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">static&lt;/span> Config &lt;span style="color:#a6e22e">load&lt;/span>&lt;span style="color:#f92672">(&lt;/span>BatchEnvironment env&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> var path &lt;span style="color:#f92672">=&lt;/span> String&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">format&lt;/span>&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#e6db74">&amp;#34;config-%s.yml&amp;#34;&lt;/span>&lt;span style="color:#f92672">,&lt;/span> env&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">getName&lt;/span>&lt;span style="color:#f92672">());&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> var inputStream &lt;span style="color:#f92672">=&lt;/span> ConfigUtil&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">getClassLoader&lt;/span>&lt;span style="color:#f92672">().&lt;/span>&lt;span style="color:#a6e22e">getResourceAsStream&lt;/span>&lt;span style="color:#f92672">(&lt;/span>path&lt;span style="color:#f92672">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> var yaml &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> Yaml&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#66d9ef">new&lt;/span> Constructor&lt;span style="color:#f92672">(&lt;/span>Config&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">));&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> yaml&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">load&lt;/span>&lt;span style="color:#f92672">(&lt;/span>inputStream&lt;span style="color:#f92672">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>アプリケーションの設定は yml 設定に対応する &lt;code>Config&lt;/code> クラスを定義しておいて次のようにして読み込む。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">static&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">initializeLogSettings&lt;/span>&lt;span style="color:#f92672">(&lt;/span>BatchEnvironment env&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#66d9ef">throws&lt;/span> IOException &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> var path &lt;span style="color:#f92672">=&lt;/span> String&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">format&lt;/span>&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#e6db74">&amp;#34;log4j2-%s.yml&amp;#34;&lt;/span>&lt;span style="color:#f92672">,&lt;/span> env&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">getName&lt;/span>&lt;span style="color:#f92672">());&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> var inputStream &lt;span style="color:#f92672">=&lt;/span> ConfigUtil&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">getClassLoader&lt;/span>&lt;span style="color:#f92672">().&lt;/span>&lt;span style="color:#a6e22e">getResourceAsStream&lt;/span>&lt;span style="color:#f92672">(&lt;/span>path&lt;span style="color:#f92672">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> var source &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> ConfigurationSource&lt;span style="color:#f92672">(&lt;/span>inputStream&lt;span style="color:#f92672">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> var configuration &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> YamlConfigurationFactory&lt;span style="color:#f92672">().&lt;/span>&lt;span style="color:#a6e22e">getConfiguration&lt;/span>&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#66d9ef">null&lt;/span>&lt;span style="color:#f92672">,&lt;/span> source&lt;span style="color:#f92672">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Configurator&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">initialize&lt;/span>&lt;span style="color:#f92672">(&lt;/span>configuration&lt;span style="color:#f92672">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>ちょっとした cli を作るときにちょっとしたライブラリがあると楽でよい。&lt;/p>
 &lt;h2 id="欠損金の繰り戻し還付の申請の誤り">欠損金の繰り戻し還付の申請の誤り&lt;/h2>
 &lt;p>国税局から電話がかかってきた。初めて提出した欠損金の繰り戻し還付の申請があちこち間違ってますよと。申請書類と一緒に法人税の申告書もみてもらっていて、還付申請した金額も申告の別表1に記入する必要があって、それも一緒に修正してねという話し。法人税の修正申告と還付の訂正依頼の2つが必要とのこと。税務署の人たちは本当に丁寧で親切にあれが間違っている、これが間違っていると教えてくれる。素人が法人決算やっているので初めて行う手続きの間違いはつきものだけど、税務署の人たちが教えてくれるので本当に助かる。感謝。&lt;/p></content></item><item><title>jjug ccc 2022 spring 参加</title><link>/diary/posts/2022/0619/</link><pubDate>Sun, 19 Jun 2022 11:02:33 +0900</pubDate><guid>/diary/posts/2022/0619/</guid><description>1時に寝て7時に起きた。前日、お酒飲んでたくさん雑談したので疲れ果てて寝てた。
 jjug ccc 2022 spring 私の発表は朝10:25からだったけれど、その1つ前が同僚の発表なので見とこうと思って9時前にはオフィスに着いてたと思う。twitter のハッシュタグを開いたり、スライド資料のツィートの文面を用意したり、発表者用のTシャツを着たりなど、いろいろ発表前にできそうな準備をしておいた。zoom と youtube live の両方で配信しているせいか、zoom でのやり取りと youtube live のチャット欄でのやり取りが混ざって、発表者も運営も混乱していたように思う。jjug のスタッフさんも当日にあれこれ指示を出していたりもして配信プラットフォームが複数になるとややこしいよなとか思いながら眺めてた。
@@ -408,7 +453,8 @@ Amazon SNS でのAWS Lambdaの使用 Managing Lambda reserved concurrency Amazon
 私はまったく出石城のことを知らなくて、もともとのお殿様ではないが、なんやらかんやらで 仙石秀久 が城主になったらしい。センゴク の漫画の主人公。城跡に上る鳥居の裏に作者の宮下英樹さんの名前もあった。仙石秀久：鈴鳴り武者、またの名を蕎麦の伝道師…、あんたはいったい何者だ!? の記事によると、出石そばも仙石秀久が信州から出石へ転封したときに一緒に付いてきた信濃のそば職人が発祥になっているらしい。はーん。
 西紀サービスエリア ワーケーション1日目の反省点 にも書いたが、車の移動で行きはどこで休憩するかを決めていなかった。そうすると、どのタイミングでどこのサービスエリアに入っていいかがわからなくなってしまった。帰りは下調べして、休憩によさそうな設備があって中間の適切な位置として、舞鶴若狭自動車道の西紀サービスエリアがよさそうと調べていた。そして最初からナビの目的地をサービスエリアにしてしまうことで走り過ぎや休憩までのペースなども走りながら考える必要がない。当たり前のことなんだけど、自分で運転してみて初日はうまく段取りできなかったのでこれも大事な事前準備だと気付いた。
 小さなふりかえりと神戸空港 神戸に戻ってきてから雨がぱらぱらし始めた。天候も何とかもってちょうどよかった。1時間ほどドトールさんで休憩しながら軽いふりかえりみたいになった。
-朝と夜に温泉入るのは疲れる 7つの外湯があり、パスポートを購入していても連続でお風呂に入る人はいなかった 開発合宿は2泊3日が限界 非日常の慣れない生活は楽しさととも緊張もあるので疲労も大きい 実際にやってみることから得られる経験や体験はとても大きい 城崎温泉がどういう場所か、その文化や歴史の一端を垣間見えた 主催としてやらなければならない段取りや準備の経験を大きく積めた 今回の経験をベースにして今後も課題管理システムに積み重なっていく 今後の開発合宿イベントの展望 オープン版は三ノ宮.devでやりそうなのでそこに便乗する うちの会社の関係者や知人に声をかけてクローズドなイベントを1回/年でやる (当面は) bizpy ではやらないかなぁ その後、解散してはらさんを神戸空港まで送っていった。空港の場所は知っていたけど、実際に行ったことなかったので車で空港への行き方がわかってよかった。これで飛行機で神戸に来る人がいても送迎ができる。18時半にレンタカーを返却した。今回は日産 NOTE e-Power というハイブリッド車を初めて運転した。今回の旅程で約350km走って消費したガソリンは約15リットルだった。燃費は23.</description><content>&lt;p>3時に寝て6時前に起きた。起きて作業しようと思って階下に降りた (寝室は2階) ものの、なんかバテてて、畳の部屋で寝転がっていた。涼しくて気持ちよかった。2度寝もしてたかもしれない。起きてからは帰りの高速道路のサービスエリアを調べたり、丹波篠山市か、六甲山天覧台に寄り道するならどういうルートになるかシミュレーションしたりした。&lt;/p>
+朝と夜に温泉入るのは疲れる 7つの外湯があり、パスポートを購入していても連続でお風呂に入る人はいなかった 開発合宿は2泊3日が限界 非日常の慣れない生活は楽しさととも緊張もあるので疲労も大きい 実際にやってみることから得られる経験や体験はとても大きい 城崎温泉がどういう場所か、その文化や歴史の一端を垣間見えた 主催としてやらなければならない段取りや準備の経験を大きく積めた 今回の経験をベースにして今後も課題管理システムに積み重なっていく 今後の開発合宿イベントの展望 オープン版は三ノ宮.devでやりそうなのでそこに便乗する うちの会社の関係者や知人に声をかけてクローズドなイベントを1回/年でやる (当面は) bizpy ではやらないかなぁ その後、解散してはらさんを神戸空港まで送っていった。空港の場所は知っていたけど、実際に行ったことなかったので車で空港への行き方がわかってよかった。これで飛行機で神戸に来る人がいても送迎ができる。18時半にレンタカーを返却した。今回は日産 NOTE e-Power というハイブリッド車を初めて運転した。今回の旅程で約350km走って消費したガソリンは約15リットルだった。燃費は23.3/リットルだった。レンタカーを返して家に着いたらやり終えたなって感じで気分がよかった。
+ストレッチ いつもは土曜日の10時に通っているストレッチを、ワーケーションがあったので日曜日の19時半に変更してもらっていた。温泉に入った後に多少はストレッチをしたものの、運転疲れで体が硬くなってしまっていた。今日の開脚幅は開始前155cmで、ストレッチ後160cmだった。ワーケーションへ行ってきて疲れた後にストレッチを受けられるのは、疲弊した箇所がわかってとてもよかった。外湯に入るために普段より歩いたのものあって腰とふくらはぎの張りが強かった。その上で座椅子や車の運転なども相乗効果があって疲れが溜まっていた感じ。トレーナーさんと旅のふりかえりを雑談しながらストレッチを受けていて、週末どこかへ行ってきた後にストレッチを受けるのはすごくいいと思ってしまった。この場合、私の中ではストレッチがマッサージに置き換わってしまっている。</description><content>&lt;p>3時に寝て6時前に起きた。起きて作業しようと思って階下に降りた (寝室は2階) ものの、なんかバテてて、畳の部屋で寝転がっていた。涼しくて気持ちよかった。2度寝もしてたかもしれない。起きてからは帰りの高速道路のサービスエリアを調べたり、丹波篠山市か、六甲山天覧台に寄り道するならどういうルートになるかシミュレーションしたりした。&lt;/p>
 &lt;h2 id="朝風呂とモーニング">朝風呂とモーニング&lt;/h2>
 &lt;p>昨日と同じように7時を過ぎてから朝風呂に出掛けていく。今日は「地蔵湯」に入った。子ども向けの浅いお風呂と大きなお風呂があった。座椅子でやや腰に負担がかかっていたのでジャグジーで腰の療養をした。昨日3時まで雑談して疲れていたせいか、2泊を終えてバーンアウトしてしまったのか、3日目の旅程の考えがうまくまとまらなくて、お風呂に入りながらぼーっとしていた。喫茶店の &lt;a href="https://tabelog.com/hyogo/A2808/A280801/28014933/">萠阿 (のあ)&lt;/a> さんでモーニングを食べた。&lt;/p>
 &lt;figure>&lt;img src="/diary/diary/img/2022/0605_morning1.jpg"/>
@@ -609,9 +655,9 @@ mvp で対応したんで
 このように実装者は話していたが、本当なのだろうか？と思えた。さらにこのスクリプトのエラーログのログストリームを監視して slack 通知する lambda 関数も移行対象で、コードの検証をしていたところ、slack 通知をするための lambda 関数が別途あり、その動作検証をしていたところ、その lambda 関数を呼び出す権限 lambda:InvokeFunction が足りないことに気付いた。これも実装者に問い合わせたところ、動作検証はやっていないし、過去に1度も slack 通知は発生していないという。状況証拠から考えると、権限が足りないために正常に動作していなかったと推測される。結果的に mvp で対応したという2つの lambda 関数は実運用で半年間、無駄にリソースを浪費して何の役にも立っていなかった。当然、引き継ぎも、課題管理システムのチケットも、ドキュメントも何ら残されていなかった。mvp で対応したという表現に開発で大事なものを誤魔化してはいないだろうか。</description><content>&lt;p>2時に寝て6時に起きた。疲れていたからよく眠れた。&lt;/p>
 &lt;h2 id="mvpminimum-viable-productで対応した">mvp（minimum viable product）で対応した&lt;/h2>
 &lt;p>スクラムに限った話しではないと思うが、プロダクト開発をしていると mvp（minimum viable product）という言葉を聞くことがままある。昔ながらのイテレーション開発よりも、アジャイル開発の文脈でよく使われるように思う。というのは、短い開発期間でプロトタイプを作ったり、最低限の動く機能を作ったりすることをよしとする考え方があるから。昔ながらのやり方だと、イテレーション期間の中でそういった段階的な開発はするものの、外部からみたとき (もしくはマイルストーン) においてはそこそこの機能が提供されているので mvp といった言い方をすることはなかった。もしかしたらアルファとかベータとか呼んでいたかもしれない。最近ある lambda 関数の移行作業を行った。serverless framework でデプロイしていたリソースを cdk で一元管理する。その過程で既存のコードを読むと、ある id をハードコーディングで指定して &lt;em>FIXME&lt;/em> がこんな感じに書いてあった。この id が指すリソースはその後なくなっており、本番環境で不要な処理が定期実行でずっと動き続けていたのと、本来は複数の id リソースに対して行うべき処理を実行していなかった。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#75715e"># FIXME 対象 id 一覧を取得する。(Phase2までに対応します)&lt;/span>
-id &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;ABC001&amp;#39;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>チームの開発リーダーはその存在を全く忘れていたし、このスクリプトを実装したさらに上位の開発リーダーからはこの処理の要否はよくわからないからチームで確認してという曖昧な返事が返ってきた。チームで確認したところ、この処理は必要だとわかり、この機に複数の id リソースに対して対応するようにした。何も知らない私が修正しても5分で対応を完了した。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># FIXME 対象 id 一覧を取得する。(Phase2までに対応します)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>id &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;ABC001&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>チームの開発リーダーはその存在を全く忘れていたし、このスクリプトを実装したさらに上位の開発リーダーからはこの処理の要否はよくわからないからチームで確認してという曖昧な返事が返ってきた。チームで確認したところ、この処理は必要だとわかり、この機に複数の id リソースに対して対応するようにした。何も知らない私が修正しても5分で対応を完了した。&lt;/p>
 &lt;blockquote>
 &lt;p>mvp で対応したんで&lt;/p>
 &lt;/blockquote>

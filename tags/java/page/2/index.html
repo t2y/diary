@@ -1,421 +1,76 @@
-<!doctype html><html lang=en>
-<head>
-<title>java :: forest nook</title>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content>
-<meta name=keywords content>
-<meta name=robots content="noodp">
-<link rel=canonical href=/diary/tags/java/>
-<link rel=stylesheet href=/diary/assets/style.css>
-<link rel=stylesheet href=/diary/assets/green.css>
-<link rel=stylesheet href=/diary/style.css>
-<link rel=apple-touch-icon href=/diary/img/apple-touch-icon-192x192.png>
-<link rel="shortcut icon" href=/diary/favicon.ico>
-<meta name=twitter:card content="summary">
-<meta name=twitter:site content="t2y">
-<meta name=twitter:creator content>
-<meta property="og:locale" content="en">
-<meta property="og:type" content="website">
-<meta property="og:title" content="java">
-<meta property="og:description" content>
-<meta property="og:url" content="/diary/tags/java/">
-<meta property="og:site_name" content="forest nook">
-<meta property="og:image" content="/diary/favicon.ico">
-<meta property="og:image:width" content="2048">
-<meta property="og:image:height" content="1024">
-<link href=/diary/tags/java/index.xml rel=alternate type=application/rss+xml title="forest nook">
-</head>
-<body class=green>
-<div class="container full headings--one-size">
-<header class=header>
-<div class=header__inner>
-<div class=header__logo>
-<a href=/diary>
-<div class=logo>
-forest nook
-</div>
-</a>
-</div>
-<div class=menu-trigger>menu</div>
-</div>
-<nav class=menu>
-<ul class="menu__inner menu__inner--desktop">
-<li><a href=/diary/about>自己紹介</a></li>
-<li><a href=/diary/dates>月別一覧</a></li>
-<li><a href=/diary/tags>タグ一覧</a></li>
-</ul>
-<ul class="menu__inner menu__inner--mobile">
-<li><a href=/diary/about>自己紹介</a></li>
-<li><a href=/diary/dates>月別一覧</a></li>
-<li><a href=/diary/tags>タグ一覧</a></li>
-</ul>
-</nav>
-</header>
-<div class=content>
-<div class=posts>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0623/>assertj を使ってみた</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-06-23
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/java/>java</a>&nbsp;
-#<a href=/diary/tags/testing/>testing</a>&nbsp;
-</span>
-<div class=post-content>
-<p>0時に寝て6時に起きた。</p>
-<h2 id=assertdeepequals-を作った>assertDeepEquals を作った</h2>
-<p><a href=https://assertj.github.io/doc/>AssertJ</a> というアサーションライブラリを使って <code>assertDeepEquals</code> を実装した。</p>
-<p>junit4 では hamcrest という matcher が使われていて、それが <code>assertDeepEquals</code> 相当の機能を提供していたが、それが junit5 では提供されなくなったので自分で実装するか、アサーションライブラリを別途使う必要がある。</p>
-<blockquote>
-<p>現時点でJUnit5ではHamcrestのMatcherは提供せず、使用者が自由に選択する方針で進んでいます。そうなった場合、標準でサポートされるassertTrueやassertEquelsなどだけでは、ちょっと頼りなく車輪の再発明になりそうなので、候補になりそうなHamcrestとAssertJのよく使いそうなメソッド比較表を作りました。</p>
-<p><a href=https://qiita.com/disc99/items/31fa7abb724f63602dc9>JUnitのアサーションライブラリHamcrest,AssertJ比較</a></p>
-</blockquote>
-<p><a href=https://junit.org/junit5/docs/snapshot/user-guide/#writing-tests-assertions-third-party>2.4.2. Third-party Assertion Libraries</a> によると、junit は基本的なアサーション機能を提供し、より強力なアサーションはサードパーティ製の好きなライブラリを使ってくれみたいなことが書いてある。軽く github でソースコード検索しても、みんな自前で作っているんやなということも分かる。</p>
-<ul>
-<li><a href="https://github.com/search?l=Java&q=assertDeepEquals&type=Code">https://github.com/search?l=Java&q=assertDeepEquals&type=Code</a></li>
-</ul>
-<p>hamcrest はもう保守されていないようにみえるので assertj を使うことにした。assertj の機能を使うと <code>assertDeepEquals</code> を次のように実装できる。直接 assertj を使ってもよいのだけど、assertXxx という名前で使えた方が junit ベースのテストのアサートの統合性があるし、いまお手伝い先では myapp-test のような、テスト向けの共通ライブラリを提供していて、すべてのプロジェクトで既に使っているので assertj の依存関係を追加しなくてもすぐに使えるというぐらいの利便性を提供するだけのユーティリティになる。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Assertions</span> <span style=color:#f92672>{</span>
-
-    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>assertDeepEquals</span><span style=color:#f92672>(</span>Object expected<span style=color:#f92672>,</span> Object actual<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-        assertThat<span style=color:#f92672>(</span>expected<span style=color:#f92672>).</span><span style=color:#a6e22e>usingRecursiveComparison</span><span style=color:#f92672>().</span><span style=color:#a6e22e>isEqualTo</span><span style=color:#f92672>(</span>actual<span style=color:#f92672>);</span>
-    <span style=color:#f92672>}</span>
-
-    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>assertDeepEquals</span><span style=color:#f92672>(</span>Object expected<span style=color:#f92672>,</span> Object actual<span style=color:#f92672>,</span> String<span style=color:#f92672>...</span> fields<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-        assertThat<span style=color:#f92672>(</span>expected<span style=color:#f92672>).</span><span style=color:#a6e22e>usingRecursiveComparison</span><span style=color:#f92672>().</span><span style=color:#a6e22e>comparingOnlyFields</span><span style=color:#f92672>(</span>fields<span style=color:#f92672>).</span><span style=color:#a6e22e>isEqualTo</span><span style=color:#f92672>(</span>actual<span style=color:#f92672>);</span>
-    <span style=color:#f92672>}</span>
-
-    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>assertDeepEqualsIgnoringFields</span><span style=color:#f92672>(</span>Object expected<span style=color:#f92672>,</span> Object actual<span style=color:#f92672>,</span> String<span style=color:#f92672>...</span> fields<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-        assertThat<span style=color:#f92672>(</span>expected<span style=color:#f92672>).</span><span style=color:#a6e22e>usingRecursiveComparison</span><span style=color:#f92672>().</span><span style=color:#a6e22e>ignoringFields</span><span style=color:#f92672>(</span>fields<span style=color:#f92672>).</span><span style=color:#a6e22e>isEqualTo</span><span style=color:#f92672>(</span>actual<span style=color:#f92672>);</span>
-    <span style=color:#f92672>}</span>
-<span style=color:#f92672>}</span>
-</code></pre></div>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0621/>maven で executable jar を作る</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-06-21
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/cli/>cli</a>&nbsp;
+<!doctype html><html lang=en><head><title>java :: forest nook</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=keywords content><meta name=robots content="noodp"><link rel=canonical href=/diary/tags/java/><link rel=stylesheet href=/diary/assets/style.css><link rel=stylesheet href=/diary/assets/green.css><link rel=stylesheet href=/diary/style.css><link rel=apple-touch-icon href=/diary/img/apple-touch-icon-192x192.png><link rel="shortcut icon" href=/diary/favicon.ico><meta name=twitter:card content="summary"><meta name=twitter:site content="t2y"><meta name=twitter:creator content><meta property="og:locale" content="en"><meta property="og:type" content="website"><meta property="og:title" content="java"><meta property="og:description" content><meta property="og:url" content="/diary/tags/java/"><meta property="og:site_name" content="forest nook"><meta property="og:image" content="/diary/favicon.ico"><meta property="og:image:width" content="2048"><meta property="og:image:height" content="1024"><link href=/diary/tags/java/index.xml rel=alternate type=application/rss+xml title="forest nook"></head><body class=green><div class="container full headings--one-size"><header class=header><div class=header__inner><div class=header__logo><a href=/diary><div class=logo>forest nook</div></a></div><div class=menu-trigger>menu</div></div><nav class=menu><ul class="menu__inner menu__inner--desktop"><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul><ul class="menu__inner menu__inner--mobile"><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul></nav></header><div class=content><div class=posts><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2022/0623/>assertj を使ってみた</a></h1><div class=post-meta><span class=post-date>2022-06-23</span></div><span class=post-tags>#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/testing/>testing</a>&nbsp;</span><div class=post-content><p>0時に寝て6時に起きた。</p><h2 id=assertdeepequals-を作った>assertDeepEquals を作った</h2><p><a href=https://assertj.github.io/doc/>AssertJ</a> というアサーションライブラリを使って <code>assertDeepEquals</code> を実装した。</p><p>junit4 では hamcrest という matcher が使われていて、それが <code>assertDeepEquals</code> 相当の機能を提供していたが、それが junit5 では提供されなくなったので自分で実装するか、アサーションライブラリを別途使う必要がある。</p><blockquote><p>現時点でJUnit5ではHamcrestのMatcherは提供せず、使用者が自由に選択する方針で進んでいます。そうなった場合、標準でサポートされるassertTrueやassertEquelsなどだけでは、ちょっと頼りなく車輪の再発明になりそうなので、候補になりそうなHamcrestとAssertJのよく使いそうなメソッド比較表を作りました。</p><p><a href=https://qiita.com/disc99/items/31fa7abb724f63602dc9>JUnitのアサーションライブラリHamcrest,AssertJ比較</a></p></blockquote><p><a href=https://junit.org/junit5/docs/snapshot/user-guide/#writing-tests-assertions-third-party>2.4.2. Third-party Assertion Libraries</a> によると、junit は基本的なアサーション機能を提供し、より強力なアサーションはサードパーティ製の好きなライブラリを使ってくれみたいなことが書いてある。軽く github でソースコード検索しても、みんな自前で作っているんやなということも分かる。</p><ul><li><a href="https://github.com/search?l=Java&q=assertDeepEquals&type=Code">https://github.com/search?l=Java&q=assertDeepEquals&type=Code</a></li></ul><p>hamcrest はもう保守されていないようにみえるので assertj を使うことにした。assertj の機能を使うと <code>assertDeepEquals</code> を次のように実装できる。直接 assertj を使ってもよいのだけど、assertXxx という名前で使えた方が junit ベースのテストのアサートの統合性があるし、いまお手伝い先では myapp-test のような、テスト向けの共通ライブラリを提供していて、すべてのプロジェクトで既に使っているので assertj の依存関係を追加しなくてもすぐに使えるというぐらいの利便性を提供するだけのユーティリティになる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Assertions</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>assertDeepEquals</span><span style=color:#f92672>(</span>Object expected<span style=color:#f92672>,</span> Object actual<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        assertThat<span style=color:#f92672>(</span>expected<span style=color:#f92672>).</span><span style=color:#a6e22e>usingRecursiveComparison</span><span style=color:#f92672>().</span><span style=color:#a6e22e>isEqualTo</span><span style=color:#f92672>(</span>actual<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>assertDeepEquals</span><span style=color:#f92672>(</span>Object expected<span style=color:#f92672>,</span> Object actual<span style=color:#f92672>,</span> String<span style=color:#f92672>...</span> fields<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        assertThat<span style=color:#f92672>(</span>expected<span style=color:#f92672>).</span><span style=color:#a6e22e>usingRecursiveComparison</span><span style=color:#f92672>().</span><span style=color:#a6e22e>comparingOnlyFields</span><span style=color:#f92672>(</span>fields<span style=color:#f92672>).</span><span style=color:#a6e22e>isEqualTo</span><span style=color:#f92672>(</span>actual<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>assertDeepEqualsIgnoringFields</span><span style=color:#f92672>(</span>Object expected<span style=color:#f92672>,</span> Object actual<span style=color:#f92672>,</span> String<span style=color:#f92672>...</span> fields<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        assertThat<span style=color:#f92672>(</span>expected<span style=color:#f92672>).</span><span style=color:#a6e22e>usingRecursiveComparison</span><span style=color:#f92672>().</span><span style=color:#a6e22e>ignoringFields</span><span style=color:#f92672>(</span>fields<span style=color:#f92672>).</span><span style=color:#a6e22e>isEqualTo</span><span style=color:#f92672>(</span>actual<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span></code></pre></div></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2022/0621/>maven で executable jar を作る</a></h1><div class=post-meta><span class=post-date>2022-06-21</span></div><span class=post-tags>#<a href=/diary/tags/cli/>cli</a>&nbsp;
 #<a href=/diary/tags/maven/>maven</a>&nbsp;
-#<a href=/diary/tags/java/>java</a>&nbsp;
-</span>
-<div class=post-content>
-<p>4時に寝て7時に起きた。</p>
-<h2 id=maven-での-executable-jar-の作り方>maven での executable jar の作り方</h2>
-<p>gradle では作ったことがあったけど、maven では初めてなので要領がわかっていない。</p>
-<ul>
-<li><a href=https://www.baeldung.com/executable-jar-with-maven>How to Create an Executable JAR with Maven</a></li>
-<li><a href=https://stackoverflow.com/questions/574594/how-can-i-create-an-executable-jar-with-dependencies-using-maven>How can I create an executable JAR with dependencies using Maven?</a></li>
-</ul>
-<p>これらの記事を読むと、<a href=https://maven.apache.org/plugins/maven-assembly-plugin/>maven-assembly-plugin</a> を使えばいいのかな？とまずはこのプラグインで検証を始めた。古くからあるプラグインなので実績は十分なのだけど、もうあまり保守されていないのか、他プラグインから jar のマニフェストに書き込んで git のリビジョン番号が連携できてなかったり、通常の jar の生成処理を置き換えられなかったりと、あまり使い勝手のよいものではなかった。あと log4j2 と相性が悪くて意図したように設定ファイルを読み込んで初期化ができない。</p>
-<pre tabindex=0><code>main ERROR Error processing element EcsLayout: CLASS_NOT_FOUND
+#<a href=/diary/tags/java/>java</a>&nbsp;</span><div class=post-content><p>4時に寝て7時に起きた。</p><h2 id=maven-での-executable-jar-の作り方>maven での executable jar の作り方</h2><p>gradle では作ったことがあったけど、maven では初めてなので要領がわかっていない。</p><ul><li><a href=https://www.baeldung.com/executable-jar-with-maven>How to Create an Executable JAR with Maven</a></li><li><a href=https://stackoverflow.com/questions/574594/how-can-i-create-an-executable-jar-with-dependencies-using-maven>How can I create an executable JAR with dependencies using Maven?</a></li></ul><p>これらの記事を読むと、<a href=https://maven.apache.org/plugins/maven-assembly-plugin/>maven-assembly-plugin</a> を使えばいいのかな？とまずはこのプラグインで検証を始めた。古くからあるプラグインなので実績は十分なのだけど、もうあまり保守されていないのか、他プラグインから jar のマニフェストに書き込んで git のリビジョン番号が連携できてなかったり、通常の jar の生成処理を置き換えられなかったりと、あまり使い勝手のよいものではなかった。あと log4j2 と相性が悪くて意図したように設定ファイルを読み込んで初期化ができない。</p><pre tabindex=0><code>main ERROR Error processing element EcsLayout: CLASS_NOT_FOUND
 main ERROR Unable to locate plugin type for EcsLayout
 main ERROR Unable to locate plugin for EcsLayout
 main ERROR Could not create plugin of type class org.apache.logging.log4j.core.appender.ConsoleAppender for element Console:
-  java.lang.NullPointerException: Cannot invoke &quot;org.apache.logging.log4j.core.config.plugins.util.PluginType.getElementName()&quot;
-  because &quot;childType&quot; is null java.lang.NullPointerException:
-    Cannot invoke &quot;org.apache.logging.log4j.core.config.plugins.util.PluginType.getElementName()&quot; because &quot;childType&quot; is null
-</code></pre><p>この厄介な問題をデバッグするよりも、すでにうまくいくことがわかっている <a href=https://docs.spring.io/spring-boot/docs/current/maven-plugin/reference/htmlsingle/>spring-boot-maven-plugin</a> を使った方が簡単そうだったのでそうすることにした。不要な spring boot 関連の jar なども executable jar や docker イメージに含まれてしまうことだけがデメリット。そこだけ目を瞑れば log4j2 の初期化エラーも起きず、正常に動作した。やっぱり最近のアプリケーションで使われているプラグインはちゃんとしてるねみたいな話しにしておく。次の設定だけでうまくいった。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=color:#f92672>&lt;plugin&gt;</span>
-    <span style=color:#f92672>&lt;groupId&gt;</span>org.springframework.boot<span style=color:#f92672>&lt;/groupId&gt;</span>
-    <span style=color:#f92672>&lt;artifactId&gt;</span>spring-boot-maven-plugin<span style=color:#f92672>&lt;/artifactId&gt;</span>
-    <span style=color:#f92672>&lt;configuration&gt;</span>
-        <span style=color:#f92672>&lt;mainClass&gt;</span>com.example.myapp.Main<span style=color:#f92672>&lt;/mainClass&gt;</span>
-    <span style=color:#f92672>&lt;/configuration&gt;</span>
-    <span style=color:#f92672>&lt;executions&gt;</span>
-        <span style=color:#f92672>&lt;execution&gt;</span>
-            <span style=color:#f92672>&lt;goals&gt;</span>
-                <span style=color:#f92672>&lt;goal&gt;</span>repackage<span style=color:#f92672>&lt;/goal&gt;</span>
-            <span style=color:#f92672>&lt;/goals&gt;</span>
-        <span style=color:#f92672>&lt;/execution&gt;</span>
-    <span style=color:#f92672>&lt;/executions&gt;</span>
-<span style=color:#f92672>&lt;/plugin&gt;</span>
-</code></pre></div>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0620/>log4j2 の設定ファイルの動的な読み込み</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-06-20
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/java/>java</a>&nbsp;
+  java.lang.NullPointerException: Cannot invoke &#34;org.apache.logging.log4j.core.config.plugins.util.PluginType.getElementName()&#34;
+  because &#34;childType&#34; is null java.lang.NullPointerException:
+    Cannot invoke &#34;org.apache.logging.log4j.core.config.plugins.util.PluginType.getElementName()&#34; because &#34;childType&#34; is null
+</code></pre><p>この厄介な問題をデバッグするよりも、すでにうまくいくことがわかっている <a href=https://docs.spring.io/spring-boot/docs/current/maven-plugin/reference/htmlsingle/>spring-boot-maven-plugin</a> を使った方が簡単そうだったのでそうすることにした。不要な spring boot 関連の jar なども executable jar や docker イメージに含まれてしまうことだけがデメリット。そこだけ目を瞑れば log4j2 の初期化エラーも起きず、正常に動作した。やっぱり最近のアプリケーションで使われているプラグインはちゃんとしてるねみたいな話しにしておく。次の設定だけでうまくいった。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=display:flex><span><span style=color:#f92672>&lt;plugin&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;groupId&gt;</span>org.springframework.boot<span style=color:#f92672>&lt;/groupId&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;artifactId&gt;</span>spring-boot-maven-plugin<span style=color:#f92672>&lt;/artifactId&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;configuration&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&lt;mainClass&gt;</span>com.example.myapp.Main<span style=color:#f92672>&lt;/mainClass&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;/configuration&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;executions&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&lt;execution&gt;</span>
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&lt;goals&gt;</span>
+</span></span><span style=display:flex><span>                <span style=color:#f92672>&lt;goal&gt;</span>repackage<span style=color:#f92672>&lt;/goal&gt;</span>
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&lt;/goals&gt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&lt;/execution&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;/executions&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>&lt;/plugin&gt;</span>
+</span></span></code></pre></div></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2022/0620/>log4j2 の設定ファイルの動的な読み込み</a></h1><div class=post-meta><span class=post-date>2022-06-20</span></div><span class=post-tags>#<a href=/diary/tags/java/>java</a>&nbsp;
 #<a href=/diary/tags/cli/>cli</a>&nbsp;
 #<a href=/diary/tags/logging/>logging</a>&nbsp;
-#<a href=/diary/tags/tax/>tax</a>&nbsp;
-</span>
-<div class=post-content>
-<p>0時に寝て7時に起きた。</p>
-<h2 id=バッチ処理モジュール>バッチ処理モジュール</h2>
-<p>cli でバッチ処理モジュールを作った。コマンドラインの引数パーサーと yml のパーサーを使うことにした。</p>
-<ul>
-<li><a href=https://picocli.info/>picocli</a></li>
-<li><a href=https://bitbucket.org/snakeyaml/>snakeyaml</a></li>
-</ul>
-<p>ロガー実装に <a href=https://logging.apache.org/log4j/2.x/>log4j2</a> を使っているので設定ファイルはアプリケーションの設定ファイルと log4j2 の設定ファイルの2つになる。それぞれ環境ごとに用意してエントリーポイントから起動したタイミングで明示的に設定ファイルを読み込むようにした。</p>
-<p>log4j2 の yml 設定ファイルを動的にどうやって設定するかはドキュメントにもとくに書いてなかった気がする。log4j2 のソースコードやテストコードを読みながら次のようにしたら反映された。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> Config <span style=color:#a6e22e>load</span><span style=color:#f92672>(</span>BatchEnvironment env<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-    var path <span style=color:#f92672>=</span> String<span style=color:#f92672>.</span><span style=color:#a6e22e>format</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;config-%s.yml&#34;</span><span style=color:#f92672>,</span> env<span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>());</span>
-    var inputStream <span style=color:#f92672>=</span> ConfigUtil<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getClassLoader</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getResourceAsStream</span><span style=color:#f92672>(</span>path<span style=color:#f92672>);</span>
-    var yaml <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Yaml<span style=color:#f92672>(</span><span style=color:#66d9ef>new</span> Constructor<span style=color:#f92672>(</span>Config<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>));</span>
-    <span style=color:#66d9ef>return</span> yaml<span style=color:#f92672>.</span><span style=color:#a6e22e>load</span><span style=color:#f92672>(</span>inputStream<span style=color:#f92672>);</span>
-<span style=color:#f92672>}</span>
-</code></pre></div><p>アプリケーションの設定は yml 設定に対応する <code>Config</code> クラスを定義しておいて次のようにして読み込む。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>initializeLogSettings</span><span style=color:#f92672>(</span>BatchEnvironment env<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> IOException <span style=color:#f92672>{</span>
-    var path <span style=color:#f92672>=</span> String<span style=color:#f92672>.</span><span style=color:#a6e22e>format</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;log4j2-%s.yml&#34;</span><span style=color:#f92672>,</span> env<span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>());</span>
-    var inputStream <span style=color:#f92672>=</span> ConfigUtil<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getClassLoader</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getResourceAsStream</span><span style=color:#f92672>(</span>path<span style=color:#f92672>);</span>
-    var source <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ConfigurationSource<span style=color:#f92672>(</span>inputStream<span style=color:#f92672>);</span>
-    var configuration <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> YamlConfigurationFactory<span style=color:#f92672>().</span><span style=color:#a6e22e>getConfiguration</span><span style=color:#f92672>(</span><span style=color:#66d9ef>null</span><span style=color:#f92672>,</span> source<span style=color:#f92672>);</span>
-    Configurator<span style=color:#f92672>.</span><span style=color:#a6e22e>initialize</span><span style=color:#f92672>(</span>configuration<span style=color:#f92672>);</span>
-<span style=color:#f92672>}</span>
-</code></pre></div><p>ちょっとした cli を作るときにちょっとしたライブラリがあると楽でよい。</p>
-<h2 id=欠損金の繰り戻し還付の申請の誤り>欠損金の繰り戻し還付の申請の誤り</h2>
-<p>国税局から電話がかかってきた。初めて提出した欠損金の繰り戻し還付の申請があちこち間違ってますよと。申請書類と一緒に法人税の申告書もみてもらっていて、還付申請した金額も申告の別表1に記入する必要があって、それも一緒に修正してねという話し。法人税の修正申告と還付の訂正依頼の2つが必要とのこと。税務署の人たちは本当に丁寧で親切にあれが間違っている、これが間違っていると教えてくれる。素人が法人決算やっているので初めて行う手続きの間違いはつきものだけど、税務署の人たちが教えてくれるので本当に助かる。感謝。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0619/>jjug ccc 2022 spring 参加</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-06-19
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/java/>java</a>&nbsp;
-#<a href=/diary/tags/event/>event</a>&nbsp;
-</span>
-<div class=post-content>
-<p>1時に寝て7時に起きた。前日、お酒飲んでたくさん雑談したので疲れ果てて寝てた。</p>
-<h2 id=jjug-ccc-2022-spring>jjug ccc 2022 spring</h2>
-<p>私の発表は朝10:25からだったけれど、その1つ前が同僚の発表なので見とこうと思って9時前にはオフィスに着いてたと思う。twitter のハッシュタグを開いたり、スライド資料のツィートの文面を用意したり、発表者用のTシャツを着たりなど、いろいろ発表前にできそうな準備をしておいた。zoom と youtube live の両方で配信しているせいか、zoom でのやり取りと youtube live のチャット欄でのやり取りが混ざって、発表者も運営も混乱していたように思う。jjug のスタッフさんも当日にあれこれ指示を出していたりもして配信プラットフォームが複数になるとややこしいよなとか思いながら眺めてた。</p>
-<p>Track C の発表を午前中いっぱい、私のも含めて3つみてたんだけど、おそらく関係者以外で発表を聴いている人はかなり少なかったのではないかと推測する。まず twitter のハッシュタグも youtube live のチャット欄もほとんど書き込みはなく、質問もないから jjug のスタッフさんが質問するという、予想していた通りの展開になった。同僚と私の発表はぽっと出の発表なので視聴者が少なくてもわかるんだけど、その後のてらだよしおさんの発表もクラスメソッドさんのレポートを書いている人しかコメントしてなかったように思う。</p>
-<ul>
-<li><a href=https://dev.classmethod.jp/articles/jjug-ccc-2022-spring-azure-container-apps/>【レポート】k8s 疲れの方へ送る、k8s ベースのらくらくマイクロサービス動作基盤のご紹介 #jjug_ccc #jjug_ccc_c</a></li>
-</ul>
-<p>オンラインイベントだからリアルタイムに視聴しないのか、日曜日または朝だから少ないのか、また機会があれば中の人にも聞いてみる。昨日の疲れもあって、会社ブログの記事を書いたら眠くなってきたので、午後から帰って寝てた。</p>
-<ul>
-<li><a href=https://kazamori.jp/blogs/2022/06/19/custom-github-actions-by-java/>Java で作るカスタム GitHub Actions</a></li>
-</ul>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0506/>flyway を触ってみた</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-05-06
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/tax/>tax</a>&nbsp;</span><div class=post-content><p>0時に寝て7時に起きた。</p><h2 id=バッチ処理モジュール>バッチ処理モジュール</h2><p>cli でバッチ処理モジュールを作った。コマンドラインの引数パーサーと yml のパーサーを使うことにした。</p><ul><li><a href=https://picocli.info/>picocli</a></li><li><a href=https://bitbucket.org/snakeyaml/>snakeyaml</a></li></ul><p>ロガー実装に <a href=https://logging.apache.org/log4j/2.x/>log4j2</a> を使っているので設定ファイルはアプリケーションの設定ファイルと log4j2 の設定ファイルの2つになる。それぞれ環境ごとに用意してエントリーポイントから起動したタイミングで明示的に設定ファイルを読み込むようにした。</p><p>log4j2 の yml 設定ファイルを動的にどうやって設定するかはドキュメントにもとくに書いてなかった気がする。log4j2 のソースコードやテストコードを読みながら次のようにしたら反映された。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> Config <span style=color:#a6e22e>load</span><span style=color:#f92672>(</span>BatchEnvironment env<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    var path <span style=color:#f92672>=</span> String<span style=color:#f92672>.</span><span style=color:#a6e22e>format</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;config-%s.yml&#34;</span><span style=color:#f92672>,</span> env<span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>());</span>
+</span></span><span style=display:flex><span>    var inputStream <span style=color:#f92672>=</span> ConfigUtil<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getClassLoader</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getResourceAsStream</span><span style=color:#f92672>(</span>path<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>    var yaml <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Yaml<span style=color:#f92672>(</span><span style=color:#66d9ef>new</span> Constructor<span style=color:#f92672>(</span>Config<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>));</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> yaml<span style=color:#f92672>.</span><span style=color:#a6e22e>load</span><span style=color:#f92672>(</span>inputStream<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span></code></pre></div><p>アプリケーションの設定は yml 設定に対応する <code>Config</code> クラスを定義しておいて次のようにして読み込む。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>initializeLogSettings</span><span style=color:#f92672>(</span>BatchEnvironment env<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> IOException <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    var path <span style=color:#f92672>=</span> String<span style=color:#f92672>.</span><span style=color:#a6e22e>format</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;log4j2-%s.yml&#34;</span><span style=color:#f92672>,</span> env<span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>());</span>
+</span></span><span style=display:flex><span>    var inputStream <span style=color:#f92672>=</span> ConfigUtil<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getClassLoader</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getResourceAsStream</span><span style=color:#f92672>(</span>path<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>    var source <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ConfigurationSource<span style=color:#f92672>(</span>inputStream<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>    var configuration <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> YamlConfigurationFactory<span style=color:#f92672>().</span><span style=color:#a6e22e>getConfiguration</span><span style=color:#f92672>(</span><span style=color:#66d9ef>null</span><span style=color:#f92672>,</span> source<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>    Configurator<span style=color:#f92672>.</span><span style=color:#a6e22e>initialize</span><span style=color:#f92672>(</span>configuration<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span></code></pre></div><p>ちょっとした cli を作るときにちょっとしたライブラリがあると楽でよい。</p><h2 id=欠損金の繰り戻し還付の申請の誤り>欠損金の繰り戻し還付の申請の誤り</h2><p>国税局から電話がかかってきた。初めて提出した欠損金の繰り戻し還付の申請があちこち間違ってますよと。申請書類と一緒に法人税の申告書もみてもらっていて、還付申請した金額も申告の別表1に記入する必要があって、それも一緒に修正してねという話し。法人税の修正申告と還付の訂正依頼の2つが必要とのこと。税務署の人たちは本当に丁寧で親切にあれが間違っている、これが間違っていると教えてくれる。素人が法人決算やっているので初めて行う手続きの間違いはつきものだけど、税務署の人たちが教えてくれるので本当に助かる。感謝。</p></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2022/0619/>jjug ccc 2022 spring 参加</a></h1><div class=post-meta><span class=post-date>2022-06-19</span></div><span class=post-tags>#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/event/>event</a>&nbsp;</span><div class=post-content><p>1時に寝て7時に起きた。前日、お酒飲んでたくさん雑談したので疲れ果てて寝てた。</p><h2 id=jjug-ccc-2022-spring>jjug ccc 2022 spring</h2><p>私の発表は朝10:25からだったけれど、その1つ前が同僚の発表なので見とこうと思って9時前にはオフィスに着いてたと思う。twitter のハッシュタグを開いたり、スライド資料のツィートの文面を用意したり、発表者用のTシャツを着たりなど、いろいろ発表前にできそうな準備をしておいた。zoom と youtube live の両方で配信しているせいか、zoom でのやり取りと youtube live のチャット欄でのやり取りが混ざって、発表者も運営も混乱していたように思う。jjug のスタッフさんも当日にあれこれ指示を出していたりもして配信プラットフォームが複数になるとややこしいよなとか思いながら眺めてた。</p><p>Track C の発表を午前中いっぱい、私のも含めて3つみてたんだけど、おそらく関係者以外で発表を聴いている人はかなり少なかったのではないかと推測する。まず twitter のハッシュタグも youtube live のチャット欄もほとんど書き込みはなく、質問もないから jjug のスタッフさんが質問するという、予想していた通りの展開になった。同僚と私の発表はぽっと出の発表なので視聴者が少なくてもわかるんだけど、その後のてらだよしおさんの発表もクラスメソッドさんのレポートを書いている人しかコメントしてなかったように思う。</p><ul><li><a href=https://dev.classmethod.jp/articles/jjug-ccc-2022-spring-azure-container-apps/>【レポート】k8s 疲れの方へ送る、k8s ベースのらくらくマイクロサービス動作基盤のご紹介 #jjug_ccc #jjug_ccc_c</a></li></ul><p>オンラインイベントだからリアルタイムに視聴しないのか、日曜日または朝だから少ないのか、また機会があれば中の人にも聞いてみる。昨日の疲れもあって、会社ブログの記事を書いたら眠くなってきたので、午後から帰って寝てた。</p><ul><li><a href=https://kazamori.jp/blogs/2022/06/19/custom-github-actions-by-java/>Java で作るカスタム GitHub Actions</a></li></ul></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2022/0506/>flyway を触ってみた</a></h1><div class=post-meta><span class=post-date>2022-05-06</span></div><span class=post-tags>#<a href=/diary/tags/java/>java</a>&nbsp;
 #<a href=/diary/tags/database/>database</a>&nbsp;
-#<a href=/diary/tags/migration/>migration</a>&nbsp;
-</span>
-<div class=post-content>
-<p>0時に寝て4時に起きてタイムライン眺めながらだらだらして6時半に起き上がった。</p>
-<h2 id=データベースの移行処理>データベースの移行処理</h2>
-<p>半年前から導入したいという話しは聞いていたものの、先送りになっていたライブラリに <a href=https://flywaydb.org/>flyway</a> がある。データベースの移行処理のためのスクリプト (sql) を管理するツールでどの移行スクリプトを実行したかを記録したり、未適用の処理を自動で適用してくれたりする。spring boot だとすぐ組み込める状態になっていて <a href=https://flywaydb.org/documentation/usage/plugins/springboot>Community Plugins and Integrations: Spring Boot</a> をみながら設定したらすぐに動いた。flyway 自体の設定も <a href=https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html>Common Application Properties</a> を参考に spring boot の設定ファイルで行える。</p>
-<p>例えば、こんな感じ。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#f92672>spring</span>:
-  <span style=color:#f92672>flyway</span>:
-<span style=color:#f92672>￼    enabled</span>: <span style=color:#66d9ef>true</span>
-<span style=color:#f92672>￼    schemas</span>: <span style=color:#ae81ff>public</span>
-<span style=color:#f92672>￼    locations</span>: <span style=color:#ae81ff>classpath:db/migration</span>
-<span style=color:#f92672>￼    baseline-version</span>: <span style=color:#ae81ff>0</span>
-<span style=color:#f92672>￼    baseline-on-migrate</span>: <span style=color:#66d9ef>true</span>
-</code></pre></div><p>移行処理の履歴情報は <code>flyway_schema_history</code> テーブルに保持される。既存のテーブルが存在して flyway の履歴データがない場合 (初回起動時) に移行処理を実行するかどうかを baseline-on-migrate で決める。実行するなら baseline-version でどのバージョンをベースラインとするかも設定できる。ゼロにすることで <code>V1</code> からの sql ファイルを適用してくれる。ベースラインの考え方は実際に何度かデータベースの初期状態を変えて実行しないとわかりにくいかもしれない。</p>
-<ul>
-<li><a href=https://flywaydb.org/documentation/tutorials/baselineMigrations>Tutorial: Baseline Migrations</a></li>
-</ul>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0428/>jvm の脆弱性対応</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-04-28
-</span>
-</div>
-<span class=post-tags>
+#<a href=/diary/tags/migration/>migration</a>&nbsp;</span><div class=post-content><p>0時に寝て4時に起きてタイムライン眺めながらだらだらして6時半に起き上がった。</p><h2 id=データベースの移行処理>データベースの移行処理</h2><p>半年前から導入したいという話しは聞いていたものの、先送りになっていたライブラリに <a href=https://flywaydb.org/>flyway</a> がある。データベースの移行処理のためのスクリプト (sql) を管理するツールでどの移行スクリプトを実行したかを記録したり、未適用の処理を自動で適用してくれたりする。spring boot だとすぐ組み込める状態になっていて <a href=https://flywaydb.org/documentation/usage/plugins/springboot>Community Plugins and Integrations: Spring Boot</a> をみながら設定したらすぐに動いた。flyway 自体の設定も <a href=https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html>Common Application Properties</a> を参考に spring boot の設定ファイルで行える。</p><p>例えば、こんな感じ。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=display:flex><span><span style=color:#f92672>spring</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>flyway</span>:
+</span></span><span style=display:flex><span><span style=color:#f92672>￼    enabled</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>￼    schemas</span>: <span style=color:#ae81ff>public</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>￼    locations</span>: <span style=color:#ae81ff>classpath:db/migration</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>￼    baseline-version</span>: <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>￼    baseline-on-migrate</span>: <span style=color:#66d9ef>true</span>
+</span></span></code></pre></div><p>移行処理の履歴情報は <code>flyway_schema_history</code> テーブルに保持される。既存のテーブルが存在して flyway の履歴データがない場合 (初回起動時) に移行処理を実行するかどうかを baseline-on-migrate で決める。実行するなら baseline-version でどのバージョンをベースラインとするかも設定できる。ゼロにすることで <code>V1</code> からの sql ファイルを適用してくれる。ベースラインの考え方は実際に何度かデータベースの初期状態を変えて実行しないとわかりにくいかもしれない。</p><ul><li><a href=https://flywaydb.org/documentation/tutorials/baselineMigrations>Tutorial: Baseline Migrations</a></li></ul></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2022/0428/>jvm の脆弱性対応</a></h1><div class=post-meta><span class=post-date>2022-04-28</span></div><span class=post-tags>#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/security/>security</a>&nbsp;</span><div class=post-content><p>23時に寝て3時に起きて5時に起きて7時に起きた。なんか調子が微妙。</p><h2 id=jvm-の脆弱性対応>jvm の脆弱性対応</h2><p>少し前だけど、jvm のセキュリティアナウンスがあった。</p><ul><li><a href=https://openjdk.java.net/groups/vulnerability/advisories/2022-04-19>OpenJDK Vulnerability Advisory: 2022/04/19</a></li></ul><p>java 11 向けの docker イメージのビルドはあまり緊急度が高くなかったせいか、17よりは優先度が低かったようにみえる。docker イメージビルドの作業状況は次の issue で管理されている。</p><ul><li><a href=https://github.com/adoptium/adoptium/issues/140>April 2022 Release Status per Platform, Version & Binary Type #140</a></li></ul><p>これまで <a href="https://hub.docker.com/r/adoptopenjdk/openjdk11/tags?page=1&name=alpine-jre">adoptopenjdk/openjdk11:alpine-jre</a> という docker イメージを使っていた。<a href=https://blog.adoptopenjdk.net/2021/03/transition-to-eclipse-an-update/>Transition to Eclipse - An Update</a> によると、Eclipse Temurin という組織が管理する <a href=https://adoptium.net/>Adoptium</a> というプロジェクトに移管されたらしい。この機会に docker イメージも <a href="https://hub.docker.com/_/eclipse-temurin?tab=tags&page=1&name=11-jre-alpine">eclipse-temurin:11-jre-alpine</a> に移行した。</p></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2022/0402/>jjug の cfp に応募した</a></h1><div class=post-meta><span class=post-date>2022-04-02</span></div><span class=post-tags>#<a href=/diary/tags/life/>life</a>&nbsp;
 #<a href=/diary/tags/java/>java</a>&nbsp;
-#<a href=/diary/tags/security/>security</a>&nbsp;
-</span>
-<div class=post-content>
-<p>23時に寝て3時に起きて5時に起きて7時に起きた。なんか調子が微妙。</p>
-<h2 id=jvm-の脆弱性対応>jvm の脆弱性対応</h2>
-<p>少し前だけど、jvm のセキュリティアナウンスがあった。</p>
-<ul>
-<li><a href=https://openjdk.java.net/groups/vulnerability/advisories/2022-04-19>OpenJDK Vulnerability Advisory: 2022/04/19</a></li>
-</ul>
-<p>java 11 向けの docker イメージのビルドはあまり緊急度が高くなかったせいか、17よりは優先度が低かったようにみえる。docker イメージビルドの作業状況は次の issue で管理されている。</p>
-<ul>
-<li><a href=https://github.com/adoptium/adoptium/issues/140>April 2022 Release Status per Platform, Version & Binary Type #140</a></li>
-</ul>
-<p>これまで <a href="https://hub.docker.com/r/adoptopenjdk/openjdk11/tags?page=1&name=alpine-jre">adoptopenjdk/openjdk11:alpine-jre</a> という docker イメージを使っていた。<a href=https://blog.adoptopenjdk.net/2021/03/transition-to-eclipse-an-update/>Transition to Eclipse - An Update</a> によると、Eclipse Temurin という組織が管理する <a href=https://adoptium.net/>Adoptium</a> というプロジェクトに移管されたらしい。この機会に docker イメージも <a href="https://hub.docker.com/_/eclipse-temurin?tab=tags&page=1&name=11-jre-alpine">eclipse-temurin:11-jre-alpine</a> に移行した。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0402/>jjug の cfp に応募した</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-04-02
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/life/>life</a>&nbsp;
-#<a href=/diary/tags/java/>java</a>&nbsp;
-#<a href=/diary/tags/event/>event</a>&nbsp;
-</span>
-<div class=post-content>
-<p>0時に寝て5時に起きた。</p>
-<h2 id=ストレッチ>ストレッチ</h2>
-<p>今日の開脚幅は開始前161cmで、ストレッチ後164cmだった。先週とあまり変わらずといったところ。今日は腰の張りが強かった。トレーナーさんは左の張りが強いと言ってたんだけど、私は右の方が体感的に張りが強いように感じた。もう1年以上担当してくれたトレーナーさんが4月いっぱいで転勤になるらしい。社内制度で広島に最低でも半年間は転勤になるという。広島が終わっても神戸に戻ってくるとは限らず、また別の地域へ転勤になる可能性もあるという。きっと優秀な社員だから転勤するんだろうなと思えた。20代後半ぐらいの若もので個人でも筋トレが好きでボディービルダーの大会などにも参加していると聞いた。趣味と業務が近いのでトレーナーとしてのパフォーマンスも高いのだろうと推測する。若い人はなんでも挑戦して経験した方がよいと私も応援した。5月から後任で別のトレーナーに変わる。新しいトレーナーさんに変わることで前のトレーナーさんとの相対評価もできる。これはこれで楽しみでもある。</p>
-<h2 id=jjug-ccc-2022-spring-の-cfp-応募>JJUG CCC 2022 Spring の cfp 応募</h2>
-<p>本当は締め切りが先週末だったんだけど、募集期間が1週間伸びたのでちょうど作ったばかりのツールで応募してみた。今回はオンラインイベントなので事前にビデオを撮って送るらしい。当日は質疑応答の時間 (10分間) だけオンラインで参加すればよいという感じ。地方在住で物理的に東京に行けないという開発者にも発表しやすいと言えるかもしれない。内容的には初心者向けなので GitHub Actions というネタがいまどきどのぐらい参加者の関心を集めるか、他のプロポーザルとの競争がどのぐらいか次第かな。</p>
-<ul>
-<li><a href=https://fortee.jp/jjug-ccc-2022-spring/proposal/0c85f6b2-d44d-40c2-8e6d-ddc1fe821273>Java で作るカスタム GitHub Actions</a></li>
-</ul>
-<h2 id=生田川公園のお花見予定>生田川公園のお花見予定</h2>
-<p>cfp を投稿して14時頃に気分転換がてら生田川公園に再訪した。今日は絶好のお花見日和なのでどのぐらい人がいるかを調べるために行ってきた。昨日の夜よりはたくさん人がいて、そこそこ賑わっていた。だいたいの桜の木の下は集団にスペースをとられていた。とはいえ、お花見をするためのスペースが全くないというわけでもないのでよい場所を気にしないなら普通に10人ぐらいの集団でお花見はできそう。個人的には川に入って川遊びしているのが楽しそうにみえた。公園管理者に怒られないならちょっとやってみたい。</p>
-<figure><img src=/diary/img/2022/0402_park.jpg>
-</figure>
-<p>帰ってきてから <a href=https://sannomiya-dev.netlify.app/>三宮.dev</a> のすみよしさんと連絡をとって4月10日(日) 11:00 - 16:00 で開催することに決めた。来週中には大半が散ってしまうかも？だけど、実際にやってみてイベント開催の経験値を積むリハーサルの意図もある。bizpy はもはや全く神戸のコミュニティではなくなってしまったけれど、またいつか盛り返す可能性もあるかもしれない。その日のために素振りはしておきたい。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0327/>backlog-github-integration-action を作った</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-03-27
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/event/>event</a>&nbsp;</span><div class=post-content><p>0時に寝て5時に起きた。</p><h2 id=ストレッチ>ストレッチ</h2><p>今日の開脚幅は開始前161cmで、ストレッチ後164cmだった。先週とあまり変わらずといったところ。今日は腰の張りが強かった。トレーナーさんは左の張りが強いと言ってたんだけど、私は右の方が体感的に張りが強いように感じた。もう1年以上担当してくれたトレーナーさんが4月いっぱいで転勤になるらしい。社内制度で広島に最低でも半年間は転勤になるという。広島が終わっても神戸に戻ってくるとは限らず、また別の地域へ転勤になる可能性もあるという。きっと優秀な社員だから転勤するんだろうなと思えた。20代後半ぐらいの若もので個人でも筋トレが好きでボディービルダーの大会などにも参加していると聞いた。趣味と業務が近いのでトレーナーとしてのパフォーマンスも高いのだろうと推測する。若い人はなんでも挑戦して経験した方がよいと私も応援した。5月から後任で別のトレーナーに変わる。新しいトレーナーさんに変わることで前のトレーナーさんとの相対評価もできる。これはこれで楽しみでもある。</p><h2 id=jjug-ccc-2022-spring-の-cfp-応募>JJUG CCC 2022 Spring の cfp 応募</h2><p>本当は締め切りが先週末だったんだけど、募集期間が1週間伸びたのでちょうど作ったばかりのツールで応募してみた。今回はオンラインイベントなので事前にビデオを撮って送るらしい。当日は質疑応答の時間 (10分間) だけオンラインで参加すればよいという感じ。地方在住で物理的に東京に行けないという開発者にも発表しやすいと言えるかもしれない。内容的には初心者向けなので GitHub Actions というネタがいまどきどのぐらい参加者の関心を集めるか、他のプロポーザルとの競争がどのぐらいか次第かな。</p><ul><li><a href=https://fortee.jp/jjug-ccc-2022-spring/proposal/0c85f6b2-d44d-40c2-8e6d-ddc1fe821273>Java で作るカスタム GitHub Actions</a></li></ul><h2 id=生田川公園のお花見予定>生田川公園のお花見予定</h2><p>cfp を投稿して14時頃に気分転換がてら生田川公園に再訪した。今日は絶好のお花見日和なのでどのぐらい人がいるかを調べるために行ってきた。昨日の夜よりはたくさん人がいて、そこそこ賑わっていた。だいたいの桜の木の下は集団にスペースをとられていた。とはいえ、お花見をするためのスペースが全くないというわけでもないのでよい場所を気にしないなら普通に10人ぐらいの集団でお花見はできそう。個人的には川に入って川遊びしているのが楽しそうにみえた。公園管理者に怒られないならちょっとやってみたい。</p><figure><img src=/diary/img/2022/0402_park.jpg></figure><p>帰ってきてから <a href=https://sannomiya-dev.netlify.app/>三宮.dev</a> のすみよしさんと連絡をとって4月10日(日) 11:00 - 16:00 で開催することに決めた。来週中には大半が散ってしまうかも？だけど、実際にやってみてイベント開催の経験値を積むリハーサルの意図もある。bizpy はもはや全く神戸のコミュニティではなくなってしまったけれど、またいつか盛り返す可能性もあるかもしれない。その日のために素振りはしておきたい。</p></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2022/0327/>backlog-github-integration-action を作った</a></h1><div class=post-meta><span class=post-date>2022-03-27</span></div><span class=post-tags>#<a href=/diary/tags/java/>java</a>&nbsp;
 #<a href=/diary/tags/github/>github</a>&nbsp;
-#<a href=/diary/tags/ci/cd/>ci/cd</a>&nbsp;
-</span>
-<div class=post-content>
-<p>0時に寝て7時に起きた。丸一日開発していた。構想1ヶ月、実装2日といったところか。</p>
-<h2 id=backlog-と-github-のインテグレーション-action>backlog と github のインテグレーション action</h2>
-<p>お手伝い先が <a href=https://backlog.com/ja/>backlog</a> を課題管理システムとして使っている。backlog は <a href=https://support-ja.backlog.com/hc/ja/sections/360005425774-Git>git 連携</a> の機能をもっているが、これは nulab 社のクラウド上に git リポジトリを構築したものと連携する機能であって、github と連携する機能ではない。そこで github と backlog と連携するためのカスタム github action を作った。</p>
-<ul>
-<li><a href=https://github.com/kazamori/backlog-github-integration-action>https://github.com/kazamori/backlog-github-integration-action</a></li>
-</ul>
-<p>カスタム github action を java で開発するのは普通にはやらないと思うが、いくつか理由があってお手伝い先が java しかできないというのと、nulab 社が提供している公式クライアント <a href=https://github.com/nulab/backlog4j>nulab/backlog4j</a> が java しかないから。最初は go で実装しようと思って go のクライアントを試したんだけど、サンプルコードをかいたら一部の処理でエラーになって、そのエラーがよくわからなくてやる気がなくなってしまった。最新の rest api の仕様にそってメンテナンスされていないのかな？と思って、やっぱり公式クライアントしかないなと。他にも次のライブラリを使っている。</p>
-<ul>
-<li>設定ファイル: <a href=https://github.com/lightbend/config>https://github.com/lightbend/config</a></li>
-<li>コマンドライン解析: <a href=https://github.com/remkop/picocli>https://github.com/remkop/picocli</a></li>
-<li>github クライアント: <a href=https://github.com/hub4j/github-api>https://github.com/hub4j/github-api</a></li>
-</ul>
-<p>これまでは commons-cli を使ってきたけど、サブコマンドの機能を提供していない。もうメンテされてないかも？サブコマンドの機能をもつ argument parser がほしくて picocli を選択した。初めて使っていて、実装してみたらわりと私の好みでよく出来ていると思う。今後は cli ライブラリとして picocli を使っていこうと思う。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0322/>イベント登壇のススメ</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-03-22
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/java/>java</a>&nbsp;
-#<a href=/diary/tags/event/>event</a>&nbsp;
-</span>
-<div class=post-content>
-<p>1時に寝て7時に起きた。今日も雨。雨降りの日が増えると春が来たなって感じがしてきた。</p>
-<h2 id=cfp-のススメ>cfp のススメ</h2>
-<p>先日、過去に私が jjug ccc に登壇した資料を紹介していて、そう言えば jjug ccc とかいまぐらいの時期かな？と思って調べたら、ちょうど3月27日が cfp の締め切りになる。「ぼくのかんがえたさいきょうのでぷろい」は java アプリケーション開発の基本には沿っていないやり方なので発表したらおもしろいかもしれないと、slack に軽く書き込んだらわりといいねが付いたので社員さんに cfp 送ったら？と勧めた。その社員さんは島根県在住なのでリモートで登壇できるならいいかも？という話しになってイベントの要項を確認したらオンライン開催なので大丈夫そう。</p>
-<p>今日がスクラムのプランニングだったのでチームに共有して業務として cfp を送るための工数も確保した。私が発表してもよいのだけど、なるべく若い人がイベントに登壇すべきだし、業務でやったことはその会社の人が発表すべきだろうというのもあって、私はバックアップにまわって発表は社員さんに任せようと思う。今月末に事例紹介させてほしいという交渉をする予定なので、それがうまくいったら、技術協力として当社のクレジットだけスライドに入れてもらえればみたいところが私の狙い。いずれにしても cfp が採択されないとその展望もないので cfp 作りにも協力していきたい。</p>
-<ul>
-<li><a href=https://fortee.jp/jjug-ccc-2022-spring>JJUG CCC 2022 Spring</a></li>
-</ul>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0224/>継続的デリバリーへの第一歩</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-02-24
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/java/>java</a>&nbsp;
-#<a href=/diary/tags/ci/cd/>ci/cd</a>&nbsp;
-</span>
-<div class=post-content>
-<p>0時に寝て6時に起きた。</p>
-<h2 id=docker-object-labels-と-git-リビジョン>docker object labels と git リビジョン</h2>
-<p>継続的デリバリーのために snapshot jar のマニフェストから取得した git のリビジョンを docker イメージの <a href=https://docs.docker.com/config/labels-custom-metadata/>labels</a> に追加するサンプルコードを <a href=https://github.com/t2y/jib-sample>jib-sample</a> に実装してみた。jib の gradle プラグインを作って簡略化すれば便利かもしれない。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0223/>java アプリケーションの継続的デリバリー</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-02-23
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/java/>java</a>&nbsp;
-#<a href=/diary/tags/ci/cd/>ci/cd</a>&nbsp;
-</span>
-<div class=post-content>
-<p>0時に寝て3時に起きて6時ぐらいまでだらだらして寝て7時に起きた。</p>
-<h2 id=snapshot-jar-と継続的デリバリー>snapshot jar と継続的デリバリー</h2>
-<p>昨日 <a href=/diary/posts/2022/0222/#jar-ファイルと-git-のリビジョン>jar に git のリビジョン番号を含める</a> ことについて書いた。jar から git のリビジョン番号を取得できれば、docker イメージを生成するときに <a href=https://docs.docker.com/config/labels-custom-metadata/>labels</a> に jar の artifact id と git のリビジョン番号のラベルを追加して、docker イメージからもソースコードの追跡ができるようになる。いまデプロイは docker イメージのみで運用しているため、maven のバージョン管理ができなくても docker イメージの追跡可能性さえあれば現実の運用で問題にならないのではないかと考えた。つまり、snapshot jar で開発したものをそのまま本番環境にデプロイするということを意味する。こうすれば特定のバージョン番号を付けるだけのビルドとデプロイが不要になって、テスト環境にデプロイされた docker イメージのテストを完了すれば、そのイメージをいつでも本番環境にデプロイできるようになる。デプロイするタイミングでビルドする必要がなくなるので継続的デリバリーに近づくのではないかと考えた。</p>
-<p>今日、開発の偉い人やインフラ担当者も含めて、みんなでわいわい打ち合わせして、現状の開発では、インターフェースや互換性の変更にあわせてバージョン番号を付けていないし、古いバージョンに戻すことも現実にはなく、保守は常に最新のリビジョンを更新していくから maven でバージョン管理できなくなっても snapshot jar の運用でがんがん開発していけばいいんちゃうという合意を得られた。</p>
-<p>実際にこのやり方がうまくいくかどうか、私も初めての試みなのでやってみないとわからないが、この運用によるワークフローの効率化のメリットも大きいので、引き続き、イニシアティブをもって取り組んでいきたい。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0222/>jar のマニフェストファイル</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-02-22
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/java/>java</a>&nbsp;
-</span>
-<div class=post-content>
-<p>0時に寝て3時に起きて5時に起きて6時半に起きた。</p>
-<h2 id=jar-ファイルと-git-のリビジョン>jar ファイルと git のリビジョン</h2>
-<p>java パッケージのフォーマットとして jar ファイルがある。開発中の jar ファイルは snapshot という特別なバージョンで管理したりするが、この snapshot と git のリビジョンが対応していないので snapshot jar だけではどのリビジョンのソースからビルドされたかがわからない。jar には <a href=https://docs.oracle.com/javase/10/docs/specs/jar/jar.html>JAR File Specification</a> で定義された <code>META-INF/MANIFEST.MF</code> に任意のメタデータを保持できる。maven なら <a href=https://github.com/git-commit-id/git-commit-id-maven-plugin>maven git commit id plugin</a> と <a href=https://github.com/apache/maven-jar-plugin>Apache Maven JAR Plugin</a> を組み合わせれば、ビルド設定だけで git のリポジトリ情報を任意のメタデータとして jar に含めることができる。試しにプラグインの検証も兼ねてやってみた。例えば、次のようなマニフェストを作れる。</p>
-<pre tabindex=0><code>Manifest-Version: 1.0
+#<a href=/diary/tags/ci/cd/>ci/cd</a>&nbsp;</span><div class=post-content><p>0時に寝て7時に起きた。丸一日開発していた。構想1ヶ月、実装2日といったところか。</p><h2 id=backlog-と-github-のインテグレーション-action>backlog と github のインテグレーション action</h2><p>お手伝い先が <a href=https://backlog.com/ja/>backlog</a> を課題管理システムとして使っている。backlog は <a href=https://support-ja.backlog.com/hc/ja/sections/360005425774-Git>git 連携</a> の機能をもっているが、これは nulab 社のクラウド上に git リポジトリを構築したものと連携する機能であって、github と連携する機能ではない。そこで github と backlog と連携するためのカスタム github action を作った。</p><ul><li><a href=https://github.com/kazamori/backlog-github-integration-action>https://github.com/kazamori/backlog-github-integration-action</a></li></ul><p>カスタム github action を java で開発するのは普通にはやらないと思うが、いくつか理由があってお手伝い先が java しかできないというのと、nulab 社が提供している公式クライアント <a href=https://github.com/nulab/backlog4j>nulab/backlog4j</a> が java しかないから。最初は go で実装しようと思って go のクライアントを試したんだけど、サンプルコードをかいたら一部の処理でエラーになって、そのエラーがよくわからなくてやる気がなくなってしまった。最新の rest api の仕様にそってメンテナンスされていないのかな？と思って、やっぱり公式クライアントしかないなと。他にも次のライブラリを使っている。</p><ul><li>設定ファイル: <a href=https://github.com/lightbend/config>https://github.com/lightbend/config</a></li><li>コマンドライン解析: <a href=https://github.com/remkop/picocli>https://github.com/remkop/picocli</a></li><li>github クライアント: <a href=https://github.com/hub4j/github-api>https://github.com/hub4j/github-api</a></li></ul><p>これまでは commons-cli を使ってきたけど、サブコマンドの機能を提供していない。もうメンテされてないかも？サブコマンドの機能をもつ argument parser がほしくて picocli を選択した。初めて使っていて、実装してみたらわりと私の好みでよく出来ていると思う。今後は cli ライブラリとして picocli を使っていこうと思う。</p></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2022/0322/>イベント登壇のススメ</a></h1><div class=post-meta><span class=post-date>2022-03-22</span></div><span class=post-tags>#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/event/>event</a>&nbsp;</span><div class=post-content><p>1時に寝て7時に起きた。今日も雨。雨降りの日が増えると春が来たなって感じがしてきた。</p><h2 id=cfp-のススメ>cfp のススメ</h2><p>先日、過去に私が jjug ccc に登壇した資料を紹介していて、そう言えば jjug ccc とかいまぐらいの時期かな？と思って調べたら、ちょうど3月27日が cfp の締め切りになる。「ぼくのかんがえたさいきょうのでぷろい」は java アプリケーション開発の基本には沿っていないやり方なので発表したらおもしろいかもしれないと、slack に軽く書き込んだらわりといいねが付いたので社員さんに cfp 送ったら？と勧めた。その社員さんは島根県在住なのでリモートで登壇できるならいいかも？という話しになってイベントの要項を確認したらオンライン開催なので大丈夫そう。</p><p>今日がスクラムのプランニングだったのでチームに共有して業務として cfp を送るための工数も確保した。私が発表してもよいのだけど、なるべく若い人がイベントに登壇すべきだし、業務でやったことはその会社の人が発表すべきだろうというのもあって、私はバックアップにまわって発表は社員さんに任せようと思う。今月末に事例紹介させてほしいという交渉をする予定なので、それがうまくいったら、技術協力として当社のクレジットだけスライドに入れてもらえればみたいところが私の狙い。いずれにしても cfp が採択されないとその展望もないので cfp 作りにも協力していきたい。</p><ul><li><a href=https://fortee.jp/jjug-ccc-2022-spring>JJUG CCC 2022 Spring</a></li></ul></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2022/0224/>継続的デリバリーへの第一歩</a></h1><div class=post-meta><span class=post-date>2022-02-24</span></div><span class=post-tags>#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/ci/cd/>ci/cd</a>&nbsp;</span><div class=post-content><p>0時に寝て6時に起きた。</p><h2 id=docker-object-labels-と-git-リビジョン>docker object labels と git リビジョン</h2><p>継続的デリバリーのために snapshot jar のマニフェストから取得した git のリビジョンを docker イメージの <a href=https://docs.docker.com/config/labels-custom-metadata/>labels</a> に追加するサンプルコードを <a href=https://github.com/t2y/jib-sample>jib-sample</a> に実装してみた。jib の gradle プラグインを作って簡略化すれば便利かもしれない。</p></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2022/0223/>java アプリケーションの継続的デリバリー</a></h1><div class=post-meta><span class=post-date>2022-02-23</span></div><span class=post-tags>#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/ci/cd/>ci/cd</a>&nbsp;</span><div class=post-content><p>0時に寝て3時に起きて6時ぐらいまでだらだらして寝て7時に起きた。</p><h2 id=snapshot-jar-と継続的デリバリー>snapshot jar と継続的デリバリー</h2><p>昨日 <a href=/diary/posts/2022/0222/#jar-ファイルと-git-のリビジョン>jar に git のリビジョン番号を含める</a> ことについて書いた。jar から git のリビジョン番号を取得できれば、docker イメージを生成するときに <a href=https://docs.docker.com/config/labels-custom-metadata/>labels</a> に jar の artifact id と git のリビジョン番号のラベルを追加して、docker イメージからもソースコードの追跡ができるようになる。いまデプロイは docker イメージのみで運用しているため、maven のバージョン管理ができなくても docker イメージの追跡可能性さえあれば現実の運用で問題にならないのではないかと考えた。つまり、snapshot jar で開発したものをそのまま本番環境にデプロイするということを意味する。こうすれば特定のバージョン番号を付けるだけのビルドとデプロイが不要になって、テスト環境にデプロイされた docker イメージのテストを完了すれば、そのイメージをいつでも本番環境にデプロイできるようになる。デプロイするタイミングでビルドする必要がなくなるので継続的デリバリーに近づくのではないかと考えた。</p><p>今日、開発の偉い人やインフラ担当者も含めて、みんなでわいわい打ち合わせして、現状の開発では、インターフェースや互換性の変更にあわせてバージョン番号を付けていないし、古いバージョンに戻すことも現実にはなく、保守は常に最新のリビジョンを更新していくから maven でバージョン管理できなくなっても snapshot jar の運用でがんがん開発していけばいいんちゃうという合意を得られた。</p><p>実際にこのやり方がうまくいくかどうか、私も初めての試みなのでやってみないとわからないが、この運用によるワークフローの効率化のメリットも大きいので、引き続き、イニシアティブをもって取り組んでいきたい。</p></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2022/0222/>jar のマニフェストファイル</a></h1><div class=post-meta><span class=post-date>2022-02-22</span></div><span class=post-tags>#<a href=/diary/tags/java/>java</a>&nbsp;</span><div class=post-content><p>0時に寝て3時に起きて5時に起きて6時半に起きた。</p><h2 id=jar-ファイルと-git-のリビジョン>jar ファイルと git のリビジョン</h2><p>java パッケージのフォーマットとして jar ファイルがある。開発中の jar ファイルは snapshot という特別なバージョンで管理したりするが、この snapshot と git のリビジョンが対応していないので snapshot jar だけではどのリビジョンのソースからビルドされたかがわからない。jar には <a href=https://docs.oracle.com/javase/10/docs/specs/jar/jar.html>JAR File Specification</a> で定義された <code>META-INF/MANIFEST.MF</code> に任意のメタデータを保持できる。maven なら <a href=https://github.com/git-commit-id/git-commit-id-maven-plugin>maven git commit id plugin</a> と <a href=https://github.com/apache/maven-jar-plugin>Apache Maven JAR Plugin</a> を組み合わせれば、ビルド設定だけで git のリポジトリ情報を任意のメタデータとして jar に含めることができる。試しにプラグインの検証も兼ねてやってみた。例えば、次のようなマニフェストを作れる。</p><pre tabindex=0><code>Manifest-Version: 1.0
 Created-By: Apache Maven 3.6.3
 Built-By: t2y
 Build-Jdk: 11.0.13
@@ -427,539 +82,164 @@ Git-Branch: main
 Git-Commit-Id: 81a4642
 Git-Commit-Time: 2022-02-21T19:39:30+0900
 Git-Commit-User: Tetsuya Morimoto
-</code></pre><p>java のコードからマニフェストを取得するサンプルコードはこんな感じ。ググるといくつかやり方があるようなので他の実装もある。但し、このコードだと複数の jar のマニフェストを取得してしまうので、あとで自分がみたい jar のマニフェストをフィルターする処理が必要になる。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> String MANIFEST_PATH <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;META-INF/MANIFEST.MF&#34;</span><span style=color:#f92672>;</span>
-
-<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> Map<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>,</span> Manifest<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>getManifests</span><span style=color:#f92672>()</span> <span style=color:#66d9ef>throws</span> IOException<span style=color:#f92672>,</span> URISyntaxException <span style=color:#f92672>{</span>
-    var map <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> HashMap<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>,</span> Manifest<span style=color:#f92672>&gt;();</span>
-    var resources <span style=color:#f92672>=</span> MyUtil<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getClassLoader</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getResources</span><span style=color:#f92672>(</span>MANIFEST_PATH<span style=color:#f92672>);</span>
-    <span style=color:#66d9ef>while</span> <span style=color:#f92672>(</span>resources<span style=color:#f92672>.</span><span style=color:#a6e22e>hasMoreElements</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
-        var elem <span style=color:#f92672>=</span> resources<span style=color:#f92672>.</span><span style=color:#a6e22e>nextElement</span><span style=color:#f92672>();</span>
-        var part <span style=color:#f92672>=</span> elem<span style=color:#f92672>.</span><span style=color:#a6e22e>toURI</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getSchemeSpecificPart</span><span style=color:#f92672>();</span>
-        <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>part <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-            <span style=color:#66d9ef>try</span> <span style=color:#f92672>(</span>var stream <span style=color:#f92672>=</span> elem<span style=color:#f92672>.</span><span style=color:#a6e22e>openStream</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
-                map<span style=color:#f92672>.</span><span style=color:#a6e22e>put</span><span style=color:#f92672>(</span>part<span style=color:#f92672>,</span> <span style=color:#66d9ef>new</span> Manifest<span style=color:#f92672>(</span>stream<span style=color:#f92672>));</span>
-            <span style=color:#f92672>}</span>
-        <span style=color:#f92672>}</span>
-    <span style=color:#f92672>}</span>
-    <span style=color:#66d9ef>return</span> map<span style=color:#f92672>;</span>
-<span style=color:#f92672>}</span>
-</code></pre></div>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0217/>Mockito を触ってみた</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-02-17
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/java/>java</a>&nbsp;
+</code></pre><p>java のコードからマニフェストを取得するサンプルコードはこんな感じ。ググるといくつかやり方があるようなので他の実装もある。但し、このコードだと複数の jar のマニフェストを取得してしまうので、あとで自分がみたい jar のマニフェストをフィルターする処理が必要になる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> String MANIFEST_PATH <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;META-INF/MANIFEST.MF&#34;</span><span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> Map<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>,</span> Manifest<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>getManifests</span><span style=color:#f92672>()</span> <span style=color:#66d9ef>throws</span> IOException<span style=color:#f92672>,</span> URISyntaxException <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    var map <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> HashMap<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>,</span> Manifest<span style=color:#f92672>&gt;();</span>
+</span></span><span style=display:flex><span>    var resources <span style=color:#f92672>=</span> MyUtil<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getClassLoader</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getResources</span><span style=color:#f92672>(</span>MANIFEST_PATH<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>while</span> <span style=color:#f92672>(</span>resources<span style=color:#f92672>.</span><span style=color:#a6e22e>hasMoreElements</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        var elem <span style=color:#f92672>=</span> resources<span style=color:#f92672>.</span><span style=color:#a6e22e>nextElement</span><span style=color:#f92672>();</span>
+</span></span><span style=display:flex><span>        var part <span style=color:#f92672>=</span> elem<span style=color:#f92672>.</span><span style=color:#a6e22e>toURI</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getSchemeSpecificPart</span><span style=color:#f92672>();</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>part <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>try</span> <span style=color:#f92672>(</span>var stream <span style=color:#f92672>=</span> elem<span style=color:#f92672>.</span><span style=color:#a6e22e>openStream</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>                map<span style=color:#f92672>.</span><span style=color:#a6e22e>put</span><span style=color:#f92672>(</span>part<span style=color:#f92672>,</span> <span style=color:#66d9ef>new</span> Manifest<span style=color:#f92672>(</span>stream<span style=color:#f92672>));</span>
+</span></span><span style=display:flex><span>            <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> map<span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span></code></pre></div></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2022/0217/>Mockito を触ってみた</a></h1><div class=post-meta><span class=post-date>2022-02-17</span></div><span class=post-tags>#<a href=/diary/tags/java/>java</a>&nbsp;
 #<a href=/diary/tags/mock/>mock</a>&nbsp;
-#<a href=/diary/tags/testing/>testing</a>&nbsp;
-</span>
-<div class=post-content>
-<p>0時に寝て4時に起きて6時に起きた。6時過ぎに slack でインフラ担当者から作業の報告があってその対応してた。</p>
-<h2 id=mockito-のモック作成>Mockito のモック作成</h2>
-<p><a href=https://www.baeldung.com/spring-5-webclient>Spring 5 WebClient</a> のテストコードを書いてみた。<a href=https://site.mockito.org/>Mockito</a> というモックライブラリを使っているのをみかけたのでそれを使うことにした。当初は WebClient そのもののモックを用意して、どんなメソッドを呼び出しても Null オブジェクトのように無視すればいいんじゃないかと思ってたんだけど、Mockito はそういう用途に使うものではなく、それぞれのメソッドごとにモックを返すような設定ができる。次のような WebClient のメソッドチェーンでリクエストするようなモックを考える。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>var response <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>client</span>
-        <span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>()</span>
-        <span style=color:#f92672>.</span><span style=color:#a6e22e>uri</span><span style=color:#f92672>(</span>uriBuilder <span style=color:#f92672>-&gt;</span> uriBuilder
-                <span style=color:#f92672>.</span><span style=color:#a6e22e>path</span><span style=color:#f92672>(</span>path<span style=color:#f92672>)</span>
-                <span style=color:#f92672>.</span><span style=color:#a6e22e>queryParam</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;param&#34;</span><span style=color:#f92672>,</span> param<span style=color:#f92672>)</span>
-                <span style=color:#f92672>.</span><span style=color:#a6e22e>build</span><span style=color:#f92672>())</span>
-        <span style=color:#f92672>.</span><span style=color:#a6e22e>retrieve</span><span style=color:#f92672>()</span>
-        <span style=color:#f92672>.</span><span style=color:#a6e22e>bodyToMono</span><span style=color:#f92672>(</span>MyResponse<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)</span>
-        <span style=color:#f92672>.</span><span style=color:#a6e22e>block</span><span style=color:#f92672>();</span>
-</code></pre></div><p>他にもっとよいやり方があるかもしれないけど、私がよくわかってなくてこんなやり方しかできなかった。最終的には <code>block()</code> を呼び出したときに任意のレスポンスを取得できればよいのだけど、メソッド単位にモックを呼び出していかないと型チェックやら実行時エラーやらで意図したようにテストできなかった。これだけをみたらメソッドチェーンのモック作りは面倒にみえる。Mockito がどうやってこれを実現しているのかわからないけど、すごい仕組みだなとは思った。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    <span style=color:#a6e22e>@MockBean</span>
-    WebClient client<span style=color:#f92672>;</span>
-    <span style=color:#a6e22e>@Mock</span>
-    WebClient<span style=color:#f92672>.</span><span style=color:#a6e22e>RequestHeadersUriSpec</span> requestHeadersUriSpec<span style=color:#f92672>;</span>
-    <span style=color:#a6e22e>@Mock</span>
-    WebClient<span style=color:#f92672>.</span><span style=color:#a6e22e>RequestHeadersSpec</span> requestHeadersSpec<span style=color:#f92672>;</span>
-    <span style=color:#a6e22e>@Mock</span>
-    WebClient<span style=color:#f92672>.</span><span style=color:#a6e22e>ResponseSpec</span> responseSpec<span style=color:#f92672>;</span>
-    <span style=color:#a6e22e>@Mock</span>
-    Mono<span style=color:#f92672>&lt;</span>MyResponse<span style=color:#f92672>&gt;</span> mono<span style=color:#f92672>;</span>
-
-    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>mockWebClientMethodChain</span><span style=color:#f92672>(</span>MyResponse response<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-        Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>when</span><span style=color:#f92672>(</span>client<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>()).</span><span style=color:#a6e22e>thenReturn</span><span style=color:#f92672>(</span>requestHeadersUriSpec<span style=color:#f92672>);</span>
-        Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>when</span><span style=color:#f92672>(</span>requestHeadersUriSpec<span style=color:#f92672>.</span><span style=color:#a6e22e>uri</span><span style=color:#f92672>((</span>Function<span style=color:#f92672>&lt;</span>UriBuilder<span style=color:#f92672>,</span> URI<span style=color:#f92672>&gt;)</span> Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>any</span><span style=color:#f92672>())).</span><span style=color:#a6e22e>thenReturn</span><span style=color:#f92672>(</span>requestHeadersSpec<span style=color:#f92672>);</span>
-        Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>when</span><span style=color:#f92672>(</span>requestHeadersSpec<span style=color:#f92672>.</span><span style=color:#a6e22e>retrieve</span><span style=color:#f92672>()).</span><span style=color:#a6e22e>thenReturn</span><span style=color:#f92672>(</span>responseSpec<span style=color:#f92672>);</span>
-        Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>when</span><span style=color:#f92672>(</span>responseSpec<span style=color:#f92672>.</span><span style=color:#a6e22e>bodyToMono</span><span style=color:#f92672>(</span>MyResponse<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)).</span><span style=color:#a6e22e>thenReturn</span><span style=color:#f92672>(</span>mono<span style=color:#f92672>);</span>
-        Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>when</span><span style=color:#f92672>(</span>mono<span style=color:#f92672>.</span><span style=color:#a6e22e>block</span><span style=color:#f92672>()).</span><span style=color:#a6e22e>thenReturn</span><span style=color:#f92672>(</span>response<span style=color:#f92672>);</span>
-    <span style=color:#f92672>}</span>
-</code></pre></div>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0213/>java のコードレビューサービス</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-02-13
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/testing/>testing</a>&nbsp;</span><div class=post-content><p>0時に寝て4時に起きて6時に起きた。6時過ぎに slack でインフラ担当者から作業の報告があってその対応してた。</p><h2 id=mockito-のモック作成>Mockito のモック作成</h2><p><a href=https://www.baeldung.com/spring-5-webclient>Spring 5 WebClient</a> のテストコードを書いてみた。<a href=https://site.mockito.org/>Mockito</a> というモックライブラリを使っているのをみかけたのでそれを使うことにした。当初は WebClient そのもののモックを用意して、どんなメソッドを呼び出しても Null オブジェクトのように無視すればいいんじゃないかと思ってたんだけど、Mockito はそういう用途に使うものではなく、それぞれのメソッドごとにモックを返すような設定ができる。次のような WebClient のメソッドチェーンでリクエストするようなモックを考える。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span>var response <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>client</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>()</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>.</span><span style=color:#a6e22e>uri</span><span style=color:#f92672>(</span>uriBuilder <span style=color:#f92672>-&gt;</span> uriBuilder
+</span></span><span style=display:flex><span>                <span style=color:#f92672>.</span><span style=color:#a6e22e>path</span><span style=color:#f92672>(</span>path<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>                <span style=color:#f92672>.</span><span style=color:#a6e22e>queryParam</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;param&#34;</span><span style=color:#f92672>,</span> param<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>                <span style=color:#f92672>.</span><span style=color:#a6e22e>build</span><span style=color:#f92672>())</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>.</span><span style=color:#a6e22e>retrieve</span><span style=color:#f92672>()</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>.</span><span style=color:#a6e22e>bodyToMono</span><span style=color:#f92672>(</span>MyResponse<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>.</span><span style=color:#a6e22e>block</span><span style=color:#f92672>();</span>
+</span></span></code></pre></div><p>他にもっとよいやり方があるかもしれないけど、私がよくわかってなくてこんなやり方しかできなかった。最終的には <code>block()</code> を呼び出したときに任意のレスポンスを取得できればよいのだけど、メソッド単位にモックを呼び出していかないと型チェックやら実行時エラーやらで意図したようにテストできなかった。これだけをみたらメソッドチェーンのモック作りは面倒にみえる。Mockito がどうやってこれを実現しているのかわからないけど、すごい仕組みだなとは思った。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span>    <span style=color:#a6e22e>@MockBean</span>
+</span></span><span style=display:flex><span>    WebClient client<span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@Mock</span>
+</span></span><span style=display:flex><span>    WebClient<span style=color:#f92672>.</span><span style=color:#a6e22e>RequestHeadersUriSpec</span> requestHeadersUriSpec<span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@Mock</span>
+</span></span><span style=display:flex><span>    WebClient<span style=color:#f92672>.</span><span style=color:#a6e22e>RequestHeadersSpec</span> requestHeadersSpec<span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@Mock</span>
+</span></span><span style=display:flex><span>    WebClient<span style=color:#f92672>.</span><span style=color:#a6e22e>ResponseSpec</span> responseSpec<span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@Mock</span>
+</span></span><span style=display:flex><span>    Mono<span style=color:#f92672>&lt;</span>MyResponse<span style=color:#f92672>&gt;</span> mono<span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>mockWebClientMethodChain</span><span style=color:#f92672>(</span>MyResponse response<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>when</span><span style=color:#f92672>(</span>client<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>()).</span><span style=color:#a6e22e>thenReturn</span><span style=color:#f92672>(</span>requestHeadersUriSpec<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>        Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>when</span><span style=color:#f92672>(</span>requestHeadersUriSpec<span style=color:#f92672>.</span><span style=color:#a6e22e>uri</span><span style=color:#f92672>((</span>Function<span style=color:#f92672>&lt;</span>UriBuilder<span style=color:#f92672>,</span> URI<span style=color:#f92672>&gt;)</span> Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>any</span><span style=color:#f92672>())).</span><span style=color:#a6e22e>thenReturn</span><span style=color:#f92672>(</span>requestHeadersSpec<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>        Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>when</span><span style=color:#f92672>(</span>requestHeadersSpec<span style=color:#f92672>.</span><span style=color:#a6e22e>retrieve</span><span style=color:#f92672>()).</span><span style=color:#a6e22e>thenReturn</span><span style=color:#f92672>(</span>responseSpec<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>        Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>when</span><span style=color:#f92672>(</span>responseSpec<span style=color:#f92672>.</span><span style=color:#a6e22e>bodyToMono</span><span style=color:#f92672>(</span>MyResponse<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)).</span><span style=color:#a6e22e>thenReturn</span><span style=color:#f92672>(</span>mono<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>        Mockito<span style=color:#f92672>.</span><span style=color:#a6e22e>when</span><span style=color:#f92672>(</span>mono<span style=color:#f92672>.</span><span style=color:#a6e22e>block</span><span style=color:#f92672>()).</span><span style=color:#a6e22e>thenReturn</span><span style=color:#f92672>(</span>response<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span></code></pre></div></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2022/0213/>java のコードレビューサービス</a></h1><div class=post-meta><span class=post-date>2022-02-13</span></div><span class=post-tags>#<a href=/diary/tags/java/>java</a>&nbsp;
 #<a href=/diary/tags/refactoring/>refactoring</a>&nbsp;
 #<a href=/diary/tags/scrum/>scrum</a>&nbsp;
-#<a href=/diary/tags/issue-tracking-system/>issue tracking system</a>&nbsp;
-</span>
-<div class=post-content>
-<p>22時に寝て0時に起きて5時に起きて7時に起きた。なんか体調が微妙。</p>
-<h2 id=リファクタリングのチケット作成>リファクタリングのチケット作成</h2>
-<p>これまでは業務に関係しないところの機能拡張をしていたので新規にコードを書くことが多かった。いま業務の開発にも着手し始め、その過程で既存のコードを読むことも多くなった。私からみたらコードの品質が著しく低くて、ただ動いているだけで堅牢でもないし、設計の意図も伝わらないコードが多い。そういうのを自分が変更するときに少しずつ出来る範囲でリファクタリングしたりしている。今日もコードを読んでいて enum の扱いについてチケットを作成した。</p>
-<p>前に手伝っていた会社の契約を終了するときに java のコードレビューだけなんらかの契約で依頼できないかという話しはあった。そのときは別件のお仕事が火の車だったので断ってしまった。いまお手伝いしている java のコードをみても、java に慣れていない開発者の書く java のコードはたいていひどい。なぜひどくなるかというと、java は言語仕様が複雑で難しいからだと思う。java の経験が少ないと Effective Java を読んでも理解できないぐらいには java の設計は難しい。その結果として java で開発しているのに設計を練っておらず「動けばいい」コードが散見される。java で開発するなら「これ以外に動かない」コードを書いた方がよいと私は考えている。その意図が伝わるからドキュメントなんか読まなくても「動かすにはこう書けばいい」とわかる。さらにインターフェースが明確であれば、責務や拡張方法も明示的になる。</p>
-<p>前から考えてはいたけど、sier や内製始めたばかりの事業会社向けに java のコードレビューのサービスを提供することも考えている。私1人だとたくさん受けられないし、コードレビューサービスのようなものは会社の信頼関係の方が重要なのでビジネスにするのはちょっと難しいかもなぁ。</p>
-<h2 id=見積もりのまとめ>見積もりのまとめ</h2>
-<p>先日 <a href=/diary/posts/2022/0205/##見積もりとは>見積もりについて考察した</a> 。もともとは社内向けに書こうと書き始めたが、内容の大半は社内に閉じたものではなかったので一般論の記事として書き直した。最終的には1万文字ぐらい書いた。</p>
-<ul>
-<li><a href=https://t2y.hatenablog.jp/entry/2022/02/13/191235>見積もりをがんばらない</a></li>
-</ul>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0208/>テストコードのリファクタリング</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-02-08
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/issue-tracking-system/>issue tracking system</a>&nbsp;</span><div class=post-content><p>22時に寝て0時に起きて5時に起きて7時に起きた。なんか体調が微妙。</p><h2 id=リファクタリングのチケット作成>リファクタリングのチケット作成</h2><p>これまでは業務に関係しないところの機能拡張をしていたので新規にコードを書くことが多かった。いま業務の開発にも着手し始め、その過程で既存のコードを読むことも多くなった。私からみたらコードの品質が著しく低くて、ただ動いているだけで堅牢でもないし、設計の意図も伝わらないコードが多い。そういうのを自分が変更するときに少しずつ出来る範囲でリファクタリングしたりしている。今日もコードを読んでいて enum の扱いについてチケットを作成した。</p><p>前に手伝っていた会社の契約を終了するときに java のコードレビューだけなんらかの契約で依頼できないかという話しはあった。そのときは別件のお仕事が火の車だったので断ってしまった。いまお手伝いしている java のコードをみても、java に慣れていない開発者の書く java のコードはたいていひどい。なぜひどくなるかというと、java は言語仕様が複雑で難しいからだと思う。java の経験が少ないと Effective Java を読んでも理解できないぐらいには java の設計は難しい。その結果として java で開発しているのに設計を練っておらず「動けばいい」コードが散見される。java で開発するなら「これ以外に動かない」コードを書いた方がよいと私は考えている。その意図が伝わるからドキュメントなんか読まなくても「動かすにはこう書けばいい」とわかる。さらにインターフェースが明確であれば、責務や拡張方法も明示的になる。</p><p>前から考えてはいたけど、sier や内製始めたばかりの事業会社向けに java のコードレビューのサービスを提供することも考えている。私1人だとたくさん受けられないし、コードレビューサービスのようなものは会社の信頼関係の方が重要なのでビジネスにするのはちょっと難しいかもなぁ。</p><h2 id=見積もりのまとめ>見積もりのまとめ</h2><p>先日 <a href=/diary/posts/2022/0205/##見積もりとは>見積もりについて考察した</a> 。もともとは社内向けに書こうと書き始めたが、内容の大半は社内に閉じたものではなかったので一般論の記事として書き直した。最終的には1万文字ぐらい書いた。</p><ul><li><a href=https://t2y.hatenablog.jp/entry/2022/02/13/191235>見積もりをがんばらない</a></li></ul></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2022/0208/>テストコードのリファクタリング</a></h1><div class=post-meta><span class=post-date>2022-02-08</span></div><span class=post-tags>#<a href=/diary/tags/java/>java</a>&nbsp;
 #<a href=/diary/tags/spring-boot/>spring boot</a>&nbsp;
-#<a href=/diary/tags/testing/>testing</a>&nbsp;
-</span>
-<div class=post-content>
-<p>0時に寝て6時に起きた。今日は7時半から23時過ぎまで集中してコードを書いてた。最近は19-20時には帰って、晩ご飯食べて、ドラクエタクトやったり漫画読んだりだらだらしている。そんな暇あったら積ん読の本読めって感じだ。</p>
-<h2 id=テストコードのリファクタリング>テストコードのリファクタリング</h2>
-<p>業務機能の開発をするにあたって、既存のテストコードをみていて、<code>@BeforeEach</code> というテストメソッド単位に呼ばれるメソッドでテストデータの削除と postgresql の sequence のリセット処理をしていた。こんなの共通処理ですべてのテーブルの truncate と sequence のリセット処理をすればいいやんとか思って、いろいろ調べて2つのリファクタリングの PR を作成した。先日 <a href=/diary/posts/2022/0116/>JUnit5 の拡張</a> を調べたばかりだから、テストの共通化のノウハウが溜まっている。<a href=https://www.testcontainers.org/modules/databases/postgres/>Testcontainers Postgres Module</a> と連携して、postgresql コンテナに接続して sequence のリセット処理を汎用のテスト拡張として実装した。テストを実装する開発者は、次のように <code>@ExtendWith(DatabaseInitializer.class)</code> をアノテーションに付与すれば、自分で sequence のリセット処理を <code>@BeforeEach</code> のメソッドに実装する必要がなくなる。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@SpringBootTest</span>
-<span style=color:#a6e22e>@Transactional</span>
-<span style=color:#a6e22e>@ExtendWith</span><span style=color:#f92672>(</span>SetupDatabaseContainer<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)</span>
-<span style=color:#a6e22e>@ExtendWith</span><span style=color:#f92672>(</span>DatabaseInitializer<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)</span>
-<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyTest</span> <span style=color:#f92672>{</span>
-    <span style=color:#f92672>...</span>
-<span style=color:#f92672>}</span>
-</code></pre></div><p>この作業の過程で spring boot の <a href=https://spring.pleiades.io/spring-framework/docs/current/reference/html/testing.html#testcontext-tx-enabling-transactions>@Transactional</a> はデフォルトでテストメソッドの実行後にロールバックする機能が提供されていて、いままで <code>@BeforeEach</code> のメソッドで明示的にテーブルのデータを削除する必要はなかったんやと気付いた。じゃあ、なぜ削除するコードを書いてたかと言うと、テストの外部で初期データを作成する仕組みがあるから、初期データを削除する目的でそうしていたことが判明した。そして、一部のコードはそこで作った外部の初期データに依存して実装されていた。テストコードの一部が外部のデータに依存しつつ、テストメソッドでは外部のデータに依存しないように削除のコードが書いてある。書いていて何を言っているのかわからないと思うけど、私も調べてて訳がわからんくて、PR に「いまの状況はかなりややこしい」と前置きしつつ、無駄なコードや仕組みを取り除くための修正を行った。本当は機能開発やらないといけないのにテストコードのリファクタリングするのに大きな時間をかけるわけにはいかないだろうという意図で、半日掛けてリファクタリングして23時過ぎまで作業して、既存のテストコードも含めて全部直した。このリファクタリングで数十のテストケースの約300行ぐらいの初期化コードをなくせた。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0120/>spring boot の xml 変換の仕組み</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-01-20
-</span>
-</div>
-<span class=post-tags>
+#<a href=/diary/tags/testing/>testing</a>&nbsp;</span><div class=post-content><p>0時に寝て6時に起きた。今日は7時半から23時過ぎまで集中してコードを書いてた。最近は19-20時には帰って、晩ご飯食べて、ドラクエタクトやったり漫画読んだりだらだらしている。そんな暇あったら積ん読の本読めって感じだ。</p><h2 id=テストコードのリファクタリング>テストコードのリファクタリング</h2><p>業務機能の開発をするにあたって、既存のテストコードをみていて、<code>@BeforeEach</code> というテストメソッド単位に呼ばれるメソッドでテストデータの削除と postgresql の sequence のリセット処理をしていた。こんなの共通処理ですべてのテーブルの truncate と sequence のリセット処理をすればいいやんとか思って、いろいろ調べて2つのリファクタリングの PR を作成した。先日 <a href=/diary/posts/2022/0116/>JUnit5 の拡張</a> を調べたばかりだから、テストの共通化のノウハウが溜まっている。<a href=https://www.testcontainers.org/modules/databases/postgres/>Testcontainers Postgres Module</a> と連携して、postgresql コンテナに接続して sequence のリセット処理を汎用のテスト拡張として実装した。テストを実装する開発者は、次のように <code>@ExtendWith(DatabaseInitializer.class)</code> をアノテーションに付与すれば、自分で sequence のリセット処理を <code>@BeforeEach</code> のメソッドに実装する必要がなくなる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#a6e22e>@SpringBootTest</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@Transactional</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@ExtendWith</span><span style=color:#f92672>(</span>SetupDatabaseContainer<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@ExtendWith</span><span style=color:#f92672>(</span>DatabaseInitializer<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyTest</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span></code></pre></div><p>この作業の過程で spring boot の <a href=https://spring.pleiades.io/spring-framework/docs/current/reference/html/testing.html#testcontext-tx-enabling-transactions>@Transactional</a> はデフォルトでテストメソッドの実行後にロールバックする機能が提供されていて、いままで <code>@BeforeEach</code> のメソッドで明示的にテーブルのデータを削除する必要はなかったんやと気付いた。じゃあ、なぜ削除するコードを書いてたかと言うと、テストの外部で初期データを作成する仕組みがあるから、初期データを削除する目的でそうしていたことが判明した。そして、一部のコードはそこで作った外部の初期データに依存して実装されていた。テストコードの一部が外部のデータに依存しつつ、テストメソッドでは外部のデータに依存しないように削除のコードが書いてある。書いていて何を言っているのかわからないと思うけど、私も調べてて訳がわからんくて、PR に「いまの状況はかなりややこしい」と前置きしつつ、無駄なコードや仕組みを取り除くための修正を行った。本当は機能開発やらないといけないのにテストコードのリファクタリングするのに大きな時間をかけるわけにはいかないだろうという意図で、半日掛けてリファクタリングして23時過ぎまで作業して、既存のテストコードも含めて全部直した。このリファクタリングで数十のテストケースの約300行ぐらいの初期化コードをなくせた。</p></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2022/0120/>spring boot の xml 変換の仕組み</a></h1><div class=post-meta><span class=post-date>2022-01-20</span></div><span class=post-tags>#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/spring-boot/>spring boot</a>&nbsp;</span><div class=post-content><p>0時に寝て吐き気がして3時に起きて、断続的に仮眠をとってみたけど、それでも気分悪くて5時から起きてた。昨日の晩ご飯食べて寝てから吐き気が出てきた。なにかの食べ合わせなのだろうか。コロッケとその後にチョコレート食べたのが悪かったのか。普通にオフィスへ行ってお仕事してたら直った。</p><h2 id=spring-boot-の-xml-変換>spring boot の xml 変換</h2><p>いまお手伝いしているお仕事で spring boot で <a href=https://en.wikipedia.org/wiki/SOAP>SOAP</a> の xml 通信しているサービスがある。任意の文字列を受け取って任意の文字列を返すような仕組みで設計されていて、xml の変換処理を jackson を使ってアプリケーションコードで書いていた。</p><p>これをやるならミドルウェアでやるべきだなと思って spring boot のドキュメントを調べてみた。<a href=https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#web.servlet.spring-mvc.error-handling>Error Handling</a> のように例外が発生したときの処理をフックする ResponseEntityExceptionHandler のようなミドルウェアに近い仕組みはあるが、通常のレスポンスに対して行う処理はなかった。代わりに <a href=https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#web.servlet.spring-mvc.message-converters>HttpMessageConverters</a> という、レスポンスを変換する仕組み自体は操作できないが、変換する変換器は置き換えたり拡張したりできるようになっている。レスポンスのデータフォーマットのカスタマイズをしたい場合は HttpMessageConverters で行うというのが spring boot 的なやり方にみえる。</p><p>さらに調べていると <a href=https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#howto.spring-mvc.write-xml-rest-service>Write an XML REST Service</a> に <code>jackson-dataformat-xml</code> がクラスパスにあれば jackson の ObjectMapper を使って xml に変換するよと書いてあって、試しにレスポンスのオブジェクトを返したら自動的に xml に変換されるという振る舞いを確認できた。つまり、アプリケーションコードで xml の変換処理を自前で実装しなくてもほぼ同じことを spring boot のデフォルトの仕組みでやってくれるというわけだ。jackson の ObjectMapper のカスタマイズがしたいときもいくつかやり方がある。例えば、 <code>@Configuration</code> をもつ Config オブジェクトで次のような bean を生成すれば任意の設定にカスタマイズした ObjectMapper が使われるようになる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#a6e22e>@Bean</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span> Jackson2ObjectMapperBuilderCustomizer <span style=color:#a6e22e>configureObjectMapper</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> builder <span style=color:#f92672>-&gt;</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        builder<span style=color:#f92672>.</span><span style=color:#a6e22e>serializationInclusion</span><span style=color:#f92672>(</span>JsonInclude<span style=color:#f92672>.</span><span style=color:#a6e22e>Include</span><span style=color:#f92672>.</span><span style=color:#a6e22e>NON_EMPTY</span><span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>};</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span></code></pre></div></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2022/0116/>JUnit5 のテスト拡張</a></h1><div class=post-meta><span class=post-date>2022-01-16</span></div><span class=post-tags>#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/testing/>testing</a>&nbsp;</span><div class=post-content><p>1時に寝て5時に起きて2度寝して9時に起きた。前日呑んでたのであまり眠れなくて体調よくない。</p><h2 id=junit5-的なロガーのテスト>JUnit5 的なロガーのテスト</h2><p>お仕事でログ管理の機能開発をしている。カスタムロガーを使って出力するメッセージを加工している。設計が固まってきて機能も作り込むようになってきたので出力内容が意図した構造化ログになっているかをテストしたい。JUnit5 の機能と log4j の機能を組み合わせてカスタムロガーのテストの仕組みを作ってみた。</p><p>まずログ出力した内容を取得するオブジェクトを特定するためのアノテーションを定義する。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#a6e22e>@Documented</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@Target</span><span style=color:#f92672>(</span>ElementType<span style=color:#f92672>.</span><span style=color:#a6e22e>FIELD</span><span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@Retention</span><span style=color:#f92672>(</span>RetentionPolicy<span style=color:#f92672>.</span><span style=color:#a6e22e>RUNTIME</span><span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#a6e22e>@interface</span> LoggerTestWriter <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span></code></pre></div><p>JUnit5 の <a href=https://junit.org/junit5/docs/current/user-guide/#extensions-registration-declarative>Declarative Extension Registration</a> の仕組みを使って、テストケース非依存な setup/teadown のメソッドを定義する。<a href=https://junit.org/junit5/docs/current/api/org.junit.jupiter.api/org/junit/jupiter/api/extension/ExtensionContext.html>ExtensionContext</a> から拡張するテストケースのインスタンスを取得できる。テストケースインスタンスに定義されている <code>@LoggerTestWriter</code> アノテーションがついたオブジェクトを lgo4j の Appender としてインジェクションするようなコードを setup/teardown (beforeEach/afterEach メソッド) で定義する。Appender のインジェクション周りは <a href=https://qiita.com/kazurof/items/abbd42f11bfc125f3190>Log4j 2でログ出力をテストするサンプルソース</a> の記事を参考にした。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>SetupLogAppender</span> <span style=color:#66d9ef>implements</span> BeforeEachCallback<span style=color:#f92672>,</span> AfterEachCallback <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> String APPENDER_NAME <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;logger-test-appender&#34;</span><span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> Optional<span style=color:#f92672>&lt;</span>Writer<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>getWriter</span><span style=color:#f92672>(</span>ExtensionContext context<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> IllegalAccessException <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        var testInstance <span style=color:#f92672>=</span> context<span style=color:#f92672>.</span><span style=color:#a6e22e>getRequiredTestInstance</span><span style=color:#f92672>();</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span>var field <span style=color:#f92672>:</span> testInstance<span style=color:#f92672>.</span><span style=color:#a6e22e>getClass</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getDeclaredFields</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>field<span style=color:#f92672>.</span><span style=color:#a6e22e>isAnnotationPresent</span><span style=color:#f92672>(</span>LoggerTestWriter<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>))</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span> Optional<span style=color:#f92672>.</span><span style=color:#a6e22e>of</span><span style=color:#f92672>((</span>Writer<span style=color:#f92672>)</span> field<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>testInstance<span style=color:#f92672>));</span>
+</span></span><span style=display:flex><span>            <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> Optional<span style=color:#f92672>.</span><span style=color:#a6e22e>empty</span><span style=color:#f92672>();</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@Override</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>beforeEach</span><span style=color:#f92672>(</span>ExtensionContext context<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> Exception <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        var writer <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getWriter</span><span style=color:#f92672>(</span>context<span style=color:#f92672>).</span><span style=color:#a6e22e>orElseThrow</span><span style=color:#f92672>(()</span> <span style=color:#f92672>-&gt;</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>new</span> IllegalStateException<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;@LoggerTestWriter のアノテーションをもつ Writer を定義してください&#34;</span><span style=color:#f92672>));</span>
+</span></span><span style=display:flex><span>        addAppender<span style=color:#f92672>(</span>writer<span style=color:#f92672>,</span> APPENDER_NAME<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@Override</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>afterEach</span><span style=color:#f92672>(</span>ExtensionContext context<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> Exception <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        var writer <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getWriter</span><span style=color:#f92672>(</span>context<span style=color:#f92672>).</span><span style=color:#a6e22e>orElseThrow</span><span style=color:#f92672>(</span>IllegalStateException<span style=color:#f92672>::</span><span style=color:#66d9ef>new</span><span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>        removeAppender<span style=color:#f92672>(</span>APPENDER_NAME<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>writer <span style=color:#66d9ef>instanceof</span> StringWriter<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>            var stringWriter <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>StringWriter<span style=color:#f92672>)</span> writer<span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>            stringWriter<span style=color:#f92672>.</span><span style=color:#a6e22e>getBuffer</span><span style=color:#f92672>().</span><span style=color:#a6e22e>delete</span><span style=color:#f92672>(</span>0<span style=color:#f92672>,</span> stringWriter<span style=color:#f92672>.</span><span style=color:#a6e22e>getBuffer</span><span style=color:#f92672>().</span><span style=color:#a6e22e>length</span><span style=color:#f92672>());</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span></code></pre></div><p>実際にテストを書くテストクラスは次のようになる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#a6e22e>@ExtendWith</span><span style=color:#f92672>(</span>SetupLogAppender<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyLoggerTest</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> MyLogger logger <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> MyLogger<span style=color:#f92672>(</span>MyLoggerTest<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>());</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@LoggerTestWriter</span>
+</span></span><span style=display:flex><span>    StringWriter writer <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> StringWriter<span style=color:#f92672>();</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@Test</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>testDebugMap</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        logger<span style=color:#f92672>.</span><span style=color:#a6e22e>debug</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;my-message&#34;</span><span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>        assertEquals<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;my-message&#34;</span> writer<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>());</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span></code></pre></div><p><code>@ExtendWith</code> で指定した <code>SetupLogAppender</code> クラスの beforeEach や afterEach がそれぞれのテストメソッドごとに呼ばれて、Appender のインジェクションが <code>@LoggerTestWriter</code> のアノテーションをもつ writer を使って行われる。この writer にはログ出力した文字列が記録されるようになる。これで、テストメソッドで logger に対して出力したメッセージを writer から取得できるので意図したメッセージが出力されていることをテストできる。カスタムロガーのテストケースごとに再利用可能な拡張をきれいに実装できた。</p></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2022/0111/>log4j2 の yml 設定</a></h1><div class=post-meta><span class=post-date>2022-01-11</span></div><span class=post-tags>#<a href=/diary/tags/java/>java</a>&nbsp;</span><div class=post-content><p>0時半に寝て6時半に起きた。だいぶ開発に集中してきて朝も起きれるようになってきた。</p><h2 id=log4j2yml-を読み込む>log4j2.yml を読み込む</h2><p>log4j2 のログ設定を整理していて設定ファイルを読み込む順番は次のようにドキュメントに記載されている。java ライブラリのこういった手厚いルールはややうんざりするところもあるけど、是非はともかく、ファイルフォーマットの違い、ファイル名の違いで読み込む優先順位がある。歴史のあるライブラリだから要求を聞いているうちにこんな感じになったんだろうと推測する。</p><blockquote><ol><li>Log4j will inspect the &ldquo;log4j2.configurationFile&rdquo; system property and, if set, will attempt to load the configuration using the ConfigurationFactory that matches the file extension. Note that this is not restricted to a location on the local file system and may contain a URL.</li><li>If no system property is set the properties ConfigurationFactory will look for log4j2-test.properties in the classpath.</li><li>If no such file is found the YAML ConfigurationFactory will look for log4j2-test.yaml or log4j2-test.yml in the classpath.</li><li>If no such file is found the JSON ConfigurationFactory will look for log4j2-test.json or log4j2-test.jsn in the classpath.</li><li>If no such file is found the XML ConfigurationFactory will look for log4j2-test.xml in the classpath.</li><li>If a test file cannot be located the properties ConfigurationFactory will look for log4j2.properties on the classpath.</li><li>If a properties file cannot be located the YAML ConfigurationFactory will look for log4j2.yaml or log4j2.yml on the classpath.</li><li>If a YAML file cannot be located the JSON ConfigurationFactory will look for log4j2.json or log4j2.jsn on the classpath.</li><li>If a JSON file cannot be located the XML ConfigurationFactory will try to locate log4j2.xml on the classpath.</li><li>If no configuration file could be located the DefaultConfiguration will be used. This will cause logging output to go to the console.</li></ol><p><a href=https://logging.apache.org/log4j/2.x/manual/configuration.html#AutomaticConfiguration>log4j2 Automatic Configuration</a></p></blockquote><p>普通 java は xml で設定を書くけど、この設定ファイルの読み込みルールをみたら yml にも対応しているならその方がよさそうとか思うやん。log4j2.xml から log4j2.yml に書き換えて試してみると、ログ設定が有効にならない。どうも log4j2.yml を読み込んでいないようにみえる。ググっていると <code>jackson-dataformat-yaml</code> を依存関係に追加しろといった内容をみつかるけど、どういう理屈でそういう仕様になっているのか、まったく理解できない。なによりも読み飛ばしたというログが出力されないから設定ファイルを読んでいるのかどうかすら気付けない。これは知ってないとはまるポイントの1つ。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=display:flex><span><span style=color:#f92672>&lt;dependency&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;groupId&gt;</span>com.fasterxml.jackson.dataformat<span style=color:#f92672>&lt;/groupId&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;artifactId&gt;</span>jackson-dataformat-yaml<span style=color:#f92672>&lt;/artifactId&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>&lt;/dependency&gt;</span>
+</span></span></code></pre></div></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2021/1223/>maven のバージョンチェック処理の振る舞い</a></h1><div class=post-meta><span class=post-date>2021-12-23</span></div><span class=post-tags>#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/maven/>maven</a>&nbsp;</span><div class=post-content><p>23時に寝て1時に起きてまた寝て6時半に起きた。変なライフサイクルになってきた。</p><h2 id=maven-のアップデートポリシー>maven のアップデートポリシー</h2><p>maven が依存解決するとき、例えばバージョンの範囲を指定して最新バージョンを取得するといった設定ができる。実行していると、新しいバージョンをチェックしにいくときとそうじゃないときがあって、どういう仕組みで動いているのかよくわからなかったのでデバッグした。言うても DEBUG ログを出力させて、ログの内容をソースで grep しながら関連するところを読んだだけ。</p><p><a href=https://github.com/apache/maven/blob/maven-3.6.3/maven-compat/src/main/java/org/apache/maven/repository/legacy/DefaultUpdateCheckManager.java#L110>DefaultUpdateCheckManager.isUpdateRequired</a> の中でポリシーが最終チェック日付を確認していいる。ここから辿っていくと <a href=https://github.com/apache/maven/blob/maven-3.6.3/maven-artifact/src/main/java/org/apache/maven/artifact/repository/ArtifactRepositoryPolicy.java#L115>ArtifactRepositoryPolicy</a> という仕組みがある。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#66d9ef>return</span> <span style=color:#f92672>(</span> lastCheckDate <span style=color:#f92672>==</span> <span style=color:#66d9ef>null</span> <span style=color:#f92672>)</span> <span style=color:#f92672>||</span> policy<span style=color:#f92672>.</span><span style=color:#a6e22e>checkOutOfDate</span><span style=color:#f92672>(</span> lastCheckDate <span style=color:#f92672>);</span>
+</span></span></code></pre></div><p>ドキュメントでそれっぽい内容を調べると <code>updatePolicy</code> を設定できるようになっている。デフォルトは <code>daily</code> なので日次でチェックしにいくような振る舞いをする。バージョンチェックするときとしないときの何が違うのか、よくわかっていなかった振る舞いを理解できた。これはビルドキャッシュの有無に関係ないのでキャッシュがあるからバージョンチェック処理をスキップできるわけではない。もちろん、更新をチェックさせたくないのであれば <code>never</code> に設定してもいいのかもしれない。</p><blockquote><p>updatePolicy</p><p>The frequency for downloading updates - can be &ldquo;always&rdquo;, &ldquo;daily&rdquo; (default), &ldquo;interval:XXX&rdquo; (in minutes) or &ldquo;never&rdquo; (only if it doesn&rsquo;t exist locally).</p><p><a href=https://maven.apache.org/ref/3.6.3/maven-settings/settings.html>https://maven.apache.org/ref/3.6.3/maven-settings/settings.html</a></p></blockquote></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2021/1216/>traceparent の生成</a></h1><div class=post-meta><span class=post-date>2021-12-16</span></div><span class=post-tags>#<a href=/diary/tags/dapr/>dapr</a>&nbsp;
 #<a href=/diary/tags/java/>java</a>&nbsp;
-#<a href=/diary/tags/spring-boot/>spring boot</a>&nbsp;
-</span>
-<div class=post-content>
-<p>0時に寝て吐き気がして3時に起きて、断続的に仮眠をとってみたけど、それでも気分悪くて5時から起きてた。昨日の晩ご飯食べて寝てから吐き気が出てきた。なにかの食べ合わせなのだろうか。コロッケとその後にチョコレート食べたのが悪かったのか。普通にオフィスへ行ってお仕事してたら直った。</p>
-<h2 id=spring-boot-の-xml-変換>spring boot の xml 変換</h2>
-<p>いまお手伝いしているお仕事で spring boot で <a href=https://en.wikipedia.org/wiki/SOAP>SOAP</a> の xml 通信しているサービスがある。任意の文字列を受け取って任意の文字列を返すような仕組みで設計されていて、xml の変換処理を jackson を使ってアプリケーションコードで書いていた。</p>
-<p>これをやるならミドルウェアでやるべきだなと思って spring boot のドキュメントを調べてみた。<a href=https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#web.servlet.spring-mvc.error-handling>Error Handling</a> のように例外が発生したときの処理をフックする ResponseEntityExceptionHandler のようなミドルウェアに近い仕組みはあるが、通常のレスポンスに対して行う処理はなかった。代わりに <a href=https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#web.servlet.spring-mvc.message-converters>HttpMessageConverters</a> という、レスポンスを変換する仕組み自体は操作できないが、変換する変換器は置き換えたり拡張したりできるようになっている。レスポンスのデータフォーマットのカスタマイズをしたい場合は HttpMessageConverters で行うというのが spring boot 的なやり方にみえる。</p>
-<p>さらに調べていると <a href=https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#howto.spring-mvc.write-xml-rest-service>Write an XML REST Service</a> に <code>jackson-dataformat-xml</code> がクラスパスにあれば jackson の ObjectMapper を使って xml に変換するよと書いてあって、試しにレスポンスのオブジェクトを返したら自動的に xml に変換されるという振る舞いを確認できた。つまり、アプリケーションコードで xml の変換処理を自前で実装しなくてもほぼ同じことを spring boot のデフォルトの仕組みでやってくれるというわけだ。jackson の ObjectMapper のカスタマイズがしたいときもいくつかやり方がある。例えば、 <code>@Configuration</code> をもつ Config オブジェクトで次のような bean を生成すれば任意の設定にカスタマイズした ObjectMapper が使われるようになる。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Bean</span>
-<span style=color:#66d9ef>public</span> Jackson2ObjectMapperBuilderCustomizer <span style=color:#a6e22e>configureObjectMapper</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
-    <span style=color:#66d9ef>return</span> builder <span style=color:#f92672>-&gt;</span> <span style=color:#f92672>{</span>
-        builder<span style=color:#f92672>.</span><span style=color:#a6e22e>serializationInclusion</span><span style=color:#f92672>(</span>JsonInclude<span style=color:#f92672>.</span><span style=color:#a6e22e>Include</span><span style=color:#f92672>.</span><span style=color:#a6e22e>NON_EMPTY</span><span style=color:#f92672>);</span>
-    <span style=color:#f92672>};</span>
-<span style=color:#f92672>}</span>
-</code></pre></div>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0116/>JUnit5 のテスト拡張</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-01-16
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/java/>java</a>&nbsp;
-#<a href=/diary/tags/testing/>testing</a>&nbsp;
-</span>
-<div class=post-content>
-<p>1時に寝て5時に起きて2度寝して9時に起きた。前日呑んでたのであまり眠れなくて体調よくない。</p>
-<h2 id=junit5-的なロガーのテスト>JUnit5 的なロガーのテスト</h2>
-<p>お仕事でログ管理の機能開発をしている。カスタムロガーを使って出力するメッセージを加工している。設計が固まってきて機能も作り込むようになってきたので出力内容が意図した構造化ログになっているかをテストしたい。JUnit5 の機能と log4j の機能を組み合わせてカスタムロガーのテストの仕組みを作ってみた。</p>
-<p>まずログ出力した内容を取得するオブジェクトを特定するためのアノテーションを定義する。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Documented</span>
-<span style=color:#a6e22e>@Target</span><span style=color:#f92672>(</span>ElementType<span style=color:#f92672>.</span><span style=color:#a6e22e>FIELD</span><span style=color:#f92672>)</span>
-<span style=color:#a6e22e>@Retention</span><span style=color:#f92672>(</span>RetentionPolicy<span style=color:#f92672>.</span><span style=color:#a6e22e>RUNTIME</span><span style=color:#f92672>)</span>
-<span style=color:#66d9ef>public</span> <span style=color:#a6e22e>@interface</span> LoggerTestWriter <span style=color:#f92672>{</span>
-<span style=color:#f92672>}</span>
-</code></pre></div><p>JUnit5 の <a href=https://junit.org/junit5/docs/current/user-guide/#extensions-registration-declarative>Declarative Extension Registration</a> の仕組みを使って、テストケース非依存な setup/teadown のメソッドを定義する。<a href=https://junit.org/junit5/docs/current/api/org.junit.jupiter.api/org/junit/jupiter/api/extension/ExtensionContext.html>ExtensionContext</a> から拡張するテストケースのインスタンスを取得できる。テストケースインスタンスに定義されている <code>@LoggerTestWriter</code> アノテーションがついたオブジェクトを lgo4j の Appender としてインジェクションするようなコードを setup/teardown (beforeEach/afterEach メソッド) で定義する。Appender のインジェクション周りは <a href=https://qiita.com/kazurof/items/abbd42f11bfc125f3190>Log4j 2でログ出力をテストするサンプルソース</a> の記事を参考にした。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>SetupLogAppender</span> <span style=color:#66d9ef>implements</span> BeforeEachCallback<span style=color:#f92672>,</span> AfterEachCallback <span style=color:#f92672>{</span>
-    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> String APPENDER_NAME <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;logger-test-appender&#34;</span><span style=color:#f92672>;</span>
-
-    <span style=color:#66d9ef>private</span> Optional<span style=color:#f92672>&lt;</span>Writer<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>getWriter</span><span style=color:#f92672>(</span>ExtensionContext context<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> IllegalAccessException <span style=color:#f92672>{</span>
-        var testInstance <span style=color:#f92672>=</span> context<span style=color:#f92672>.</span><span style=color:#a6e22e>getRequiredTestInstance</span><span style=color:#f92672>();</span>
-        <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span>var field <span style=color:#f92672>:</span> testInstance<span style=color:#f92672>.</span><span style=color:#a6e22e>getClass</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getDeclaredFields</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
-            <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>field<span style=color:#f92672>.</span><span style=color:#a6e22e>isAnnotationPresent</span><span style=color:#f92672>(</span>LoggerTestWriter<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>))</span> <span style=color:#f92672>{</span>
-                <span style=color:#66d9ef>return</span> Optional<span style=color:#f92672>.</span><span style=color:#a6e22e>of</span><span style=color:#f92672>((</span>Writer<span style=color:#f92672>)</span> field<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>testInstance<span style=color:#f92672>));</span>
-            <span style=color:#f92672>}</span>
-        <span style=color:#f92672>}</span>
-        <span style=color:#66d9ef>return</span> Optional<span style=color:#f92672>.</span><span style=color:#a6e22e>empty</span><span style=color:#f92672>();</span>
-    <span style=color:#f92672>}</span>
-
-    <span style=color:#a6e22e>@Override</span>
-    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>beforeEach</span><span style=color:#f92672>(</span>ExtensionContext context<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> Exception <span style=color:#f92672>{</span>
-        var writer <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getWriter</span><span style=color:#f92672>(</span>context<span style=color:#f92672>).</span><span style=color:#a6e22e>orElseThrow</span><span style=color:#f92672>(()</span> <span style=color:#f92672>-&gt;</span>
-                <span style=color:#66d9ef>new</span> IllegalStateException<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;@LoggerTestWriter のアノテーションをもつ Writer を定義してください&#34;</span><span style=color:#f92672>));</span>
-        addAppender<span style=color:#f92672>(</span>writer<span style=color:#f92672>,</span> APPENDER_NAME<span style=color:#f92672>);</span>
-    <span style=color:#f92672>}</span>
-
-    <span style=color:#a6e22e>@Override</span>
-    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>afterEach</span><span style=color:#f92672>(</span>ExtensionContext context<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> Exception <span style=color:#f92672>{</span>
-        var writer <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getWriter</span><span style=color:#f92672>(</span>context<span style=color:#f92672>).</span><span style=color:#a6e22e>orElseThrow</span><span style=color:#f92672>(</span>IllegalStateException<span style=color:#f92672>::</span><span style=color:#66d9ef>new</span><span style=color:#f92672>);</span>
-        removeAppender<span style=color:#f92672>(</span>APPENDER_NAME<span style=color:#f92672>);</span>
-        <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>writer <span style=color:#66d9ef>instanceof</span> StringWriter<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-            var stringWriter <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>StringWriter<span style=color:#f92672>)</span> writer<span style=color:#f92672>;</span>
-            stringWriter<span style=color:#f92672>.</span><span style=color:#a6e22e>getBuffer</span><span style=color:#f92672>().</span><span style=color:#a6e22e>delete</span><span style=color:#f92672>(</span>0<span style=color:#f92672>,</span> stringWriter<span style=color:#f92672>.</span><span style=color:#a6e22e>getBuffer</span><span style=color:#f92672>().</span><span style=color:#a6e22e>length</span><span style=color:#f92672>());</span>
-        <span style=color:#f92672>}</span>
-    <span style=color:#f92672>}</span>
-</code></pre></div><p>実際にテストを書くテストクラスは次のようになる。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@ExtendWith</span><span style=color:#f92672>(</span>SetupLogAppender<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)</span>
-<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyLoggerTest</span> <span style=color:#f92672>{</span>
-    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> MyLogger logger <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> MyLogger<span style=color:#f92672>(</span>MyLoggerTest<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>());</span>
-
-    <span style=color:#a6e22e>@LoggerTestWriter</span>
-    StringWriter writer <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> StringWriter<span style=color:#f92672>();</span>
-
-    <span style=color:#a6e22e>@Test</span>
-    <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>testDebugMap</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
-        logger<span style=color:#f92672>.</span><span style=color:#a6e22e>debug</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;my-message&#34;</span><span style=color:#f92672>)</span>
-        assertEquals<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;my-message&#34;</span> writer<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>());</span>
-    <span style=color:#f92672>}</span>
-</code></pre></div><p><code>@ExtendWith</code> で指定した <code>SetupLogAppender</code> クラスの beforeEach や afterEach がそれぞれのテストメソッドごとに呼ばれて、Appender のインジェクションが <code>@LoggerTestWriter</code> のアノテーションをもつ writer を使って行われる。この writer にはログ出力した文字列が記録されるようになる。これで、テストメソッドで logger に対して出力したメッセージを writer から取得できるので意図したメッセージが出力されていることをテストできる。カスタムロガーのテストケースごとに再利用可能な拡張をきれいに実装できた。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2022/0111/>log4j2 の yml 設定</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2022-01-11
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/java/>java</a>&nbsp;
-</span>
-<div class=post-content>
-<p>0時半に寝て6時半に起きた。だいぶ開発に集中してきて朝も起きれるようになってきた。</p>
-<h2 id=log4j2yml-を読み込む>log4j2.yml を読み込む</h2>
-<p>log4j2 のログ設定を整理していて設定ファイルを読み込む順番は次のようにドキュメントに記載されている。java ライブラリのこういった手厚いルールはややうんざりするところもあるけど、是非はともかく、ファイルフォーマットの違い、ファイル名の違いで読み込む優先順位がある。歴史のあるライブラリだから要求を聞いているうちにこんな感じになったんだろうと推測する。</p>
-<blockquote>
-<ol>
-<li>Log4j will inspect the &ldquo;log4j2.configurationFile&rdquo; system property and, if set, will attempt to load the configuration using the ConfigurationFactory that matches the file extension. Note that this is not restricted to a location on the local file system and may contain a URL.</li>
-<li>If no system property is set the properties ConfigurationFactory will look for log4j2-test.properties in the classpath.</li>
-<li>If no such file is found the YAML ConfigurationFactory will look for log4j2-test.yaml or log4j2-test.yml in the classpath.</li>
-<li>If no such file is found the JSON ConfigurationFactory will look for log4j2-test.json or log4j2-test.jsn in the classpath.</li>
-<li>If no such file is found the XML ConfigurationFactory will look for log4j2-test.xml in the classpath.</li>
-<li>If a test file cannot be located the properties ConfigurationFactory will look for log4j2.properties on the classpath.</li>
-<li>If a properties file cannot be located the YAML ConfigurationFactory will look for log4j2.yaml or log4j2.yml on the classpath.</li>
-<li>If a YAML file cannot be located the JSON ConfigurationFactory will look for log4j2.json or log4j2.jsn on the classpath.</li>
-<li>If a JSON file cannot be located the XML ConfigurationFactory will try to locate log4j2.xml on the classpath.</li>
-<li>If no configuration file could be located the DefaultConfiguration will be used. This will cause logging output to go to the console.</li>
-</ol>
-<p><a href=https://logging.apache.org/log4j/2.x/manual/configuration.html#AutomaticConfiguration>log4j2 Automatic Configuration</a></p>
-</blockquote>
-<p>普通 java は xml で設定を書くけど、この設定ファイルの読み込みルールをみたら yml にも対応しているならその方がよさそうとか思うやん。log4j2.xml から log4j2.yml に書き換えて試してみると、ログ設定が有効にならない。どうも log4j2.yml を読み込んでいないようにみえる。ググっていると <code>jackson-dataformat-yaml</code> を依存関係に追加しろといった内容をみつかるけど、どういう理屈でそういう仕様になっているのか、まったく理解できない。なによりも読み飛ばしたというログが出力されないから設定ファイルを読んでいるのかどうかすら気付けない。これは知ってないとはまるポイントの1つ。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=color:#f92672>&lt;dependency&gt;</span>
-    <span style=color:#f92672>&lt;groupId&gt;</span>com.fasterxml.jackson.dataformat<span style=color:#f92672>&lt;/groupId&gt;</span>
-    <span style=color:#f92672>&lt;artifactId&gt;</span>jackson-dataformat-yaml<span style=color:#f92672>&lt;/artifactId&gt;</span>
-<span style=color:#f92672>&lt;/dependency&gt;</span>
-</code></pre></div>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2021/1223/>maven のバージョンチェック処理の振る舞い</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2021-12-23
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/java/>java</a>&nbsp;
-#<a href=/diary/tags/maven/>maven</a>&nbsp;
-</span>
-<div class=post-content>
-<p>23時に寝て1時に起きてまた寝て6時半に起きた。変なライフサイクルになってきた。</p>
-<h2 id=maven-のアップデートポリシー>maven のアップデートポリシー</h2>
-<p>maven が依存解決するとき、例えばバージョンの範囲を指定して最新バージョンを取得するといった設定ができる。実行していると、新しいバージョンをチェックしにいくときとそうじゃないときがあって、どういう仕組みで動いているのかよくわからなかったのでデバッグした。言うても DEBUG ログを出力させて、ログの内容をソースで grep しながら関連するところを読んだだけ。</p>
-<p><a href=https://github.com/apache/maven/blob/maven-3.6.3/maven-compat/src/main/java/org/apache/maven/repository/legacy/DefaultUpdateCheckManager.java#L110>DefaultUpdateCheckManager.isUpdateRequired</a> の中でポリシーが最終チェック日付を確認していいる。ここから辿っていくと <a href=https://github.com/apache/maven/blob/maven-3.6.3/maven-artifact/src/main/java/org/apache/maven/artifact/repository/ArtifactRepositoryPolicy.java#L115>ArtifactRepositoryPolicy</a> という仕組みがある。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>return</span> <span style=color:#f92672>(</span> lastCheckDate <span style=color:#f92672>==</span> <span style=color:#66d9ef>null</span> <span style=color:#f92672>)</span> <span style=color:#f92672>||</span> policy<span style=color:#f92672>.</span><span style=color:#a6e22e>checkOutOfDate</span><span style=color:#f92672>(</span> lastCheckDate <span style=color:#f92672>);</span>
-</code></pre></div><p>ドキュメントでそれっぽい内容を調べると <code>updatePolicy</code> を設定できるようになっている。デフォルトは <code>daily</code> なので日次でチェックしにいくような振る舞いをする。バージョンチェックするときとしないときの何が違うのか、よくわかっていなかった振る舞いを理解できた。これはビルドキャッシュの有無に関係ないのでキャッシュがあるからバージョンチェック処理をスキップできるわけではない。もちろん、更新をチェックさせたくないのであれば <code>never</code> に設定してもいいのかもしれない。</p>
-<blockquote>
-<p>updatePolicy</p>
-<p>The frequency for downloading updates - can be &ldquo;always&rdquo;, &ldquo;daily&rdquo; (default), &ldquo;interval:XXX&rdquo; (in minutes) or &ldquo;never&rdquo; (only if it doesn&rsquo;t exist locally).</p>
-<p><a href=https://maven.apache.org/ref/3.6.3/maven-settings/settings.html>https://maven.apache.org/ref/3.6.3/maven-settings/settings.html</a></p>
-</blockquote>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2021/1216/>traceparent の生成</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2021-12-16
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/dapr/>dapr</a>&nbsp;
-#<a href=/diary/tags/java/>java</a>&nbsp;
-#<a href=/diary/tags/event/>event</a>&nbsp;
-</span>
-<div class=post-content>
-<p>1時半に寝て7時半に起きた。ちょっと疲れてて寝坊した。</p>
-<h2 id=w3c-trace-context-の-traceparent-ヘッダーの生成>W3C Trace Context の traceparent ヘッダーの生成</h2>
-<p>前にお仕事で <a href=/diary/posts/2021/1209/#dapr-の分散トレーシングと-w3c-trace-context>dapr の分散トレーシングを検証している</a> ことについて書いた。</p>
-<p>dapr の分散トレーシングは <a href=https://www.w3.org/TR/trace-context/>W3C Trace Context</a> に準拠していて、dapr 経由のリクエストは自動的にこの情報が付与されるが、そうじゃないリクエストもトレーシングできるようにするためには http ヘッダーの <code>traceparent</code> をセットしないといけない。試しにサーバー側に <code>traceparent</code> を生成するのはどうやるのかを調べてみた。<a href=https://github.com/w3c/trace-context/blob/main/implementations.md>Implementations of Trace Context</a> にある java ライブラリを調べていて、Jaeger クライアントは OpenTelemetry に移行したと書いてあって、OpenTracing と OpenCensus は OpenTelemetry に統合されたと書いてあって、どうやら OpenTelemetry を使うのがよさそうだとわかった。</p>
-<p>やりたいことは <code>traceparent</code> を生成したいだけだが、OpenTelemetry の <a href=https://opentelemetry.io/docs/instrumentation/java/manual_instrumentation/>Manual Instrumentation</a> を読んでも直接的なやり方は書いてなくて、<a href=https://github.com/open-telemetry/opentelemetry-java>open-telemetry/opentelemetry-java</a> のテストコードなどもみながら実装した。細かいところの仕様をまだ理解できていないけど、ひとまずこれで生成できたので検証はできると思う。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>W3cContextUtil</span> <span style=color:#f92672>{</span>
-
-    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> String TRACE_PARENT_VERSION <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;00&#34;</span><span style=color:#f92672>;</span>
-    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> OpenTelemetrySdk openTelemetry <span style=color:#f92672>=</span> OpenTelemetrySdk<span style=color:#f92672>.</span><span style=color:#a6e22e>builder</span><span style=color:#f92672>()</span>
-            <span style=color:#f92672>.</span><span style=color:#a6e22e>setTracerProvider</span><span style=color:#f92672>(</span>SdkTracerProvider<span style=color:#f92672>.</span><span style=color:#a6e22e>builder</span><span style=color:#f92672>().</span><span style=color:#a6e22e>build</span><span style=color:#f92672>())</span>
-            <span style=color:#f92672>.</span><span style=color:#a6e22e>setPropagators</span><span style=color:#f92672>(</span>ContextPropagators<span style=color:#f92672>.</span><span style=color:#a6e22e>create</span><span style=color:#f92672>(</span>W3CTraceContextPropagator<span style=color:#f92672>.</span><span style=color:#a6e22e>getInstance</span><span style=color:#f92672>()))</span>
-            <span style=color:#f92672>.</span><span style=color:#a6e22e>buildAndRegisterGlobal</span><span style=color:#f92672>();</span>
-    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> Tracer tracer <span style=color:#f92672>=</span> openTelemetry<span style=color:#f92672>.</span><span style=color:#a6e22e>getTracer</span><span style=color:#f92672>(</span>
-            <span style=color:#e6db74>&#34;my-tracer&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;1.0.0&#34;</span><span style=color:#f92672>);</span>
-
-    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> String <span style=color:#a6e22e>generateTraceParent</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
-        Span span <span style=color:#f92672>=</span> tracer<span style=color:#f92672>.</span><span style=color:#a6e22e>spanBuilder</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;parent&#34;</span><span style=color:#f92672>).</span><span style=color:#a6e22e>startSpan</span><span style=color:#f92672>();</span>
-        <span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
-            SpanContext sc <span style=color:#f92672>=</span> span<span style=color:#f92672>.</span><span style=color:#a6e22e>getSpanContext</span><span style=color:#f92672>();</span>
-            <span style=color:#66d9ef>return</span> String<span style=color:#f92672>.</span><span style=color:#a6e22e>format</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;%s-%s-%s-%s&#34;</span><span style=color:#f92672>,</span>
-                    TRACE_PARENT_VERSION<span style=color:#f92672>,</span>
-                    sc<span style=color:#f92672>.</span><span style=color:#a6e22e>getTraceId</span><span style=color:#f92672>(),</span>
-                    sc<span style=color:#f92672>.</span><span style=color:#a6e22e>getSpanId</span><span style=color:#f92672>(),</span>
-                    sc<span style=color:#f92672>.</span><span style=color:#a6e22e>getTraceFlags</span><span style=color:#f92672>().</span><span style=color:#a6e22e>asHex</span><span style=color:#f92672>());</span>
-        <span style=color:#f92672>}</span> <span style=color:#66d9ef>finally</span> <span style=color:#f92672>{</span>
-            span<span style=color:#f92672>.</span><span style=color:#a6e22e>end</span><span style=color:#f92672>();</span>
-        <span style=color:#f92672>}</span>
-    <span style=color:#f92672>}</span>
-<span style=color:#f92672>}</span>
-</code></pre></div><h2 id=大阪python-もくもく会>大阪Python もくもく会</h2>
-<p><a href=https://osakapython.connpass.com/event/233460/>大阪Python もくもく会 #66</a> にオンライン参加した。コロナ禍前に大阪へ通勤していた頃はオフライン勉強会に何回か参加したことがある。主催者のやぎさんは一度 bizpy に参加してくれたこともある。11月からオフライン勉強会を再開したとのこと。久しぶりに参加してやぎさんと話していたら <a href=https://neos.com/>neosvr</a> にも関心をもっているとのこと。私も少し前に oculus quest 2 を購入して触ってみた程度なのでメタバース関連で一緒に勉強会をしてもよいかもしれない。もくもく会では「アジャイル開発とスクラム 第2版」を読んでいて昨日の日記の記事がまさにその成果物。せっかくなので成果発表でこの本の紹介などをした。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2021/1213/>log4j2 セキュリティ対応</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2021-12-13
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/event/>event</a>&nbsp;</span><div class=post-content><p>1時半に寝て7時半に起きた。ちょっと疲れてて寝坊した。</p><h2 id=w3c-trace-context-の-traceparent-ヘッダーの生成>W3C Trace Context の traceparent ヘッダーの生成</h2><p>前にお仕事で <a href=/diary/posts/2021/1209/#dapr-の分散トレーシングと-w3c-trace-context>dapr の分散トレーシングを検証している</a> ことについて書いた。</p><p>dapr の分散トレーシングは <a href=https://www.w3.org/TR/trace-context/>W3C Trace Context</a> に準拠していて、dapr 経由のリクエストは自動的にこの情報が付与されるが、そうじゃないリクエストもトレーシングできるようにするためには http ヘッダーの <code>traceparent</code> をセットしないといけない。試しにサーバー側に <code>traceparent</code> を生成するのはどうやるのかを調べてみた。<a href=https://github.com/w3c/trace-context/blob/main/implementations.md>Implementations of Trace Context</a> にある java ライブラリを調べていて、Jaeger クライアントは OpenTelemetry に移行したと書いてあって、OpenTracing と OpenCensus は OpenTelemetry に統合されたと書いてあって、どうやら OpenTelemetry を使うのがよさそうだとわかった。</p><p>やりたいことは <code>traceparent</code> を生成したいだけだが、OpenTelemetry の <a href=https://opentelemetry.io/docs/instrumentation/java/manual_instrumentation/>Manual Instrumentation</a> を読んでも直接的なやり方は書いてなくて、<a href=https://github.com/open-telemetry/opentelemetry-java>open-telemetry/opentelemetry-java</a> のテストコードなどもみながら実装した。細かいところの仕様をまだ理解できていないけど、ひとまずこれで生成できたので検証はできると思う。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>W3cContextUtil</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> String TRACE_PARENT_VERSION <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;00&#34;</span><span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> OpenTelemetrySdk openTelemetry <span style=color:#f92672>=</span> OpenTelemetrySdk<span style=color:#f92672>.</span><span style=color:#a6e22e>builder</span><span style=color:#f92672>()</span>
+</span></span><span style=display:flex><span>            <span style=color:#f92672>.</span><span style=color:#a6e22e>setTracerProvider</span><span style=color:#f92672>(</span>SdkTracerProvider<span style=color:#f92672>.</span><span style=color:#a6e22e>builder</span><span style=color:#f92672>().</span><span style=color:#a6e22e>build</span><span style=color:#f92672>())</span>
+</span></span><span style=display:flex><span>            <span style=color:#f92672>.</span><span style=color:#a6e22e>setPropagators</span><span style=color:#f92672>(</span>ContextPropagators<span style=color:#f92672>.</span><span style=color:#a6e22e>create</span><span style=color:#f92672>(</span>W3CTraceContextPropagator<span style=color:#f92672>.</span><span style=color:#a6e22e>getInstance</span><span style=color:#f92672>()))</span>
+</span></span><span style=display:flex><span>            <span style=color:#f92672>.</span><span style=color:#a6e22e>buildAndRegisterGlobal</span><span style=color:#f92672>();</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> Tracer tracer <span style=color:#f92672>=</span> openTelemetry<span style=color:#f92672>.</span><span style=color:#a6e22e>getTracer</span><span style=color:#f92672>(</span>
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;my-tracer&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;1.0.0&#34;</span><span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> String <span style=color:#a6e22e>generateTraceParent</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        Span span <span style=color:#f92672>=</span> tracer<span style=color:#f92672>.</span><span style=color:#a6e22e>spanBuilder</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;parent&#34;</span><span style=color:#f92672>).</span><span style=color:#a6e22e>startSpan</span><span style=color:#f92672>();</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>            SpanContext sc <span style=color:#f92672>=</span> span<span style=color:#f92672>.</span><span style=color:#a6e22e>getSpanContext</span><span style=color:#f92672>();</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> String<span style=color:#f92672>.</span><span style=color:#a6e22e>format</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;%s-%s-%s-%s&#34;</span><span style=color:#f92672>,</span>
+</span></span><span style=display:flex><span>                    TRACE_PARENT_VERSION<span style=color:#f92672>,</span>
+</span></span><span style=display:flex><span>                    sc<span style=color:#f92672>.</span><span style=color:#a6e22e>getTraceId</span><span style=color:#f92672>(),</span>
+</span></span><span style=display:flex><span>                    sc<span style=color:#f92672>.</span><span style=color:#a6e22e>getSpanId</span><span style=color:#f92672>(),</span>
+</span></span><span style=display:flex><span>                    sc<span style=color:#f92672>.</span><span style=color:#a6e22e>getTraceFlags</span><span style=color:#f92672>().</span><span style=color:#a6e22e>asHex</span><span style=color:#f92672>());</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>}</span> <span style=color:#66d9ef>finally</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>            span<span style=color:#f92672>.</span><span style=color:#a6e22e>end</span><span style=color:#f92672>();</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span></code></pre></div><h2 id=大阪python-もくもく会>大阪Python もくもく会</h2><p><a href=https://osakapython.connpass.com/event/233460/>大阪Python もくもく会 #66</a> にオンライン参加した。コロナ禍前に大阪へ通勤していた頃はオフライン勉強会に何回か参加したことがある。主催者のやぎさんは一度 bizpy に参加してくれたこともある。11月からオフライン勉強会を再開したとのこと。久しぶりに参加してやぎさんと話していたら <a href=https://neos.com/>neosvr</a> にも関心をもっているとのこと。私も少し前に oculus quest 2 を購入して触ってみた程度なのでメタバース関連で一緒に勉強会をしてもよいかもしれない。もくもく会では「アジャイル開発とスクラム 第2版」を読んでいて昨日の日記の記事がまさにその成果物。せっかくなので成果発表でこの本の紹介などをした。</p></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2021/1213/>log4j2 セキュリティ対応</a></h1><div class=post-meta><span class=post-date>2021-12-13</span></div><span class=post-tags>#<a href=/diary/tags/java/>java</a>&nbsp;
 #<a href=/diary/tags/security/>security</a>&nbsp;
 #<a href=/diary/tags/founding/>founding</a>&nbsp;
-#<a href=/diary/tags/stone/>stone</a>&nbsp;
-</span>
-<img src=/diary/img/2021/1213-turquoise.jpg class=post-cover alt="log4j2 セキュリティ対応">
-<div class=post-content>
-<p>23時に寝て5時に起きたが、だらだらしているうちに2度寝して6時半に起きた。</p>
-<h2 id=log4j2-セキュリティ対応>log4j2 セキュリティ対応</h2>
-<p><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-44228">CVE-2021-44228</a> が金曜日のお昼から私のタイムラインを賑わしている。私がお手伝いしているお仕事はイントラのシステムなのでやや余裕をもって情報を眺めていた。<a href=https://github.com/apache/logging-log4j2/pull/608#issuecomment-990494126>issue のコメント</a> をみても log4j 1.x にも影響があると書かれて、その後に実際には影響ないと書かれて、さらにその後に条件付きだけど影響はあると二転三転してた。自分で実際に試してなくて世の中の開発者の情報をみているだけ。そのため、公式の情報を信頼するといったポジションでしかない。関係者の方々には敬意を払いたい。私は spring の公式ブログで公開されている <a href=https://spring.io/blog/2021/12/10/log4j2-vulnerability-and-spring-boot>Log4J2 Vulnerability and Spring Boot</a> を読みながら対応した。</p>
-<h2 id=ターコイズ>ターコイズ</h2>
-<p>ふとしたきっかけで <a href=https://www.fu-stone.com/blog/turquoise/>ターコイズ</a> の記事を読んだ。12月の誕生石らしく、それでいまの時期に紹介されることも多いのだと推測する。別の記事でターコイズは喉によいと書かれていて、以前 <a href=/diary/posts/2021/1114/#傾斜枕>喉に違和感がある</a> ことを書いた。日常生活に困るほどではないけど、もうこの歳だから体調が良くなることはなく悪くなる一方だろうという見通しも含めて験担ぎのような感覚で喉というキーワードでつながったから購入してみた。</p>
-<p>近所の原石屋さんに行って尋ねてみたら1-2cmぐらいのサイズ1個240円ほどで売っていたので3個買って、近所のダイソーで入れものを買って、それっぽくオフィスに置いておくことにした。うちのコーポレートカラーはグリーンとブルーなんだけど、ターコイズも <a href=https://www.colordic.org/colorscheme/4115>ターコイズグリーン</a> と <a href=https://www.colordic.org/colorscheme/4129>ターコイズブルー</a> の2種類の色がある。創業も12月なので誕生石としても合致する。共通点があって相性がよさそうなのでうちのコーポレートストーン (そんな言葉ない) はターコイズでいいや。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2021/1207/>クロスデフォルト</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2021-12-07
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/economy/>economy</a>&nbsp;
+#<a href=/diary/tags/stone/>stone</a>&nbsp;</span>
+<img src=/diary/img/2021/1213-turquoise.jpg class=post-cover alt="log4j2 セキュリティ対応"><div class=post-content><p>23時に寝て5時に起きたが、だらだらしているうちに2度寝して6時半に起きた。</p><h2 id=log4j2-セキュリティ対応>log4j2 セキュリティ対応</h2><p><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-44228">CVE-2021-44228</a> が金曜日のお昼から私のタイムラインを賑わしている。私がお手伝いしているお仕事はイントラのシステムなのでやや余裕をもって情報を眺めていた。<a href=https://github.com/apache/logging-log4j2/pull/608#issuecomment-990494126>issue のコメント</a> をみても log4j 1.x にも影響があると書かれて、その後に実際には影響ないと書かれて、さらにその後に条件付きだけど影響はあると二転三転してた。自分で実際に試してなくて世の中の開発者の情報をみているだけ。そのため、公式の情報を信頼するといったポジションでしかない。関係者の方々には敬意を払いたい。私は spring の公式ブログで公開されている <a href=https://spring.io/blog/2021/12/10/log4j2-vulnerability-and-spring-boot>Log4J2 Vulnerability and Spring Boot</a> を読みながら対応した。</p><h2 id=ターコイズ>ターコイズ</h2><p>ふとしたきっかけで <a href=https://www.fu-stone.com/blog/turquoise/>ターコイズ</a> の記事を読んだ。12月の誕生石らしく、それでいまの時期に紹介されることも多いのだと推測する。別の記事でターコイズは喉によいと書かれていて、以前 <a href=/diary/posts/2021/1114/#傾斜枕>喉に違和感がある</a> ことを書いた。日常生活に困るほどではないけど、もうこの歳だから体調が良くなることはなく悪くなる一方だろうという見通しも含めて験担ぎのような感覚で喉というキーワードでつながったから購入してみた。</p><p>近所の原石屋さんに行って尋ねてみたら1-2cmぐらいのサイズ1個240円ほどで売っていたので3個買って、近所のダイソーで入れものを買って、それっぽくオフィスに置いておくことにした。うちのコーポレートカラーはグリーンとブルーなんだけど、ターコイズも <a href=https://www.colordic.org/colorscheme/4115>ターコイズグリーン</a> と <a href=https://www.colordic.org/colorscheme/4129>ターコイズブルー</a> の2種類の色がある。創業も12月なので誕生石としても合致する。共通点があって相性がよさそうなのでうちのコーポレートストーン (そんな言葉ない) はターコイズでいいや。</p></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2021/1207/>クロスデフォルト</a></h1><div class=post-meta><span class=post-date>2021-12-07</span></div><span class=post-tags>#<a href=/diary/tags/economy/>economy</a>&nbsp;
 #<a href=/diary/tags/java/>java</a>&nbsp;
-#<a href=/diary/tags/logging/>logging</a>&nbsp;
-</span>
-<div class=post-content>
-<p>0時に寝て6時半に起きた。5時台には起きているんだけど、起き上がるところまではなかなかいけない。</p>
-<h2 id=恒大集団のデフォルト>恒大集団のデフォルト</h2>
-<p>11月から利払の期日の日はチェックしていて、支払うときは2-3日前には支払いを完了したというニュースが出ていたように思う。今日の支払いは前日に支払いしたというニュースが出ないからダメなんだろうなと様子をみていた。</p>
-<ul>
-<li><a href=https://jp.reuters.com/article/evergrande-idJPKBN2IM0F0>中国恒大、猶予期間終了までにオフショア債利払いできず＝関係筋</a></li>
-</ul>
-<p>1つの債務がデフォルトした場合、残りの債務も一括返済しないといけないことを <a href=https://www.ifinance.ne.jp/glossary/loan/loa259.html>クロスデフォルト</a> と呼ぶらしい。契約書にクロスデフォルト条項として書いてあるらしい。記事によると、クロスデフォルトによって約190億ドル (約2.1兆円) のオフショア債の返済を一括でしないといけないらしい。リーマンショックのようなことは起きないという見通しだけど、うちみたいな零細企業は世の中の影響を諸に受けるのでお仕事に影響がでなければいいなぁといったところ。</p>
-<h2 id=アプリケーションログの調査>アプリケーションログの調査</h2>
-<p>昨日の続き。ecs-logging-java で JSON Lines でログを制御するところで spring-boot の設定で tomcat のアクセスログの設定ができる。tomcat のアクセスログを log4j のレイアウトの仕組みを使って ecs-logging-java が提供する EcsLayout に変更できないかを3時間ほど調査して、どうもできないようだというのを教えてもらった。tomcat は apache のログを出力するという目的で実装されているから log4j の柔軟なログに対応していないという理屈。</p>
-<p>じゃあ、どうやって apache のアクセスログを JSON Lines にするかというと、PatternLayout のパターンに json のフォーマットを直書きしてしまうというやり方がある。なんかプログラミングでスマートに解決したいところだけど、その仕組みがないなら仕方ないかって感じでこれでやろうと思う。</p>
-<ul>
-<li><a href=https://ogugu.hateblo.jp/entry/2018/08/03/153930>apacheのaccess_logをjson化しtd-agentで集約サーバへ収集する</a></li>
-</ul>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2021/1206/>アプリケーションログの調査</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2021-12-06
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/java/>java</a>&nbsp;
-#<a href=/diary/tags/logging/>logging</a>&nbsp;
-</span>
-<div class=post-content>
-<p>1時に寝て7時に起きた。</p>
-<h2 id=アプリケーションログの調査>アプリケーションログの調査</h2>
-<p>お仕事でログの整理をやろうとしていて、そのためのライブラリとして ecs-logging-java を調べてた。</p>
-<ul>
-<li><a href=https://www.elastic.co/guide/en/ecs-logging/java/current/setup.html>ECS Logging Java Reference 1.x » Get started</a></li>
-<li><a href=https://speakerdeck.com/shibadog/ecs-logging-javatukatutemita>ecs-logging-javaつかってみた</a></li>
-</ul>
-<p>一番のモチベーションは <a href=https://jsonlines.org/>JSON Lines</a> でログを管理したいというところ。この手の実装や読み込んでログ分析したりとかはあちこちでやってきたので親近感はある。既存のログからの移行も含めていろいろ設計していかないといけない。私の感覚だとアプリケーションの開発初期にログの設計や出力周りを作り込むものだけど、そうじゃない文化の開発もあるんだなという印象。あとからログ設計するとか、移行や既存のコードに手を入れたり、開発初期に作り込むより手間暇かかる気がするんだけど、そんな時間もなく開発してたってことなのかなぁ。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2021/1125/>コーディングスタイルの共通化</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2021-11-25
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/java/>java</a>&nbsp;
-#<a href=/diary/tags/ide/>ide</a>&nbsp;
-</span>
-<div class=post-content>
-<p>1時半に寝て6時に起きた</p>
-<h2 id=ソースコードのフォーマッター>ソースコードのフォーマッター</h2>
-<p>go 言語の <a href=https://pkg.go.dev/cmd/gofmt>gofmt</a> が成功をおさめたことからどんなプログラミング言語でもコーディングスタイルはツールで自動整形するのがよいという雰囲気が醸成され、とくに業務の開発においては統一すべしというルールを設けている組織が多いと思う。java はこの領域では後塵を拝していると言ってよいと思う。歴史的に java の言語仕様と ide は相性がよかったため、ide がコーディングスタイルを自動整形していた結果、ide ごとに互換性のない異なるコーディングスタイルが使われるようになってしまった。私がアリエルで開発していた頃、開発者はみんな eclipse しか使ってなかったので問題にならなかった。しかし、いまや私が知っている ide だけでも次のものがある。</p>
-<ul>
-<li><a href=https://www.eclipse.org/>eclipse</a></li>
-<li><a href=https://www.jetbrains.com/idea/>intellij idea</a></li>
-<li><a href=https://netbeans.apache.org/>netbeans</a></li>
-<li><a href=https://code.visualstudio.com/>vscode</a></li>
-</ul>
-<p>この問題を解決するツールとして最もメジャーなのは <a href=https://github.com/google/google-java-format>google-java-format</a> で、当初はこのツールを導入しようと考えていた。しかし、開発チームのテックリードから google-java-format のコーディングスタイルはひどい、一番優れているのは intellij idea だというお気持ちを表明された。導入を止めろと言われたわけではないが、チームに入ったばかりの私はテックリードのお気持ちに忖度して google-java-format の導入を断念した。代わりに intellij idea のデフォルトフォーマットをどうやって他の ide を共有するかを調べたところ、<a href=https://www.jetbrains.com/help/idea/configuring-code-style.html#editorconfig>Manage code style on a directory level with EditorConfig</a> で <a href=https://editorconfig.org/>EditorConfig</a> の設定 (<code>.editorconfig</code>) を intellij idea で再利用できることがわかった。</p>
-<p>うちの開発チームのメンバーは intellij idea と vscode しか使っていないため、現状はこれで解決できるように思えた。intellij idea にはデフォルトで EditorConfig プラグインがバンドルされていて有効になっている。リポジトリのルートディレクトリに <code>.editorconfig</code> があれば自動的にそれを読み込んでくれる。そこで intellij idea のデフォルト設定を <code>.editorconfig</code> 形式でエクスポートして、それをリポジトリのルートディレクトリに配置することでコーディングスタイルのフォーマッターを共通化できた。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2021/1117/>Testcontainers を触ってみた</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2021-11-17
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/morning-activity/>morning activity</a>&nbsp;
+#<a href=/diary/tags/logging/>logging</a>&nbsp;</span><div class=post-content><p>0時に寝て6時半に起きた。5時台には起きているんだけど、起き上がるところまではなかなかいけない。</p><h2 id=恒大集団のデフォルト>恒大集団のデフォルト</h2><p>11月から利払の期日の日はチェックしていて、支払うときは2-3日前には支払いを完了したというニュースが出ていたように思う。今日の支払いは前日に支払いしたというニュースが出ないからダメなんだろうなと様子をみていた。</p><ul><li><a href=https://jp.reuters.com/article/evergrande-idJPKBN2IM0F0>中国恒大、猶予期間終了までにオフショア債利払いできず＝関係筋</a></li></ul><p>1つの債務がデフォルトした場合、残りの債務も一括返済しないといけないことを <a href=https://www.ifinance.ne.jp/glossary/loan/loa259.html>クロスデフォルト</a> と呼ぶらしい。契約書にクロスデフォルト条項として書いてあるらしい。記事によると、クロスデフォルトによって約190億ドル (約2.1兆円) のオフショア債の返済を一括でしないといけないらしい。リーマンショックのようなことは起きないという見通しだけど、うちみたいな零細企業は世の中の影響を諸に受けるのでお仕事に影響がでなければいいなぁといったところ。</p><h2 id=アプリケーションログの調査>アプリケーションログの調査</h2><p>昨日の続き。ecs-logging-java で JSON Lines でログを制御するところで spring-boot の設定で tomcat のアクセスログの設定ができる。tomcat のアクセスログを log4j のレイアウトの仕組みを使って ecs-logging-java が提供する EcsLayout に変更できないかを3時間ほど調査して、どうもできないようだというのを教えてもらった。tomcat は apache のログを出力するという目的で実装されているから log4j の柔軟なログに対応していないという理屈。</p><p>じゃあ、どうやって apache のアクセスログを JSON Lines にするかというと、PatternLayout のパターンに json のフォーマットを直書きしてしまうというやり方がある。なんかプログラミングでスマートに解決したいところだけど、その仕組みがないなら仕方ないかって感じでこれでやろうと思う。</p><ul><li><a href=https://ogugu.hateblo.jp/entry/2018/08/03/153930>apacheのaccess_logをjson化しtd-agentで集約サーバへ収集する</a></li></ul></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2021/1206/>アプリケーションログの調査</a></h1><div class=post-meta><span class=post-date>2021-12-06</span></div><span class=post-tags>#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/logging/>logging</a>&nbsp;</span><div class=post-content><p>1時に寝て7時に起きた。</p><h2 id=アプリケーションログの調査>アプリケーションログの調査</h2><p>お仕事でログの整理をやろうとしていて、そのためのライブラリとして ecs-logging-java を調べてた。</p><ul><li><a href=https://www.elastic.co/guide/en/ecs-logging/java/current/setup.html>ECS Logging Java Reference 1.x » Get started</a></li><li><a href=https://speakerdeck.com/shibadog/ecs-logging-javatukatutemita>ecs-logging-javaつかってみた</a></li></ul><p>一番のモチベーションは <a href=https://jsonlines.org/>JSON Lines</a> でログを管理したいというところ。この手の実装や読み込んでログ分析したりとかはあちこちでやってきたので親近感はある。既存のログからの移行も含めていろいろ設計していかないといけない。私の感覚だとアプリケーションの開発初期にログの設計や出力周りを作り込むものだけど、そうじゃない文化の開発もあるんだなという印象。あとからログ設計するとか、移行や既存のコードに手を入れたり、開発初期に作り込むより手間暇かかる気がするんだけど、そんな時間もなく開発してたってことなのかなぁ。</p></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2021/1125/>コーディングスタイルの共通化</a></h1><div class=post-meta><span class=post-date>2021-11-25</span></div><span class=post-tags>#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/ide/>ide</a>&nbsp;</span><div class=post-content><p>1時半に寝て6時に起きた</p><h2 id=ソースコードのフォーマッター>ソースコードのフォーマッター</h2><p>go 言語の <a href=https://pkg.go.dev/cmd/gofmt>gofmt</a> が成功をおさめたことからどんなプログラミング言語でもコーディングスタイルはツールで自動整形するのがよいという雰囲気が醸成され、とくに業務の開発においては統一すべしというルールを設けている組織が多いと思う。java はこの領域では後塵を拝していると言ってよいと思う。歴史的に java の言語仕様と ide は相性がよかったため、ide がコーディングスタイルを自動整形していた結果、ide ごとに互換性のない異なるコーディングスタイルが使われるようになってしまった。私がアリエルで開発していた頃、開発者はみんな eclipse しか使ってなかったので問題にならなかった。しかし、いまや私が知っている ide だけでも次のものがある。</p><ul><li><a href=https://www.eclipse.org/>eclipse</a></li><li><a href=https://www.jetbrains.com/idea/>intellij idea</a></li><li><a href=https://netbeans.apache.org/>netbeans</a></li><li><a href=https://code.visualstudio.com/>vscode</a></li></ul><p>この問題を解決するツールとして最もメジャーなのは <a href=https://github.com/google/google-java-format>google-java-format</a> で、当初はこのツールを導入しようと考えていた。しかし、開発チームのテックリードから google-java-format のコーディングスタイルはひどい、一番優れているのは intellij idea だというお気持ちを表明された。導入を止めろと言われたわけではないが、チームに入ったばかりの私はテックリードのお気持ちに忖度して google-java-format の導入を断念した。代わりに intellij idea のデフォルトフォーマットをどうやって他の ide を共有するかを調べたところ、<a href=https://www.jetbrains.com/help/idea/configuring-code-style.html#editorconfig>Manage code style on a directory level with EditorConfig</a> で <a href=https://editorconfig.org/>EditorConfig</a> の設定 (<code>.editorconfig</code>) を intellij idea で再利用できることがわかった。</p><p>うちの開発チームのメンバーは intellij idea と vscode しか使っていないため、現状はこれで解決できるように思えた。intellij idea にはデフォルトで EditorConfig プラグインがバンドルされていて有効になっている。リポジトリのルートディレクトリに <code>.editorconfig</code> があれば自動的にそれを読み込んでくれる。そこで intellij idea のデフォルト設定を <code>.editorconfig</code> 形式でエクスポートして、それをリポジトリのルートディレクトリに配置することでコーディングスタイルのフォーマッターを共通化できた。</p></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2021/1117/>Testcontainers を触ってみた</a></h1><div class=post-meta><span class=post-date>2021-11-17</span></div><span class=post-tags>#<a href=/diary/tags/morning-activity/>morning activity</a>&nbsp;
 #<a href=/diary/tags/event/>event</a>&nbsp;
-#<a href=/diary/tags/java/>java</a>&nbsp;
-</span>
-<div class=post-content>
-<p>23時頃に寝て3時に起きて、そこから寝たり起きたりしながら6時に半に起きた。怖い夢をみて眠れなくなって中途半端に寝てた。</p>
-<h2 id=朝活-雑談>朝活: 雑談</h2>
-<p><a href=https://kobe-sannomiya-dev.connpass.com/event/231078/>【三宮.dev オンライン】リモート朝活もくもく会</a> に参加した。寝坊、、、というよりは起きてたけど、イベントを忘れていて6時45分ぐらいから参加して主催者しかいなかったのでそのまま7時半まで雑談してた。始めが悪いとだらだらしてしまう。気をつけねば。</p>
-<p>三宮.dev の主催者や参加者の常連さんたちとはだいぶ身近に話すにようになってきた。コミュニティって人間関係だと思っていて、話したり顔をあわせたりする回数が増えるに従って身近な知人になっていって、それ自体が価値の1つだったりすると思う。いま忘年会の企画を三宮.dev でも行っているが、bizpy と合同でやっていいんじゃないかと考えている。</p>
-<h2 id=testcontainers>Testcontainers</h2>
-<p>DB を使ったユニットテストのために <a href=https://www.testcontainers.org/modules/databases/postgres/>Testcontainers Postgres Module</a> を使ってみた。docker hub からイメージを取得して JUnit のテストプロセスの中からアクセスできるようにするためのライブラリになる。コンテナの扱いをテストコードから管理したいときなどに便利。ちょっと調べて簡単に設定できたのでまた時間のあるときに会社のブログに記事を書こうと思う。</p>
-</div>
-</div>
-<div class="post on-list">
-<h1 class=post-title>
-<a href=/diary/posts/2021/0929/>読書とイベント参加</a>
-</h1>
-<div class=post-meta>
-<span class=post-date>
-2021-09-29
-</span>
-</div>
-<span class=post-tags>
-#<a href=/diary/tags/book/>book</a>&nbsp;
-#<a href=/diary/tags/java/>java</a>&nbsp;
-</span>
-<img src=/diary/img/2021/0929_temperature.jpg class=post-cover alt=読書とイベント参加>
-<div class=post-content>
-<p>0時頃に寝て8時ぐらいに起きる。やや発熱して疲れてたせいか、久しぶりに早く寝付けた。一日を通して体温は平均36.7℃なのでもう副反応は過ぎたみたい。体調もまったく悪くない。</p>
-<h2 id=joel-on-software>Joel on Software</h2>
-<p>過去に働いていた会社での課題管理のやり方や開発方法論について、当時の上司と雑談したところ <a href=https://en.wikipedia.org/wiki/Joel_Spolsky>Joel Spolsky</a> に由来するということを聞いた。そこで今更ながらに <a href=https://www.shoeisha.co.jp/book/detail/9784798118925>More Joel on Software</a> を読むことにした。2000年代に書かれた記事の内容なのでいまとなっては古典に分類される本かもしれない。だいたい半分ぐらい読んだ。技術の詳細に言及した内容は古くなっていてあまり有用ではないものも多いけど、マネジメントや優秀なプログラマーの特性などはいまでも通用する内容に思えた。あとで私が関心をもった内容をブログでまとめることにする。</p>
-<p>第10章コンピュータサイエンスの学生へのアドバイスで「卒業するまでにミクロ経済学を学ぶこと」という節がある。著者がミクロ経済学を推奨する理由を引用するとこれら。</p>
-<blockquote>
-<p>ミクロ経済学はビジネスで重要な理論すべての基礎となっている。需要と供給とか、競争優位とか、NPV とか割り引きとか限界効能について知らなければ、ビジネスの仕組みが全然理解できないからだ。</p>
-<p>マクロ経済学は、当たっているよりもはずれていることの方が多い。スキップしてよい。それ以降はただ悪くなっていく一方。</p>
-<p>ビジネスの基礎を理解しているプログラマは、理解していないプログラマよりもビジネスにおいてずっと価値が高いからだ。</p>
-</blockquote>
-<p>学んだことがなかったので簡単そうな <a href=https://www.iwanami.co.jp/book/b285381.html>ミクロ経済学入門の入門</a> を購入した。</p>
-<p>読んでて気づきを得てふとツィートした。</p>
-<blockquote class=twitter-tweet><p lang=ja dir=ltr>なので、システムのコンポーネントに関しての意思決定をするとき、必ずしも上位の意思決定者の判断が正しいわけではなく、現場のメンバーに判断を委ねる状況が最適な場合もある。一方向じゃなく、双方向の情報の非対称性を解消する取り組みが大事。</p>&mdash; Tetsuya Morimoto (@t2y) <a href="https://twitter.com/t2y/status/1443024587944464388?ref_src=twsrc%5Etfw">September 29, 2021</a></blockquote>
-<script async src=https://platform.twitter.com/widgets.js></script>
-<h2 id=java-17-リリースイベント>Java 17 リリースイベント</h2>
-<p><a href=https://jjug.doorkeeper.jp/events/127204>【オンライン】 JJUGナイトセミナー「Java 17 リリース記念イベント with Foojay」9/29(水) 開催</a> に参加した。Java の LTS はいま過渡期でややこしいことになって、8, 11, 17 になる。リリースされたばかりの Java 17 は LTS で重要なバージョンになる。<a href=https://www.oracle.com/jp/java/technologies/java-se-support-roadmap.html>Oracle Java SE Supportロードマップ</a> から Premier Support 期限が次になる。</p>
-<ul>
-<li>8: 2022年3月</li>
-<li>11: 2023年9月</li>
-<li>17: 2026年9月</li>
-</ul>
-<p>いま 11 を使っている組織はいいが、8 を使っている組織もまだまだ多いと推測する。8 と 11 の Premier Support 期限が近いことから 8 を使っている組織は 17 に一気にバージョンアップすることが想定される。どこかのタイミングで Java 17 を前提した開発に切り替わっていくだろうと思われる。</p>
-<p>最初の発表は Pattern Matching & Sealed Classes に特化した内容。これまでは instanceof と共に使う機能だった。switch 構文とパターンマッチングを組み合わせると、コードが簡潔になって <a href=https://en.wikipedia.org/wiki/Cognitive_complexity>Cognitive complexity</a> を下げるという。発表者が Type Guard という呼び方をしていた。Type Guard をググると TypeScript の記事がヒットする。<a href=https://openjdk.java.net/jeps/406>JEP 406: Pattern Matching for switch (Preview)</a> ではこれを <em>guarded pattern</em> と呼んでいる。まだあまり一般的な用語ではないのかもしれない。あとは Sealed クラスと組み合わせた switch 構文のコード例では、すべてのパターンが網羅されていることをコンパイラが検出して <em>default</em> 句が不要になるコード例も紹介されててよさそうにみえた。但し、switch 構文のパターンマッチングは preview なので実際には 17 ではまだ使われないのかもしれない。今後もさらに switch 構文とパターンマッチングの機能拡張が行われる展望らしい。</p>
-<p>2番目の発表は Java 17 の全体的な話し。fix した issues のツリーマップで contributor の分布を紹介していた。oracle, redhat, independent の順番に多い。oracle が過半数以上。日本だと ntt data が一番貢献してた。spring フレームワークの次期バージョンは Java 17 がベースラインになる。java のアップグレードを促す要因の1つにはなるはず。lts なのになぜ preview や incubator があるのか？openjdk 開発側は6ヶ月というリリースサイクルを守っている。lts にするか否かは開発者が決めているらしい。graalvm のリリースサイクルは java とは異なる。こちらは年3回のリリースなので次のリリースで出てくるはず？いくつか jep の内容を紹介してた。jep の概要は <a href=https://qiita.com/ReiTsukikazu/items/407d61cb66fa4f562bf9>Java17の新機能をざっくり紹介</a> にまとまっている。さくらばさんがパッケージの api レベルでの変更を <a href=http://www.javainthebox.com/2021/09/jepjava-17.html>JEPでは語れないJava 17</a> にまとめている。ざっと目を通して興味があるものがあればみとくぐらい。8 から 17 への移行の記事やドキュメントなども紹介されてた。移行について基本は <a href=https://docs.oracle.com/en/java/javase/17/migrate/getting-started.html>Oracle JDK Migration Guide</a> を読めとのこと。8 から 17 の移行せずにその次の 23 を待つと作り直しになってしまいますよと 17 への移行を推奨してた。</p>
-</div>
-</div>
-<div class=pagination>
-<div class=pagination__buttons>
-<span class="button previous">
-<a href=/diary/tags/java/>
-<span class=button__icon>←</span>
-<span class=button__text>最近の日記</span>
-</a>
-</span>
-<span class="button next">
-<a href=/diary/tags/java/page/3/>
-<span class=button__text>過去の日記</span>
-<span class=button__icon>→</span>
-</a>
-</span>
-</div>
-</div>
-</div>
-</div>
-<footer class=footer>
-<div class=footer__inner>
-<div class="copyright copyright--user">
-<span>© 2021 Tetsuya Morimoto</span>
-<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span>
-</div>
-</div>
-</footer>
-<script src=/diary/assets/main.js></script>
-<script src=/diary/assets/prism.js></script>
-</div>
-</body>
-</html>
+#<a href=/diary/tags/java/>java</a>&nbsp;</span><div class=post-content><p>23時頃に寝て3時に起きて、そこから寝たり起きたりしながら6時に半に起きた。怖い夢をみて眠れなくなって中途半端に寝てた。</p><h2 id=朝活-雑談>朝活: 雑談</h2><p><a href=https://kobe-sannomiya-dev.connpass.com/event/231078/>【三宮.dev オンライン】リモート朝活もくもく会</a> に参加した。寝坊、、、というよりは起きてたけど、イベントを忘れていて6時45分ぐらいから参加して主催者しかいなかったのでそのまま7時半まで雑談してた。始めが悪いとだらだらしてしまう。気をつけねば。</p><p>三宮.dev の主催者や参加者の常連さんたちとはだいぶ身近に話すにようになってきた。コミュニティって人間関係だと思っていて、話したり顔をあわせたりする回数が増えるに従って身近な知人になっていって、それ自体が価値の1つだったりすると思う。いま忘年会の企画を三宮.dev でも行っているが、bizpy と合同でやっていいんじゃないかと考えている。</p><h2 id=testcontainers>Testcontainers</h2><p>DB を使ったユニットテストのために <a href=https://www.testcontainers.org/modules/databases/postgres/>Testcontainers Postgres Module</a> を使ってみた。docker hub からイメージを取得して JUnit のテストプロセスの中からアクセスできるようにするためのライブラリになる。コンテナの扱いをテストコードから管理したいときなどに便利。ちょっと調べて簡単に設定できたのでまた時間のあるときに会社のブログに記事を書こうと思う。</p></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2021/0929/>読書とイベント参加</a></h1><div class=post-meta><span class=post-date>2021-09-29</span></div><span class=post-tags>#<a href=/diary/tags/book/>book</a>&nbsp;
+#<a href=/diary/tags/java/>java</a>&nbsp;</span>
+<img src=/diary/img/2021/0929_temperature.jpg class=post-cover alt=読書とイベント参加><div class=post-content><p>0時頃に寝て8時ぐらいに起きる。やや発熱して疲れてたせいか、久しぶりに早く寝付けた。一日を通して体温は平均36.7℃なのでもう副反応は過ぎたみたい。体調もまったく悪くない。</p><h2 id=joel-on-software>Joel on Software</h2><p>過去に働いていた会社での課題管理のやり方や開発方法論について、当時の上司と雑談したところ <a href=https://en.wikipedia.org/wiki/Joel_Spolsky>Joel Spolsky</a> に由来するということを聞いた。そこで今更ながらに <a href=https://www.shoeisha.co.jp/book/detail/9784798118925>More Joel on Software</a> を読むことにした。2000年代に書かれた記事の内容なのでいまとなっては古典に分類される本かもしれない。だいたい半分ぐらい読んだ。技術の詳細に言及した内容は古くなっていてあまり有用ではないものも多いけど、マネジメントや優秀なプログラマーの特性などはいまでも通用する内容に思えた。あとで私が関心をもった内容をブログでまとめることにする。</p><p>第10章コンピュータサイエンスの学生へのアドバイスで「卒業するまでにミクロ経済学を学ぶこと」という節がある。著者がミクロ経済学を推奨する理由を引用するとこれら。</p><blockquote><p>ミクロ経済学はビジネスで重要な理論すべての基礎となっている。需要と供給とか、競争優位とか、NPV とか割り引きとか限界効能について知らなければ、ビジネスの仕組みが全然理解できないからだ。</p><p>マクロ経済学は、当たっているよりもはずれていることの方が多い。スキップしてよい。それ以降はただ悪くなっていく一方。</p><p>ビジネスの基礎を理解しているプログラマは、理解していないプログラマよりもビジネスにおいてずっと価値が高いからだ。</p></blockquote><p>学んだことがなかったので簡単そうな <a href=https://www.iwanami.co.jp/book/b285381.html>ミクロ経済学入門の入門</a> を購入した。</p><p>読んでて気づきを得てふとツィートした。</p><blockquote class=twitter-tweet><p lang=ja dir=ltr>なので、システムのコンポーネントに関しての意思決定をするとき、必ずしも上位の意思決定者の判断が正しいわけではなく、現場のメンバーに判断を委ねる状況が最適な場合もある。一方向じゃなく、双方向の情報の非対称性を解消する取り組みが大事。</p>&mdash; Tetsuya Morimoto (@t2y) <a href="https://twitter.com/t2y/status/1443024587944464388?ref_src=twsrc%5Etfw">September 29, 2021</a></blockquote><script async src=https://platform.twitter.com/widgets.js></script><h2 id=java-17-リリースイベント>Java 17 リリースイベント</h2><p><a href=https://jjug.doorkeeper.jp/events/127204>【オンライン】 JJUGナイトセミナー「Java 17 リリース記念イベント with Foojay」9/29(水) 開催</a> に参加した。Java の LTS はいま過渡期でややこしいことになって、8, 11, 17 になる。リリースされたばかりの Java 17 は LTS で重要なバージョンになる。<a href=https://www.oracle.com/jp/java/technologies/java-se-support-roadmap.html>Oracle Java SE Supportロードマップ</a> から Premier Support 期限が次になる。</p><ul><li>8: 2022年3月</li><li>11: 2023年9月</li><li>17: 2026年9月</li></ul><p>いま 11 を使っている組織はいいが、8 を使っている組織もまだまだ多いと推測する。8 と 11 の Premier Support 期限が近いことから 8 を使っている組織は 17 に一気にバージョンアップすることが想定される。どこかのタイミングで Java 17 を前提した開発に切り替わっていくだろうと思われる。</p><p>最初の発表は Pattern Matching & Sealed Classes に特化した内容。これまでは instanceof と共に使う機能だった。switch 構文とパターンマッチングを組み合わせると、コードが簡潔になって <a href=https://en.wikipedia.org/wiki/Cognitive_complexity>Cognitive complexity</a> を下げるという。発表者が Type Guard という呼び方をしていた。Type Guard をググると TypeScript の記事がヒットする。<a href=https://openjdk.java.net/jeps/406>JEP 406: Pattern Matching for switch (Preview)</a> ではこれを <em>guarded pattern</em> と呼んでいる。まだあまり一般的な用語ではないのかもしれない。あとは Sealed クラスと組み合わせた switch 構文のコード例では、すべてのパターンが網羅されていることをコンパイラが検出して <em>default</em> 句が不要になるコード例も紹介されててよさそうにみえた。但し、switch 構文のパターンマッチングは preview なので実際には 17 ではまだ使われないのかもしれない。今後もさらに switch 構文とパターンマッチングの機能拡張が行われる展望らしい。</p><p>2番目の発表は Java 17 の全体的な話し。fix した issues のツリーマップで contributor の分布を紹介していた。oracle, redhat, independent の順番に多い。oracle が過半数以上。日本だと ntt data が一番貢献してた。spring フレームワークの次期バージョンは Java 17 がベースラインになる。java のアップグレードを促す要因の1つにはなるはず。lts なのになぜ preview や incubator があるのか？openjdk 開発側は6ヶ月というリリースサイクルを守っている。lts にするか否かは開発者が決めているらしい。graalvm のリリースサイクルは java とは異なる。こちらは年3回のリリースなので次のリリースで出てくるはず？いくつか jep の内容を紹介してた。jep の概要は <a href=https://qiita.com/ReiTsukikazu/items/407d61cb66fa4f562bf9>Java17の新機能をざっくり紹介</a> にまとまっている。さくらばさんがパッケージの api レベルでの変更を <a href=http://www.javainthebox.com/2021/09/jepjava-17.html>JEPでは語れないJava 17</a> にまとめている。ざっと目を通して興味があるものがあればみとくぐらい。8 から 17 への移行の記事やドキュメントなども紹介されてた。移行について基本は <a href=https://docs.oracle.com/en/java/javase/17/migrate/getting-started.html>Oracle JDK Migration Guide</a> を読めとのこと。8 から 17 の移行せずにその次の 23 を待つと作り直しになってしまいますよと 17 への移行を推奨してた。</p></div></div><div class=pagination><div class=pagination__buttons><span class="button previous"><a href=/diary/tags/java/><span class=button__icon>←</span>
+<span class=button__text>最近の日記</span></a></span>
+<span class="button next"><a href=/diary/tags/java/page/3/><span class=button__text>過去の日記</span>
+<span class=button__icon>→</span></a></span></div></div></div></div><footer class=footer><div class=footer__inner><div class="copyright copyright--user"><span>© 2021 Tetsuya Morimoto</span>
+<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span></div></div></footer><script src=/diary/assets/main.js></script>
+<script src=/diary/assets/prism.js></script></div></body></html>
