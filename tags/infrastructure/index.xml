@@ -1,4 +1,31 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>infrastructure on forest nook</title><link>/diary/tags/infrastructure/</link><description>Recent content in infrastructure on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Mon, 04 Jul 2022 08:11:50 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/infrastructure/index.xml" rel="self" type="application/rss+xml"/><item><title>m1 chip macbook と cdk の追加調査</title><link>/diary/posts/2022/0704/</link><pubDate>Mon, 04 Jul 2022 08:11:50 +0900</pubDate><guid>/diary/posts/2022/0704/</guid><description>0時に寝て7時に起きた。昨日はずっと寝てて、今朝は雨降りで徒歩通勤。週始めからしんどい。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>infrastructure on forest nook</title><link>/diary/tags/infrastructure/</link><description>Recent content in infrastructure on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Tue, 05 Jul 2022 08:26:22 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/infrastructure/index.xml" rel="self" type="application/rss+xml"/><item><title>サービスインは突然に</title><link>/diary/posts/2022/0705/</link><pubDate>Tue, 05 Jul 2022 08:26:22 +0900</pubDate><guid>/diary/posts/2022/0705/</guid><description>1時に寝て6時に起きた。暑くてあまり眠れない。今朝も雨降りで徒歩通勤。
+cdk の ECS サービスに紐づくセキュリティグループの設定 明日がサービスイン初日だと思っていたら、私の勘違いで今日だった。私が直近でやっている作業はアプリケーションの直接的な機能ではなく、インフラやバッチ処理などの間接的な機能を作っているわけだけど、それでも1日調整を間違えていて、あれーって感じでサービスインが始まった。とはいえ、私は本番環境にアクセスできなければ、ログすらもみれないので同僚ががんばっているのを傍から応援しつつ、平常通りタスクをこなしていくだけのはずであった。
+のほほんと通常通りのタスクをやっていたら、本番環境の ecs サービスと通信できないという連絡がくる。私が前任者から引き継いで構築したインフラなので何だろう？と調査していて、本番環境でセキュリティグループの設定が漏れていることがわかった。これはわかりにくい問題で cdk の FargateService で ecs サービスを構築している。このプロパティは securityGroups のパラメーターをもっている。このパラメーターを指定しない場合、新規にセキュリティグループそのものは作成してくれるけれど、その ecs サービスへ通信するポートへのインバウンドルールは作ってくれない。
+securityGroups?
+Type: ISecurityGroup[] (optional, default: A new security group is created.)
+The security groups to associate with the service. If you do not specify a security group, a new security group is created.
+https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_ecs.FargateService.html#securitygroups
+テスト環境はセキュリティグループに対して、インバウンドルールを管理画面から手動で追加していたために疎通できていた。セキュリティグループは ecs サービスに紐付いているものだから、ecs サービスを再作成しない限りはインバウンドルールが消えることもなくてこの作業漏れに気付けなかったという落ちだった。さらに、そのセキュリティグループのインバウンドルールを設定したのは私ではない。その説明欄に次のコメントが書かれていた。
+atode-kesu
+今すぐ消してやろうかという気持ちを抑えつつ、cdk でインバウンドルールを設定したセキュリティグループを紐付けるようにして解決した。疎通ができないと、ロードバランサーのヘルスチェックが通らず、ecs のタスクが延々と再起動を繰り返すというわかりにくい障害となっていた。1時間ぐらい唸っていた。
+未検証の本番環境 前節で障害の原因自体はわかりにくいものだが、なぜサービスインの初日にこんなことが起こるのだろうか？という当然の疑問。そう。これまでこのインフラの本番環境は一切検証されていなかった。4月から5月にかけて構築されたインフラだった。この後にデータを格納するための s3 bucket がない、一部の設定はテスト環境の設定しかない、アプリケーションのコード中にテスト環境の設定がハードコードされているとか。追加であちこち直してデプロイしていた。私は本番環境に一切アクセスできないので過去にこれらの検証をすることはできなかったわけではあるけど、いろいろ思うところはあるなぁと感慨に浸っていた。</description><content>&lt;p>1時に寝て6時に起きた。暑くてあまり眠れない。今朝も雨降りで徒歩通勤。&lt;/p>
+&lt;h2 id="cdk-の-ecs-サービスに紐づくセキュリティグループの設定">cdk の ECS サービスに紐づくセキュリティグループの設定&lt;/h2>
+&lt;p>明日がサービスイン初日だと思っていたら、私の勘違いで今日だった。私が直近でやっている作業はアプリケーションの直接的な機能ではなく、インフラやバッチ処理などの間接的な機能を作っているわけだけど、それでも1日調整を間違えていて、あれーって感じでサービスインが始まった。とはいえ、私は本番環境にアクセスできなければ、ログすらもみれないので同僚ががんばっているのを傍から応援しつつ、平常通りタスクをこなしていくだけのはずであった。&lt;/p>
+&lt;p>のほほんと通常通りのタスクをやっていたら、本番環境の ecs サービスと通信できないという連絡がくる。私が前任者から引き継いで構築したインフラなので何だろう？と調査していて、本番環境でセキュリティグループの設定が漏れていることがわかった。これはわかりにくい問題で cdk の FargateService で ecs サービスを構築している。このプロパティは securityGroups のパラメーターをもっている。このパラメーターを指定しない場合、新規にセキュリティグループそのものは作成してくれるけれど、その ecs サービスへ通信するポートへのインバウンドルールは作ってくれない。&lt;/p>
+&lt;blockquote>
+&lt;p>securityGroups?&lt;/p>
+&lt;p>Type: ISecurityGroup[] (optional, default: A new security group is created.)&lt;/p>
+&lt;p>The security groups to associate with the service.
+If you do not specify a security group, a new security group is created.&lt;/p>
+&lt;p>&lt;a href="https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_ecs.FargateService.html#securitygroups">https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_ecs.FargateService.html#securitygroups&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>テスト環境はセキュリティグループに対して、インバウンドルールを管理画面から手動で追加していたために疎通できていた。セキュリティグループは ecs サービスに紐付いているものだから、ecs サービスを再作成しない限りはインバウンドルールが消えることもなくてこの作業漏れに気付けなかったという落ちだった。さらに、そのセキュリティグループのインバウンドルールを設定したのは私ではない。その説明欄に次のコメントが書かれていた。&lt;/p>
+&lt;blockquote>
+&lt;p>atode-kesu&lt;/p>
+&lt;/blockquote>
+&lt;p>今すぐ消してやろうかという気持ちを抑えつつ、cdk でインバウンドルールを設定したセキュリティグループを紐付けるようにして解決した。疎通ができないと、ロードバランサーのヘルスチェックが通らず、ecs のタスクが延々と再起動を繰り返すというわかりにくい障害となっていた。1時間ぐらい唸っていた。&lt;/p>
+&lt;h2 id="未検証の本番環境">未検証の本番環境&lt;/h2>
+&lt;p>前節で障害の原因自体はわかりにくいものだが、なぜサービスインの初日にこんなことが起こるのだろうか？という当然の疑問。そう。これまでこのインフラの本番環境は一切検証されていなかった。4月から5月にかけて構築されたインフラだった。この後にデータを格納するための s3 bucket がない、一部の設定はテスト環境の設定しかない、アプリケーションのコード中にテスト環境の設定がハードコードされているとか。追加であちこち直してデプロイしていた。私は本番環境に一切アクセスできないので過去にこれらの検証をすることはできなかったわけではあるけど、いろいろ思うところはあるなぁと感慨に浸っていた。&lt;/p></content></item><item><title>m1 chip macbook と cdk の追加調査</title><link>/diary/posts/2022/0704/</link><pubDate>Mon, 04 Jul 2022 08:11:50 +0900</pubDate><guid>/diary/posts/2022/0704/</guid><description>0時に寝て7時に起きた。昨日はずっと寝てて、今朝は雨降りで徒歩通勤。週始めからしんどい。
 デバッグ調査を断念 以前 m1 chip macbook で aws-lambda-python-alpha のデプロイができない ことについて書いた。同僚がそのためにデプロイできないと運用上の不都合があるので調査してみることにした。ワークアラウンドの1つとして、ビルドに使う Docker イメージを任意のものに置き換える仕組みを使えば、arm64 アーキテクチャでビルド処理のプロセス自体は通ることを確認していた。しかし、その後の python distribution が生成されていなかった。同僚にデバッグを手伝ってもらってログをみていると、python distribution をバンドルする処理のログが出ていない。
 おそらく docker イメージのビルド処理ではなく、aws-cdk の core 側の bundling のところに原因がありそうに思える。core のライブラリをみると、たしかにいくつか条件次第で bundling をスキップする実装はあったし、ログが出力されていないことからも意図したステップが実行されていないことだけはわかった。その周辺から当たりをつけて aws-cdk の issues なども検索してみたけど、それっぽい issue をみつけることはできなかった。何よりも私がもっていないマシン環境の、様々な環境設定を調べることもできず、aws-cdk の core をデバッグするのも大変かなと午前中いっぱい調べて断念することに決めた。もしかしたら同僚のホスト環境に特化した問題が発生している可能性もある。
 アプリケーションレベルで再現できた問題を解決できないというのは情けないけど、自分でデバッグできないものは仕方ないかと諦めることにした。本当に悔しいけれど。</description><content>&lt;p>0時に寝て7時に起きた。昨日はずっと寝てて、今朝は雨降りで徒歩通勤。週始めからしんどい。&lt;/p>
