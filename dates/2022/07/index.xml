@@ -1,4 +1,42 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2022/07 on forest nook</title><link>/diary/dates/2022/07/</link><description>Recent content in 2022/07 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2022/07/index.xml" rel="self" type="application/rss+xml"/><item><title>ホテル経営の本を読み終えた</title><link>/diary/posts/2022/0724/</link><pubDate>Sun, 24 Jul 2022 09:59:35 +0900</pubDate><guid>/diary/posts/2022/0724/</guid><description>0時に寝て7時に起きた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2022/07 on forest nook</title><link>/diary/dates/2022/07/</link><description>Recent content in 2022/07 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2022/07/index.xml" rel="self" type="application/rss+xml"/><item><title>メンテンナンス切り替えの設計</title><link>/diary/posts/2022/0725/</link><pubDate>Mon, 25 Jul 2022 08:14:06 +0900</pubDate><guid>/diary/posts/2022/0725/</guid><description>0時に寝て6時に起きた。
+waf のカスタムレスポンス メンテンナンス時にエンドユーザーがアプリケーションにアクセスできないようにしたい。いろんなやり方があるけど、どういった手段で対応するのが最もシンプルで運用も容易かを少し前から頭を悩ませていた。
+当初は cloudfront のディストリビューションをアプリケーションの assets とメンテナンスページの html の2つを作って、cdk のデプロイで切り替えできないかと考えた。cloudfront はドメイン名と密接に紐付いていて、同じドメイン名を2つのディストリビューションに設定することはできないようにみえる。あらかじめそれぞれのディストリビューションを2つ作っておいて route53 で必要に応じて向き先を切り替えるといった構成はできなかった。その次に waf について調べていたら waf がルールでカスタムレスポンスを返すことができることに気付いた。
+AWS WAFによるリクエストとレスポンスのカスタマイズ ちょうどいまエンドユーザーからのアクセスは ipSet で許可し、それ以外のネットワークからのアクセスをブロックしていた。そのルールを更新して、メンテナンス時はエンドユーザーからのリクエストのみをブロックに変更してカスタムレスポンスを返せることに気付いた。waf を管理するスタックなら cdk デプロイで1分ぐらいで更新できた。このやり方のよいところの1つに開発者の ip アドレスを許可することで開発者だけはアクセスできるようにもできる。あと具体的に cdk でカスタムレスポンスをどう実装するかのドキュメントがわかりにくい。サンプルとしてはこんな感じ。
+const acl = new wafv2.CfnWebACL(this, &amp;#39;MyAcl&amp;#39;, { defaultAction: { block: {} }, name: &amp;#39;my-acl&amp;#39;, scope: &amp;#39;CLOUDFRONT&amp;#39;, customResponseBodies: { maintenanceInProgress: { content: &amp;#39;&amp;lt;html lang=&amp;#34;en&amp;#34;&amp;gt;Maintenance in progress&amp;lt;/html&amp;gt;&amp;#39;, contentType: &amp;#39;TEXT_HTML&amp;#39;, }, }, rules: [{ action: { block: { customResponse: { responseCode: 503, customResponseBodyKey: &amp;#39;maintenanceInProgress&amp;#39;, }, }, }, statement: { ipSetReferenceStatement: { arn: ipSet.</description><content>&lt;p>0時に寝て6時に起きた。&lt;/p>
+&lt;h2 id="waf-のカスタムレスポンス">waf のカスタムレスポンス&lt;/h2>
+&lt;p>メンテンナンス時にエンドユーザーがアプリケーションにアクセスできないようにしたい。いろんなやり方があるけど、どういった手段で対応するのが最もシンプルで運用も容易かを少し前から頭を悩ませていた。&lt;/p>
+&lt;p>当初は cloudfront のディストリビューションをアプリケーションの assets とメンテナンスページの html の2つを作って、cdk のデプロイで切り替えできないかと考えた。cloudfront はドメイン名と密接に紐付いていて、同じドメイン名を2つのディストリビューションに設定することはできないようにみえる。あらかじめそれぞれのディストリビューションを2つ作っておいて route53 で必要に応じて向き先を切り替えるといった構成はできなかった。その次に waf について調べていたら waf がルールでカスタムレスポンスを返すことができることに気付いた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://aws.amazon.com/jp/blogs/news/customize-requests-and-responses-with-aws-waf/">AWS WAFによるリクエストとレスポンスのカスタマイズ&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>ちょうどいまエンドユーザーからのアクセスは ipSet で許可し、それ以外のネットワークからのアクセスをブロックしていた。そのルールを更新して、メンテナンス時はエンドユーザーからのリクエストのみをブロックに変更してカスタムレスポンスを返せることに気付いた。waf を管理するスタックなら cdk デプロイで1分ぐらいで更新できた。このやり方のよいところの1つに開発者の ip アドレスを許可することで開発者だけはアクセスできるようにもできる。あと具体的に cdk でカスタムレスポンスをどう実装するかのドキュメントがわかりにくい。サンプルとしてはこんな感じ。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-typescript" data-lang="typescript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">acl&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> &lt;span style="color:#a6e22e">wafv2&lt;/span>.&lt;span style="color:#a6e22e">CfnWebACL&lt;/span>(&lt;span style="color:#66d9ef">this&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;MyAcl&amp;#39;&lt;/span>, {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">defaultAction&lt;/span>&lt;span style="color:#f92672">:&lt;/span> { &lt;span style="color:#a6e22e">block&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {} },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">name&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;my-acl&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">scope&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;CLOUDFRONT&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">customResponseBodies&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">maintenanceInProgress&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">content&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;&amp;lt;html lang=&amp;#34;en&amp;#34;&amp;gt;Maintenance in progress&amp;lt;/html&amp;gt;&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">contentType&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;TEXT_HTML&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">rules&lt;/span>&lt;span style="color:#f92672">:&lt;/span> [{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">action&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">block&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">customResponse&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">responseCode&lt;/span>: &lt;span style="color:#66d9ef">503&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">customResponseBodyKey&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;maintenanceInProgress&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">statement&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">ipSetReferenceStatement&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">arn&lt;/span>: &lt;span style="color:#66d9ef">ipSet.attrArn&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>});
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>ホテル経営の本を読み終えた</title><link>/diary/posts/2022/0724/</link><pubDate>Sun, 24 Jul 2022 09:59:35 +0900</pubDate><guid>/diary/posts/2022/0724/</guid><description>0時に寝て7時に起きた。
 もてなしだけではもう食えない 読み終えた。あとで総評を書く。
 第10章 不動産屋の悪知恵 2000年に改正された借地借家法38条の「定期借家」の条項から賃貸契約には2種類あるらしい。
 普通借家 定期借家 普通借家は契約期間更新の概念があり、借り主が契約更新を拒否するには「正当な事由」が必要になる。一般的な賃貸マンションなどの契約も多くのケースでこちらの契約になる。ここでいう正当な事由とは、建物が老朽化して立て直す必要があるとか、貸し主がそこに住むといったものらしい。一方で定期借家は契約期間が終了すれば、一旦契約は終了してから新たに再契約するといった段取りになる。この定期賃貸借契約の条件を満たすには、契約期間更新の定めがないことを説明した書面を交付する必要がある。その書面がない場合はすべて普通借家とみなされるという。その是非を巡って争った最高裁の判例があるらしくググるとすぐに出てくる。当事者同士で双方の合意があったとしても説明書面がない場合は無効とするような判例となっている。これを逆手に取れば、普通借家として契約更新を主張できるというストーリー展開になっている。
