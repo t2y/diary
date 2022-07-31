@@ -1,4 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ci/cd on forest nook</title><link>/diary/tags/ci/cd/</link><description>Recent content in ci/cd on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/ci/cd/index.xml" rel="self" type="application/rss+xml"/><item><title>意図がわかる設計とリファクタリング</title><link>/diary/posts/2022/0714/</link><pubDate>Thu, 14 Jul 2022 08:14:28 +0900</pubDate><guid>/diary/posts/2022/0714/</guid><description>1時に寝て7時に起きた。久しぶりに HELLSING をみてた。アレクサンド・アンデルセンの狂信者ノリが好き。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ci/cd on forest nook</title><link>/diary/tags/ci/cd/</link><description>Recent content in ci/cd on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/ci/cd/index.xml" rel="self" type="application/rss+xml"/><item><title>久しぶりにブログを書いた</title><link>/diary/posts/2022/0731/</link><pubDate>Sun, 31 Jul 2022 13:06:19 +0900</pubDate><guid>/diary/posts/2022/0731/</guid><description>2時過ぎに寝て7時に起きて9時まで寝てた。
+もてなしだけではもう食えない 読み進めておもしろかったし学びにもなったので書評を書いた。
+もてなしだけではもう食えない -ホテル経営学の本質と実践- backlog-github-integration-action v1.0.1 リリース backlog-github-integration-action のバグ修正 した変更を v1.0.1 としてリリースした。2週間ほど検証環境でリグレッションがないかをみていた。問題なさそうなので v1 ブランチにマージして docker イメージを push して v1.0.1 タグを付けてリリース成果物を作成した。久しぶりにやると手順を忘れていてドキュメントを書かないといけないなとか思ったりした。
+backlog-github-integration-action</description><content>&lt;p>2時過ぎに寝て7時に起きて9時まで寝てた。&lt;/p>
+&lt;h2 id="もてなしだけではもう食えない">もてなしだけではもう食えない&lt;/h2>
+&lt;p>読み進めておもしろかったし学びにもなったので書評を書いた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://note.com/t2y1979/n/nc5c156ae529e">もてなしだけではもう食えない -ホテル経営学の本質と実践-&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="backlog-github-integration-action-v101-リリース">backlog-github-integration-action v1.0.1 リリース&lt;/h2>
+&lt;p>&lt;a href="/diary/diary/posts/2022/0710/#backlog-github-integration-action-のバグ修正">backlog-github-integration-action のバグ修正&lt;/a> した変更を v1.0.1 としてリリースした。2週間ほど検証環境でリグレッションがないかをみていた。問題なさそうなので v1 ブランチにマージして docker イメージを push して v1.0.1 タグを付けてリリース成果物を作成した。久しぶりにやると手順を忘れていてドキュメントを書かないといけないなとか思ったりした。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/marketplace/actions/backlog-github-integration-action">backlog-github-integration-action&lt;/a>&lt;/li>
+&lt;/ul></content></item><item><title>意図がわかる設計とリファクタリング</title><link>/diary/posts/2022/0714/</link><pubDate>Thu, 14 Jul 2022 08:14:28 +0900</pubDate><guid>/diary/posts/2022/0714/</guid><description>1時に寝て7時に起きた。久しぶりに HELLSING をみてた。アレクサンド・アンデルセンの狂信者ノリが好き。
 煩雑な保守 昨日から着手した s3 とやり取りするアプリケーションの保守をしている。一通り機能は実装できたが、このアプリケーションの保守を今後どうやっていけばいいのかが私からはみえない。要件が変わる度に継ぎ接ぎで拡張してきて、意図をもった設計があるわけではないようにみえる。このまま保守することはできるかもしれないが、このロジックの説明もテストも検証もすべてが難しい。私がみても難しいのだから、経験の浅い開発者がみるともっと難しいのではないかと思う。
 これを直すにはまず単体テストを直さないといけない。単体テストの大半がモックベースなので実際の振る舞いと異なる可能性がある。とくに s3 とやり取りするところの検証ができない。testcontainers の localstack があるので単体テストはモックからこのモジュールを使うように代替できそう。まずはそこからやるべきだが、2-3日はかかると見込まれるのでチームで承認を得られるかどうか、ちょっと聞いてみてから考える。
 Job Summary を使ってみた ちょっと前に github actions のワークフローの実行画面にサマリを出力できるようになったという記事をみた。
