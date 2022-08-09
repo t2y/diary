@@ -1,4 +1,54 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>kubernetes on forest nook</title><link>/diary/tags/kubernetes/</link><description>Recent content in kubernetes on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sun, 07 Aug 2022 11:08:39 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/kubernetes/index.xml" rel="self" type="application/rss+xml"/><item><title>wiremock を使った kubernetes モックサーバーのテスト拡張</title><link>/diary/posts/2022/0807/</link><pubDate>Sun, 07 Aug 2022 11:08:39 +0900</pubDate><guid>/diary/posts/2022/0807/</guid><description>2時に寝て7時に起きて9時までだらだらしてた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>kubernetes on forest nook</title><link>/diary/tags/kubernetes/</link><description>Recent content in kubernetes on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Mon, 08 Aug 2022 07:41:18 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/kubernetes/index.xml" rel="self" type="application/rss+xml"/><item><title>k8s クラスターの service account とロール</title><link>/diary/posts/2022/0808/</link><pubDate>Mon, 08 Aug 2022 07:41:18 +0900</pubDate><guid>/diary/posts/2022/0808/</guid><description>23時に寝て6時に起きた。前日は夕方からだらだらしてた。
+k8s クラスターの権限管理 初期のクラスターを私が構築したわけではないため、権限周りはあまりよくわかっていない。k8s には2つのユーザーアカウントがある。
+user account: 人向け service account: アプリケーション向け In this regard, Kubernetes does not have objects which represent normal user accounts. Normal users cannot be added to a cluster through an API call.
+https://kubernetes.io/docs/reference/access-authn-authz/authentication/#users-in-kubernetes
+但し、ユーザーアカウントを表すオブジェクトはなく、api 経由でクラスターにユーザーを追加したりはできない。ユーザーは存在しないけど、認証はできる仕組みを私は知らないので関心がある。それはまた今度調べるとして、今回は service account の権限を変更した。service account は pod 内から k8s の api サーバーにアクセスするときの認証などに使われる。デフォルトの権限だと、api サーバーのエンドポイントへの書き込み権限がない (?) ようなので追加する。
+In order from most secure to least secure, the approaches are:
+Grant a role to an application-specific service account (best practice) Grant a role to the &amp;ldquo;default&amp;rdquo; service account in a namespace Grant a role to all service accounts in a namespace Grant a limited role to all service accounts cluster-wide (discouraged) Grant super-user access to all service accounts cluster-wide (strongly discouraged) ServiceAccount permissions</description><content>&lt;p>23時に寝て6時に起きた。前日は夕方からだらだらしてた。&lt;/p>
+&lt;h2 id="k8s-クラスターの権限管理">k8s クラスターの権限管理&lt;/h2>
+&lt;p>初期のクラスターを私が構築したわけではないため、権限周りはあまりよくわかっていない。k8s には2つのユーザーアカウントがある。&lt;/p>
+&lt;ul>
+&lt;li>user account: 人向け&lt;/li>
+&lt;li>service account: アプリケーション向け&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>In this regard, Kubernetes does not have objects which represent normal user accounts. Normal users cannot be added to a cluster through an API call.&lt;/p>
+&lt;p>&lt;a href="https://kubernetes.io/docs/reference/access-authn-authz/authentication/#users-in-kubernetes">https://kubernetes.io/docs/reference/access-authn-authz/authentication/#users-in-kubernetes&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>但し、ユーザーアカウントを表すオブジェクトはなく、api 経由でクラスターにユーザーを追加したりはできない。ユーザーは存在しないけど、認証はできる仕組みを私は知らないので関心がある。それはまた今度調べるとして、今回は service account の権限を変更した。service account は pod 内から k8s の api サーバーにアクセスするときの認証などに使われる。デフォルトの権限だと、api サーバーのエンドポイントへの書き込み権限がない (?) ようなので追加する。&lt;/p>
+&lt;blockquote>
+&lt;p>In order from most secure to least secure, the approaches are:&lt;/p>
+&lt;ol>
+&lt;li>Grant a role to an application-specific service account (best practice)&lt;/li>
+&lt;li>Grant a role to the &amp;ldquo;default&amp;rdquo; service account in a namespace&lt;/li>
+&lt;li>Grant a role to all service accounts in a namespace&lt;/li>
+&lt;li>Grant a limited role to all service accounts cluster-wide (discouraged)&lt;/li>
+&lt;li>Grant super-user access to all service accounts cluster-wide (strongly discouraged)&lt;/li>
+&lt;/ol>
+&lt;p>&lt;a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/#service-account-permissions">ServiceAccount permissions&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>セキュアな順番として上から自分たちの環境にあうかどうかを判断すればよい。私の場合、わざわざ新規に service account を作るほどの要件ではないため、2番目の &lt;code>default&lt;/code> の service account にロールを与えることにした。&lt;code>RoleBinding&lt;/code> というキーワードがあるので既存のクラスターロールから &lt;code>edit&lt;/code> という権限を与える。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl create rolebinding default-edit-role --clusterrole&lt;span style="color:#f92672">=&lt;/span>edit --serviceaccount&lt;span style="color:#f92672">=&lt;/span>default:default --namespace default
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>rolebinding.rbac.authorization.k8s.io/default-edit-role created
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>ここでは &lt;code>default-edit-role&lt;/code> という RoleBinding を作成した。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ kubectl get rolebinding default-edit-role -o yaml
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apiVersion: rbac.authorization.k8s.io/v1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>kind: RoleBinding
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>metadata:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> creationTimestamp: &lt;span style="color:#e6db74">&amp;#34;2022-08-08T08:27:12Z&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> name: default-edit-role
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> namespace: default
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> resourceVersion: &lt;span style="color:#e6db74">&amp;#34;152660975&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> uid: 6de13b71-3103-448c-805a-66e9400f61c3
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>roleRef:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> apiGroup: rbac.authorization.k8s.io
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> kind: ClusterRole
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> name: edit
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>subjects:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>- kind: ServiceAccount
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> name: default
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> namespace: default
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>これで cronjob から job を作成する権限が付与された。&lt;a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/#write-access-for-endpoints">Write access for Endpoints&lt;/a> によると、新規に作成した v1.22 以降のクラスターではエンドポイントに対する write アクセス権限が異なるように記載されている。一方で v1.22 にアップグレードしたクラスターは影響を受けないとも記述されている。私がいま運用しているクラスターは v1.21 から v1.22 にアップグレードしたクラスターなので &lt;code>edit&lt;/code> ロールでうまくいったのかもしれない。クラスターのバージョンによって設定が異なるかもしれない。&lt;/p></content></item><item><title>wiremock を使った kubernetes モックサーバーのテスト拡張</title><link>/diary/posts/2022/0807/</link><pubDate>Sun, 07 Aug 2022 11:08:39 +0900</pubDate><guid>/diary/posts/2022/0807/</guid><description>2時に寝て7時に起きて9時までだらだらしてた。
 Kubernetes Clients のライブラリ実装 昨日の続き 。ある程度、クライアントの振る舞いを確認できたので自前のライブラリを作ることにした。ライブラリなのでテストをちゃんと書きたいと思って単体テストのやり方を調べてたら Kubernetes Clients のリポジトリにも単体テストはほとんどなくて、どうも e2e テストの方を重視しているようにもみえた。github issues を検索してみたら次の issue をみつけた。
 [DESIGN] Add k8s mock client and server test case #956 なにかしら単体テストの仕組みを作った方がいいんじゃないかという提案と一緒に issue の作者？かどうかはわからんけど、wiremock を使ったテストのサンプルコードをあげていた。名前だけは聞いたことがあったけど、過去に使ったこともなく、どういうものか全くわかってない。ドキュメントを軽く読んでみたら http モックサーバーらしい。issue の内容を参考にしながら wiremock のドキュメントをみて junit5 のテスト拡張を書いてみた。これが適切な実装かはあまり自信がないけど、こんな感じでモックサーバーとモッククライアントの junit5 のテスト拡張を実装した。これは static なモックサーバーの設定になるので wiremock 自体の起動コストは速く感じた。ライブラリのテストとしては申し分ない。いまのところは自画自賛。
 @Documented @Target(ElementType.FIELD) @Retention(RetentionPolicy.RUNTIME) public @interface KubernetesApiClient { } public class SetupKubernetesWireMock implements BeforeAllCallback, BeforeEachCallback, ExtensionContext.Store.CloseableResource { private static final Logger logger = LogManager.getLogger(SetupKubernetesWireMock.class.getName()); private static int PORT = 8384; private static WireMockServer wireMockServer = new WireMockServer(options().</description><content>&lt;p>2時に寝て7時に起きて9時までだらだらしてた。&lt;/p>
