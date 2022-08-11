@@ -10,7 +10,9 @@ $ kubectl patch cronjob my-batch-job1 -p &amp;#39;{&amp;#34;spec&amp;#34;: {&amp
 </span></span><span style=display:flex><span>deployment.apps/my-app scaled
 </span></span></code></pre></div><p>移行時のアプリケーションサーバーはこれで無効にしておき、cronjob に入れ替えるといった切り戻し可能な状態で移行できる。cronjob も <code>suspend</code> のフラグを使うことで一時停止できるので検証しながら双方を切り替えることができる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ kubectl patch cronjob my-batch-job1 -p <span style=color:#e6db74>&#39;{&#34;spec&#34;: {&#34;suspend&#34;: true}}}&#39;</span>
 </span></span><span style=display:flex><span>cronjob.batch/my-batch-job1 patched
-</span></span></code></pre></div></div></div><div class=pagination><div class=pagination__title><span class=pagination__title-h>Read other posts</span><hr></div><div class=pagination__buttons><span class="button next"><a href=/diary/posts/2022/0809/><span class=button__text>ストーリーポイント捨てた方がよい</span>
+</span></span></code></pre></div></div></div><div class=pagination><div class=pagination__title><span class=pagination__title-h>Read other posts</span><hr></div><div class=pagination__buttons><span class="button previous"><a href=/diary/posts/2022/0811/><span class=button__icon>←</span>
+<span class=button__text>次のお仕事探し</span></a></span>
+<span class="button next"><a href=/diary/posts/2022/0809/><span class=button__text>ストーリーポイント捨てた方がよい</span>
 <span class=button__icon>→</span></a></span></div></div></div></div><footer class=footer><div class=footer__inner><div class="copyright copyright--user"><span>© 2021 Tetsuya Morimoto</span>
 <span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span></div></div></footer><script src=/diary/assets/main.js></script>
 <script src=/diary/assets/prism.js></script></div></body></html>
