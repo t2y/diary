@@ -1,4 +1,36 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>forest nook</title><link>/diary/</link><description>Recent content on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 18 Aug 2022 10:27:56 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/index.xml" rel="self" type="application/rss+xml"/><item><title>spring boot におけるプロキシ実装</title><link>/diary/posts/2022/0818/</link><pubDate>Thu, 18 Aug 2022 10:27:56 +0900</pubDate><guid>/diary/posts/2022/0818/</guid><description>0時に寝て7時に起きた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>forest nook</title><link>/diary/</link><description>Recent content on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Fri, 19 Aug 2022 08:44:34 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/index.xml" rel="self" type="application/rss+xml"/><item><title>mvp とその目的</title><link>/diary/posts/2022/0819/</link><pubDate>Fri, 19 Aug 2022 08:44:34 +0900</pubDate><guid>/diary/posts/2022/0819/</guid><description>0時に寝て6時に起きた。
+隔週の雑談 顧問のはらさんと隔週の打ち合わせ。先日の勉強会で聞いた mvp の考え方 について気になったので相談してみた。はらさんと相談していて mvp とは一般論としてこうだと語ることはできないということが理解できた。大事なのは mvp でやりたい目的であって、その目的によって mvp が何になるかは変わってくる。
+コンシューマー向け (toC) と業務向けの (toB) でアプリケーションは全く異なる toC 向けはニーズや要件がまったくわからない toB 向けはニーズや要件が明確にわかっている mvp が何になるかは目的によって異なる toC 向けはニーズや要件を把握するのが目的になる場合がある PMF (Product Market Fit) という概念もある toB 向けはニーズや要件に合致するものかどうかを確認するのが目的になる あと フリーランス協会 という団体があるのを教えていただいた。フリーランスは会社員と比較して守られていない箇所がたくさんある。例えば、取引先とトラブルになって損害賠償が発生するとかがある。うちの会社に限って言えば、役員は基本的に労災保険の適用外になる。この仕組みを見直そうといった取り組みや制度があるという記事もみかけたりはする。そういった保険やら福利厚生やらいろんなものをパッケージングして比較的安い金額で提供してくれるらしい。はらさんによると、なぜ○○協会といった団体がたくさん作られるかというと、団体では受けられるが、個人では受けられないサービスがあるからだという説明をされていた。
+むきなおり チームで改善のための会議があった。会議のホストがいなくて、誰も何も準備をせずに会議が始まり、課題は何なのかを会議中に相談して決めるみたいな、これまでもそうだったようにだらだらした会議の始まり方をした。私はすぐにいなくなる人間なのであまり今後の方針についてはコメントしないようにしている。議論の行方だけを聞いていた。ストーリーポイントとベロシティの運用が混乱をもたらし始めていて、PO がベロシティは納期の対する進捗度合いを把握するために計測していると発言していて取り返しがつかなくなっているように感じた。いつまでに何ができかるかの期日を出さないといけないという使命感からストーリーポイントをスケジュールと同視ことから抜け出せていない。周りの知人と話したり、私自身の解釈としてもストーリーポイントとベロシティで把握できるのはチームの成熟度や成長の度合いだけになる。1年前よりもベロシティが増えているのであればチームは成長したと言える。言わばたったこれだけのことしか分からないし、成長の度合いに関すること以外に使うべきではない。
+ストーリーポイントの誤解と誤用は、特にプロセスがチームから部署、企業へとスケールして行くときに、時間をかけて増幅されていきます。これらの誤解と誤用を正すのは、時間と労力を要します。
+ユーザーストーリーを使うのをやめよう で書かれているように、ストーリーポイントという抽象化された数値が独り歩きして、自分たちの都合のよい指標になると考え始めている。この記事によると、これが周りに広がっていくにしたがって混乱が増幅していくように書かれている。いま正にそういう雰囲気をみていて実感した。</description><content>&lt;p>0時に寝て6時に起きた。&lt;/p>
+&lt;h2 id="隔週の雑談">隔週の雑談&lt;/h2>
+&lt;p>顧問のはらさんと隔週の打ち合わせ。先日の勉強会で聞いた &lt;a href="/diary/diary/posts/2022/0816/">mvp の考え方&lt;/a> について気になったので相談してみた。はらさんと相談していて mvp とは一般論としてこうだと語ることはできないということが理解できた。大事なのは mvp でやりたい目的であって、その目的によって mvp が何になるかは変わってくる。&lt;/p>
+&lt;ul>
+&lt;li>コンシューマー向け (toC) と業務向けの (toB) でアプリケーションは全く異なる
+&lt;ul>
+&lt;li>toC 向けはニーズや要件がまったくわからない&lt;/li>
+&lt;li>toB 向けはニーズや要件が明確にわかっている&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>mvp が何になるかは目的によって異なる
+&lt;ul>
+&lt;li>toC 向けはニーズや要件を把握するのが目的になる場合がある
+&lt;ul>
+&lt;li>PMF (Product Market Fit) という概念もある&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>toB 向けはニーズや要件に合致するものかどうかを確認するのが目的になる&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>あと &lt;a href="https://www.freelance-jp.org/">フリーランス協会&lt;/a> という団体があるのを教えていただいた。フリーランスは会社員と比較して守られていない箇所がたくさんある。例えば、取引先とトラブルになって損害賠償が発生するとかがある。うちの会社に限って言えば、役員は基本的に労災保険の適用外になる。この仕組みを見直そうといった取り組みや制度があるという記事もみかけたりはする。そういった保険やら福利厚生やらいろんなものをパッケージングして比較的安い金額で提供してくれるらしい。はらさんによると、なぜ○○協会といった団体がたくさん作られるかというと、団体では受けられるが、個人では受けられないサービスがあるからだという説明をされていた。&lt;/p>
+&lt;h2 id="むきなおり">むきなおり&lt;/h2>
+&lt;p>チームで改善のための会議があった。会議のホストがいなくて、誰も何も準備をせずに会議が始まり、課題は何なのかを会議中に相談して決めるみたいな、これまでもそうだったようにだらだらした会議の始まり方をした。私はすぐにいなくなる人間なのであまり今後の方針についてはコメントしないようにしている。議論の行方だけを聞いていた。ストーリーポイントとベロシティの運用が混乱をもたらし始めていて、PO がベロシティは納期の対する進捗度合いを把握するために計測していると発言していて取り返しがつかなくなっているように感じた。いつまでに何ができかるかの期日を出さないといけないという使命感からストーリーポイントをスケジュールと同視ことから抜け出せていない。周りの知人と話したり、私自身の解釈としてもストーリーポイントとベロシティで把握できるのはチームの成熟度や成長の度合いだけになる。1年前よりもベロシティが増えているのであればチームは成長したと言える。言わばたったこれだけのことしか分からないし、成長の度合いに関すること以外に使うべきではない。&lt;/p>
+&lt;blockquote>
+&lt;p>ストーリーポイントの誤解と誤用は、特にプロセスがチームから部署、企業へとスケールして行くときに、時間をかけて増幅されていきます。これらの誤解と誤用を正すのは、時間と労力を要します。&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;a href="https://poohsunny.hatenablog.com/entry/2017/12/18/235235">ユーザーストーリーを使うのをやめよう&lt;/a> で書かれているように、ストーリーポイントという抽象化された数値が独り歩きして、自分たちの都合のよい指標になると考え始めている。この記事によると、これが周りに広がっていくにしたがって混乱が増幅していくように書かれている。いま正にそういう雰囲気をみていて実感した。&lt;/p></content></item><item><title>spring boot におけるプロキシ実装</title><link>/diary/posts/2022/0818/</link><pubDate>Thu, 18 Aug 2022 10:27:56 +0900</pubDate><guid>/diary/posts/2022/0818/</guid><description>0時に寝て7時に起きた。
 spring boot における簡易的なミドルウェアの実装 bff (backend for frontend) の web api サーバーから別の web api サーバーのエンドポイントを呼び出す処理を書いていてただプロキシする処理のためだけに controller を書くのも面倒だなと気付いた。controller よりも低いレイヤで raw request を扱うにはどうしたらいいかを調べてみたら spring の Filter を使うのが最も簡単そうにみえた。その spring の Filter の1つである OncePerRequestFilter を使って簡易的なプロキシの処理を実装してみた。OncePerRequestFilter はリクエストに対して1度だけ呼ばれることが保証された Filter になる。これらのドキュメントがどこにあるかわからなかったので baeldung のチュートリアル What Is OncePerRequestFilter? をみた方が早いかもしれない。
 Filter が複数あるときは実行順序を指定したいときは Order というアノテーションで制御できる。
 @Component @Order(30) public class MyFilter extends OncePerRequestFilter { ... } OncePerRequestFilter の doFilterInternal メソッドをオーバーライドすれば任意のミドルウェアっぽい処理を実装できる。
@@ -96,6 +128,38 @@ Filter が複数あるときは実行順序を指定したいときは Order と
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> Optional&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">empty&lt;/span>&lt;span style="color:#f92672">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>matcher のサンプル実装。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">RequestForwardMatcher&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">private&lt;/span> &lt;span style="color:#66d9ef">static&lt;/span> &lt;span style="color:#66d9ef">final&lt;/span> String ASTERISK &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;*&amp;#34;&lt;/span>&lt;span style="color:#f92672">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">private&lt;/span> &lt;span style="color:#66d9ef">final&lt;/span> Pattern pattern&lt;span style="color:#f92672">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">private&lt;/span> &lt;span style="color:#66d9ef">final&lt;/span> List&lt;span style="color:#f92672">&amp;lt;&lt;/span>String&lt;span style="color:#f92672">&amp;gt;&lt;/span> methods&lt;span style="color:#f92672">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">private&lt;/span> &lt;span style="color:#66d9ef">final&lt;/span> WebClient webClient&lt;span style="color:#f92672">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#a6e22e">RequestForwardMatcher&lt;/span>&lt;span style="color:#f92672">(&lt;/span>String pattern&lt;span style="color:#f92672">,&lt;/span> List&lt;span style="color:#f92672">&amp;lt;&lt;/span>String&lt;span style="color:#f92672">&amp;gt;&lt;/span> methods&lt;span style="color:#f92672">,&lt;/span> WebClient webClient&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">this&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">pattern&lt;/span> &lt;span style="color:#f92672">=&lt;/span> Pattern&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">compile&lt;/span>&lt;span style="color:#f92672">(&lt;/span>pattern&lt;span style="color:#f92672">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">this&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">methods&lt;/span> &lt;span style="color:#f92672">=&lt;/span> methods&lt;span style="color:#f92672">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">this&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">webClient&lt;/span> &lt;span style="color:#f92672">=&lt;/span> webClient&lt;span style="color:#f92672">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">private&lt;/span> &lt;span style="color:#66d9ef">boolean&lt;/span> &lt;span style="color:#a6e22e">matchMethod&lt;/span>&lt;span style="color:#f92672">(&lt;/span>String method&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#66d9ef">this&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">methods&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">contains&lt;/span>&lt;span style="color:#f92672">(&lt;/span>ASTERISK&lt;span style="color:#f92672">))&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">true&lt;/span>&lt;span style="color:#f92672">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">this&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">methods&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">contains&lt;/span>&lt;span style="color:#f92672">(&lt;/span>method&lt;span style="color:#f92672">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">boolean&lt;/span> &lt;span style="color:#a6e22e">match&lt;/span>&lt;span style="color:#f92672">(&lt;/span>HttpServletRequest request&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#f92672">(!&lt;/span>matchMethod&lt;span style="color:#f92672">(&lt;/span>request&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">getMethod&lt;/span>&lt;span style="color:#f92672">()))&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">false&lt;/span>&lt;span style="color:#f92672">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">this&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">pattern&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">matcher&lt;/span>&lt;span style="color:#f92672">(&lt;/span>request&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">getRequestURI&lt;/span>&lt;span style="color:#f92672">()).&lt;/span>&lt;span style="color:#a6e22e">matches&lt;/span>&lt;span style="color:#f92672">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> WebClient &lt;span style="color:#a6e22e">getWebClient&lt;/span>&lt;span style="color:#f92672">()&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">this&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">webClient&lt;/span>&lt;span style="color:#f92672">;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>たまには画面作り</title><link>/diary/posts/2022/0817/</link><pubDate>Wed, 17 Aug 2022 11:12:26 +0900</pubDate><guid>/diary/posts/2022/0817/</guid><description>1時に寝て6時に起きた。
