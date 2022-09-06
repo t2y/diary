@@ -1,4 +1,31 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2022/09 on forest nook</title><link>/diary/dates/2022/09/</link><description>Recent content in 2022/09 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2022/09/index.xml" rel="self" type="application/rss+xml"/><item><title>レンダリングの致命的なバグ</title><link>/diary/posts/2022/0905/</link><pubDate>Mon, 05 Sep 2022 13:10:09 +0900</pubDate><guid>/diary/posts/2022/0905/</guid><description>0時に寝て6時に起きた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2022/09 on forest nook</title><link>/diary/dates/2022/09/</link><description>Recent content in 2022/09 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2022/09/index.xml" rel="self" type="application/rss+xml"/><item><title>スクラムやっている人たちと雑談</title><link>/diary/posts/2022/0906/</link><pubDate>Tue, 06 Sep 2022 08:30:40 +0900</pubDate><guid>/diary/posts/2022/0906/</guid><description>0時に寝て7時に起きた。あまりよく眠れない。新しい施設のサービスインで社員さんは忙しそうなので画面のバグ修正をしたりレビューの検証をしたりしていた。
+スクラムイベント Scrum Developers Night! Online #11 に参加した。過去にストーリーポイント運用がうまくいってないという話題を書いてきたけど、他の組織やチームだとうまくいっているのか、どんな感じなのかを聞いてみようという意図で参加した。他のスクラムやっている人たちの話しを聞いてみたかったんだけど、割とこっちのやり方や運用を聞かれるような展開になったのでこちら側の話しが主になってしまった。相談してわかったことなどをざっくりまとめる。
+ストーリーポイント運用の方法自体は間違っていない ストーリーポイント運用とは別のところに課題があるようにみえる スプリントで決めたことをできないのは問題 1週間の見積もりすら合わないのだからそれ以上の期間の見積もりはあわないのは自明 プランニングやリファイメントなどでタスク分割や見積もりの精度をあげないといけない 大きな機能の見積もり後にタスクが増えるような精度が問題 スプリントがある週の実稼働時間を考慮して見積もりしていないのは問題 休みがあったり社内イベントがあったり実稼働時間によってベロシティはブレるはず 全体として総括すると、ストーリーポイント運用以前のチームの問題が大きのだろうと他の人たちと話していて実感した。スクラムの実践についての細かい改善点はあるものの、それ以上にチーム事情によるものや体制の問題の方が大きいということに気付いた。</description><content>&lt;p>0時に寝て7時に起きた。あまりよく眠れない。新しい施設のサービスインで社員さんは忙しそうなので画面のバグ修正をしたりレビューの検証をしたりしていた。&lt;/p>
+&lt;h2 id="スクラムイベント">スクラムイベント&lt;/h2>
+&lt;p>&lt;a href="https://smn.connpass.com/event/258253/">Scrum Developers Night! Online #11&lt;/a> に参加した。過去にストーリーポイント運用がうまくいってないという話題を書いてきたけど、他の組織やチームだとうまくいっているのか、どんな感じなのかを聞いてみようという意図で参加した。他のスクラムやっている人たちの話しを聞いてみたかったんだけど、割とこっちのやり方や運用を聞かれるような展開になったのでこちら側の話しが主になってしまった。相談してわかったことなどをざっくりまとめる。&lt;/p>
+&lt;ul>
+&lt;li>ストーリーポイント運用の方法自体は間違っていない
+&lt;ul>
+&lt;li>ストーリーポイント運用とは別のところに課題があるようにみえる&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>スプリントで決めたことをできないのは問題
+&lt;ul>
+&lt;li>1週間の見積もりすら合わないのだからそれ以上の期間の見積もりはあわないのは自明&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>プランニングやリファイメントなどでタスク分割や見積もりの精度をあげないといけない
+&lt;ul>
+&lt;li>大きな機能の見積もり後にタスクが増えるような精度が問題&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>スプリントがある週の実稼働時間を考慮して見積もりしていないのは問題
+&lt;ul>
+&lt;li>休みがあったり社内イベントがあったり実稼働時間によってベロシティはブレるはず&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>全体として総括すると、ストーリーポイント運用以前のチームの問題が大きのだろうと他の人たちと話していて実感した。スクラムの実践についての細かい改善点はあるものの、それ以上にチーム事情によるものや体制の問題の方が大きいということに気付いた。&lt;/p></content></item><item><title>レンダリングの致命的なバグ</title><link>/diary/posts/2022/0905/</link><pubDate>Mon, 05 Sep 2022 13:10:09 +0900</pubDate><guid>/diary/posts/2022/0905/</guid><description>0時に寝て6時に起きた。
 vuejs のライフサイクル 先日 vuejs で 画面作り に挑戦して出来たと喜んでいたが、検索して一覧画面のデータを更新した際に、フォームも再レンダリングされないといけないところがそうなっておらず、データは置き換わっているが画面に表示される値は変わっていないという致命的なバグがあることに気付いた。普通に開発していたら気付きそうなものだが、ローカルの dev server で動かしているとコードを更新すると再レンダリングが実行されるので検索後に画面の一覧が更新されないということを見逃したんだと思う。Lifecycle Diagram もみながら適切なフックポイントの振る舞いを確認したりしていた。setup 後、初期化されてその後に mounted が動いて、その後パラメーターが更新されたときに watch して再更新をかけるといった次のコードでも意図した振る舞いになることは確認した。
 setup(props, context) { const data: { [key: string]: any } = {}; return { _data: ref(data), loading: false }; }, mounted() { this._data = JSON.parse(this.item.data); }, watch: { item(value: any) { this._data = JSON.parse(value.data); }, }, レビューしてもらったら、それよりもパラメーターをリアクティブにした方がよいのではないかと教えてもらって次のようにした。本当は setter は不要なんだけど、なぜか初期化のタイミングで setter が呼ばれるので設けた。私の作ったコンポーネントの設計が悪いせいかもしれない。
 setup(props, context) { const _item = toRef(props, &amp;#39;item&amp;#39;); return { _item }; }, computed: { ￼ _data: { ￼ get(): { [key: string]: any } { ￼ return JSON.</description><content>&lt;p>0時に寝て6時に起きた。&lt;/p>
