@@ -1,4 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>document on forest nook</title><link>/diary/tags/document/</link><description>Recent content in document on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 19 May 2022 13:33:49 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/document/index.xml" rel="self" type="application/rss+xml"/><item><title>ドキュメントをちゃんと書く</title><link>/diary/posts/2022/0519/</link><pubDate>Thu, 19 May 2022 13:33:49 +0900</pubDate><guid>/diary/posts/2022/0519/</guid><description>20時に寝て22時に起きて、それから作業して3時に寝て6時に起きた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>document on forest nook</title><link>/diary/tags/document/</link><description>Recent content in document on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Wed, 07 Sep 2022 08:15:06 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/document/index.xml" rel="self" type="application/rss+xml"/><item><title>ドキュメントを書きながら思うこと</title><link>/diary/posts/2022/0907/</link><pubDate>Wed, 07 Sep 2022 08:15:06 +0900</pubDate><guid>/diary/posts/2022/0907/</guid><description>3時に寝て7時に起きた。眠れない。
+github リポジトリとシステム間連携 社員さんが運用対応に忙しくてスプリントタスクがなくなって暇なのでドキュメントを書いてた。github に新規リポジトリを作成したときに行う初期設定の作業が増えてきた。大半は私が導入した仕組みや機能のための初期設定になるが、私はリポジトリの管理権限をもっていないので、社員さんにお願いして、この設定して、あの設定してとお願いして対応してきた。もうすぐ辞めるので引き継ぎできるようにやっていることのドキュメントを整理した。
+slack 連携 backlog 連携 github pull requests テンプレート github actions github apps github environments リポジトリと他システムとの連携を効率化しようとすればするほど設定や背景が煩雑になる。とくに認証や権限周りのセキュリティを考慮した仕組みはサービスとのトレードオフになるので設定が面倒になりがちではある。とくに github actions のワークフローは 【登壇報告】JJUG CCC 2022 Spring で語りきれなかった技術的なお話 にあるように、世の中のプラクティスに依らず、私が設計して整備したものなので他メンバーにとって身近ではない。
+backlog の wiki にプロジェクトのドキュメントを書いている。開発メンバーでドキュメントを定期的に書くのはほぼ私だけで、他メンバーはほとんど書かない。なぜそうなるのかな？と考えたときに思いつくことの1つとして、開発全般の業務としてやることを、誰でもできる汎用的な仕組みに落とし込むことを考慮して設計していないからではないかと思う。あるアプリケーションが内製／外部システム／外部ライブラリに関わらず、こういう機能や仕組みを使って、こんな課題を解決して、こんな機能を実現していますという構成にはなっていない。発生している問題に対して動けばいいといったレベルでしか開発していないから、本来どう在るべきなのか、どういった設計思想なのか、今後はどうやって保守していけばいいのかの指針を提供できない。これは私の言葉だと設計ができないということと同義だと思う。他に思いつくこととしては、既存アプリケーションにない新規の仕組みを定期的に設計しているのは私しかいないのかもしれない。言い換えれば、言われたことしかやらない人しかいない。</description><content>&lt;p>3時に寝て7時に起きた。眠れない。&lt;/p>
+&lt;h2 id="github-リポジトリとシステム間連携">github リポジトリとシステム間連携&lt;/h2>
+&lt;p>社員さんが運用対応に忙しくてスプリントタスクがなくなって暇なのでドキュメントを書いてた。github に新規リポジトリを作成したときに行う初期設定の作業が増えてきた。大半は私が導入した仕組みや機能のための初期設定になるが、私はリポジトリの管理権限をもっていないので、社員さんにお願いして、この設定して、あの設定してとお願いして対応してきた。もうすぐ辞めるので引き継ぎできるようにやっていることのドキュメントを整理した。&lt;/p>
+&lt;ul>
+&lt;li>slack 連携&lt;/li>
+&lt;li>backlog 連携&lt;/li>
+&lt;li>github
+&lt;ul>
+&lt;li>pull requests テンプレート&lt;/li>
+&lt;li>github actions
+&lt;ul>
+&lt;li>github apps&lt;/li>
+&lt;li>github environments&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>リポジトリと他システムとの連携を効率化しようとすればするほど設定や背景が煩雑になる。とくに認証や権限周りのセキュリティを考慮した仕組みはサービスとのトレードオフになるので設定が面倒になりがちではある。とくに github actions のワークフローは &lt;a href="https://note.com/hoshino_technote/n/n6afff42aeee0">【登壇報告】JJUG CCC 2022 Spring で語りきれなかった技術的なお話&lt;/a> にあるように、世の中のプラクティスに依らず、私が設計して整備したものなので他メンバーにとって身近ではない。&lt;/p>
+&lt;p>backlog の wiki にプロジェクトのドキュメントを書いている。開発メンバーでドキュメントを定期的に書くのはほぼ私だけで、他メンバーはほとんど書かない。なぜそうなるのかな？と考えたときに思いつくことの1つとして、開発全般の業務としてやることを、誰でもできる汎用的な仕組みに落とし込むことを考慮して設計していないからではないかと思う。あるアプリケーションが内製／外部システム／外部ライブラリに関わらず、こういう機能や仕組みを使って、こんな課題を解決して、こんな機能を実現していますという構成にはなっていない。発生している問題に対して動けばいいといったレベルでしか開発していないから、本来どう在るべきなのか、どういった設計思想なのか、今後はどうやって保守していけばいいのかの指針を提供できない。これは私の言葉だと設計ができないということと同義だと思う。他に思いつくこととしては、既存アプリケーションにない新規の仕組みを定期的に設計しているのは私しかいないのかもしれない。言い換えれば、言われたことしかやらない人しかいない。&lt;/p></content></item><item><title>ドキュメントをちゃんと書く</title><link>/diary/posts/2022/0519/</link><pubDate>Thu, 19 May 2022 13:33:49 +0900</pubDate><guid>/diary/posts/2022/0519/</guid><description>20時に寝て22時に起きて、それから作業して3時に寝て6時に起きた。
 インフラのドキュメント作成 今日からインフラのドキュメント作成に着手した。4月から1ヶ月以上に渡って インフラエンジニア のようなお仕事をしていた。具体的には新しい環境のインフラ構築、ならびに既存インフラのリファクタリングというよりは再構築といった作業をしていた。約1ヶ月で大きなインフラのタスクは完了して、その後もこれまで cdk 管理していなかったインフラリソースの管理なども含め、より再現可能な管理されたインフラとなるように改善してきた。それもだいたい終えてきたので、そろそろ他の開発者にも引き継げるようにドキュメントを書くことにした。私以外は若い開発者が多いせいか、cdk/cf の知識というよりもインフラそのもののやネットワークの知識が少ないメンバーが多い。そういった運用経験の浅い開発者にも適切な教育が行えるよう、ドキュメントやチュートリアルなどを書いていく。数日ぐらいかけてしっかり書いてから勉強会を開催する。それをもって引き継ぎしていくかなぁ。
 私が前任者から引き継いだ README に helm の説明が次のように書かれてた。
 まず helm がわかってない人はググってくること。
