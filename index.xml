@@ -1,4 +1,27 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>forest nook</title><link>/diary/</link><description>Recent content on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sun, 11 Sep 2022 15:07:06 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/index.xml" rel="self" type="application/rss+xml"/><item><title>スキルの定量化とお仕事探し</title><link>/diary/posts/2022/0911/</link><pubDate>Sun, 11 Sep 2022 15:07:06 +0900</pubDate><guid>/diary/posts/2022/0911/</guid><description>0時に寝て7時に起きた。直近は日曜日はだらだらしてたんだけど、すんなり起きれた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>forest nook</title><link>/diary/</link><description>Recent content on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Mon, 12 Sep 2022 08:06:42 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/index.xml" rel="self" type="application/rss+xml"/><item><title>蓋然性という言葉がよくわからなかった</title><link>/diary/posts/2022/0912/</link><pubDate>Mon, 12 Sep 2022 08:06:42 +0900</pubDate><guid>/diary/posts/2022/0912/</guid><description>0時に寝て7時に起きた。朝からタスクの詳細をヒアリングして web api と画面を作るだけの簡単な作業。しばらく (1-2週間ぐらい？) は暇な日々が続きそう。
+蓋然性 (probability) と可能性 (possibility) の違い わかりやすかった。
+夏目漱石が授業で言った例では、「教壇で喋る講師が逆立ちする可能性はあるが、蓋然性はない。」というものがあります。
+「判例の用いる確率の用語」～元公務員講師のコラム～
+なんとなく稼ぐ 4 Passive Income Streams for a Programmer 次の4つの手法による収入を passive income (受動的な収入) と定義している。
+ソフトウェアとデジタル資産を売る ブログを始める 自分の youtube チャンネルを始める フリーランスオンライン それぞれみていくと、ソフトウェアを売るというのはアプリストアに代表されるようなマーケットプレイスで販売すること。デジタル資産とは電子書籍など。ブログは medium のようなサブスクリプションを使う。youtube はコンテンツを作って広告収入を得るかな。オンラインでフリーランスとして副収入を稼ぐという方法。どれもよく知られた当たり前の手法だけど、簡潔にまとまっていてわかりやすかった。</description><content>&lt;p>0時に寝て7時に起きた。朝からタスクの詳細をヒアリングして web api と画面を作るだけの簡単な作業。しばらく (1-2週間ぐらい？) は暇な日々が続きそう。&lt;/p>
+&lt;h2 id="蓋然性-probability-と可能性-possibility-の違い">蓋然性 (probability) と可能性 (possibility) の違い&lt;/h2>
+&lt;p>わかりやすかった。&lt;/p>
+&lt;blockquote>
+&lt;p>夏目漱石が授業で言った例では、「教壇で喋る講師が逆立ちする可能性はあるが、蓋然性はない。」というものがあります。&lt;/p>
+&lt;p>&lt;a href="https://komuin.umedai.jp/introduce/k20210614/">「判例の用いる確率の用語」～元公務員講師のコラム～&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="なんとなく稼ぐ">なんとなく稼ぐ&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://javascript.plainenglish.io/4-passive-income-streams-for-a-programmer-2fe593ac2df9">4 Passive Income Streams for a Programmer&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>次の4つの手法による収入を &lt;em>passive income&lt;/em> (受動的な収入) と定義している。&lt;/p>
+&lt;ol>
+&lt;li>ソフトウェアとデジタル資産を売る&lt;/li>
+&lt;li>ブログを始める&lt;/li>
+&lt;li>自分の youtube チャンネルを始める&lt;/li>
+&lt;li>フリーランスオンライン&lt;/li>
+&lt;/ol>
+&lt;p>それぞれみていくと、ソフトウェアを売るというのはアプリストアに代表されるようなマーケットプレイスで販売すること。デジタル資産とは電子書籍など。ブログは medium のようなサブスクリプションを使う。youtube はコンテンツを作って広告収入を得るかな。オンラインでフリーランスとして副収入を稼ぐという方法。どれもよく知られた当たり前の手法だけど、簡潔にまとまっていてわかりやすかった。&lt;/p></content></item><item><title>スキルの定量化とお仕事探し</title><link>/diary/posts/2022/0911/</link><pubDate>Sun, 11 Sep 2022 15:07:06 +0900</pubDate><guid>/diary/posts/2022/0911/</guid><description>0時に寝て7時に起きた。直近は日曜日はだらだらしてたんだけど、すんなり起きれた。
 お仕事探し offers さんのカジュアル面談 の雰囲気から企業に直接応募するプラットフォームの方が、私の経歴や実績の詳細を確認しやすいので面談に進みやすいのではないかとみている。そこで findy と lapras のプロフィールを作成してみた。これまで oss 活動やブログなどでアウトプットしていた資産がたくさんあるのでレベルはしょぼいにも関わらず、これらのプラットフォーム上ではそこそこよい数値がアルゴリズム的には算出される。プラットフォーム側としては転職やエンゲージメントを高めたいという意図があるから、ゴーストアカウントのようなものも含めて算出すると普通の人は高めの数字が算出されるのではないかと推測する。
 やってみた / 【スキル偏差値v2の診断結果】
 エンジニア向けスキル偏差値の診断結果は、Total 81.0、Python 81.0、HTML 80.0、Java 78.0でした。あなたもスキル偏差値をチェックしよう！ https://t.co/4E4ibyevz0 #findy #スキル偏差値v2
