@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>quarkus on forest nook</title><link>/diary/tags/quarkus/</link><description>Recent content in quarkus on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Fri, 23 Sep 2022 10:17:02 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/quarkus/index.xml" rel="self" type="application/rss+xml"/><item><title>slack apps 開発に着手</title><link>/diary/posts/2022/0923/</link><pubDate>Fri, 23 Sep 2022 10:17:02 +0900</pubDate><guid>/diary/posts/2022/0923/</guid><description>0時に寝て6時に起きた。あまりうまく眠れなかった。
+bolt for java slack apps を開発するためのフレームワークとして bolt と呼ばれる高レベルのフレームワークが提供されている。このフレームワークは slack sdk を使って作られていて、slack apps の開発が簡単になるようにユーティリティが提供されている。The Bolt family of SDKs によると、javascript, python, java 向けに提供されている。以前 bizpy でも slack アプリ開発のチュートリアルの勉強会をしたことがある。そのときは bolot for python を使っていた。
+python-study/BizPy/slack 一度触ったことがあったので bolt がどういうものかはすでに知っている。その java 版を使って slack apps を作ってみようと取り組み始めた。まずはチュートリアルを一通りやってみようと次のリポジトリでやってみた。
+https://github.com/t2y/bolt-java-sample チュートリアルの内容を動かすだけならすぐできた。次に java の waf は何を使おうかを調べてた。Supported Web Frameworks によると、次の4つがある。
+spring boot micronaut quarkus undertow helidon se さらに slackapi/java-slack-sdk#modules をみると、次の2つも追加されている。どちらも kotlin 向けのフレームワークらしい。
+http4k ktor それぞれのフレームワークの説明を読んだり、この機に kotlin をやってみることも検討してみた。長期間の保守を前提にすると、一時的に触るだけの言語を使うのもどうかな？と思うところはあってやはり java でやることにした。spring boot はお仕事でよく使っていてどういうものかを理解しているので選択するなら他の3つのどれか。
+Quarkus was created to enable Java developers to create applications for a modern, cloud-native world.</description><content>&lt;p>0時に寝て6時に起きた。あまりうまく眠れなかった。&lt;/p>
+&lt;h2 id="bolt-for-java">bolt for java&lt;/h2>
+&lt;p>slack apps を開発するためのフレームワークとして &lt;em>bolt&lt;/em> と呼ばれる高レベルのフレームワークが提供されている。このフレームワークは &lt;em>slack sdk&lt;/em> を使って作られていて、slack apps の開発が簡単になるようにユーティリティが提供されている。&lt;a href="https://api.slack.com/tools/bolt">The Bolt family of SDKs&lt;/a> によると、javascript, python, java 向けに提供されている。以前 bizpy でも slack アプリ開発のチュートリアルの勉強会をしたことがある。そのときは bolot for python を使っていた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/t2y/python-study/tree/master/BizPy/slack">python-study/BizPy/slack&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>一度触ったことがあったので &lt;em>bolt&lt;/em> がどういうものかはすでに知っている。その java 版を使って slack apps を作ってみようと取り組み始めた。まずはチュートリアルを一通りやってみようと次のリポジトリでやってみた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/t2y/bolt-java-sample">https://github.com/t2y/bolt-java-sample&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>チュートリアルの内容を動かすだけならすぐできた。次に java の waf は何を使おうかを調べてた。&lt;a href="https://slack.dev/java-slack-sdk/guides/supported-web-frameworks">Supported Web Frameworks&lt;/a> によると、次の4つがある。&lt;/p>
+&lt;ul>
+&lt;li>spring boot&lt;/li>
+&lt;li>micronaut&lt;/li>
+&lt;li>quarkus undertow&lt;/li>
+&lt;li>helidon se&lt;/li>
+&lt;/ul>
+&lt;p>さらに &lt;a href="https://github.com/slackapi/java-slack-sdk#modules">slackapi/java-slack-sdk#modules&lt;/a> をみると、次の2つも追加されている。どちらも kotlin 向けのフレームワークらしい。&lt;/p>
+&lt;ul>
+&lt;li>http4k&lt;/li>
+&lt;li>ktor&lt;/li>
+&lt;/ul>
+&lt;p>それぞれのフレームワークの説明を読んだり、この機に kotlin をやってみることも検討してみた。長期間の保守を前提にすると、一時的に触るだけの言語を使うのもどうかな？と思うところはあってやはり java でやることにした。spring boot はお仕事でよく使っていてどういうものかを理解しているので選択するなら他の3つのどれか。&lt;/p>
+&lt;blockquote>
+&lt;p>Quarkus was created to enable Java developers to create applications for a modern, cloud-native world. Quarkus is a Kubernetes-native Java framework tailored for GraalVM and HotSpot, crafted from best-of-breed Java libraries and standards. The goal is to make Java the leading platform in Kubernetes and serverless environments while offering developers a framework to address a wider range of distributed application architectures.&lt;/p>
+&lt;p>&lt;a href="https://quarkus.io/about/">https://quarkus.io/about/&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>いま kubernetes に好印象をもっていることもあり、この説明を読んで &lt;a href="https://quarkus.io/">quarkus&lt;/a> を選択することに決めた。そんなことをつぶやいていたら、せらさんからいくつかアドバイスをいただけた。slack について何かをつぶやくと100%返信がくる (ソースは私の経験) 。感謝。&lt;/p>
+&lt;p>&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">そうですね。App クラス側は servlet やその他のライタイム含め、何にも依存していないので標準でアダプターがない場合にも自分で書けば任意の Web フレークワークで動かせます。 &lt;a href="https://twitter.com/hashtag/SlackDevJP?src=hash&amp;amp;ref_src=twsrc%5Etfw">#SlackDevJP&lt;/a>&lt;/p>&amp;mdash; Kazuhiro Sera (瀬良) (@seratch_ja) &lt;a href="https://twitter.com/seratch_ja/status/1573205191071240192?ref_src=twsrc%5Etfw">September 23, 2022&lt;/a>&lt;/blockquote>
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script>
+&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">Quarkus いいですよ！ただ、GraalVM については少なくとも短期的にはサポート予定ありません。 &lt;a href="https://t.co/0cVGgohLez">https://t.co/0cVGgohLez&lt;/a> &lt;a href="https://twitter.com/hashtag/SlackDevJP?src=hash&amp;amp;ref_src=twsrc%5Etfw">#SlackDevJP&lt;/a>&lt;/p>&amp;mdash; Kazuhiro Sera (瀬良) (@seratch_ja) &lt;a href="https://twitter.com/seratch_ja/status/1573205502808686598?ref_src=twsrc%5Etfw">September 23, 2022&lt;/a>&lt;/blockquote>
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script>
+&lt;/p>
+&lt;p>java アプリケーションを実行可能なバイナリにコンパイルする機能を &lt;a href="https://www.graalvm.org/">graalvm&lt;/a> が提供している。graalvm ではこのバイナリのことを &lt;a href="https://www.graalvm.org/22.1/reference-manual/native-image/">native image&lt;/a> と呼んでいる。quarkus は java の web アプリケーションフレームワークであり、graalvm を使って native image を作ることも考慮して設計されている。コンテナでデプロイすることを想定したフレームワークと言える。残念ながら slack sdk が使っているライブラリである gson はリフレクションを多用していて、それが graalvm とは相性が悪いだろうという話しで現時点では native image 化は難しいみたい。たしか native image でリフレクションを使うには使っている箇所を設定にすべて列挙しないといけなかった気がする。リフレクションのような動的に用いるものと静的な設定は相性が悪く、がんばれば特定のバージョンで動くものは設定できるかもしれないけど、ライブラリのようなものでバージョンアップに追随するのはしんどいという話しなのかなと思う。&lt;/p></content></item></channel></rss>
