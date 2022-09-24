@@ -1,4 +1,49 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on forest nook</title><link>/diary/posts/</link><description>Recent content in Posts on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Fri, 23 Sep 2022 10:17:02 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>slack apps 開発に着手</title><link>/diary/posts/2022/0923/</link><pubDate>Fri, 23 Sep 2022 10:17:02 +0900</pubDate><guid>/diary/posts/2022/0923/</guid><description>0時に寝て6時に起きた。あまりうまく眠れなかった。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on forest nook</title><link>/diary/posts/</link><description>Recent content in Posts on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sat, 24 Sep 2022 12:36:28 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>quarkus のビルド環境に手間取った</title><link>/diary/posts/2022/0924/</link><pubDate>Sat, 24 Sep 2022 12:36:28 +0900</pubDate><guid>/diary/posts/2022/0924/</guid><description>1時に寝て7時に起きた。休みだとやっぱりだらだらしてしまうな。
+bolt for java on quarkus 昨日の続き。スクラッチから quarkus のアプリケーションの設定を gradle で行う。quarkus の上で slack apps としてのコマンドとイベントの振る舞いだけ確認した。
+https://github.com/t2y/bolt-java-sample 私は新規に開発する java アプリケーションは gradle を使うようにしている。これは java のよくないところだろうけれど、言語コミュニティが提供するパッケージマネージャやビルドツールがないから複数のツールが乱立している。maven から gradle に緩やかに移行していくのかな？と私は考えていたけれど、昔からあるライブラリのビルドツールを変更するのは労力に見合うメリットがないのか、maven も依然としてずっと使われ続けていくのかもしれない。maven と gradle の両対応という保守コストは、この先しばらく java コミュニティが抱えていく保守コストと言えるのかもしれない。quarkus はさらに独自の Quarkus CLI というビルドツールを提供している。そのため、ビルドのための設定だけで quarkus cli, maven, gradle の3つの方法があり、ドキュメントにもそれぞれの設定方法が書いてある。これを保守する方も使う方もややこしくて大変だなぁという印象を受けた。
+BUILDING QUARKUS APPS WITH GRADLE をみながら次の maven cli で作った gradle プロジェクトのテンプレートをみながら build.gradle の設定をした。
+$ mvn io.quarkus.platform:quarkus-maven-plugin:2.12.3.Final:create \ -DprojectGroupId=my-groupId \ -DprojectArtifactId=my-artifactId \ -Dextensions=&amp;#34;resteasy-reactive,resteasy-reactive-jackson&amp;#34; \ -DbuildTool=gradle あと私は設定ファイルを yaml で管理したいので次の拡張も追加した。gradle タスクでも定義されていて次のように実行する。
+./gradlew addExtension --extensions=&amp;#34;quarkus-config-yaml&amp;#34; この cli がやっていることは基本的に dependencies に次の1行を追加するだけ。</description><content>&lt;p>1時に寝て7時に起きた。休みだとやっぱりだらだらしてしまうな。&lt;/p>
+&lt;h2 id="bolt-for-java-on-quarkus">bolt for java on quarkus&lt;/h2>
+&lt;p>昨日の続き。スクラッチから quarkus のアプリケーションの設定を gradle で行う。quarkus の上で slack apps としてのコマンドとイベントの振る舞いだけ確認した。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/t2y/bolt-java-sample">https://github.com/t2y/bolt-java-sample&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>私は新規に開発する java アプリケーションは &lt;a href="https://gradle.org/">gradle&lt;/a> を使うようにしている。これは java のよくないところだろうけれど、言語コミュニティが提供するパッケージマネージャやビルドツールがないから複数のツールが乱立している。maven から gradle に緩やかに移行していくのかな？と私は考えていたけれど、昔からあるライブラリのビルドツールを変更するのは労力に見合うメリットがないのか、maven も依然としてずっと使われ続けていくのかもしれない。maven と gradle の両対応という保守コストは、この先しばらく java コミュニティが抱えていく保守コストと言えるのかもしれない。quarkus はさらに独自の &lt;a href="https://quarkus.io/guides/cli-tooling">Quarkus CLI&lt;/a> というビルドツールを提供している。そのため、ビルドのための設定だけで quarkus cli, maven, gradle の3つの方法があり、ドキュメントにもそれぞれの設定方法が書いてある。これを保守する方も使う方もややこしくて大変だなぁという印象を受けた。&lt;/p>
+&lt;p>&lt;a href="https://quarkus.io/guides/gradle-tooling">BUILDING QUARKUS APPS WITH GRADLE&lt;/a> をみながら次の maven cli で作った gradle プロジェクトのテンプレートをみながら build.gradle の設定をした。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ mvn io.quarkus.platform:quarkus-maven-plugin:2.12.3.Final:create &lt;span style="color:#ae81ff">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">&lt;/span> -DprojectGroupId&lt;span style="color:#f92672">=&lt;/span>my-groupId &lt;span style="color:#ae81ff">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">&lt;/span> -DprojectArtifactId&lt;span style="color:#f92672">=&lt;/span>my-artifactId &lt;span style="color:#ae81ff">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">&lt;/span> -Dextensions&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;resteasy-reactive,resteasy-reactive-jackson&amp;#34;&lt;/span> &lt;span style="color:#ae81ff">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">&lt;/span> -DbuildTool&lt;span style="color:#f92672">=&lt;/span>gradle
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>あと私は設定ファイルを yaml で管理したいので次の拡張も追加した。gradle タスクでも定義されていて次のように実行する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>./gradlew addExtension --extensions&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;quarkus-config-yaml&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>この cli がやっていることは基本的に dependencies に次の1行を追加するだけ。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-groovy" data-lang="groovy">&lt;span style="display:flex;">&lt;span>dependencies &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> implementation &lt;span style="color:#e6db74">&amp;#39;io.quarkus:quarkus-config-yaml&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>設定ファイルを yaml から読み込めるようになると初期設定は次のようになる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ vi app/src/main/resources/application.yaml
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>quarkus:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> http:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> port: &lt;span style="color:#ae81ff">3000&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> log:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> level: INFO
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> category:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;com.slack.api&amp;#34;&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> level: DEBUG
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;tutorial.bolt.sample&amp;#34;&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> level: DEBUG
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> package:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> type: uber-jar
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>開発サーバーは次のようにして起動する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ ./gradlew quarkusDev
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;blockquote>
+&lt;p>quarkusDev enables hot deployment with background compilation, which means that when you modify your Java files or your resource files and refresh your browser these changes will automatically take effect. This works too for resource files like the configuration property file. The act of refreshing the browser triggers a scan of the workspace, and if any changes are detected the Java files are compiled, and the application is redeployed, then your request is serviced by the redeployed application. If there are any issues with compilation or deployment an error page will let you know.&lt;/p>
+&lt;p>&lt;a href="https://quarkus.io/guides/gradle-tooling#dev-mode">https://quarkus.io/guides/gradle-tooling#dev-mode&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>hot deployment 機能のおかげでソースや設定ファイルを変更すると自動的に反映される。他の言語なら普通の機能かもしれないけど、java でもそういう仕組みが普通になったんだなと思って感心した。変化に付いていけない開発者のような気持ちになった。&lt;/p></content></item><item><title>slack apps 開発に着手</title><link>/diary/posts/2022/0923/</link><pubDate>Fri, 23 Sep 2022 10:17:02 +0900</pubDate><guid>/diary/posts/2022/0923/</guid><description>0時に寝て6時に起きた。あまりうまく眠れなかった。
 bolt for java slack apps を開発するためのフレームワークとして bolt と呼ばれる高レベルのフレームワークが提供されている。このフレームワークは slack sdk を使って作られていて、slack apps の開発が簡単になるようにユーティリティが提供されている。The Bolt family of SDKs によると、javascript, python, java 向けに提供されている。以前 bizpy でも slack アプリ開発のチュートリアルの勉強会をしたことがある。そのときは bolot for python を使っていた。
 python-study/BizPy/slack 一度触ったことがあったので bolt がどういうものかはすでに知っている。その java 版を使って slack apps を作ってみようと取り組み始めた。まずはチュートリアルを一通りやってみようと次のリポジトリでやってみた。
 https://github.com/t2y/bolt-java-sample チュートリアルの内容を動かすだけならすぐできた。次に java の waf は何を使おうかを調べてた。Supported Web Frameworks によると、次の4つがある。
