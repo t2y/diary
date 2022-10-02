@@ -1,4 +1,85 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2022/10 on forest nook</title><link>/diary/dates/2022/10/</link><description>Recent content in 2022/10 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2022/10/index.xml" rel="self" type="application/rss+xml"/><item><title>バックオフィスの作業</title><link>/diary/posts/2022/1001/</link><pubDate>Sat, 01 Oct 2022 12:02:40 +0900</pubDate><guid>/diary/posts/2022/1001/</guid><description>1時に寝て7時に起きた。引き続き夜はあまり眠れない。とくにこれといったことをしていたわけではないけど、請求書を発行したり受け取った請求書の処理をしたりと溜まった雑務を捌いてた。lapras さん経由でバックエンドエンジニアのスカウトが届いた。ざっと募集要項をみたら選考を受ける程度にはよさそうにみえたけれでもこれ以上は増やさない。縁がなかった。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2022/10 on forest nook</title><link>/diary/dates/2022/10/</link><description>Recent content in 2022/10 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2022/10/index.xml" rel="self" type="application/rss+xml"/><item><title>主に寝てた</title><link>/diary/posts/2022/1002/</link><pubDate>Sun, 02 Oct 2022 17:38:52 +0900</pubDate><guid>/diary/posts/2022/1002/</guid><description>2時に寝て8時に起きて、昼間はだらだらしてた。ここ最近は夜にあまり眠れてなかったので久しぶりによく寝た気がする。
+web3 の信頼できる情報源 Web3を思い切りディスった上で褒めてみる を聞いた。キーワードとして技術動向はみておこうと昨年ぐらいから web3 関連の記事を読んだりコミュニティで議論したりはしている。最近はなかじまさとしさんの発言を全面的に信頼してみている。というのは開発者としても投資家としても成功をおさめた方なので信頼できる。
+Web3を思い切りディスった上で褒めてみるhttps://t.co/AYlknWY20P#Voicy
+&amp;mdash; Satoshi Nakajima @NounsDAO 🇺🇦 (@snakajima) October 2, 2022 play2earn はすべてポンジスキーム 入っていくお金より出ていくお金の方が少ない 投資のようなスキームではない トークンの価値を操作して一見出ていくお金を増えているようにみせることはできる 先行者利益エコノミー ネズミ講とまったく同じ これを褒めるインフルエンサーは基本的にポジショントークか頭の悪い人たち dao は株式会社を置き換えない dao でやっていることの大半は安価な資金調達でしかない ベンチャーキャピタルから資金調達するのは難しいが、ど素人から資金調達するのはべらぼーに簡単 2-3年前の ico ブームと同じ、情報弱者からの搾取でしかない もっとも dao らしいと言われる nouns dao ですら苦労している 資金運用を多数決で決めるのはものすごく難しい 賢い連中が揃ってないとうまくいかない リーダーシップも必要となる dao からお金がほしいためにアプローチしてくるメンバーもいる 株式会社よりもきれいに運営できるとはまったく思えない dao を運営するのはとても難しい 非営利団体が寄付金を運営するには向いているかもしれない メタバースと web3 は相性が悪い 双方は独立したものである メタバースのサービスはブロックチェーン上ではできない web2 の技術で開発・運営されている web3 アプリではまったくない web3 がもたらす素晴らしい世界 スマートコントラクトに大きなポテンシャルはある デプロイすれば未来永劫、勝手に動き続けてくれる さまざまな開発者が作ったスマートコントラクトのアプリが協調してずっと動き続ける未来がくるはず 人間が関与しないシステムが動き続ける仕組み さまざまなスマートコントラクトが結びつく集合体やエコシステムに価値がある 人手がかからないので中間業者が存在しない クリエイターに大半のお金がまわる仕組みを実現できる お金がまわるコストが極端に下がる、もしくは透明化されることの価値 apple store は30%の手数料をとっているが、スマートコントラクトなら2-3%という時代になるだろう 中間業者が悪いことはできない 以前にも dao + nft を使って非営利団体で運用するのはよいのではないかとツィートされていた。非営利なコミュニティでお金の管理を透明化するところに私も関心をもっている。スマートコントラクトでさまざまな団体が低コスト且つ透明性をもったお金の管理ができるのであればそういう分野に挑戦する可能性はある。</description><content>&lt;p>2時に寝て8時に起きて、昼間はだらだらしてた。ここ最近は夜にあまり眠れてなかったので久しぶりによく寝た気がする。&lt;/p>
+&lt;h2 id="web3-の信頼できる情報源">web3 の信頼できる情報源&lt;/h2>
+&lt;p>&lt;a href="https://voicy.jp/channel/2627/396827">Web3を思い切りディスった上で褒めてみる&lt;/a> を聞いた。キーワードとして技術動向はみておこうと昨年ぐらいから web3 関連の記事を読んだりコミュニティで議論したりはしている。最近はなかじまさとしさんの発言を全面的に信頼してみている。というのは開発者としても投資家としても成功をおさめた方なので信頼できる。&lt;/p>
+&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">Web3を思い切りディスった上で褒めてみる&lt;a href="https://t.co/AYlknWY20P">https://t.co/AYlknWY20P&lt;/a>&lt;a href="https://twitter.com/hashtag/Voicy?src=hash&amp;amp;ref_src=twsrc%5Etfw">#Voicy&lt;/a>&lt;/p>&amp;mdash; Satoshi Nakajima @NounsDAO 🇺🇦 (@snakajima) &lt;a href="https://twitter.com/snakajima/status/1576427464213295105?ref_src=twsrc%5Etfw">October 2, 2022&lt;/a>&lt;/blockquote>
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script>
+&lt;ul>
+&lt;li>play2earn はすべてポンジスキーム
+&lt;ul>
+&lt;li>入っていくお金より出ていくお金の方が少ない&lt;/li>
+&lt;li>投資のようなスキームではない&lt;/li>
+&lt;li>トークンの価値を操作して一見出ていくお金を増えているようにみせることはできる
+&lt;ul>
+&lt;li>先行者利益エコノミー&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>ネズミ講とまったく同じ&lt;/li>
+&lt;li>これを褒めるインフルエンサーは基本的にポジショントークか頭の悪い人たち&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>dao は株式会社を置き換えない
+&lt;ul>
+&lt;li>dao でやっていることの大半は安価な資金調達でしかない
+&lt;ul>
+&lt;li>ベンチャーキャピタルから資金調達するのは難しいが、ど素人から資金調達するのはべらぼーに簡単&lt;/li>
+&lt;li>2-3年前の ico ブームと同じ、情報弱者からの搾取でしかない&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>もっとも dao らしいと言われる &lt;a href="https://nouns.wtf/">nouns dao&lt;/a> ですら苦労している
+&lt;ul>
+&lt;li>資金運用を多数決で決めるのはものすごく難しい&lt;/li>
+&lt;li>賢い連中が揃ってないとうまくいかない&lt;/li>
+&lt;li>リーダーシップも必要となる&lt;/li>
+&lt;li>dao からお金がほしいためにアプローチしてくるメンバーもいる&lt;/li>
+&lt;li>株式会社よりもきれいに運営できるとはまったく思えない&lt;/li>
+&lt;li>dao を運営するのはとても難しい&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>非営利団体が寄付金を運営するには向いているかもしれない&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>メタバースと web3 は相性が悪い
+&lt;ul>
+&lt;li>双方は独立したものである&lt;/li>
+&lt;li>メタバースのサービスはブロックチェーン上ではできない
+&lt;ul>
+&lt;li>web2 の技術で開発・運営されている&lt;/li>
+&lt;li>web3 アプリではまったくない&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>web3 がもたらす素晴らしい世界
+&lt;ul>
+&lt;li>スマートコントラクトに大きなポテンシャルはある
+&lt;ul>
+&lt;li>デプロイすれば未来永劫、勝手に動き続けてくれる&lt;/li>
+&lt;li>さまざまな開発者が作ったスマートコントラクトのアプリが協調してずっと動き続ける未来がくるはず
+&lt;ul>
+&lt;li>人間が関与しないシステムが動き続ける仕組み&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>さまざまなスマートコントラクトが結びつく集合体やエコシステムに価値がある
+&lt;ul>
+&lt;li>人手がかからないので中間業者が存在しない&lt;/li>
+&lt;li>クリエイターに大半のお金がまわる仕組みを実現できる&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>お金がまわるコストが極端に下がる、もしくは透明化されることの価値
+&lt;ul>
+&lt;li>apple store は30%の手数料をとっているが、スマートコントラクトなら2-3%という時代になるだろう&lt;/li>
+&lt;li>中間業者が悪いことはできない&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>以前にも dao + nft を使って非営利団体で運用するのはよいのではないかとツィートされていた。非営利なコミュニティでお金の管理を透明化するところに私も関心をもっている。スマートコントラクトでさまざまな団体が低コスト且つ透明性をもったお金の管理ができるのであればそういう分野に挑戦する可能性はある。&lt;/p></content></item><item><title>バックオフィスの作業</title><link>/diary/posts/2022/1001/</link><pubDate>Sat, 01 Oct 2022 12:02:40 +0900</pubDate><guid>/diary/posts/2022/1001/</guid><description>1時に寝て7時に起きた。引き続き夜はあまり眠れない。とくにこれといったことをしていたわけではないけど、請求書を発行したり受け取った請求書の処理をしたりと溜まった雑務を捌いてた。lapras さん経由でバックエンドエンジニアのスカウトが届いた。ざっと募集要項をみたら選考を受ける程度にはよさそうにみえたけれでもこれ以上は増やさない。縁がなかった。
 ストレッチ 今日の開脚幅は開始前156cmで、ストレッチ後159cmだった。先週に引き継いで数値が悪化していてよくなくなっているのかもしれない。大抵は右腰に張りがあるのだけど、今日は左腰に張りがあった。あとはふくらはぎに張りがあったかな。夜あまり眠れていないこと以外は体調は悪くない。とはいえ、夜眠れていないのがよくないのかもしれない。
 上場時の有価証券報告書 たまたまみかけたので プログリット上場！ダウンラウンドの原因はここか！一の部かなり言いたい放題！ を聞いてみた。k さんの経歴は公認会計士でニューヨークの4大会計事務所の1つで働いた後、帰国してベンチャーキャピタルで働いて、いまスタートアップを起業している。ベンチャー起業の財務諸表は見慣れているということなんだと思う。私も自分の会社で起こったことと財務諸表を見比べて勉強しつつ、他社の財務諸表を読んで勉強することもある。この放送はプレミアム向けなのでお金を払わないと聞けないのかな？会社をやっていると、こういった有償の情報ソースを経費にしやすい。単発でもサブスクリプションでも気軽に聞ける。
 以前にも ある一般社団法人の会計監査 の記事を社内コミュニティで議論したりした。いま社内コミュニティも少しずつ育ってきて社外メンバーが6人いる。少数の閉じたコミュニティの方が気軽に発言できて濃いやり取りができておもしろかったりもする。</description><content>&lt;p>1時に寝て7時に起きた。引き続き夜はあまり眠れない。とくにこれといったことをしていたわけではないけど、請求書を発行したり受け取った請求書の処理をしたりと溜まった雑務を捌いてた。lapras さん経由でバックエンドエンジニアのスカウトが届いた。ざっと募集要項をみたら選考を受ける程度にはよさそうにみえたけれでもこれ以上は増やさない。縁がなかった。&lt;/p>
