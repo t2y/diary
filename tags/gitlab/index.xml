@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>gitlab on forest nook</title><link>/diary/tags/gitlab/</link><description>Recent content in gitlab on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 06 Oct 2022 16:39:10 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/gitlab/index.xml" rel="self" type="application/rss+xml"/><item><title>gitlab を使う開発のお仕事</title><link>/diary/posts/2022/1006/</link><pubDate>Thu, 06 Oct 2022 16:39:10 +0900</pubDate><guid>/diary/posts/2022/1006/</guid><description>0時に寝て何度か起きて、なぜか寝坊して9時に起きた。おそらく休日以外で9時まで寝ていたことはこの日記を書き始めて初めてだと思う。
+次のお仕事の意識合わせ 来月から新しい取引先のお仕事を手伝う。先方と業務内容の確認のための打ち合わせを行った。先方はパッケージベンダーになる。私の大先輩にあたる方々が働いている会社だし、当社が目指すパッケージベンダーとしてのお手本のような会社でもある。大いに学ぶところがある業務になるだろうと想定している。私はここ数年 web 業界で働いてきたせいか、やり取りをしていても勝手の違いを少し感じる。それは web 業界が緩過ぎるからだと思う。気を付けないと先方からみて失礼になってしまうかもしれない。契約や初期のオンボーディングも兼ねて10月31日から1週間ほど東京出張する予定になる。
+またリポジトリに gitlab を使っている。課題管理や ci/cd も基本的には gitlab で行うことになる。私のもっている github のドメイン知識はまったく活かせないが、gitlab の機能を学ぶよい機会でもある。gitlab と聞くと私は一番先に Remote Manifesto を思い浮かべる。
+Hiring and working from all over the world (instead of from a central location). Flexible working hours (over set working hours). Writing down and recording knowledge (over verbal explanations). Written processes (over on-the-job training). Public sharing of information (over need-to-know access). Opening up documents for editing by anyone (over top-down control of documents).</description><content>&lt;p>0時に寝て何度か起きて、なぜか寝坊して9時に起きた。おそらく休日以外で9時まで寝ていたことはこの日記を書き始めて初めてだと思う。&lt;/p>
+&lt;h2 id="次のお仕事の意識合わせ">次のお仕事の意識合わせ&lt;/h2>
+&lt;p>来月から新しい取引先のお仕事を手伝う。先方と業務内容の確認のための打ち合わせを行った。先方はパッケージベンダーになる。私の大先輩にあたる方々が働いている会社だし、当社が目指すパッケージベンダーとしてのお手本のような会社でもある。大いに学ぶところがある業務になるだろうと想定している。私はここ数年 web 業界で働いてきたせいか、やり取りをしていても勝手の違いを少し感じる。それは web 業界が緩過ぎるからだと思う。気を付けないと先方からみて失礼になってしまうかもしれない。契約や初期のオンボーディングも兼ねて10月31日から1週間ほど東京出張する予定になる。&lt;/p>
+&lt;p>またリポジトリに &lt;a href="https://gitlab.com/">gitlab&lt;/a> を使っている。課題管理や ci/cd も基本的には gitlab で行うことになる。私のもっている github のドメイン知識はまったく活かせないが、gitlab の機能を学ぶよい機会でもある。gitlab と聞くと私は一番先に Remote Manifesto を思い浮かべる。&lt;/p>
+&lt;blockquote>
+&lt;ol>
+&lt;li>Hiring and working from all over the world (instead of from a central location).&lt;/li>
+&lt;li>Flexible working hours (over set working hours).&lt;/li>
+&lt;li>Writing down and recording knowledge (over verbal explanations).&lt;/li>
+&lt;li>Written processes (over on-the-job training).&lt;/li>
+&lt;li>Public sharing of information (over need-to-know access).&lt;/li>
+&lt;li>Opening up documents for editing by anyone (over top-down control of documents).&lt;/li>
+&lt;li>Asynchronous communication (over synchronous communication).&lt;/li>
+&lt;li>The results of work (over the hours put in).&lt;/li>
+&lt;li>Formal communication channels (over informal communication channels).&lt;/li>
+&lt;/ol>
+&lt;p>&lt;a href="https://about.gitlab.com/company/culture/all-remote/guide/">https://about.gitlab.com/company/culture/all-remote/guide/&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>私の考える課題管理とも相性がよく、時間よりも成果、書くことや非同期コミュニケーションの重要性、組織の透明性を簡潔に表現したマニフェストとなっている。うちの会社はまだ社員採用できる状況ではないが、社員を採用する時期になったらこういったマニフェスト的なものを自社でも作りたいと思う。そのときの最も参考になるものだと思う。&lt;/p></content></item></channel></rss>
