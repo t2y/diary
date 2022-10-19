@@ -1,4 +1,32 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>rabbitmq on forest nook</title><link>/diary/tags/rabbitmq/</link><description>Recent content in rabbitmq on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Fri, 05 Nov 2021 09:29:52 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/rabbitmq/index.xml" rel="self" type="application/rss+xml"/><item><title>調べものだらけ</title><link>/diary/posts/2021/1105/</link><pubDate>Fri, 05 Nov 2021 09:29:52 +0900</pubDate><guid>/diary/posts/2021/1105/</guid><description>1時半に寝て6時に起きた。昨日の夜はウォーキングして (朝活あるから) すぐに寝たんで早く起きた分、朝からストレッチをしてた。今週はバタバタしていてあまりストレッチできてない。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>rabbitmq on forest nook</title><link>/diary/tags/rabbitmq/</link><description>Recent content in rabbitmq on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Tue, 18 Oct 2022 16:56:44 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/rabbitmq/index.xml" rel="self" type="application/rss+xml"/><item><title>dapr のアップグレード準備</title><link>/diary/posts/2022/1018/</link><pubDate>Tue, 18 Oct 2022 16:56:44 +0900</pubDate><guid>/diary/posts/2022/1018/</guid><description>1時に寝て7時に起きた。寝る前に閃光のハサウェイを見始めたら夜更ししてしまった。
+dapr の Highly-available モードの検証 先週からテスト環境で dapr の Highly-available mode を試している。ついでに dapr の 1.8.x へのアップグレードも行う。Dapr v1.8 is now available をみると、一番上に書いてあるのだから pubsub サービスの Dead letter topics がもっとも注目すべき新機能と言えるのだろう。これは pubsub のミドルウェアすべての Dead letter topics の機能が実装されたことを言っている。うちは rabbitmq を使っていて、それは次の pr で v1.5 で追加されていて、うちの環境では v1.7 から実運用していた。rabbitmq は Dead letter topics 対応が始まった初期のうちに実装されたと言える。
+Add dead letter support in RabbitMQ pubsub #883 現時点での dapr の最新の安定版は 1.8.5 になる。
+https://github.com/dapr/dapr/releases/tag/v1.8.5 Highly-available を有効にする設定ファイル values.yml の書き方は次になる。
+global: ha: enabled: true 来週には本番環境への適用&amp;amp;アップグレード作業を行うので wiki の作業手順のドキュメントを書いてた。</description><content>&lt;p>1時に寝て7時に起きた。寝る前に閃光のハサウェイを見始めたら夜更ししてしまった。&lt;/p>
+&lt;h2 id="dapr-の-highly-available-モードの検証">dapr の Highly-available モードの検証&lt;/h2>
+&lt;p>先週からテスト環境で dapr の &lt;a href="https://docs.dapr.io/operations/hosting/kubernetes/kubernetes-production#highly-available-mode">Highly-available mode&lt;/a> を試している。ついでに dapr の 1.8.x へのアップグレードも行う。&lt;a href="https://blog.dapr.io/posts/2022/07/08/dapr-v1.8-is-now-available/">Dapr v1.8 is now available&lt;/a> をみると、一番上に書いてあるのだから pubsub サービスの Dead letter topics がもっとも注目すべき新機能と言えるのだろう。これは pubsub のミドルウェアすべての Dead letter topics の機能が実装されたことを言っている。うちは rabbitmq を使っていて、それは次の pr で v1.5 で追加されていて、うちの環境では v1.7 から実運用していた。rabbitmq は Dead letter topics 対応が始まった初期のうちに実装されたと言える。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/dapr/components-contrib/pull/883">Add dead letter support in RabbitMQ pubsub #883&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>現時点での dapr の最新の安定版は 1.8.5 になる。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/dapr/dapr/releases/tag/v1.8.5">https://github.com/dapr/dapr/releases/tag/v1.8.5&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>Highly-available を有効にする設定ファイル values.yml の書き方は次になる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">global&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">ha&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">enabled&lt;/span>: &lt;span style="color:#66d9ef">true&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>来週には本番環境への適用&amp;amp;アップグレード作業を行うので wiki の作業手順のドキュメントを書いてた。&lt;/p>
+&lt;p>helm リポジトリ設定の更新。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ helm repo add dapr https://dapr.github.io/helm-charts/
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ helm repo update
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ helm search repo dapr --versions | grep 1.8.5
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dapr/dapr 1.8.5 1.8.5 A Helm chart &lt;span style="color:#66d9ef">for&lt;/span> Dapr on Kubernetes
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>任意の設定を施した values.yml を指定して dapr をアップグレードする。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ helm upgrade dapr dapr/dapr --version 1.8.5 --namespace dapr-system --values ./values.yml --wait
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>dapr はデフォルトで &lt;code>dapr-system&lt;/code> という名前空間を使う。アップグレードした helm のパッケージ情報を確認する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ helm list -n dapr-system
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>調べものだらけ</title><link>/diary/posts/2021/1105/</link><pubDate>Fri, 05 Nov 2021 09:29:52 +0900</pubDate><guid>/diary/posts/2021/1105/</guid><description>1時半に寝て6時に起きた。昨日の夜はウォーキングして (朝活あるから) すぐに寝たんで早く起きた分、朝からストレッチをしてた。今週はバタバタしていてあまりストレッチできてない。
 朝活: ミクロ経済学入門の入門 [金朝ツメトギ] 2021-11-05 AM 6 金曜朝6時開催のもくもく会 で第7章の独占と寡占を読んだ。用語を次にまとめる。
 プライステイカー: 生産量を増やしたり減らしたりしても価格に影響を与えられない会社 完全市場: すべての会社がプライステイカーである市場 不完全市場: 完全市場ではない市場、プライステイカーではない会社がいる 独占市場: 1つの独占企業だけが存在する市場 クルーノー寡占市場: 同じ財を生産する少数の会社の総生産量から市場の価格が決まる市場 寡占: 少数の企業がいる市場 複占: 企業が2つだけの市場 前に出てきた市場均衡の話から、供給量を下げると価格が上昇する。生産者余剰がが大きくなり、生産者は得をする。実際にあった事例として、2016年に石油輸出機構 (OPEC) が石油の減産に合意して価格が上昇した。2012年に豊作だった歳に値崩れが起きるのをおそれて、全国農業組合連合会は価格を上げるために農家に野菜の廃棄処分を要請した。
 独占市場にいる会社は高い価格で高い利潤を得ることはできるが、やがて価格競争を仕掛けてくる新規参入者を招き、長期的な利益を低めてしまう懸念がある。一方で高品質な財を低い利潤で販売していると、新規参入者が現れずに長期的な利益を得られる可能性がある。一概にどちらが正しいとは言えない。こうした状況を端的に描く 展開型ゲーム を考えると、財を高値にするか安値にするかの思考実験ができるう。 ゲームツリー という図でこのゲームを表している。

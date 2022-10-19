@@ -1,4 +1,32 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dapr on forest nook</title><link>/diary/tags/dapr/</link><description>Recent content in dapr on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 16 Dec 2021 08:22:54 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/dapr/index.xml" rel="self" type="application/rss+xml"/><item><title>traceparent の生成</title><link>/diary/posts/2021/1216/</link><pubDate>Thu, 16 Dec 2021 08:22:54 +0900</pubDate><guid>/diary/posts/2021/1216/</guid><description>1時半に寝て7時半に起きた。ちょっと疲れてて寝坊した。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dapr on forest nook</title><link>/diary/tags/dapr/</link><description>Recent content in dapr on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Tue, 18 Oct 2022 16:56:44 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/dapr/index.xml" rel="self" type="application/rss+xml"/><item><title>dapr のアップグレード準備</title><link>/diary/posts/2022/1018/</link><pubDate>Tue, 18 Oct 2022 16:56:44 +0900</pubDate><guid>/diary/posts/2022/1018/</guid><description>1時に寝て7時に起きた。寝る前に閃光のハサウェイを見始めたら夜更ししてしまった。
+dapr の Highly-available モードの検証 先週からテスト環境で dapr の Highly-available mode を試している。ついでに dapr の 1.8.x へのアップグレードも行う。Dapr v1.8 is now available をみると、一番上に書いてあるのだから pubsub サービスの Dead letter topics がもっとも注目すべき新機能と言えるのだろう。これは pubsub のミドルウェアすべての Dead letter topics の機能が実装されたことを言っている。うちは rabbitmq を使っていて、それは次の pr で v1.5 で追加されていて、うちの環境では v1.7 から実運用していた。rabbitmq は Dead letter topics 対応が始まった初期のうちに実装されたと言える。
+Add dead letter support in RabbitMQ pubsub #883 現時点での dapr の最新の安定版は 1.8.5 になる。
+https://github.com/dapr/dapr/releases/tag/v1.8.5 Highly-available を有効にする設定ファイル values.yml の書き方は次になる。
+global: ha: enabled: true 来週には本番環境への適用&amp;amp;アップグレード作業を行うので wiki の作業手順のドキュメントを書いてた。</description><content>&lt;p>1時に寝て7時に起きた。寝る前に閃光のハサウェイを見始めたら夜更ししてしまった。&lt;/p>
+&lt;h2 id="dapr-の-highly-available-モードの検証">dapr の Highly-available モードの検証&lt;/h2>
+&lt;p>先週からテスト環境で dapr の &lt;a href="https://docs.dapr.io/operations/hosting/kubernetes/kubernetes-production#highly-available-mode">Highly-available mode&lt;/a> を試している。ついでに dapr の 1.8.x へのアップグレードも行う。&lt;a href="https://blog.dapr.io/posts/2022/07/08/dapr-v1.8-is-now-available/">Dapr v1.8 is now available&lt;/a> をみると、一番上に書いてあるのだから pubsub サービスの Dead letter topics がもっとも注目すべき新機能と言えるのだろう。これは pubsub のミドルウェアすべての Dead letter topics の機能が実装されたことを言っている。うちは rabbitmq を使っていて、それは次の pr で v1.5 で追加されていて、うちの環境では v1.7 から実運用していた。rabbitmq は Dead letter topics 対応が始まった初期のうちに実装されたと言える。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/dapr/components-contrib/pull/883">Add dead letter support in RabbitMQ pubsub #883&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>現時点での dapr の最新の安定版は 1.8.5 になる。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/dapr/dapr/releases/tag/v1.8.5">https://github.com/dapr/dapr/releases/tag/v1.8.5&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>Highly-available を有効にする設定ファイル values.yml の書き方は次になる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">global&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">ha&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">enabled&lt;/span>: &lt;span style="color:#66d9ef">true&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>来週には本番環境への適用&amp;amp;アップグレード作業を行うので wiki の作業手順のドキュメントを書いてた。&lt;/p>
+&lt;p>helm リポジトリ設定の更新。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ helm repo add dapr https://dapr.github.io/helm-charts/
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ helm repo update
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ helm search repo dapr --versions | grep 1.8.5
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dapr/dapr 1.8.5 1.8.5 A Helm chart &lt;span style="color:#66d9ef">for&lt;/span> Dapr on Kubernetes
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>任意の設定を施した values.yml を指定して dapr をアップグレードする。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ helm upgrade dapr dapr/dapr --version 1.8.5 --namespace dapr-system --values ./values.yml --wait
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>dapr はデフォルトで &lt;code>dapr-system&lt;/code> という名前空間を使う。アップグレードした helm のパッケージ情報を確認する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ helm list -n dapr-system
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>traceparent の生成</title><link>/diary/posts/2021/1216/</link><pubDate>Thu, 16 Dec 2021 08:22:54 +0900</pubDate><guid>/diary/posts/2021/1216/</guid><description>1時半に寝て7時半に起きた。ちょっと疲れてて寝坊した。
 W3C Trace Context の traceparent ヘッダーの生成 前にお仕事で dapr の分散トレーシングを検証している ことについて書いた。
 dapr の分散トレーシングは W3C Trace Context に準拠していて、dapr 経由のリクエストは自動的にこの情報が付与されるが、そうじゃないリクエストもトレーシングできるようにするためには http ヘッダーの traceparent をセットしないといけない。試しにサーバー側に traceparent を生成するのはどうやるのかを調べてみた。Implementations of Trace Context にある java ライブラリを調べていて、Jaeger クライアントは OpenTelemetry に移行したと書いてあって、OpenTracing と OpenCensus は OpenTelemetry に統合されたと書いてあって、どうやら OpenTelemetry を使うのがよさそうだとわかった。
 やりたいことは traceparent を生成したいだけだが、OpenTelemetry の Manual Instrumentation を読んでも直接的なやり方は書いてなくて、open-telemetry/opentelemetry-java のテストコードなどもみながら実装した。細かいところの仕様をまだ理解できていないけど、ひとまずこれで生成できたので検証はできると思う。
