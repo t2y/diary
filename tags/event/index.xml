@@ -1,4 +1,41 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>event on forest nook</title><link>/diary/tags/event/</link><description>Recent content in event on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sat, 15 Oct 2022 11:50:02 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/event/index.xml" rel="self" type="application/rss+xml"/><item><title>はっくばー再訪</title><link>/diary/posts/2022/1015/</link><pubDate>Sat, 15 Oct 2022 11:50:02 +0900</pubDate><guid>/diary/posts/2022/1015/</guid><description>0時に寝て2時に起きて眠れなくて4時過ぎまでだらだらして7時に起きた。お昼に勉強会を終えて (ワクチンによる37.1℃の発熱で) 軽くしんどかったので2時間ほど寝てた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>event on forest nook</title><link>/diary/tags/event/</link><description>Recent content in event on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Wed, 19 Oct 2022 07:54:41 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/event/index.xml" rel="self" type="application/rss+xml"/><item><title>イベントはしご</title><link>/diary/posts/2022/1019/</link><pubDate>Wed, 19 Oct 2022 07:54:41 +0900</pubDate><guid>/diary/posts/2022/1019/</guid><description>1時に寝て4時に起きて6時に起きた。
+jackson の tips jackson で調べているとググったときに stackoverflow に書いてある内容が、機能的には正しいけれど、deprecated になっているアノテーションが多々ある。そのときに新しいやり方はどう設定していいか分からないということがある。今日たまたま実装した処理に2つアノテーションが出てきたので備忘録として書いておく。
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class) デシリアライズするときに my_field のようなスネークケースのフィールド名を myField のメンバーにマッピングする @JsonIgnoreProperties(ignoreUnknown = true) デシリアライズするときに json に存在してクラスに存在しないフィールドを無視する データ構造の移行時にエラーを出さないとか、不要なフィールドがあるときに設定するとよい 上司道 リーダーはレジリエンスを高める自己肯定感を学ぼう 以前 SECI モデルのワークショップ に参加して、同じチームにおられた方が 上司道 という勉強会コミュニティを運営しているのでお誘いを受けた。せっかくの縁だと思ったのでコミュニティに参加した。その勉強会で 日本セルフエスティーム普及協会 の工藤氏による自己肯定感の紹介イベントがあったので試しに参加してみた。
+軽く私の自己肯定感をチェックしてみると普通。低くも高くもない。私はどこかのタイミングで他人と比較するのをやめた。それは自己肯定感を高めるためにはよい慣習らしい。そのおかげで私は自己肯定感が低くはないようにみえる。自己肯定感には社会的と絶対的の2つの構成概念がある。
+社会的自己肯定感 絶対的自己肯定感 重要なのは絶対的の方になるらしいが、多くの人は社会的の方が割合として大きいらしい。社会的に頼っていると、キャリア戦略に失敗したり、会社でリストラされたりすると自尊心が傷つきやすくなる。私もこのタイプだと思う。近い将来リストラされることを想定して自分の会社を作ったという背景もある。自分の会社があると、自分で自分をリストラしない限りは集団に帰属しているという社会的欲求を満たせる。それが社会的自己肯定感と関係があるように思える。いまの私の環境は自尊心が傷つきやすい状況ではないため、あまりセミナーの内容には関心をもてなかった。それよりも参加者が共有していた自尊心を脅かされる状況の経験談にひどいものが多くて、それらと比べると私の環境は恵まれていて世の中に感謝する気持ちになった。
+後藤達也さんのオンラインミーティング たまたま21時半からコアメンバー向けの zoom ミーティングを行うという投稿をみかけたので参加してみた。2時間ぐらいやってたのかな？軽く聞いて帰ろうと思っていたものの、なんだかんだで最後まで参加していた。
+【募集停止します】月980円プラン 軽く計算すると note のメンバーシップだけで約774万円/月の売上になる。すごい。
+(500 * 9577) + (3016 * 980) = 7,744,180
+こんな儲かっているサブスクリプションの新規募集を停止する背景として、これ以上コアメンバーが増えてもコミュニティとしての運営が難しくなるからやりたくないのだという。例えば、すでに3000人いるが、この人数でオフ会を開催することはできない。月々の料金を高くしてメンバー数を減らすというのが経済学的な解であることは理解しているが、後藤さん1人で提供しているようなサービスに月980円を超える料金をとることに抵抗感があるから値段をあげたくないと話されていた。とても謙虚な人だと思う。コミュニティ運営を難しくせず料金もあげないという戦略からコアメンバーをこれ以上増やさないという判断をしたそうだ。</description><content>&lt;p>1時に寝て4時に起きて6時に起きた。&lt;/p>
+&lt;h2 id="jackson-の-tips">jackson の tips&lt;/h2>
+&lt;p>jackson で調べているとググったときに stackoverflow に書いてある内容が、機能的には正しいけれど、deprecated になっているアノテーションが多々ある。そのときに新しいやり方はどう設定していいか分からないということがある。今日たまたま実装した処理に2つアノテーションが出てきたので備忘録として書いておく。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@JsonNaming&lt;/span>&lt;span style="color:#f92672">(&lt;/span>PropertyNamingStrategies&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">SnakeCaseStrategy&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>デシリアライズするときに &lt;code>my_field&lt;/code> のようなスネークケースのフィールド名を &lt;code>myField&lt;/code> のメンバーにマッピングする&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@JsonIgnoreProperties&lt;/span>&lt;span style="color:#f92672">(&lt;/span>ignoreUnknown &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">true&lt;/span>&lt;span style="color:#f92672">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>デシリアライズするときに json に存在してクラスに存在しないフィールドを無視する&lt;/li>
+&lt;li>データ構造の移行時にエラーを出さないとか、不要なフィールドがあるときに設定するとよい&lt;/li>
+&lt;/ul>
+&lt;h2 id="上司道-リーダーはレジリエンスを高める自己肯定感を学ぼう">上司道 リーダーはレジリエンスを高める自己肯定感を学ぼう&lt;/h2>
+&lt;p>以前 &lt;a href="/diary/diary/posts/2022/1005/#SECI-モデルのワークショップ">SECI モデルのワークショップ&lt;/a> に参加して、同じチームにおられた方が &lt;a href="https://tomoaki2222ok.wixsite.com/mysite">上司道&lt;/a> という勉強会コミュニティを運営しているのでお誘いを受けた。せっかくの縁だと思ったのでコミュニティに参加した。その勉強会で &lt;a href="https://self-esteem.or.jp/">日本セルフエスティーム普及協会&lt;/a> の工藤氏による自己肯定感の紹介イベントがあったので試しに参加してみた。&lt;/p>
+&lt;p>軽く私の自己肯定感をチェックしてみると普通。低くも高くもない。私はどこかのタイミングで他人と比較するのをやめた。それは自己肯定感を高めるためにはよい慣習らしい。そのおかげで私は自己肯定感が低くはないようにみえる。自己肯定感には社会的と絶対的の2つの構成概念がある。&lt;/p>
+&lt;ul>
+&lt;li>社会的自己肯定感&lt;/li>
+&lt;li>絶対的自己肯定感&lt;/li>
+&lt;/ul>
+&lt;p>重要なのは絶対的の方になるらしいが、多くの人は社会的の方が割合として大きいらしい。社会的に頼っていると、キャリア戦略に失敗したり、会社でリストラされたりすると自尊心が傷つきやすくなる。私もこのタイプだと思う。近い将来リストラされることを想定して自分の会社を作ったという背景もある。自分の会社があると、自分で自分をリストラしない限りは集団に帰属しているという社会的欲求を満たせる。それが社会的自己肯定感と関係があるように思える。いまの私の環境は自尊心が傷つきやすい状況ではないため、あまりセミナーの内容には関心をもてなかった。それよりも参加者が共有していた自尊心を脅かされる状況の経験談にひどいものが多くて、それらと比べると私の環境は恵まれていて世の中に感謝する気持ちになった。&lt;/p>
+&lt;h2 id="後藤達也さんのオンラインミーティング">後藤達也さんのオンラインミーティング&lt;/h2>
+&lt;p>たまたま21時半からコアメンバー向けの zoom ミーティングを行うという投稿をみかけたので参加してみた。2時間ぐらいやってたのかな？軽く聞いて帰ろうと思っていたものの、なんだかんだで最後まで参加していた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://note.com/goto_finance/n/nc4140548387a">【募集停止します】月980円プラン&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>軽く計算すると note のメンバーシップだけで約774万円/月の売上になる。すごい。&lt;/p>
+&lt;blockquote>
+&lt;p>(500 * 9577) + (3016 * 980) = 7,744,180&lt;/p>
+&lt;/blockquote>
+&lt;p>こんな儲かっているサブスクリプションの新規募集を停止する背景として、これ以上コアメンバーが増えてもコミュニティとしての運営が難しくなるからやりたくないのだという。例えば、すでに3000人いるが、この人数でオフ会を開催することはできない。月々の料金を高くしてメンバー数を減らすというのが経済学的な解であることは理解しているが、後藤さん1人で提供しているようなサービスに月980円を超える料金をとることに抵抗感があるから値段をあげたくないと話されていた。とても謙虚な人だと思う。コミュニティ運営を難しくせず料金もあげないという戦略からコアメンバーをこれ以上増やさないという判断をしたそうだ。&lt;/p></content></item><item><title>はっくばー再訪</title><link>/diary/posts/2022/1015/</link><pubDate>Sat, 15 Oct 2022 11:50:02 +0900</pubDate><guid>/diary/posts/2022/1015/</guid><description>0時に寝て2時に起きて眠れなくて4時過ぎまでだらだらして7時に起きた。お昼に勉強会を終えて (ワクチンによる37.1℃の発熱で) 軽くしんどかったので2時間ほど寝てた。
 ストレッチ ワクチン接種翌日だったけれど、問題なくストレッチへ行くことができた。行く前にオフィスで体温を計測したら36.9℃だった。Dr.stretchの店頭で計測したら36.1℃だった。腕で簡易的に測る計測器の精度はそんなもんかなとか思ったりした。今日の開脚幅は開始前156cmで、ストレッチ後160cmだった。左腕は注射したばかりなので気を遣ってもらいながらストレッチをしてもらった。右足の太ももとふくらはぎに張りがあって疲労が溜まっているようにも思えた。毎週ストレッチしているから体調を維持できている側面は大きいと思う。
 VR 空間での勉強会 【三宮.dev オンライン】VR開催！4周年記念LT大会 に参加した。Mozilla Hubs というサービスを使って vr 空間での部屋で勉強会を行った。1年前は cluster というサービス で開催していた。hubs というサービスを使うのが私は初めてだったのだけど、まだ不安定なところがあるのか、マイクがうまく接続できなくて参加者間で聞こえる・聞こえないといった状況が何度か発生していた。
 参加者が使い慣れていないツールで勉強会を開くと、操作がわからなかったりマイク・スピーカー接続トラブルによるコミュニケーションが取りにくかったりしてなかなか難しいなと周りをみながら思った。ブラウザで vr 空間を自由に移動したり、アバターの位置関係を考慮して声の聞こえ方が変わったりするのは付加価値としておもしろいのだけど、移動することにそもそも意味がないとか、話者から遠いと声が聞こえにくくて近くに移動しないといけないとか、実務的な勉強会の運営としてはあまり意味がない。hubs の vr 空間で遊んでみて、vr の付加価値とイベントとしての付加価値をどうつなげるかといったことが今後の課題になってくるように思えた。

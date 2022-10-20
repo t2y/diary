@@ -1,4 +1,41 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2022/10 on forest nook</title><link>/diary/dates/2022/10/</link><description>Recent content in 2022/10 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2022/10/index.xml" rel="self" type="application/rss+xml"/><item><title>dapr のアップグレード準備</title><link>/diary/posts/2022/1018/</link><pubDate>Tue, 18 Oct 2022 16:56:44 +0900</pubDate><guid>/diary/posts/2022/1018/</guid><description>1時に寝て7時に起きた。寝る前に閃光のハサウェイを見始めたら夜更ししてしまった。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2022/10 on forest nook</title><link>/diary/dates/2022/10/</link><description>Recent content in 2022/10 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2022/10/index.xml" rel="self" type="application/rss+xml"/><item><title>イベントはしご</title><link>/diary/posts/2022/1019/</link><pubDate>Wed, 19 Oct 2022 07:54:41 +0900</pubDate><guid>/diary/posts/2022/1019/</guid><description>1時に寝て4時に起きて6時に起きた。
+jackson の tips jackson で調べているとググったときに stackoverflow に書いてある内容が、機能的には正しいけれど、deprecated になっているアノテーションが多々ある。そのときに新しいやり方はどう設定していいか分からないということがある。今日たまたま実装した処理に2つアノテーションが出てきたので備忘録として書いておく。
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class) デシリアライズするときに my_field のようなスネークケースのフィールド名を myField のメンバーにマッピングする @JsonIgnoreProperties(ignoreUnknown = true) デシリアライズするときに json に存在してクラスに存在しないフィールドを無視する データ構造の移行時にエラーを出さないとか、不要なフィールドがあるときに設定するとよい 上司道 リーダーはレジリエンスを高める自己肯定感を学ぼう 以前 SECI モデルのワークショップ に参加して、同じチームにおられた方が 上司道 という勉強会コミュニティを運営しているのでお誘いを受けた。せっかくの縁だと思ったのでコミュニティに参加した。その勉強会で 日本セルフエスティーム普及協会 の工藤氏による自己肯定感の紹介イベントがあったので試しに参加してみた。
+軽く私の自己肯定感をチェックしてみると普通。低くも高くもない。私はどこかのタイミングで他人と比較するのをやめた。それは自己肯定感を高めるためにはよい慣習らしい。そのおかげで私は自己肯定感が低くはないようにみえる。自己肯定感には社会的と絶対的の2つの構成概念がある。
+社会的自己肯定感 絶対的自己肯定感 重要なのは絶対的の方になるらしいが、多くの人は社会的の方が割合として大きいらしい。社会的に頼っていると、キャリア戦略に失敗したり、会社でリストラされたりすると自尊心が傷つきやすくなる。私もこのタイプだと思う。近い将来リストラされることを想定して自分の会社を作ったという背景もある。自分の会社があると、自分で自分をリストラしない限りは集団に帰属しているという社会的欲求を満たせる。それが社会的自己肯定感と関係があるように思える。いまの私の環境は自尊心が傷つきやすい状況ではないため、あまりセミナーの内容には関心をもてなかった。それよりも参加者が共有していた自尊心を脅かされる状況の経験談にひどいものが多くて、それらと比べると私の環境は恵まれていて世の中に感謝する気持ちになった。
+後藤達也さんのオンラインミーティング たまたま21時半からコアメンバー向けの zoom ミーティングを行うという投稿をみかけたので参加してみた。2時間ぐらいやってたのかな？軽く聞いて帰ろうと思っていたものの、なんだかんだで最後まで参加していた。
+【募集停止します】月980円プラン 軽く計算すると note のメンバーシップだけで約774万円/月の売上になる。すごい。
+(500 * 9577) + (3016 * 980) = 7,744,180
+こんな儲かっているサブスクリプションの新規募集を停止する背景として、これ以上コアメンバーが増えてもコミュニティとしての運営が難しくなるからやりたくないのだという。例えば、すでに3000人いるが、この人数でオフ会を開催することはできない。月々の料金を高くしてメンバー数を減らすというのが経済学的な解であることは理解しているが、後藤さん1人で提供しているようなサービスに月980円を超える料金をとることに抵抗感があるから値段をあげたくないと話されていた。とても謙虚な人だと思う。コミュニティ運営を難しくせず料金もあげないという戦略からコアメンバーをこれ以上増やさないという判断をしたそうだ。</description><content>&lt;p>1時に寝て4時に起きて6時に起きた。&lt;/p>
+&lt;h2 id="jackson-の-tips">jackson の tips&lt;/h2>
+&lt;p>jackson で調べているとググったときに stackoverflow に書いてある内容が、機能的には正しいけれど、deprecated になっているアノテーションが多々ある。そのときに新しいやり方はどう設定していいか分からないということがある。今日たまたま実装した処理に2つアノテーションが出てきたので備忘録として書いておく。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@JsonNaming&lt;/span>&lt;span style="color:#f92672">(&lt;/span>PropertyNamingStrategies&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">SnakeCaseStrategy&lt;/span>&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>デシリアライズするときに &lt;code>my_field&lt;/code> のようなスネークケースのフィールド名を &lt;code>myField&lt;/code> のメンバーにマッピングする&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@JsonIgnoreProperties&lt;/span>&lt;span style="color:#f92672">(&lt;/span>ignoreUnknown &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">true&lt;/span>&lt;span style="color:#f92672">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>デシリアライズするときに json に存在してクラスに存在しないフィールドを無視する&lt;/li>
+&lt;li>データ構造の移行時にエラーを出さないとか、不要なフィールドがあるときに設定するとよい&lt;/li>
+&lt;/ul>
+&lt;h2 id="上司道-リーダーはレジリエンスを高める自己肯定感を学ぼう">上司道 リーダーはレジリエンスを高める自己肯定感を学ぼう&lt;/h2>
+&lt;p>以前 &lt;a href="/diary/diary/posts/2022/1005/#SECI-モデルのワークショップ">SECI モデルのワークショップ&lt;/a> に参加して、同じチームにおられた方が &lt;a href="https://tomoaki2222ok.wixsite.com/mysite">上司道&lt;/a> という勉強会コミュニティを運営しているのでお誘いを受けた。せっかくの縁だと思ったのでコミュニティに参加した。その勉強会で &lt;a href="https://self-esteem.or.jp/">日本セルフエスティーム普及協会&lt;/a> の工藤氏による自己肯定感の紹介イベントがあったので試しに参加してみた。&lt;/p>
+&lt;p>軽く私の自己肯定感をチェックしてみると普通。低くも高くもない。私はどこかのタイミングで他人と比較するのをやめた。それは自己肯定感を高めるためにはよい慣習らしい。そのおかげで私は自己肯定感が低くはないようにみえる。自己肯定感には社会的と絶対的の2つの構成概念がある。&lt;/p>
+&lt;ul>
+&lt;li>社会的自己肯定感&lt;/li>
+&lt;li>絶対的自己肯定感&lt;/li>
+&lt;/ul>
+&lt;p>重要なのは絶対的の方になるらしいが、多くの人は社会的の方が割合として大きいらしい。社会的に頼っていると、キャリア戦略に失敗したり、会社でリストラされたりすると自尊心が傷つきやすくなる。私もこのタイプだと思う。近い将来リストラされることを想定して自分の会社を作ったという背景もある。自分の会社があると、自分で自分をリストラしない限りは集団に帰属しているという社会的欲求を満たせる。それが社会的自己肯定感と関係があるように思える。いまの私の環境は自尊心が傷つきやすい状況ではないため、あまりセミナーの内容には関心をもてなかった。それよりも参加者が共有していた自尊心を脅かされる状況の経験談にひどいものが多くて、それらと比べると私の環境は恵まれていて世の中に感謝する気持ちになった。&lt;/p>
+&lt;h2 id="後藤達也さんのオンラインミーティング">後藤達也さんのオンラインミーティング&lt;/h2>
+&lt;p>たまたま21時半からコアメンバー向けの zoom ミーティングを行うという投稿をみかけたので参加してみた。2時間ぐらいやってたのかな？軽く聞いて帰ろうと思っていたものの、なんだかんだで最後まで参加していた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://note.com/goto_finance/n/nc4140548387a">【募集停止します】月980円プラン&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>軽く計算すると note のメンバーシップだけで約774万円/月の売上になる。すごい。&lt;/p>
+&lt;blockquote>
+&lt;p>(500 * 9577) + (3016 * 980) = 7,744,180&lt;/p>
+&lt;/blockquote>
+&lt;p>こんな儲かっているサブスクリプションの新規募集を停止する背景として、これ以上コアメンバーが増えてもコミュニティとしての運営が難しくなるからやりたくないのだという。例えば、すでに3000人いるが、この人数でオフ会を開催することはできない。月々の料金を高くしてメンバー数を減らすというのが経済学的な解であることは理解しているが、後藤さん1人で提供しているようなサービスに月980円を超える料金をとることに抵抗感があるから値段をあげたくないと話されていた。とても謙虚な人だと思う。コミュニティ運営を難しくせず料金もあげないという戦略からコアメンバーをこれ以上増やさないという判断をしたそうだ。&lt;/p></content></item><item><title>dapr のアップグレード準備</title><link>/diary/posts/2022/1018/</link><pubDate>Tue, 18 Oct 2022 16:56:44 +0900</pubDate><guid>/diary/posts/2022/1018/</guid><description>1時に寝て7時に起きた。寝る前に閃光のハサウェイを見始めたら夜更ししてしまった。
 dapr の Highly-available モードの検証 先週からテスト環境で dapr の Highly-available mode を試している。ついでに dapr の 1.8.x へのアップグレードも行う。Dapr v1.8 is now available をみると、一番上に書いてあるのだから pubsub サービスの Dead letter topics がもっとも注目すべき新機能と言えるのだろう。これは pubsub のミドルウェアすべての Dead letter topics の機能が実装されたことを言っている。うちは rabbitmq を使っていて、それは次の pr で v1.5 で追加されていて、うちの環境では v1.7 から実運用していた。rabbitmq は Dead letter topics 対応が始まった初期のうちに実装されたと言える。
 Add dead letter support in RabbitMQ pubsub #883 現時点での dapr の最新の安定版は 1.8.5 になる。
 https://github.com/dapr/dapr/releases/tag/v1.8.5 Highly-available を有効にする設定ファイル values.yml の書き方は次になる。
