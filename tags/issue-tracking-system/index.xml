@@ -1,4 +1,33 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>issue tracking system on forest nook</title><link>/diary/tags/issue-tracking-system/</link><description>Recent content in issue tracking system on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Fri, 14 Oct 2022 12:24:15 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/issue-tracking-system/index.xml" rel="self" type="application/rss+xml"/><item><title>オフィスとワクチン</title><link>/diary/posts/2022/1014/</link><pubDate>Fri, 14 Oct 2022 12:24:15 +0900</pubDate><guid>/diary/posts/2022/1014/</guid><description>0時に寝て悪夢で3時にうなされて7時に起きた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>issue tracking system on forest nook</title><link>/diary/tags/issue-tracking-system/</link><description>Recent content in issue tracking system on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Wed, 26 Oct 2022 11:21:53 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/issue-tracking-system/index.xml" rel="self" type="application/rss+xml"/><item><title>hannali dao に参加した</title><link>/diary/posts/2022/1026/</link><pubDate>Wed, 26 Oct 2022 11:21:53 +0900</pubDate><guid>/diary/posts/2022/1026/</guid><description>23時に寝て1時に起きて2時間ほどだらだらしてて6時に起きた。
+最後のふりかえりイベント 最終週なのでこのチームでのスプリントのふりかえりは今日が最後になる。メンバーが気を遣ってくれてこれまでの活動に感謝を伝えてくれた。いくつか出たコメントをあげる。
+インフラを整備した チケット駆動開発の基礎を伝えた 課題管理のよさもわかってきた メンバーが課題管理を行う習慣化につながった 社内でもっとも backlog を使いこなしているチームになった 1年に渡って開発に参加して課題管理を見守ってきたので課題管理とは何ぞやの基礎をメンバーの大半は理解できるようになったと思う。(私からみて) ワークフローを洗練させるという視点で現状の運用は入門レベルではあるけれど、根っこの部分をちゃんと理解できているメンバーもちらほらみえてきたのであとは時間とともに上達していくのではないかと思う。このままもう2-3年取り組めばスクラムに頼らなくても高い生産性と迅速な情報共有ができるチームになるかもしれない。1年前はチームで課題管理がほとんどできていなかったのに、いまは大半のメンバーがやろうとするようになった。他のメンバーの行動を変えられたのが私としても嬉しい。いくつかの組織やチームで何度もやってきたことなので半年から1年あればできるというのは一定の信頼がおけて自信ももっている。今後の私の課題としてはこれを3ヶ月で達成する、1ヶ月で達成するための体系化やリーダーシップを作り上げていくことが考えられる。
+hannali dao 始動 Hannali DAO に参加した。Metaアカウントへの移行(Workrooms向け) によると、2022年8月30日以降は meta アカウントではないと workrooms にアクセスできないらしい。ここ2-3ヶ月 workrooms を使っていなかったのでまとめてシステムのアップグレードや meta アカウントの移行なども行った。まったく難しくなくて手順通り作業を進めればアップグレード作業も含めて1時間もあれば完了するぐらいの作業量。当初は workrooms で開催する予定だったが、諸事情あって zoom 開催になった。とはいえ metamask の設定などをいろいろやっていたので結果的に zoom でよかった。
+おがわさんが作った dao で利用できる PROG という名前のカスタムトークンをメンバーに配って受け取る。受け取る方も metamask で wallet と接続しないと受け取れない。polygonscan というサイトで自分のアドレスへの polygon ネットワークのトランザクションを次の uri で確認できる。PROG というカスタムトークンを 50 受領しているのがわかる。
+https://polygonscan.com/token/0x14e1bd8689c150509a14db70b2d8c8cd33747cdf?a=0xe1688b4b017ae362261f14415cc0db72b8b53e10 これだけのことをやるのにまったく作業の勘どころが働かなくてみんな四苦八苦していた。たったこれだけを2時間ぐらい。その後、dao や世の中の事例について雑談。お互いの情報共有になっておもしろかった。私は web3 関連に技術体系には否定的なスタンスを取る方だけど、技術そのものを否定しているわけではなく、なにかしら価値はあると考えているのでどういった用途に使うのがよいのかを探りたいという思いがある。最後にそれぞれのメンバーがもっている PROG トークンの比率に応じて投票権をもつ。みんなの投票結果を使って次の開催日を決めてみた。本当の投票は手数料がかかるトークンを使ったアプリになるのだろうけど、このアプリは手数料なしで使えるらしい。
+次のDAO イベントいつやる？</description><content>&lt;p>23時に寝て1時に起きて2時間ほどだらだらしてて6時に起きた。&lt;/p>
+&lt;h2 id="最後のふりかえりイベント">最後のふりかえりイベント&lt;/h2>
+&lt;p>最終週なのでこのチームでのスプリントのふりかえりは今日が最後になる。メンバーが気を遣ってくれてこれまでの活動に感謝を伝えてくれた。いくつか出たコメントをあげる。&lt;/p>
+&lt;ul>
+&lt;li>インフラを整備した&lt;/li>
+&lt;li>チケット駆動開発の基礎を伝えた
+&lt;ul>
+&lt;li>課題管理のよさもわかってきた&lt;/li>
+&lt;li>メンバーが課題管理を行う習慣化につながった&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>社内でもっとも backlog を使いこなしているチームになった&lt;/li>
+&lt;/ul>
+&lt;p>1年に渡って開発に参加して課題管理を見守ってきたので課題管理とは何ぞやの基礎をメンバーの大半は理解できるようになったと思う。(私からみて) ワークフローを洗練させるという視点で現状の運用は入門レベルではあるけれど、根っこの部分をちゃんと理解できているメンバーもちらほらみえてきたのであとは時間とともに上達していくのではないかと思う。このままもう2-3年取り組めばスクラムに頼らなくても高い生産性と迅速な情報共有ができるチームになるかもしれない。1年前はチームで課題管理がほとんどできていなかったのに、いまは大半のメンバーがやろうとするようになった。他のメンバーの行動を変えられたのが私としても嬉しい。いくつかの組織やチームで何度もやってきたことなので半年から1年あればできるというのは一定の信頼がおけて自信ももっている。今後の私の課題としてはこれを3ヶ月で達成する、1ヶ月で達成するための体系化やリーダーシップを作り上げていくことが考えられる。&lt;/p>
+&lt;h2 id="hannali-dao-始動">hannali dao 始動&lt;/h2>
+&lt;p>&lt;a href="https://hannari-python.connpass.com/event/262428/">Hannali DAO&lt;/a> に参加した。&lt;a href="https://www.meta.com/ja-jp/help/quest/articles/horizon/getting-started-in-horizon-workrooms/migrate-to-meta-account-workrooms/">Metaアカウントへの移行(Workrooms向け)&lt;/a> によると、2022年8月30日以降は meta アカウントではないと workrooms にアクセスできないらしい。ここ2-3ヶ月 workrooms を使っていなかったのでまとめてシステムのアップグレードや meta アカウントの移行なども行った。まったく難しくなくて手順通り作業を進めればアップグレード作業も含めて1時間もあれば完了するぐらいの作業量。当初は workrooms で開催する予定だったが、諸事情あって zoom 開催になった。とはいえ metamask の設定などをいろいろやっていたので結果的に zoom でよかった。&lt;/p>
+&lt;p>おがわさんが作った dao で利用できる PROG という名前のカスタムトークンをメンバーに配って受け取る。受け取る方も metamask で &lt;a href="https://wallet.polygon.technology/">wallet&lt;/a> と接続しないと受け取れない。polygonscan というサイトで自分のアドレスへの polygon ネットワークのトランザクションを次の uri で確認できる。PROG というカスタムトークンを 50 受領しているのがわかる。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://polygonscan.com/token/0x14e1bd8689c150509a14db70b2d8c8cd33747cdf?a=0xe1688b4b017ae362261f14415cc0db72b8b53e10">https://polygonscan.com/token/0x14e1bd8689c150509a14db70b2d8c8cd33747cdf?a=0xe1688b4b017ae362261f14415cc0db72b8b53e10&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>これだけのことをやるのにまったく作業の勘どころが働かなくてみんな四苦八苦していた。たったこれだけを2時間ぐらい。その後、dao や世の中の事例について雑談。お互いの情報共有になっておもしろかった。私は web3 関連に技術体系には否定的なスタンスを取る方だけど、技術そのものを否定しているわけではなく、なにかしら価値はあると考えているのでどういった用途に使うのがよいのかを探りたいという思いがある。最後にそれぞれのメンバーがもっている PROG トークンの比率に応じて投票権をもつ。みんなの投票結果を使って次の開催日を決めてみた。本当の投票は手数料がかかるトークンを使ったアプリになるのだろうけど、このアプリは手数料なしで使えるらしい。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://snapshot.org/#/hannalidao.eth/proposal/0x2a0d62d602edc7b34e230e6cab4c63f0965e10b972aa78bc02ab6aa67e877dd8">次のDAO イベントいつやる？&lt;/a>&lt;/li>
+&lt;/ul></content></item><item><title>オフィスとワクチン</title><link>/diary/posts/2022/1014/</link><pubDate>Fri, 14 Oct 2022 12:24:15 +0900</pubDate><guid>/diary/posts/2022/1014/</guid><description>0時に寝て悪夢で3時にうなされて7時に起きた。
 隔週の雑談 顧問のはらさんと隔週の打ち合わせ。話題が多くて予定していた時間に終わりきらなくて1つの話題は次回に持ち越した。今日話した内容は次の通り。
 新しいお仕事の業務内容についての共有 旅費規定と就業規則についての話題 知人の社内ツールのフィードバックに向けての情報共有 知人が社内で使っているタスク管理ツールに招待してくれたので軽く触ってみた。想定していたよりもずっと作り込みされててすごいなぁと感心しつつ、知人の役に立つかどうかはわからないけど、課題管理の専門家としていくつかフィードバックをまとめて送付した。はらさんがその社内ツールは tailwind css を使って開発しているのではないかと予想していた。実際に当たっているかどうかは知人に確認しないとわからないが、tailwind css というフレームワークはユーティリティファーストな考え方で css は何も書かずスタイルの class だけを書けばよいので開発が早く、全体の統一感のようなものも作りやすいとのこと。私が使う機会があるのかどうかはわからないけど、そういうフレームワークがあるんだなと知って学びになった。
 窓付きのオフィスの連絡 先日みつけた 窓付きオフィスの内覧前に 契約が決まってしまって断念したことを書いた。神戸旧居留地オフィス にはもう1つ窓付きの部屋があるのだけど、そこに空きが出たら連絡してくださいとダメ元でお願いしていた。なんでもお願いするものだとか、世の中親切な人がいるとか、そういう類の話しで本当に11月末で部屋が空くので引っ越しますか？といった連絡がきた。感謝。
