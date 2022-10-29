@@ -1,4 +1,68 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>forest nook</title><link>/diary/</link><description>Recent content on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Fri, 28 Oct 2022 08:14:44 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/index.xml" rel="self" type="application/rss+xml"/><item><title>1年間に渡ったお手伝いの最終日</title><link>/diary/posts/2022/1028/</link><pubDate>Fri, 28 Oct 2022 08:14:44 +0900</pubDate><guid>/diary/posts/2022/1028/</guid><description>2時に寝て7時に起きた。昨日は23時ぐらいまで送別会やっててまた寝るのが遅くなった。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>forest nook</title><link>/diary/</link><description>Recent content on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sat, 29 Oct 2022 13:15:00 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/index.xml" rel="self" type="application/rss+xml"/><item><title>出張の準備</title><link>/diary/posts/2022/1029/</link><pubDate>Sat, 29 Oct 2022 13:15:00 +0900</pubDate><guid>/diary/posts/2022/1029/</guid><description>0時に寝て7時に起きた。今週は仕掛かりの開発タスクを完了させるのと送別会やら挨拶やらで終始バタバタしていた。終わったらちょっと気が抜けて一時的な燃え尽き症候群のような状態になった。
+ストレッチ 今日の開脚幅は開始前157cmで、ストレッチ後161cmだった。まずまずの数値。右の股関節周りが張りがあるというか関節痛がある。とはいえ可動域は少しずつ増えている気はするのでこれまでのストレッチの成果が表れて良好であるようにも感じている。ストレッチを受ける前後でも股関節の違和感は随分解消されたので疲労も溜まっていたのかもしれない。
+wezterm 移行 タイムラインで wezterm がよさそうという記事をみかけたのでインストールしてみた。ターミナルにそんなこだわりはないけど、変わっていくことも大事なので余裕があれば新しいものは試すようにしている。
+たまたまみかけて、ちょうどマシンを移行したばかりなので wezterm をインストールしてみた。 https://t.co/ZnRaSgHfwO
+&amp;mdash; Tetsuya Morimoto (@t2y) October 29, 2022 まつのさんの設定に次の2つの設定を追加した。
+タブ移動とタブ選択のキーバインドを変更 https://wezfurlong.org/wezterm/config/keys.html https://wezfurlong.org/wezterm/config/lua/keyassignment/MoveTabRelative.html https://wezfurlong.org/wezterm/config/lua/keyassignment/ActivateTabRelative.html ターミナルのビープ音を無効 https://wezfurlong.org/wezterm/config/lua/config/audible_bell.html これまで一度も lua を書いたことがないので設定ファイルを lua で記述するのが新鮮。
+local wezterm = require &amp;#39;wezterm&amp;#39; local act = wezterm.action return { keys = { { key = &amp;#39;LeftArrow&amp;#39;, mods = &amp;#39;CMD&amp;#39;, action = act.MoveTabRelative(-1) }, { key = &amp;#39;RightArrow&amp;#39;, mods = &amp;#39;CMD&amp;#39;, action = act.MoveTabRelative(1) }, { key = &amp;#39;LeftArrow&amp;#39;, mods = &amp;#39;OPT|CMD&amp;#39;, action = act.</description><content>&lt;p>0時に寝て7時に起きた。今週は仕掛かりの開発タスクを完了させるのと送別会やら挨拶やらで終始バタバタしていた。終わったらちょっと気が抜けて一時的な燃え尽き症候群のような状態になった。&lt;/p>
+&lt;h2 id="ストレッチ">ストレッチ&lt;/h2>
+&lt;p>今日の開脚幅は開始前157cmで、ストレッチ後161cmだった。まずまずの数値。右の股関節周りが張りがあるというか関節痛がある。とはいえ可動域は少しずつ増えている気はするのでこれまでのストレッチの成果が表れて良好であるようにも感じている。ストレッチを受ける前後でも股関節の違和感は随分解消されたので疲労も溜まっていたのかもしれない。&lt;/p>
+&lt;h2 id="wezterm-移行">wezterm 移行&lt;/h2>
+&lt;p>タイムラインで &lt;a href="https://github.com/wez/wezterm">wezterm&lt;/a> がよさそうという記事をみかけたのでインストールしてみた。ターミナルにそんなこだわりはないけど、変わっていくことも大事なので余裕があれば新しいものは試すようにしている。&lt;/p>
+&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">たまたまみかけて、ちょうどマシンを移行したばかりなので wezterm をインストールしてみた。 &lt;a href="https://t.co/ZnRaSgHfwO">https://t.co/ZnRaSgHfwO&lt;/a>&lt;/p>&amp;mdash; Tetsuya Morimoto (@t2y) &lt;a href="https://twitter.com/t2y/status/1586279867632746496?ref_src=twsrc%5Etfw">October 29, 2022&lt;/a>&lt;/blockquote>
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script>
+&lt;p>まつのさんの設定に次の2つの設定を追加した。&lt;/p>
+&lt;ul>
+&lt;li>タブ移動とタブ選択のキーバインドを変更
+&lt;ul>
+&lt;li>&lt;a href="https://wezfurlong.org/wezterm/config/keys.html">https://wezfurlong.org/wezterm/config/keys.html&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://wezfurlong.org/wezterm/config/lua/keyassignment/MoveTabRelative.html">https://wezfurlong.org/wezterm/config/lua/keyassignment/MoveTabRelative.html&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://wezfurlong.org/wezterm/config/lua/keyassignment/ActivateTabRelative.html">https://wezfurlong.org/wezterm/config/lua/keyassignment/ActivateTabRelative.html&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>ターミナルのビープ音を無効
+&lt;ul>
+&lt;li>&lt;a href="https://wezfurlong.org/wezterm/config/lua/config/audible_bell.html">https://wezfurlong.org/wezterm/config/lua/config/audible_bell.html&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>これまで一度も lua を書いたことがないので設定ファイルを lua で記述するのが新鮮。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-lua" data-lang="lua">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">local&lt;/span> wezterm &lt;span style="color:#f92672">=&lt;/span> require &lt;span style="color:#e6db74">&amp;#39;wezterm&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">local&lt;/span> act &lt;span style="color:#f92672">=&lt;/span> wezterm.action
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">return&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> keys &lt;span style="color:#f92672">=&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> { key &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;LeftArrow&amp;#39;&lt;/span>, mods &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;CMD&amp;#39;&lt;/span>, action &lt;span style="color:#f92672">=&lt;/span> act.MoveTabRelative(&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>) },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> { key &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;RightArrow&amp;#39;&lt;/span>, mods &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;CMD&amp;#39;&lt;/span>, action &lt;span style="color:#f92672">=&lt;/span> act.MoveTabRelative(&lt;span style="color:#ae81ff">1&lt;/span>) },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> { key &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;LeftArrow&amp;#39;&lt;/span>, mods &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;OPT|CMD&amp;#39;&lt;/span>, action &lt;span style="color:#f92672">=&lt;/span> act.ActivateTabRelative(&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>) },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> { key &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;RightArrow&amp;#39;&lt;/span>, mods &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;OPT|CMD&amp;#39;&lt;/span>, action &lt;span style="color:#f92672">=&lt;/span> act.ActivateTabRelative(&lt;span style="color:#ae81ff">1&lt;/span>) },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> audible_bell &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;Disabled&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> use_ime &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">true&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> font_size &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">14.0&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">-- https://wezfurlong.org/wezterm/colorschemes/index.html&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> color_scheme &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;OneHalfDark&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="コワーキングのオンラインイベント">コワーキングのオンラインイベント&lt;/h2>
+&lt;p>月例のカフーツさんのオンラインイベントに参加した。&lt;a href="/diary/diary/posts/2022/0913/#コワーキングのオンラインイベント">先月の所感はここ&lt;/a> 。いとうさんが長野県佐久市へ行かれたお話しが中心だった。現時点ではブログ記事は前編だけ公開されている。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://note.com/kanzan10to9/n/nc06473c67dba">【前編】信州佐久で地域複業のココロを学んできた〜Beyond the Coworking Vol.18&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>この内容もおもしろかったのだけど、ブログにも内容があるので関心があれば購入して読んでみるとよいと思う。余談だけど、いとうさんが旅程を写真でふりかえりながらラーメンの写真が出てきて「このラーメンはまずかった」と吐き捨てるようにつぶやいたのがおもしろかった。その後、長野県つながりで上田市のはたらクリエイトさんの話題に発展した。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://hatakuri.jp/">株式会社はたらクリエイト ｜「はたらく」をクリエイトすることで仕事を楽しむ人を増やす&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>主婦向けの受託仕事を行う場としてのコワーキングスペースから始まって、規模や組織が拡大していって、コワーキングスペースを株式会社化し、そこにいた人たち70名を社員にしたという。会社内に託児所もあり保育士も社員になっている。創業時は役員以外は女性社員のみだったらしい。その後、社員が130人まで増えていまは役員を除いた男性社員が3名。多くの男性は女性しかいないコミュニティに入っていけないと私は考えていた。そして、いとうさんが盲点だったと話しを続けて私も気付いた。この3名ともシングルファーザーだという。世の中の主婦が抱えている課題とシングルファーザーの課題は共通するところが多い。その共感が女性しかいないコミュニティに男性社員が入る余地をもたらしているのだと推測する。マイナーな属性の男性の存在は社会的に無視されやすい。この視点だけでも今日のオンラインイベントに参加してよかったと思えた。&lt;/p>
+&lt;p>はたらクリエイトさんの関連サービスで GoKaLab というものがあり、このキャッチフレーズはいいなと気持ちが揺れた。&lt;/p>
+&lt;blockquote>
+&lt;p>GoKaLab.（ゴカラボ）は、コワーキングスペースのような『研究所』です。&lt;/p>
+&lt;p>&lt;a href="https://gokalab.jp/">https://gokalab.jp/&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>いとうさんがコワーキングスペースで働く人たちは仕事を楽しんでいる人が多いと話していた。たしかに普通の会社員よりも目的をもち、行動力がある人たちの方が多いように私も思える。「仕事を楽しむ」というコンセプトは行き過ぎた資本主義に対するアンチテーゼと言えるのかもしれない。はたらクリエイトさんの創業者の話しを伺う分には売上や利益を求めているようにはみえない。普通の会社にあるような売上や利益の目標に縛られるようなこともないのではないかと思えた。&lt;/p>
+&lt;p>会社は働きたい人が働きたいだけ働くような場所になればいいと私も常々考えていた。公平感と納得感を与えるために目標制度を設けることもないし、働きたくない人たちを監視したり、無理やり働かせるための施策を練ったりすることもない。そのヒントは「仕事を楽しむ」にもあるかもしれない。&lt;/p>
+&lt;p>フリーランスの話題のときに説明したら軽くうけた。&lt;/p>
+&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">麻婆豆腐の素から作った麻婆豆腐でもそこそこおいしかったらそれで満足するお客さんもいる。すべてのお客さんが素材から作った麻婆豆腐を求めているわけでもない。&lt;/p>&amp;mdash; Tetsuya Morimoto (@t2y) &lt;a href="https://twitter.com/t2y/status/1586356897216860160?ref_src=twsrc%5Etfw">October 29, 2022&lt;/a>&lt;/blockquote>
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script></content></item><item><title>1年間に渡ったお手伝いの最終日</title><link>/diary/posts/2022/1028/</link><pubDate>Fri, 28 Oct 2022 08:14:44 +0900</pubDate><guid>/diary/posts/2022/1028/</guid><description>2時に寝て7時に起きた。昨日は23時ぐらいまで送別会やっててまた寝るのが遅くなった。
 隔週の雑談 顧問のはらさんと隔週の打ち合わせ。今日の議題はこれら。
 オフィス引っ越し計画 の共有 SECI モデルのワークショップ の共有 昨日の送別会で、システムはいくらでも社員を監視して効率や最適化を要求できるけれど、そんな働き方は嫌だろうし、幸せじゃないだろうと私が話した。それに対して次のような反論がきた。
 そんなことはなく誰か (何か) に管理されたいと考える人間の方が多数派だ
@@ -815,8 +879,8 @@ Colabo3期間会計報告レビュー タイムラインでみかけたことを
 &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script></content></item><item><title>ドキュメントを書いてマンガを読んで</title><link>/diary/posts/2022/0917/</link><pubDate>Sat, 17 Sep 2022 12:25:56 +0900</pubDate><guid>/diary/posts/2022/0917/</guid><description>0時に寝て7時に起きた。
 ストレッチ 今日の開脚幅は開始前160cmで、ストレッチ後163cmだった。今週も調子がよい。やはり涼しくなって日々の生活の快適度があがって体調もよくなっている気がする。ストレッチを受けていてもあちこち調子よくていい感じにストレッチできているように思う。これで少しジョギングや運動をするといいんだろなという気持ちになってくる。これまでも暑い夏はあったと思うが、今年ほど夏の暑さにまいって集中力を欠いた年はなかったと思う。というのは、日記を1年近くも毎日書いたことがなかったからその変化に気付けたことも過去になかった。日記を書く過程で環境や状況の変化に敏感に気付けるようになったという背景もある。他の要因としては歳をとって体力が落ちているのだろうと推測する。落ちた体力をカバーするだけの取り組み (運動するとか摂生するとか) が必要なのだろうけれど、私は昔と比べて生活の姿勢をとくに変えていない。もうそろそろ不摂生がダメなんだろうなという自覚は出てきた。昨年からストレッチを始めたのは本当に僥倖で健康度はいくらか上がっていると思う。
 まだドキュメントを書いている 非開発者向けのインフラドキュメント がなかなか完成に至らない。厳密に書くわけでもなく、嘘を書くわけでもなく、重要なことのみを専門用語を使わずに技術知識がない人たち向けに書くドキュメントは相当に難しい。どういう構成にするかも何度も試行錯誤しているし、説明のための文章量も増えてしまうところがある。インフラを知らない開発者向けに引き継ぎのドキュメントを書くよりもずっと大変だと3日も書いているのに書き終わらない (自分で納得がいかない) 事実から認識できた。書いて読まれるのかどうかもわからないけど、それは読み手の自由であって書き手は自分が伝えたいことを自分の言葉で書くことに意味があるだろうと考えて、いまの自分ができる精一杯のドキュメントを書こうと思う。
-葬送のフリーレン 夕方から 葬送のフリーレン を7巻ぐらいまで読んだ。これまで1巻を無料キャンペーンで読んだことはあったし、人気があることも知ってはいたけどいつか読もうぐらいの感覚だった。毎日 LINE マンガで 神之塔 を読んでいるのだけど、たまたま2巻も無料化されたようで読んでみたらおもしろかったので、いつかはいまだと認識して電子版を購入して読み進めた。
-葬送 という言葉も私は知らなかった。「死者と最後の別れをし、火葬場、墓地に送り出すこと。」を指す言葉らしい。マンガのタイトルして「葬送のフリーレン」という物語だよというのは内容からして妥当だと思うものの、これは物語の世界の中でもフリーレンの異名として魔族が呼んでいる。私はてっきりヒンメルとの思い出を辿る旅全体を葬送に見立てているのだと思って読み進めていたのに、途中で魔族からそう呼ばれていて、魔族を殺しまくる忌み名的なものだったの？というところで、それまで読み進めていた自分の中の世界観とバグが生じた。もしかしたら今後の物語の展開によってまた違った意味になってくるのかもしれないけど。
+葬送のフリーレン 夕方から 葬送のフリーレン を7巻ぐらいまで読んだ。これまで1巻を無料キャンペーンで読んだことはあったし、人気があることも知ってはいたけどいつか読もうぐらいの感覚だった。毎日 LINE マンガで 神之塔 を読んでいて、たまたま2巻も無料化されたのを見かけて読んでみたらおもしろかったので、いつかはいまだと認識して電子版を購入して読み進めた。
+葬送 という言葉も私は知らなかった。「死者と最後の別れをし、火葬場、墓地に送り出すこと。」を指す言葉らしい。マンガのタイトルから「葬送のフリーレン」という物語だよというのは、内容から妥当だと思うものの、これは物語の世界の中でもフリーレンの異名として魔族が呼んでいる。私はてっきり勇者ヒンメルとの思い出を辿る旅全体を葬送に見立てているのだと思って読み進めていたのに、途中で魔族からそう呼ばれていて、魔族を殺しまくる忌み名的なものだったの？！というところで、それまで読み進めていた自分の中の世界観とバグが生じた。もしかしたら今後の物語の展開によってまた違った意味になってくるのかもしれないけど。
 歴史上で最も多くの魔族を葬り去った魔法使いとして「葬送のフリーレン」の異名を持ち、魔族から忌み恐れられている。
 ja.wikipedia.org/wiki/葬送のフリーレン
 あと思い出を辿るという物語は、ほのぼのしている話しもあれば、魔族との戦いを話しもあり、資格を取るための競技会の話しもある。話しの展開を何とでも創生できる想像力の源になっている。このマンガは旅の終わりが来なくてもよいし、強い敵を倒さなくてもよいし、思い出さえあれば物語を展開できるのでその幅の広さに感心した。内容はまったく違うけれど、蟲師 を読んだときと同じような感銘を受けた。葬送のフリーレンもアニメ化が決定しているらしい。</description><content>&lt;p>0時に寝て7時に起きた。&lt;/p>
@@ -825,8 +889,8 @@ ja.wikipedia.org/wiki/葬送のフリーレン
 &lt;h2 id="まだドキュメントを書いている">まだドキュメントを書いている&lt;/h2>
 &lt;p>&lt;a href="/diary/diary/posts/2022/0915/#インフラのドキュメント作成の続き">非開発者向けのインフラドキュメント&lt;/a> がなかなか完成に至らない。厳密に書くわけでもなく、嘘を書くわけでもなく、重要なことのみを専門用語を使わずに技術知識がない人たち向けに書くドキュメントは相当に難しい。どういう構成にするかも何度も試行錯誤しているし、説明のための文章量も増えてしまうところがある。インフラを知らない開発者向けに引き継ぎのドキュメントを書くよりもずっと大変だと3日も書いているのに書き終わらない (自分で納得がいかない) 事実から認識できた。書いて読まれるのかどうかもわからないけど、それは読み手の自由であって書き手は自分が伝えたいことを自分の言葉で書くことに意味があるだろうと考えて、いまの自分ができる精一杯のドキュメントを書こうと思う。&lt;/p>
 &lt;h2 id="葬送のフリーレン">葬送のフリーレン&lt;/h2>
-&lt;p>夕方から &lt;a href="https://websunday.net/work/708/">葬送のフリーレン&lt;/a> を7巻ぐらいまで読んだ。これまで1巻を無料キャンペーンで読んだことはあったし、人気があることも知ってはいたけどいつか読もうぐらいの感覚だった。毎日 LINE マンガで &lt;a href="/diary/diary/posts/2022/0514/#神之塔">神之塔&lt;/a> を読んでいるのだけど、たまたま2巻も無料化されたようで読んでみたらおもしろかったので、いつかはいまだと認識して電子版を購入して読み進めた。&lt;/p>
-&lt;p>&lt;a href="https://ja.wikipedia.org/wiki/%E8%91%AC%E9%80%81">葬送&lt;/a> という言葉も私は知らなかった。「死者と最後の別れをし、火葬場、墓地に送り出すこと。」を指す言葉らしい。マンガのタイトルして「葬送のフリーレン」という物語だよというのは内容からして妥当だと思うものの、これは物語の世界の中でもフリーレンの異名として魔族が呼んでいる。私はてっきりヒンメルとの思い出を辿る旅全体を葬送に見立てているのだと思って読み進めていたのに、途中で魔族からそう呼ばれていて、魔族を殺しまくる忌み名的なものだったの？というところで、それまで読み進めていた自分の中の世界観とバグが生じた。もしかしたら今後の物語の展開によってまた違った意味になってくるのかもしれないけど。&lt;/p>
+&lt;p>夕方から &lt;a href="https://websunday.net/work/708/">葬送のフリーレン&lt;/a> を7巻ぐらいまで読んだ。これまで1巻を無料キャンペーンで読んだことはあったし、人気があることも知ってはいたけどいつか読もうぐらいの感覚だった。毎日 LINE マンガで &lt;a href="/diary/diary/posts/2022/0514/#神之塔">神之塔&lt;/a> を読んでいて、たまたま2巻も無料化されたのを見かけて読んでみたらおもしろかったので、いつかはいまだと認識して電子版を購入して読み進めた。&lt;/p>
+&lt;p>&lt;a href="https://ja.wikipedia.org/wiki/%E8%91%AC%E9%80%81">葬送&lt;/a> という言葉も私は知らなかった。「死者と最後の別れをし、火葬場、墓地に送り出すこと。」を指す言葉らしい。マンガのタイトルから「葬送のフリーレン」という物語だよというのは、内容から妥当だと思うものの、これは物語の世界の中でもフリーレンの異名として魔族が呼んでいる。私はてっきり勇者ヒンメルとの思い出を辿る旅全体を葬送に見立てているのだと思って読み進めていたのに、途中で魔族からそう呼ばれていて、魔族を殺しまくる忌み名的なものだったの？！というところで、それまで読み進めていた自分の中の世界観とバグが生じた。もしかしたら今後の物語の展開によってまた違った意味になってくるのかもしれないけど。&lt;/p>
 &lt;blockquote>
 &lt;p>歴史上で最も多くの魔族を葬り去った魔法使いとして「葬送のフリーレン」の異名を持ち、魔族から忌み恐れられている。&lt;/p>
 &lt;p>&lt;a href="https://ja.wikipedia.org/wiki/%E8%91%AC%E9%80%81%E3%81%AE%E3%83%95%E3%83%AA%E3%83%BC%E3%83%AC%E3%83%B3">ja.wikipedia.org/wiki/葬送のフリーレン&lt;/a>&lt;/p>

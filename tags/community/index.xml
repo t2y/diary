@@ -1,4 +1,68 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>community on forest nook</title><link>/diary/tags/community/</link><description>Recent content in community on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sat, 15 Oct 2022 11:50:02 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/community/index.xml" rel="self" type="application/rss+xml"/><item><title>はっくばー再訪</title><link>/diary/posts/2022/1015/</link><pubDate>Sat, 15 Oct 2022 11:50:02 +0900</pubDate><guid>/diary/posts/2022/1015/</guid><description>0時に寝て2時に起きて眠れなくて4時過ぎまでだらだらして7時に起きた。お昼に勉強会を終えて (ワクチンによる37.1℃の発熱で) 軽くしんどかったので2時間ほど寝てた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>community on forest nook</title><link>/diary/tags/community/</link><description>Recent content in community on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sat, 29 Oct 2022 13:15:00 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/community/index.xml" rel="self" type="application/rss+xml"/><item><title>出張の準備</title><link>/diary/posts/2022/1029/</link><pubDate>Sat, 29 Oct 2022 13:15:00 +0900</pubDate><guid>/diary/posts/2022/1029/</guid><description>0時に寝て7時に起きた。今週は仕掛かりの開発タスクを完了させるのと送別会やら挨拶やらで終始バタバタしていた。終わったらちょっと気が抜けて一時的な燃え尽き症候群のような状態になった。
+ストレッチ 今日の開脚幅は開始前157cmで、ストレッチ後161cmだった。まずまずの数値。右の股関節周りが張りがあるというか関節痛がある。とはいえ可動域は少しずつ増えている気はするのでこれまでのストレッチの成果が表れて良好であるようにも感じている。ストレッチを受ける前後でも股関節の違和感は随分解消されたので疲労も溜まっていたのかもしれない。
+wezterm 移行 タイムラインで wezterm がよさそうという記事をみかけたのでインストールしてみた。ターミナルにそんなこだわりはないけど、変わっていくことも大事なので余裕があれば新しいものは試すようにしている。
+たまたまみかけて、ちょうどマシンを移行したばかりなので wezterm をインストールしてみた。 https://t.co/ZnRaSgHfwO
+&amp;mdash; Tetsuya Morimoto (@t2y) October 29, 2022 まつのさんの設定に次の2つの設定を追加した。
+タブ移動とタブ選択のキーバインドを変更 https://wezfurlong.org/wezterm/config/keys.html https://wezfurlong.org/wezterm/config/lua/keyassignment/MoveTabRelative.html https://wezfurlong.org/wezterm/config/lua/keyassignment/ActivateTabRelative.html ターミナルのビープ音を無効 https://wezfurlong.org/wezterm/config/lua/config/audible_bell.html これまで一度も lua を書いたことがないので設定ファイルを lua で記述するのが新鮮。
+local wezterm = require &amp;#39;wezterm&amp;#39; local act = wezterm.action return { keys = { { key = &amp;#39;LeftArrow&amp;#39;, mods = &amp;#39;CMD&amp;#39;, action = act.MoveTabRelative(-1) }, { key = &amp;#39;RightArrow&amp;#39;, mods = &amp;#39;CMD&amp;#39;, action = act.MoveTabRelative(1) }, { key = &amp;#39;LeftArrow&amp;#39;, mods = &amp;#39;OPT|CMD&amp;#39;, action = act.</description><content>&lt;p>0時に寝て7時に起きた。今週は仕掛かりの開発タスクを完了させるのと送別会やら挨拶やらで終始バタバタしていた。終わったらちょっと気が抜けて一時的な燃え尽き症候群のような状態になった。&lt;/p>
+&lt;h2 id="ストレッチ">ストレッチ&lt;/h2>
+&lt;p>今日の開脚幅は開始前157cmで、ストレッチ後161cmだった。まずまずの数値。右の股関節周りが張りがあるというか関節痛がある。とはいえ可動域は少しずつ増えている気はするのでこれまでのストレッチの成果が表れて良好であるようにも感じている。ストレッチを受ける前後でも股関節の違和感は随分解消されたので疲労も溜まっていたのかもしれない。&lt;/p>
+&lt;h2 id="wezterm-移行">wezterm 移行&lt;/h2>
+&lt;p>タイムラインで &lt;a href="https://github.com/wez/wezterm">wezterm&lt;/a> がよさそうという記事をみかけたのでインストールしてみた。ターミナルにそんなこだわりはないけど、変わっていくことも大事なので余裕があれば新しいものは試すようにしている。&lt;/p>
+&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">たまたまみかけて、ちょうどマシンを移行したばかりなので wezterm をインストールしてみた。 &lt;a href="https://t.co/ZnRaSgHfwO">https://t.co/ZnRaSgHfwO&lt;/a>&lt;/p>&amp;mdash; Tetsuya Morimoto (@t2y) &lt;a href="https://twitter.com/t2y/status/1586279867632746496?ref_src=twsrc%5Etfw">October 29, 2022&lt;/a>&lt;/blockquote>
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script>
+&lt;p>まつのさんの設定に次の2つの設定を追加した。&lt;/p>
+&lt;ul>
+&lt;li>タブ移動とタブ選択のキーバインドを変更
+&lt;ul>
+&lt;li>&lt;a href="https://wezfurlong.org/wezterm/config/keys.html">https://wezfurlong.org/wezterm/config/keys.html&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://wezfurlong.org/wezterm/config/lua/keyassignment/MoveTabRelative.html">https://wezfurlong.org/wezterm/config/lua/keyassignment/MoveTabRelative.html&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://wezfurlong.org/wezterm/config/lua/keyassignment/ActivateTabRelative.html">https://wezfurlong.org/wezterm/config/lua/keyassignment/ActivateTabRelative.html&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>ターミナルのビープ音を無効
+&lt;ul>
+&lt;li>&lt;a href="https://wezfurlong.org/wezterm/config/lua/config/audible_bell.html">https://wezfurlong.org/wezterm/config/lua/config/audible_bell.html&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>これまで一度も lua を書いたことがないので設定ファイルを lua で記述するのが新鮮。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-lua" data-lang="lua">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">local&lt;/span> wezterm &lt;span style="color:#f92672">=&lt;/span> require &lt;span style="color:#e6db74">&amp;#39;wezterm&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">local&lt;/span> act &lt;span style="color:#f92672">=&lt;/span> wezterm.action
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">return&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> keys &lt;span style="color:#f92672">=&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> { key &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;LeftArrow&amp;#39;&lt;/span>, mods &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;CMD&amp;#39;&lt;/span>, action &lt;span style="color:#f92672">=&lt;/span> act.MoveTabRelative(&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>) },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> { key &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;RightArrow&amp;#39;&lt;/span>, mods &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;CMD&amp;#39;&lt;/span>, action &lt;span style="color:#f92672">=&lt;/span> act.MoveTabRelative(&lt;span style="color:#ae81ff">1&lt;/span>) },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> { key &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;LeftArrow&amp;#39;&lt;/span>, mods &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;OPT|CMD&amp;#39;&lt;/span>, action &lt;span style="color:#f92672">=&lt;/span> act.ActivateTabRelative(&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>) },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> { key &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;RightArrow&amp;#39;&lt;/span>, mods &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;OPT|CMD&amp;#39;&lt;/span>, action &lt;span style="color:#f92672">=&lt;/span> act.ActivateTabRelative(&lt;span style="color:#ae81ff">1&lt;/span>) },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> audible_bell &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;Disabled&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> use_ime &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">true&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> font_size &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">14.0&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">-- https://wezfurlong.org/wezterm/colorschemes/index.html&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> color_scheme &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;OneHalfDark&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="コワーキングのオンラインイベント">コワーキングのオンラインイベント&lt;/h2>
+&lt;p>月例のカフーツさんのオンラインイベントに参加した。&lt;a href="/diary/diary/posts/2022/0913/#コワーキングのオンラインイベント">先月の所感はここ&lt;/a> 。いとうさんが長野県佐久市へ行かれたお話しが中心だった。現時点ではブログ記事は前編だけ公開されている。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://note.com/kanzan10to9/n/nc06473c67dba">【前編】信州佐久で地域複業のココロを学んできた〜Beyond the Coworking Vol.18&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>この内容もおもしろかったのだけど、ブログにも内容があるので関心があれば購入して読んでみるとよいと思う。余談だけど、いとうさんが旅程を写真でふりかえりながらラーメンの写真が出てきて「このラーメンはまずかった」と吐き捨てるようにつぶやいたのがおもしろかった。その後、長野県つながりで上田市のはたらクリエイトさんの話題に発展した。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://hatakuri.jp/">株式会社はたらクリエイト ｜「はたらく」をクリエイトすることで仕事を楽しむ人を増やす&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>主婦向けの受託仕事を行う場としてのコワーキングスペースから始まって、規模や組織が拡大していって、コワーキングスペースを株式会社化し、そこにいた人たち70名を社員にしたという。会社内に託児所もあり保育士も社員になっている。創業時は役員以外は女性社員のみだったらしい。その後、社員が130人まで増えていまは役員を除いた男性社員が3名。多くの男性は女性しかいないコミュニティに入っていけないと私は考えていた。そして、いとうさんが盲点だったと話しを続けて私も気付いた。この3名ともシングルファーザーだという。世の中の主婦が抱えている課題とシングルファーザーの課題は共通するところが多い。その共感が女性しかいないコミュニティに男性社員が入る余地をもたらしているのだと推測する。マイナーな属性の男性の存在は社会的に無視されやすい。この視点だけでも今日のオンラインイベントに参加してよかったと思えた。&lt;/p>
+&lt;p>はたらクリエイトさんの関連サービスで GoKaLab というものがあり、このキャッチフレーズはいいなと気持ちが揺れた。&lt;/p>
+&lt;blockquote>
+&lt;p>GoKaLab.（ゴカラボ）は、コワーキングスペースのような『研究所』です。&lt;/p>
+&lt;p>&lt;a href="https://gokalab.jp/">https://gokalab.jp/&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>いとうさんがコワーキングスペースで働く人たちは仕事を楽しんでいる人が多いと話していた。たしかに普通の会社員よりも目的をもち、行動力がある人たちの方が多いように私も思える。「仕事を楽しむ」というコンセプトは行き過ぎた資本主義に対するアンチテーゼと言えるのかもしれない。はたらクリエイトさんの創業者の話しを伺う分には売上や利益を求めているようにはみえない。普通の会社にあるような売上や利益の目標に縛られるようなこともないのではないかと思えた。&lt;/p>
+&lt;p>会社は働きたい人が働きたいだけ働くような場所になればいいと私も常々考えていた。公平感と納得感を与えるために目標制度を設けることもないし、働きたくない人たちを監視したり、無理やり働かせるための施策を練ったりすることもない。そのヒントは「仕事を楽しむ」にもあるかもしれない。&lt;/p>
+&lt;p>フリーランスの話題のときに説明したら軽くうけた。&lt;/p>
+&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">麻婆豆腐の素から作った麻婆豆腐でもそこそこおいしかったらそれで満足するお客さんもいる。すべてのお客さんが素材から作った麻婆豆腐を求めているわけでもない。&lt;/p>&amp;mdash; Tetsuya Morimoto (@t2y) &lt;a href="https://twitter.com/t2y/status/1586356897216860160?ref_src=twsrc%5Etfw">October 29, 2022&lt;/a>&lt;/blockquote>
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script></content></item><item><title>はっくばー再訪</title><link>/diary/posts/2022/1015/</link><pubDate>Sat, 15 Oct 2022 11:50:02 +0900</pubDate><guid>/diary/posts/2022/1015/</guid><description>0時に寝て2時に起きて眠れなくて4時過ぎまでだらだらして7時に起きた。お昼に勉強会を終えて (ワクチンによる37.1℃の発熱で) 軽くしんどかったので2時間ほど寝てた。
 ストレッチ ワクチン接種翌日だったけれど、問題なくストレッチへ行くことができた。行く前にオフィスで体温を計測したら36.9℃だった。Dr.stretchの店頭で計測したら36.1℃だった。腕で簡易的に測る計測器の精度はそんなもんかなとか思ったりした。今日の開脚幅は開始前156cmで、ストレッチ後160cmだった。左腕は注射したばかりなので気を遣ってもらいながらストレッチをしてもらった。右足の太ももとふくらはぎに張りがあって疲労が溜まっているようにも思えた。毎週ストレッチしているから体調を維持できている側面は大きいと思う。
 VR 空間での勉強会 【三宮.dev オンライン】VR開催！4周年記念LT大会 に参加した。Mozilla Hubs というサービスを使って vr 空間での部屋で勉強会を行った。1年前は cluster というサービス で開催していた。hubs というサービスを使うのが私は初めてだったのだけど、まだ不安定なところがあるのか、マイクがうまく接続できなくて参加者間で聞こえる・聞こえないといった状況が何度か発生していた。
 参加者が使い慣れていないツールで勉強会を開くと、操作がわからなかったりマイク・スピーカー接続トラブルによるコミュニケーションが取りにくかったりしてなかなか難しいなと周りをみながら思った。ブラウザで vr 空間を自由に移動したり、アバターの位置関係を考慮して声の聞こえ方が変わったりするのは付加価値としておもしろいのだけど、移動することにそもそも意味がないとか、話者から遠いと声が聞こえにくくて近くに移動しないといけないとか、実務的な勉強会の運営としてはあまり意味がない。hubs の vr 空間で遊んでみて、vr の付加価値とイベントとしての付加価値をどうつなげるかといったことが今後の課題になってくるように思えた。
