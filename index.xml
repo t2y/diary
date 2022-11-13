@@ -1,4 +1,77 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>forest nook</title><link>/diary/</link><description>Recent content on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Fri, 11 Nov 2022 05:14:26 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/index.xml" rel="self" type="application/rss+xml"/><item><title>ログおじさん</title><link>/diary/posts/2022/1111/</link><pubDate>Fri, 11 Nov 2022 05:14:26 +0900</pubDate><guid>/diary/posts/2022/1111/</guid><description>23時に寝て3時半に起きて眠れそうになかったからそのまま5時からオフィスで作業してた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>forest nook</title><link>/diary/</link><description>Recent content on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sun, 13 Nov 2022 18:58:39 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/index.xml" rel="self" type="application/rss+xml"/><item><title>ftx 事件</title><link>/diary/posts/2022/1113/</link><pubDate>Sun, 13 Nov 2022 18:58:39 +0900</pubDate><guid>/diary/posts/2022/1113/</guid><description>眠くて19時には帰ってきて、20時ぐらいには寝て、夜に何度か起きても寝て、9時まで寝ていた。疲労過多でなんもやる気しない。
+ftx 破産事件 金曜日ぐらいから大きな事件のようにタイムラインで話題になっていたので経済や金融の勉強の1つとして事件の成り行きを調べていた。いくつかニュース記事を読んだ。直近の数日間の時系列をまとめたものが次の記事になる。
+仮想通貨市場に激震、アラメダショックとFTX騒動の動向まとめ 過去の経緯や人間関係がわりと複雑らしいので時間がない人は次のフィクションを読んで雰囲気を理解するとよさそう。あくまでフィクション。
+猿でも分かる？　FTX破産騒動 twitter のタイムラインでもいろいろみつかる。数億円もの暗号資産をすべて ftx に置いていて資産を失った人。
+Now on public. 公開します
+All gone 全て逝きました pic.twitter.com/iQBaLo19ud
+&amp;mdash; 全資産FTX (@Daniel58656357) November 12, 2022 今後の暗号資産や web3 界隈の資金繰りを心配する人。
+もっと正直に言うと↓
+今引所、何とかプロダクト、何とかNFT関係、何とかDAO、何とかWeb3で務めてる方々へ：あなたが務めている会社（組織）の資金ぐりは今後急速に悪化します。その時に打つ手はあなたをクビにするしかない。だったら早めに転職の準備をしても１つの手、するかどうかは別としても。
+&amp;mdash; Sonny Wang｜INBグループ (@LinksSonny) November 12, 2022 破産申請された内容から負債総額は100億ドルから500億ドル (1.4超円から7超円) の間とされていて、リーマンショックの負債総額は約6,000億ドル（約64兆円）だったことから規模はその10分の1ぐらい。また取引所にある顧客資産を流用していたことが発覚していることから、これはポンジ・スキームに近いものらしく、会社ぐるみで不正をしていたエンロンショックに近い詐欺事件として当局の調査もこれから行われていくらしい。今後、不正の手口なども明らかになっていくのだろうから経営や財務の勉強材料にする。
+現時点で私が ftx 破産事件から学んだことはこれら。どのぐらい経済の影響を与えるのか、まだよくわからないのでしばらく注視していく。
+姉妹会社であるアラメダリサーチ社の資産の大半が ftx トレーディング社が発行するトークン (ftx token) で構成 (25%) されていた 他の資産も流動性の低いトークンで構成されていて売却時のコストを考慮すると資産の評価は適切ではない懸念が指摘された暴露記事が騒動の発端 現金及び現金等価物は20億ドルしかなかった 取引所が発行するトークンを、取引所同士で大量に持ち合いして価値の下支えをしている こういったトークンは流動性がないことから、大量保有者が売ると大幅に価値が下落する ftx トレーディング社は自分たちで発行したトークンでグループ企業の資産価値を過剰に高くみせていた ftx トレーディング社の社長 (Sam Bankman-Fried) は経理システムにバックドアを作っていて顧客資産を流用していた 破産申請の前夜にそのバックドアが使われて100億ドルの顧客資金が社長の投資会社に移され、そのうちの10億ドルから20億ドルの行方が分からなくなっている 誰が何のためにバックドアを利用して資金移動したのかはまだ調査中 1つの取引所にすべての暗号資産を置かないこと 取引所に暗号資産をずっと置きっぱなしにしないこと 暗号資産はまったく安全ではないこと 取引所という脆弱性、普通に盗難されるし、不正されるし、破産したら資産を失う</description><content>&lt;p>眠くて19時には帰ってきて、20時ぐらいには寝て、夜に何度か起きても寝て、9時まで寝ていた。疲労過多でなんもやる気しない。&lt;/p>
+&lt;h2 id="ftx-破産事件">ftx 破産事件&lt;/h2>
+&lt;p>金曜日ぐらいから大きな事件のようにタイムラインで話題になっていたので経済や金融の勉強の1つとして事件の成り行きを調べていた。いくつかニュース記事を読んだ。直近の数日間の時系列をまとめたものが次の記事になる。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://coinpost.jp/?p=406333">仮想通貨市場に激震、アラメダショックとFTX騒動の動向まとめ&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>過去の経緯や人間関係がわりと複雑らしいので時間がない人は次のフィクションを読んで雰囲気を理解するとよさそう。あくまでフィクション。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://note.com/shinjiro_tigers/n/nf7f11fa7989b">猿でも分かる？　FTX破産騒動&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>twitter のタイムラインでもいろいろみつかる。数億円もの暗号資産をすべて ftx に置いていて資産を失った人。&lt;/p>
+&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">Now on public. 公開します&lt;br>All gone 全て逝きました &lt;a href="https://t.co/iQBaLo19ud">pic.twitter.com/iQBaLo19ud&lt;/a>&lt;/p>&amp;mdash; 全資産FTX (@Daniel58656357) &lt;a href="https://twitter.com/Daniel58656357/status/1591414911179325440?ref_src=twsrc%5Etfw">November 12, 2022&lt;/a>&lt;/blockquote>
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script>
+&lt;p>今後の暗号資産や web3 界隈の資金繰りを心配する人。&lt;/p>
+&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">もっと正直に言うと↓&lt;br>&lt;br>今引所、何とかプロダクト、何とかNFT関係、何とかDAO、何とかWeb3で務めてる方々へ：あなたが務めている会社（組織）の資金ぐりは今後急速に悪化します。その時に打つ手はあなたをクビにするしかない。だったら早めに転職の準備をしても１つの手、するかどうかは別としても。&lt;/p>&amp;mdash; Sonny Wang｜INBグループ (@LinksSonny) &lt;a href="https://twitter.com/LinksSonny/status/1591384722105864194?ref_src=twsrc%5Etfw">November 12, 2022&lt;/a>&lt;/blockquote>
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script>
+&lt;p>破産申請された内容から負債総額は100億ドルから500億ドル (1.4超円から7超円) の間とされていて、リーマンショックの負債総額は約6,000億ドル（約64兆円）だったことから規模はその10分の1ぐらい。また取引所にある顧客資産を流用していたことが発覚していることから、これはポンジ・スキームに近いものらしく、会社ぐるみで不正をしていたエンロンショックに近い詐欺事件として当局の調査もこれから行われていくらしい。今後、不正の手口なども明らかになっていくのだろうから経営や財務の勉強材料にする。&lt;/p>
+&lt;p>現時点で私が ftx 破産事件から学んだことはこれら。どのぐらい経済の影響を与えるのか、まだよくわからないのでしばらく注視していく。&lt;/p>
+&lt;ul>
+&lt;li>姉妹会社であるアラメダリサーチ社の資産の大半が ftx トレーディング社が発行するトークン (ftx token) で構成 (25%) されていた
+&lt;ul>
+&lt;li>他の資産も流動性の低いトークンで構成されていて売却時のコストを考慮すると資産の評価は適切ではない懸念が指摘された暴露記事が騒動の発端&lt;/li>
+&lt;li>現金及び現金等価物は20億ドルしかなかった&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>取引所が発行するトークンを、取引所同士で大量に持ち合いして価値の下支えをしている
+&lt;ul>
+&lt;li>こういったトークンは流動性がないことから、大量保有者が売ると大幅に価値が下落する&lt;/li>
+&lt;li>ftx トレーディング社は自分たちで発行したトークンでグループ企業の資産価値を過剰に高くみせていた&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>ftx トレーディング社の社長 (Sam Bankman-Fried) は経理システムにバックドアを作っていて顧客資産を流用していた
+&lt;ul>
+&lt;li>破産申請の前夜にそのバックドアが使われて100億ドルの顧客資金が社長の投資会社に移され、そのうちの10億ドルから20億ドルの行方が分からなくなっている
+&lt;ul>
+&lt;li>誰が何のためにバックドアを利用して資金移動したのかはまだ調査中&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>1つの取引所にすべての暗号資産を置かないこと&lt;/li>
+&lt;li>取引所に暗号資産をずっと置きっぱなしにしないこと&lt;/li>
+&lt;li>暗号資産はまったく安全ではないこと
+&lt;ul>
+&lt;li>取引所という脆弱性、普通に盗難されるし、不正されるし、破産したら資産を失う&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul></content></item><item><title>go の nil を学び直し</title><link>/diary/posts/2022/1112/</link><pubDate>Sat, 12 Nov 2022 11:48:05 +0900</pubDate><guid>/diary/posts/2022/1112/</guid><description>3時半から起きていたせいか夕方に眠くなって19時過ぎから23時まで寝て、それからまたオフィス行って4時ぐらいまで作業してから戻って寝て8時半に起きた。生活がめちゃくちゃ。
+ストレッチ 今日の開脚幅は開始前154cmで、ストレッチ後158cmだった。生活が不規則になって体力的にバテているのもあって右股関節、右腰の張りが強かった。さらに加えてふくらはぎ、腕と全身的にいつもより張りがあるように感じた。トレーナーさんが言うには座っている時間がいつもの週より多かったならその分だけ筋肉が固まってしまう可能性はあるとのこと。先週の東京出張から帰ってきて、リモート環境の構築、macbook 環境でメモをとった内容の見直し、リモートワークでマネージャー業をやるための準備や足りない知識の習得とか、さらに2つの社外イベントにも参加していたので普段の週よりも長い時間を机に向かって作業していたのは正しい。新しいお仕事を受けると一時的に仕事量の負荷が増える。それ自体は悪いことではないけれど、2-3ヶ月は余裕のない生活になりそうな気がする。毎週ストレッチがあるとそういった過労の疲労軽減に役立ってくれているので助かっている。
+オンライン読書会 ずっと参加しようと思いつつ、都合があわなくて参加できていなかった 第4回『Go言語による分散サービス』オンライン読書会 に4回目にして初参加した。7.4 発見されたサービスにリクエストし、ログをレプリケーションする (130ページ) から 8.2.3 有限ステートマシーン (163ページ) まで読んだ。途中からなので過去の経緯はわからないものの、柴田さんが詳しく解説してくれるのでまったくついていけないということはならなかった。出てくるサンプルコードのスニペットからでも学ぶことは多々ある。effective java 読書会に参加してた人だと柴田さんに覚えていてもらっていて嬉しかった。おそらく参加者の記録を自前で管理されているようにみえた。
+go でインターフェースを実装しているかを確認するイディオムとして次のような宣言がある。nil を任意の struct のポインタにキャストするのを試す。変数は _ を宣言しているので実際にはこのコードはなにも定義しない。
+var _ mypkg.MyInterface = (*MyImplements)(nil) なぜこんなことができるのかは nil は nil という記事で解説されている。interface 型は型への参照と値への参照を属性にもつオブジェクトであり、そのゼロ値は nil である。interface 型の nil は型への参照をもっているから nil をキャストするといったコードを書ける。python や java のような言語で nil に相当する None や null といった primitive はキャストするといった概念はない。事実上のシングルトンと言ってよいはず。一方で go の nil は原則として型への参照 nil 且つ、値への参照も nil なものではあるが、interface 型のゼロ値を表すため、この例で言えば、型への参照として mypkg.MyInterface 且つ、値への参照が nil のオブジェクトを生成できる。シングルトンではない。つまり (*MyImplements)(nil) != nil となる。go の nil は他言語からみて特殊ということを知ってはいたんだけど、読書会に出てそのことを確認するサンプルコードをみつけたことで私の学び直しになった。感謝。</description><content>&lt;p>3時半から起きていたせいか夕方に眠くなって19時過ぎから23時まで寝て、それからまたオフィス行って4時ぐらいまで作業してから戻って寝て8時半に起きた。生活がめちゃくちゃ。&lt;/p>
+&lt;h2 id="ストレッチ">ストレッチ&lt;/h2>
+&lt;p>今日の開脚幅は開始前154cmで、ストレッチ後158cmだった。生活が不規則になって体力的にバテているのもあって右股関節、右腰の張りが強かった。さらに加えてふくらはぎ、腕と全身的にいつもより張りがあるように感じた。トレーナーさんが言うには座っている時間がいつもの週より多かったならその分だけ筋肉が固まってしまう可能性はあるとのこと。先週の東京出張から帰ってきて、リモート環境の構築、macbook 環境でメモをとった内容の見直し、リモートワークでマネージャー業をやるための準備や足りない知識の習得とか、さらに2つの社外イベントにも参加していたので普段の週よりも長い時間を机に向かって作業していたのは正しい。新しいお仕事を受けると一時的に仕事量の負荷が増える。それ自体は悪いことではないけれど、2-3ヶ月は余裕のない生活になりそうな気がする。毎週ストレッチがあるとそういった過労の疲労軽減に役立ってくれているので助かっている。&lt;/p>
+&lt;h2 id="オンライン読書会">オンライン読書会&lt;/h2>
+&lt;p>ずっと参加しようと思いつつ、都合があわなくて参加できていなかった &lt;a href="https://technical-book-reading-2.connpass.com/event/262819/">第4回『Go言語による分散サービス』オンライン読書会&lt;/a> に4回目にして初参加した。7.4 発見されたサービスにリクエストし、ログをレプリケーションする (130ページ) から 8.2.3 有限ステートマシーン (163ページ) まで読んだ。途中からなので過去の経緯はわからないものの、柴田さんが詳しく解説してくれるのでまったくついていけないということはならなかった。出てくるサンプルコードのスニペットからでも学ぶことは多々ある。effective java 読書会に参加してた人だと柴田さんに覚えていてもらっていて嬉しかった。おそらく参加者の記録を自前で管理されているようにみえた。&lt;/p>
+&lt;p>go でインターフェースを実装しているかを確認するイディオムとして次のような宣言がある。nil を任意の struct のポインタにキャストするのを試す。変数は _ を宣言しているので実際にはこのコードはなにも定義しない。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-go" data-lang="go">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">_&lt;/span> &lt;span style="color:#a6e22e">mypkg&lt;/span>.&lt;span style="color:#a6e22e">MyInterface&lt;/span> = (&lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">MyImplements&lt;/span>)(&lt;span style="color:#66d9ef">nil&lt;/span>)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>なぜこんなことができるのかは &lt;a href="https://text.baldanders.info/golang/nil-is-nil/">nil は nil&lt;/a> という記事で解説されている。interface 型は型への参照と値への参照を属性にもつオブジェクトであり、そのゼロ値は nil である。interface 型の nil は型への参照をもっているから nil をキャストするといったコードを書ける。python や java のような言語で nil に相当する None や null といった primitive はキャストするといった概念はない。事実上のシングルトンと言ってよいはず。一方で go の nil は原則として型への参照 nil 且つ、値への参照も nil なものではあるが、interface 型のゼロ値を表すため、この例で言えば、型への参照として mypkg.MyInterface 且つ、値への参照が nil のオブジェクトを生成できる。シングルトンではない。つまり &lt;code>(*MyImplements)(nil) != nil&lt;/code> となる。go の nil は他言語からみて特殊ということを知ってはいたんだけど、読書会に出てそのことを確認するサンプルコードをみつけたことで私の学び直しになった。感謝。&lt;/p>
+&lt;p>ソースコードはここに置いた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://gitlab.com/t2y/misc/-/tree/main/implements">https://gitlab.com/t2y/misc/-/tree/main/implements&lt;/a>&lt;/li>
+&lt;/ul></content></item><item><title>ログおじさん</title><link>/diary/posts/2022/1111/</link><pubDate>Fri, 11 Nov 2022 05:14:26 +0900</pubDate><guid>/diary/posts/2022/1111/</guid><description>23時に寝て3時半に起きて眠れそうになかったからそのまま5時からオフィスで作業してた。
 システム構成の検討 コンサルタントから顧客要件のヒアリングを行い、プロダクトを提供するインフラのシステム概要を mermaid で書いた。オンプレとクラウド環境のそれぞれを同じコンテナアプリケーションで動かすための構成を検討した。クラウド環境の一例として aws の構成を考えていて、https と http のプロトコル変換のようなことをするには api gateway を経由しないといけないと考えていたら、alb に証明書を設定して api gateway なくてもいけるとはらさんに教えてもらった。昔からできたそうで、なぜか私が長い間ずっと勘違いしていた。また時間があるときに自分でもやってみようと思う。
 AWS Certificate Managerを使用してインターネットからELBへの通信をHTTPS化してみた Logger の再実装 プロダクトのコアな部分の実装は私がみた方がよいだろうと考えていて、そのうちの1つ Logger の設計がよくなかったので私が作り直した。といっても cybozu-go/log を使った薄いラッパーを設けただけ。チームメンバーからどこでエラーが起きているか追跡しにくいという声があったのでログ出力したところのソースコードの情報を出力しようと考えた。ググればたくさん出てくる。スタックフレームにアクセスする標準パッケージとして runtime を使うとできる。runtime.Caller と runtime.Callers は似て非なる関数のようでファイル名と行番号だけでよければ Caller を使った方がシンプルになると思う。関数名もほしかったら Callers を使ったスタックフレーム自体から取得する必要がある。
 func Trace(skip int) (file string, funcName string) { pc := make([]uintptr, 15) n := runtime.Callers(skip, pc) frames := runtime.CallersFrames(pc[:n]) frame, _ := frames.Next() _file := frame.File[strings.Index(frame.File, sourceRepositoryPath)+8:] file = fmt.Sprintf(&amp;#34;%s:%d&amp;#34;, _file, frame.Line) return file, frame.</description><content>&lt;p>23時に寝て3時半に起きて眠れそうになかったからそのまま5時からオフィスで作業してた。&lt;/p>
