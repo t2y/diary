@@ -1,10 +1,29 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>forest nook</title><link>/diary/</link><description>Recent content on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sun, 13 Nov 2022 18:58:39 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/index.xml" rel="self" type="application/rss+xml"/><item><title>ftx 事件</title><link>/diary/posts/2022/1113/</link><pubDate>Sun, 13 Nov 2022 18:58:39 +0900</pubDate><guid>/diary/posts/2022/1113/</guid><description>眠くて19時には帰ってきて、20時ぐらいには寝て、夜に何度か起きても寝て、9時まで寝ていた。疲労過多でなんもやる気しない。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>forest nook</title><link>/diary/</link><description>Recent content on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Mon, 14 Nov 2022 18:41:37 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/index.xml" rel="self" type="application/rss+xml"/><item><title>久しぶりに go のテストコードを書いた</title><link>/diary/posts/2022/1114/</link><pubDate>Mon, 14 Nov 2022 18:41:37 +0900</pubDate><guid>/diary/posts/2022/1114/</guid><description>0時に寝て3時と5時に起きて7時に起きた。まぁまぁ眠れたと思う。
+go のテストコードのサンプル 先日 Logger のコード を書いて、テストコードのサンプルも書いてみた。いま微妙に TableDrivenTests が書けてないので参照実装として Logger のデータ駆動テストを書いてチームに共有した。私も future さんのテストのチュートリアル記事を読みながら復習してた。
+Goのテストに入門してみよう！ 昔、私が go 開発していた頃にはなかった新機能としてサブテストを並列に実行できる。
+Subtests and Sub-benchmarks uuid ライブラリの歴史的経緯 たまたま Version 1 UUID を返す NewUUID のコードをみていて、err を返しているけど、現時点の実装では err が返ることはなく、これは歴史的経緯でシグネチャを変える方が影響が大きいだろうという意図でそうなっているらしい。
+https://github.com/google/uuid/issues/83 ここでは New を使えとも書いてあるけれど、これはエラーが発生したときに panic が発生するのでこれはこれでいいんやろか？という疑問も出てくる。</description><content>&lt;p>0時に寝て3時と5時に起きて7時に起きた。まぁまぁ眠れたと思う。&lt;/p>
+&lt;h2 id="go-のテストコードのサンプル">go のテストコードのサンプル&lt;/h2>
+&lt;p>先日 &lt;a href="/diary/diary/posts/2022/1111/#Logger-の再実装">Logger のコード&lt;/a> を書いて、テストコードのサンプルも書いてみた。いま微妙に &lt;a href="https://github.com/golang/go/wiki/TableDrivenTests">TableDrivenTests&lt;/a> が書けてないので参照実装として Logger のデータ駆動テストを書いてチームに共有した。私も future さんのテストのチュートリアル記事を読みながら復習してた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://future-architect.github.io/articles/20200601/">Goのテストに入門してみよう！&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>昔、私が go 開発していた頃にはなかった新機能としてサブテストを並列に実行できる。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://pkg.go.dev/testing#hdr-Subtests_and_Sub_benchmarks">Subtests and Sub-benchmarks&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="uuid-ライブラリの歴史的経緯">uuid ライブラリの歴史的経緯&lt;/h2>
+&lt;p>たまたま Version 1 UUID を返す &lt;a href="https://pkg.go.dev/github.com/google/UUID#NewUUID">NewUUID&lt;/a> のコードをみていて、err を返しているけど、現時点の実装では err が返ることはなく、これは歴史的経緯でシグネチャを変える方が影響が大きいだろうという意図でそうなっているらしい。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/google/uuid/issues/83">https://github.com/google/uuid/issues/83&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>ここでは &lt;a href="https://pkg.go.dev/github.com/google/UUID#New">New&lt;/a> を使えとも書いてあるけれど、これはエラーが発生したときに panic が発生するのでこれはこれでいいんやろか？という疑問も出てくる。&lt;/p></content></item><item><title>ftx 事件</title><link>/diary/posts/2022/1113/</link><pubDate>Sun, 13 Nov 2022 18:58:39 +0900</pubDate><guid>/diary/posts/2022/1113/</guid><description>眠くて19時には帰ってきて、20時ぐらいには寝て、夜に何度か起きても寝て、9時まで寝ていた。疲労過多でなんもやる気しない。
 ftx 破産事件 金曜日ぐらいから大きな事件のようにタイムラインで話題になっていたので経済や金融の勉強の1つとして事件の成り行きを調べていた。いくつかニュース記事を読んだ。直近の数日間の時系列をまとめたものが次の記事になる。
 仮想通貨市場に激震、アラメダショックとFTX騒動の動向まとめ 過去の経緯や人間関係がわりと複雑らしいので時間がない人は次のフィクションを読んで雰囲気を理解するとよさそう。あくまでフィクション。
 猿でも分かる？　FTX破産騒動 twitter のタイムラインでもいろいろみつかる。数億円もの暗号資産をすべて ftx に置いていて資産を失った人。
 Now on public. 公開します
 All gone 全て逝きました pic.twitter.com/iQBaLo19ud
-&amp;mdash; 全資産FTX (@Daniel58656357) November 12, 2022 今後の暗号資産や web3 界隈の資金繰りを心配する人。
+&amp;mdash; 全資産FTXのDaniel (@Daniel58656357) November 12, 2022 今後の暗号資産や web3 界隈の資金繰りを心配する人。
 もっと正直に言うと↓
 今引所、何とかプロダクト、何とかNFT関係、何とかDAO、何とかWeb3で務めてる方々へ：あなたが務めている会社（組織）の資金ぐりは今後急速に悪化します。その時に打つ手はあなたをクビにするしかない。だったら早めに転職の準備をしても１つの手、するかどうかは別としても。
 &amp;mdash; Sonny Wang｜INBグループ (@LinksSonny) November 12, 2022 破産申請された内容から負債総額は100億ドルから500億ドル (1.4超円から7超円) の間とされていて、リーマンショックの負債総額は約6,000億ドル（約64兆円）だったことから規模はその10分の1ぐらい。また取引所にある顧客資産を流用していたことが発覚していることから、これはポンジ・スキームに近いものらしく、会社ぐるみで不正をしていたエンロンショックに近い詐欺事件として当局の調査もこれから行われていくらしい。今後、不正の手口なども明らかになっていくのだろうから経営や財務の勉強材料にする。
@@ -20,7 +39,7 @@ All gone 全て逝きました pic.twitter.com/iQBaLo19ud
 &lt;li>&lt;a href="https://note.com/shinjiro_tigers/n/nf7f11fa7989b">猿でも分かる？　FTX破産騒動&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;p>twitter のタイムラインでもいろいろみつかる。数億円もの暗号資産をすべて ftx に置いていて資産を失った人。&lt;/p>
-&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">Now on public. 公開します&lt;br>All gone 全て逝きました &lt;a href="https://t.co/iQBaLo19ud">pic.twitter.com/iQBaLo19ud&lt;/a>&lt;/p>&amp;mdash; 全資産FTX (@Daniel58656357) &lt;a href="https://twitter.com/Daniel58656357/status/1591414911179325440?ref_src=twsrc%5Etfw">November 12, 2022&lt;/a>&lt;/blockquote>
+&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">Now on public. 公開します&lt;br>All gone 全て逝きました &lt;a href="https://t.co/iQBaLo19ud">pic.twitter.com/iQBaLo19ud&lt;/a>&lt;/p>&amp;mdash; 全資産FTXのDaniel (@Daniel58656357) &lt;a href="https://twitter.com/Daniel58656357/status/1591414911179325440?ref_src=twsrc%5Etfw">November 12, 2022&lt;/a>&lt;/blockquote>
 &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script>
 &lt;p>今後の暗号資産や web3 界隈の資金繰りを心配する人。&lt;/p>
 &lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">もっと正直に言うと↓&lt;br>&lt;br>今引所、何とかプロダクト、何とかNFT関係、何とかDAO、何とかWeb3で務めてる方々へ：あなたが務めている会社（組織）の資金ぐりは今後急速に悪化します。その時に打つ手はあなたをクビにするしかない。だったら早めに転職の準備をしても１つの手、するかどうかは別としても。&lt;/p>&amp;mdash; Sonny Wang｜INBグループ (@LinksSonny) &lt;a href="https://twitter.com/LinksSonny/status/1591384722105864194?ref_src=twsrc%5Etfw">November 12, 2022&lt;/a>&lt;/blockquote>

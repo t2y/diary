@@ -1,4 +1,23 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>go on forest nook</title><link>/diary/tags/go/</link><description>Recent content in go on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Fri, 11 Nov 2022 05:14:26 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/go/index.xml" rel="self" type="application/rss+xml"/><item><title>ログおじさん</title><link>/diary/posts/2022/1111/</link><pubDate>Fri, 11 Nov 2022 05:14:26 +0900</pubDate><guid>/diary/posts/2022/1111/</guid><description>23時に寝て3時半に起きて眠れそうになかったからそのまま5時からオフィスで作業してた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>go on forest nook</title><link>/diary/tags/go/</link><description>Recent content in go on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Mon, 14 Nov 2022 18:41:37 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/go/index.xml" rel="self" type="application/rss+xml"/><item><title>久しぶりに go のテストコードを書いた</title><link>/diary/posts/2022/1114/</link><pubDate>Mon, 14 Nov 2022 18:41:37 +0900</pubDate><guid>/diary/posts/2022/1114/</guid><description>0時に寝て3時と5時に起きて7時に起きた。まぁまぁ眠れたと思う。
+go のテストコードのサンプル 先日 Logger のコード を書いて、テストコードのサンプルも書いてみた。いま微妙に TableDrivenTests が書けてないので参照実装として Logger のデータ駆動テストを書いてチームに共有した。私も future さんのテストのチュートリアル記事を読みながら復習してた。
+Goのテストに入門してみよう！ 昔、私が go 開発していた頃にはなかった新機能としてサブテストを並列に実行できる。
+Subtests and Sub-benchmarks uuid ライブラリの歴史的経緯 たまたま Version 1 UUID を返す NewUUID のコードをみていて、err を返しているけど、現時点の実装では err が返ることはなく、これは歴史的経緯でシグネチャを変える方が影響が大きいだろうという意図でそうなっているらしい。
+https://github.com/google/uuid/issues/83 ここでは New を使えとも書いてあるけれど、これはエラーが発生したときに panic が発生するのでこれはこれでいいんやろか？という疑問も出てくる。</description><content>&lt;p>0時に寝て3時と5時に起きて7時に起きた。まぁまぁ眠れたと思う。&lt;/p>
+&lt;h2 id="go-のテストコードのサンプル">go のテストコードのサンプル&lt;/h2>
+&lt;p>先日 &lt;a href="/diary/diary/posts/2022/1111/#Logger-の再実装">Logger のコード&lt;/a> を書いて、テストコードのサンプルも書いてみた。いま微妙に &lt;a href="https://github.com/golang/go/wiki/TableDrivenTests">TableDrivenTests&lt;/a> が書けてないので参照実装として Logger のデータ駆動テストを書いてチームに共有した。私も future さんのテストのチュートリアル記事を読みながら復習してた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://future-architect.github.io/articles/20200601/">Goのテストに入門してみよう！&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>昔、私が go 開発していた頃にはなかった新機能としてサブテストを並列に実行できる。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://pkg.go.dev/testing#hdr-Subtests_and_Sub_benchmarks">Subtests and Sub-benchmarks&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="uuid-ライブラリの歴史的経緯">uuid ライブラリの歴史的経緯&lt;/h2>
+&lt;p>たまたま Version 1 UUID を返す &lt;a href="https://pkg.go.dev/github.com/google/UUID#NewUUID">NewUUID&lt;/a> のコードをみていて、err を返しているけど、現時点の実装では err が返ることはなく、これは歴史的経緯でシグネチャを変える方が影響が大きいだろうという意図でそうなっているらしい。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/google/uuid/issues/83">https://github.com/google/uuid/issues/83&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>ここでは &lt;a href="https://pkg.go.dev/github.com/google/UUID#New">New&lt;/a> を使えとも書いてあるけれど、これはエラーが発生したときに panic が発生するのでこれはこれでいいんやろか？という疑問も出てくる。&lt;/p></content></item><item><title>ログおじさん</title><link>/diary/posts/2022/1111/</link><pubDate>Fri, 11 Nov 2022 05:14:26 +0900</pubDate><guid>/diary/posts/2022/1111/</guid><description>23時に寝て3時半に起きて眠れそうになかったからそのまま5時からオフィスで作業してた。
 システム構成の検討 コンサルタントから顧客要件のヒアリングを行い、プロダクトを提供するインフラのシステム概要を mermaid で書いた。オンプレとクラウド環境のそれぞれを同じコンテナアプリケーションで動かすための構成を検討した。クラウド環境の一例として aws の構成を考えていて、https と http のプロトコル変換のようなことをするには api gateway を経由しないといけないと考えていたら、alb に証明書を設定して api gateway なくてもいけるとはらさんに教えてもらった。昔からできたそうで、なぜか私が長い間ずっと勘違いしていた。また時間があるときに自分でもやってみようと思う。
 AWS Certificate Managerを使用してインターネットからELBへの通信をHTTPS化してみた Logger の再実装 プロダクトのコアな部分の実装は私がみた方がよいだろうと考えていて、そのうちの1つ Logger の設計がよくなかったので私が作り直した。といっても cybozu-go/log を使った薄いラッパーを設けただけ。チームメンバーからどこでエラーが起きているか追跡しにくいという声があったのでログ出力したところのソースコードの情報を出力しようと考えた。ググればたくさん出てくる。スタックフレームにアクセスする標準パッケージとして runtime を使うとできる。runtime.Caller と runtime.Callers は似て非なる関数のようでファイル名と行番号だけでよければ Caller を使った方がシンプルになると思う。関数名もほしかったら Callers を使ったスタックフレーム自体から取得する必要がある。
 func Trace(skip int) (file string, funcName string) { pc := make([]uintptr, 15) n := runtime.Callers(skip, pc) frames := runtime.CallersFrames(pc[:n]) frame, _ := frames.Next() _file := frame.File[strings.Index(frame.File, sourceRepositoryPath)+8:] file = fmt.Sprintf(&amp;#34;%s:%d&amp;#34;, _file, frame.Line) return file, frame.</description><content>&lt;p>23時に寝て3時半に起きて眠れそうになかったからそのまま5時からオフィスで作業してた。&lt;/p>

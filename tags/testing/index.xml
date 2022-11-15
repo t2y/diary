@@ -1,4 +1,23 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>testing on forest nook</title><link>/diary/tags/testing/</link><description>Recent content in testing on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sun, 07 Aug 2022 11:08:39 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/testing/index.xml" rel="self" type="application/rss+xml"/><item><title>wiremock を使った kubernetes モックサーバーのテスト拡張</title><link>/diary/posts/2022/0807/</link><pubDate>Sun, 07 Aug 2022 11:08:39 +0900</pubDate><guid>/diary/posts/2022/0807/</guid><description>2時に寝て7時に起きて9時までだらだらしてた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>testing on forest nook</title><link>/diary/tags/testing/</link><description>Recent content in testing on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Mon, 14 Nov 2022 18:41:37 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/testing/index.xml" rel="self" type="application/rss+xml"/><item><title>久しぶりに go のテストコードを書いた</title><link>/diary/posts/2022/1114/</link><pubDate>Mon, 14 Nov 2022 18:41:37 +0900</pubDate><guid>/diary/posts/2022/1114/</guid><description>0時に寝て3時と5時に起きて7時に起きた。まぁまぁ眠れたと思う。
+go のテストコードのサンプル 先日 Logger のコード を書いて、テストコードのサンプルも書いてみた。いま微妙に TableDrivenTests が書けてないので参照実装として Logger のデータ駆動テストを書いてチームに共有した。私も future さんのテストのチュートリアル記事を読みながら復習してた。
+Goのテストに入門してみよう！ 昔、私が go 開発していた頃にはなかった新機能としてサブテストを並列に実行できる。
+Subtests and Sub-benchmarks uuid ライブラリの歴史的経緯 たまたま Version 1 UUID を返す NewUUID のコードをみていて、err を返しているけど、現時点の実装では err が返ることはなく、これは歴史的経緯でシグネチャを変える方が影響が大きいだろうという意図でそうなっているらしい。
+https://github.com/google/uuid/issues/83 ここでは New を使えとも書いてあるけれど、これはエラーが発生したときに panic が発生するのでこれはこれでいいんやろか？という疑問も出てくる。</description><content>&lt;p>0時に寝て3時と5時に起きて7時に起きた。まぁまぁ眠れたと思う。&lt;/p>
+&lt;h2 id="go-のテストコードのサンプル">go のテストコードのサンプル&lt;/h2>
+&lt;p>先日 &lt;a href="/diary/diary/posts/2022/1111/#Logger-の再実装">Logger のコード&lt;/a> を書いて、テストコードのサンプルも書いてみた。いま微妙に &lt;a href="https://github.com/golang/go/wiki/TableDrivenTests">TableDrivenTests&lt;/a> が書けてないので参照実装として Logger のデータ駆動テストを書いてチームに共有した。私も future さんのテストのチュートリアル記事を読みながら復習してた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://future-architect.github.io/articles/20200601/">Goのテストに入門してみよう！&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>昔、私が go 開発していた頃にはなかった新機能としてサブテストを並列に実行できる。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://pkg.go.dev/testing#hdr-Subtests_and_Sub_benchmarks">Subtests and Sub-benchmarks&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="uuid-ライブラリの歴史的経緯">uuid ライブラリの歴史的経緯&lt;/h2>
+&lt;p>たまたま Version 1 UUID を返す &lt;a href="https://pkg.go.dev/github.com/google/UUID#NewUUID">NewUUID&lt;/a> のコードをみていて、err を返しているけど、現時点の実装では err が返ることはなく、これは歴史的経緯でシグネチャを変える方が影響が大きいだろうという意図でそうなっているらしい。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/google/uuid/issues/83">https://github.com/google/uuid/issues/83&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>ここでは &lt;a href="https://pkg.go.dev/github.com/google/UUID#New">New&lt;/a> を使えとも書いてあるけれど、これはエラーが発生したときに panic が発生するのでこれはこれでいいんやろか？という疑問も出てくる。&lt;/p></content></item><item><title>wiremock を使った kubernetes モックサーバーのテスト拡張</title><link>/diary/posts/2022/0807/</link><pubDate>Sun, 07 Aug 2022 11:08:39 +0900</pubDate><guid>/diary/posts/2022/0807/</guid><description>2時に寝て7時に起きて9時までだらだらしてた。
 Kubernetes Clients のライブラリ実装 昨日の続き 。ある程度、クライアントの振る舞いを確認できたので自前のライブラリを作ることにした。ライブラリなのでテストをちゃんと書きたいと思って単体テストのやり方を調べてたら Kubernetes Clients のリポジトリにも単体テストはほとんどなくて、どうも e2e テストの方を重視しているようにもみえた。github issues を検索してみたら次の issue をみつけた。
 [DESIGN] Add k8s mock client and server test case #956 なにかしら単体テストの仕組みを作った方がいいんじゃないかという提案と一緒に issue の作者？かどうかはわからんけど、wiremock を使ったテストのサンプルコードをあげていた。名前だけは聞いたことがあったけど、過去に使ったこともなく、どういうものか全くわかってない。ドキュメントを軽く読んでみたら http モックサーバーらしい。issue の内容を参考にしながら wiremock のドキュメントをみて junit5 のテスト拡張を書いてみた。これが適切な実装かはあまり自信がないけど、こんな感じでモックサーバーとモッククライアントの junit5 のテスト拡張を実装した。これは static なモックサーバーの設定になるので wiremock 自体の起動コストは速く感じた。ライブラリのテストとしては申し分ない。いまのところは自画自賛。
 @Documented @Target(ElementType.FIELD) @Retention(RetentionPolicy.RUNTIME) public @interface KubernetesApiClient { } public class SetupKubernetesWireMock implements BeforeAllCallback, BeforeEachCallback, ExtensionContext.Store.CloseableResource { private static final Logger logger = LogManager.getLogger(SetupKubernetesWireMock.class.getName()); private static int PORT = 8384; private static WireMockServer wireMockServer = new WireMockServer(options().</description><content>&lt;p>2時に寝て7時に起きて9時までだらだらしてた。&lt;/p>
