@@ -1,4 +1,45 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>event on forest nook</title><link>/diary/tags/event/</link><description>Recent content in event on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Wed, 16 Nov 2022 08:00:27 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/event/index.xml" rel="self" type="application/rss+xml"/><item><title>デジタルノマドへの関心</title><link>/diary/posts/2022/1116/</link><pubDate>Wed, 16 Nov 2022 08:00:27 +0900</pubDate><guid>/diary/posts/2022/1116/</guid><description>0時に寝て2時に起きて6時に起きた。いまは眠れる状態に落ち着きつつある。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>event on forest nook</title><link>/diary/tags/event/</link><description>Recent content in event on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Fri, 18 Nov 2022 08:57:50 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/event/index.xml" rel="self" type="application/rss+xml"/><item><title>新しいお仕事で3週間</title><link>/diary/posts/2022/1118/</link><pubDate>Fri, 18 Nov 2022 08:57:50 +0900</pubDate><guid>/diary/posts/2022/1118/</guid><description>2時に寝て4時に起きて仮眠して6時半に起きた。たぶん寝たんだろうぐらいの感覚。10月まで対外的には週4日で働いていたのを、11月から週5日フルタイムの働き方に移行して、やっぱりしんどいという実感がある。対外的に週4日でも10月もオフィスに来て自社のお仕事をしていたり、半日ぐらいは社外のお仕事をしたりはしていた。それでも働く義務の有無によって、意識の違いか、プレッシャーやストレスの面からなにか働き方が違うように思える。生活も働き方もまったく同じなのに。
+盛り上がってないイベント ハッシュタグ をみてもほとんど関係者や発表者しかコメントしていないようにみえた。過去に新規事業の立ち上げに協力したプロジェクトの発表があると元同僚のタイムラインで知ったのでその発表だけみてみた。私が辞めてから3年ほど経つので新規サービスも追加されていてその内容がメインだったように思う。
+DataSolution事業を支える技術 あまり技術的な内容ではなく、ビジネス向けでもなく、どういった属性の聴衆向けの発表なのか、私にはあまりピンとこなかった。発表の準備不足な印象を受けた。発表を無理やり押し付けられたのかもしれない。
+go の Time 型とタイムゾーン go の Time 型は Location をもっていて、タイムゾーンも一緒に扱える。モダンな言語なら時刻を扱うときにタイムゾーンをセットで扱うのでよいと私も思う。タイムゾーンをもっていない時刻型とタイムゾーンを設定するための余分なコードのことを考えずに済む。
+package main import ( &amp;#34;fmt&amp;#34; &amp;#34;time&amp;#34; ) func mustGetJST() *time.Location { jst, err := time.LoadLocation(&amp;#34;Asia/Tokyo&amp;#34;) if err != nil { panic(err) } return jst } func main() { now := time.Now() fmt.Println(&amp;#34;now:&amp;#34;, now) fmt.Println(&amp;#34;jst:&amp;#34;, now.In(mustGetJST())) fmt.Println(&amp;#34;utc:&amp;#34;, now.UTC()) } 実行結果。
+$ export TZ=&amp;#34;CET&amp;#34; $ go run test_time_now.go now: 2022-11-18 17:00:30.08305121 +0100 CET m=+0.000011788 jst: 2022-11-19 01:00:30.</description><content>&lt;p>2時に寝て4時に起きて仮眠して6時半に起きた。たぶん寝たんだろうぐらいの感覚。10月まで対外的には週4日で働いていたのを、11月から週5日フルタイムの働き方に移行して、やっぱりしんどいという実感がある。対外的に週4日でも10月もオフィスに来て自社のお仕事をしていたり、半日ぐらいは社外のお仕事をしたりはしていた。それでも働く義務の有無によって、意識の違いか、プレッシャーやストレスの面からなにか働き方が違うように思える。生活も働き方もまったく同じなのに。&lt;/p>
+&lt;h2 id="盛り上がってないイベント">盛り上がってないイベント&lt;/h2>
+&lt;p>&lt;a href="https://twitter.com/hashtag/techverse_ja?src=hashtag_click&amp;amp;f=live">ハッシュタグ&lt;/a> をみてもほとんど関係者や発表者しかコメントしていないようにみえた。過去に新規事業の立ち上げに協力したプロジェクトの発表があると元同僚のタイムラインで知ったのでその発表だけみてみた。私が辞めてから3年ほど経つので新規サービスも追加されていてその内容がメインだったように思う。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://tech-verse.me/ja/sessions/133">DataSolution事業を支える技術&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>あまり技術的な内容ではなく、ビジネス向けでもなく、どういった属性の聴衆向けの発表なのか、私にはあまりピンとこなかった。発表の準備不足な印象を受けた。発表を無理やり押し付けられたのかもしれない。&lt;/p>
+&lt;h2 id="go-の-time-型とタイムゾーン">go の Time 型とタイムゾーン&lt;/h2>
+&lt;p>go の &lt;a href="https://pkg.go.dev/time#Time">Time&lt;/a> 型は &lt;a href="https://pkg.go.dev/time#Location">Location&lt;/a> をもっていて、タイムゾーンも一緒に扱える。モダンな言語なら時刻を扱うときにタイムゾーンをセットで扱うのでよいと私も思う。タイムゾーンをもっていない時刻型とタイムゾーンを設定するための余分なコードのことを考えずに済む。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-go" data-lang="go">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">package&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> (
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;fmt&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;time&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">mustGetJST&lt;/span>() &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">time&lt;/span>.&lt;span style="color:#a6e22e">Location&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">jst&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">time&lt;/span>.&lt;span style="color:#a6e22e">LoadLocation&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;Asia/Tokyo&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> panic(&lt;span style="color:#a6e22e">err&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">jst&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">now&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">time&lt;/span>.&lt;span style="color:#a6e22e">Now&lt;/span>()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Println&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;now:&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">now&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Println&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;jst:&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">now&lt;/span>.&lt;span style="color:#a6e22e">In&lt;/span>(&lt;span style="color:#a6e22e">mustGetJST&lt;/span>()))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Println&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;utc:&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">now&lt;/span>.&lt;span style="color:#a6e22e">UTC&lt;/span>())
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>実行結果。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>$ export TZ&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;CET&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ go run test_time_now.go
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>now: 2022-11-18 17:00:30.08305121 +0100 CET m&lt;span style="color:#f92672">=&lt;/span>+0.000011788
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>jst: 2022-11-19 01:00:30.08305121 +0900 JST
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>utc: 2022-11-18 16:00:30.08305121 +0000 UTC
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>デジタルノマドへの関心</title><link>/diary/posts/2022/1116/</link><pubDate>Wed, 16 Nov 2022 08:00:27 +0900</pubDate><guid>/diary/posts/2022/1116/</guid><description>0時に寝て2時に起きて6時に起きた。いまは眠れる状態に落ち着きつつある。
 pandoc と mermaid charts の扱い markdown のドキュメントに mermaid で図を描く機会が増えてきた。markdown を pdf に変換するツールがあって内部的に pandoc を使っている。そのツールで pdf 変換してみたら mermaid 記法がそのままテキストで出力されたので変換するときに図に置き換えられないかを調べてみた。例えば、次のようにして markdown から html に変換できる。
 $ pandoc mydoc.md -f gfm -o mydoc.html 次のように mermaid 記法がそのまま出力される。
 &amp;lt;pre class=&amp;#34;mermaid&amp;#34;&amp;gt;&amp;lt;code&amp;gt;flowchart TB subgraph cr [Container Registry] repo[repository] end ... mermaid を cli ツールとして mermaid-cli がある。markdown を直接渡しても mermaid のコードブロックを検出して画像変換してくれる。複数あってもよい。これはちょっと驚いた。
