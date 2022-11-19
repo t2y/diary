@@ -9,6 +9,7 @@ $ export TZ=&amp;#34;CET&amp;#34; $ go run test_time_now.go now: 2022-11-18 17:0
 &lt;ul>
 &lt;li>&lt;a href="https://tech-verse.me/ja/sessions/133">DataSolution事業を支える技術&lt;/a>&lt;/li>
 &lt;/ul>
+&lt;iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/86cb588632a647e9baf4697c8f79110e" title="Technologies that Support the Data Solution Business" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 560px; height: 314px;" data-ratio="1.78343949044586">&lt;/iframe>
 &lt;p>あまり技術的な内容ではなく、ビジネス向けでもなく、どういった属性の聴衆向けの発表なのか、私にはあまりピンとこなかった。発表の準備不足な印象を受けた。発表を無理やり押し付けられたのかもしれない。&lt;/p>
 &lt;h2 id="go-の-time-型とタイムゾーン">go の Time 型とタイムゾーン&lt;/h2>
 &lt;p>go の &lt;a href="https://pkg.go.dev/time#Time">Time&lt;/a> 型は &lt;a href="https://pkg.go.dev/time#Location">Location&lt;/a> をもっていて、タイムゾーンも一緒に扱える。モダンな言語なら時刻を扱うときにタイムゾーンをセットで扱うのでよいと私も思う。タイムゾーンをもっていない時刻型とタイムゾーンを設定するための余分なコードのことを考えずに済む。&lt;/p>
