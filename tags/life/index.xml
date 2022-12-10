@@ -1,4 +1,47 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>life on forest nook</title><link>/diary/tags/life/</link><description>Recent content in life on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sat, 03 Dec 2022 12:42:40 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/life/index.xml" rel="self" type="application/rss+xml"/><item><title>オフィスの引っ越し</title><link>/diary/posts/2022/1203/</link><pubDate>Sat, 03 Dec 2022 12:42:40 +0900</pubDate><guid>/diary/posts/2022/1203/</guid><description>3時に寝て8時に起きた。疲労困憊だけど、今日を乗り切ればよい。9時から荷造りの続き。昨日の深夜に大半の荷造りを終えていたので2時間ほどで終えて軽く掃除したりしていた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>life on forest nook</title><link>/diary/tags/life/</link><description>Recent content in life on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sat, 10 Dec 2022 12:03:13 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/life/index.xml" rel="self" type="application/rss+xml"/><item><title>openapi-ext-tools をまた使う日がきた</title><link>/diary/posts/2022/1210/</link><pubDate>Sat, 10 Dec 2022 12:03:13 +0900</pubDate><guid>/diary/posts/2022/1210/</guid><description>0時に寝て4時に起きて7時に起きた。わりとよく眠れた。
+ストレッチ トレーナーさんと月曜日の日本対クロアチア戦の感想を話したりしていた。今日の開脚幅は開始前153cmで、ストレッチ後156cmだった。先週は疲弊と疲労で散々な数値になっていたものが復調してきつつある。今週も毎日8-22時はオフィスで缶詰め状態だった。たくさん座っている (同じ体勢でいる) 時間が増えると筋肉にはよくない。まだまだ右腰と右太もも周りの張りは強く復調にはもう少し時間がかかるようにみえる。一方で忙しさのピークを越したと思うので今週以降は少しペースダウンしながら体作りをしていく。いまお手伝いしている開発は12月にすべての集中力を費やしてもよいと考えている。残りは期間はメンバーに委譲するような体制になるとベストかもしれない。そのための体力づくりは重要。
+openapi-ext-tools 再び github pages ならぬ gitlab pages がある。ふと web api のドキュメントを作るために openapi のスキーマを定義したら gitlab の ci/cd と連携できていいんじゃないかと思い付いた。スキーマがあればフロントエンドのクライアント生成や e2e テストコードの自動生成などに使えるかもしれないし。過去に作った openapi-ext-tools を oss にしておいたからいまも使える。oss 万歳。先のことはわからない。redoc を使ってちゃっちゃと実装した。
+pages: only: changes: - schema/* stage: deploy image: alpine:latest before_script: - apk --no-cache add python3 nodejs npm - python --version - python -m ensurepip - pip3 --version - node --version - npm --version - npm install --global redoc-cli - redoc-cli --version - pip3 install openapi-ext-tools - pip3 freeze openapi-ext-tools | grep openapi script: - openapi-spec-cli --spec-path schema/openapi.</description><content>&lt;p>0時に寝て4時に起きて7時に起きた。わりとよく眠れた。&lt;/p>
+&lt;h2 id="ストレッチ">ストレッチ&lt;/h2>
+&lt;p>トレーナーさんと月曜日の日本対クロアチア戦の感想を話したりしていた。今日の開脚幅は開始前153cmで、ストレッチ後156cmだった。先週は疲弊と疲労で散々な数値になっていたものが復調してきつつある。今週も毎日8-22時はオフィスで缶詰め状態だった。たくさん座っている (同じ体勢でいる) 時間が増えると筋肉にはよくない。まだまだ右腰と右太もも周りの張りは強く復調にはもう少し時間がかかるようにみえる。一方で忙しさのピークを越したと思うので今週以降は少しペースダウンしながら体作りをしていく。いまお手伝いしている開発は12月にすべての集中力を費やしてもよいと考えている。残りは期間はメンバーに委譲するような体制になるとベストかもしれない。そのための体力づくりは重要。&lt;/p>
+&lt;h2 id="openapi-ext-tools-再び">openapi-ext-tools 再び&lt;/h2>
+&lt;p>github pages ならぬ &lt;a href="https://docs.gitlab.com/ee/user/project/pages/">gitlab pages&lt;/a> がある。ふと web api のドキュメントを作るために openapi のスキーマを定義したら gitlab の ci/cd と連携できていいんじゃないかと思い付いた。スキーマがあればフロントエンドのクライアント生成や e2e テストコードの自動生成などに使えるかもしれないし。過去に作った &lt;a href="https://pypi.org/project/openapi-ext-tools/">openapi-ext-tools&lt;/a> を oss にしておいたからいまも使える。oss 万歳。先のことはわからない。&lt;a href="https://github.com/Redocly/redoc">redoc&lt;/a> を使ってちゃっちゃと実装した。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">pages&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">only&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">changes&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">schema/*&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">stage&lt;/span>: &lt;span style="color:#ae81ff">deploy&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">image&lt;/span>: &lt;span style="color:#ae81ff">alpine:latest&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">before_script&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">apk --no-cache add python3 nodejs npm&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">python --version&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">python -m ensurepip&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">pip3 --version&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">node --version&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">npm --version&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">npm install --global redoc-cli&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">redoc-cli --version&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">pip3 install openapi-ext-tools&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">pip3 freeze openapi-ext-tools | grep openapi&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">script&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">openapi-spec-cli --spec-path schema/openapi.yml&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - |+&lt;span style="color:#e6db74">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> redoc-cli bundle bundled_openapi.yaml \
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> --output index.html \
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> --options.expandResponses=all \
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> --options.requiredPropsFirst=true \
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> --options.jsonSampleExpandLevel=10 \
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> --options.hideLoading=true \
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> --options.pathInMiddlePanel=true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">mkdir -p public&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">mv index.html public/&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">artifacts&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">paths&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">public&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>久しぶりに触ったら openapi-ext-tools が依存ライブラリの変更で動かなくなっていたので直した。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/t2y/openapi-ext-tools/issues/1">cannot import name &amp;lsquo;ValidationError&amp;rsquo; from &amp;lsquo;openapi_spec_validator.exceptions&amp;rsquo; #1&lt;/a>&lt;/li>
+&lt;/ul></content></item><item><title>オフィスの引っ越し</title><link>/diary/posts/2022/1203/</link><pubDate>Sat, 03 Dec 2022 12:42:40 +0900</pubDate><guid>/diary/posts/2022/1203/</guid><description>3時に寝て8時に起きた。疲労困憊だけど、今日を乗り切ればよい。9時から荷造りの続き。昨日の深夜に大半の荷造りを終えていたので2時間ほどで終えて軽く掃除したりしていた。
 引っ越し 14時から レントラ便 さんにお願いしていた。13時25分にレントラ便の担当者から電話がかかってきてオフィスに到着したとのこと。私もすでに準備出来ていたのですぐやりましょうということで搬出作業が始まった。作業員として1名しかお願いしてなかったが、先方の担当者は2名いたので荷物の搬出がその分楽になった。だいたい30分ぐらいで搬出作業が終わった。新しいオフィスに移動して14時から搬入作業を開始した。搬入作業はだいたい20分ぐらいで終わった。出すよりも入れる方が速かったのは、バンに荷物を積み込むときにスペース効率を考えながら配置する必要がないからだろう。時間に余裕があったので追加で新しいオフィスにある椅子を保管するために家まで運んでもらった。オフィスの椅子はアーロンチェアを使っているので備え付けの椅子はいらない。それが終わったのが14時25分だった。そこで事務手続きして完了とした。荷物の移動も含めて約1時間で引っ越し作業を終えた。本当は14-16時で依頼していたが、早く始めて想定したよりも早く完了していいこと尽くめだった。また次回があればレントラ便さんにしようと思う。その後、荷解きしながらぼちぼち片付けをしていた。
 ストレッチ 19時半からストレッチ。先週の田んぼ作業 でスクワットに近い運動をたくさんやったので月曜日や火曜日はひどい筋肉痛になっていた。水曜日以降はましになったが、若干の違和感も残っていた。今日の開脚幅は開始前144cmで、ストレッチ後150cmだった。疲労と筋肉痛でまったくいつも通りにはいかなかった。お腹つったり足裏つったりしてた。トレーナーさんが言うには筋肉痛のときは普段のストレッチをあまりやるよりも筋肉をほぐすようなストレッチをした方が早く回復するみたいな話しをされていた気がする。あとはワールドカップの話などをしていた。</description><content>&lt;p>3時に寝て8時に起きた。疲労困憊だけど、今日を乗り切ればよい。9時から荷造りの続き。昨日の深夜に大半の荷造りを終えていたので2時間ほどで終えて軽く掃除したりしていた。&lt;/p>
 &lt;h2 id="引っ越し">引っ越し&lt;/h2>

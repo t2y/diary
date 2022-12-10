@@ -1,4 +1,47 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ci/cd on forest nook</title><link>/diary/tags/ci/cd/</link><description>Recent content in ci/cd on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/ci/cd/index.xml" rel="self" type="application/rss+xml"/><item><title>gitlab の ci/cd 入門</title><link>/diary/posts/2022/1207/</link><pubDate>Wed, 07 Dec 2022 19:52:19 +0900</pubDate><guid>/diary/posts/2022/1207/</guid><description>0時に寝て3時に起きてそのまま眠れずにいたら6時になって7時過ぎから準備してオフィス行ってお仕事を始めた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ci/cd on forest nook</title><link>/diary/tags/ci/cd/</link><description>Recent content in ci/cd on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/ci/cd/index.xml" rel="self" type="application/rss+xml"/><item><title>openapi-ext-tools をまた使う日がきた</title><link>/diary/posts/2022/1210/</link><pubDate>Sat, 10 Dec 2022 12:03:13 +0900</pubDate><guid>/diary/posts/2022/1210/</guid><description>0時に寝て4時に起きて7時に起きた。わりとよく眠れた。
+ストレッチ トレーナーさんと月曜日の日本対クロアチア戦の感想を話したりしていた。今日の開脚幅は開始前153cmで、ストレッチ後156cmだった。先週は疲弊と疲労で散々な数値になっていたものが復調してきつつある。今週も毎日8-22時はオフィスで缶詰め状態だった。たくさん座っている (同じ体勢でいる) 時間が増えると筋肉にはよくない。まだまだ右腰と右太もも周りの張りは強く復調にはもう少し時間がかかるようにみえる。一方で忙しさのピークを越したと思うので今週以降は少しペースダウンしながら体作りをしていく。いまお手伝いしている開発は12月にすべての集中力を費やしてもよいと考えている。残りは期間はメンバーに委譲するような体制になるとベストかもしれない。そのための体力づくりは重要。
+openapi-ext-tools 再び github pages ならぬ gitlab pages がある。ふと web api のドキュメントを作るために openapi のスキーマを定義したら gitlab の ci/cd と連携できていいんじゃないかと思い付いた。スキーマがあればフロントエンドのクライアント生成や e2e テストコードの自動生成などに使えるかもしれないし。過去に作った openapi-ext-tools を oss にしておいたからいまも使える。oss 万歳。先のことはわからない。redoc を使ってちゃっちゃと実装した。
+pages: only: changes: - schema/* stage: deploy image: alpine:latest before_script: - apk --no-cache add python3 nodejs npm - python --version - python -m ensurepip - pip3 --version - node --version - npm --version - npm install --global redoc-cli - redoc-cli --version - pip3 install openapi-ext-tools - pip3 freeze openapi-ext-tools | grep openapi script: - openapi-spec-cli --spec-path schema/openapi.</description><content>&lt;p>0時に寝て4時に起きて7時に起きた。わりとよく眠れた。&lt;/p>
+&lt;h2 id="ストレッチ">ストレッチ&lt;/h2>
+&lt;p>トレーナーさんと月曜日の日本対クロアチア戦の感想を話したりしていた。今日の開脚幅は開始前153cmで、ストレッチ後156cmだった。先週は疲弊と疲労で散々な数値になっていたものが復調してきつつある。今週も毎日8-22時はオフィスで缶詰め状態だった。たくさん座っている (同じ体勢でいる) 時間が増えると筋肉にはよくない。まだまだ右腰と右太もも周りの張りは強く復調にはもう少し時間がかかるようにみえる。一方で忙しさのピークを越したと思うので今週以降は少しペースダウンしながら体作りをしていく。いまお手伝いしている開発は12月にすべての集中力を費やしてもよいと考えている。残りは期間はメンバーに委譲するような体制になるとベストかもしれない。そのための体力づくりは重要。&lt;/p>
+&lt;h2 id="openapi-ext-tools-再び">openapi-ext-tools 再び&lt;/h2>
+&lt;p>github pages ならぬ &lt;a href="https://docs.gitlab.com/ee/user/project/pages/">gitlab pages&lt;/a> がある。ふと web api のドキュメントを作るために openapi のスキーマを定義したら gitlab の ci/cd と連携できていいんじゃないかと思い付いた。スキーマがあればフロントエンドのクライアント生成や e2e テストコードの自動生成などに使えるかもしれないし。過去に作った &lt;a href="https://pypi.org/project/openapi-ext-tools/">openapi-ext-tools&lt;/a> を oss にしておいたからいまも使える。oss 万歳。先のことはわからない。&lt;a href="https://github.com/Redocly/redoc">redoc&lt;/a> を使ってちゃっちゃと実装した。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">pages&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">only&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">changes&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">schema/*&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">stage&lt;/span>: &lt;span style="color:#ae81ff">deploy&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">image&lt;/span>: &lt;span style="color:#ae81ff">alpine:latest&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">before_script&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">apk --no-cache add python3 nodejs npm&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">python --version&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">python -m ensurepip&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">pip3 --version&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">node --version&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">npm --version&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">npm install --global redoc-cli&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">redoc-cli --version&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">pip3 install openapi-ext-tools&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">pip3 freeze openapi-ext-tools | grep openapi&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">script&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">openapi-spec-cli --spec-path schema/openapi.yml&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - |+&lt;span style="color:#e6db74">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> redoc-cli bundle bundled_openapi.yaml \
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> --output index.html \
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> --options.expandResponses=all \
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> --options.requiredPropsFirst=true \
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> --options.jsonSampleExpandLevel=10 \
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> --options.hideLoading=true \
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> --options.pathInMiddlePanel=true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">mkdir -p public&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">mv index.html public/&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">artifacts&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">paths&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">public&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>久しぶりに触ったら openapi-ext-tools が依存ライブラリの変更で動かなくなっていたので直した。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/t2y/openapi-ext-tools/issues/1">cannot import name &amp;lsquo;ValidationError&amp;rsquo; from &amp;lsquo;openapi_spec_validator.exceptions&amp;rsquo; #1&lt;/a>&lt;/li>
+&lt;/ul></content></item><item><title>gitlab の ci/cd 入門</title><link>/diary/posts/2022/1207/</link><pubDate>Wed, 07 Dec 2022 19:52:19 +0900</pubDate><guid>/diary/posts/2022/1207/</guid><description>0時に寝て3時に起きてそのまま眠れずにいたら6時になって7時過ぎから準備してオフィス行ってお仕事を始めた。
 gitlab の ci/cd の調査 初めて GitLab CI/CD を触っている。まだ触り始めたばかりだが、感覚的には github actions 相当の機能はあるようにみえる。ソースコードリポジトリやパッケージリポジトリ／コンテナレジストリと ci/cd がセットになっているととても便利だ。これはすごいことだと最近思うようになってきた。もはやソースコードリポジトリのみのホスティングビジネスは成り立たない。なぜなら github や gitlab のような ci/cd が当たり前になってしまうと、その機能がない場合、デメリットを上回るメリットがないとそんなソースコードリポジトリを選択しない。
 docker image をビルドして push する仕組みは既にメンバーが作ってくれていたのでその後始末の処理を作った。Container Registry API を使うと、不要な docker image を削除できる。
 Delete registry repository tags in bulk 削除向けに便利な api 設計になっている。こういう細かい配慮は嬉しい。keep_n で最低限残すイメージ数を指定して older_than で過去何日より古いイメージを削除対象とするといったよくある運用の設定ができる。
