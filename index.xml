@@ -1,4 +1,47 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>forest nook</title><link>/diary/</link><description>Recent content on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Mon, 05 Dec 2022 14:29:09 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/index.xml" rel="self" type="application/rss+xml"/><item><title>法人登記変更申請にもの思い</title><link>/diary/posts/2022/1205/</link><pubDate>Mon, 05 Dec 2022 14:29:09 +0900</pubDate><guid>/diary/posts/2022/1205/</guid><description>4時に寝て8時に起きた。3時過ぎまでオフィスの片付けなどをやっていた。貧乏暇なし。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>forest nook</title><link>/diary/</link><description>Recent content on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Tue, 06 Dec 2022 08:58:19 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/index.xml" rel="self" type="application/rss+xml"/><item><title>echo のよさの1つはテストがやりやすい</title><link>/diary/posts/2022/1206/</link><pubDate>Tue, 06 Dec 2022 08:58:19 +0900</pubDate><guid>/diary/posts/2022/1206/</guid><description>にわかサッカーファンになって、20時頃に1-2時間寝て24時からワールドカップのクロアチア戦をみて3時に寝て8時に起きた。睡眠のリズムが完全に狂ってしまった。
+echo のテストのやりやすさ うちのチームでは http フレームワークに echo を採用 している。その後、開発を継続していていくつか http ハンドラーも実装されてきた。そろそろ http ハンドラーのテストを書いていこうと参照実装を私が書いてみた。メンバーが知らないことは、マネージャーの私が参照実装して教えるといったやり方をしている。echo.HandlerFunc に echo.Context を渡すシンプルなインターフェースはテストを書くときに http ハンドラー以外の依存関係 (例えば db とのコネクションなど) を context を介することでモックと差し替えるのが容易になる。
+tests := []struct { name string ctx echo.Context err *echo.HTTPError } { ... func() echo.Context { data := `{...}` c := newEchoContext(http.MethodPost, &amp;#34;/endpoint&amp;#34;, data) c.Set(&amp;#34;db&amp;#34;, &amp;amp;myMockDB{}) return c }(), ... } if err := myHTTPHandler(ctx); err != nil { ... } こんな感じで context にモックを入れてしまえば http ハンドラーそのものの単体テストを簡単に書ける。そんなことをツィートした。</description><content>&lt;p>にわかサッカーファンになって、20時頃に1-2時間寝て24時からワールドカップのクロアチア戦をみて3時に寝て8時に起きた。睡眠のリズムが完全に狂ってしまった。&lt;/p>
+&lt;h2 id="echo-のテストのやりやすさ">echo のテストのやりやすさ&lt;/h2>
+&lt;p>うちのチームでは http フレームワークに &lt;a href="/diary/diary/posts/2022/1122/#echo-を採用">echo を採用&lt;/a> している。その後、開発を継続していていくつか http ハンドラーも実装されてきた。そろそろ http ハンドラーのテストを書いていこうと参照実装を私が書いてみた。メンバーが知らないことは、マネージャーの私が参照実装して教えるといったやり方をしている。echo.HandlerFunc に echo.Context を渡すシンプルなインターフェースはテストを書くときに http ハンドラー以外の依存関係 (例えば db とのコネクションなど) を context を介することでモックと差し替えるのが容易になる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-go" data-lang="go">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">tests&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> []&lt;span style="color:#66d9ef">struct&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">name&lt;/span> &lt;span style="color:#66d9ef">string&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">ctx&lt;/span> &lt;span style="color:#a6e22e">echo&lt;/span>.&lt;span style="color:#a6e22e">Context&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">echo&lt;/span>.&lt;span style="color:#a6e22e">HTTPError&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>} {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">func&lt;/span>() &lt;span style="color:#a6e22e">echo&lt;/span>.&lt;span style="color:#a6e22e">Context&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">data&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#e6db74">`{...}`&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">c&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">newEchoContext&lt;/span>(&lt;span style="color:#a6e22e">http&lt;/span>.&lt;span style="color:#a6e22e">MethodPost&lt;/span>, &lt;span style="color:#e6db74">&amp;#34;/endpoint&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">data&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">c&lt;/span>.&lt;span style="color:#a6e22e">Set&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;db&amp;#34;&lt;/span>, &lt;span style="color:#f92672">&amp;amp;&lt;/span>&lt;span style="color:#a6e22e">myMockDB&lt;/span>{})
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">c&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }(),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">myHTTPHandler&lt;/span>(&lt;span style="color:#a6e22e">ctx&lt;/span>); &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>こんな感じで context にモックを入れてしまえば http ハンドラーそのものの単体テストを簡単に書ける。そんなことをツィートした。&lt;/p>
+&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">その後 echo を採用して echo のよいところに1つ気付いた。echo.HandlerFunc に echo.Context を渡すインターフェースはテストがやりやすい。例えば、コンテキストで db のコネクションを保持しておけば、テストのときにモックに差し替えて http ハンドラーの単体テストを実装しやすい。&lt;/p>&amp;mdash; Tetsuya Morimoto (@t2y) &lt;a href="https://twitter.com/t2y/status/1600337204286746624?ref_src=twsrc%5Etfw">December 7, 2022&lt;/a>&lt;/blockquote>
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script>
+&lt;p>そしたら podhmo からレスをもらったので go のリクエストコンテキストの扱いについても議論した。&lt;/p>
+&lt;ul>
+&lt;li>リクエストスコープのものを context に入れるのは同意&lt;/li>
+&lt;li>それ以外のスコープのものを context に入れるのは懸念がある
+&lt;ul>
+&lt;li>http ハンドラーのレイヤーとアプリケーションのレイヤーが明確に分かれているならまだ理解できる&lt;/li>
+&lt;li>アプリケーションのレイヤーで context を自由に使うと依存関係や統制が取れなくなる
+&lt;ul>
+&lt;li>これは私も同意するところでアプリケーションのレイヤーにリクエストコンテキストを渡す必要はない&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">&lt;a href="https://t.co/Yomdbyh1H0">https://t.co/Yomdbyh1H0&lt;/a>&lt;br>&lt;br>昔にこういう記事を書いてた。&lt;br>chiはルーティングライブラリと考えるとスムーズ。&lt;br>&lt;br>あとはnet/httpのミドルウェアを使いたいかechoなど専用のものを書くかの違いくらいかな。 &lt;a href="https://t.co/9LtoanpY0c">https://t.co/9LtoanpY0c&lt;/a>&lt;/p>&amp;mdash; filter:follows include:nativeretweets (@podhmo) &lt;a href="https://twitter.com/podhmo/status/1600338082242646016?ref_src=twsrc%5Etfw">December 7, 2022&lt;/a>&lt;/blockquote>
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script>
+&lt;h2 id="オフィス住所の更新">オフィス住所の更新&lt;/h2>
+&lt;p>引き続き、住所変更の手続きを時間をみつけてやっている。同じ銀行の住所変更の手続きでも PayPay 銀行と三菱 UFJ 銀行ではまったく異なる。前者はオンラインでアカウント情報を変更するだけで済んだ。簡単。一方で後者はオンラインではできず、来店予約をとって対面で行う。当日に登記事項証明書の原本をもってこいと。なんという面倒臭さ。よくよく考えたら法人の登記事項証明書は誰でも取得できる。行政のシステムがどうなっているか知らないが、銀行が法人の住所変更を自分たちで調べることもやろうと思えばできるはず。登記事項証明書をオンラインで取得する手数料は500円になる。来店予約すると応対する人の人件費を考えたらシステムの手数料を支払った方が安いのではないか。&lt;/p></content></item><item><title>法人登記変更申請にもの思い</title><link>/diary/posts/2022/1205/</link><pubDate>Mon, 05 Dec 2022 14:29:09 +0900</pubDate><guid>/diary/posts/2022/1205/</guid><description>4時に寝て8時に起きた。3時過ぎまでオフィスの片付けなどをやっていた。貧乏暇なし。
 年金事務所でヒアリング 8時半から住所変更のために年金事務所に立ち寄る。会社の住所変更をすると行政機関にその申請をしないといけないが、年金事務所がもっとも短くて移転後5日以内となっている。行ってみたら登記事項証明書のコピーがないと手続きをできないという。すべてに先立って法人登記の変更申請が必要なことがわかった。法人登記の変更申請に1週間かかるのでその時点でこの手続きは無理だとわかった。行政のバグの1つかもしれない。
 法務局で法人登記の変更申請 以前、電子公告の変更で法人登記の変更申請をやったことがあったので手続きの雰囲気を理解していた。お昼休みを兼ねて法務局へ住所変更の申請に行く。合同会社の法人登記の変更申請は次のリンクにある。
 ３　商号・目的の変更，本店移転 しかし、このリンクを辿ると、3つの記載例がある。
