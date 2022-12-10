@@ -1,4 +1,36 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on forest nook</title><link>/diary/posts/</link><description>Recent content in Posts on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Tue, 06 Dec 2022 08:58:19 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>echo のよさの1つはテストがやりやすい</title><link>/diary/posts/2022/1206/</link><pubDate>Tue, 06 Dec 2022 08:58:19 +0900</pubDate><guid>/diary/posts/2022/1206/</guid><description>にわかサッカーファンになって、20時頃に1-2時間寝て24時からワールドカップのクロアチア戦をみて3時に寝て8時に起きた。睡眠のリズムが完全に狂ってしまった。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on forest nook</title><link>/diary/posts/</link><description>Recent content in Posts on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Wed, 07 Dec 2022 19:52:19 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>gitlab の ci/cd 入門</title><link>/diary/posts/2022/1207/</link><pubDate>Wed, 07 Dec 2022 19:52:19 +0900</pubDate><guid>/diary/posts/2022/1207/</guid><description>0時に寝て3時に起きてそのまま眠れずにいたら6時になって7時過ぎから準備してオフィス行ってお仕事を始めた。
+gitlab の ci/cd の調査 初めて GitLab CI/CD を触っている。まだ触り始めたばかりだが、感覚的には github actions 相当の機能はあるようにみえる。ソースコードリポジトリやパッケージリポジトリ／コンテナレジストリと ci/cd がセットになっているととても便利だ。これはすごいことだと最近思うようになってきた。もはやソースコードリポジトリのみのホスティングビジネスは成り立たない。なぜなら github や gitlab のような ci/cd が当たり前になってしまうと、その機能がない場合、デメリットを上回るメリットがないとそんなソースコードリポジトリを選択しない。
+docker image をビルドして push する仕組みは既にメンバーが作ってくれていたのでその後始末の処理を作った。Container Registry API を使うと、不要な docker image を削除できる。
+Delete registry repository tags in bulk 削除向けに便利な api 設計になっている。こういう細かい配慮は嬉しい。keep_n で最低限残すイメージ数を指定して older_than で過去何日より古いイメージを削除対象とするといったよくある運用の設定ができる。
+curl -s -H &amp;#34;PRIVATE-TOKEN: $PROJECT_ACCESS_TOKEN&amp;#34; -X DELETE &amp;#34;${endpoint}&amp;#34; \ --data &amp;#34;name_regex_delete=.*&amp;#34; \ --data &amp;#34;keep_n=${KEEP_N}&amp;#34; \ --data &amp;#34;older_than=${OLDER_THAN}&amp;#34; あとは認証のトークンを指定する方法として私が調べた限りだと2通りある。
+(ci_job_token_scope の feature flag を有効にして) $CI_JOB_TOKEN を使う こっちの方が一時トークンなのでよりセキュアなはず この場合はヘッダーに JOB-TOKEN を指定する プロジェクトレベルのアクセストークン を発行して ci/cd の variables に登録する トークンが漏洩したときにプロジェクトレベルで被害が発生する この場合はヘッダーに PRIVATE-TOKEN を指定する 使うトークンによってヘッダーが変わるというのがちょっと変な認証の設計にもみえるけど、まぁそれぐらいしか気にはならない。</description><content>&lt;p>0時に寝て3時に起きてそのまま眠れずにいたら6時になって7時過ぎから準備してオフィス行ってお仕事を始めた。&lt;/p>
+&lt;h2 id="gitlab-の-cicd-の調査">gitlab の ci/cd の調査&lt;/h2>
+&lt;p>初めて &lt;a href="https://docs.gitlab.com/ee/ci/">GitLab CI/CD&lt;/a> を触っている。まだ触り始めたばかりだが、感覚的には github actions 相当の機能はあるようにみえる。ソースコードリポジトリやパッケージリポジトリ／コンテナレジストリと ci/cd がセットになっているととても便利だ。これはすごいことだと最近思うようになってきた。もはやソースコードリポジトリのみのホスティングビジネスは成り立たない。なぜなら github や gitlab のような ci/cd が当たり前になってしまうと、その機能がない場合、デメリットを上回るメリットがないとそんなソースコードリポジトリを選択しない。&lt;/p>
+&lt;p>docker image をビルドして push する仕組みは既にメンバーが作ってくれていたのでその後始末の処理を作った。&lt;a href="https://docs.gitlab.com/ee/api/container_registry.html">Container Registry API&lt;/a> を使うと、不要な docker image を削除できる。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.gitlab.com/ee/api/container_registry.html#delete-registry-repository-tags-in-bulk">Delete registry repository tags in bulk&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>削除向けに便利な api 設計になっている。こういう細かい配慮は嬉しい。&lt;code>keep_n&lt;/code> で最低限残すイメージ数を指定して &lt;code>older_than&lt;/code> で過去何日より古いイメージを削除対象とするといったよくある運用の設定ができる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>curl -s -H &lt;span style="color:#e6db74">&amp;#34;PRIVATE-TOKEN: &lt;/span>$PROJECT_ACCESS_TOKEN&lt;span style="color:#e6db74">&amp;#34;&lt;/span> -X DELETE &lt;span style="color:#e6db74">&amp;#34;&lt;/span>&lt;span style="color:#e6db74">${&lt;/span>endpoint&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span> &lt;span style="color:#ae81ff">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">&lt;/span> --data &lt;span style="color:#e6db74">&amp;#34;name_regex_delete=.*&amp;#34;&lt;/span> &lt;span style="color:#ae81ff">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">&lt;/span> --data &lt;span style="color:#e6db74">&amp;#34;keep_n=&lt;/span>&lt;span style="color:#e6db74">${&lt;/span>KEEP_N&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span> &lt;span style="color:#ae81ff">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">&lt;/span> --data &lt;span style="color:#e6db74">&amp;#34;older_than=&lt;/span>&lt;span style="color:#e6db74">${&lt;/span>OLDER_THAN&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>あとは認証のトークンを指定する方法として私が調べた限りだと2通りある。&lt;/p>
+&lt;ul>
+&lt;li>(&lt;code>ci_job_token_scope&lt;/code> の feature flag を有効にして) &lt;code>$CI_JOB_TOKEN&lt;/code> を使う
+&lt;ul>
+&lt;li>こっちの方が一時トークンなのでよりセキュアなはず&lt;/li>
+&lt;li>この場合はヘッダーに JOB-TOKEN を指定する&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;a href="https://docs.gitlab.com/ee/user/project/settings/project_access_tokens.html">プロジェクトレベルのアクセストークン&lt;/a> を発行して ci/cd の variables に登録する
+&lt;ul>
+&lt;li>トークンが漏洩したときにプロジェクトレベルで被害が発生する&lt;/li>
+&lt;li>この場合はヘッダーに PRIVATE-TOKEN を指定する&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>使うトークンによってヘッダーが変わるというのがちょっと変な認証の設計にもみえるけど、まぁそれぐらいしか気にはならない。&lt;/p></content></item><item><title>echo のよさの1つはテストがやりやすい</title><link>/diary/posts/2022/1206/</link><pubDate>Tue, 06 Dec 2022 08:58:19 +0900</pubDate><guid>/diary/posts/2022/1206/</guid><description>にわかサッカーファンになって、20時頃に1-2時間寝て24時からワールドカップのクロアチア戦をみて3時に寝て8時に起きた。睡眠のリズムが完全に狂ってしまった。
 echo のテストのやりやすさ うちのチームでは http フレームワークに echo を採用 している。その後、開発を継続していていくつか http ハンドラーも実装されてきた。そろそろ http ハンドラーのテストを書いていこうと参照実装を私が書いてみた。メンバーが知らないことは、マネージャーの私が参照実装して教えるといったやり方をしている。echo.HandlerFunc に echo.Context を渡すシンプルなインターフェースはテストを書くときに http ハンドラー以外の依存関係 (例えば db とのコネクションなど) を context を介することでモックと差し替えるのが容易になる。
 tests := []struct { name string ctx echo.Context err *echo.HTTPError } { ... func() echo.Context { data := `{...}` c := newEchoContext(http.MethodPost, &amp;#34;/endpoint&amp;#34;, data) c.Set(&amp;#34;db&amp;#34;, &amp;amp;myMockDB{}) return c }(), ... } if err := myHTTPHandler(ctx); err != nil { ... } こんな感じで context にモックを入れてしまえば http ハンドラーそのものの単体テストを簡単に書ける。そんなことをツィートした。</description><content>&lt;p>にわかサッカーファンになって、20時頃に1-2時間寝て24時からワールドカップのクロアチア戦をみて3時に寝て8時に起きた。睡眠のリズムが完全に狂ってしまった。&lt;/p>
 &lt;h2 id="echo-のテストのやりやすさ">echo のテストのやりやすさ&lt;/h2>
