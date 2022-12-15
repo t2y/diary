@@ -1,4 +1,42 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on forest nook</title><link>/diary/posts/</link><description>Recent content in Posts on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sun, 11 Dec 2022 10:12:21 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>休日のオンライン学習</title><link>/diary/posts/2022/1211/</link><pubDate>Sun, 11 Dec 2022 10:12:21 +0900</pubDate><guid>/diary/posts/2022/1211/</guid><description>0時に寝て夜中に吐き気がして2回ほど起きて3時と5時に起きて8時に起きた。なかなか苦しい寝方をした。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on forest nook</title><link>/diary/posts/</link><description>Recent content in Posts on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Mon, 12 Dec 2022 12:52:27 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>docker compose に期待しない</title><link>/diary/posts/2022/1212/</link><pubDate>Mon, 12 Dec 2022 12:52:27 +0900</pubDate><guid>/diary/posts/2022/1212/</guid><description>0時に寝て5時に起きて7時に起きた。起きたら冷やしたのかお腹痛かったが、まぁまぁ眠れたと思う。
+テスト環境の構築 GitLab CI/CD にだいぶ慣れてきてジョブを追加したり改善したりしながらようやくアプリケーションの docker image もコンテナレジストリに push されるようになった。それを pull してきて、テスト環境を docker compose で構築する。Use Compose in production とドキュメントでは威勢がよいが、これが全然イケてない。複数の compose.yml で項目によっては変更したいところを置き換えるといった振る舞いになっていない。例えば、ポート番号などを dev と prod で置き換えたいといった運用の要件を考える。
+dev.yml services: myapp: ports: - 18080:8080 prod.yml services: myapp: ports: - 8080:8080 これを次のように指定すると、
+$ docker compose -f dev.yml -f prod.yml up -d 実際のサービスは次のように振る舞う。全然あかん。
+services: myapp: ports: - 18080:8080 - 8080:8080 他にもそれぞれの yml ファイルで読み込む environment file のマージなどもよくわからない振る舞いをしていて複数の compose.yml で制御するのは断念した。dry の原則に反して設定は重複するけど、それぞれの環境を個別に compose.yml として管理した方が保守コストは小さくなると私は判断した。複数の compose.yml の使い分けのデバッグを1-2日やった後に諦めてテスト環境の構築は完了した。
+年金事務所の住所変更手続き 先週 法務局で法人登記の変更申請 をしていて、そのときに問題がなければ今日から登記事項証明書を取得できると案内をもらっていた。決定書が漏れていて再提出というトラブルはあったものの、最小限の損失で留めたせいか、問題なく登記事項証明書を発行できた。住所の変更だけわかればよいので履歴事項証明書ではなく現在事項証明書を発行してみた。この書類もおもしろくて1つ前の住所といまの住所の2つを確認できる。法務局へ行った帰りに年金事務所へ立ち寄って社会保険の住所変更の手続きを行った。次の3つの書類をもって窓口へ。</description><content>&lt;p>0時に寝て5時に起きて7時に起きた。起きたら冷やしたのかお腹痛かったが、まぁまぁ眠れたと思う。&lt;/p>
+&lt;h2 id="テスト環境の構築">テスト環境の構築&lt;/h2>
+&lt;p>&lt;a href="https://docs.gitlab.com/ee/ci/">GitLab CI/CD&lt;/a> にだいぶ慣れてきてジョブを追加したり改善したりしながらようやくアプリケーションの docker image もコンテナレジストリに push されるようになった。それを pull してきて、テスト環境を &lt;a href="https://docs.docker.com/compose/">docker compose&lt;/a> で構築する。&lt;a href="https://docs.docker.com/compose/production/">Use Compose in production&lt;/a> とドキュメントでは威勢がよいが、これが全然イケてない。複数の compose.yml で項目によっては変更したいところを置き換えるといった振る舞いになっていない。例えば、ポート番号などを dev と prod で置き換えたいといった運用の要件を考える。&lt;/p>
+&lt;ul>
+&lt;li>dev.yml&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">services&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">myapp&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">ports&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">18080&lt;/span>:&lt;span style="color:#ae81ff">8080&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>prod.yml&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">services&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">myapp&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">ports&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">8080&lt;/span>:&lt;span style="color:#ae81ff">8080&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>これを次のように指定すると、&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ docker compose -f dev.yml -f prod.yml up -d
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>実際のサービスは次のように振る舞う。全然あかん。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">services&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">myapp&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">ports&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">18080&lt;/span>:&lt;span style="color:#ae81ff">8080&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">8080&lt;/span>:&lt;span style="color:#ae81ff">8080&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>他にもそれぞれの yml ファイルで読み込む environment file のマージなどもよくわからない振る舞いをしていて複数の compose.yml で制御するのは断念した。dry の原則に反して設定は重複するけど、それぞれの環境を個別に compose.yml として管理した方が保守コストは小さくなると私は判断した。複数の compose.yml の使い分けのデバッグを1-2日やった後に諦めてテスト環境の構築は完了した。&lt;/p>
+&lt;h2 id="年金事務所の住所変更手続き">年金事務所の住所変更手続き&lt;/h2>
+&lt;p>先週 &lt;a href="/diary/diary/posts/2022/1205/#法務局で法人登記の変更申請">法務局で法人登記の変更申請&lt;/a> をしていて、そのときに問題がなければ今日から登記事項証明書を取得できると案内をもらっていた。決定書が漏れていて再提出というトラブルはあったものの、最小限の損失で留めたせいか、問題なく登記事項証明書を発行できた。住所の変更だけわかればよいので履歴事項証明書ではなく現在事項証明書を発行してみた。この書類もおもしろくて1つ前の住所といまの住所の2つを確認できる。法務局へ行った帰りに年金事務所へ立ち寄って社会保険の住所変更の手続きを行った。次の3つの書類をもって窓口へ。&lt;/p>
+&lt;ul>
+&lt;li>登記事項証明書: 番地まで記載されている&lt;/li>
+&lt;li>オフィスの一時使用契約書: ビル名はあるがこのビル名は来月に改名&lt;/li>
+&lt;li>ビル名変更の証明書類: ビル名の変更のみが記載されている&lt;/li>
+&lt;/ul>
+&lt;p>この3つの書類で完全に指定された住所 (Fully Qualified Address: 造語) を丁寧に説明したところ担当者に納得してもらえて事なきを得た。&lt;/p></content></item><item><title>休日のオンライン学習</title><link>/diary/posts/2022/1211/</link><pubDate>Sun, 11 Dec 2022 10:12:21 +0900</pubDate><guid>/diary/posts/2022/1211/</guid><description>0時に寝て夜中に吐き気がして2回ほど起きて3時と5時に起きて8時に起きた。なかなか苦しい寝方をした。
 ヤフートラベルと一休.comのシステム統合 アーカイブ公開されたらみようと思いつつ忘れてたので見返した。
 雑なめも。また機をみて見返すこともあるかも。
 バックエンドは完全に一休側に寄せるという大きな意志決定を2016年に行った この意志決定はフロントエンド統合にも大きな影響を与えた ふじもんさんの意志決定がよかった？ 今日の話しはマルチブランドデザインシステム統合がメイン 開発者が50-60人程度で半年ぐらいで launch できた nuxt/vuejs で開発している スタイルは tailwindcss を使っている 実は launch した後にこのシステムが必要だとわかった 開発者とデザイナー間の細かい意思疎通が困難 外部からデザインシステムに詳しい人にも来てもらっていろんな議論をした ガイドラインを言語化するところから始め、最終的にソースコードの共有ができるようになった 終わってからデザインシステムそのものは重要ではないと気付いた この過程で開発者とデザイナー間のどのように共通化するか、あるいはしないかと議論を繰り返し行ったことが重要だったと当事者がインタビューで語っていた デザインシステムの開発を通じてデザインの共通認識をもてたことがよかった 波及効果 同じソースコードから少し異なる体験の開発のノウハウができた ふるさと納税に特化した宿泊予約サイトを作った 統合は終わりではない、lauch したところが始まり 統合後にいろいろな施策をすることで課題がみえてくることがある 全国旅行支援は1つの開発で2つの体験をつくることができた Q. デザイナーと開発者はわりと仲が悪いのでは？価値観や考え方が異なるのですり合わせるのは難しいのでは？ 過去の一休でも起きていた 一休のチームはデザイナーと PM と開発者で構成されている このチームが一緒に働いていてチームでなるべく意志決定している 普段から一緒に働いていると仲が悪いということはなかった とはいえ、仕事のプロセスが異なるので課題はあった 地道に丁寧にすり合わせを行った 外部から講師を読んで中立的な立場でワークショップを何度も行った デザイナーと開発者を別の組織にしているとコミュニケーションの壁ができてしまうかもしれない go の学び直し テストの学び直し に引き続き、Gopher塾 #2 - Goらしいコードの書き方 - DAY 1 に参加した。
