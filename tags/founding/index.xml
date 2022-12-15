@@ -53,10 +53,16 @@ tests := []struct { name string ctx echo.Context err *echo.HTTPError } { ... fun
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">&lt;a href="https://t.co/Yomdbyh1H0">https://t.co/Yomdbyh1H0&lt;/a>&lt;br>&lt;br>昔にこういう記事を書いてた。&lt;br>chiはルーティングライブラリと考えるとスムーズ。&lt;br>&lt;br>あとはnet/httpのミドルウェアを使いたいかechoなど専用のものを書くかの違いくらいかな。 &lt;a href="https://t.co/9LtoanpY0c">https://t.co/9LtoanpY0c&lt;/a>&lt;/p>&amp;mdash; filter:follows include:nativeretweets (@podhmo) &lt;a href="https://twitter.com/podhmo/status/1600338082242646016?ref_src=twsrc%5Etfw">December 7, 2022&lt;/a>&lt;/blockquote>
+&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">&lt;a href="https://t.co/Yomdbyh1H0">https://t.co/Yomdbyh1H0&lt;/a>&lt;br>&lt;br>昔にこういう記事を書いてた。&lt;br>chiはルーティングライブラリと考えるとスムーズ。&lt;br>&lt;br>あとはnet/httpのミドルウェアを使いたいかechoなど専用のものを書くかの違いくらいかな。 &lt;a href="https://t.co/9LtoanpY0c">https://t.co/9LtoanpY0c&lt;/a>&lt;/p>&amp;mdash; po (@podhmo) &lt;a href="https://twitter.com/podhmo/status/1600338082242646016?ref_src=twsrc%5Etfw">December 7, 2022&lt;/a>&lt;/blockquote>
 &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script>
 &lt;h2 id="オフィス住所の更新">オフィス住所の更新&lt;/h2>
-&lt;p>引き続き、住所変更の手続きを時間をみつけてやっている。同じ銀行の住所変更の手続きでも PayPay 銀行と三菱 UFJ 銀行ではまったく異なる。前者はオンラインでアカウント情報を変更するだけで済んだ。簡単。一方で後者はオンラインではできず、来店予約をとって対面で行う。当日に登記事項証明書の原本をもってこいと。なんという面倒臭さ。よくよく考えたら法人の登記事項証明書は誰でも取得できる。行政のシステムがどうなっているか知らないが、銀行が法人の住所変更を自分たちで調べることもやろうと思えばできるはず。登記事項証明書をオンラインで取得する手数料は500円になる。来店予約すると応対する人の人件費を考えたらシステムの手数料を支払った方が安いのではないか。&lt;/p></content></item><item><title>法人登記変更申請にもの思い</title><link>/diary/posts/2022/1205/</link><pubDate>Mon, 05 Dec 2022 14:29:09 +0900</pubDate><guid>/diary/posts/2022/1205/</guid><description>4時に寝て8時に起きた。3時過ぎまでオフィスの片付けなどをやっていた。貧乏暇なし。
+&lt;p>引き続き、住所変更の手続きを時間をみつけてやっている。同じ銀行の住所変更の手続きでも PayPay 銀行と三菱 UFJ 銀行ではまったく異なる。前者はオンラインでアカウント情報を変更するだけで済んだ。簡単。一方で後者はオンラインではできず、来店予約をとって対面で行う。当日に登記事項証明書の原本をもってこいと。なんという面倒臭さ。よくよく考えたら法人の登記事項証明書は誰でも取得できる。行政のシステムがどうなっているか知らないが、銀行が法人の住所変更を自分たちで調べることもやろうと思えばできるはず。登記事項証明書をオンラインで取得する手数料は500円になる。来店予約すると応対する人の人件費を考えたらシステムの手数料を支払った方が安いのではないか。&lt;/p>
+&lt;p>国税庁の管轄ではあるが、&lt;a href="https://www.houjin-bangou.nta.go.jp/">国税庁法人番号公表サイト&lt;/a> から法人の住所変更そのものは確認できる。これは e-tax で次の2つの書類を申請した。登記事項証明書がなくても申請はできた。なにも言ってこなければ問題ないのかな？&lt;/p>
+&lt;ul>
+&lt;li>異動届&lt;/li>
+&lt;li>給与支払事務所等の開設・移転・廃止の届出&lt;/li>
+&lt;/ul>
+&lt;p>有償にはなるが &lt;a href="https://www1.touki.or.jp/night.html">登記情報提供サービス&lt;/a> というのがあって登記情報をオンラインで確認できる。このサービスを会社で契約していればいつでも確認できるはず？&lt;/p></content></item><item><title>法人登記変更申請にもの思い</title><link>/diary/posts/2022/1205/</link><pubDate>Mon, 05 Dec 2022 14:29:09 +0900</pubDate><guid>/diary/posts/2022/1205/</guid><description>4時に寝て8時に起きた。3時過ぎまでオフィスの片付けなどをやっていた。貧乏暇なし。
 年金事務所でヒアリング 8時半から住所変更のために年金事務所に立ち寄る。会社の住所変更をすると行政機関にその申請をしないといけないが、年金事務所がもっとも短くて移転後5日以内となっている。行ってみたら登記事項証明書のコピーがないと手続きをできないという。すべてに先立って法人登記の変更申請が必要なことがわかった。法人登記の変更申請に1週間かかるのでその時点でこの手続きは無理だとわかった。行政のバグの1つかもしれない。
 法務局で法人登記の変更申請 以前、電子公告の変更で法人登記の変更申請をやったことがあったので手続きの雰囲気を理解していた。お昼休みを兼ねて法務局へ住所変更の申請に行く。合同会社の法人登記の変更申請は次のリンクにある。
 ３　商号・目的の変更，本店移転 しかし、このリンクを辿ると、3つの記載例がある。

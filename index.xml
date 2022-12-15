@@ -1,4 +1,95 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>forest nook</title><link>/diary/</link><description>Recent content on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sat, 10 Dec 2022 12:03:13 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/index.xml" rel="self" type="application/rss+xml"/><item><title>openapi-ext-tools をまた使う日がきた</title><link>/diary/posts/2022/1210/</link><pubDate>Sat, 10 Dec 2022 12:03:13 +0900</pubDate><guid>/diary/posts/2022/1210/</guid><description>0時に寝て4時に起きて7時に起きた。わりとよく眠れた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>forest nook</title><link>/diary/</link><description>Recent content on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sun, 11 Dec 2022 10:12:21 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/index.xml" rel="self" type="application/rss+xml"/><item><title>休日のオンライン学習</title><link>/diary/posts/2022/1211/</link><pubDate>Sun, 11 Dec 2022 10:12:21 +0900</pubDate><guid>/diary/posts/2022/1211/</guid><description>0時に寝て夜中に吐き気がして2回ほど起きて3時と5時に起きて8時に起きた。なかなか苦しい寝方をした。
+ヤフートラベルと一休.comのシステム統合 アーカイブ公開されたらみようと思いつつ忘れてたので見返した。
+雑なめも。また機をみて見返すこともあるかも。
+バックエンドは完全に一休側に寄せるという大きな意志決定を2016年に行った この意志決定はフロントエンド統合にも大きな影響を与えた ふじもんさんの意志決定がよかった？ 今日の話しはマルチブランドデザインシステム統合がメイン 開発者が50-60人程度で半年ぐらいで launch できた nuxt/vuejs で開発している スタイルは tailwindcss を使っている 実は launch した後にこのシステムが必要だとわかった 開発者とデザイナー間の細かい意思疎通が困難 外部からデザインシステムに詳しい人にも来てもらっていろんな議論をした ガイドラインを言語化するところから始め、最終的にソースコードの共有ができるようになった 終わってからデザインシステムそのものは重要ではないと気付いた この過程で開発者とデザイナー間のどのように共通化するか、あるいはしないかと議論を繰り返し行ったことが重要だったと当事者がインタビューで語っていた デザインシステムの開発を通じてデザインの共通認識をもてたことがよかった 波及効果 同じソースコードから少し異なる体験の開発のノウハウができた ふるさと納税に特化した宿泊予約サイトを作った 統合は終わりではない、lauch したところが始まり 統合後にいろいろな施策をすることで課題がみえてくることがある 全国旅行支援は1つの開発で2つの体験をつくることができた Q. デザイナーと開発者はわりと仲が悪いのでは？価値観や考え方が異なるのですり合わせるのは難しいのでは？ 過去の一休でも起きていた 一休のチームはデザイナーと PM と開発者で構成されている このチームが一緒に働いていてチームでなるべく意志決定している 普段から一緒に働いていると仲が悪いということはなかった とはいえ、仕事のプロセスが異なるので課題はあった 地道に丁寧にすり合わせを行った 外部から講師を読んで中立的な立場でワークショップを何度も行った デザイナーと開発者を別の組織にしているとコミュニケーションの壁ができてしまうかもしれない go の学び直し テストの学び直し に引き続き、Gopher塾 #2 - Goらしいコードの書き方 - DAY 1 に参加した。
+テストの次のプログラミングの話しだったので内容そのものは難しくはなかったけど、改めて重要な項目を選抜しているのだと考えると学びはあったと思う。参考になったことをいくつか覚えている範囲でまとめる。名前の付け方について感覚的に理解していたし、実際に私はそうしているけど、コードレビューしていて自然になっていないコードを指摘する機会も多いので一定の習熟を要するのかもしれない。いま毎週勉強会をやっていて私が講師として話している。ネタがなくなってきたり大変になったきたら準備の少ないコードリーディング会もやってみたいと思った。
+google Go Style derrors.Wrap 名前に文脈を与えるという概念 相対的な名前をつける 準備の少ないコードリーディング会 お題（読むパッケージ）を決める 選んだお題に期待することを当日話す 時間を決めてみんなでそれぞれ読む（20分とか） 読みながらSlackのスレッドにメモをしていく 残りの時間で気になったところを議論する 自分が気づけなかった点を知ることができる</description><content>&lt;p>0時に寝て夜中に吐き気がして2回ほど起きて3時と5時に起きて8時に起きた。なかなか苦しい寝方をした。&lt;/p>
+&lt;h2 id="ヤフートラベルと一休comのシステム統合">ヤフートラベルと一休.comのシステム統合&lt;/h2>
+&lt;p>アーカイブ公開されたらみようと思いつつ忘れてたので見返した。&lt;/p>
+&lt;div class="video-container">
+&lt;iframe src="https://www.youtube.com/embed/JN4kGYbQMJ8" allowfullscreen title="ヤフートラベルのシステムリニューアル 一休 com とのシステム統合 -日本語版-">&lt;/iframe>
+&lt;/div>
+&lt;p>雑なめも。また機をみて見返すこともあるかも。&lt;/p>
+&lt;ul>
+&lt;li>バックエンドは完全に一休側に寄せるという大きな意志決定を2016年に行った
+&lt;ul>
+&lt;li>この意志決定はフロントエンド統合にも大きな影響を与えた&lt;/li>
+&lt;li>ふじもんさんの意志決定がよかった？&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>今日の話しはマルチブランドデザインシステム統合がメイン
+&lt;ul>
+&lt;li>開発者が50-60人程度で半年ぐらいで launch できた&lt;/li>
+&lt;li>nuxt/vuejs で開発している&lt;/li>
+&lt;li>スタイルは tailwindcss を使っている&lt;/li>
+&lt;li>実は launch した後にこのシステムが必要だとわかった
+&lt;ul>
+&lt;li>開発者とデザイナー間の細かい意思疎通が困難&lt;/li>
+&lt;li>外部からデザインシステムに詳しい人にも来てもらっていろんな議論をした&lt;/li>
+&lt;li>ガイドラインを言語化するところから始め、最終的にソースコードの共有ができるようになった&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>終わってからデザインシステムそのものは重要ではないと気付いた
+&lt;ul>
+&lt;li>この過程で開発者とデザイナー間のどのように共通化するか、あるいはしないかと議論を繰り返し行ったことが重要だったと当事者がインタビューで語っていた&lt;/li>
+&lt;li>デザインシステムの開発を通じてデザインの共通認識をもてたことがよかった&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>波及効果
+&lt;ul>
+&lt;li>同じソースコードから少し異なる体験の開発のノウハウができた&lt;/li>
+&lt;li>ふるさと納税に特化した宿泊予約サイトを作った&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>統合は終わりではない、lauch したところが始まり
+&lt;ul>
+&lt;li>統合後にいろいろな施策をすることで課題がみえてくることがある&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>全国旅行支援は1つの開発で2つの体験をつくることができた&lt;/li>
+&lt;li>Q. デザイナーと開発者はわりと仲が悪いのでは？価値観や考え方が異なるのですり合わせるのは難しいのでは？
+&lt;ul>
+&lt;li>過去の一休でも起きていた&lt;/li>
+&lt;li>一休のチームはデザイナーと PM と開発者で構成されている
+&lt;ul>
+&lt;li>このチームが一緒に働いていてチームでなるべく意志決定している&lt;/li>
+&lt;li>普段から一緒に働いていると仲が悪いということはなかった&lt;/li>
+&lt;li>とはいえ、仕事のプロセスが異なるので課題はあった
+&lt;ul>
+&lt;li>地道に丁寧にすり合わせを行った&lt;/li>
+&lt;li>外部から講師を読んで中立的な立場でワークショップを何度も行った&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>デザイナーと開発者を別の組織にしているとコミュニケーションの壁ができてしまうかもしれない&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="go-の学び直し">go の学び直し&lt;/h2>
+&lt;p>&lt;a href="/diary/diary/posts/2022/1123/#go-の学び直し">テストの学び直し&lt;/a> に引き続き、&lt;a href="https://tenntenn.connpass.com/event/267564/">Gopher塾 #2 - Goらしいコードの書き方 - DAY 1&lt;/a> に参加した。&lt;/p>
+&lt;p>テストの次のプログラミングの話しだったので内容そのものは難しくはなかったけど、改めて重要な項目を選抜しているのだと考えると学びはあったと思う。参考になったことをいくつか覚えている範囲でまとめる。名前の付け方について感覚的に理解していたし、実際に私はそうしているけど、コードレビューしていて自然になっていないコードを指摘する機会も多いので一定の習熟を要するのかもしれない。いま毎週勉強会をやっていて私が講師として話している。ネタがなくなってきたり大変になったきたら準備の少ないコードリーディング会もやってみたいと思った。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://google.github.io/styleguide/go/">google Go Style&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://cs.opensource.google/go/x/pkgsite/+/master:internal/derrors/derrors.go;l=237">derrors.Wrap&lt;/a>&lt;/li>
+&lt;li>名前に文脈を与えるという概念
+&lt;ul>
+&lt;li>相対的な名前をつける&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>準備の少ないコードリーディング会
+&lt;ul>
+&lt;li>お題（読むパッケージ）を決める&lt;/li>
+&lt;li>選んだお題に期待することを当日話す&lt;/li>
+&lt;li>時間を決めてみんなでそれぞれ読む（20分とか）&lt;/li>
+&lt;li>読みながらSlackのスレッドにメモをしていく&lt;/li>
+&lt;li>残りの時間で気になったところを議論する&lt;/li>
+&lt;li>自分が気づけなかった点を知ることができる&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul></content></item><item><title>openapi-ext-tools をまた使う日がきた</title><link>/diary/posts/2022/1210/</link><pubDate>Sat, 10 Dec 2022 12:03:13 +0900</pubDate><guid>/diary/posts/2022/1210/</guid><description>0時に寝て4時に起きて7時に起きた。わりとよく眠れた。
 ストレッチ トレーナーさんと月曜日の日本対クロアチア戦の感想を話したりしていた。今日の開脚幅は開始前153cmで、ストレッチ後156cmだった。先週は疲弊と疲労で散々な数値になっていたものが復調してきつつある。今週も毎日8-22時はオフィスで缶詰め状態だった。たくさん座っている (同じ体勢でいる) 時間が増えると筋肉にはよくない。まだまだ右腰と右太もも周りの張りは強く復調にはもう少し時間がかかるようにみえる。一方で忙しさのピークを越したと思うので今週以降は少しペースダウンしながら体作りをしていく。いまお手伝いしている開発は12月にすべての集中力を費やしてもよいと考えている。残りは期間はメンバーに委譲するような体制になるとベストかもしれない。そのための体力づくりは重要。
 openapi-ext-tools 再び github pages ならぬ gitlab pages がある。ふと web api のドキュメントを作るために openapi のスキーマを定義したら gitlab の ci/cd と連携できていいんじゃないかと思い付いた。スキーマがあればフロントエンドのクライアント生成や e2e テストコードの自動生成などに使えるかもしれないし。過去に作った openapi-ext-tools を oss にしておいたからいまも使える。oss 万歳。先のことはわからない。redoc を使ってちゃっちゃと実装した。
 pages: only: changes: - schema/* stage: deploy image: alpine:latest before_script: - apk --no-cache add python3 nodejs npm - python --version - python -m ensurepip - pip3 --version - node --version - npm --version - npm install --global redoc-cli - redoc-cli --version - pip3 install openapi-ext-tools - pip3 freeze openapi-ext-tools | grep openapi script: - openapi-spec-cli --spec-path schema/openapi.</description><content>&lt;p>0時に寝て4時に起きて7時に起きた。わりとよく眠れた。&lt;/p>
@@ -144,10 +235,16 @@ tests := []struct { name string ctx echo.Context err *echo.HTTPError } { ... fun
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">&lt;a href="https://t.co/Yomdbyh1H0">https://t.co/Yomdbyh1H0&lt;/a>&lt;br>&lt;br>昔にこういう記事を書いてた。&lt;br>chiはルーティングライブラリと考えるとスムーズ。&lt;br>&lt;br>あとはnet/httpのミドルウェアを使いたいかechoなど専用のものを書くかの違いくらいかな。 &lt;a href="https://t.co/9LtoanpY0c">https://t.co/9LtoanpY0c&lt;/a>&lt;/p>&amp;mdash; filter:follows include:nativeretweets (@podhmo) &lt;a href="https://twitter.com/podhmo/status/1600338082242646016?ref_src=twsrc%5Etfw">December 7, 2022&lt;/a>&lt;/blockquote>
+&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">&lt;a href="https://t.co/Yomdbyh1H0">https://t.co/Yomdbyh1H0&lt;/a>&lt;br>&lt;br>昔にこういう記事を書いてた。&lt;br>chiはルーティングライブラリと考えるとスムーズ。&lt;br>&lt;br>あとはnet/httpのミドルウェアを使いたいかechoなど専用のものを書くかの違いくらいかな。 &lt;a href="https://t.co/9LtoanpY0c">https://t.co/9LtoanpY0c&lt;/a>&lt;/p>&amp;mdash; po (@podhmo) &lt;a href="https://twitter.com/podhmo/status/1600338082242646016?ref_src=twsrc%5Etfw">December 7, 2022&lt;/a>&lt;/blockquote>
 &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script>
 &lt;h2 id="オフィス住所の更新">オフィス住所の更新&lt;/h2>
-&lt;p>引き続き、住所変更の手続きを時間をみつけてやっている。同じ銀行の住所変更の手続きでも PayPay 銀行と三菱 UFJ 銀行ではまったく異なる。前者はオンラインでアカウント情報を変更するだけで済んだ。簡単。一方で後者はオンラインではできず、来店予約をとって対面で行う。当日に登記事項証明書の原本をもってこいと。なんという面倒臭さ。よくよく考えたら法人の登記事項証明書は誰でも取得できる。行政のシステムがどうなっているか知らないが、銀行が法人の住所変更を自分たちで調べることもやろうと思えばできるはず。登記事項証明書をオンラインで取得する手数料は500円になる。来店予約すると応対する人の人件費を考えたらシステムの手数料を支払った方が安いのではないか。&lt;/p></content></item><item><title>法人登記変更申請にもの思い</title><link>/diary/posts/2022/1205/</link><pubDate>Mon, 05 Dec 2022 14:29:09 +0900</pubDate><guid>/diary/posts/2022/1205/</guid><description>4時に寝て8時に起きた。3時過ぎまでオフィスの片付けなどをやっていた。貧乏暇なし。
+&lt;p>引き続き、住所変更の手続きを時間をみつけてやっている。同じ銀行の住所変更の手続きでも PayPay 銀行と三菱 UFJ 銀行ではまったく異なる。前者はオンラインでアカウント情報を変更するだけで済んだ。簡単。一方で後者はオンラインではできず、来店予約をとって対面で行う。当日に登記事項証明書の原本をもってこいと。なんという面倒臭さ。よくよく考えたら法人の登記事項証明書は誰でも取得できる。行政のシステムがどうなっているか知らないが、銀行が法人の住所変更を自分たちで調べることもやろうと思えばできるはず。登記事項証明書をオンラインで取得する手数料は500円になる。来店予約すると応対する人の人件費を考えたらシステムの手数料を支払った方が安いのではないか。&lt;/p>
+&lt;p>国税庁の管轄ではあるが、&lt;a href="https://www.houjin-bangou.nta.go.jp/">国税庁法人番号公表サイト&lt;/a> から法人の住所変更そのものは確認できる。これは e-tax で次の2つの書類を申請した。登記事項証明書がなくても申請はできた。なにも言ってこなければ問題ないのかな？&lt;/p>
+&lt;ul>
+&lt;li>異動届&lt;/li>
+&lt;li>給与支払事務所等の開設・移転・廃止の届出&lt;/li>
+&lt;/ul>
+&lt;p>有償にはなるが &lt;a href="https://www1.touki.or.jp/night.html">登記情報提供サービス&lt;/a> というのがあって登記情報をオンラインで確認できる。このサービスを会社で契約していればいつでも確認できるはず？&lt;/p></content></item><item><title>法人登記変更申請にもの思い</title><link>/diary/posts/2022/1205/</link><pubDate>Mon, 05 Dec 2022 14:29:09 +0900</pubDate><guid>/diary/posts/2022/1205/</guid><description>4時に寝て8時に起きた。3時過ぎまでオフィスの片付けなどをやっていた。貧乏暇なし。
 年金事務所でヒアリング 8時半から住所変更のために年金事務所に立ち寄る。会社の住所変更をすると行政機関にその申請をしないといけないが、年金事務所がもっとも短くて移転後5日以内となっている。行ってみたら登記事項証明書のコピーがないと手続きをできないという。すべてに先立って法人登記の変更申請が必要なことがわかった。法人登記の変更申請に1週間かかるのでその時点でこの手続きは無理だとわかった。行政のバグの1つかもしれない。
 法務局で法人登記の変更申請 以前、電子公告の変更で法人登記の変更申請をやったことがあったので手続きの雰囲気を理解していた。お昼休みを兼ねて法務局へ住所変更の申請に行く。合同会社の法人登記の変更申請は次のリンクにある。
 ３　商号・目的の変更，本店移転 しかし、このリンクを辿ると、3つの記載例がある。

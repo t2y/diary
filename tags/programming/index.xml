@@ -1,4 +1,95 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>programming on forest nook</title><link>/diary/tags/programming/</link><description>Recent content in programming on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 17 Nov 2022 08:33:48 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/programming/index.xml" rel="self" type="application/rss+xml"/><item><title>技術選定の根拠</title><link>/diary/posts/2022/1117/</link><pubDate>Thu, 17 Nov 2022 08:33:48 +0900</pubDate><guid>/diary/posts/2022/1117/</guid><description>0時に寝て5時に起きた。夜中に目覚めたかどうかはわからないぐらいにはたぶん寝てたと思う。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>programming on forest nook</title><link>/diary/tags/programming/</link><description>Recent content in programming on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sun, 11 Dec 2022 10:12:21 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/programming/index.xml" rel="self" type="application/rss+xml"/><item><title>休日のオンライン学習</title><link>/diary/posts/2022/1211/</link><pubDate>Sun, 11 Dec 2022 10:12:21 +0900</pubDate><guid>/diary/posts/2022/1211/</guid><description>0時に寝て夜中に吐き気がして2回ほど起きて3時と5時に起きて8時に起きた。なかなか苦しい寝方をした。
+ヤフートラベルと一休.comのシステム統合 アーカイブ公開されたらみようと思いつつ忘れてたので見返した。
+雑なめも。また機をみて見返すこともあるかも。
+バックエンドは完全に一休側に寄せるという大きな意志決定を2016年に行った この意志決定はフロントエンド統合にも大きな影響を与えた ふじもんさんの意志決定がよかった？ 今日の話しはマルチブランドデザインシステム統合がメイン 開発者が50-60人程度で半年ぐらいで launch できた nuxt/vuejs で開発している スタイルは tailwindcss を使っている 実は launch した後にこのシステムが必要だとわかった 開発者とデザイナー間の細かい意思疎通が困難 外部からデザインシステムに詳しい人にも来てもらっていろんな議論をした ガイドラインを言語化するところから始め、最終的にソースコードの共有ができるようになった 終わってからデザインシステムそのものは重要ではないと気付いた この過程で開発者とデザイナー間のどのように共通化するか、あるいはしないかと議論を繰り返し行ったことが重要だったと当事者がインタビューで語っていた デザインシステムの開発を通じてデザインの共通認識をもてたことがよかった 波及効果 同じソースコードから少し異なる体験の開発のノウハウができた ふるさと納税に特化した宿泊予約サイトを作った 統合は終わりではない、lauch したところが始まり 統合後にいろいろな施策をすることで課題がみえてくることがある 全国旅行支援は1つの開発で2つの体験をつくることができた Q. デザイナーと開発者はわりと仲が悪いのでは？価値観や考え方が異なるのですり合わせるのは難しいのでは？ 過去の一休でも起きていた 一休のチームはデザイナーと PM と開発者で構成されている このチームが一緒に働いていてチームでなるべく意志決定している 普段から一緒に働いていると仲が悪いということはなかった とはいえ、仕事のプロセスが異なるので課題はあった 地道に丁寧にすり合わせを行った 外部から講師を読んで中立的な立場でワークショップを何度も行った デザイナーと開発者を別の組織にしているとコミュニケーションの壁ができてしまうかもしれない go の学び直し テストの学び直し に引き続き、Gopher塾 #2 - Goらしいコードの書き方 - DAY 1 に参加した。
+テストの次のプログラミングの話しだったので内容そのものは難しくはなかったけど、改めて重要な項目を選抜しているのだと考えると学びはあったと思う。参考になったことをいくつか覚えている範囲でまとめる。名前の付け方について感覚的に理解していたし、実際に私はそうしているけど、コードレビューしていて自然になっていないコードを指摘する機会も多いので一定の習熟を要するのかもしれない。いま毎週勉強会をやっていて私が講師として話している。ネタがなくなってきたり大変になったきたら準備の少ないコードリーディング会もやってみたいと思った。
+google Go Style derrors.Wrap 名前に文脈を与えるという概念 相対的な名前をつける 準備の少ないコードリーディング会 お題（読むパッケージ）を決める 選んだお題に期待することを当日話す 時間を決めてみんなでそれぞれ読む（20分とか） 読みながらSlackのスレッドにメモをしていく 残りの時間で気になったところを議論する 自分が気づけなかった点を知ることができる</description><content>&lt;p>0時に寝て夜中に吐き気がして2回ほど起きて3時と5時に起きて8時に起きた。なかなか苦しい寝方をした。&lt;/p>
+&lt;h2 id="ヤフートラベルと一休comのシステム統合">ヤフートラベルと一休.comのシステム統合&lt;/h2>
+&lt;p>アーカイブ公開されたらみようと思いつつ忘れてたので見返した。&lt;/p>
+&lt;div class="video-container">
+&lt;iframe src="https://www.youtube.com/embed/JN4kGYbQMJ8" allowfullscreen title="ヤフートラベルのシステムリニューアル 一休 com とのシステム統合 -日本語版-">&lt;/iframe>
+&lt;/div>
+&lt;p>雑なめも。また機をみて見返すこともあるかも。&lt;/p>
+&lt;ul>
+&lt;li>バックエンドは完全に一休側に寄せるという大きな意志決定を2016年に行った
+&lt;ul>
+&lt;li>この意志決定はフロントエンド統合にも大きな影響を与えた&lt;/li>
+&lt;li>ふじもんさんの意志決定がよかった？&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>今日の話しはマルチブランドデザインシステム統合がメイン
+&lt;ul>
+&lt;li>開発者が50-60人程度で半年ぐらいで launch できた&lt;/li>
+&lt;li>nuxt/vuejs で開発している&lt;/li>
+&lt;li>スタイルは tailwindcss を使っている&lt;/li>
+&lt;li>実は launch した後にこのシステムが必要だとわかった
+&lt;ul>
+&lt;li>開発者とデザイナー間の細かい意思疎通が困難&lt;/li>
+&lt;li>外部からデザインシステムに詳しい人にも来てもらっていろんな議論をした&lt;/li>
+&lt;li>ガイドラインを言語化するところから始め、最終的にソースコードの共有ができるようになった&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>終わってからデザインシステムそのものは重要ではないと気付いた
+&lt;ul>
+&lt;li>この過程で開発者とデザイナー間のどのように共通化するか、あるいはしないかと議論を繰り返し行ったことが重要だったと当事者がインタビューで語っていた&lt;/li>
+&lt;li>デザインシステムの開発を通じてデザインの共通認識をもてたことがよかった&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>波及効果
+&lt;ul>
+&lt;li>同じソースコードから少し異なる体験の開発のノウハウができた&lt;/li>
+&lt;li>ふるさと納税に特化した宿泊予約サイトを作った&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>統合は終わりではない、lauch したところが始まり
+&lt;ul>
+&lt;li>統合後にいろいろな施策をすることで課題がみえてくることがある&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>全国旅行支援は1つの開発で2つの体験をつくることができた&lt;/li>
+&lt;li>Q. デザイナーと開発者はわりと仲が悪いのでは？価値観や考え方が異なるのですり合わせるのは難しいのでは？
+&lt;ul>
+&lt;li>過去の一休でも起きていた&lt;/li>
+&lt;li>一休のチームはデザイナーと PM と開発者で構成されている
+&lt;ul>
+&lt;li>このチームが一緒に働いていてチームでなるべく意志決定している&lt;/li>
+&lt;li>普段から一緒に働いていると仲が悪いということはなかった&lt;/li>
+&lt;li>とはいえ、仕事のプロセスが異なるので課題はあった
+&lt;ul>
+&lt;li>地道に丁寧にすり合わせを行った&lt;/li>
+&lt;li>外部から講師を読んで中立的な立場でワークショップを何度も行った&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>デザイナーと開発者を別の組織にしているとコミュニケーションの壁ができてしまうかもしれない&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="go-の学び直し">go の学び直し&lt;/h2>
+&lt;p>&lt;a href="/diary/diary/posts/2022/1123/#go-の学び直し">テストの学び直し&lt;/a> に引き続き、&lt;a href="https://tenntenn.connpass.com/event/267564/">Gopher塾 #2 - Goらしいコードの書き方 - DAY 1&lt;/a> に参加した。&lt;/p>
+&lt;p>テストの次のプログラミングの話しだったので内容そのものは難しくはなかったけど、改めて重要な項目を選抜しているのだと考えると学びはあったと思う。参考になったことをいくつか覚えている範囲でまとめる。名前の付け方について感覚的に理解していたし、実際に私はそうしているけど、コードレビューしていて自然になっていないコードを指摘する機会も多いので一定の習熟を要するのかもしれない。いま毎週勉強会をやっていて私が講師として話している。ネタがなくなってきたり大変になったきたら準備の少ないコードリーディング会もやってみたいと思った。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://google.github.io/styleguide/go/">google Go Style&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://cs.opensource.google/go/x/pkgsite/+/master:internal/derrors/derrors.go;l=237">derrors.Wrap&lt;/a>&lt;/li>
+&lt;li>名前に文脈を与えるという概念
+&lt;ul>
+&lt;li>相対的な名前をつける&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>準備の少ないコードリーディング会
+&lt;ul>
+&lt;li>お題（読むパッケージ）を決める&lt;/li>
+&lt;li>選んだお題に期待することを当日話す&lt;/li>
+&lt;li>時間を決めてみんなでそれぞれ読む（20分とか）&lt;/li>
+&lt;li>読みながらSlackのスレッドにメモをしていく&lt;/li>
+&lt;li>残りの時間で気になったところを議論する&lt;/li>
+&lt;li>自分が気づけなかった点を知ることができる&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul></content></item><item><title>技術選定の根拠</title><link>/diary/posts/2022/1117/</link><pubDate>Thu, 17 Nov 2022 08:33:48 +0900</pubDate><guid>/diary/posts/2022/1117/</guid><description>0時に寝て5時に起きた。夜中に目覚めたかどうかはわからないぐらいにはたぶん寝てたと思う。
 go の http フレームワークの選定 net/http で実装していた web api サーバーにフレームワーク導入しようかと考えている。いままでは認証・認可を外部で行う想定だったが、やっぱり api サーバーに実装した方がよいだろうと要件を再確認したので routing と middleware を再利用できるフレームワークを使うメリットが出てくる。net/http 上で直接 routing, middleware を実装するのは別に難しくないから自分で実装すればよいという考え方がある。一方で誰が実装しても大して変わらないものを車輪の再発明する必要があるのかというところに私は懸念に感じる。また context があとから標準ライブラリに追加されたため、net/http の HandlerFunc は context をシグネチャにもっていない。リクエストコンテキストをもっていないのが net/http の欠点だと私は考えていた。しかし、調べてたら NewRequestWithContext が追加されていてハンドラーではなくリクエストからリクエストコンテキストを扱えるようになっていた。これは私の勘違いだった。
 フレームワークを使おうと決めて難しいのはなにを選ぶか。最近の流行り廃りや動向を私は知らないので基準がない。たまたましぶかわさんの記事をみつけて読んでいた。
 Goのおすすめのフレームワークはnet/http この中で紹介されている chi か echo のどちらかにしようと直観で決めた。echo は以前 go の勉強会をしたときにいけうちさんが採用していたのでよく覚えている。そのときの話しを聞いていてもよさそうにみえた。たまたま echo のサイトをみたら Shiguredo さんのロゴがあって驚いた。スポンサーをされているらしい。chi はまったく知らない。どちらも十分によく使われていて middleware も揃っているフレームワークにみえる。本質的にはどちらを選んでも構わない。一方でマネージャーとしてどういう調査をして、どういう根拠で、どの技術を選定するのか。メンバーに対して説明責任を果たすためにこの2つのフレームワークの調査をすることに決めた。私自身がどちらもフレームワークも使ったことがないので軽くコードも書いてみてどんな雰囲気なのか感触を掴みつつ、フレームワークのソースコードも読んでみようと思う。</description><content>&lt;p>0時に寝て5時に起きた。夜中に目覚めたかどうかはわからないぐらいにはたぶん寝てたと思う。&lt;/p>
