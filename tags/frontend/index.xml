@@ -1,4 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>frontend on forest nook</title><link>/diary/tags/frontend/</link><description>Recent content in frontend on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Fri, 09 Dec 2022 20:43:28 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/frontend/index.xml" rel="self" type="application/rss+xml"/><item><title>3年目の創立記念日</title><link>/diary/posts/2022/1209/</link><pubDate>Fri, 09 Dec 2022 20:43:28 +0900</pubDate><guid>/diary/posts/2022/1209/</guid><description>0時に寝て何度か起きて7時に起きた。金曜日は普通の週でも疲れているが、今週はハードだったからさらにバテバテ。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>frontend on forest nook</title><link>/diary/tags/frontend/</link><description>Recent content in frontend on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Wed, 14 Dec 2022 08:02:27 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/frontend/index.xml" rel="self" type="application/rss+xml"/><item><title>技術選定の調査開始</title><link>/diary/posts/2022/1214/</link><pubDate>Wed, 14 Dec 2022 08:02:27 +0900</pubDate><guid>/diary/posts/2022/1214/</guid><description>1時に寝て2時に起きて吐き気に苦しんで6時に起きた。後半はよく眠れた気がする。
+フロントエンドの技術選定の調査 はらさんにお願いした フロントエンド勉強会 の内容を踏まえて技術選定を行う。次の3つを候補とした。
+react svelte solid 客観的な指標で3つの技術を調査して比較した時点で solid はうちのチームにはあわないと候補から除外することにした。なので react vs svelte の一騎討ちとなる。なにか理由がない (デファクトスタンダード) なら react だし、うちのチームにとって有効だと判断できる項目があるなら svelte になる。ここで next.js と svelte kit でちょっとコードを書いてみて自分なりの感触も探ろうと考えている。
+Svelte vs React: Which framework to learn in 2023? インフレ勉強会 エンジニアのためのインフレ研究会 #1 に参加した。お仕事の調べものをしながら聞いてた。私はもう常連で前々から同じような話を聞いているものの、発表者の資料も説明もわかりやすいものだったと思う。</description><content>&lt;p>1時に寝て2時に起きて吐き気に苦しんで6時に起きた。後半はよく眠れた気がする。&lt;/p>
+&lt;h2 id="フロントエンドの技術選定の調査">フロントエンドの技術選定の調査&lt;/h2>
+&lt;p>はらさんにお願いした &lt;a href="/diary/diary/posts/2022/1209/#フロントエンド勉強会">フロントエンド勉強会&lt;/a> の内容を踏まえて技術選定を行う。次の3つを候補とした。&lt;/p>
+&lt;ul>
+&lt;li>react&lt;/li>
+&lt;li>svelte&lt;/li>
+&lt;li>solid&lt;/li>
+&lt;/ul>
+&lt;p>客観的な指標で3つの技術を調査して比較した時点で solid はうちのチームにはあわないと候補から除外することにした。なので react vs svelte の一騎討ちとなる。なにか理由がない (デファクトスタンダード) なら react だし、うちのチームにとって有効だと判断できる項目があるなら svelte になる。ここで next.js と svelte kit でちょっとコードを書いてみて自分なりの感触も探ろうと考えている。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://scrimba.com/articles/svelte-vs-react/">Svelte vs React: Which framework to learn in 2023?&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="インフレ勉強会">インフレ勉強会&lt;/h2>
+&lt;p>&lt;a href="https://inflation.connpass.com/event/266172/">エンジニアのためのインフレ研究会 #1&lt;/a> に参加した。お仕事の調べものをしながら聞いてた。私はもう常連で前々から同じような話を聞いているものの、発表者の資料も説明もわかりやすいものだったと思う。&lt;/p></content></item><item><title>3年目の創立記念日</title><link>/diary/posts/2022/1209/</link><pubDate>Fri, 09 Dec 2022 20:43:28 +0900</pubDate><guid>/diary/posts/2022/1209/</guid><description>0時に寝て何度か起きて7時に起きた。金曜日は普通の週でも疲れているが、今週はハードだったからさらにバテバテ。
 隔週の雑談 顧問のはらさんと隔週の打ち合わせ。オフィス移転に伴う諸々を雑談したり、おもには夕方から講師をしてもらうフロントエンド勉強会の最終確認のようなことをしていた。
 フロントエンド勉強会 私がマネージャーとなって今月決めないといけない大きな意志決定の1つにフロントエンドの技術選定がある。とはいえ、私はフロントエンドに関して素人なのでなにかしら取っ掛かりがほしい。その参考の1つとして、はらさんにお願いして技術選定というテーマでフロントエンド勉強会を開催してもらった。感謝。いまお手伝い先では私が毎週チーム勉強会を行っている。これも1ヶ月以上続けている。そろそろ定着しつつあってチーム外からも毎週数人が参加してくれるようになってきた。勉強会という開発文化の取り組みとしてもちょうどよいように思ったのでお手伝い先も巻き込んで講師だけ社外の人が務める勉強会となった。結果は15人以上参加してくれて質疑応答も盛り上がってよかったと思う。
 State of JS アンケート (ここは翻訳されたサイト) という、主にはフロントエンドの開発者の調査結果がある。これはフロントエンドの開発者のみのアンケートなので偏りはあるだろうというのも考慮しつつ、最近のトレンドを理解する上でよさそうに思えた。React をデファクトスタンダードとして、対抗する候補に Svelte のみを私は考えていたが、もう1つ Solid を加えてもよいのではないかとアンケート調査をみていて思うようになった。

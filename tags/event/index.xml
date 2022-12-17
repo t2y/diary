@@ -1,4 +1,36 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>event on forest nook</title><link>/diary/tags/event/</link><description>Recent content in event on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sun, 11 Dec 2022 10:12:21 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/event/index.xml" rel="self" type="application/rss+xml"/><item><title>休日のオンライン学習</title><link>/diary/posts/2022/1211/</link><pubDate>Sun, 11 Dec 2022 10:12:21 +0900</pubDate><guid>/diary/posts/2022/1211/</guid><description>0時に寝て夜中に吐き気がして2回ほど起きて3時と5時に起きて8時に起きた。なかなか苦しい寝方をした。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>event on forest nook</title><link>/diary/tags/event/</link><description>Recent content in event on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 15 Dec 2022 08:16:29 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/event/index.xml" rel="self" type="application/rss+xml"/><item><title>openapi 再び</title><link>/diary/posts/2022/1215/</link><pubDate>Thu, 15 Dec 2022 08:16:29 +0900</pubDate><guid>/diary/posts/2022/1215/</guid><description>1時に寝て何度か起きて7時に起きた。1-2時頃に吐き気がして苦しむ割に後半はなにもなかったかのように眠れることがある。
+openapi-generator の調査 毎週の勉強会に向けて最新の openapi-generator を使って出力した go client のコードを読んだりしていた。openapi-generator を簡単に試すためのチュートリアルのようなものとして、過去にリポジトリに整理しておいた。このリポジトリを使うとコード生成とドキュメント生成の両方を試してスキーマがあることのメリットを体験できるようになっている。
+https://github.com/kazamori/try-openapi-generator-cli chatgpt で遊ぶ 【おあそぶ会】GPT3と遊ぶ に参加した。gpt3 についてちょうさんが調べたメモにも目を通して参考になった。
+20221215【おあそぶ会】GPT3と遊ぶ ちょうさんの gpt3 の説明を聞きながら chatgpt で葬送のフリーレンについてチャットしてた。今日の成果はこれかな。</description><content>&lt;p>1時に寝て何度か起きて7時に起きた。1-2時頃に吐き気がして苦しむ割に後半はなにもなかったかのように眠れることがある。&lt;/p>
+&lt;h2 id="openapi-generator-の調査">openapi-generator の調査&lt;/h2>
+&lt;p>毎週の勉強会に向けて最新の &lt;a href="https://github.com/OpenAPITools/openapi-generator">openapi-generator&lt;/a> を使って出力した go client のコードを読んだりしていた。openapi-generator を簡単に試すためのチュートリアルのようなものとして、過去にリポジトリに整理しておいた。このリポジトリを使うとコード生成とドキュメント生成の両方を試してスキーマがあることのメリットを体験できるようになっている。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/kazamori/try-openapi-generator-cli">https://github.com/kazamori/try-openapi-generator-cli&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="chatgpt-で遊ぶ">chatgpt で遊ぶ&lt;/h2>
+&lt;p>&lt;a href="https://play2learn.connpass.com/event/268391/">【おあそぶ会】GPT3と遊ぶ&lt;/a> に参加した。gpt3 についてちょうさんが調べたメモにも目を通して参考になった。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://peridot-balmoral-923.notion.site/20221215-GPT3-31a50d35e2b14c38a73693d1cf1d339a">20221215【おあそぶ会】GPT3と遊ぶ&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>ちょうさんの gpt3 の説明を聞きながら chatgpt で葬送のフリーレンについてチャットしてた。今日の成果はこれかな。&lt;/p>
+&lt;figure>&lt;img src="/diary/diary/img/2022/1215_chatgpt1.png"/>
+&lt;/figure></content></item><item><title>技術選定の調査開始</title><link>/diary/posts/2022/1214/</link><pubDate>Wed, 14 Dec 2022 08:02:27 +0900</pubDate><guid>/diary/posts/2022/1214/</guid><description>1時に寝て2時に起きて吐き気に苦しんで6時に起きた。後半はよく眠れた気がする。
+フロントエンドの技術選定の調査 はらさんにお願いした フロントエンド勉強会 の内容を踏まえて技術選定を行う。次の3つを候補とした。
+react svelte solid 客観的な指標で3つの技術を調査して比較した時点で solid はうちのチームにはあわないと候補から除外することにした。なので react vs svelte の一騎討ちとなる。なにか理由がない (デファクトスタンダード) なら react だし、うちのチームにとって有効だと判断できる項目があるなら svelte になる。ここで next.js と svelte kit でちょっとコードを書いてみて自分なりの感触も探ろうと考えている。
+Svelte vs React: Which framework to learn in 2023? インフレ勉強会 エンジニアのためのインフレ研究会 #1 に参加した。お仕事の調べものをしながら聞いてた。私はもう常連で前々から同じような話を聞いているものの、発表者の資料も説明もわかりやすいものだったと思う。</description><content>&lt;p>1時に寝て2時に起きて吐き気に苦しんで6時に起きた。後半はよく眠れた気がする。&lt;/p>
+&lt;h2 id="フロントエンドの技術選定の調査">フロントエンドの技術選定の調査&lt;/h2>
+&lt;p>はらさんにお願いした &lt;a href="/diary/diary/posts/2022/1209/#フロントエンド勉強会">フロントエンド勉強会&lt;/a> の内容を踏まえて技術選定を行う。次の3つを候補とした。&lt;/p>
+&lt;ul>
+&lt;li>react&lt;/li>
+&lt;li>svelte&lt;/li>
+&lt;li>solid&lt;/li>
+&lt;/ul>
+&lt;p>客観的な指標で3つの技術を調査して比較した時点で solid はうちのチームにはあわないと候補から除外することにした。なので react vs svelte の一騎討ちとなる。なにか理由がない (デファクトスタンダード) なら react だし、うちのチームにとって有効だと判断できる項目があるなら svelte になる。ここで next.js と svelte kit でちょっとコードを書いてみて自分なりの感触も探ろうと考えている。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://scrimba.com/articles/svelte-vs-react/">Svelte vs React: Which framework to learn in 2023?&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="インフレ勉強会">インフレ勉強会&lt;/h2>
+&lt;p>&lt;a href="https://inflation.connpass.com/event/266172/">エンジニアのためのインフレ研究会 #1&lt;/a> に参加した。お仕事の調べものをしながら聞いてた。私はもう常連で前々から同じような話を聞いているものの、発表者の資料も説明もわかりやすいものだったと思う。&lt;/p></content></item><item><title>休日のオンライン学習</title><link>/diary/posts/2022/1211/</link><pubDate>Sun, 11 Dec 2022 10:12:21 +0900</pubDate><guid>/diary/posts/2022/1211/</guid><description>0時に寝て夜中に吐き気がして2回ほど起きて3時と5時に起きて8時に起きた。なかなか苦しい寝方をした。
 ヤフートラベルと一休.comのシステム統合 アーカイブ公開されたらみようと思いつつ忘れてたので見返した。
 雑なめも。また機をみて見返すこともあるかも。
 バックエンドは完全に一休側に寄せるという大きな意志決定を2016年に行った この意志決定はフロントエンド統合にも大きな影響を与えた ふじもんさんの意志決定がよかった？ 今日の話しはマルチブランドデザインシステム統合がメイン 開発者が50-60人程度で半年ぐらいで launch できた nuxt/vuejs で開発している スタイルは tailwindcss を使っている 実は launch した後にこのシステムが必要だとわかった 開発者とデザイナー間の細かい意思疎通が困難 外部からデザインシステムに詳しい人にも来てもらっていろんな議論をした ガイドラインを言語化するところから始め、最終的にソースコードの共有ができるようになった 終わってからデザインシステムそのものは重要ではないと気付いた この過程で開発者とデザイナー間のどのように共通化するか、あるいはしないかと議論を繰り返し行ったことが重要だったと当事者がインタビューで語っていた デザインシステムの開発を通じてデザインの共通認識をもてたことがよかった 波及効果 同じソースコードから少し異なる体験の開発のノウハウができた ふるさと納税に特化した宿泊予約サイトを作った 統合は終わりではない、lauch したところが始まり 統合後にいろいろな施策をすることで課題がみえてくることがある 全国旅行支援は1つの開発で2つの体験をつくることができた Q. デザイナーと開発者はわりと仲が悪いのでは？価値観や考え方が異なるのですり合わせるのは難しいのでは？ 過去の一休でも起きていた 一休のチームはデザイナーと PM と開発者で構成されている このチームが一緒に働いていてチームでなるべく意志決定している 普段から一緒に働いていると仲が悪いということはなかった とはいえ、仕事のプロセスが異なるので課題はあった 地道に丁寧にすり合わせを行った 外部から講師を読んで中立的な立場でワークショップを何度も行った デザイナーと開発者を別の組織にしているとコミュニケーションの壁ができてしまうかもしれない go の学び直し テストの学び直し に引き続き、Gopher塾 #2 - Goらしいコードの書き方 - DAY 1 に参加した。

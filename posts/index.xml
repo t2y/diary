@@ -1,4 +1,36 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on forest nook</title><link>/diary/posts/</link><description>Recent content in Posts on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Tue, 13 Dec 2022 23:08:06 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>eltax で異動届を申請してみた</title><link>/diary/posts/2022/1213/</link><pubDate>Tue, 13 Dec 2022 23:08:06 +0900</pubDate><guid>/diary/posts/2022/1213/</guid><description>0時に寝て5時に起きて7時に起きた。変哲のない普通の朝だった気がする。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on forest nook</title><link>/diary/posts/</link><description>Recent content in Posts on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 15 Dec 2022 08:16:29 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>openapi 再び</title><link>/diary/posts/2022/1215/</link><pubDate>Thu, 15 Dec 2022 08:16:29 +0900</pubDate><guid>/diary/posts/2022/1215/</guid><description>1時に寝て何度か起きて7時に起きた。1-2時頃に吐き気がして苦しむ割に後半はなにもなかったかのように眠れることがある。
+openapi-generator の調査 毎週の勉強会に向けて最新の openapi-generator を使って出力した go client のコードを読んだりしていた。openapi-generator を簡単に試すためのチュートリアルのようなものとして、過去にリポジトリに整理しておいた。このリポジトリを使うとコード生成とドキュメント生成の両方を試してスキーマがあることのメリットを体験できるようになっている。
+https://github.com/kazamori/try-openapi-generator-cli chatgpt で遊ぶ 【おあそぶ会】GPT3と遊ぶ に参加した。gpt3 についてちょうさんが調べたメモにも目を通して参考になった。
+20221215【おあそぶ会】GPT3と遊ぶ ちょうさんの gpt3 の説明を聞きながら chatgpt で葬送のフリーレンについてチャットしてた。今日の成果はこれかな。</description><content>&lt;p>1時に寝て何度か起きて7時に起きた。1-2時頃に吐き気がして苦しむ割に後半はなにもなかったかのように眠れることがある。&lt;/p>
+&lt;h2 id="openapi-generator-の調査">openapi-generator の調査&lt;/h2>
+&lt;p>毎週の勉強会に向けて最新の &lt;a href="https://github.com/OpenAPITools/openapi-generator">openapi-generator&lt;/a> を使って出力した go client のコードを読んだりしていた。openapi-generator を簡単に試すためのチュートリアルのようなものとして、過去にリポジトリに整理しておいた。このリポジトリを使うとコード生成とドキュメント生成の両方を試してスキーマがあることのメリットを体験できるようになっている。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/kazamori/try-openapi-generator-cli">https://github.com/kazamori/try-openapi-generator-cli&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="chatgpt-で遊ぶ">chatgpt で遊ぶ&lt;/h2>
+&lt;p>&lt;a href="https://play2learn.connpass.com/event/268391/">【おあそぶ会】GPT3と遊ぶ&lt;/a> に参加した。gpt3 についてちょうさんが調べたメモにも目を通して参考になった。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://peridot-balmoral-923.notion.site/20221215-GPT3-31a50d35e2b14c38a73693d1cf1d339a">20221215【おあそぶ会】GPT3と遊ぶ&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>ちょうさんの gpt3 の説明を聞きながら chatgpt で葬送のフリーレンについてチャットしてた。今日の成果はこれかな。&lt;/p>
+&lt;figure>&lt;img src="/diary/diary/img/2022/1215_chatgpt1.png"/>
+&lt;/figure></content></item><item><title>技術選定の調査開始</title><link>/diary/posts/2022/1214/</link><pubDate>Wed, 14 Dec 2022 08:02:27 +0900</pubDate><guid>/diary/posts/2022/1214/</guid><description>1時に寝て2時に起きて吐き気に苦しんで6時に起きた。後半はよく眠れた気がする。
+フロントエンドの技術選定の調査 はらさんにお願いした フロントエンド勉強会 の内容を踏まえて技術選定を行う。次の3つを候補とした。
+react svelte solid 客観的な指標で3つの技術を調査して比較した時点で solid はうちのチームにはあわないと候補から除外することにした。なので react vs svelte の一騎討ちとなる。なにか理由がない (デファクトスタンダード) なら react だし、うちのチームにとって有効だと判断できる項目があるなら svelte になる。ここで next.js と svelte kit でちょっとコードを書いてみて自分なりの感触も探ろうと考えている。
+Svelte vs React: Which framework to learn in 2023? インフレ勉強会 エンジニアのためのインフレ研究会 #1 に参加した。お仕事の調べものをしながら聞いてた。私はもう常連で前々から同じような話を聞いているものの、発表者の資料も説明もわかりやすいものだったと思う。</description><content>&lt;p>1時に寝て2時に起きて吐き気に苦しんで6時に起きた。後半はよく眠れた気がする。&lt;/p>
+&lt;h2 id="フロントエンドの技術選定の調査">フロントエンドの技術選定の調査&lt;/h2>
+&lt;p>はらさんにお願いした &lt;a href="/diary/diary/posts/2022/1209/#フロントエンド勉強会">フロントエンド勉強会&lt;/a> の内容を踏まえて技術選定を行う。次の3つを候補とした。&lt;/p>
+&lt;ul>
+&lt;li>react&lt;/li>
+&lt;li>svelte&lt;/li>
+&lt;li>solid&lt;/li>
+&lt;/ul>
+&lt;p>客観的な指標で3つの技術を調査して比較した時点で solid はうちのチームにはあわないと候補から除外することにした。なので react vs svelte の一騎討ちとなる。なにか理由がない (デファクトスタンダード) なら react だし、うちのチームにとって有効だと判断できる項目があるなら svelte になる。ここで next.js と svelte kit でちょっとコードを書いてみて自分なりの感触も探ろうと考えている。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://scrimba.com/articles/svelte-vs-react/">Svelte vs React: Which framework to learn in 2023?&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="インフレ勉強会">インフレ勉強会&lt;/h2>
+&lt;p>&lt;a href="https://inflation.connpass.com/event/266172/">エンジニアのためのインフレ研究会 #1&lt;/a> に参加した。お仕事の調べものをしながら聞いてた。私はもう常連で前々から同じような話を聞いているものの、発表者の資料も説明もわかりやすいものだったと思う。&lt;/p></content></item><item><title>eltax で異動届を申請してみた</title><link>/diary/posts/2022/1213/</link><pubDate>Tue, 13 Dec 2022 23:08:06 +0900</pubDate><guid>/diary/posts/2022/1213/</guid><description>0時に寝て5時に起きて7時に起きた。変哲のない普通の朝だった気がする。
 三菱 UFJ 銀行の住所変更手続き 先週来店予約をとったので登記事項証明書をもって来店した。手続き自体はすんなりと進み10分で完了した。わざわざ対面で行うのは最早これセキュリティ。とりあえずセキュリティと言っておけば多少の不便さなんか吹っ飛ぶ。担当者が次の項目をチェックしていた。
 免許証の写真と同じ人物かどうか 住所が書類とあっているかどうか 通帳が正しいかどうか 銀行の届け印が正しいかどうか eltax の住所変更手続き オフィスのプリンタを調べたらスキャナの機能もあることがわかった。夜に登記事項証明書をスキャナで取り込み pdf 変換できたのでそれを使って eltax で地方自治体 (県と市) の異動届も提出することにした。どうやら申請・届出は pc 版ではなく web 版を使うらしい。初めて行う申請だったので書類の在り処や段取りがわからなくて2時間ぐらいかかった。ざっくり次の手順でできる。
 県向けに異動届を作成 登記事項証明書の pdf 添付 作成した異動届をマイナンバーカードを使った公的個人認証サービスで署名して送信 eltax の利用者情報の変更届けを送信 住所が旧住所になっているので更新 県と市のどちらかを選択すると両方に通知される？ 県向けに送付した異動届を複製 登記事項証明書の pdf 添付も複製される 同じ異動届を使って市向けに作成 作成した異動届をマイナンバーカードを使った公的個人認証サービスで署名して送信 メッセージ照会や受付状況照会で内容を確認 翌日には受付状況照会で手続きを完了したというステータスになっていたので問題はなかったみたい。同じ異動届を複製できたのが便利だった。
