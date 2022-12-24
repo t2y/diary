@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>next.js on forest nook</title><link>/diary/tags/next.js/</link><description>Recent content in next.js on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 22 Dec 2022 09:12:40 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/next.js/index.xml" rel="self" type="application/rss+xml"/><item><title>next.js のチュートリアルで学ぶ</title><link>/diary/posts/2022/1222/</link><pubDate>Thu, 22 Dec 2022 09:12:40 +0900</pubDate><guid>/diary/posts/2022/1222/</guid><description>2時に寝て5時に起きて7時半に起きた。疲れてからわりと眠れた方かも。いまの働き方だと木曜日がもっともストレスの低い日になっている。定例会議がない。今週やらないといけないお仕事も次の金曜日があることでまだ時間があるから安心みたいな話し。
+next.js 入門 next.js のチュートリアル を一通りやってみた。2年ほど前にちょっとだけ next.js で開発していたプロジェクトのソースを読んだことがあったので雰囲気は少し覚えていた。チュートリアルは react のことを何もわからなくても next.js の機能や特徴を理解できるような構成になっていて感心した。チュートリアルから学んだことはこれら。関連ドキュメントを読みながらでも1日もあれば終わると思う。
+コードは分割されてコンパイルや pre-fetch が行われる Image コンポーネントを使えば画像の最適化を自動で行う CSS Modules を使えばコンポーネントレベルのスタイルを定義できる ページ単位に pre-rendering できる 静的生成 (ssg) サーバーサイドレンダリング (ssr) pre-rendering が不要ならクライアントサイドレンダリングすればよい (csr) 動的ルーティングや bff のための api エンドポイントは動的に振る舞う デプロイは基本的に node.js を必要とする</description><content>&lt;p>2時に寝て5時に起きて7時半に起きた。疲れてからわりと眠れた方かも。いまの働き方だと木曜日がもっともストレスの低い日になっている。定例会議がない。今週やらないといけないお仕事も次の金曜日があることでまだ時間があるから安心みたいな話し。&lt;/p>
+&lt;h2 id="nextjs-入門">next.js 入門&lt;/h2>
+&lt;p>&lt;a href="https://nextjs.org/learn/basics/create-nextjs-app">next.js のチュートリアル&lt;/a> を一通りやってみた。2年ほど前にちょっとだけ next.js で開発していたプロジェクトのソースを読んだことがあったので雰囲気は少し覚えていた。チュートリアルは react のことを何もわからなくても next.js の機能や特徴を理解できるような構成になっていて感心した。チュートリアルから学んだことはこれら。関連ドキュメントを読みながらでも1日もあれば終わると思う。&lt;/p>
+&lt;ul>
+&lt;li>コードは分割されてコンパイルや pre-fetch が行われる&lt;/li>
+&lt;li>Image コンポーネントを使えば画像の最適化を自動で行う&lt;/li>
+&lt;li>CSS Modules を使えばコンポーネントレベルのスタイルを定義できる&lt;/li>
+&lt;li>ページ単位に pre-rendering できる
+&lt;ul>
+&lt;li>静的生成 (ssg)&lt;/li>
+&lt;li>サーバーサイドレンダリング (ssr)&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>pre-rendering が不要ならクライアントサイドレンダリングすればよい (csr)&lt;/li>
+&lt;li>動的ルーティングや bff のための api エンドポイントは動的に振る舞う&lt;/li>
+&lt;li>デプロイは基本的に node.js を必要とする&lt;/li>
+&lt;/ul></content></item></channel></rss>
