@@ -21,9 +21,11 @@ jobs:
         uses: peaceiris/actions-hugo@v2
         with:
           hugo-version: '0.109.0'
+          extended: true
 
       - name: Build
         run: |
+          hugo version
           cd diary
           hugo --minify --baseURL /diary
 
