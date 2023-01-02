@@ -25,7 +25,6 @@ jobs:
 
       - name: Build
         run: |
-          hugo version
           cd diary
           hugo --minify --baseURL /diary
 
