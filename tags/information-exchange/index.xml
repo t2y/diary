@@ -1,4 +1,37 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>information exchange on forest nook</title><link>/diary/tags/information-exchange/</link><description>Recent content in information exchange on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sun, 08 Jan 2023 15:58:33 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/information-exchange/index.xml" rel="self" type="application/rss+xml"/><item><title>出張前日の準備</title><link>/diary/posts/2023/0108/</link><pubDate>Sun, 08 Jan 2023 15:58:33 +0900</pubDate><guid>/diary/posts/2023/0108/</guid><description>1時に寝て8時に起きた。午前中は洗濯して普通にだらだらしてた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>information exchange on forest nook</title><link>/diary/tags/information-exchange/</link><description>Recent content in information exchange on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 19 Jan 2023 08:37:07 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/information-exchange/index.xml" rel="self" type="application/rss+xml"/><item><title>sveltekit の ssr を理解した</title><link>/diary/posts/2023/0119/</link><pubDate>Thu, 19 Jan 2023 08:37:07 +0900</pubDate><guid>/diary/posts/2023/0119/</guid><description>2時に寝て7時に起きた。キングダムの新刊を読みながら寝てた。
+sveltekit の初期プロジェクト 技術選定で svelte を採用した ので昨日から SvelteKit でアプリケーション開発に着手した。Project structure にもだいぶ慣れてきた。開発初期はディレクトリ構成に迷うのでドキュメントに標準的な階層構造を書いてくれているのは素晴らしい。Routing もキモいけど、ssr の場合は +page.svelte と +page.server.ts を設けるのに慣れてきた。ssr で proxy 的に web api 呼び出しも簡単に実装した。知らないフレームワークで開発するのは学ぶところが多くて楽しい。区切りのよいところで初期開発の issue はクローズして明日は gitlab ci/cd でテスト環境にデプロイするのをやってみる。
+課題管理の雑談 過去に働いていた会社の同僚と課題管理について雑談した。web3 系の会社で働いているのでブロックチェーンや dao 周りの話しも一緒にしたりしていた。一回りぐらい私より若いと思うけれど、私よりはるかに優秀な開発者だなぁと感じながら話しを聞いていた。いま一緒に働いても足手まといになるんじゃないかと思えて身が引き締まる。いくつか話題の中で学んだことを抜き出してみる。
+自分の知識やスキルを共有する手段の1つとしてペアワークをやる ペアワークを通してメンバーとの信頼関係も構築していく いまもっている知識やスキルには個人差はあるが、模倣の能力が低い人をみたことがない 上位の意思決定者から低いレベルにあわせる (標準化など) ように指示がきたときは反発する ユーザーファーストが第一ならレベルを下げるような指示はおかしい 「誰を向いて仕事しているの？」と説得する プロジェクトにおいて目的を明確化せずに始めてしまうのは本当によくない 日本人は上意下達で行動するように教育されてきた弊害ではないか 目的を明確化するのは意見を言うことと同じである レイヤーが上がるほどエモい話しになって人生観や哲学の話しになっていく チームのモチベーションを維持する上でも有効ではないか 私はコミュ障だから他人と一緒に作業しようという発想がそもそもなかった。こちらから一緒にやろうと声をかけて知識やスキルを共有する手段もあるのかと気付いた。これまでも何人もの人にいろんな話しを伺っている。他人のノウハウを聞くだけでもこの雑談をすることに意味はあると思えた。</description><content>&lt;p>2時に寝て7時に起きた。キングダムの新刊を読みながら寝てた。&lt;/p>
+&lt;h2 id="sveltekit-の初期プロジェクト">sveltekit の初期プロジェクト&lt;/h2>
+&lt;p>&lt;a href="/diary/diary/posts/2023/0117/#svelte-アプリの開発に着手">技術選定で svelte を採用した&lt;/a> ので昨日から &lt;a href="https://kit.svelte.dev/">SvelteKit&lt;/a> でアプリケーション開発に着手した。&lt;a href="https://kit.svelte.dev/docs/project-structure">Project structure&lt;/a> にもだいぶ慣れてきた。開発初期はディレクトリ構成に迷うのでドキュメントに標準的な階層構造を書いてくれているのは素晴らしい。&lt;a href="https://kit.svelte.dev/docs/routing">Routing&lt;/a> もキモいけど、ssr の場合は &lt;code>+page.svelte&lt;/code> と &lt;code>+page.server.ts&lt;/code> を設けるのに慣れてきた。ssr で proxy 的に web api 呼び出しも簡単に実装した。知らないフレームワークで開発するのは学ぶところが多くて楽しい。区切りのよいところで初期開発の issue はクローズして明日は gitlab ci/cd でテスト環境にデプロイするのをやってみる。&lt;/p>
+&lt;h2 id="課題管理の雑談">課題管理の雑談&lt;/h2>
+&lt;p>過去に働いていた会社の同僚と課題管理について雑談した。web3 系の会社で働いているのでブロックチェーンや dao 周りの話しも一緒にしたりしていた。一回りぐらい私より若いと思うけれど、私よりはるかに優秀な開発者だなぁと感じながら話しを聞いていた。いま一緒に働いても足手まといになるんじゃないかと思えて身が引き締まる。いくつか話題の中で学んだことを抜き出してみる。&lt;/p>
+&lt;ul>
+&lt;li>自分の知識やスキルを共有する手段の1つとしてペアワークをやる
+&lt;ul>
+&lt;li>ペアワークを通してメンバーとの信頼関係も構築していく&lt;/li>
+&lt;li>いまもっている知識やスキルには個人差はあるが、模倣の能力が低い人をみたことがない&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>上位の意思決定者から低いレベルにあわせる (標準化など) ように指示がきたときは反発する
+&lt;ul>
+&lt;li>ユーザーファーストが第一ならレベルを下げるような指示はおかしい&lt;/li>
+&lt;li>「誰を向いて仕事しているの？」と説得する&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>プロジェクトにおいて目的を明確化せずに始めてしまうのは本当によくない
+&lt;ul>
+&lt;li>日本人は上意下達で行動するように教育されてきた弊害ではないか&lt;/li>
+&lt;li>目的を明確化するのは意見を言うことと同じである
+&lt;ul>
+&lt;li>レイヤーが上がるほどエモい話しになって人生観や哲学の話しになっていく&lt;/li>
+&lt;li>チームのモチベーションを維持する上でも有効ではないか&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>私はコミュ障だから他人と一緒に作業しようという発想がそもそもなかった。こちらから一緒にやろうと声をかけて知識やスキルを共有する手段もあるのかと気付いた。これまでも何人もの人にいろんな話しを伺っている。他人のノウハウを聞くだけでもこの雑談をすることに意味はあると思えた。&lt;/p></content></item><item><title>出張前日の準備</title><link>/diary/posts/2023/0108/</link><pubDate>Sun, 08 Jan 2023 15:58:33 +0900</pubDate><guid>/diary/posts/2023/0108/</guid><description>1時に寝て8時に起きた。午前中は洗濯して普通にだらだらしてた。
 課題管理勉強会の資料作り 12月から読み始めた Gergely Orosz 氏の記事 をベースに来週の勉強会の資料を作った。もう少し推敲はするが、スライドで全32枚になった。ブログ記事の内容を解説するスライドなので文字が多い。1時間の枠には十分に耐えそう。この資料と前回の勉強会の資料の2つを知人とオンライン飲み会するときの話しのつまみに使う。毎月、課題管理の文脈で勉強会を行う労力はそこそこあるけれど、コンテンツが溜まっていくのは未来への投資になるので困ることは何もない。課題管理の勉強会があるという機会そのものに感謝する。
 フリーランス、４０歳の壁 フリーランス、４０歳の壁 の中盤を読んだ。
 「第5章 田中圭一 サラリーマンとマンガ家を両立させる男。」 「第6章 『電脳マヴォ』と私の未来。」 「第7章 FROGMAN アニメ界の革命児が直面した「30歳の壁」。」 平日はサラリーマンで営業として働き、休日を利用してマンガを描くという働き方を30年以上している田中圭一さんのインタビューがある。30年以上と聞くとすごいことでその実績は否定しようがないと素直に思う。一方でうちは兼業農家だったので平日はサラリーマン、休日に農業をするのは普通だった。父はその生活を42年間していた。またうつ病になった経緯のエピソードがある。ある会社に転職して最初のうちはうまくいったが、5年目ぐらいで行き詰まってしまった。技術系の会社でプログラミングを学ばないといけないという空気があったらしい。会社の仕事があわないと田中氏は思いつつも転職する自信をもてず、そのまま10年いてうつ病になってしまったとのこと。これが3ヶ月だったら大変だったんだなと思う。しかし、厳しい言い方だけど、行き詰まりは仕方ないとしても5年もなにも対策しなかったの？と私なら思ってしまう。ここだけ読むと未知のことやスキル不足を勉強しない人の典型例だと思えてしまった。本業で成果を出せていないのに転職できないから会社に残り続ける人たちを私も少なからずみてきた。助言や提案をしても、例外なく、そういう人たちはできない理由を熱心に説明し、自ら努力してスキルを習得しようとはしなかった。できる・できない以前にやろうともしなかったのをみてきた。
