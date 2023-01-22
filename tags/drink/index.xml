@@ -1,4 +1,43 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>drink on forest nook</title><link>/diary/tags/drink/</link><description>Recent content in drink on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sun, 12 Dec 2021 11:53:29 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/drink/index.xml" rel="self" type="application/rss+xml"/><item><title>ワーケーション準備</title><link>/diary/posts/2021/1212/</link><pubDate>Sun, 12 Dec 2021 11:53:29 +0900</pubDate><guid>/diary/posts/2021/1212/</guid><description>2時半に寝て7時に起きた。なんか眠れなくてだらだらしてた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>drink on forest nook</title><link>/diary/tags/drink/</link><description>Recent content in drink on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sun, 22 Jan 2023 13:15:37 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/drink/index.xml" rel="self" type="application/rss+xml"/><item><title>何もしてないのに1日が過ぎた</title><link>/diary/posts/2023/0122/</link><pubDate>Sun, 22 Jan 2023 13:15:37 +0900</pubDate><guid>/diary/posts/2023/0122/</guid><description>仲の良い焼き鳥屋さんで軽く飲んできた。2時に寝て7時に起きた。午前中はだらだらしてた。午後から会社の事務手続きをやりながら、実家の法事の段取りをやりながら、ブログの記事などを読んでいた。
+jj 茉莉花 (ジャスミン焼酎) をジャスミン茶で割った飲みものを jj と呼ぶらしい。焼き鳥屋さんのマスター曰く、お客さんが 串カツ田中で販売 しているのをみて、焼き鳥屋さんでも扱ってよと言うから置いてみたと話していた。あまりこれまで飲んだことのない不思議な飲みものになっていた。基本はジャスミン茶なんだけど、アルコール入っているなという雰囲気がするカルイ飲みものに感じた。お茶ベースだからどんな食べものにもあいそう。すごくおいしいものではない分、軽く飲みたいときにちょうどいいかもしれない。
+法事の出席者管理 来週は35日の だんご転がし がある。2月の上旬には49日もある。過去の葬儀もあわせて親戚や関係者の、出席を管理するためのスプレッドシートを作った。出席確認を母に任せていたらなかなか進まなくてお正月から2週間あってもまだ確認を取り切れていない。人間を調整するのがもっとも面倒で時間がかかる。その後に初盆、1回忌、3回忌と続く。連絡先の電話番号も私の方で管理して、私が電話していった方がよいのかなぁ。
+Java は死んだ Java is Dead — 5 Misconceptions of developers that still think Java is relevant today! この記事の著者はいまも java が通用すると思っているとしたらそれは誤解があるという。その誤解を5つあげるといった記事。
+誤解1: Javaには、大規模で活発な開発者コミュニティーがある。
+これは誤解ではなく事実だと書いてある (´・ω・｀) 著者の意見としては、他言語の進化が速く java は冗長で古い型システムで時代遅れみたいなことを主張している。私の意見だと java の進化もいまは速くていうほど時代遅れというほどではない。過去の資産がいまの java に追いつけていないといったのもある。十分に他言語に機能的に追いついているし開発サイクルも速い。
+誤解2: Javaは幅広い用途に使われる。Javaは単なるWeb開発言語ではなく、モバイルアプリやゲーム、エンタープライズレベルのソフトウェアの開発にも利用されている。
+これも著者の視点が適切ではない。モバイルでは kotlin が席巻していて、web の開発言語としても java をあげるのは大企業やエンタープライズ開発のみではないかと説いている。たしかに kotlin は java ではないが、jvm 言語ではあるので jvm は未だに必要とされているという事実がある。もう1つ、java はエンタープライズレベルのでミドルウェアで確固とした地位を気付いている。例えば、cassandra, hadoop, kafka など、これらを web 開発で使っている限り、それは web 開発でも使われていると言えるだろう。
+誤解3: Javaは基礎となる言語である。多くの新しいプログラミング言語は、Javaの原理と概念に基づいて構築されており、何らかの形でJavaと互換性を持つように設計されている。
+こんなこと誰も言っていないと思うけど、著者がそもそも誤解しているのではないか。一方でクリーンアーキテクチャに代表されるような、java のエコシステムで開発されたアーキテクチャなどは java と相性がよい。java と他言語との最大の違いはクラスがないとプログラミングできないという点であり、これはメリット・デメリットをもたらすが、oop においては di 技術を進化させてクリーンアーキテクチャのような概念の下支えをしている。</description><content>&lt;p>仲の良い焼き鳥屋さんで軽く飲んできた。2時に寝て7時に起きた。午前中はだらだらしてた。午後から会社の事務手続きをやりながら、実家の法事の段取りをやりながら、ブログの記事などを読んでいた。&lt;/p>
+&lt;h2 id="jj">jj&lt;/h2>
+&lt;p>&lt;a href="https://www.suntory.co.jp/sho-chu/matsurika/">茉莉花 (ジャスミン焼酎)&lt;/a> をジャスミン茶で割った飲みものを &lt;em>jj&lt;/em> と呼ぶらしい。焼き鳥屋さんのマスター曰く、お客さんが &lt;a href="https://kushi-tanaka.com/news/entry/1920">串カツ田中で販売&lt;/a> しているのをみて、焼き鳥屋さんでも扱ってよと言うから置いてみたと話していた。あまりこれまで飲んだことのない不思議な飲みものになっていた。基本はジャスミン茶なんだけど、アルコール入っているなという雰囲気がするカルイ飲みものに感じた。お茶ベースだからどんな食べものにもあいそう。すごくおいしいものではない分、軽く飲みたいときにちょうどいいかもしれない。&lt;/p>
+&lt;h2 id="法事の出席者管理">法事の出席者管理&lt;/h2>
+&lt;p>来週は35日の &lt;a href="https://www.kobe-np.co.jp/rentoku/shingokoku/P20170612MS00167.shtml">だんご転がし&lt;/a> がある。2月の上旬には49日もある。過去の葬儀もあわせて親戚や関係者の、出席を管理するためのスプレッドシートを作った。出席確認を母に任せていたらなかなか進まなくてお正月から2週間あってもまだ確認を取り切れていない。人間を調整するのがもっとも面倒で時間がかかる。その後に初盆、1回忌、3回忌と続く。連絡先の電話番号も私の方で管理して、私が電話していった方がよいのかなぁ。&lt;/p>
+&lt;h2 id="java-は死んだ">Java は死んだ&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://medium.com/@sidh.thomas1/java-is-dead-6-misconceptions-of-developers-that-still-think-java-is-relevant-today-683310849855">Java is Dead — 5 Misconceptions of developers that still think Java is relevant today!&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>この記事の著者はいまも java が通用すると思っているとしたらそれは誤解があるという。その誤解を5つあげるといった記事。&lt;/p>
+&lt;blockquote>
+&lt;p>誤解1: Javaには、大規模で活発な開発者コミュニティーがある。&lt;/p>
+&lt;/blockquote>
+&lt;p>これは誤解ではなく事実だと書いてある (´・ω・｀) 著者の意見としては、他言語の進化が速く java は冗長で古い型システムで時代遅れみたいなことを主張している。私の意見だと java の進化もいまは速くていうほど時代遅れというほどではない。過去の資産がいまの java に追いつけていないといったのもある。十分に他言語に機能的に追いついているし開発サイクルも速い。&lt;/p>
+&lt;blockquote>
+&lt;p>誤解2: Javaは幅広い用途に使われる。Javaは単なるWeb開発言語ではなく、モバイルアプリやゲーム、エンタープライズレベルのソフトウェアの開発にも利用されている。&lt;/p>
+&lt;/blockquote>
+&lt;p>これも著者の視点が適切ではない。モバイルでは kotlin が席巻していて、web の開発言語としても java をあげるのは大企業やエンタープライズ開発のみではないかと説いている。たしかに kotlin は java ではないが、jvm 言語ではあるので jvm は未だに必要とされているという事実がある。もう1つ、java はエンタープライズレベルのでミドルウェアで確固とした地位を気付いている。例えば、cassandra, hadoop, kafka など、これらを web 開発で使っている限り、それは web 開発でも使われていると言えるだろう。&lt;/p>
+&lt;blockquote>
+&lt;p>誤解3: Javaは基礎となる言語である。多くの新しいプログラミング言語は、Javaの原理と概念に基づいて構築されており、何らかの形でJavaと互換性を持つように設計されている。&lt;/p>
+&lt;/blockquote>
+&lt;p>こんなこと誰も言っていないと思うけど、著者がそもそも誤解しているのではないか。一方でクリーンアーキテクチャに代表されるような、java のエコシステムで開発されたアーキテクチャなどは java と相性がよい。java と他言語との最大の違いはクラスがないとプログラミングできないという点であり、これはメリット・デメリットをもたらすが、oop においては di 技術を進化させてクリーンアーキテクチャのような概念の下支えをしている。&lt;/p>
+&lt;blockquote>
+&lt;p>誤解4: Javaは大手企業の強力なサポートがある。Javaを保守・サポートしているオラクル社は、Javaという言語に強いこだわりを持っており、その開発・改良に投資を続けている。また、GoogleやAmazonなど、多くの大手企業が自社の製品やサービスにJavaを採用している。&lt;/p>
+&lt;/blockquote>
+&lt;p>oracle という企業とそのプロダクトが市場でのシェアを失っているという視点で懸念を表明している。たしかに oracle はそうかもしれないが、google や amazon だって java を活用しているので oracle がダメになっても web 系の大企業がサポートしていくのではないかと私は推測する。&lt;/p>
+&lt;blockquote>
+&lt;p>誤解5: Javaは学校や大学で広く教えられている。&lt;/p>
+&lt;/blockquote>
+&lt;p>この点だけは著者の意見に違和感はない。一昔前は java が大学でよく教えられていたと思うが、今後は python や go といった、他の言語が最初に学ぶプログラミング言語として人気を博していくのではないかと私も思う。&lt;/p>
+&lt;p>ざっと読んでみて java 開発をやったことのない経験が浅い開発者が書いた記事だなと思えた。&lt;/p></content></item><item><title>ワーケーション準備</title><link>/diary/posts/2021/1212/</link><pubDate>Sun, 12 Dec 2021 11:53:29 +0900</pubDate><guid>/diary/posts/2021/1212/</guid><description>2時半に寝て7時に起きた。なんか眠れなくてだらだらしてた。
 ワーケーション予約 参加予定者に最終確認をとって3人参加してくれることになった。感謝。私を含めて4人で行ってくる。レンタカーと きのいえ の予約を確定させた。1月28-30日で 城崎温泉 でワーケーションしてくる。宿泊は金曜日の夜しか予約があいてなくて4月まで土曜日の夜はすでに予約が埋まっていた。もし金土と連泊で予約するときは3ヶ月以上前に予約をとらないといけないということがわかった。宿泊人数によって料金が変わってくるため、多少の人数変更に対応できる条件で予約できるのが望ましい。今回泊まることでオーナーの人とやり取りできればそういったことも聞いてみようと思う。その後、旅のしおりを作り始めた。まだ1ヶ月あるので調べながらゆっくり準備を進めていく。移動や作業のための時間、食事、親睦会などタイムラインを作りながらやり方を検討していく。
 ショコラ・シュバルツ 山梨県北杜市のふるさと納税 の返礼品として ショコラ・シュバルツ（Chocolat Schwartz） が届いた。試しに1本飲んでみた。香りがよくて黒ビールなんだけど、普通の黒ビールとは異なる風味でそれがショコラなのかどうか、私にはよくわかってないけど、あまり味わったことのない黒ビールという点からはおいしかった。毎日飲むようなビールではないと思うが、イベントや記念日など普通のビールとは異なるビールを試したいときには向きそう。お土産などにもよさそう。</description><content>&lt;p>2時半に寝て7時に起きた。なんか眠れなくてだらだらしてた。&lt;/p>
 &lt;h2 id="ワーケーション予約">ワーケーション予約&lt;/h2>
