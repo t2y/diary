@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2023/02 on forest nook</title><link>/diary/dates/2023/02/</link><description>Recent content in 2023/02 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2023/02/index.xml" rel="self" type="application/rss+xml"/><item><title>テックブログ公開</title><link>/diary/posts/2023/0201/</link><pubDate>Wed, 01 Feb 2023 08:50:39 +0900</pubDate><guid>/diary/posts/2023/0201/</guid><description>0時に寝て何度か起きて6時半に起きた。起きてから8時までだらだらしてた。寒くて起きれない。2月入ってしまった。早いなぁ。
+テックブログのレビュー／公開 先週に草稿は書き上げていた ものの、レビューが滞っていた。他社のテックブログを勝手に書いて公開するわけにはいかないので慎重にレビューをお願いしていた。私がそういう特性の人間なのか、課題管理システムを長年使い続けてきたからそうなったのか、その両方なのか。私は Unit Bias が大きい方の人間だと思う。自分の中で完了したタスクをクローズせずに放置しておくのが精神的に耐えられない。すぐに対応しない残作業があるなら新しい issue に作った上で古い issue をクローズすることもたまにある。放置するのは嫌なので今日は関係者にどんどん確認してレビューを進めた。
+公開して知人にシェアしてみたものの、あまり反応がよくないので大して関心を唆る読みものにはなっていないようだ。扱っている内容が悪いわけではなく、私の構成や文章力が拙いのだと思う。悔しいのでもう1回ぐらい、この記事に関連するテックブログを書いて関心をもってもらうような読みものにしたい。関西人だからかぶせてかぶせて天丼にしていく。
+フロントエンドの技術選定</description><content>&lt;p>0時に寝て何度か起きて6時半に起きた。起きてから8時までだらだらしてた。寒くて起きれない。2月入ってしまった。早いなぁ。&lt;/p>
+&lt;h2 id="テックブログのレビュー公開">テックブログのレビュー／公開&lt;/h2>
+&lt;p>&lt;a href="/diary/diary/posts/2023/0125/#フロントエンドの技術選定のテックブログ">先週に草稿は書き上げていた&lt;/a> ものの、レビューが滞っていた。他社のテックブログを勝手に書いて公開するわけにはいかないので慎重にレビューをお願いしていた。私がそういう特性の人間なのか、課題管理システムを長年使い続けてきたからそうなったのか、その両方なのか。私は &lt;a href="https://lirio.com/blog/unit-bias-lirio-bias-brief/">Unit Bias&lt;/a> が大きい方の人間だと思う。自分の中で完了したタスクをクローズせずに放置しておくのが精神的に耐えられない。すぐに対応しない残作業があるなら新しい issue に作った上で古い issue をクローズすることもたまにある。放置するのは嫌なので今日は関係者にどんどん確認してレビューを進めた。&lt;/p>
+&lt;p>公開して知人にシェアしてみたものの、あまり反応がよくないので大して関心を唆る読みものにはなっていないようだ。扱っている内容が悪いわけではなく、私の構成や文章力が拙いのだと思う。悔しいのでもう1回ぐらい、この記事に関連するテックブログを書いて関心をもってもらうような読みものにしたい。関西人だからかぶせてかぶせて天丼にしていく。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://blog.osstech.co.jp/posts/2023/02/frontend-tech-selection/">フロントエンドの技術選定&lt;/a>&lt;/li>
+&lt;/ul></content></item></channel></rss>
