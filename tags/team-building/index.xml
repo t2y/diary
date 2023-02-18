@@ -1,4 +1,40 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>team building on forest nook</title><link>/diary/tags/team-building/</link><description>Recent content in team building on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 09 Feb 2023 08:10:53 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/team-building/index.xml" rel="self" type="application/rss+xml"/><item><title>リリースの前倒し</title><link>/diary/posts/2023/0209/</link><pubDate>Thu, 09 Feb 2023 08:10:53 +0900</pubDate><guid>/diary/posts/2023/0209/</guid><description>23時に寝て何度か起きて5時半に起きた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>team building on forest nook</title><link>/diary/tags/team-building/</link><description>Recent content in team building on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sat, 18 Feb 2023 19:12:06 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/team-building/index.xml" rel="self" type="application/rss+xml"/><item><title>余裕がなさ過ぎる</title><link>/diary/posts/2023/0217/</link><pubDate>Sat, 18 Feb 2023 19:12:06 +0900</pubDate><guid>/diary/posts/2023/0217/</guid><description>1時に寝て7時に起きた。タスクが溜まり過ぎてそろそろ辛くなってきているところ。この余裕の無さはよくないことなので、自分のダメさ加減というか、大いに反省しないといけない。
+隔週の雑談 顧問のはらさんと隔週の打ち合わせ。いつもは打ち合わせの議題を2-3日前には共有するようにしている。だいたい水曜日前後に議題のリファレンスをはらさんに共有して金曜日の朝に話している。しかし、今週はリファクタリングに集中し過ぎていて前日の寝る前になって議題を共有していないことに気付いた。そして朝起きてから急ぎで議題を考えて共有していた。これはとてもよくない。準備ができていないので今日の議題は主に近況の話しをしていた。
+プロジェクトマネジメントの話し データ指向アプリケーションデザインのイベントの所感 Gopher塾イベントの所感 ハドルの雑談 先日から 午前中はハドルに滞在 するようにしている。今週は木曜日にチーム外から勉強会についての相談が、今日はメンバーから気分転換に雑談にやってきてくれた。おそらく私がハドルにいなかったらゼロだったコミュニケーションの機会が、1週間に1-2回でもあることに私は嬉しく思ってしまう。フルリモートワークにおける、オフラインのような気軽な雑談の機会を提供する施策の1つとして意味なくハドルに入るのは悪くない気がしている。そのときにコミュニケーションを強制させるような押し付けが発生しないよう、運用ルールを徹底することが大事に思える。いまは相手がハドルに入ってくると 1on1 のような雰囲気になってしまうのでその次の挑戦としてはハドルに入っていても話さなくてよいといった運用ルールを設ければよいのではないかと思う。例えば、午前中はとりあえずハドルに入って気分が向いたときだけ話しかけるみたいな、ゆるいコミュニケーションの場になればいいなと思う。
+ハドル雑談の運用ルールのアイディア
+ハドルに入らなくても業務上の支障は一切おきない ハドルにいる人には、用事があってもなくても、話しかけてよい ハドルに入っていても話さず聞いているだけでもよい 業務に集中していて忙しいときは話しかけられても後回しにしてもよい (ハドルから退出した方がわかりやすいかもしれない) go の generics 勉強会 ちょうど先週からあちこち直したり、mongodb のクライアント周りをリファクタリングしたりしている。その過程で generics を使ってコードの共通化もしたりしている。私自身 generics で意図した通りにコンパイルできなくてはまってしまった事例もあるのでそういった失敗コードも共有した。go の generics はコードに対して静的な領域しか適用されず、コード中における動的な値の型は generics とは直行した概念だというところに初学者ははまるのではないかと思う。私がはまった。参加者におそらく1度はまるからはまったときに私が話していたことを思い出してとコードの解説をしていた。
+今日は type constraint でできることと動的な値との関係を混同して generics でできないことを一生懸命やろうとしてた。interface に変換して型パラメーターに type assertion すればコンパイルは通る。2時間ほどはまってた。。。https://t.co/vmk6CfVTl8
+&amp;mdash; Tetsuya Morimoto (@t2y) February 16, 2023 余裕があったらスライドにまとめて後で資料として再利用できるようにしたかったものの、私の作業に余裕がなさ過ぎて次のリファレンスから引用しながら解説するといった勉強会になった。ただ私が読んでよいと思った他者のスライドやブログの記事のみを紹介している。それはそれで参考にはなるので勉強会の意図としては問題なかったんじゃないかとは思う。
+The Generic Dilemma Tutorial: Getting started with generics Go 1.18集中連載 ジェネリクス Go1.18最新情報 Understanding generics in Go 1.18 golang 1.18+ generics: The Good, The Bad, The Ugly.</description><content>&lt;p>1時に寝て7時に起きた。タスクが溜まり過ぎてそろそろ辛くなってきているところ。この余裕の無さはよくないことなので、自分のダメさ加減というか、大いに反省しないといけない。&lt;/p>
+&lt;h2 id="隔週の雑談">隔週の雑談&lt;/h2>
+&lt;p>顧問のはらさんと隔週の打ち合わせ。いつもは打ち合わせの議題を2-3日前には共有するようにしている。だいたい水曜日前後に議題のリファレンスをはらさんに共有して金曜日の朝に話している。しかし、今週はリファクタリングに集中し過ぎていて前日の寝る前になって議題を共有していないことに気付いた。そして朝起きてから急ぎで議題を考えて共有していた。これはとてもよくない。準備ができていないので今日の議題は主に近況の話しをしていた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="/diary/diary/posts/2023/0209/#プロジェクトの進捗報告">プロジェクトマネジメントの話し&lt;/a>&lt;/li>
+&lt;li>&lt;a href="/diary/diary/posts/2023/0215/#データ指向アプリケーションデザインの紹介イベント">データ指向アプリケーションデザインのイベントの所感&lt;/a>&lt;/li>
+&lt;li>&lt;a href="/diary/diary/posts/2023/0204/">Gopher塾イベントの所感&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="ハドルの雑談">ハドルの雑談&lt;/h2>
+&lt;p>先日から &lt;a href="/diary/diary/posts/2023/0202/">午前中はハドルに滞在&lt;/a> するようにしている。今週は木曜日にチーム外から勉強会についての相談が、今日はメンバーから気分転換に雑談にやってきてくれた。おそらく私がハドルにいなかったらゼロだったコミュニケーションの機会が、1週間に1-2回でもあることに私は嬉しく思ってしまう。フルリモートワークにおける、オフラインのような気軽な雑談の機会を提供する施策の1つとして意味なくハドルに入るのは悪くない気がしている。そのときにコミュニケーションを強制させるような押し付けが発生しないよう、運用ルールを徹底することが大事に思える。いまは相手がハドルに入ってくると 1on1 のような雰囲気になってしまうのでその次の挑戦としてはハドルに入っていても話さなくてよいといった運用ルールを設ければよいのではないかと思う。例えば、午前中はとりあえずハドルに入って気分が向いたときだけ話しかけるみたいな、ゆるいコミュニケーションの場になればいいなと思う。&lt;/p>
+&lt;p>ハドル雑談の運用ルールのアイディア&lt;/p>
+&lt;ul>
+&lt;li>ハドルに入らなくても業務上の支障は一切おきない&lt;/li>
+&lt;li>ハドルにいる人には、用事があってもなくても、話しかけてよい&lt;/li>
+&lt;li>ハドルに入っていても話さず聞いているだけでもよい&lt;/li>
+&lt;li>業務に集中していて忙しいときは話しかけられても後回しにしてもよい (ハドルから退出した方がわかりやすいかもしれない)&lt;/li>
+&lt;/ul>
+&lt;h2 id="go-の-generics-勉強会">go の generics 勉強会&lt;/h2>
+&lt;p>ちょうど先週からあちこち直したり、mongodb のクライアント周りをリファクタリングしたりしている。その過程で generics を使ってコードの共通化もしたりしている。私自身 generics で意図した通りにコンパイルできなくてはまってしまった事例もあるのでそういった失敗コードも共有した。go の generics はコードに対して静的な領域しか適用されず、コード中における動的な値の型は generics とは直行した概念だというところに初学者ははまるのではないかと思う。私がはまった。参加者におそらく1度はまるからはまったときに私が話していたことを思い出してとコードの解説をしていた。&lt;/p>
+&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">今日は type constraint でできることと動的な値との関係を混同して generics でできないことを一生懸命やろうとしてた。interface に変換して型パラメーターに type assertion すればコンパイルは通る。2時間ほどはまってた。。。&lt;a href="https://t.co/vmk6CfVTl8">https://t.co/vmk6CfVTl8&lt;/a>&lt;/p>&amp;mdash; Tetsuya Morimoto (@t2y) &lt;a href="https://twitter.com/t2y/status/1626177820362940421?ref_src=twsrc%5Etfw">February 16, 2023&lt;/a>&lt;/blockquote>
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script>
+&lt;p>余裕があったらスライドにまとめて後で資料として再利用できるようにしたかったものの、私の作業に余裕がなさ過ぎて次のリファレンスから引用しながら解説するといった勉強会になった。ただ私が読んでよいと思った他者のスライドやブログの記事のみを紹介している。それはそれで参考にはなるので勉強会の意図としては問題なかったんじゃないかとは思う。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://research.swtch.com/generic">The Generic Dilemma&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://go.dev/doc/tutorial/generics">Tutorial: Getting started with generics&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://future-architect.github.io/articles/20220209a/">Go 1.18集中連載 ジェネリクス&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.google.com/presentation/d/1Dj7Rs5K1HkVogbX9vuxcja-uJ5tIqxkFwPG-W31vP0E/edit#slide=id.p">Go1.18最新情報&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://blog.logrocket.com/understanding-generics-go-1-18/">Understanding generics in Go 1.18&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://itnext.io/golang-1-18-generics-the-good-the-bad-the-ugly-5e9fa2520e76">golang 1.18+ generics: The Good, The Bad, The Ugly.&lt;/a>&lt;/li>
+&lt;/ul></content></item><item><title>リリースの前倒し</title><link>/diary/posts/2023/0209/</link><pubDate>Thu, 09 Feb 2023 08:10:53 +0900</pubDate><guid>/diary/posts/2023/0209/</guid><description>23時に寝て何度か起きて5時半に起きた。
 プロジェクトの進捗報告 出張したときの月例報告の3回目。前回の進捗報告はこちら 。1月はバックエンド開発を完了させてフロントエンド開発に着手した。 当初は6ヶ月の開発期間を設けていたものの、1ヶ月前倒しの5ヶ月でフェーズ1の開発を完了させる見通しを報告した。管理画面も機能的にはすでに一通り実装できている。これから2月は使いやすさの ui を改善していくところや品質をあげるためのリファクタリングを行い、3月は運用レベルのテストをしてバグ修正を行う。ソースコードの品質も私がチェックしているので、どういう修正が必要かも予測できていて、十分に余裕のあるスケジュールだと私は考えている。油断も慢心もなく、いまできるだけの知識とスキルをつぎ込んで品質の高いプロダクトに仕上げるのに努める。
 先月に宣言した通り、フェーズ1の開発はもう私の中では終わっていて次のフェーズ2への準備や計画をこれから考えていく。業務的に区切りがよいのでフェーズ1で契約終了する可能性もあったけれど、4月以降も開発のマネジメントをしてほしいとのこと。フェーズ1の開発と並行して、余裕をみてフェーズ2以降の計画も立てていく。フェーズ2以降に予定している、少なくともあと2つの機能開発に私は責任をもとうと契約の有無に関係なくもともと考えていた。それらを実装すれば大半のお客さんのニーズにあうプロダクトになるはずなのでそれ以降の開発は引き継いでいいかなと思う。言うても野心的に言えば3ヶ月強といったところか。チームも成長しているので3ヶ月前よりは開発速度が上がっている。
 さらにいま私が担当しているプロジェクトとは別に、他にもやってほしいお仕事があるらしい。もしかしたらそれも含めて来季の半期以上のお手伝いになるのかもしれない。しばらく次のお仕事探しはしなくてよい状況にある。3月のリリースを終えたら会社の事例紹介を書きたい。今回は会社として初めてのプロジェクトマネジメントの実績になる。周りにも喧伝していきたい。
