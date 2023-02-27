@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>linux on forest nook</title><link>/diary/tags/linux/</link><description>Recent content in linux on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Mon, 27 Feb 2023 08:17:22 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>go 1.20.1 を使い始めた</title><link>/diary/posts/2023/0227/</link><pubDate>Mon, 27 Feb 2023 08:17:22 +0900</pubDate><guid>/diary/posts/2023/0227/</guid><description>0時に寝て何度か起きて7時半に起きた。あまりうまく眠れなかった。
+go 1.20.1 へのアップグレード リファクタリングの区切りがついたらやろうと思っていて遅れた。すでに 1.20.1 がリリースされている。先日 Go 1.20 リリースパーティ に参加して、いろいろ聞いていると改善されているところや新しい機能を試してみたいものがいくつかみつかった。単純にアップグレードするだけでも最大でビルド時間が10%短縮される可能性がある。1.18 と 1.19 で generics 対応でビルド時間が遅くなっていたのが 1.17 相当に改善されたらしい。やっぱり generics はコンパイラを複雑にするものなのでコンパイル時間が長くなる傾向があるんやなと話しを聞いていて思ったりもした。ついでに依存ライブラリなどのバージョンアップもまとめてやった。単体テストと結合テストが普通には揃ってきたのでバージョンアップなども安心して実行できる。
+rocky linux のネットワーク設定 テスト環境に使っている rocky linux の ip アドレスを変更する必要があったので調べてみた。ちゃんとした公式のガイドが出てきてすごいなと感心した。
+Network Configuration - Rocky Linux 9 ip アドレスを確認するコマンドが ifconfig から ip に変わっていたり、ネットワーク設定のためのツールも私が知っているものとは全然変わってしまっている。
+$ ip addr Network Manager のサービスで設定されているようでそのための設定ファイルは次の場所に保存されていた。
+/etc/NetworkManager/system-connections/my-device.nmconnection これを書き換えるツールとして nmtui という tui ツールと nmcli という cli ツールの2つがある。tui とか懐かしいなとか思いながら操作していた。ssh 経由で設定していたので cli でいきなり設定を反映するよりも tui で設定ファイルを書き換えて os を再起動するのがよいだろうと考えてやってみた。ドキュメントに書いてある通りに操作したら意図した ip アドレスを設定して変更できた。</description><content>&lt;p>0時に寝て何度か起きて7時半に起きた。あまりうまく眠れなかった。&lt;/p>
+&lt;h2 id="go-1201-へのアップグレード">go 1.20.1 へのアップグレード&lt;/h2>
+&lt;p>リファクタリングの区切りがついたらやろうと思っていて遅れた。すでに 1.20.1 がリリースされている。先日 &lt;a href="https://gocon.connpass.com/event/273096/">Go 1.20 リリースパーティ&lt;/a> に参加して、いろいろ聞いていると改善されているところや新しい機能を試してみたいものがいくつかみつかった。単純にアップグレードするだけでも最大でビルド時間が10%短縮される可能性がある。1.18 と 1.19 で generics 対応でビルド時間が遅くなっていたのが 1.17 相当に改善されたらしい。やっぱり generics はコンパイラを複雑にするものなのでコンパイル時間が長くなる傾向があるんやなと話しを聞いていて思ったりもした。ついでに依存ライブラリなどのバージョンアップもまとめてやった。単体テストと結合テストが普通には揃ってきたのでバージョンアップなども安心して実行できる。&lt;/p>
+&lt;iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/b76374a32d394b66afdfea89da855927?slide=1" title="What's new in Go 1.20?" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 600px; height: auto; aspect-ratio: 560 / 314;" data-ratio="1.78343949044586">&lt;/iframe>
+&lt;h2 id="rocky-linux-のネットワーク設定">rocky linux のネットワーク設定&lt;/h2>
+&lt;p>テスト環境に使っている rocky linux の ip アドレスを変更する必要があったので調べてみた。ちゃんとした公式のガイドが出てきてすごいなと感心した。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.rockylinux.org/guides/network/basic_network_configuration/">Network Configuration - Rocky Linux 9&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>ip アドレスを確認するコマンドが ifconfig から ip に変わっていたり、ネットワーク設定のためのツールも私が知っているものとは全然変わってしまっている。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ ip addr
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Network Manager のサービスで設定されているようでそのための設定ファイルは次の場所に保存されていた。&lt;/p>
+&lt;pre tabindex="0">&lt;code>/etc/NetworkManager/system-connections/my-device.nmconnection
+&lt;/code>&lt;/pre>&lt;p>これを書き換えるツールとして nmtui という tui ツールと nmcli という cli ツールの2つがある。tui とか懐かしいなとか思いながら操作していた。ssh 経由で設定していたので cli でいきなり設定を反映するよりも tui で設定ファイルを書き換えて os を再起動するのがよいだろうと考えてやってみた。ドキュメントに書いてある通りに操作したら意図した ip アドレスを設定して変更できた。&lt;/p></content></item></channel></rss>
