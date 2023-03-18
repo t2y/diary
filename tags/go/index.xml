@@ -1,4 +1,51 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>go on forest nook</title><link>/diary/tags/go/</link><description>Recent content in go on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Wed, 15 Mar 2023 11:10:23 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/go/index.xml" rel="self" type="application/rss+xml"/><item><title>キャッシュ機構の導入</title><link>/diary/posts/2023/0315/</link><pubDate>Wed, 15 Mar 2023 11:10:23 +0900</pubDate><guid>/diary/posts/2023/0315/</guid><description>1時に寝て7時に起きた。リリース延期を決めたので3月末へのストレスやプレッシャーからは解放されていつもよりよく眠れた気がした。あくまで気がしただけ。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>go on forest nook</title><link>/diary/tags/go/</link><description>Recent content in go on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 16 Mar 2023 21:10:27 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/go/index.xml" rel="self" type="application/rss+xml"/><item><title>ポインタの学び直し、参照とは違う</title><link>/diary/posts/2023/0316/</link><pubDate>Thu, 16 Mar 2023 21:10:27 +0900</pubDate><guid>/diary/posts/2023/0316/</guid><description>2時に寝て7時に起きた。深夜に葬送のフリーレン10巻を読んでからなんとなく眠れなくて夜更かししてた。木曜日は会議がなくて自分のために時間を使える。機能開発に集中して実装していた。
+go の学び直し Gopher塾 #4 - 私も解説できるポインタ - DAY1 に参加した。
+今日のテーマはポインタ。tenntenn さんが話すのだから深い内部実装の話しなどもあるのかな？と期待していたけれど、これは基本的な go のポインタの扱いを学ぶ講義だった。私にとっては9割は知っていることだった。それでも1割は知らないことがあったので参加して勉強にはなった。この歳になると本やイベントから1-2割学べたら十分だと思う。go は内部的にすべて値渡しで何でもコピーするするといった振る舞いをする。ポインタを渡すと、ポインタの値であるアドレスをコピーすることでプログラムが動く。コピーなので大きな構造体をそのまま渡すとその分のメモリのオーバーヘッドがあって遅くなったりする。ポインタならアドレスだけのコピーで済む。
+go には参照の概念はないという説明があって、ポインタと参照は別の概念なんだと今更ながらに気付いた。gpt-4 にポインタと参照の違いを尋ねたりしていた。参照は初期化後に変更できなかったり、null を参照できなかったり、ポインタ演算のようなことができなかったりすることで安全にプログラミングするための言語機能と言える。一般的には参照はポインタを使って実装される。ポインタの方が低レイヤで制約が少ないと言える。参照はポインタの一部の機能を安全にプログラマーに提供していると言える。
+次に go のポインタの特徴をまとめる。
+型付け ポインタは型付けされていて、特定の型の変数のアドレスだけがその型のポインタに割り当てられる アドレス演算子とデリファレンス演算子 これらを単項演算子と呼ぶ アドレス演算子 (&amp;amp;) で変数のアドレスを取得してポインタを作成する デリファレンス演算子 (*) でポインタが指すアドレスに格納されている値にアクセスする ポインタ演算制限 ポインタ演算は許可されていない、メモリアクセスの誤りやセキュリティ上の問題が軽減される new と make 関数 new 関数を使うと指定された型の新しい変数を作成してそのアドレスを返す make 関数は、スライス、マップ、チャネルなどの複合データ構造を作成および初期化して、それらへのポインタを返す ポインタの nil 値 ポインタは、無効なアドレスを表す特別な値である nil をもてる nil ポインタにアクセスしようとすると、実行時に panic が発生する メソッドレシーバとしてのポインタ メソッドレシーバとしてポインタを使うとメソッド内でレシーバオブジェクトの変更ができる 値レシーバは意図せぬ不具合を招く可能性があるから基本的にはポインタレシーバを使う方がよいのではないかといった話しもあった</description><content>&lt;p>2時に寝て7時に起きた。深夜に葬送のフリーレン10巻を読んでからなんとなく眠れなくて夜更かししてた。木曜日は会議がなくて自分のために時間を使える。機能開発に集中して実装していた。&lt;/p>
+&lt;h2 id="go-の学び直し">go の学び直し&lt;/h2>
+&lt;p>&lt;a href="https://tenntenn.connpass.com/event/275805/">Gopher塾 #4 - 私も解説できるポインタ - DAY1&lt;/a> に参加した。&lt;/p>
+&lt;p>今日のテーマはポインタ。tenntenn さんが話すのだから深い内部実装の話しなどもあるのかな？と期待していたけれど、これは基本的な go のポインタの扱いを学ぶ講義だった。私にとっては9割は知っていることだった。それでも1割は知らないことがあったので参加して勉強にはなった。この歳になると本やイベントから1-2割学べたら十分だと思う。go は内部的にすべて値渡しで何でもコピーするするといった振る舞いをする。ポインタを渡すと、ポインタの値であるアドレスをコピーすることでプログラムが動く。コピーなので大きな構造体をそのまま渡すとその分のメモリのオーバーヘッドがあって遅くなったりする。ポインタならアドレスだけのコピーで済む。&lt;/p>
+&lt;p>go には参照の概念はないという説明があって、ポインタと参照は別の概念なんだと今更ながらに気付いた。gpt-4 にポインタと参照の違いを尋ねたりしていた。参照は初期化後に変更できなかったり、null を参照できなかったり、ポインタ演算のようなことができなかったりすることで安全にプログラミングするための言語機能と言える。一般的には参照はポインタを使って実装される。ポインタの方が低レイヤで制約が少ないと言える。参照はポインタの一部の機能を安全にプログラマーに提供していると言える。&lt;/p>
+&lt;p>次に go のポインタの特徴をまとめる。&lt;/p>
+&lt;ul>
+&lt;li>型付け
+&lt;ul>
+&lt;li>ポインタは型付けされていて、特定の型の変数のアドレスだけがその型のポインタに割り当てられる&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>アドレス演算子とデリファレンス演算子
+&lt;ul>
+&lt;li>これらを単項演算子と呼ぶ&lt;/li>
+&lt;li>アドレス演算子 (&amp;amp;) で変数のアドレスを取得してポインタを作成する&lt;/li>
+&lt;li>デリファレンス演算子 (*) でポインタが指すアドレスに格納されている値にアクセスする&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>ポインタ演算制限&lt;/li>
+&lt;li>ポインタ演算は許可されていない、メモリアクセスの誤りやセキュリティ上の問題が軽減される&lt;/li>
+&lt;li>new と make 関数
+&lt;ul>
+&lt;li>new 関数を使うと指定された型の新しい変数を作成してそのアドレスを返す&lt;/li>
+&lt;li>make 関数は、スライス、マップ、チャネルなどの複合データ構造を作成および初期化して、それらへのポインタを返す&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>ポインタの nil 値
+&lt;ul>
+&lt;li>ポインタは、無効なアドレスを表す特別な値である nil をもてる&lt;/li>
+&lt;li>nil ポインタにアクセスしようとすると、実行時に panic が発生する&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>メソッドレシーバとしてのポインタ
+&lt;ul>
+&lt;li>メソッドレシーバとしてポインタを使うとメソッド内でレシーバオブジェクトの変更ができる
+&lt;ul>
+&lt;li>値レシーバは意図せぬ不具合を招く可能性があるから基本的にはポインタレシーバを使う方がよいのではないかといった話しもあった&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul></content></item><item><title>キャッシュ機構の導入</title><link>/diary/posts/2023/0315/</link><pubDate>Wed, 15 Mar 2023 11:10:23 +0900</pubDate><guid>/diary/posts/2023/0315/</guid><description>1時に寝て7時に起きた。リリース延期を決めたので3月末へのストレスやプレッシャーからは解放されていつもよりよく眠れた気がした。あくまで気がしただけ。
 キャッシュライブラリの選定 ある機能を作るための準備としてキャッシュ機構を作ることにした。avelino/awesome-go を眺めて適当なキャッシュライブラリを選定する。シンプルな用途向け、オンメモリで goroutine-safe で保守されていて実績があるものでのバランスを取るときむらさんのキャッシュライブラリになった。
 bluele/gcache ちょうどいまのお仕事を始める前に スカウトをもらった会社 のテックリードがきむらさんだったので、いまはその会社にいるんだと思い出したのが半年前。きむらさんとはリアルで何年も会っていないし、仲がよいわけでもないけれど、なぜか facebook でも繋がっているので存在を忘れるということもない。
 閑話休題。ある特定の mongodb コレクションのデータをキャッシュしたい。
