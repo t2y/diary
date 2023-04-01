@@ -1,4 +1,41 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>docker on forest nook</title><link>/diary/tags/docker/</link><description>Recent content in docker on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Mon, 27 Mar 2023 08:09:28 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/docker/index.xml" rel="self" type="application/rss+xml"/><item><title>docker/compose のモジュールの使い方がわかってきた</title><link>/diary/posts/2023/0327/</link><pubDate>Mon, 27 Mar 2023 08:09:28 +0900</pubDate><guid>/diary/posts/2023/0327/</guid><description>0時に寝て7時に起きた。前日はバテてだらだらしていたので寝過ぎた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>docker on forest nook</title><link>/diary/tags/docker/</link><description>Recent content in docker on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 30 Mar 2023 07:58:30 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/docker/index.xml" rel="self" type="application/rss+xml"/><item><title>コンテナレジストリをプライベートに運用する</title><link>/diary/posts/2023/0330/</link><pubDate>Thu, 30 Mar 2023 07:58:30 +0900</pubDate><guid>/diary/posts/2023/0330/</guid><description>0時に寝て7時に起きた。晩ご飯を食べきれなくて調子悪いと思っていたら夜も吐き気と胃酸で気分が悪くてあまり眠れなかった。
+外部向けコンテナレジストリ いまお仕事で作っているアプリケーションは docker image としてパッケージングしている。エンドユーザーがこのアプリケーションを使うためには docker pull できるためにインターネットを経由してアクセスできる必要がある。普段はイントラネットのコンテナレジストリに push/pull して運用しているのを、外部のエンドユーザー向けにアクセスできるコンテナレジストリ (リポジトリ) を構築しないといけない。パブリックなリポジトリとして提供するのであれば、docker hub や GitHub Container registry などを無料で利用できる。しかし、プライベートなリポジトリで運用しようとするとその選択肢は狭まってしまう。おそらく他社のサービスを使うのであれば、実際の運用を考慮するといくらか費用がかかるだろう。
+仮に docker image が使うストレージを5GiB、インターネットへの outbound なデータ転送を30GiB/月で見積もってみた。docker hub だと利用量によって課金されないのでその後に利用増加が前提であればよさそうにみえる。
+github (従量課金)
+team プラン 開発者1人: $20.25/month, $243/year aws (従量課金)
+region=tokyo: $3.92/month, $47.04/year docker hub (容量無制限)
+team プラン 開発者1人: $11/month, $132/year 別の選択肢として自前でコンテナレジストリを運用するという方法もある。docker registry サーバーは oss として公開されていて docker image の push/pull をするだけのサーバーならすぐに構築できる。ベーシック認証に近い v1 の認証でよければ htpasswd を使ってアカウント管理できる。
+Deploy a registry server ドメインと tls の証明書と外部からアクセスできるサーバーがあれば、自前で運用するのもそう大変ではないと思う。実際にこれらの運用コストと他サービスの利用料金とを比べて選択することになるだろう。</description><content>&lt;p>0時に寝て7時に起きた。晩ご飯を食べきれなくて調子悪いと思っていたら夜も吐き気と胃酸で気分が悪くてあまり眠れなかった。&lt;/p>
+&lt;h2 id="外部向けコンテナレジストリ">外部向けコンテナレジストリ&lt;/h2>
+&lt;p>いまお仕事で作っているアプリケーションは docker image としてパッケージングしている。エンドユーザーがこのアプリケーションを使うためには docker pull できるためにインターネットを経由してアクセスできる必要がある。普段はイントラネットのコンテナレジストリに push/pull して運用しているのを、外部のエンドユーザー向けにアクセスできるコンテナレジストリ (リポジトリ) を構築しないといけない。パブリックなリポジトリとして提供するのであれば、&lt;a href="https://hub.docker.com/">docker hub&lt;/a> や &lt;a href="https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry">GitHub Container registry&lt;/a> などを無料で利用できる。しかし、プライベートなリポジトリで運用しようとするとその選択肢は狭まってしまう。おそらく他社のサービスを使うのであれば、実際の運用を考慮するといくらか費用がかかるだろう。&lt;/p>
+&lt;p>仮に docker image が使うストレージを5GiB、インターネットへの outbound なデータ転送を30GiB/月で見積もってみた。docker hub だと利用量によって課金されないのでその後に利用増加が前提であればよさそうにみえる。&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>github (従量課金)&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/pricing">team プラン&lt;/a>&lt;/li>
+&lt;li>開発者1人: $20.25/month, $243/year&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>aws (従量課金)&lt;/p>
+&lt;ul>
+&lt;li>region=tokyo: $3.92/month, $47.04/year&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>docker hub (容量無制限)&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://www.docker.com/pricing/">team プラン&lt;/a>&lt;/li>
+&lt;li>開発者1人: $11/month, $132/year&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>別の選択肢として自前でコンテナレジストリを運用するという方法もある。docker registry サーバーは oss として公開されていて docker image の push/pull をするだけのサーバーならすぐに構築できる。ベーシック認証に近い v1 の認証でよければ &lt;a href="https://httpd.apache.org/docs/current/programs/htpasswd.html">htpasswd&lt;/a> を使ってアカウント管理できる。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.docker.com/registry/deploying/">Deploy a registry server&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>ドメインと tls の証明書と外部からアクセスできるサーバーがあれば、自前で運用するのもそう大変ではないと思う。実際にこれらの運用コストと他サービスの利用料金とを比べて選択することになるだろう。&lt;/p></content></item><item><title>docker/compose のモジュールの使い方がわかってきた</title><link>/diary/posts/2023/0327/</link><pubDate>Mon, 27 Mar 2023 08:09:28 +0900</pubDate><guid>/diary/posts/2023/0327/</guid><description>0時に寝て7時に起きた。前日はバテてだらだらしていたので寝過ぎた。
 案ずるよりもツールできた 先週末に docker/compose 関連のライブラリ調査 を終えて実際のツール作りをしていた。本当は日曜日に作ってしまおうと思いつつ休んでしまった。なぜか今日はメンバーが全員お休みでチームで私しか働いていなかった。年度末で有休消化しているのかな？問い合わせ対応やメンバーのサポートが不要だったので1日中、自分の開発に集中できた。そして開発に集中できた結果、一通りツールの機能の開発を終えられた。火曜日までには仕上げたいと思っていたのでぎりぎり間に合った。
 最終的に testcontainers-go の compose モジュールを使うのは断念して compose cli のみ go 標準の os/exec パッケージを使ってプロセスを fork するようにした。また docker image をコンテナレジストリから取得するときに認証が必要な場合、最初の docker login すると credentials store にパスワード (またはトークン) 情報が記録される。設定情報は $HOME/.docker/config.json からも確認できる。この仕組みを使ってコンテナレジストリへのログインを自動化できる。私の環境では macbook に docker desktop をインストールしているが、普通に使っていると次のように credentials が保存されてその内容を確認できる。
 $ docker-credential-desktop list | jq . { &amp;#34;https://index.docker.io/v1/&amp;#34;: &amp;#34;t2y1979&amp;#34;, &amp;#34;https://index.docker.io/v1/access-token&amp;#34;: &amp;#34;t2y1979&amp;#34;, &amp;#34;https://index.docker.io/v1/refresh-token&amp;#34;: &amp;#34;t2y1979&amp;#34; } $ echo &amp;#34;https://index.docker.io/v1/access-token&amp;#34; | docker-credential-desktop get {&amp;#34;ServerURL&amp;#34;:&amp;#34;https://index.docker.io/v1/access-token&amp;#34;,&amp;#34;Username&amp;#34;:&amp;#34;t2y1979&amp;#34;,&amp;#34;Secret&amp;#34;:&amp;#34;***&amp;#34;} これと同じことを docker のライブラリで行うには次のようにする。取得したい docker image の uri を参照すればコンテナレジストリがわかる。そこからこの cli でやっているようなことを順番にやっていけばよい。これらのユーティリティは3つのリポジトリで管理されていて、この雰囲気をみただけでもこのモジュール分割が本当に適切なんやろか？とか思ったりもする。</description><content>&lt;p>0時に寝て7時に起きた。前日はバテてだらだらしていたので寝過ぎた。&lt;/p>

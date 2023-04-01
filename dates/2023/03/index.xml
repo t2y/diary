@@ -1,4 +1,41 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2023/03 on forest nook</title><link>/diary/dates/2023/03/</link><description>Recent content in 2023/03 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2023/03/index.xml" rel="self" type="application/rss+xml"/><item><title>gitlab packages api の使い方</title><link>/diary/posts/2023/0329/</link><pubDate>Wed, 29 Mar 2023 07:32:25 +0900</pubDate><guid>/diary/posts/2023/0329/</guid><description>0時に寝て何度か起きて6時半に起きた。先週より少し早く起きれるようになってきた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2023/03 on forest nook</title><link>/diary/dates/2023/03/</link><description>Recent content in 2023/03 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2023/03/index.xml" rel="self" type="application/rss+xml"/><item><title>コンテナレジストリをプライベートに運用する</title><link>/diary/posts/2023/0330/</link><pubDate>Thu, 30 Mar 2023 07:58:30 +0900</pubDate><guid>/diary/posts/2023/0330/</guid><description>0時に寝て7時に起きた。晩ご飯を食べきれなくて調子悪いと思っていたら夜も吐き気と胃酸で気分が悪くてあまり眠れなかった。
+外部向けコンテナレジストリ いまお仕事で作っているアプリケーションは docker image としてパッケージングしている。エンドユーザーがこのアプリケーションを使うためには docker pull できるためにインターネットを経由してアクセスできる必要がある。普段はイントラネットのコンテナレジストリに push/pull して運用しているのを、外部のエンドユーザー向けにアクセスできるコンテナレジストリ (リポジトリ) を構築しないといけない。パブリックなリポジトリとして提供するのであれば、docker hub や GitHub Container registry などを無料で利用できる。しかし、プライベートなリポジトリで運用しようとするとその選択肢は狭まってしまう。おそらく他社のサービスを使うのであれば、実際の運用を考慮するといくらか費用がかかるだろう。
+仮に docker image が使うストレージを5GiB、インターネットへの outbound なデータ転送を30GiB/月で見積もってみた。docker hub だと利用量によって課金されないのでその後に利用増加が前提であればよさそうにみえる。
+github (従量課金)
+team プラン 開発者1人: $20.25/month, $243/year aws (従量課金)
+region=tokyo: $3.92/month, $47.04/year docker hub (容量無制限)
+team プラン 開発者1人: $11/month, $132/year 別の選択肢として自前でコンテナレジストリを運用するという方法もある。docker registry サーバーは oss として公開されていて docker image の push/pull をするだけのサーバーならすぐに構築できる。ベーシック認証に近い v1 の認証でよければ htpasswd を使ってアカウント管理できる。
+Deploy a registry server ドメインと tls の証明書と外部からアクセスできるサーバーがあれば、自前で運用するのもそう大変ではないと思う。実際にこれらの運用コストと他サービスの利用料金とを比べて選択することになるだろう。</description><content>&lt;p>0時に寝て7時に起きた。晩ご飯を食べきれなくて調子悪いと思っていたら夜も吐き気と胃酸で気分が悪くてあまり眠れなかった。&lt;/p>
+&lt;h2 id="外部向けコンテナレジストリ">外部向けコンテナレジストリ&lt;/h2>
+&lt;p>いまお仕事で作っているアプリケーションは docker image としてパッケージングしている。エンドユーザーがこのアプリケーションを使うためには docker pull できるためにインターネットを経由してアクセスできる必要がある。普段はイントラネットのコンテナレジストリに push/pull して運用しているのを、外部のエンドユーザー向けにアクセスできるコンテナレジストリ (リポジトリ) を構築しないといけない。パブリックなリポジトリとして提供するのであれば、&lt;a href="https://hub.docker.com/">docker hub&lt;/a> や &lt;a href="https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry">GitHub Container registry&lt;/a> などを無料で利用できる。しかし、プライベートなリポジトリで運用しようとするとその選択肢は狭まってしまう。おそらく他社のサービスを使うのであれば、実際の運用を考慮するといくらか費用がかかるだろう。&lt;/p>
+&lt;p>仮に docker image が使うストレージを5GiB、インターネットへの outbound なデータ転送を30GiB/月で見積もってみた。docker hub だと利用量によって課金されないのでその後に利用増加が前提であればよさそうにみえる。&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>github (従量課金)&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/pricing">team プラン&lt;/a>&lt;/li>
+&lt;li>開発者1人: $20.25/month, $243/year&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>aws (従量課金)&lt;/p>
+&lt;ul>
+&lt;li>region=tokyo: $3.92/month, $47.04/year&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>docker hub (容量無制限)&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://www.docker.com/pricing/">team プラン&lt;/a>&lt;/li>
+&lt;li>開発者1人: $11/month, $132/year&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>別の選択肢として自前でコンテナレジストリを運用するという方法もある。docker registry サーバーは oss として公開されていて docker image の push/pull をするだけのサーバーならすぐに構築できる。ベーシック認証に近い v1 の認証でよければ &lt;a href="https://httpd.apache.org/docs/current/programs/htpasswd.html">htpasswd&lt;/a> を使ってアカウント管理できる。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.docker.com/registry/deploying/">Deploy a registry server&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>ドメインと tls の証明書と外部からアクセスできるサーバーがあれば、自前で運用するのもそう大変ではないと思う。実際にこれらの運用コストと他サービスの利用料金とを比べて選択することになるだろう。&lt;/p></content></item><item><title>gitlab packages api の使い方</title><link>/diary/posts/2023/0329/</link><pubDate>Wed, 29 Mar 2023 07:32:25 +0900</pubDate><guid>/diary/posts/2023/0329/</guid><description>0時に寝て何度か起きて6時半に起きた。先週より少し早く起きれるようになってきた。
 gitlab ci/cd で別プロジェクト (リポジトリ) の成果物を取得する gitlab では複数のパッケージリポジトリに対応しているが、それらに当てはまらない汎用の成果物向けに GitLab Generic Packages Repository というものがある。zip でもバイナリファイルでも何でも置くためのリポジトリと言える。但し、同じパッケージ名でバージョン管理するといった作りにはなっていなくて、同じパッケージ名でアップロードしても別のパッケージ id が割り当てられて管理される。他バージョンとの紐付け自体はできているので、おそらく歴史的経緯でそういう仕様なのだと思う。そのために、あるパッケージの最新のバージョンを取得したいときは作成日の降順でソートして最初のパッケージを取得するといったコードを書かないといけない。それは Packages API を駆使して簡単なスクリプトを書くことになる。
 もう1つ分からないことにトークンの使い分けがある。なるべく ci/cd での処理は GitLab CI/CD job token を使いたいところだが、どうも Packages API の呼び出しはできなくて別途プロジェクトでアクセストークンを作成して呼び出すようにしている。これはもしかしたら別の設定で CI/CD job token でも呼び出しできるかもしれない。rest api への呼び出し権限そのものがないのかもしれない。
 最終的には次のようなスクリプトで任意のプロジェクトの generic リポジトリの最新の成果物を取得できた。
