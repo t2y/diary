@@ -1,4 +1,45 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>device on forest nook</title><link>/diary/tags/device/</link><description>Recent content in device on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sat, 25 Mar 2023 13:32:37 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/device/index.xml" rel="self" type="application/rss+xml"/><item><title>ubuntu のインストール</title><link>/diary/posts/2023/0325/</link><pubDate>Sat, 25 Mar 2023 13:32:37 +0900</pubDate><guid>/diary/posts/2023/0325/</guid><description>1時に寝て5時に起きて7時に起きた。今週も開発に集中していたのでバテ気味。時間がなくて2ヶ月以上行ってなかった散髪に行ってきた。前髪が目にかかって鬱陶しかったのでいつもよりも短くしてもらった。頭が軽いと日々の生活のストレスも軽減しそう。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>device on forest nook</title><link>/diary/tags/device/</link><description>Recent content in device on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sun, 09 Apr 2023 18:10:30 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/device/index.xml" rel="self" type="application/rss+xml"/><item><title>ubuntu の環境構築</title><link>/diary/posts/2023/0409/</link><pubDate>Sun, 09 Apr 2023 18:10:30 +0900</pubDate><guid>/diary/posts/2023/0409/</guid><description>0時に寝て8時に起きた。昨日は出張から遅くに帰ってきたのでバテた。
+ストレッチ 昨日はもくもく会で遅くに帰ってきたので毎週のストレッチを土曜日から日曜日に変更していた。ここ1-2ヶ月ほどでは最も調子がよかった。今週は出張していて普段より健康的な生活をしていた。というのは、お手伝い先のオフィスでは原則として私は9-18時でしか働けないため、業務の都合でずっと座りっぱなしにならない。例えば、自社のオフィスだとだいたい8時から始業して遅いと23時ぐらいまでずっと座りっぱなしになってしまう。たまたまホテルもいつもよりも離れた場所にとり、10分ほど歩く距離だったのでちょうどよかった。帰ってからホテルで2-3時間作業していたりもするのだが、それでも同じ姿勢でずっと座り続けている方が体にとってはよくないことがわかる。今日の開脚幅は開始前152cmで、ストレッチ後156cmだった。座っている時間が短かったために腰の張りはほとんどなかった。
+ubuntu 22.04 lts の環境構築 先日 マシンに ubuntu をインストールした 続きの話し。東京出張があったり、開発の終盤でいろいろやっている中で開発環境を作り直すインセンティブが低かったので環境構築が遅くなった。過去の環境構築の issue が残っているのでそれをみながらやれば5-6時間もあれば作り直せた。結論から言って、マシンスペックが上がって、os も新しいものに変わったので開発環境としてはめちゃくちゃ快適になった。好みだが、私はリソースの潤沢なデスクトップマシンに linux をインストールして開発するのが一番しっくりくる。主観的に感情的にその構成が好きだというもの。
+realforce の bluetooth キーボードの設定をするのにもう1つキーボードが必要なことに気付いた。私は bluez というツールを使って bluetooth キーボードのペアリングをしている。ペアリングするためには bluez の bluetoothctl という cli から操作してペアリングを行う。realforce のキーボードは有線/bluetooth 接続を両方同時につなぐことはできないため、bluetooth 接続するためには別のキーボードを接続して cli 操作しないといけない。
+$ bluetoothctl [bluetooth]# power on [bluetooth]# agent on [bluetooth]# scan on bluetooth キーボードから接続要求を送る。
+... [NEW] Device F6:9D:A5:41:B7:1F REALFORCE_2 ... [bluetooth]# info F6:9D:A5:41:B7:1F Device F6:9D:A5:41:B7:1F (random) Name: REALFORCE_2 Alias: REALFORCE_2 Appearance: 0x03c1 Icon: input-keyboard Paired: no Trusted: no Blocked: no Connected: no LegacyPairing: no UUID: Human Interface Device (00001812-0000-1000-8000-00805f9b34fb) RSSI: -51 マシンからデバイスを検出したらデバイス情報を確認してペアリングを実行する。</description><content>&lt;p>0時に寝て8時に起きた。昨日は出張から遅くに帰ってきたのでバテた。&lt;/p>
+&lt;h2 id="ストレッチ">ストレッチ&lt;/h2>
+&lt;p>昨日はもくもく会で遅くに帰ってきたので毎週のストレッチを土曜日から日曜日に変更していた。ここ1-2ヶ月ほどでは最も調子がよかった。今週は出張していて普段より健康的な生活をしていた。というのは、お手伝い先のオフィスでは原則として私は9-18時でしか働けないため、業務の都合でずっと座りっぱなしにならない。例えば、自社のオフィスだとだいたい8時から始業して遅いと23時ぐらいまでずっと座りっぱなしになってしまう。たまたまホテルもいつもよりも離れた場所にとり、10分ほど歩く距離だったのでちょうどよかった。帰ってからホテルで2-3時間作業していたりもするのだが、それでも同じ姿勢でずっと座り続けている方が体にとってはよくないことがわかる。今日の開脚幅は開始前152cmで、ストレッチ後156cmだった。座っている時間が短かったために腰の張りはほとんどなかった。&lt;/p>
+&lt;h2 id="ubuntu-2204-lts-の環境構築">ubuntu 22.04 lts の環境構築&lt;/h2>
+&lt;p>先日 &lt;a href="/diary/diary/posts/2023/0325/#dell-マシンに-ubuntu-をインストール">マシンに ubuntu をインストールした&lt;/a> 続きの話し。東京出張があったり、開発の終盤でいろいろやっている中で開発環境を作り直すインセンティブが低かったので環境構築が遅くなった。過去の環境構築の issue が残っているのでそれをみながらやれば5-6時間もあれば作り直せた。結論から言って、マシンスペックが上がって、os も新しいものに変わったので開発環境としてはめちゃくちゃ快適になった。好みだが、私はリソースの潤沢なデスクトップマシンに linux をインストールして開発するのが一番しっくりくる。主観的に感情的にその構成が好きだというもの。&lt;/p>
+&lt;p>realforce の bluetooth キーボードの設定をするのにもう1つキーボードが必要なことに気付いた。私は &lt;a href="http://www.bluez.org/">bluez&lt;/a> というツールを使って bluetooth キーボードのペアリングをしている。ペアリングするためには bluez の bluetoothctl という cli から操作してペアリングを行う。realforce のキーボードは有線/bluetooth 接続を両方同時につなぐことはできないため、bluetooth 接続するためには別のキーボードを接続して cli 操作しないといけない。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ bluetoothctl
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span>bluetooth&lt;span style="color:#f92672">]&lt;/span>&lt;span style="color:#75715e"># power on&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span>bluetooth&lt;span style="color:#f92672">]&lt;/span>&lt;span style="color:#75715e"># agent on&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span>bluetooth&lt;span style="color:#f92672">]&lt;/span>&lt;span style="color:#75715e"># scan on&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>bluetooth キーボードから接続要求を送る。&lt;/p>
+&lt;pre tabindex="0">&lt;code>...
+[NEW] Device F6:9D:A5:41:B7:1F REALFORCE_2
+...
+[bluetooth]# info F6:9D:A5:41:B7:1F
+Device F6:9D:A5:41:B7:1F (random)
+Name: REALFORCE_2
+Alias: REALFORCE_2
+Appearance: 0x03c1
+Icon: input-keyboard
+Paired: no
+Trusted: no
+Blocked: no
+Connected: no
+LegacyPairing: no
+UUID: Human Interface Device (00001812-0000-1000-8000-00805f9b34fb)
+RSSI: -51
+&lt;/code>&lt;/pre>&lt;p>マシンからデバイスを検出したらデバイス情報を確認してペアリングを実行する。&lt;/p>
+&lt;pre tabindex="0">&lt;code>[bluetooth]# pair F6:9D:A5:41:B7:1F
+Attempting to pair with F6:9D:A5:41:B7:1F
+[CHG] Device F6:9D:A5:41:B7:1F Connected: yes
+[agent] Passkey: ***
+&lt;/code>&lt;/pre>&lt;p>これでペアリングが実行されて bluetooth 接続できるようになる。ubuntu 20.04 lts の頃より進化しているのは接続／切断時に電池の残量も表示されるようになった。キーボードには充電池を使っているので地味に嬉しい。残量が少なくなってきたら帰るときに充電を仕掛けて帰れる。&lt;/p>
+&lt;p>今回の環境構築で1つはまったものがある。vagrant の仮想環境として virtualbox を使う。&lt;a href="https://wiki.ubuntu.com/UEFI/SecureBoot">secure boot&lt;/a> のために virtualbox をインストールするときにパスワードを mok (Machine-Owner Key) に登録しないといけない。この作業手順が分からなくて右往左往していた。インストール時に mok のダイアログが表示されてパスワードを登録するが、この後に os を再起動して bios 起動時に特別なダイアログが表示されて mok に登録したいパスワードを入力する。アプリケーションのインストール時に bios の設定が必要という概念が私の頭の中になくて分からなかった。これをやらないと virtualbox サービスが正常に起動しない。調べていると ubuntu 標準の virtualbox は壊れていて 3rd party の contrib なパッケージを使えという古い記事も出てくる。22.04 なら ubuntu 標準の virtualbox でも問題なく、mok の登録後に systemd から virtualbox サービスが起動することを確認した。再起動後の mok のダイアログは1度しか出てこないのでうっかり見逃してしまったら再設定しないといけない。次の cli で再設定できる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sudo dpkg-reconfigure virtualbox-dkms
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">dell の xps 8950 に ubuntu 22.04 lts をインストールして開発環境を一通り構築した。ほとんどトラブルなく構築できた。いろいろ快適になったので集中力が上がる。開発の追い込みなのでちょうどよい。&lt;/p>&amp;mdash; Tetsuya Morimoto (@t2y) &lt;a href="https://twitter.com/t2y/status/1646055812224417792?ref_src=twsrc%5Etfw">April 12, 2023&lt;/a>&lt;/blockquote>
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script></content></item><item><title>ubuntu のインストール</title><link>/diary/posts/2023/0325/</link><pubDate>Sat, 25 Mar 2023 13:32:37 +0900</pubDate><guid>/diary/posts/2023/0325/</guid><description>1時に寝て5時に起きて7時に起きた。今週も開発に集中していたのでバテ気味。時間がなくて2ヶ月以上行ってなかった散髪に行ってきた。前髪が目にかかって鬱陶しかったのでいつもよりも短くしてもらった。頭が軽いと日々の生活のストレスも軽減しそう。
 ストレッチ 今日の開脚幅は開始前153cmで、ストレッチ後153cmだった。ストレッチ後の開脚幅はいつもとは計り方を変えたので数値は低くなっているが普段と同じぐらいのものだろう。すねの外側の筋は気にならないぐらいになったので復調したと言っていいだろう。今日は右股関節から太ももにかけての張りと右腰の張りが大きかった。今週も根を詰めて長時間オフィスで作業していたので座っているとかかる部位の負荷が高くなっていると想定される。納期が4月末なのでこの生活はもうしばらく続くといったところ。
 dell マシンに ubuntu をインストール いつも通りオフィスで会社の事務手続きをしながら、並行して 購入した dell マシン に ubuntu をインストールする。いまお仕事で開発しているアプリケーションの成果物は amd64 をターゲットにしているのでローカルに amd64 の開発環境がないとインフラ周りやコンテナ周りの検証に一手間かかる。この状況を解消するために早くローカルの dell マシンを置き換えて開発環境を構築したい。dvd-r から ubuntu 22.04.01 (サイズ超過で dvd-r におさまらなくて 22.04.02 は断念) のインストールを行う。bios で一時的に secure boot の機能を無効にしないと署名チェックで起動しなかった。インストール作業中に予期せぬ不具合が発生しました的なポップアップが2-3回発生したけど、無視して継続できた。インストールして普通に起動すればいいやと緩い感覚で進めた。いつもはパーティションも自分で設定したりしているけれど、今回は windows 領域を残してデュアルブートな環境にしてみた。ディスク領域もインストーラーから windows 領域を 160GiB、残りをすべて ubuntu 領域にするといった設定ができた。すごい簡単。余裕があるときに windows の wsl を使うのも試してみれればと思う。</description><content>&lt;p>1時に寝て5時に起きて7時に起きた。今週も開発に集中していたのでバテ気味。時間がなくて2ヶ月以上行ってなかった散髪に行ってきた。前髪が目にかかって鬱陶しかったのでいつもよりも短くしてもらった。頭が軽いと日々の生活のストレスも軽減しそう。&lt;/p>
 &lt;h2 id="ストレッチ">ストレッチ&lt;/h2>
