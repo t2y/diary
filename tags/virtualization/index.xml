@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>virtualization on forest nook</title><link>/diary/tags/virtualization/</link><description>Recent content in virtualization on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 13 Apr 2023 09:30:05 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/virtualization/index.xml" rel="self" type="application/rss+xml"/><item><title>ローカルのゲスト os に開発環境を作る</title><link>/diary/posts/2023/0412/</link><pubDate>Thu, 13 Apr 2023 09:30:05 +0900</pubDate><guid>/diary/posts/2023/0412/</guid><description>0時に寝て7時に起きた。いろいろうまくいってない。
+vagrant 再び rpm でパッケージングされた openldap サーバーの動作検証をするために vagrant で rockylinux/8 Vagrant box の環境を構築する。 rockylinux 8 だと次のようなエラーが発生した。
+VBoxManage: error: Failed to open OVF file &amp;#39;path/to/.vagrant.d/boxes/rockylinux-VAGRANTSLASH-8/7.0.0/virtualbox/box.ovf&amp;#39; (VERR_FILE_NOT_FOUND) 既知のバグとして次の forum にワークアラウンドが書かれている。
+Vagrant box rockylinux/8 fails for virtualbox provider with error VBOX_E_OBJECT_NOT_FOUND uefi なマシンのせいなのかな？詳細を理解していないけど Vagrantfile を次のようにする。
+Vagrant.configure(&amp;#34;2&amp;#34;) do |config| config.vm.box = &amp;#34;rockylinux/8&amp;#34; config.vm.provider &amp;#34;virtualbox&amp;#34; do |domain| domain.customize [&amp;#34;modifyvm&amp;#34;, :id, &amp;#34;--firmware&amp;#34;, &amp;#34;efi&amp;#34;] end end 修正済みのイメージをダウンロードするようにメタデータを作成する。
+$ vi box-metadata.json { &amp;#34;name&amp;#34; : &amp;#34;rockylinux/8&amp;#34;, &amp;#34;description&amp;#34; : &amp;#34;Rocky Linux 8 7.</description><content>&lt;p>0時に寝て7時に起きた。いろいろうまくいってない。&lt;/p>
+&lt;h2 id="vagrant-再び">vagrant 再び&lt;/h2>
+&lt;p>rpm でパッケージングされた openldap サーバーの動作検証をするために vagrant で &lt;a href="https://app.vagrantup.com/rockylinux/boxes/8">rockylinux/8 Vagrant box&lt;/a> の環境を構築する。 rockylinux 8 だと次のようなエラーが発生した。&lt;/p>
+&lt;pre tabindex="0">&lt;code>VBoxManage: error: Failed to open OVF file &amp;#39;path/to/.vagrant.d/boxes/rockylinux-VAGRANTSLASH-8/7.0.0/virtualbox/box.ovf&amp;#39; (VERR_FILE_NOT_FOUND)
+&lt;/code>&lt;/pre>&lt;p>既知のバグとして次の forum にワークアラウンドが書かれている。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://forums.rockylinux.org/t/vagrant-box-rockylinux-8-fails-for-virtualbox-provider-with-error-vbox-e-object-not-found/8228/4">Vagrant box rockylinux/8 fails for virtualbox provider with error VBOX_E_OBJECT_NOT_FOUND&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>uefi なマシンのせいなのかな？詳細を理解していないけど Vagrantfile を次のようにする。&lt;/p>
+&lt;pre tabindex="0">&lt;code>Vagrant.configure(&amp;#34;2&amp;#34;) do |config|
+config.vm.box = &amp;#34;rockylinux/8&amp;#34;
+config.vm.provider &amp;#34;virtualbox&amp;#34; do |domain|
+domain.customize [&amp;#34;modifyvm&amp;#34;, :id, &amp;#34;--firmware&amp;#34;, &amp;#34;efi&amp;#34;]
+end
+end
+&lt;/code>&lt;/pre>&lt;p>修正済みのイメージをダウンロードするようにメタデータを作成する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ vi box-metadata.json
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;name&amp;#34;&lt;/span> : &lt;span style="color:#e6db74">&amp;#34;rockylinux/8&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;description&amp;#34;&lt;/span> : &lt;span style="color:#e6db74">&amp;#34;Rocky Linux 8 7.0.0 Bugfix&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;versions&amp;#34;&lt;/span> : [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;version&amp;#34;&lt;/span> : &lt;span style="color:#e6db74">&amp;#34;7.0.1-20221213.0&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;providers&amp;#34;&lt;/span> : [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;name&amp;#34;&lt;/span> : &lt;span style="color:#e6db74">&amp;#34;virtualbox&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;url&amp;#34;&lt;/span> : &lt;span style="color:#e6db74">&amp;#34;http://dl.rockylinux.org/pub/rocky/8/images/x86_64/Rocky-8-Vagrant-Vbox-8.7-20221213.0.x86_64.box&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>再度 vagrant の環境を作り直す。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ vagrant box add box-metadata.json
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ rm -rf .vagrant/ &lt;span style="color:#75715e"># 古い設定を削除&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ vagrant up
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>vagrant を使うのも4年ぶりになるかな。コンテナに慣れてしまうと久しぶり感がある。使い方を忘れていて調べながらやってた。&lt;/p>
+&lt;h3 id="vagrant-にポートフォワーディングの設定を追加">vagrant にポートフォワーディングの設定を追加&lt;/h3>
+&lt;pre tabindex="0">&lt;code>$ vi Vagrantfile
+...
+config.vm.network &amp;#34;forwarded_port&amp;#34;, guest: 389, host: 1389 # ldap
+config.vm.network &amp;#34;forwarded_port&amp;#34;, guest: 636, host: 1636 # ldaps
+...
+&lt;/code>&lt;/pre>&lt;p>これでホスト os からゲスト os へ接続できる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-console" data-lang="console">&lt;span style="display:flex;">&lt;span>==&amp;gt; default: Forwarding ports...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> default: 389 (guest) =&amp;gt; 1389 (host) (adapter 1)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> default: 636 (guest) =&amp;gt; 1636 (host) (adapter 1)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> default: 22 (guest) =&amp;gt; 2222 (host) (adapter 1)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>ここでは ldap サーバーに対して &lt;a href="https://directory.apache.org/studio/">Apache Directory Studio&lt;/a> で接続できるように ssh のポートフォワーディングを設定している。&lt;/p>
+&lt;h3 id="scp-でファイルを転送">scp でファイルを転送&lt;/h3>
+&lt;p>config を出力する。ssh の秘密鍵へのパス設定をしてくれるので scp のオプションに指定しなくて済む。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ vagrant ssh-config &amp;gt; ssh.config
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>ポート番号も config に記載されているけれど、それは指定しないと scp できなかった。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ scp -P &lt;span style="color:#ae81ff">2200&lt;/span> -F ssh.config path/to/myfile vagrant@localhost:
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>vagrant ユーザーのパスワードも聞かれて vagrant を指定すればコピーできた。config を作ってもあまり便利ではなかった。&lt;/p>
+&lt;p>&lt;a href="https://github.com/invernizzi/vagrant-scp">vagrant-scp&lt;/a> というプラグインがあるのでインストールしてみる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ vagrant plugin install vagrant-scp
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>次のようにして使う。この方が簡単。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ vagrant scp path/to/myfile ./ &lt;span style="color:#75715e"># 仮想マシンのホームディレクトリにコピーされる&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item></channel></rss>
