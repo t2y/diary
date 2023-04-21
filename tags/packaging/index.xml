@@ -1,4 +1,22 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>packaging on forest nook</title><link>/diary/tags/packaging/</link><description>Recent content in packaging on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 13 Apr 2023 09:30:07 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/packaging/index.xml" rel="self" type="application/rss+xml"/><item><title>rpm のパッケージングを作り直す</title><link>/diary/posts/2023/0413/</link><pubDate>Thu, 13 Apr 2023 09:30:07 +0900</pubDate><guid>/diary/posts/2023/0413/</guid><description>1時に寝て何度か起きてあまり眠れなかった。昨日は遅くに帰ってきて晩ご飯を遅くに食べたので寝ていて吐き気がしてうまく眠れなかった。寝る前に食べることはできないみたい。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>packaging on forest nook</title><link>/diary/tags/packaging/</link><description>Recent content in packaging on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 20 Apr 2023 09:44:23 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/packaging/index.xml" rel="self" type="application/rss+xml"/><item><title>git コマンドでアーカイブ</title><link>/diary/posts/2023/0420/</link><pubDate>Thu, 20 Apr 2023 09:44:23 +0900</pubDate><guid>/diary/posts/2023/0420/</guid><description>2時に寝て7時に起きた。昨日も遅かったので0時ぐらいに晩ご飯を食べてうまく眠れなかった。体調が悪かったので今日は早めにお仕事を終えて帰って寝てた。
+rpm パッケージングのためのアーカイブ プロダクトは docker compose を使ってデプロイするので docker-compose.yml と関連する設定などのサンプルファイルをパッケージングして rpm として提供する。ビルドは必要なく、初期は数ファイルだったので rpm の SOURCES ディレクトリに直接配置して個別に SourceXx と指定してパッケージングしていた。設定のサンプルファイルが増えてくると1つずつ指定するのが面倒になってきてアーカイブすることにした。rpm を作るための Makefile で次のように git コマンドからアーカイブを作ることができる。このやり方のメリットの1つは git でアーカイブすることでリポジトリにコミットされているものだけが使われるため、対象ディレクトリに中間ファイルなどが散らかっていても無視してくれて都合がよい。
+VERSION = 1.0.0 SRC_PREFIX = my-product-$(VERSION) SRC_ARCHIVE = $(SRC_PREFIX).tar.bz2 SOURCES/$(SRC_ARCHIVE): git -C ../my-src archive HEAD --prefix $(SRC_PREFIX)/ -o $(SRC_ARCHIVE) mv ../my-src/$(SRC_ARCHIVE) $@ make したときに my-product-1.0.0.tar.bz のようなアーカイブが rpm パッケージングするときの SOURCES 配下に置かれる。そして rpm の spec ファイルでこのアーカイブを Source0 として指定して %prep で %setup マクロを呼び出すと展開される。
+Source0: my-product-%{version}.tar.bz2 ... %prep %setup たったこれだけで spec ファイルの Source 管理をシンプルにできて保守コストが下がるのでうまいやり方だなと学びになった。</description><content>&lt;p>2時に寝て7時に起きた。昨日も遅かったので0時ぐらいに晩ご飯を食べてうまく眠れなかった。体調が悪かったので今日は早めにお仕事を終えて帰って寝てた。&lt;/p>
+&lt;h2 id="rpm-パッケージングのためのアーカイブ">rpm パッケージングのためのアーカイブ&lt;/h2>
+&lt;p>プロダクトは docker compose を使ってデプロイするので docker-compose.yml と関連する設定などのサンプルファイルをパッケージングして rpm として提供する。ビルドは必要なく、初期は数ファイルだったので rpm の SOURCES ディレクトリに直接配置して個別に SourceXx と指定してパッケージングしていた。設定のサンプルファイルが増えてくると1つずつ指定するのが面倒になってきてアーカイブすることにした。rpm を作るための Makefile で次のように git コマンドからアーカイブを作ることができる。このやり方のメリットの1つは git でアーカイブすることでリポジトリにコミットされているものだけが使われるため、対象ディレクトリに中間ファイルなどが散らかっていても無視してくれて都合がよい。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-makefile" data-lang="makefile">&lt;span style="display:flex;">&lt;span>VERSION &lt;span style="color:#f92672">=&lt;/span> 1.0.0
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>SRC_PREFIX &lt;span style="color:#f92672">=&lt;/span> my-product-&lt;span style="color:#66d9ef">$(&lt;/span>VERSION&lt;span style="color:#66d9ef">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>SRC_ARCHIVE &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">$(&lt;/span>SRC_PREFIX&lt;span style="color:#66d9ef">)&lt;/span>.tar.bz2
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">SOURCES/$(SRC_ARCHIVE)&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> git -C ../my-src archive HEAD --prefix &lt;span style="color:#66d9ef">$(&lt;/span>SRC_PREFIX&lt;span style="color:#66d9ef">)&lt;/span>/ -o &lt;span style="color:#66d9ef">$(&lt;/span>SRC_ARCHIVE&lt;span style="color:#66d9ef">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> mv ../my-src/&lt;span style="color:#66d9ef">$(&lt;/span>SRC_ARCHIVE&lt;span style="color:#66d9ef">)&lt;/span> $@
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>make したときに my-product-1.0.0.tar.bz のようなアーカイブが rpm パッケージングするときの SOURCES 配下に置かれる。そして rpm の spec ファイルでこのアーカイブを &lt;code>Source0&lt;/code> として指定して %prep で %setup マクロを呼び出すと展開される。&lt;/p>
+&lt;pre tabindex="0">&lt;code>Source0: my-product-%{version}.tar.bz2
+...
+%prep
+%setup
+&lt;/code>&lt;/pre>&lt;p>たったこれだけで spec ファイルの Source 管理をシンプルにできて保守コストが下がるのでうまいやり方だなと学びになった。&lt;/p></content></item><item><title>rpm のパッケージングを作り直す</title><link>/diary/posts/2023/0413/</link><pubDate>Thu, 13 Apr 2023 09:30:07 +0900</pubDate><guid>/diary/posts/2023/0413/</guid><description>1時に寝て何度か起きてあまり眠れなかった。昨日は遅くに帰ってきて晩ご飯を遅くに食べたので寝ていて吐き気がしてうまく眠れなかった。寝る前に食べることはできないみたい。
 rpm パッケージング再び ビルドができるようになったモジュール を rpm でパッケージングする。rpm でのビルドもできる状態で渡してもらえたので私が開発したモジュールを追加してパッケージングを修正する。rpm のパッケージングを行うのも5年ぶりといったところ。コンテナに慣れてしまって rpm を使うことはもうないと思っていたけれど、まだまだ現役であることを実感する。spec ファイルは普通に読めるので既存の設定や、他の rpm パッケージの spec ファイルの記述などもみながら、自分のモジュールで必要な設定を追加していく。久しぶりだったわりには順調に作業が進捗して2-3時間もやっていて追加の修正をして、実際にインストールして動作確認もできた。
 rpm のマクロを確認する。
 $ rpm --eval &amp;#34;%{_libdir}&amp;#34; /usr/lib64 あるサーバーサービスを systemd 経由で実行させる。内部的に環境変数を使っている。systemd の EnvironmentFile で環境変数を設定したファイルへのパスを指定できる。例えば、次のように EnvironmentFile にパスを設定する。
@@ -24,14 +42,13 @@ Group=ldap
 &lt;pre tabindex="0">&lt;code>%attr(600,root,root) %config(noreplace) %{_sysconfdir}/path/to/my.env
 &lt;/code>&lt;/pre>&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">もう rpm なんか古の技術で自分で作ることなんか今後はないやろと思っていた。5年ぶりぐらいに、いま rpm でパッケージングしていて、spec ファイルを普通に読めるので簡単なパッケージングぐらいはすぐできる。なんでもやっといたら役に立つもんやと思ったりもする。&lt;/p>&amp;mdash; Tetsuya Morimoto (@t2y) &lt;a href="https://twitter.com/t2y/status/1646540939740213248?ref_src=twsrc%5Etfw">April 13, 2023&lt;/a>&lt;/blockquote>
 &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script></content></item><item><title>ローカルにコンテナレジストリを構築する</title><link>/diary/posts/2023/0403/</link><pubDate>Mon, 03 Apr 2023 11:34:18 +0900</pubDate><guid>/diary/posts/2023/0403/</guid><description>出張する日は寝ないで資料を作ったりバグ修正したりして始発の新幹線の中で寝てた。寝てなくて疲れているせいか、新幹線で寝るのに慣れたのか、わりと2-3時間ぐっすり新幹線で眠れるようになってきた。普通にベッドで寝ても3時間ぐらいしか眠れないので睡眠時間はあまり変わらない。
-docker registry の構築 先日の調査 の続き。 Deploy a registry server に書いてあることを実際にローカルで検証した。
+docker registry の構築 先日の調査 の続き。Deploy a registry server に書いてあることを実際にローカルで検証した。
 tls の自己証明書の作成。subjectAltName という設定をするように書いてある。
 $ openssl req -newkey rsa:4096 -nodes -sha256 -keyout certs/domain.key -addext &amp;#34;subjectAltName = DNS:myhost.mydomain.example.com&amp;#34; -x509 -days 365 -out certs/domain.crt basic 認証のための htpasswd の設定。htpasswd とか懐かしいなと思いながら実行した。
 $ docker run --entrypoint htpasswd httpd:2 -Bbn user1 secret1 &amp;gt;&amp;gt; dot_htpasswd $ docker run --entrypoint htpasswd httpd:2 -Bbn user2 secret2 &amp;gt;&amp;gt; dot_htpasswd docker 社が提供する oss な docker registry サーバーを使って起動する。
 $ mkdir /mnt/registry # docker image を永続化する場所 $ sudo docker run -d \ --restart=always \ --name registry \ -v &amp;#34;$(pwd)&amp;#34;/auth:/auth \ -e &amp;#34;REGISTRY_AUTH=htpasswd&amp;#34; \ -e &amp;#34;REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm&amp;#34; \ -e &amp;#34;REGISTRY_AUTH_HTPASSWD_PATH=/auth/dot_htpasswd&amp;#34; \ -v &amp;#34;$(pwd)&amp;#34;/certs:/certs \ -e &amp;#34;REGISTRY_HTTP_ADDR=0.</description><content>&lt;p>出張する日は寝ないで資料を作ったりバグ修正したりして始発の新幹線の中で寝てた。寝てなくて疲れているせいか、新幹線で寝るのに慣れたのか、わりと2-3時間ぐっすり新幹線で眠れるようになってきた。普通にベッドで寝ても3時間ぐらいしか眠れないので睡眠時間はあまり変わらない。&lt;/p>
 &lt;h2 id="docker-registry-の構築">docker registry の構築&lt;/h2>
-&lt;p>&lt;a href="/diary/diary/posts/2023/0330/#外部向けコンテナレジストリ">先日の調査&lt;/a> の続き。
-&lt;a href="https://docs.docker.com/registry/deploying/">Deploy a registry server&lt;/a> に書いてあることを実際にローカルで検証した。&lt;/p>
+&lt;p>&lt;a href="/diary/diary/posts/2023/0330/#外部向けコンテナレジストリ">先日の調査&lt;/a> の続き。&lt;a href="https://docs.docker.com/registry/deploying/">Deploy a registry server&lt;/a> に書いてあることを実際にローカルで検証した。&lt;/p>
 &lt;p>tls の自己証明書の作成。subjectAltName という設定をするように書いてある。&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ openssl req -newkey rsa:4096 -nodes -sha256 -keyout certs/domain.key -addext &lt;span style="color:#e6db74">&amp;#34;subjectAltName = DNS:myhost.mydomain.example.com&amp;#34;&lt;/span> -x509 -days &lt;span style="color:#ae81ff">365&lt;/span> -out certs/domain.crt
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>basic 認証のための htpasswd の設定。htpasswd とか懐かしいなと思いながら実行した。&lt;/p>
@@ -59,17 +76,14 @@ $ docker run --entrypoint htpasswd httpd:2 -Bbn user2 secret2 &amp;gt;&amp;gt; d
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Username: user2
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Password: ***
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Error response from daemon: Get &lt;span style="color:#e6db74">&amp;#34;https://myhost.mydomain.example.com:8443/v2/&amp;#34;&lt;/span>: x509: certificate signed by unknown authority
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;a href="https://docs.docker.com/registry/insecure/">Test an insecure registry&lt;/a> によると、
-自己証明書を使って外部からアクセスできるようにするためには docker client 側にさっき作った domain.crt をコピーする必要がある。&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;a href="https://docs.docker.com/registry/insecure/">Test an insecure registry&lt;/a> によると、自己証明書を使って外部からアクセスできるようにするためには docker client 側にさっき作った domain.crt をコピーする必要がある。&lt;/p>
 &lt;p>linux だとこんな設定。&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ cp domain.crt /etc/docker/certs.d/myhost.mydomain.example.com:8443/ca.crt
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Docker Desktop for Mac を使っている場合はこんな感じ。&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-zsh" data-lang="zsh">&lt;span style="display:flex;">&lt;span>&amp;gt; security add-trusted-cert -d -r trustRoot -k ~/Library/Keychains/login.keychain path/to/certs/domain.crt
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>これで外部からも docker login して任意の docker image を push/pull できるようになる。
-docker registry サーバーは Let’s Encrypt をサポートしているそうなので &lt;a href="https://letsencrypt.org/how-it-works/">How It Works&lt;/a> を参照して設定すればよいと書いてあった。&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>これで外部からも docker login して任意の docker image を push/pull できるようになる。docker registry サーバーは Let’s Encrypt をサポートしているそうなので &lt;a href="https://letsencrypt.org/how-it-works/">How It Works&lt;/a> を参照して設定すればよいと書いてあった。&lt;/p>
 &lt;h2 id="mdbook-の初期設定">mdbook の初期設定&lt;/h2>
-&lt;p>mdbook は新しい rust のバージョンだとビルドできなかったりするので rustup を使ってローカルに rustc をインストールするのがよいかもしれない。
-プラグインとしては &lt;a href="https://github.com/badboy/mdbook-mermaid">mdbook-mermaid&lt;/a> を使う。&lt;/p>
+&lt;p>mdbook は新しい rust のバージョンだとビルドできなかったりするので rustup を使ってローカルに rustc をインストールするのがよいかもしれない。プラグインとしては &lt;a href="https://github.com/badboy/mdbook-mermaid">mdbook-mermaid&lt;/a> を使う。&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ curl --proto &lt;span style="color:#e6db74">&amp;#39;=https&amp;#39;&lt;/span> --tlsv1.2 -sSf https://sh.rustup.rs | sh
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ ~/.cargo/bin/rustc --version
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ cargo install mdbook mdbook-mermaid
