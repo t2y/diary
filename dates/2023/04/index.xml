@@ -1,4 +1,59 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2023/04 on forest nook</title><link>/diary/dates/2023/04/</link><description>Recent content in 2023/04 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2023/04/index.xml" rel="self" type="application/rss+xml"/><item><title>とりわけて書くことのない日</title><link>/diary/posts/2023/0426/</link><pubDate>Wed, 26 Apr 2023 08:48:06 +0900</pubDate><guid>/diary/posts/2023/0426/</guid><description>1時に寝て何度か起きて7時に起きた。昨日は23時半に帰ってきてから十割蕎麦を茹でて食べたけど、吐き気はなかった。蕎麦ぐらいなら大丈夫か。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2023/04 on forest nook</title><link>/diary/dates/2023/04/</link><description>Recent content in 2023/04 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2023/04/index.xml" rel="self" type="application/rss+xml"/><item><title>docker image のマルチプラットフォーム対応</title><link>/diary/posts/2023/0427/</link><pubDate>Thu, 27 Apr 2023 08:23:18 +0900</pubDate><guid>/diary/posts/2023/0427/</guid><description>22時に寝て0時に起きてやや吐き気で苦しんで4時に起きて7時に起きた。夜遅くに食べてないのに調子悪かった。
+docker image のマルチプラットフォーム対応 やぎさんが docker buildx でマルチプラットフォームのイメージを作成する の記事を書いてて buildx プラグインがあることを知った。ちょうどいまお仕事でコンテナベースのプロダクトを開発している。まずはオンプレミス向けが対象なので amd64 でビルドしていた。今後はクラウド向けにも提供していくので arm64 ビルドもいずれ追加しないといけないと考えていた。ちょうどリリースを終えて調査時間の余裕があるのでこの機会に buildx について調べてみることにした。
+Docker Engine 23.0 release notes をみると次のように書いてある。
+Set Buildx and BuildKit as the default builder on Linux. moby/moby#43992 Alias docker build to docker buildx build. docker/cli#3314 The legacy builder can still be used by explicitly setting DOCKER_BUILDKIT=0. There are differences in how BuildKit and the legacy builder handle multi-stage builds. For more information, see Multi-stage builds.</description><content>&lt;p>22時に寝て0時に起きてやや吐き気で苦しんで4時に起きて7時に起きた。夜遅くに食べてないのに調子悪かった。&lt;/p>
+&lt;h2 id="docker-image-のマルチプラットフォーム対応">docker image のマルチプラットフォーム対応&lt;/h2>
+&lt;p>やぎさんが &lt;a href="https://blog.ayakumo.net/entry/2023/04/21/004712">docker buildx でマルチプラットフォームのイメージを作成する&lt;/a> の記事を書いてて &lt;a href="https://github.com/docker/buildx">buildx&lt;/a> プラグインがあることを知った。ちょうどいまお仕事でコンテナベースのプロダクトを開発している。まずはオンプレミス向けが対象なので amd64 でビルドしていた。今後はクラウド向けにも提供していくので arm64 ビルドもいずれ追加しないといけないと考えていた。ちょうどリリースを終えて調査時間の余裕があるのでこの機会に buildx について調べてみることにした。&lt;/p>
+&lt;p>&lt;a href="https://docs.docker.com/engine/release-notes/23.0/">Docker Engine 23.0 release notes&lt;/a> をみると次のように書いてある。&lt;/p>
+&lt;blockquote>
+&lt;ul>
+&lt;li>Set Buildx and BuildKit as the default builder on Linux. moby/moby#43992
+&lt;ul>
+&lt;li>Alias docker build to docker buildx build. docker/cli#3314&lt;/li>
+&lt;li>The legacy builder can still be used by explicitly setting DOCKER_BUILDKIT=0.&lt;/li>
+&lt;li>There are differences in how BuildKit and the legacy builder handle multi-stage builds. For more information, see Multi-stage builds.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;p>23 からデフォルトのビルダーとして buildx が使われるようになっているらしい。&lt;a href="https://github.com/docker/buildx#building-multi-platform-images">Building multi-platform images&lt;/a> を一通り読んで試してみた。&lt;/p>
+&lt;p>buildx ではカスタムビルダーを定義して複数プラットフォーム向けの docker image を一緒にビルドできる。このとき個々のビルド環境を &lt;em>builder instance&lt;/em> と呼び、ビルド環境を抽象した概念として扱われている。マルチプラットフォーム対応の文脈で言えば amd64 や arm64 のビルド環境をそれぞれに作る。例えば amd64 のマシン上で arm64 のビルド環境を作るときは &lt;a href="https://www.qemu.org/">qemu&lt;/a> を使ってエミュレーションしたビルド環境を用意したりもできる。builder instance はカスタムビルダーで制御する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ docker buildx create --name mybuilder --platform linux/amd64,linux/arm64
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ docker buildx ls
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>NAME/NODE DRIVER/ENDPOINT STATUS BUILDKIT PLATFORMS
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>mybuilder docker-container
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> mybuilder0 unix:///var/run/docker.sock inactive linux/amd64*, linux/arm64*
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>ここで作ったカスタムビルダーの driver は、デフォルトビルダーの &lt;code>docker&lt;/code> ではなく、&lt;code>docker-container&lt;/code> になる。おそらく builder instance の実体であるビルド環境がコンテナ上に構築されるのだと思う。これらの builder instance を使ってビルドされる。カスタムビルダーをデフォルトで使うには次のように実行する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ docker buildx use mybuilder
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>このカスタムビルダーを使って docker image をビルドする。カスタムビルダー側にプラットフォームの設定をもっているので &lt;code>--platform&lt;/code> は指定しなくてもよいけど、明示した方がわかりやすいだろう。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ docker buildx build --platform linux/amd64,linux/arm64 -t myimage:latest .
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>ビルドの処理は進んでいたが、正常終了しなかったので途中でやめた。なにか設定の漏れがあるかもしれないが、だいたいの雰囲気はつかめた。&lt;/p>
+&lt;p>ここでいま gitlab ci/cd 環境では &lt;a href="https://github.com/GoogleContainerTools/kaniko">kaniko&lt;/a> というツールを使って docker image をビルドしている。そもそも kaniko と buildx の違いもわからなくなって README を読み返すと次のようなことが書いてあった。&lt;/p>
+&lt;blockquote>
+&lt;p>kaniko は Docker デーモンに依存せず、Dockerfile 内の各コマンドを完全にユーザースペースで実行します。これにより、標準的な Kubernetes クラスタのように、Docker デーモンを簡単かつ安全に実行できない環境でもコンテナイメージを構築することができます。&lt;/p>
+&lt;/blockquote>
+&lt;p>ローカルで検証しているとしばしば忘れてしまうが、docker cli を使うには docker daemon を起動しておかないといけない。ci/cd におけるビルド環境がそもそも dokcer で動いていたりすると docker daemon を使えるかどうか (dind: docker in docker) はセキュリティ上の大きな違いになってくる。ci/cd 環境によっては docker daemon が使えないという状況はありえる。そういった環境でも docker image をビルドできるのが kaniko のメリットと言える。&lt;/p>
+&lt;p>kaniko はマルチプラットフォーム対応なビルドができるのかどうか？issue でもそういった質問がいくつかみつかる。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/GoogleContainerTools/kaniko/issues/786">how to build multi-arch image using kaniko #786&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/GoogleContainerTools/kaniko/issues/1746">Multi architecture build with only Kaniko #1746&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>結論から言うと、kaniko そのものはマルチプラットフォーム対応のビルド機能をもっていない。アーキテクチャごとのビルド環境があればそれぞれビルドするだけになる。しかし、マルチプラットフォーム対応の docker image というのは &lt;a href="https://docs.docker.com/engine/reference/commandline/manifest/">manifest list&lt;/a> というのを作ってコンテナレジストリに push すればよいという仕組みらしい。この manifest を作るためのツールとして &lt;a href="https://github.com/estesp/manifest-tool">manifest-tool&lt;/a> というのがある。このツールと組み合わせれば、kaniko でもマルチプラットフォーム対応の docker image をコンテナレジストリに登録できる。実際に試したわけではないので想像で書くが次のような手順だと推測する。&lt;/p>
+&lt;ol>
+&lt;li>kaniko でそれぞれのプラットフォームの docker image をビルドする
+&lt;ol>
+&lt;li>amd64 向けにビルドする =&amp;gt; latest-amd64&lt;/li>
+&lt;li>arm64 向けにビルドする =&amp;gt; latest-arm64&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>ビルドされた複数プラットフォームの docker image に対して manifest-tool でコンテナレジストリに push する
+&lt;ol>
+&lt;li>&lt;code>latest-&lt;/code> prefix のタグをもつ docker image の manifest list を作る&lt;/li>
+&lt;li>manifest list を使ってコンテナレジストリへ push する&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol>
+&lt;p>ci/cd 環境でこういった手順のパイプライン処理やジョブを定義して実行すれば kaniko でもマルチプラットフォーム対応な docker image を push できると思う。&lt;/p></content></item><item><title>とりわけて書くことのない日</title><link>/diary/posts/2023/0426/</link><pubDate>Wed, 26 Apr 2023 08:48:06 +0900</pubDate><guid>/diary/posts/2023/0426/</guid><description>1時に寝て何度か起きて7時に起きた。昨日は23時半に帰ってきてから十割蕎麦を茹でて食べたけど、吐き気はなかった。蕎麦ぐらいなら大丈夫か。
 開発方法論の見直し 開発が一区切りしたタイミングで開発方法論やガイドのドキュメントも見返して、過去に作ったときからみて現状の内容や気付き事項などを加筆修正していた。これを繰り返すうちに開発文化が言語化できていく雰囲気はする。その後は issue の洗い出しや1on1 やってインストール手順の検証やドキュメントの更新などをしていた。これと言って成果を出した一日ではなかったものの、wiki をあちこち更新して整理していたらいつの間にか時間が過ぎていたという所感。
 歯科検診 17時から歯科検診へ行ってきた。いつも通り歯のお掃除をして1年ぶりに歯のレントゲンを撮ることになった。新たにレントゲンを撮る機械が導入されていて、台に顔を置くとカメラが顔周りを移動してレントゲンが撮られた。これまでは位置固定のための器具を噛んでパシャパシャ撮るやり方だったので面倒だったのが便利になっていた。帰りにカードリーダーが置いてあることに気付いて、受付の担当者さんに尋ねたら、マイナンバーカードに保険証を設定すれば使えることを教えてもらった。次回はマイナンバーカードで保険証提示をやってみたい。</description><content>&lt;p>1時に寝て何度か起きて7時に起きた。昨日は23時半に帰ってきてから十割蕎麦を茹でて食べたけど、吐き気はなかった。蕎麦ぐらいなら大丈夫か。&lt;/p>
 &lt;h2 id="開発方法論の見直し">開発方法論の見直し&lt;/h2>
