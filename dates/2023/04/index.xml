@@ -1,4 +1,57 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2023/04 on forest nook</title><link>/diary/dates/2023/04/</link><description>Recent content in 2023/04 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2023/04/index.xml" rel="self" type="application/rss+xml"/><item><title>第4期のふりかえり</title><link>/diary/posts/2023/0428/</link><pubDate>Fri, 28 Apr 2023 08:51:46 +0900</pubDate><guid>/diary/posts/2023/0428/</guid><description>今週は19時に帰ってきてそれから晩ご飯を食べて家でくつろぐという生活に戻ってきた。生活に余裕をもてるようになってきた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2023/04 on forest nook</title><link>/diary/dates/2023/04/</link><description>Recent content in 2023/04 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2023/04/index.xml" rel="self" type="application/rss+xml"/><item><title>yubikey bio を触ってみた</title><link>/diary/posts/2023/0429/</link><pubDate>Sat, 29 Apr 2023 14:24:07 +0900</pubDate><guid>/diary/posts/2023/0429/</guid><description>3時半に寝て7時に起きた。リリース終えたので晩ご飯を食べてから自分の会社のお仕事をしていたら遅くなった。
+ストレッチ 今週もリリース明けでそれほど座っている時間が長かったわけでもないため、腰の張りはあまりなく、負荷は低くなっているのではないかと推測する。今日の開脚幅は開始前156cmで、ストレッチ後158cmだった。右股関節周りの硬さは相変わらず大きく変化はないが、他がよくなった分、右ふともも前の筋を伸ばすと張りがきつくてしんどいように感じた。しばらく余裕のある生活ができるので歩いたりストレッチしたりする余裕が出てくるかもしれない。
+yubikey bio を触ってみた 先日 yubikey bio をオンラインストアで購入 した。会社の経費で業務で使うことを目的に購入したのでこの場合は商用利用の輸入にあたる。また別途、輸入についての会計処理を書く。yubico はスウェーデンの会社でどうやら日本向けはスウェーデンの首都ストックホルムから発送されてきたらしい。安いエコノミープランで注文していた。発送メールを受け取ったのが 4/17 でオフィスの郵便受けに入っていることに気付いたのが 4/29 になる。12日で届いたことになる。船便にしては早いからなにかしら航空便の安いプランで届いたのだと推測する。
+Economy - 10-20 Working Days - No tracking available
+早速、接続していろいろ触ってみた。結論から言って ubuntu 22.04 で fido2 pin を設定して u2f を使って2要素認証のメソッドとして pam や web アプリケーションから問題なく使えた。ubuntu 向けのアプリケーションも ppa のリポジトリを追加して apt からインストールできる。
+Installing Yubico Software on Linux このドキュメントには次の4つのアプリケーションのインストールが書いてある。
+YubiKey Manager (CLI): sudo apt install yubikey-manager YubiKey Personalization Tool: sudo apt install yubikey-personalization-gui libpam-yubico: sudo apt install libpam-yubico libpam-u2f: sudo apt install libpam-u2f yubikey は他にもいろいろな認証の用途に使えるらしい。今回は fido2 の設定のみを紹介する。fido2 pin を登録するには YubiKey Manager の GUI を使った方が簡単なので次のアプリケーションも一緒にインストールするとよい。</description><content>&lt;p>3時半に寝て7時に起きた。リリース終えたので晩ご飯を食べてから自分の会社のお仕事をしていたら遅くなった。&lt;/p>
+&lt;h2 id="ストレッチ">ストレッチ&lt;/h2>
+&lt;p>今週もリリース明けでそれほど座っている時間が長かったわけでもないため、腰の張りはあまりなく、負荷は低くなっているのではないかと推測する。今日の開脚幅は開始前156cmで、ストレッチ後158cmだった。右股関節周りの硬さは相変わらず大きく変化はないが、他がよくなった分、右ふともも前の筋を伸ばすと張りがきつくてしんどいように感じた。しばらく余裕のある生活ができるので歩いたりストレッチしたりする余裕が出てくるかもしれない。&lt;/p>
+&lt;h2 id="yubikey-bio-を触ってみた">yubikey bio を触ってみた&lt;/h2>
+&lt;p>先日 &lt;a href="/diary/diary/posts/2023/0416/#yubikey-bio-の購入">yubikey bio をオンラインストアで購入&lt;/a> した。会社の経費で業務で使うことを目的に購入したのでこの場合は商用利用の輸入にあたる。また別途、輸入についての会計処理を書く。yubico はスウェーデンの会社でどうやら日本向けはスウェーデンの首都ストックホルムから発送されてきたらしい。安いエコノミープランで注文していた。発送メールを受け取ったのが 4/17 でオフィスの郵便受けに入っていることに気付いたのが 4/29 になる。12日で届いたことになる。船便にしては早いからなにかしら航空便の安いプランで届いたのだと推測する。&lt;/p>
+&lt;blockquote>
+&lt;p>Economy - 10-20 Working Days - No tracking available&lt;/p>
+&lt;/blockquote>
+&lt;p>早速、接続していろいろ触ってみた。結論から言って ubuntu 22.04 で fido2 pin を設定して u2f を使って2要素認証のメソッドとして pam や web アプリケーションから問題なく使えた。ubuntu 向けのアプリケーションも ppa のリポジトリを追加して apt からインストールできる。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://support.yubico.com/hc/en-us/articles/360016649039-Installing-Yubico-Software-on-Linux">Installing Yubico Software on Linux&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>このドキュメントには次の4つのアプリケーションのインストールが書いてある。&lt;/p>
+&lt;ul>
+&lt;li>YubiKey Manager (CLI): &lt;code>sudo apt install yubikey-manager&lt;/code>&lt;/li>
+&lt;li>YubiKey Personalization Tool: &lt;code>sudo apt install yubikey-personalization-gui&lt;/code>&lt;/li>
+&lt;li>libpam-yubico: &lt;code>sudo apt install libpam-yubico&lt;/code>&lt;/li>
+&lt;li>libpam-u2f: &lt;code>sudo apt install libpam-u2f&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>yubikey は他にもいろいろな認証の用途に使えるらしい。今回は fido2 の設定のみを紹介する。fido2 pin を登録するには YubiKey Manager の GUI を使った方が簡単なので次のアプリケーションも一緒にインストールするとよい。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ sudo apt install -y yubikey-manager-qt
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ ykman-gui
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>おそらく ykman の cli でも登録できると思うけど、yubikey や認証設定に慣れていない初心者は gui のナビゲーションに従って作業して結果を確認した方が安心だと思う。fido2 pin は ssh でいうところのパスフレーズのようなものなのかな？デバイスが盗まれるのを防ぐために pin があるという。一方で web アプリケーションが fido2 で認証するときに pin を要求するかどうかは任意になるらしい。よくあるパターンは初めて使うときは pin を要求して2回目以降はスキップするといった用途が多いのではないかと推測する。&lt;/p>
+&lt;figure>&lt;img src="/diary/diary/img/2023/0429_ykman-gui1.png"/>
+&lt;/figure>
+&lt;p>この fido2 pin を使って &lt;a href="https://en.wikipedia.org/wiki/Universal_2nd_Factor">Universal 2nd Factor (u2f)&lt;/a> の設定を行う。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ mkdir -p ~/.config/Yubico
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ pamu2fcfg &amp;gt; ~/.config/Yubico/u2f_keys
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Enter PIN &lt;span style="color:#66d9ef">for&lt;/span> /dev/hidraw3: *** &amp;lt;&lt;span style="color:#f92672">=&lt;/span> このときに yubikey manager で設定した fido2 pin を入力
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>この後 yubikey デバイスが点滅するので丸いセンサー部分を指でタッチすると完了する。このときに指紋登録しているのか、物理的にタッチすることを要求しているだけなのか、よくわかっていない。この前に &lt;a href="https://www.yubico.com/setup/yubikey-bio-series/">chrome で指紋登録&lt;/a> をしていたのでそれが使われているのかもしれない。いま ykman で設定をみたら &lt;code>Fingerprints registered&lt;/code> とあるのでどこかしらに指紋登録されているらしい。おそらく chrome じゃないかと推測する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ ykman fido info
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>WARNING: PC/SC not available. Smart card &lt;span style="color:#f92672">(&lt;/span>CCID&lt;span style="color:#f92672">)&lt;/span> protocols will not &lt;span style="color:#66d9ef">function&lt;/span>.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>PIN is set, with &lt;span style="color:#ae81ff">8&lt;/span> attempt&lt;span style="color:#f92672">(&lt;/span>s&lt;span style="color:#f92672">)&lt;/span> remaining.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Fingerprints registered, with &lt;span style="color:#ae81ff">3&lt;/span> attempt&lt;span style="color:#f92672">(&lt;/span>s&lt;span style="color:#f92672">)&lt;/span> remaining.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Always Require User Verification is turned on.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>linux で認証時に u2f を使いたいときは &lt;code>pam_u2f.so&lt;/code> を使って pam の設定をするとよい。ubuntu だと &lt;code>/etc/pam.d/&lt;/code> 配下にいろんな認証設定がある。例えば login 時に2要素認証をしたい場合は次のようにフックする。パスワード入力した後に yubikey のセンサーを物理的にタッチして指紋認証を行える。セキュリティに厳しい会社はこういった運用をしているのかもしれない。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ sudo vi /etc/pam.d/login
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># Standard Un*x authentication.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>@include common-auth
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>auth required pam_u2f.so
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>パスワード認証の代替として使いたい場合は通常の認証の前に &lt;code>sufficient&lt;/code> として呼び出せば指紋認証が成功したときにそれ以降の処理がスキップされる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>auth sufficient pam_u2f.so
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>@include common-auth
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>これらの設定を確認にするには &lt;a href="https://pamtester.sourceforge.net/">pamtester&lt;/a> というツールを使うと簡単にできる。認証の設定を誤るとログインできなくなってしまうので慎重にテストして振る舞いを確認した上で実際の運用を行うとよい。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ pamtester login t2y authenticate &amp;lt;&lt;span style="color:#f92672">=&lt;/span> このときに yubikey デバイスが点滅するので指紋認証する
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>pamtester: successfully authenticated
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>せっかく購入したので 1password アカウントや github の2要素認証に設定してみた。ワンタイムパスワードの otp の代替として使える。ワンタイムパスワードを入力するより yubikey のセンサーをタッチする方が日々の運用としては少しお手軽と言える。設定していて otp と yubikey でお互いに2要素認証のバックアップを兼ねることに気付いた。認証方法が増えるのでセキュリティ的には脆弱になるけれど、サービスとセキュリティのトレードオフの考え方から、yubikey の分だけ脆弱になっても物理的なセキュリティを担保できるのであれば利便性を考慮してよいように私には思えた。&lt;/p></content></item><item><title>第4期のふりかえり</title><link>/diary/posts/2023/0428/</link><pubDate>Fri, 28 Apr 2023 08:51:46 +0900</pubDate><guid>/diary/posts/2023/0428/</guid><description>今週は19時に帰ってきてそれから晩ご飯を食べて家でくつろぐという生活に戻ってきた。生活に余裕をもてるようになってきた。
 隔週の雑談 顧問のはらさんと隔週の打ち合わせ。先週はリリース前の余裕の無さからお休みしたので1ヶ月ぶり。今日の議題はこれら。
 第4期のふりかえり デザイナーさん向けの発注や契約の話し 先週末にふりかえり資料の叩き台を作って洗練させた資料を説明していたら1時間ほどかかった。もう3年会社を経営したので財務や経営についてわかったことがたくさんある。会社の貯金もある程度貯まって財務が安定してきた。無知の無知が怖かったので創業以来、財務に注意を払ってきた。しかし、これから業務がプロダクト開発へ移行していくに当たって財務のことを気にかける必要はないと私は考えている。そんな油断をしていると足元をすくわれるのかもしれないが。
 業務委託の契約の話をしていて、請負契約と準委任契約の違いについて話題になった。うちは創業以来、準委任契約でしか働いてきていない。ipa が公開している 情報システム・モデル取引・契約書（アジャイル開発版） でもアジャイル開発は準委任契約を推奨している。私も開発プロジェクトに入って柔軟に開発するスタイルを好むことから相性がよかった。うちの会社は準委任契約のメリットを十分に理解できている。
@@ -311,7 +364,7 @@ ppolicy_hash_cleartext on
 &lt;li>mycustom_add_response &amp;lt;= このタイミングではすでにパスワードがハッシュ化されている&lt;/li>
 &lt;/ol>
 &lt;p>openldap のことを何も知らない素人が chatgpt と一緒にデバッグしてこのことを2日で理解できた。開発のやり方が変わっていく予兆を感じた。&lt;/p></content></item><item><title>yubikey bio を購入してみた</title><link>/diary/posts/2023/0416/</link><pubDate>Sun, 16 Apr 2023 11:53:13 +0900</pubDate><guid>/diary/posts/2023/0416/</guid><description>0時に寝て7時に起きた。午前中は洗濯して、昨日届いたお肉を焼いて朝ご飯にしながらドラクエタクトやってた。
-YubiKey Bio の購入 デスクトップマシンが不調だった1-2ヶ月ほど m2 macbook air でお仕事をしていた。デスクトップマシンと比べて明らかに便利だったことがある。1password にログインするときに os のシステムアカウントも利用できて、具体的には指紋認証によりパスワード入力を必要としなかった。デフォルトでは2週間ごとにパスワード入力を必要とする設定になっているが、これも無効にすることもできる。パスワードを忘れないように1ヶ月に1回ぐらいは手入力してもよいかもしれない。生体認証はその精度にまだ懸念はあるそうだけど、こういった日常的な認証における用途ならそれほど高い精度を要求しないことに気付いた。私は個人でお仕事しているから日常でオフィスに保管している物理的なデバイスを盗むのは難しい。他にも linux で使える指紋認証のデバイスを探してみた。しかし、現時点では usb の指紋認証デバイスは windows 一択になっていて linux はサポートされていない。YubiKey ぐらいしか、私はみつけることができなかった。
+yubikey bio の購入 デスクトップマシンが不調だった1-2ヶ月ほど m2 macbook air でお仕事をしていた。デスクトップマシンと比べて明らかに便利だったことがある。1password にログインするときに os のシステムアカウントも利用できて、具体的には指紋認証によりパスワード入力を必要としなかった。デフォルトでは2週間ごとにパスワード入力を必要とする設定になっているが、これも無効にすることもできる。パスワードを忘れないように1ヶ月に1回ぐらいは手入力してもよいかもしれない。生体認証はその精度にまだ懸念はあるそうだけど、こういった日常的な認証における用途ならそれほど高い精度を要求しないことに気付いた。私は個人でお仕事しているから日常でオフィスに保管している物理的なデバイスを盗むのは難しい。他にも linux で使える指紋認証のデバイスを探してみた。しかし、現時点では usb の指紋認証デバイスは windows 一択になっていて linux はサポートされていない。YubiKey ぐらいしか、私はみつけることができなかった。
 YubiKey Bio - FIDO Edition をオンラインストアで購入した。船便で購入したので届くまで1ヶ月ほどかかる。急ぐものではないので気長に待つ。
 YubiKey Bio - FIDO Edition $90 Shipping &amp;amp; handling Economy - 10-20 Working Days - No tracking available $5 Duties, taxes and/or carrier subcharges $14.68 USD 日本にお店がないので輸入扱いで関税がかかるのかな？また会計システムに登録するときに税金の計上方法を調べる必要がありそう。
 自分たちでやろうとしないことを他人は助けられない 他社のプロジェクト開発のお手伝いでプロジェクトマネージャーとしてこの半年をマネジメントしてきて分かるようになったことが1つある。米軍がアフガニスタンから撤退するときの方便のようにみかけ、ロシアのウクライナ侵攻のときにウクライナ軍が善戦して西側諸国の支持を得たことでその正しさを再確認できた言葉がある。
@@ -321,7 +374,7 @@ YubiKey Bio - FIDO Edition $90 Shipping &amp;amp; handling Economy - 10-20 Worki
 私個人のモチベーション管理にも多少の影響はあるが、私は指示されて休出しているわけではなく、自分の目的のためにやっているのでこの影響はそれほど重要ではない。
 なにが問題かというとプロダクトオーナーシップを開発者がもたないという点にある。私はお手伝いであるから、いずれいなくなる。周りからどうみえようと最終的にプロダクトオーナーシップは契約形態としてもてない。そして、お手伝い先の開発メンバーがもつようになるのが望ましい。しかし、そういう雰囲気はみえない。これまで他社の人間がマネージャーをやっているようなプロジェクトに私が参加したことがなかったためにそういった視点がなかった。そして、私は自分がイニシアティブをもって開発するプロダクトはすべてプロダクトオーナーシップをもって臨んできた。そのため、開発者に裁量を与えることで必然的にプロダクトオーナーシップをもつようになると信じてきたが、いまのやり方だとそうならない気がしている。なぜならば、放っておいても問題になる前に私が勝手に対応してしまうために開発者のインセンティブやモチベーションを阻害してしまうからだ。
 プロジェクトにおけるスケジュールや品質を担保するためにはマネージャーである私が一定の尽力をするのは合理的ではある。一方でそれをやり過ぎることで開発メンバーのプロダクトオーナーシップを遠ざけてしまう。プロダクトオーナーシップをもっていない開発者が休出してまで開発に尽力する意味など普通にはない。仮に私が開発メンバーでもそう思うだろう。昔の上長 がやっていたことをみて私が学んだことを、外部の人間として開発メンバーに教えることはとても難しいことを理解できた。</description><content>&lt;p>0時に寝て7時に起きた。午前中は洗濯して、昨日届いたお肉を焼いて朝ご飯にしながらドラクエタクトやってた。&lt;/p>
-&lt;h2 id="yubikey-bio-の購入">YubiKey Bio の購入&lt;/h2>
+&lt;h2 id="yubikey-bio-の購入">yubikey bio の購入&lt;/h2>
 &lt;p>デスクトップマシンが不調だった1-2ヶ月ほど &lt;a href="/diary/diary/posts/2022/1004/#m2-macbook-air-購入">m2 macbook air&lt;/a> でお仕事をしていた。デスクトップマシンと比べて明らかに便利だったことがある。&lt;a href="https://1password.com/jp/">1password&lt;/a> にログインするときに os のシステムアカウントも利用できて、具体的には指紋認証によりパスワード入力を必要としなかった。デフォルトでは2週間ごとにパスワード入力を必要とする設定になっているが、これも無効にすることもできる。パスワードを忘れないように1ヶ月に1回ぐらいは手入力してもよいかもしれない。生体認証はその精度にまだ懸念はあるそうだけど、こういった日常的な認証における用途ならそれほど高い精度を要求しないことに気付いた。私は個人でお仕事しているから日常でオフィスに保管している物理的なデバイスを盗むのは難しい。他にも linux で使える指紋認証のデバイスを探してみた。しかし、現時点では usb の指紋認証デバイスは windows 一択になっていて linux はサポートされていない。YubiKey ぐらいしか、私はみつけることができなかった。&lt;/p>
 &lt;p>&lt;a href="https://www.yubico.com/jp/product/yubikey-bio-series/yubikey-bio/">YubiKey Bio - FIDO Edition&lt;/a> をオンラインストアで購入した。船便で購入したので届くまで1ヶ月ほどかかる。急ぐものではないので気長に待つ。&lt;/p>
 &lt;pre tabindex="0">&lt;code>YubiKey Bio - FIDO Edition

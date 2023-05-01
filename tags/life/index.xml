@@ -1,4 +1,57 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>life on forest nook</title><link>/diary/tags/life/</link><description>Recent content in life on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Wed, 26 Apr 2023 08:48:06 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/life/index.xml" rel="self" type="application/rss+xml"/><item><title>とりわけて書くことのない日</title><link>/diary/posts/2023/0426/</link><pubDate>Wed, 26 Apr 2023 08:48:06 +0900</pubDate><guid>/diary/posts/2023/0426/</guid><description>1時に寝て何度か起きて7時に起きた。昨日は23時半に帰ってきてから十割蕎麦を茹でて食べたけど、吐き気はなかった。蕎麦ぐらいなら大丈夫か。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>life on forest nook</title><link>/diary/tags/life/</link><description>Recent content in life on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sat, 29 Apr 2023 14:24:07 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/life/index.xml" rel="self" type="application/rss+xml"/><item><title>yubikey bio を触ってみた</title><link>/diary/posts/2023/0429/</link><pubDate>Sat, 29 Apr 2023 14:24:07 +0900</pubDate><guid>/diary/posts/2023/0429/</guid><description>3時半に寝て7時に起きた。リリース終えたので晩ご飯を食べてから自分の会社のお仕事をしていたら遅くなった。
+ストレッチ 今週もリリース明けでそれほど座っている時間が長かったわけでもないため、腰の張りはあまりなく、負荷は低くなっているのではないかと推測する。今日の開脚幅は開始前156cmで、ストレッチ後158cmだった。右股関節周りの硬さは相変わらず大きく変化はないが、他がよくなった分、右ふともも前の筋を伸ばすと張りがきつくてしんどいように感じた。しばらく余裕のある生活ができるので歩いたりストレッチしたりする余裕が出てくるかもしれない。
+yubikey bio を触ってみた 先日 yubikey bio をオンラインストアで購入 した。会社の経費で業務で使うことを目的に購入したのでこの場合は商用利用の輸入にあたる。また別途、輸入についての会計処理を書く。yubico はスウェーデンの会社でどうやら日本向けはスウェーデンの首都ストックホルムから発送されてきたらしい。安いエコノミープランで注文していた。発送メールを受け取ったのが 4/17 でオフィスの郵便受けに入っていることに気付いたのが 4/29 になる。12日で届いたことになる。船便にしては早いからなにかしら航空便の安いプランで届いたのだと推測する。
+Economy - 10-20 Working Days - No tracking available
+早速、接続していろいろ触ってみた。結論から言って ubuntu 22.04 で fido2 pin を設定して u2f を使って2要素認証のメソッドとして pam や web アプリケーションから問題なく使えた。ubuntu 向けのアプリケーションも ppa のリポジトリを追加して apt からインストールできる。
+Installing Yubico Software on Linux このドキュメントには次の4つのアプリケーションのインストールが書いてある。
+YubiKey Manager (CLI): sudo apt install yubikey-manager YubiKey Personalization Tool: sudo apt install yubikey-personalization-gui libpam-yubico: sudo apt install libpam-yubico libpam-u2f: sudo apt install libpam-u2f yubikey は他にもいろいろな認証の用途に使えるらしい。今回は fido2 の設定のみを紹介する。fido2 pin を登録するには YubiKey Manager の GUI を使った方が簡単なので次のアプリケーションも一緒にインストールするとよい。</description><content>&lt;p>3時半に寝て7時に起きた。リリース終えたので晩ご飯を食べてから自分の会社のお仕事をしていたら遅くなった。&lt;/p>
+&lt;h2 id="ストレッチ">ストレッチ&lt;/h2>
+&lt;p>今週もリリース明けでそれほど座っている時間が長かったわけでもないため、腰の張りはあまりなく、負荷は低くなっているのではないかと推測する。今日の開脚幅は開始前156cmで、ストレッチ後158cmだった。右股関節周りの硬さは相変わらず大きく変化はないが、他がよくなった分、右ふともも前の筋を伸ばすと張りがきつくてしんどいように感じた。しばらく余裕のある生活ができるので歩いたりストレッチしたりする余裕が出てくるかもしれない。&lt;/p>
+&lt;h2 id="yubikey-bio-を触ってみた">yubikey bio を触ってみた&lt;/h2>
+&lt;p>先日 &lt;a href="/diary/diary/posts/2023/0416/#yubikey-bio-の購入">yubikey bio をオンラインストアで購入&lt;/a> した。会社の経費で業務で使うことを目的に購入したのでこの場合は商用利用の輸入にあたる。また別途、輸入についての会計処理を書く。yubico はスウェーデンの会社でどうやら日本向けはスウェーデンの首都ストックホルムから発送されてきたらしい。安いエコノミープランで注文していた。発送メールを受け取ったのが 4/17 でオフィスの郵便受けに入っていることに気付いたのが 4/29 になる。12日で届いたことになる。船便にしては早いからなにかしら航空便の安いプランで届いたのだと推測する。&lt;/p>
+&lt;blockquote>
+&lt;p>Economy - 10-20 Working Days - No tracking available&lt;/p>
+&lt;/blockquote>
+&lt;p>早速、接続していろいろ触ってみた。結論から言って ubuntu 22.04 で fido2 pin を設定して u2f を使って2要素認証のメソッドとして pam や web アプリケーションから問題なく使えた。ubuntu 向けのアプリケーションも ppa のリポジトリを追加して apt からインストールできる。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://support.yubico.com/hc/en-us/articles/360016649039-Installing-Yubico-Software-on-Linux">Installing Yubico Software on Linux&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>このドキュメントには次の4つのアプリケーションのインストールが書いてある。&lt;/p>
+&lt;ul>
+&lt;li>YubiKey Manager (CLI): &lt;code>sudo apt install yubikey-manager&lt;/code>&lt;/li>
+&lt;li>YubiKey Personalization Tool: &lt;code>sudo apt install yubikey-personalization-gui&lt;/code>&lt;/li>
+&lt;li>libpam-yubico: &lt;code>sudo apt install libpam-yubico&lt;/code>&lt;/li>
+&lt;li>libpam-u2f: &lt;code>sudo apt install libpam-u2f&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>yubikey は他にもいろいろな認証の用途に使えるらしい。今回は fido2 の設定のみを紹介する。fido2 pin を登録するには YubiKey Manager の GUI を使った方が簡単なので次のアプリケーションも一緒にインストールするとよい。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ sudo apt install -y yubikey-manager-qt
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ ykman-gui
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>おそらく ykman の cli でも登録できると思うけど、yubikey や認証設定に慣れていない初心者は gui のナビゲーションに従って作業して結果を確認した方が安心だと思う。fido2 pin は ssh でいうところのパスフレーズのようなものなのかな？デバイスが盗まれるのを防ぐために pin があるという。一方で web アプリケーションが fido2 で認証するときに pin を要求するかどうかは任意になるらしい。よくあるパターンは初めて使うときは pin を要求して2回目以降はスキップするといった用途が多いのではないかと推測する。&lt;/p>
+&lt;figure>&lt;img src="/diary/diary/img/2023/0429_ykman-gui1.png"/>
+&lt;/figure>
+&lt;p>この fido2 pin を使って &lt;a href="https://en.wikipedia.org/wiki/Universal_2nd_Factor">Universal 2nd Factor (u2f)&lt;/a> の設定を行う。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ mkdir -p ~/.config/Yubico
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ pamu2fcfg &amp;gt; ~/.config/Yubico/u2f_keys
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Enter PIN &lt;span style="color:#66d9ef">for&lt;/span> /dev/hidraw3: *** &amp;lt;&lt;span style="color:#f92672">=&lt;/span> このときに yubikey manager で設定した fido2 pin を入力
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>この後 yubikey デバイスが点滅するので丸いセンサー部分を指でタッチすると完了する。このときに指紋登録しているのか、物理的にタッチすることを要求しているだけなのか、よくわかっていない。この前に &lt;a href="https://www.yubico.com/setup/yubikey-bio-series/">chrome で指紋登録&lt;/a> をしていたのでそれが使われているのかもしれない。いま ykman で設定をみたら &lt;code>Fingerprints registered&lt;/code> とあるのでどこかしらに指紋登録されているらしい。おそらく chrome じゃないかと推測する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ ykman fido info
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>WARNING: PC/SC not available. Smart card &lt;span style="color:#f92672">(&lt;/span>CCID&lt;span style="color:#f92672">)&lt;/span> protocols will not &lt;span style="color:#66d9ef">function&lt;/span>.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>PIN is set, with &lt;span style="color:#ae81ff">8&lt;/span> attempt&lt;span style="color:#f92672">(&lt;/span>s&lt;span style="color:#f92672">)&lt;/span> remaining.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Fingerprints registered, with &lt;span style="color:#ae81ff">3&lt;/span> attempt&lt;span style="color:#f92672">(&lt;/span>s&lt;span style="color:#f92672">)&lt;/span> remaining.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Always Require User Verification is turned on.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>linux で認証時に u2f を使いたいときは &lt;code>pam_u2f.so&lt;/code> を使って pam の設定をするとよい。ubuntu だと &lt;code>/etc/pam.d/&lt;/code> 配下にいろんな認証設定がある。例えば login 時に2要素認証をしたい場合は次のようにフックする。パスワード入力した後に yubikey のセンサーを物理的にタッチして指紋認証を行える。セキュリティに厳しい会社はこういった運用をしているのかもしれない。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ sudo vi /etc/pam.d/login
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># Standard Un*x authentication.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>@include common-auth
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>auth required pam_u2f.so
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>パスワード認証の代替として使いたい場合は通常の認証の前に &lt;code>sufficient&lt;/code> として呼び出せば指紋認証が成功したときにそれ以降の処理がスキップされる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>auth sufficient pam_u2f.so
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>@include common-auth
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>これらの設定を確認にするには &lt;a href="https://pamtester.sourceforge.net/">pamtester&lt;/a> というツールを使うと簡単にできる。認証の設定を誤るとログインできなくなってしまうので慎重にテストして振る舞いを確認した上で実際の運用を行うとよい。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ pamtester login t2y authenticate &amp;lt;&lt;span style="color:#f92672">=&lt;/span> このときに yubikey デバイスが点滅するので指紋認証する
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>pamtester: successfully authenticated
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>せっかく購入したので 1password アカウントや github の2要素認証に設定してみた。ワンタイムパスワードの otp の代替として使える。ワンタイムパスワードを入力するより yubikey のセンサーをタッチする方が日々の運用としては少しお手軽と言える。設定していて otp と yubikey でお互いに2要素認証のバックアップを兼ねることに気付いた。認証方法が増えるのでセキュリティ的には脆弱になるけれど、サービスとセキュリティのトレードオフの考え方から、yubikey の分だけ脆弱になっても物理的なセキュリティを担保できるのであれば利便性を考慮してよいように私には思えた。&lt;/p></content></item><item><title>とりわけて書くことのない日</title><link>/diary/posts/2023/0426/</link><pubDate>Wed, 26 Apr 2023 08:48:06 +0900</pubDate><guid>/diary/posts/2023/0426/</guid><description>1時に寝て何度か起きて7時に起きた。昨日は23時半に帰ってきてから十割蕎麦を茹でて食べたけど、吐き気はなかった。蕎麦ぐらいなら大丈夫か。
 開発方法論の見直し 開発が一区切りしたタイミングで開発方法論やガイドのドキュメントも見返して、過去に作ったときからみて現状の内容や気付き事項などを加筆修正していた。これを繰り返すうちに開発文化が言語化できていく雰囲気はする。その後は issue の洗い出しや1on1 やってインストール手順の検証やドキュメントの更新などをしていた。これと言って成果を出した一日ではなかったものの、wiki をあちこち更新して整理していたらいつの間にか時間が過ぎていたという所感。
 歯科検診 17時から歯科検診へ行ってきた。いつも通り歯のお掃除をして1年ぶりに歯のレントゲンを撮ることになった。新たにレントゲンを撮る機械が導入されていて、台に顔を置くとカメラが顔周りを移動してレントゲンが撮られた。これまでは位置固定のための器具を噛んでパシャパシャ撮るやり方だったので面倒だったのが便利になっていた。帰りにカードリーダーが置いてあることに気付いて、受付の担当者さんに尋ねたら、マイナンバーカードに保険証を設定すれば使えることを教えてもらった。次回はマイナンバーカードで保険証提示をやってみたい。</description><content>&lt;p>1時に寝て何度か起きて7時に起きた。昨日は23時半に帰ってきてから十割蕎麦を茹でて食べたけど、吐き気はなかった。蕎麦ぐらいなら大丈夫か。&lt;/p>
 &lt;h2 id="開発方法論の見直し">開発方法論の見直し&lt;/h2>
@@ -2226,11 +2279,11 @@ $ docker-compose exec -T mydb mysql -h localhost -u root -proot $DB &amp;lt; dum
 県からは、増額（56936円への引き上げ）を求められているが、
 明石市長としては、コロナ禍での増額には反対だ。
 次年度も増額しないことを、今ここで約束する。#国民健康保険 pic.twitter.com/1SQYbQeXLW
-&amp;mdash; 明石市長　泉 房穂（いずみ ふさほ） (@izumi_akashi) January 17, 2022 国民健康保険って自治体ごとに保険料が違うんだとか思って、健康保険の仕組みを調べ直した。健康保険制度は大きく分けて2通りある。会社に勤めていない人のための国民健康保険と、会社に勤めている人のための会社の健康保険。うちの会社の健康保険は 全国健康保険協会 (協会けんぽ) に加入している。中小企業のデフォルトが協会けんぽなのかな？健康保険の運営者を保険者と呼び、どんな会社でも加入できる保険者として協会けんぽがある。有名な保険者として関東ITソフトウェア健康保険組合があるけど、関東ITソフトウェア健康保険組合の加入基準 を満たさないと加入できない。例えば「被保険者数が20名以上であること」という条件があるので社員数が少ない企業は加入できない。一般論として、健康保険組合の方が協会けんぽよりも保険料が安いという利点があるらしい。そうでなければ、健康保険組合を作ったり、そこに加入する利点も小さくなるし。
+&amp;mdash; 泉 房穂（いずみ ふさほ） (@izumi_akashi) January 17, 2022 国民健康保険って自治体ごとに保険料が違うんだとか思って、健康保険の仕組みを調べ直した。健康保険制度は大きく分けて2通りある。会社に勤めていない人のための国民健康保険と、会社に勤めている人のための会社の健康保険。うちの会社の健康保険は 全国健康保険協会 (協会けんぽ) に加入している。中小企業のデフォルトが協会けんぽなのかな？健康保険の運営者を保険者と呼び、どんな会社でも加入できる保険者として協会けんぽがある。有名な保険者として関東ITソフトウェア健康保険組合があるけど、関東ITソフトウェア健康保険組合の加入基準 を満たさないと加入できない。例えば「被保険者数が20名以上であること」という条件があるので社員数が少ない企業は加入できない。一般論として、健康保険組合の方が協会けんぽよりも保険料が安いという利点があるらしい。そうでなければ、健康保険組合を作ったり、そこに加入する利点も小さくなるし。
 会社を辞めたり、定年退職したりすると75歳まで国民健康保険に入る必要があるみたい。住むところにこだわりがなければ、保険料の安い自治体に住んでもよいのかもしれない。</description><content>&lt;p>0時に寝て4時に起きて2度寝して7時に起きた。こんなこと滅多にないんやけど、朝からずっと頭痛があってしんどかった。早めにお仕事を終えて帰ったら少しよくなってそのまま寝てた。&lt;/p>
 &lt;h2 id="国民健康保険の保険料">国民健康保険の保険料&lt;/h2>
 &lt;p>&lt;a href="/diary/diary/posts/2022/0114/#明石市の調査">以前にも書いた明石市長&lt;/a> の次のツィートをみかけた。&lt;/p>
-&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">国民健康保険の保険料。&lt;br>均等割の金額も、今は自治体ごとの判断。&lt;br>（明石市48830円、神戸市60600円、西宮市53400円など）&lt;br>県からは、増額（56936円への引き上げ）を求められているが、&lt;br>明石市長としては、コロナ禍での増額には反対だ。&lt;br>次年度も増額しないことを、今ここで約束する。&lt;a href="https://twitter.com/hashtag/%E5%9B%BD%E6%B0%91%E5%81%A5%E5%BA%B7%E4%BF%9D%E9%99%BA?src=hash&amp;amp;ref_src=twsrc%5Etfw">#国民健康保険&lt;/a> &lt;a href="https://t.co/1SQYbQeXLW">pic.twitter.com/1SQYbQeXLW&lt;/a>&lt;/p>&amp;mdash; 明石市長　泉 房穂（いずみ ふさほ） (@izumi_akashi) &lt;a href="https://twitter.com/izumi_akashi/status/1482904883506212864?ref_src=twsrc%5Etfw">January 17, 2022&lt;/a>&lt;/blockquote>
+&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">国民健康保険の保険料。&lt;br>均等割の金額も、今は自治体ごとの判断。&lt;br>（明石市48830円、神戸市60600円、西宮市53400円など）&lt;br>県からは、増額（56936円への引き上げ）を求められているが、&lt;br>明石市長としては、コロナ禍での増額には反対だ。&lt;br>次年度も増額しないことを、今ここで約束する。&lt;a href="https://twitter.com/hashtag/%E5%9B%BD%E6%B0%91%E5%81%A5%E5%BA%B7%E4%BF%9D%E9%99%BA?src=hash&amp;amp;ref_src=twsrc%5Etfw">#国民健康保険&lt;/a> &lt;a href="https://t.co/1SQYbQeXLW">pic.twitter.com/1SQYbQeXLW&lt;/a>&lt;/p>&amp;mdash; 泉 房穂（いずみ ふさほ） (@izumi_akashi) &lt;a href="https://twitter.com/izumi_akashi/status/1482904883506212864?ref_src=twsrc%5Etfw">January 17, 2022&lt;/a>&lt;/blockquote>
 &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script>
 &lt;p>国民健康保険って自治体ごとに保険料が違うんだとか思って、健康保険の仕組みを調べ直した。健康保険制度は大きく分けて2通りある。会社に勤めていない人のための国民健康保険と、会社に勤めている人のための会社の健康保険。うちの会社の健康保険は &lt;a href="https://www.kyoukaikenpo.or.jp/">全国健康保険協会 (協会けんぽ)&lt;/a> に加入している。中小企業のデフォルトが協会けんぽなのかな？健康保険の運営者を保険者と呼び、どんな会社でも加入できる保険者として協会けんぽがある。有名な保険者として関東ITソフトウェア健康保険組合があるけど、&lt;a href="https://www.its-kenpo.or.jp/kanyu/kijun.html">関東ITソフトウェア健康保険組合の加入基準&lt;/a> を満たさないと加入できない。例えば「被保険者数が20名以上であること」という条件があるので社員数が少ない企業は加入できない。一般論として、健康保険組合の方が協会けんぽよりも保険料が安いという利点があるらしい。そうでなければ、健康保険組合を作ったり、そこに加入する利点も小さくなるし。&lt;/p>
 &lt;p>会社を辞めたり、定年退職したりすると75歳まで国民健康保険に入る必要があるみたい。住むところにこだわりがなければ、保険料の安い自治体に住んでもよいのかもしれない。&lt;/p></content></item><item><title>ワーケーション延期</title><link>/diary/posts/2022/0115/</link><pubDate>Sat, 15 Jan 2022 14:32:53 +0900</pubDate><guid>/diary/posts/2022/0115/</guid><description>1時に寝て8時に起きた。
