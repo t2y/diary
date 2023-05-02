@@ -1,4 +1,39 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>docker on forest nook</title><link>/diary/tags/docker/</link><description>Recent content in docker on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 27 Apr 2023 08:23:18 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/docker/index.xml" rel="self" type="application/rss+xml"/><item><title>docker image のマルチプラットフォーム対応</title><link>/diary/posts/2023/0427/</link><pubDate>Thu, 27 Apr 2023 08:23:18 +0900</pubDate><guid>/diary/posts/2023/0427/</guid><description>22時に寝て0時に起きてやや吐き気で苦しんで4時に起きて7時に起きた。夜遅くに食べてないのに調子悪かった。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>docker on forest nook</title><link>/diary/tags/docker/</link><description>Recent content in docker on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Tue, 02 May 2023 19:02:31 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/docker/index.xml" rel="self" type="application/rss+xml"/><item><title>飛び石のお仕事</title><link>/diary/posts/2023/0502/</link><pubDate>Tue, 02 May 2023 19:02:31 +0900</pubDate><guid>/diary/posts/2023/0502/</guid><description>0時に寝て何度か起きて7時に起きた。休んでもよかったんだけど、休む理由がないので飛び石でお仕事することにした。
+docker エコシステムの調査 少し前に docker をライブラリとして使って運用ツールを作った 。その内容をテックブログに書こうと思って docker のソフトウェアスタックやアーキテクチャの背景を調べ直していた。もっとたくさんいろんな記事を読んだのだけど、次の記事とそこから辿れるものを読むとよいだろうと思う。
+Docker社がエンタープライズ事業を譲渡した今、Dockerの父が思うこと The differences between Docker, containerd, CRI-O and runc Red Hat, Google Engineers Work on a Way for Kubernetes to Run Containers Without Docker コンテナに関して cri と oci という2つの標準化があることを学び、その実装として docker 社が使っているツールに関係があるのが次の3つになる。おもしろいことにすべて docker 社のリポジトリにはなく、oss として然るべき所管の organization にリポジトリがある。
+https://github.com/moby/moby https://github.com/opencontainers/runc https://github.com/containerd/containerd すべて docker 社がオリジナルを作って、いまも moby は docker 社が主体となって開発を継続しているだろうけれど、コンテナの実行環境のプラットフォームは k8s に取って変わられ、cri のコンテナランタイムとしての containerd があれば moby は docker daemon や docker engine のためのツールでしかなくなっている。当初 docker と moby を分割したのは、docker を開発ツール、moby を infrastructure にするという判断の下、moby を k8s のようなプラットフォームにしたかったはずである。しかし、結果的にその標準化競争に破れ containerd があれば dockerd daemon は不要になったとも解釈できる。docker という名前はコンテナのエコシステムにおいて docker 社が提供するコマンドラインやプロダクトの総称としての名前でしかなくなってしまっていて、一世を風靡した docker というパッケージングシステムの開発元に同情してしまう感もある。いまの docker engine は docker daemon と containerd の2つの daemon を起動していて docker 社としては微妙なアーキテクチャになっているのではないかと推測する。とくに swarm なんか最早削除したいだろう。</description><content>&lt;p>0時に寝て何度か起きて7時に起きた。休んでもよかったんだけど、休む理由がないので飛び石でお仕事することにした。&lt;/p>
+&lt;h2 id="docker-エコシステムの調査">docker エコシステムの調査&lt;/h2>
+&lt;p>少し前に &lt;a href="/diary/diary/posts/2023/0327/">docker をライブラリとして使って運用ツールを作った&lt;/a> 。その内容をテックブログに書こうと思って docker のソフトウェアスタックやアーキテクチャの背景を調べ直していた。もっとたくさんいろんな記事を読んだのだけど、次の記事とそこから辿れるものを読むとよいだろうと思う。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://blog.inductor.me/entry/2019/11/22/072353">Docker社がエンタープライズ事業を譲渡した今、Dockerの父が思うこと&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.tutorialworks.com/difference-docker-containerd-runc-crio-oci/">The differences between Docker, containerd, CRI-O and runc&lt;/a>
+&lt;ul>
+&lt;li>&lt;a href="https://thenewstack.io/oci-building-way-kubernetes-run-containers-without-docker/">Red Hat, Google Engineers Work on a Way for Kubernetes to Run Containers Without Docker&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>コンテナに関して cri と oci という2つの標準化があることを学び、その実装として docker 社が使っているツールに関係があるのが次の3つになる。おもしろいことにすべて docker 社のリポジトリにはなく、oss として然るべき所管の organization にリポジトリがある。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/moby/moby">https://github.com/moby/moby&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/opencontainers/runc">https://github.com/opencontainers/runc&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/containerd/containerd">https://github.com/containerd/containerd&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>すべて docker 社がオリジナルを作って、いまも moby は docker 社が主体となって開発を継続しているだろうけれど、コンテナの実行環境のプラットフォームは k8s に取って変わられ、cri のコンテナランタイムとしての containerd があれば moby は docker daemon や docker engine のためのツールでしかなくなっている。当初 docker と moby を分割したのは、docker を開発ツール、moby を infrastructure にするという判断の下、moby を k8s のようなプラットフォームにしたかったはずである。しかし、結果的にその標準化競争に破れ containerd があれば dockerd daemon は不要になったとも解釈できる。docker という名前はコンテナのエコシステムにおいて docker 社が提供するコマンドラインやプロダクトの総称としての名前でしかなくなってしまっていて、一世を風靡した docker というパッケージングシステムの開発元に同情してしまう感もある。いまの docker engine は docker daemon と containerd の2つの daemon を起動していて docker 社としては微妙なアーキテクチャになっているのではないかと推測する。とくに swarm なんか最早削除したいだろう。&lt;/p>
+&lt;p>こういった docker を取り巻くエコシステムやツールの背景を説明するだけでも1つの記事になりそうなことが1日調べていてわかった。&lt;/p>
+&lt;h2 id="竹原動画">竹原動画&lt;/h2>
+&lt;p>たまたま &lt;a href="https://abema.tv/video/episode/88-77_s1_p197">#173:【竹原慎二×朝倉未来】ガチンコ不良伝説を赤裸々告白!竹原が現役ヤンキーに伝えたい&amp;quot;本当の強さ&amp;quot;とは?【青春編】&lt;/a> をみたらおもしろかった。ガチンコをリアルタイムでみていた世代なので竹原氏には好感をもっている。少し前に &lt;a href="https://www.nhk.or.jp/kenko/atc_731.html">【あの人の健康法】元プロボクサー・竹原慎二の膀胱（ぼうこう）がんとの闘い&lt;/a> のような、闘病生活の記事もみかけていた。病気は克服してがんばっているといるようにみえる。よかった。もう51歳なのか。&lt;/p>
+&lt;p>この番組の中で若い頃に上京してボクシングジムへ通ったときに根性の定義が変わったという話しが出てくる。&lt;/p>
+&lt;blockquote>
+&lt;p>殴られても耐えることを根性だと思っていた。そのときに初めて殴られようが何しようが毎日辛い練習を重ねるのが根性だと気付かされた。&lt;/p>
+&lt;/blockquote>
+&lt;p>地元で最強だったのが、ボクシングジムのヤンキーでもない先輩にまったく太刀打ちできなかったという。そのとき1番違うのはスタミナだったらしく、竹原氏は1分で息がきれるのに相手は軽く流すといった様相だった。この先輩にボコボコにされた経験を経てそれから心を改めて真面目になったと言う。その後ボクシングと真剣に向き合い、1995年に日本人初のミドル級世界チャンピオンになる。おそらく番組の主旨的に若ものへのメッセージとして「強さ」について話されていた。&lt;/p>
+&lt;blockquote>
+&lt;p>「ケンカに強い」だけが「強さ」じゃない、「強さ」の意味を履き違えずに生きよう。大人になると、いろんな強さを知る。大切な人のために仕事をどれだけ頑張れるか、辛い状況でもじっと耐えることができるか。そういう強さもある。&lt;/p>
+&lt;/blockquote>
+&lt;p>私は誰かのために仕事をがんばったことないし、辛い状況を耐えるみたいなこともほぼやってなくて、嫌になったら仕事を辞めてて、こういう言葉にあうと自分を恥じてしまう。その後、喧嘩自慢で youtube 動画を検索していたらまさにそういうのがあった。竹原氏が「勝てるはずねぇだろ、お前らこんな茶番なことすんなよ」とぼやいていた。先の番組の中でも触れていたが、本当に真剣勝負したいと思って来ているのではなく、記念に戦ってみたいという不純な動機でやってくる人が多いらしい。たしかにそれは相手するのがしんどそう。&lt;/p>
+&lt;div class="video-container">
+&lt;iframe src="https://www.youtube.com/embed/O2rjpxf9W7U" allowfullscreen title="懲りない喧嘩自慢に終止符を打ってみた">&lt;/iframe>
+&lt;/div></content></item><item><title>docker image のマルチプラットフォーム対応</title><link>/diary/posts/2023/0427/</link><pubDate>Thu, 27 Apr 2023 08:23:18 +0900</pubDate><guid>/diary/posts/2023/0427/</guid><description>22時に寝て0時に起きてやや吐き気で苦しんで4時に起きて7時に起きた。夜遅くに食べてないのに調子悪かった。
 docker image のマルチプラットフォーム対応 やぎさんが docker buildx でマルチプラットフォームのイメージを作成する の記事を書いてて buildx プラグインがあることを知った。ちょうどいまお仕事でコンテナベースのプロダクトを開発している。まずはオンプレミス向けが対象なので amd64 でビルドしていた。今後はクラウド向けにも提供していくので arm64 ビルドもいずれ追加しないといけないと考えていた。ちょうどリリースを終えて調査時間の余裕があるのでこの機会に buildx について調べてみることにした。
 Docker Engine 23.0 release notes をみると次のように書いてある。
 Set Buildx and BuildKit as the default builder on Linux. moby/moby#43992 Alias docker build to docker buildx build. docker/cli#3314 The legacy builder can still be used by explicitly setting DOCKER_BUILDKIT=0. There are differences in how BuildKit and the legacy builder handle multi-stage builds. For more information, see Multi-stage builds.</description><content>&lt;p>22時に寝て0時に起きてやや吐き気で苦しんで4時に起きて7時に起きた。夜遅くに食べてないのに調子悪かった。&lt;/p>
