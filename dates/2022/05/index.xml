@@ -417,7 +417,7 @@ Tutorial: Baseline Migrations</description><content>&lt;p>0時に寝て4時に�
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>移行処理の履歴情報は &lt;code>flyway_schema_history&lt;/code> テーブルに保持される。既存のテーブルが存在して flyway の履歴データがない場合 (初回起動時) に移行処理を実行するかどうかを baseline-on-migrate で決める。実行するなら baseline-version でどのバージョンをベースラインとするかも設定できる。ゼロにすることで &lt;code>V1&lt;/code> からの sql ファイルを適用してくれる。ベースラインの考え方は実際に何度かデータベースの初期状態を変えて実行しないとわかりにくいかもしれない。&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="https://flywaydb.org/documentation/tutorials/baselineMigrations">Tutorial: Baseline Migrations&lt;/a>&lt;/li>
-&lt;/ul></content></item><item><title>法人決算に着手</title><link>/diary/posts/2022/0505/</link><pubDate>Thu, 05 May 2022 17:39:28 +0900</pubDate><guid>/diary/posts/2022/0505/</guid><description>夜眠れなくてだらだらして朝もだらだらしてからお昼前ぐらいにオフィスに行った。
+&lt;/ul></content></item><item><title>第3期の法人決算に着手</title><link>/diary/posts/2022/0505/</link><pubDate>Thu, 05 May 2022 17:39:28 +0900</pubDate><guid>/diary/posts/2022/0505/</guid><description>夜眠れなくてだらだらして朝もだらだらしてからお昼前ぐらいにオフィスに行った。
 法人決算 ようやく着手した。今日のところは前期の所得を求めて各種法人税の算出をした。所得を算出し終えて初めて決算書を作成できる。と言っても、前期は当社初の赤字となった。そのため、均等割以外の法人税はすべてゼロになる。法人県民税と法人市民税の均等割を合計すると7万2千円を納める必要がある。この税金は会社が赤字であろうと必ず支払う必要がある。他の法人税、地方法人税、法人事業税、特別法人事業税、法人県民税と法人市民税の法人税割は所得に対して税率を課すものなので赤字 = 所得がマイナスならゼロになる。ないに越したことはないけど、今後も赤字決算はあるかもしれないので今回は赤字決算のときの税制や会計処理について学ぶ機会となる。その1つとして前々期に納めた法人税を還付する仕組みがある。
 No.5763 欠損金の繰戻しによる還付 あと赤字でも支払う必要のある税金として消費税がある。これも3期目から支払う必要があるため、今回が初めてとなる。算はすべて会計システムがやってくれるので私がやることは書類を作ったり、実際の手続きをするだけだとは思う。ちなみにうちは簡易課税で消費税を支払う。その方が節税になることは インボイス制度を調べていた ときにも書いた。</description><content>&lt;p>夜眠れなくてだらだらして朝もだらだらしてからお昼前ぐらいにオフィスに行った。&lt;/p>
 &lt;h2 id="法人決算">法人決算&lt;/h2>
