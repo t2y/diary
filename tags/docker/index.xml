@@ -20,8 +20,8 @@ https://github.com/moby/moby https://github.com/opencontainers/runc https://gith
 &lt;/ul>
 &lt;p>すべて docker 社がオリジナルを作って、いまも moby は docker 社が主体となって開発を継続しているだろうけれど、コンテナの実行環境のプラットフォームは k8s に取って変わられ、cri のコンテナランタイムとしての containerd があれば moby は docker daemon や docker engine のためのツールでしかなくなっている。当初 docker と moby を分割したのは、docker を開発ツール、moby を infrastructure にするという判断の下、moby を k8s のようなプラットフォームにしたかったはずである。しかし、結果的にその標準化競争に破れ containerd があれば dockerd daemon は不要になったとも解釈できる。docker という名前はコンテナのエコシステムにおいて docker 社が提供するコマンドラインやプロダクトの総称としての名前でしかなくなってしまっていて、一世を風靡した docker というパッケージングシステムの開発元に同情してしまう感もある。いまの docker engine は docker daemon と containerd の2つの daemon を起動していて docker 社としては微妙なアーキテクチャになっているのではないかと推測する。とくに swarm なんか最早削除したいだろう。&lt;/p>
 &lt;p>こういった docker を取り巻くエコシステムやツールの背景を説明するだけでも1つの記事になりそうなことが1日調べていてわかった。&lt;/p>
-&lt;h2 id="竹原動画">竹原動画&lt;/h2>
-&lt;p>たまたま &lt;a href="https://abema.tv/video/episode/88-77_s1_p197">#173:【竹原慎二×朝倉未来】ガチンコ不良伝説を赤裸々告白!竹原が現役ヤンキーに伝えたい&amp;quot;本当の強さ&amp;quot;とは?【青春編】&lt;/a> をみたらおもしろかった。ガチンコをリアルタイムでみていた世代なので竹原氏には好感をもっている。少し前に &lt;a href="https://www.nhk.or.jp/kenko/atc_731.html">【あの人の健康法】元プロボクサー・竹原慎二の膀胱（ぼうこう）がんとの闘い&lt;/a> のような、闘病生活の記事もみかけていた。病気は克服してがんばっているといるようにみえる。よかった。もう51歳なのか。&lt;/p>
+&lt;h2 id="しくじり先生">しくじり先生&lt;/h2>
+&lt;p>たまたま &lt;a href="https://www.tv-asahi.co.jp/shikujiri/backnumber2/0099/">竹原慎二先生「５０歳過ぎてもケンカを売られ続けてバリしんどい先生」&lt;/a> をみたらおもしろかった。ガチンコをリアルタイムでみていた世代なので竹原氏には好感をもっている。少し前に &lt;a href="https://www.nhk.or.jp/kenko/atc_731.html">【あの人の健康法】元プロボクサー・竹原慎二の膀胱（ぼうこう）がんとの闘い&lt;/a> のような、闘病生活の記事もみかけていた。病気は克服してがんばっているといるようにみえる。よかった。もう51歳なのか。&lt;/p>
 &lt;p>この番組の中で若い頃に上京してボクシングジムへ通ったときに根性の定義が変わったという話しが出てくる。&lt;/p>
 &lt;blockquote>
 &lt;p>殴られても耐えることを根性だと思っていた。そのときに初めて殴られようが何しようが毎日辛い練習を重ねるのが根性だと気付かされた。&lt;/p>
