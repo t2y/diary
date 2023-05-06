@@ -1,4 +1,53 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>life on forest nook</title><link>/diary/tags/life/</link><description>Recent content in life on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Tue, 02 May 2023 19:02:31 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/life/index.xml" rel="self" type="application/rss+xml"/><item><title>飛び石のお仕事</title><link>/diary/posts/2023/0502/</link><pubDate>Tue, 02 May 2023 19:02:31 +0900</pubDate><guid>/diary/posts/2023/0502/</guid><description>0時に寝て何度か起きて7時に起きた。休んでもよかったんだけど、休む理由がないので飛び石でお仕事することにした。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>life on forest nook</title><link>/diary/tags/life/</link><description>Recent content in life on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sat, 06 May 2023 11:49:42 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/life/index.xml" rel="self" type="application/rss+xml"/><item><title>法人決算の続きの続き</title><link>/diary/posts/2023/0506/</link><pubDate>Sat, 06 May 2023 11:49:42 +0900</pubDate><guid>/diary/posts/2023/0506/</guid><description>0時に寝て7時に起きた。竹原テレビ をみながら寝てた。youtube ばかりみていてバカになるんじゃないかと思い始めてきた。
+ストレッチ 今週はお休みなものの、私は基本的にオフィスでデスクワークをしていた。言うても所々遊びに出掛けたりもしているので普段よりは座っている時間は短かったはず。腰の負担は低かった。今日の開脚幅は開始前155cmで、ストレッチ後160cmだった。数値もよい。右股関節の可動域が狭い以外は全体として問題なかった。私の普段の生活を振り返ってわかったことの1つは働かなければ体調がよい。働きたくない。
+法人決算 午後から法人決算の続き。eltax が稼働していたので次の地方税の申告と納付を行った。
+法人住民税 法人県民税 法人市民税 法人事業税 法人事業税 特別法人事業税 手で計算した税金の金額と eltax の帳票に入力してバリデーションチェックされた金額が一致していることを確認できた。帳票を作成したらマイナンバーカードの公的個人認証サービスを使って電子署名して申告する。申告した後に納付情報の取得リクエストを送って返ってきた納付情報をみて pay-easy で納付する。納付を終えたらその明細を会計システムと連動して3月31日の未払法人税の明細に対して消し込みを行う。1時間ほどで地方税の申告と納付と会計システムへの記帳を完了した。
+地方税を確定した上で別表四と別表五を確定させて決算書の作成を完了した。これで法人税の算出は完了。あとは手間がかかるだけのコツコツ記入していけばいいだけの書類のみになる。
+法人事業概況説明書 勘定科目の内訳書 預貯金等 売掛金(未収入金) 仮払金(前渡金) 買掛金(未払金・未払費用) 仮受金(前受金・預り金) 役員報酬⼿当等及び⼈件費 地代家賃等の内訳書・⼯業所有権等の使⽤料 雑益・雑損失等 今日は e-tax が休止なので提出できないものの、すべての帳票を作成完了にした。決算書 (財務諸表) は xml/xbrl, csv での添付が可能なものの pdf 添付が許可されていないため、決算書だけ税務署へ行って紙で提出する必要がある。
+電子データ（XML形式又はXBRL形式）による提出が可能な添付書類（例：法人税申告の財務諸表及び勘定科目内訳明細書、所得税申告の青色申告決算書及び譲渡所得の内訳書など）
+イメージデータによる提出の対象となる添付書類には、どのようなものがありますか。
+freee 申告の有償サービスを使えば会計システムと連動して電子申告できる。そのためだけに24,800円 (売上換算だと約25万円) を払う価値があるかどうか、まだ迷っている。というのは、法人決算は年に1回だけで丸1日もあれば完了する作業だし、業務のワークフローを思い出すために自分でやるのもいいなと考えている。決算書を印刷して税務署と往復するのは30分ぐらいの工数だが、そんなところに注意を払わずにお金を払ったらいいやんという意見はあるかもしれない。私もそうかなと思う気持ちもある。</description><content>&lt;p>0時に寝て7時に起きた。&lt;a href="https://www.youtube.com/channel/UCQXwvYkiHyEfzV66-fols3w">竹原テレビ&lt;/a> をみながら寝てた。youtube ばかりみていてバカになるんじゃないかと思い始めてきた。&lt;/p>
+&lt;h2 id="ストレッチ">ストレッチ&lt;/h2>
+&lt;p>今週はお休みなものの、私は基本的にオフィスでデスクワークをしていた。言うても所々遊びに出掛けたりもしているので普段よりは座っている時間は短かったはず。腰の負担は低かった。今日の開脚幅は開始前155cmで、ストレッチ後160cmだった。数値もよい。右股関節の可動域が狭い以外は全体として問題なかった。私の普段の生活を振り返ってわかったことの1つは働かなければ体調がよい。働きたくない。&lt;/p>
+&lt;h2 id="法人決算">法人決算&lt;/h2>
+&lt;p>午後から法人決算の続き。&lt;a href="https://www.eltax.lta.go.jp/">eltax&lt;/a> が稼働していたので次の地方税の申告と納付を行った。&lt;/p>
+&lt;ul>
+&lt;li>法人住民税
+&lt;ul>
+&lt;li>法人県民税&lt;/li>
+&lt;li>法人市民税&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>法人事業税
+&lt;ul>
+&lt;li>法人事業税&lt;/li>
+&lt;li>特別法人事業税&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>手で計算した税金の金額と eltax の帳票に入力してバリデーションチェックされた金額が一致していることを確認できた。帳票を作成したらマイナンバーカードの公的個人認証サービスを使って電子署名して申告する。申告した後に納付情報の取得リクエストを送って返ってきた納付情報をみて &lt;a href="http://www.pay-easy.jp/">pay-easy&lt;/a> で納付する。納付を終えたらその明細を会計システムと連動して3月31日の未払法人税の明細に対して消し込みを行う。1時間ほどで地方税の申告と納付と会計システムへの記帳を完了した。&lt;/p>
+&lt;p>地方税を確定した上で別表四と別表五を確定させて決算書の作成を完了した。これで法人税の算出は完了。あとは手間がかかるだけのコツコツ記入していけばいいだけの書類のみになる。&lt;/p>
+&lt;ul>
+&lt;li>法人事業概況説明書&lt;/li>
+&lt;li>勘定科目の内訳書
+&lt;ul>
+&lt;li>預貯金等&lt;/li>
+&lt;li>売掛金(未収入金)&lt;/li>
+&lt;li>仮払金(前渡金)&lt;/li>
+&lt;li>買掛金(未払金・未払費用)&lt;/li>
+&lt;li>仮受金(前受金・預り金)&lt;/li>
+&lt;li>役員報酬⼿当等及び⼈件費&lt;/li>
+&lt;li>地代家賃等の内訳書・⼯業所有権等の使⽤料&lt;/li>
+&lt;li>雑益・雑損失等&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>今日は e-tax が休止なので提出できないものの、すべての帳票を作成完了にした。決算書 (財務諸表) は xml/xbrl, csv での添付が可能なものの pdf 添付が許可されていないため、決算書だけ税務署へ行って紙で提出する必要がある。&lt;/p>
+&lt;blockquote>
+&lt;p>電子データ（XML形式又はXBRL形式）による提出が可能な添付書類（例：法人税申告の財務諸表及び勘定科目内訳明細書、所得税申告の青色申告決算書及び譲渡所得の内訳書など）&lt;/p>
+&lt;p>&lt;a href="https://www.e-tax.nta.go.jp/toiawase/qa/imagedata/03.htm">イメージデータによる提出の対象となる添付書類には、どのようなものがありますか。&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>freee 申告の有償サービスを使えば会計システムと連動して電子申告できる。そのためだけに24,800円 (売上換算だと約25万円) を払う価値があるかどうか、まだ迷っている。というのは、法人決算は年に1回だけで丸1日もあれば完了する作業だし、業務のワークフローを思い出すために自分でやるのもいいなと考えている。決算書を印刷して税務署と往復するのは30分ぐらいの工数だが、そんなところに注意を払わずにお金を払ったらいいやんという意見はあるかもしれない。私もそうかなと思う気持ちもある。&lt;/p></content></item><item><title>飛び石のお仕事</title><link>/diary/posts/2023/0502/</link><pubDate>Tue, 02 May 2023 19:02:31 +0900</pubDate><guid>/diary/posts/2023/0502/</guid><description>0時に寝て何度か起きて7時に起きた。休んでもよかったんだけど、休む理由がないので飛び石でお仕事することにした。
 docker エコシステムの調査 少し前に docker をライブラリとして使って運用ツールを作った 。その内容をテックブログに書こうと思って docker のソフトウェアスタックやアーキテクチャの背景を調べ直していた。もっとたくさんいろんな記事を読んだのだけど、次の記事とそこから辿れるものを読むとよいだろうと思う。
 Docker社がエンタープライズ事業を譲渡した今、Dockerの父が思うこと The differences between Docker, containerd, CRI-O and runc Red Hat, Google Engineers Work on a Way for Kubernetes to Run Containers Without Docker コンテナに関して cri と oci という2つの標準化があることを学び、その実装として docker 社が使っているツールに関係があるのが次の3つになる。おもしろいことにすべて docker 社のリポジトリにはなく、oss として然るべき所管の organization にリポジトリがある。
 https://github.com/moby/moby https://github.com/opencontainers/runc https://github.com/containerd/containerd すべて docker 社がオリジナルを作って、いまも moby は docker 社が主体となって開発を継続しているだろうけれど、コンテナの実行環境のプラットフォームは k8s に取って変わられ、cri のコンテナランタイムとしての containerd があれば moby は docker daemon や docker engine のためのツールでしかなくなっている。当初 docker と moby を分割したのは、docker を開発ツール、moby を infrastructure にするという判断の下、moby を k8s のようなプラットフォームにしたかったはずである。しかし、結果的にその標準化競争に破れ containerd があれば dockerd daemon は不要になったとも解釈できる。docker という名前はコンテナのエコシステムにおいて docker 社が提供するコマンドラインやプロダクトの総称としての名前でしかなくなってしまっていて、一世を風靡した docker というパッケージングシステムの開発元に同情してしまう感もある。いまの docker engine は docker daemon と containerd の2つの daemon を起動していて docker 社としては微妙なアーキテクチャになっているのではないかと推測する。とくに swarm なんか最早削除したいだろう。</description><content>&lt;p>0時に寝て何度か起きて7時に起きた。休んでもよかったんだけど、休む理由がないので飛び石でお仕事することにした。&lt;/p>
