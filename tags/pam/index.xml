@@ -1,4 +1,33 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>pam on forest nook</title><link>/diary/tags/pam/</link><description>Recent content in pam on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sat, 29 Apr 2023 14:24:07 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/pam/index.xml" rel="self" type="application/rss+xml"/><item><title>yubikey bio を触ってみた</title><link>/diary/posts/2023/0429/</link><pubDate>Sat, 29 Apr 2023 14:24:07 +0900</pubDate><guid>/diary/posts/2023/0429/</guid><description>3時半に寝て7時に起きた。リリース終えたので晩ご飯を食べてから自分の会社のお仕事をしていたら遅くなった。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>pam on forest nook</title><link>/diary/tags/pam/</link><description>Recent content in pam on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sun, 21 May 2023 13:28:53 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/pam/index.xml" rel="self" type="application/rss+xml"/><item><title>yubikey bio を完全にマスターした</title><link>/diary/posts/2023/0521/</link><pubDate>Sun, 21 May 2023 13:28:53 +0900</pubDate><guid>/diary/posts/2023/0521/</guid><description>2時に寝て遅くまで飲んでいたせいか、やや吐き気もしながら朝起きてだらだらして11時ぐらいに起きた。
+1password のロック解除を yubikey で行う 先日購入して触っていた yubikey bio の設定 の続き。1password のロック解除を指紋認証で行いたかったが、1password の 8.10.4 のアプリではロック解除をシステム認証で行おうとするとエラーが発生していた (バグってた) 。5月の頭に 8.10.6 がリリースされていてシステム認証のバグが直っていることに気付いた。1password のアプリケーションがどうやって linux のシステム認証を使っているかは次の1文に書いてある。
+システム認証は、Linux のユーザーアカウントに組み込まれたアクセス制御機構を使用します。これは polkit と PAM (Pluggable Authentication Modules) という2つの Linux 標準に依存しています。この2つを組み合わせることで、安全な認証サービスを提供します
+https://support.1password.com/system-authentication-linux/#about-system-authentication-security
+私は polkit を使ったことがなくて初見でよく分かっていないが、どうやら polkit から pam を介して認証しているようにみえる。pam.d 配下の設定を調べてみると /etc/pam.d/polkit-1 がある。前回の設定で pam.d の設定とテストの方法を理解していた。ここまでくれば Module Arguments のドキュメントをみながらオプションを設定するだけ。1Password のロック解除をYubiKeyでやる の記事で origin/appid にホスト名を指定しているが、最新のモジュールだと指定しないときはデフォルトでホスト名が使われるようにみえる。
+origin: FIDO 認証手順の party ID を設定する、値が指定されない場合は識別子 pam://$HOSTNAME が使用される appid: FIDO 認証手順の application ID を設定する、値を指定しない場合は origin で使用されたものと同じ値が使用される (origin も指定しない場合は pam://$HOSTNAME) nouserok: 認証しようとするユーザーが authfile 内に存在しない場合や authfile が欠落/不正確な場合でも、認証の試行を成功させるように設定する cue: タッチすることを促すメッセージを表示するように設定する これらを踏まえて u2f で認証が成功したらそれ以降の処理をスキップするように次の設定を先頭に追加する。</description><content>&lt;p>2時に寝て遅くまで飲んでいたせいか、やや吐き気もしながら朝起きてだらだらして11時ぐらいに起きた。&lt;/p>
+&lt;h2 id="1password-のロック解除を-yubikey-で行う">1password のロック解除を yubikey で行う&lt;/h2>
+&lt;p>先日購入して触っていた &lt;a href="/diary/diary/posts/2023/0429/#yubikey-bio-を触ってみた">yubikey bio の設定&lt;/a> の続き。1password のロック解除を指紋認証で行いたかったが、1password の 8.10.4 のアプリではロック解除をシステム認証で行おうとするとエラーが発生していた (バグってた) 。5月の頭に &lt;a href="https://releases.1password.com/linux/8.10/#1password-for-linux-8.10.6">8.10.6&lt;/a> がリリースされていてシステム認証のバグが直っていることに気付いた。1password のアプリケーションがどうやって linux のシステム認証を使っているかは次の1文に書いてある。&lt;/p>
+&lt;blockquote>
+&lt;p>システム認証は、Linux のユーザーアカウントに組み込まれたアクセス制御機構を使用します。これは polkit と PAM (Pluggable Authentication Modules) という2つの Linux 標準に依存しています。この2つを組み合わせることで、安全な認証サービスを提供します&lt;/p>
+&lt;p>&lt;a href="https://support.1password.com/system-authentication-linux/#about-system-authentication-security">https://support.1password.com/system-authentication-linux/#about-system-authentication-security&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>私は &lt;a href="https://wiki.archlinux.org/title/Polkit">polkit&lt;/a> を使ったことがなくて初見でよく分かっていないが、どうやら polkit から pam を介して認証しているようにみえる。pam.d 配下の設定を調べてみると &lt;code>/etc/pam.d/polkit-1&lt;/code> がある。前回の設定で pam.d の設定とテストの方法を理解していた。ここまでくれば &lt;a href="https://github.com/Yubico/pam-u2f/tree/main#module-arguments">Module Arguments&lt;/a> のドキュメントをみながらオプションを設定するだけ。&lt;a href="https://yoshiori.hatenablog.com/entry/2022/02/17/173147">1Password のロック解除をYubiKeyでやる&lt;/a> の記事で origin/appid にホスト名を指定しているが、最新のモジュールだと指定しないときはデフォルトでホスト名が使われるようにみえる。&lt;/p>
+&lt;ul>
+&lt;li>origin: FIDO 認証手順の party ID を設定する、値が指定されない場合は識別子 &lt;code>pam://$HOSTNAME&lt;/code> が使用される&lt;/li>
+&lt;li>appid: FIDO 認証手順の application ID を設定する、値を指定しない場合は origin で使用されたものと同じ値が使用される (origin も指定しない場合は &lt;code>pam://$HOSTNAME&lt;/code>)&lt;/li>
+&lt;li>nouserok: 認証しようとするユーザーが &lt;code>authfile&lt;/code> 内に存在しない場合や &lt;code>authfile&lt;/code> が欠落/不正確な場合でも、認証の試行を成功させるように設定する&lt;/li>
+&lt;li>cue: タッチすることを促すメッセージを表示するように設定する&lt;/li>
+&lt;/ul>
+&lt;p>これらを踏まえて u2f で認証が成功したらそれ以降の処理をスキップするように次の設定を先頭に追加する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ sudo vi /etc/pam.d/polkit-1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>auth sufficient pam_u2f.so nouserok cue
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>cue を指定したことでパスワードプロンプトを表示せず、デバイスをタッチするように促される。よい感じ。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ pamtester polkit-1 t2y authenticate
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Please touch the device.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>pamtester: successfully authenticated
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>これで pam の polkit の設定が正しいことを検証できる。この後に 1password のアプリケーションでロック解除するときに u2f を使って指紋認証できた。めっちゃ便利。&lt;/p>
+&lt;figure>&lt;img src="/diary/diary/img/2023/0521_1password-system-auth.png"/>
+&lt;/figure></content></item><item><title>yubikey bio を触ってみた</title><link>/diary/posts/2023/0429/</link><pubDate>Sat, 29 Apr 2023 14:24:07 +0900</pubDate><guid>/diary/posts/2023/0429/</guid><description>3時半に寝て7時に起きた。リリース終えたので晩ご飯を食べてから自分の会社のお仕事をしていたら遅くなった。
 ストレッチ 今週もリリース明けでそれほど座っている時間が長かったわけでもないため、腰の張りはあまりなく、負荷は低くなっているのではないかと推測する。今日の開脚幅は開始前156cmで、ストレッチ後158cmだった。右股関節周りの硬さは相変わらず大きく変化はないが、他がよくなった分、右ふともも前の筋を伸ばすと張りがきつくてしんどいように感じた。しばらく余裕のある生活ができるので歩いたりストレッチしたりする余裕が出てくるかもしれない。
 yubikey bio を触ってみた 先日 yubikey bio をオンラインストアで購入 した。会社の経費で業務で使うことを目的に購入したのでこの場合は商用利用の輸入にあたる。また別途、輸入についての会計処理を書く。yubico はスウェーデンの会社でどうやら日本向けはスウェーデンの首都ストックホルムから発送されてきたらしい。安いエコノミープランで注文していた。発送メールを受け取ったのが 4/17 でオフィスの郵便受けに入っていることに気付いたのが 4/29 になる。12日で届いたことになる。船便にしては早いからなにかしら航空便の安いプランで届いたのだと推測する。
 Economy - 10-20 Working Days - No tracking available
