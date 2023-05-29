@@ -1,4 +1,46 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>founding on forest nook</title><link>/diary/tags/founding/</link><description>Recent content in founding on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Fri, 12 May 2023 07:46:19 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/founding/index.xml" rel="self" type="application/rss+xml"/><item><title>第5期の展望</title><link>/diary/posts/2023/0512/</link><pubDate>Fri, 12 May 2023 07:46:19 +0900</pubDate><guid>/diary/posts/2023/0512/</guid><description>0時に寝て6時に起きた。昨日の夜に展望の資料を作りやるつもりがバテて寝てしまったので朝から作ってた。日中はふりかえりの資料を作っていて、それも作り終えたので来週の東京出張の準備は概ね終わった。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>founding on forest nook</title><link>/diary/tags/founding/</link><description>Recent content in founding on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Mon, 29 May 2023 11:06:04 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/founding/index.xml" rel="self" type="application/rss+xml"/><item><title>エラーのラップと型階層</title><link>/diary/posts/2023/0529/</link><pubDate>Mon, 29 May 2023 11:06:04 +0900</pubDate><guid>/diary/posts/2023/0529/</guid><description>0時に寝て何度か起きて7時に起きた。署名・押印を完了した相続の書類を朝一で郵便局へ言って送付した。これで後は弁護士さんや司法書士さんが残りの手続きをやっておいてくれるのかな？少し気が楽になった。
+ラップしたエラーのチェック java でいうところの Chained Exceptions を go では Wrap という概念で表現する。Unwrap する interface を提供することで事実上の Chained Exceptions と同じようにオリジナルのエラーを辿ることができる。go はオブジェクト指向言語ではない と先日の勉強会でも念押し確認してエラーの型階層という概念はないが、Wrap をみていると型階層の方が自然じゃない？と考えられなくもない。言語の設計を考えるよいお題だと思えた。
+エラーチェックについては次の記事がわかりやすかった。
+Go の自作エラーを errors.Is と errors.As で wrap 元のエラーと識別するときには、Unwrap も実装しよう カスタムのエラーを定義する。
+type MyError struct { message string err error } func (e *MyError) Error() string { return e.message + &amp;#34;: &amp;#34; + e.err.Error() } func (e *MyError) Unwrap() error { return e.err } このチェックのために errors パッケージに次の2つの関数がある。
+errors.Is: エラーのインスタンスが同じかどうか errors.As: エラーの型に代入可能かどうか (事実上はインスタンスの型が同じかどうか？) たしかにこれでもすぐに実装できた。型階層なんかなくてもこれで十分でしょというのが go の意見かな。</description><content>&lt;p>0時に寝て何度か起きて7時に起きた。署名・押印を完了した相続の書類を朝一で郵便局へ言って送付した。これで後は弁護士さんや司法書士さんが残りの手続きをやっておいてくれるのかな？少し気が楽になった。&lt;/p>
+&lt;h2 id="ラップしたエラーのチェック">ラップしたエラーのチェック&lt;/h2>
+&lt;p>java でいうところの &lt;a href="https://docs.oracle.com/javase/tutorial/essential/exceptions/chained.html">Chained Exceptions&lt;/a> を go では &lt;a href="https://go.dev/blog/go1.13-errors">Wrap&lt;/a> という概念で表現する。Unwrap する interface を提供することで事実上の Chained Exceptions と同じようにオリジナルのエラーを辿ることができる。&lt;a href="/diary/diary/posts/2023/0527/#go-の学び直し">go はオブジェクト指向言語ではない&lt;/a> と先日の勉強会でも念押し確認してエラーの型階層という概念はないが、Wrap をみていると型階層の方が自然じゃない？と考えられなくもない。言語の設計を考えるよいお題だと思えた。&lt;/p>
+&lt;p>エラーチェックについては次の記事がわかりやすかった。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://zenn.dev/msksgm/articles/20220325-unwrap-errors-is-as">Go の自作エラーを errors.Is と errors.As で wrap 元のエラーと識別するときには、Unwrap も実装しよう&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>カスタムのエラーを定義する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-go" data-lang="go">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">type&lt;/span> &lt;span style="color:#a6e22e">MyError&lt;/span> &lt;span style="color:#66d9ef">struct&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">message&lt;/span> &lt;span style="color:#66d9ef">string&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#66d9ef">error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> (&lt;span style="color:#a6e22e">e&lt;/span> &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">MyError&lt;/span>) &lt;span style="color:#a6e22e">Error&lt;/span>() &lt;span style="color:#66d9ef">string&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">e&lt;/span>.&lt;span style="color:#a6e22e">message&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#e6db74">&amp;#34;: &amp;#34;&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#a6e22e">e&lt;/span>.&lt;span style="color:#a6e22e">err&lt;/span>.&lt;span style="color:#a6e22e">Error&lt;/span>()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> (&lt;span style="color:#a6e22e">e&lt;/span> &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">MyError&lt;/span>) &lt;span style="color:#a6e22e">Unwrap&lt;/span>() &lt;span style="color:#66d9ef">error&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">e&lt;/span>.&lt;span style="color:#a6e22e">err&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>このチェックのために &lt;a href="https://pkg.go.dev/errors">errors&lt;/a> パッケージに次の2つの関数がある。&lt;/p>
+&lt;ul>
+&lt;li>errors.Is: エラーのインスタンスが同じかどうか&lt;/li>
+&lt;li>errors.As: エラーの型に代入可能かどうか (事実上はインスタンスの型が同じかどうか？)&lt;/li>
+&lt;/ul>
+&lt;p>たしかにこれでもすぐに実装できた。型階層なんかなくてもこれで十分でしょというのが go の意見かな。&lt;/p>
+&lt;h2 id="隔週の雑談">隔週の雑談&lt;/h2>
+&lt;p>顧問のはらさんと隔週の打ち合わせ。今日の議題はこれら。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="/diary/diary/posts/2023/0522/#サイトデザイン打ち合わせ">サイトデザインの話し&lt;/a>&lt;/li>
+&lt;li>能をみにいく話し&lt;/li>
+&lt;li>&lt;a href="/diary/diary/posts/2023/0526/#開発合宿の日程確定">冬の開発合宿の話し&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>週末は勉強会と実家に帰るので余裕がなかったのであまりネタがなかった。能の話しをしていて、子どものときに関心がなかったものを大人になって受け取り方が変わるものがあるのはなぜか？という話題で雑談した。はらさんも落語がわかるようになったという話しをされていた。この話しはストレッチのトレーナーさんとも盛り上がった。&lt;/p>
+&lt;blockquote>
+&lt;p>子どもだともっている情報が少な過ぎて情報を理解できないのではないか？&lt;/p>
+&lt;/blockquote>
+&lt;p>情報や知識を蓄積することで対象への解像度があがるにつれて、みる視点が変わったり、興味が変わったりすることはあるかもしれないなと聞いていて思えた。課題管理の話しをしても、多くの開発者は無関心だったり共感を得られなかったりするが、そこにも通じるものがあるのかもしれないとなにかしらの取っ掛かりになるかもしれないと思えた。&lt;/p></content></item><item><title>第5期の展望</title><link>/diary/posts/2023/0512/</link><pubDate>Fri, 12 May 2023 07:46:19 +0900</pubDate><guid>/diary/posts/2023/0512/</guid><description>0時に寝て6時に起きた。昨日の夜に展望の資料を作りやるつもりがバテて寝てしまったので朝から作ってた。日中はふりかえりの資料を作っていて、それも作り終えたので来週の東京出張の準備は概ね終わった。
 隔週の雑談 顧問のはらさんと隔週の打ち合わせ。今日の議題はこれら。
 デザイナーさんとの契約の話し 第5期の展望 後者の資料を昨日の夜に作ろうと思いながら帰って晩ご飯食べたら疲れて家でのんびりしてしまった。最近あまりよくない傾向として、晩ご飯を食べに家に帰ると戻って来れなくなることが多い。たまに日記でも書いているが、23時や24時に晩ご飯を食べると寝ているときに胃酸が逆流して吐き気を催したり、最悪、吐いたりする。そうなると夜中に1-2時間は眠れなくなって辛いので夜遅くに食べるのを避けるため、19時前後に家に帰って晩ご飯を食べるようにし始めた。おそらく身体的には晩ご飯なんかもう食べなくてよいはずなのに食べてしまうのはストレスや糖質への依存症なのかもしれない。これはまた別の話し。
 オフィスから家が近いので晩ご飯を外食せずに済むことはよいことなのだが、本来なら晩ご飯を食べて20-21時頃にオフィスへ戻って作業の続きをするのが望ましい。このモチベーション管理がとても難しい。本当の意味では、オフィスに戻って作業しなくてもよいと頭で理解してしまうとついついさぼってしまう。それは私のモチベーションが低いだけでしかない。さぼると多少の自己嫌悪があってさらにモチベーション管理が難しくなる。
