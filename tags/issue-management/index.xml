@@ -1,4 +1,25 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>issue management on forest nook</title><link>/diary/tags/issue-management/</link><description>Recent content in issue management on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Wed, 07 Jun 2023 18:48:14 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/issue-management/index.xml" rel="self" type="application/rss+xml"/><item><title>ぼくのかんがえたさいきょうの定例会議</title><link>/diary/posts/2023/0607/</link><pubDate>Wed, 07 Jun 2023 18:48:14 +0900</pubDate><guid>/diary/posts/2023/0607/</guid><description>1時に寝て何度か起きて8時に起きた。昨日ブログを書き終えてほっとしたのか、珍しく寝坊した。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>issue management on forest nook</title><link>/diary/tags/issue-management/</link><description>Recent content in issue management on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 08 Jun 2023 08:24:16 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/issue-management/index.xml" rel="self" type="application/rss+xml"/><item><title>一期一会</title><link>/diary/posts/2023/0608/</link><pubDate>Thu, 08 Jun 2023 08:24:16 +0900</pubDate><guid>/diary/posts/2023/0608/</guid><description>1時に寝て何度か起きて6時に起きた。鬼滅の刃を読みながら寝落ちした。
+近況報告の資料作り 来週また東京出張することになり、あわてて資料作りしていた。5月に落ち穂拾いして6月は開発始まりだし、経費削減の意図もあって出張しなくてもよいんじゃないか？と緩く考えていた。しかし、先方は全然そんなつもりなくて「当然出張してくるよね」的なノリだった。毎月の顔合わせというリズムもあるし、新しい定例会議の進め方 を初めて実践する上でもオフラインでやるのが大事かもしれない。
+能は一回限りの公演 武田宗典さんという能楽師が1分25秒頃から次のように話している。
+能は全部一回限りの公演なんですよね。
+すべてそのときだけに集まる人たちなので、
+そのときにしかできない空間の作品が出来上がる。
+観世流 能楽師シテ方・武田宗典
+プロジェクトマネジメントも同じところがあるなと親近感をもって聞いていて印象に残った。プロジェクトマネジメントの目的はプロジェクトの再現性にあるわけだけど、実際には、あるプロジェクトでうまくいったもの (いかなかったもの) を完全には再現できない。それはまったく同じ状況、同じ要件、同じ開発メンバーでプロジェクトに取り組めないことが大半だろうし、仮に同じ開発メンバーであっても、人は時間とともに成長するので成長前に戻ることはできない。「歴史に if はない」という言葉と同様に過去のプロジェクトマネジメントや、よそのプロジェクトマネジメントになにかを言っても意味のない行為である。</description><content>&lt;p>1時に寝て何度か起きて6時に起きた。鬼滅の刃を読みながら寝落ちした。&lt;/p>
+&lt;h2 id="近況報告の資料作り">近況報告の資料作り&lt;/h2>
+&lt;p>来週また東京出張することになり、あわてて資料作りしていた。5月に落ち穂拾いして6月は開発始まりだし、経費削減の意図もあって出張しなくてもよいんじゃないか？と緩く考えていた。しかし、先方は全然そんなつもりなくて「当然出張してくるよね」的なノリだった。毎月の顔合わせというリズムもあるし、&lt;a href="/diary/diary/posts/2023/0607/">新しい定例会議の進め方&lt;/a> を初めて実践する上でもオフラインでやるのが大事かもしれない。&lt;/p>
+&lt;h2 id="能は一回限りの公演">能は一回限りの公演&lt;/h2>
+&lt;div class="video-container">
+&lt;iframe src="https://www.youtube.com/embed/RU-svIQGYIo" allowfullscreen title="能楽師 観世流 武田宗典">&lt;/iframe>
+&lt;/div>
+&lt;p>武田宗典さんという能楽師が1分25秒頃から次のように話している。&lt;/p>
+&lt;blockquote>
+&lt;p>能は全部一回限りの公演なんですよね。&lt;br />
+すべてそのときだけに集まる人たちなので、&lt;br />
+そのときにしかできない空間の作品が出来上がる。&lt;/p>
+&lt;p>観世流 能楽師シテ方・武田宗典&lt;/p>
+&lt;/blockquote>
+&lt;p>プロジェクトマネジメントも同じところがあるなと親近感をもって聞いていて印象に残った。プロジェクトマネジメントの目的はプロジェクトの再現性にあるわけだけど、実際には、あるプロジェクトでうまくいったもの (いかなかったもの) を完全には再現できない。それはまったく同じ状況、同じ要件、同じ開発メンバーでプロジェクトに取り組めないことが大半だろうし、仮に同じ開発メンバーであっても、人は時間とともに成長するので成長前に戻ることはできない。「歴史に if はない」という言葉と同様に過去のプロジェクトマネジメントや、よそのプロジェクトマネジメントになにかを言っても意味のない行為である。&lt;/p></content></item><item><title>ぼくのかんがえたさいきょうの定例会議</title><link>/diary/posts/2023/0607/</link><pubDate>Wed, 07 Jun 2023 18:48:14 +0900</pubDate><guid>/diary/posts/2023/0607/</guid><description>1時に寝て何度か起きて8時に起きた。昨日ブログを書き終えてほっとしたのか、珍しく寝坊した。
 課題管理の定例会議の進め方 5月31日から 新しい開発がスタート していてイテレーションを2週間に、そして定例会議も同様に隔週とした。その狙いは先日の日記に書いてあるが、これまで毎週やっていた定例会議の進め方はあわないので新規に会議の進め方を刷新した。これまでふりかえりと定例会議を別にやっていたのを1つにした。またふりかえりの会議のときに、ふりかえり作業そのものもやっていたのを、定例までに事前にメンバーがそれぞれやってきて、結果を定例のときに共有しようというやり方に改めた。ネガティブなふりかえりは発生時点で課題管理システムに登録してフィルター可能というのがアピールポイント。いまチームのメンバーが3人なのでこれでも会議は1時間でおさまる見積もり。メンバーが増えたらふりかえりと定例は別の時間にわけてやるかな？会議時間が長くなるとダレるので1つの会議は1時間以内で締めるというのは徹底したい。
 現マイルストーンのふりかえり (目安時間: 25分) fun/done/learn を使ったポジティブなふりかえり で共有 ネガティブなふりかえりは課題管理システムに Postmortem ラベルを付与して issue 登録したものを共有 次マイルストーンでやることの確認 (目安時間: 25分) 課題管理システムにある次マイルストーンでフィルターした issue を共有 issue になっていないもので聞きたいことや分からないことを聞く (目安時間: 10分) メンバーが自由に意見を表明 雑談 (余り時間) メンバーが自由に雑談 事前準備を済ましてから、スクラムでいうところの、レトロスペクティブとプランニングを同時にやるといったもの。実践としてうまくいくかどうか、今回の開発で試してみる。</description><content>&lt;p>1時に寝て何度か起きて8時に起きた。昨日ブログを書き終えてほっとしたのか、珍しく寝坊した。&lt;/p>
 &lt;h2 id="課題管理の定例会議の進め方">課題管理の定例会議の進め方&lt;/h2>

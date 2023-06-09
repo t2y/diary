@@ -1,4 +1,25 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>noh on forest nook</title><link>/diary/tags/noh/</link><description>Recent content in noh on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Tue, 06 Jun 2023 09:21:08 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/noh/index.xml" rel="self" type="application/rss+xml"/><item><title>久しぶりの書評</title><link>/diary/posts/2023/0606/</link><pubDate>Tue, 06 Jun 2023 09:21:08 +0900</pubDate><guid>/diary/posts/2023/0606/</guid><description>1時に寝て夜に起きて吐いてあまりうまく眠れなかった。たまにそういうことある。今日はコードレビュー対応とコードレビューと会議の進め方のルールを作ったりしていた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>noh on forest nook</title><link>/diary/tags/noh/</link><description>Recent content in noh on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 08 Jun 2023 08:24:16 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/noh/index.xml" rel="self" type="application/rss+xml"/><item><title>一期一会</title><link>/diary/posts/2023/0608/</link><pubDate>Thu, 08 Jun 2023 08:24:16 +0900</pubDate><guid>/diary/posts/2023/0608/</guid><description>1時に寝て何度か起きて6時に起きた。鬼滅の刃を読みながら寝落ちした。
+近況報告の資料作り 来週また東京出張することになり、あわてて資料作りしていた。5月に落ち穂拾いして6月は開発始まりだし、経費削減の意図もあって出張しなくてもよいんじゃないか？と緩く考えていた。しかし、先方は全然そんなつもりなくて「当然出張してくるよね」的なノリだった。毎月の顔合わせというリズムもあるし、新しい定例会議の進め方 を初めて実践する上でもオフラインでやるのが大事かもしれない。
+能は一回限りの公演 武田宗典さんという能楽師が1分25秒頃から次のように話している。
+能は全部一回限りの公演なんですよね。
+すべてそのときだけに集まる人たちなので、
+そのときにしかできない空間の作品が出来上がる。
+観世流 能楽師シテ方・武田宗典
+プロジェクトマネジメントも同じところがあるなと親近感をもって聞いていて印象に残った。プロジェクトマネジメントの目的はプロジェクトの再現性にあるわけだけど、実際には、あるプロジェクトでうまくいったもの (いかなかったもの) を完全には再現できない。それはまったく同じ状況、同じ要件、同じ開発メンバーでプロジェクトに取り組めないことが大半だろうし、仮に同じ開発メンバーであっても、人は時間とともに成長するので成長前に戻ることはできない。「歴史に if はない」という言葉と同様に過去のプロジェクトマネジメントや、よそのプロジェクトマネジメントになにかを言っても意味のない行為である。</description><content>&lt;p>1時に寝て何度か起きて6時に起きた。鬼滅の刃を読みながら寝落ちした。&lt;/p>
+&lt;h2 id="近況報告の資料作り">近況報告の資料作り&lt;/h2>
+&lt;p>来週また東京出張することになり、あわてて資料作りしていた。5月に落ち穂拾いして6月は開発始まりだし、経費削減の意図もあって出張しなくてもよいんじゃないか？と緩く考えていた。しかし、先方は全然そんなつもりなくて「当然出張してくるよね」的なノリだった。毎月の顔合わせというリズムもあるし、&lt;a href="/diary/diary/posts/2023/0607/">新しい定例会議の進め方&lt;/a> を初めて実践する上でもオフラインでやるのが大事かもしれない。&lt;/p>
+&lt;h2 id="能は一回限りの公演">能は一回限りの公演&lt;/h2>
+&lt;div class="video-container">
+&lt;iframe src="https://www.youtube.com/embed/RU-svIQGYIo" allowfullscreen title="能楽師 観世流 武田宗典">&lt;/iframe>
+&lt;/div>
+&lt;p>武田宗典さんという能楽師が1分25秒頃から次のように話している。&lt;/p>
+&lt;blockquote>
+&lt;p>能は全部一回限りの公演なんですよね。&lt;br />
+すべてそのときだけに集まる人たちなので、&lt;br />
+そのときにしかできない空間の作品が出来上がる。&lt;/p>
+&lt;p>観世流 能楽師シテ方・武田宗典&lt;/p>
+&lt;/blockquote>
+&lt;p>プロジェクトマネジメントも同じところがあるなと親近感をもって聞いていて印象に残った。プロジェクトマネジメントの目的はプロジェクトの再現性にあるわけだけど、実際には、あるプロジェクトでうまくいったもの (いかなかったもの) を完全には再現できない。それはまったく同じ状況、同じ要件、同じ開発メンバーでプロジェクトに取り組めないことが大半だろうし、仮に同じ開発メンバーであっても、人は時間とともに成長するので成長前に戻ることはできない。「歴史に if はない」という言葉と同様に過去のプロジェクトマネジメントや、よそのプロジェクトマネジメントになにかを言っても意味のない行為である。&lt;/p></content></item><item><title>久しぶりの書評</title><link>/diary/posts/2023/0606/</link><pubDate>Tue, 06 Jun 2023 09:21:08 +0900</pubDate><guid>/diary/posts/2023/0606/</guid><description>1時に寝て夜に起きて吐いてあまりうまく眠れなかった。たまにそういうことある。今日はコードレビュー対応とコードレビューと会議の進め方のルールを作ったりしていた。
 能―650年続いた仕掛けとは― 日曜日の夜から書き始め、月曜日はレイオフのニュースを読んでだらだらして、ようやく 能―650年続いた仕掛けとは― の書評を書き終えた。ほとんど本からの引用なのに時間がかかったのは私が内容を深く理解できていないのでなんども本を読み返しながら間違いのないように注意して書いていたから。前に書いてから約5ヶ月経っていた。</description><content>&lt;p>1時に寝て夜に起きて吐いてあまりうまく眠れなかった。たまにそういうことある。今日はコードレビュー対応とコードレビューと会議の進め方のルールを作ったりしていた。&lt;/p>
 &lt;h2 id="能650年続いた仕掛けとは">能―650年続いた仕掛けとは―&lt;/h2>
 &lt;p>&lt;a href="/diary/diary/posts/2023/0604/">日曜日の夜から書き始め&lt;/a>、月曜日はレイオフのニュースを読んでだらだらして、ようやく &lt;a href="https://note.com/t2y1979/n/n1c1fd0a5e3e1">能―650年続いた仕掛けとは―&lt;/a> の書評を書き終えた。ほとんど本からの引用なのに時間がかかったのは私が内容を深く理解できていないのでなんども本を読み返しながら間違いのないように注意して書いていたから。前に書いてから約5ヶ月経っていた。&lt;/p></content></item><item><title>能を観に行く</title><link>/diary/posts/2023/0603/</link><pubDate>Sat, 03 Jun 2023 13:57:49 +0900</pubDate><guid>/diary/posts/2023/0603/</guid><description>1時に寝て何度か置きて7時に起きた。
