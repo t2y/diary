@@ -1,4 +1,38 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>noh on forest nook</title><link>/diary/tags/noh/</link><description>Recent content in noh on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 08 Jun 2023 08:24:16 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/noh/index.xml" rel="self" type="application/rss+xml"/><item><title>一期一会</title><link>/diary/posts/2023/0608/</link><pubDate>Thu, 08 Jun 2023 08:24:16 +0900</pubDate><guid>/diary/posts/2023/0608/</guid><description>1時に寝て何度か起きて6時に起きた。鬼滅の刃を読みながら寝落ちした。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>noh on forest nook</title><link>/diary/tags/noh/</link><description>Recent content in noh on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Fri, 09 Jun 2023 08:03:56 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/noh/index.xml" rel="self" type="application/rss+xml"/><item><title>気付けば週末</title><link>/diary/posts/2023/0609/</link><pubDate>Fri, 09 Jun 2023 08:03:56 +0900</pubDate><guid>/diary/posts/2023/0609/</guid><description>1時に寝て何度か起きて6時に起きた。あまりうまく寝付けなかった。
+隔週の雑談 顧問のはらさんと隔週の打ち合わせ。今日の議題はこれら。いつもより盛り沢山。
+新しい定例会議の進め方 の共有 電子決済とスマートプラグを組み合わせた poc の実装について コパイロツトさんと雑談会の調整 淡路島で農業体験のコンテンツを作ることについて 能をみてきた話し 農業体験のコンテンツ作りは 人生の楽園 という番組が参考になるんじゃないかといった話題が出た。うちにはテレビがないのでみれない。オンラインでみれるなら視聴するんやけどな。
+amqp091-go の context 制御のセマンティクス 先日送った amqp091-go の pr でメンテナーから api の振る舞いのセマンティクスが変わってしまっているという指摘をいただいた。
+https://github.com/rabbitmq/amqp091-go/pull/192#pullrequestreview-1468035062 それはその通りなんだけど、一般の go プログラマーからするとそう動いてくれた方が便利でよいんじゃない？と返してみた。
+ニトリ商品受け取り オフィスで使うスマートフックをオンラインで購入した。最寄りの店舗で受け取ると送料が無料になるというのでやってみたら2週間ほどかかった。急ぎではないので受け取りが遅いこと自体は構わない。受け取るときに店舗のスタッフに「このお店にもスマートフックの在庫あったりしますか？」と聞いて調べてもらったら、いまの時点では在庫があるという。もしかして発注時にも店舗に在庫があったとしたらそれを転用すればわざわざどこかの倉庫から2週間もかけて送る必要はなかったんじゃないか？とか考えた。こういうのをみかけると在庫システムを改善したいと思ってしまう。
+【購入日】　2023年05月26日 (金)
+【お渡し予定日】　2023年06月10日 (土)
+【保管期限】　2023年06月24日 (土)
+敦盛 第四回《真花演能会》能『敦盛』 のチケットの申し込みをした。問い合わせフォームでチケット申し込みの旨を連絡するとメールが返ってきて、銀行振込して、先方が確認したら住所にチケットを送ってくれるという。職人が参加者1人1人にメールを手書きで返す運用になっている。メールに記載された振込先の口座番号が全角文字で paypay 銀行の振り込み画面では全角文字をコピペできなかった。申し込み者も口座番号を1文字ずつ手打ちしなさいと言われた気分だった。こういうのをみかけると決済システムを自動化したいと思ってしまう。</description><content>&lt;p>1時に寝て何度か起きて6時に起きた。あまりうまく寝付けなかった。&lt;/p>
+&lt;h2 id="隔週の雑談">隔週の雑談&lt;/h2>
+&lt;p>顧問のはらさんと隔週の打ち合わせ。今日の議題はこれら。いつもより盛り沢山。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="/diary/diary/posts/2023/0607/">新しい定例会議の進め方&lt;/a> の共有&lt;/li>
+&lt;li>電子決済とスマートプラグを組み合わせた poc の実装について&lt;/li>
+&lt;li>&lt;a href="/diary/diary/posts/2023/0106/#隔週の雑談">コパイロツトさんと雑談会の調整&lt;/a>&lt;/li>
+&lt;li>淡路島で農業体験のコンテンツを作ることについて&lt;/li>
+&lt;li>&lt;a href="/diary/diary/posts/2023/0603/">能をみてきた話し&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>農業体験のコンテンツ作りは &lt;a href="https://www.tv-asahi.co.jp/rakuen/">人生の楽園&lt;/a> という番組が参考になるんじゃないかといった話題が出た。うちにはテレビがないのでみれない。オンラインでみれるなら視聴するんやけどな。&lt;/p>
+&lt;h2 id="amqp091-go-の-context-制御のセマンティクス">amqp091-go の context 制御のセマンティクス&lt;/h2>
+&lt;p>先日送った &lt;a href="/diary/diary/posts/2023/0515/#amqp091-go-の-context-制御">amqp091-go の pr&lt;/a> でメンテナーから api の振る舞いのセマンティクスが変わってしまっているという指摘をいただいた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/rabbitmq/amqp091-go/pull/192#pullrequestreview-1468035062">https://github.com/rabbitmq/amqp091-go/pull/192#pullrequestreview-1468035062&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>それはその通りなんだけど、一般の go プログラマーからするとそう動いてくれた方が便利でよいんじゃない？と返してみた。&lt;/p>
+&lt;h2 id="ニトリ商品受け取り">ニトリ商品受け取り&lt;/h2>
+&lt;p>オフィスで使うスマートフックをオンラインで購入した。最寄りの店舗で受け取ると送料が無料になるというのでやってみたら2週間ほどかかった。急ぎではないので受け取りが遅いこと自体は構わない。受け取るときに店舗のスタッフに「このお店にもスマートフックの在庫あったりしますか？」と聞いて調べてもらったら、いまの時点では在庫があるという。もしかして発注時にも店舗に在庫があったとしたらそれを転用すればわざわざどこかの倉庫から2週間もかけて送る必要はなかったんじゃないか？とか考えた。こういうのをみかけると在庫システムを改善したいと思ってしまう。&lt;/p>
+&lt;blockquote>
+&lt;p>【購入日】　　　　　2023年05月26日 (金)&lt;br />
+【お渡し予定日】　　2023年06月10日 (土)&lt;br />
+【保管期限】　　　　2023年06月24日 (土)&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="敦盛">敦盛&lt;/h2>
+&lt;p>&lt;a href="https://shin-flower.jp/events/2023/0419143830.html">第四回《真花演能会》能『敦盛』&lt;/a> のチケットの申し込みをした。問い合わせフォームでチケット申し込みの旨を連絡するとメールが返ってきて、銀行振込して、先方が確認したら住所にチケットを送ってくれるという。職人が参加者1人1人にメールを手書きで返す運用になっている。メールに記載された振込先の口座番号が全角文字で paypay 銀行の振り込み画面では全角文字をコピペできなかった。申し込み者も口座番号を1文字ずつ手打ちしなさいと言われた気分だった。こういうのをみかけると決済システムを自動化したいと思ってしまう。&lt;/p></content></item><item><title>一期一会</title><link>/diary/posts/2023/0608/</link><pubDate>Thu, 08 Jun 2023 08:24:16 +0900</pubDate><guid>/diary/posts/2023/0608/</guid><description>1時に寝て何度か起きて6時に起きた。鬼滅の刃を読みながら寝落ちした。
 近況報告の資料作り 来週また東京出張することになり、あわてて資料作りしていた。5月に落ち穂拾いして6月は開発始まりだし、経費削減の意図もあって出張しなくてもよいんじゃないか？と緩く考えていた。しかし、先方は全然そんなつもりなくて「当然出張してくるよね」的なノリだった。毎月の顔合わせというリズムもあるし、新しい定例会議の進め方 を初めて実践する上でもオフラインでやるのが大事かもしれない。
 能は一回限りの公演 武田宗典さんという能楽師が1分25秒頃から次のように話している。
 能は全部一回限りの公演なんですよね。
