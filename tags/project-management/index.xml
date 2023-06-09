@@ -1,4 +1,32 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>project management on forest nook</title><link>/diary/tags/project-management/</link><description>Recent content in project management on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Tue, 30 May 2023 08:42:38 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/project-management/index.xml" rel="self" type="application/rss+xml"/><item><title>落ち穂を拾い集めて課題管理を促す</title><link>/diary/posts/2023/0530/</link><pubDate>Tue, 30 May 2023 08:42:38 +0900</pubDate><guid>/diary/posts/2023/0530/</guid><description>2時に寝て何度か起きて7時に起きた。能の本を読みながら寝落ちした。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>project management on forest nook</title><link>/diary/tags/project-management/</link><description>Recent content in project management on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Wed, 07 Jun 2023 18:48:14 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/project-management/index.xml" rel="self" type="application/rss+xml"/><item><title>ぼくのかんがえたさいきょうの定例会議</title><link>/diary/posts/2023/0607/</link><pubDate>Wed, 07 Jun 2023 18:48:14 +0900</pubDate><guid>/diary/posts/2023/0607/</guid><description>1時に寝て何度か起きて8時に起きた。昨日ブログを書き終えてほっとしたのか、珍しく寝坊した。
+課題管理の定例会議の進め方 5月31日から 新しい開発がスタート していてイテレーションを2週間に、そして定例会議も同様に隔週とした。その狙いは先日の日記に書いてあるが、これまで毎週やっていた定例会議の進め方はあわないので新規に会議の進め方を刷新した。これまでふりかえりと定例会議を別にやっていたのを1つにした。またふりかえりの会議のときに、ふりかえり作業そのものもやっていたのを、定例までに事前にメンバーがそれぞれやってきて、結果を定例のときに共有しようというやり方に改めた。ネガティブなふりかえりは発生時点で課題管理システムに登録してフィルター可能というのがアピールポイント。いまチームのメンバーが3人なのでこれでも会議は1時間でおさまる見積もり。メンバーが増えたらふりかえりと定例は別の時間にわけてやるかな？会議時間が長くなるとダレるので1つの会議は1時間以内で締めるというのは徹底したい。
+現マイルストーンのふりかえり (目安時間: 25分) fun/done/learn を使ったポジティブなふりかえり で共有 ネガティブなふりかえりは課題管理システムに Postmortem ラベルを付与して issue 登録したものを共有 次マイルストーンでやることの確認 (目安時間: 25分) 課題管理システムにある次マイルストーンでフィルターした issue を共有 issue になっていないもので聞きたいことや分からないことを聞く (目安時間: 10分) メンバーが自由に意見を表明 雑談 (余り時間) メンバーが自由に雑談 事前準備を済ましてから、スクラムでいうところの、レトロスペクティブとプランニングを同時にやるといったもの。実践としてうまくいくかどうか、今回の開発で試してみる。</description><content>&lt;p>1時に寝て何度か起きて8時に起きた。昨日ブログを書き終えてほっとしたのか、珍しく寝坊した。&lt;/p>
+&lt;h2 id="課題管理の定例会議の進め方">課題管理の定例会議の進め方&lt;/h2>
+&lt;p>5月31日から &lt;a href="/diary/diary/posts/2023/0530/#落ち穂拾いの終了">新しい開発がスタート&lt;/a> していてイテレーションを2週間に、そして定例会議も同様に隔週とした。その狙いは先日の日記に書いてあるが、これまで毎週やっていた定例会議の進め方はあわないので新規に会議の進め方を刷新した。これまでふりかえりと定例会議を別にやっていたのを1つにした。またふりかえりの会議のときに、ふりかえり作業そのものもやっていたのを、定例までに事前にメンバーがそれぞれやってきて、結果を定例のときに共有しようというやり方に改めた。ネガティブなふりかえりは発生時点で課題管理システムに登録してフィルター可能というのがアピールポイント。いまチームのメンバーが3人なのでこれでも会議は1時間でおさまる見積もり。メンバーが増えたらふりかえりと定例は別の時間にわけてやるかな？会議時間が長くなるとダレるので1つの会議は1時間以内で締めるというのは徹底したい。&lt;/p>
+&lt;ol>
+&lt;li>現マイルストーンのふりかえり (目安時間: 25分)
+&lt;ol>
+&lt;li>&lt;a href="/diary/diary/posts/2022/1129/">fun/done/learn を使ったポジティブなふりかえり&lt;/a> で共有&lt;/li>
+&lt;li>ネガティブなふりかえりは課題管理システムに &lt;code>Postmortem&lt;/code> ラベルを付与して issue 登録したものを共有&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>次マイルストーンでやることの確認 (目安時間: 25分)
+&lt;ol>
+&lt;li>課題管理システムにある次マイルストーンでフィルターした issue を共有&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>issue になっていないもので聞きたいことや分からないことを聞く (目安時間: 10分)
+&lt;ol>
+&lt;li>メンバーが自由に意見を表明&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>雑談 (余り時間)
+&lt;ol>
+&lt;li>メンバーが自由に雑談&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol>
+&lt;p>事前準備を済ましてから、スクラムでいうところの、レトロスペクティブとプランニングを同時にやるといったもの。実践としてうまくいくかどうか、今回の開発で試してみる。&lt;/p></content></item><item><title>落ち穂を拾い集めて課題管理を促す</title><link>/diary/posts/2023/0530/</link><pubDate>Tue, 30 May 2023 08:42:38 +0900</pubDate><guid>/diary/posts/2023/0530/</guid><description>2時に寝て何度か起きて7時に起きた。能の本を読みながら寝落ちした。
 落ち穂拾いの終了 4月末にリリースしてその後 GW に入って、5月は「落ち穂拾い」として 開発全体のふりかえり をやったり、次の開発の要件を整理 したりしていた。ドッグフードテスト の導入もまだ作業中ではあるが、社内のシステム管理者にも協力していただいて進めている。私の作業でも十分な余裕をもって次の準備につなげることができたので開発の区切りで1ヶ月ぐらい準備期間があることはよいように思える。経営者はもっと働かせたがるかもしれないが。
 これまでの開発は定例会議も 1on1 も毎週行ってきたが、次の開発ではこれらの会議を隔週にしてみる。口頭による同期コミュニケーションのコストを減らし、より開発そのものに時間を割いて注力できるようにする。もしかしたら、これによって私も開発に参加する時間を作りやすくなるかもしれない。もう1つ 必要なときに必要な人とすぐに話す (会議の日まで待たない) という狙いがある。毎週会議があると、すぐ聞けばよいことを次の会議まで待ってしまうということがある。私もある。私ですら待つときがあるのだからおそらくメンバーにもそうしてしまうことがあると推測する。会議の頻度を下げることでこの待ち時間を削減して即時問い合わせ、即時解決するといったコミュニケーションに移行していきたいという狙いがある。開発者の自律性を高めるためにはこういった取り組みも必要だと思える。もっと言えば、毎週会議しないと情報共有できないというのは開発者を子ども扱いして堕落させるのではないかと考える。実際に意図したようにうまくいくかどうかはやってみてから考える。
 うちの開発メンバーは半年前より見違えて課題管理に習熟したので次の開発がどうなるかが本当に楽しみだ。</description><content>&lt;p>2時に寝て何度か起きて7時に起きた。能の本を読みながら寝落ちした。&lt;/p>
