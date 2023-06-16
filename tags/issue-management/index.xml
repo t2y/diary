@@ -1,4 +1,30 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>issue management on forest nook</title><link>/diary/tags/issue-management/</link><description>Recent content in issue management on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 08 Jun 2023 08:24:16 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/issue-management/index.xml" rel="self" type="application/rss+xml"/><item><title>一期一会</title><link>/diary/posts/2023/0608/</link><pubDate>Thu, 08 Jun 2023 08:24:16 +0900</pubDate><guid>/diary/posts/2023/0608/</guid><description>1時に寝て何度か起きて6時に起きた。鬼滅の刃を読みながら寝落ちした。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>issue management on forest nook</title><link>/diary/tags/issue-management/</link><description>Recent content in issue management on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Tue, 13 Jun 2023 04:21:59 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/issue-management/index.xml" rel="self" type="application/rss+xml"/><item><title>メリハリの付け直し</title><link>/diary/posts/2023/0613/</link><pubDate>Tue, 13 Jun 2023 04:21:59 +0900</pubDate><guid>/diary/posts/2023/0613/</guid><description>23時ぐらいまで作業して、1時から2時ぐらいまで仮眠した。いつも通り普通に寝ないで始発の新幹線に乗って寝てた。寝ていて体があちこち痛くて、月に1回ではあるけどこの生活を続けるのもよくないかもなと思い始めた。
+新しい定例会議の初日 6月から新しい開発がスタートして 新しい定例会議の進め方 に変更した。ふりかえりと情報共有の定例を1時間に詰め込むので時間が足りないかも？と時間を意識しながら進めた。その甲斐もあってか、ちょうどぴったり1時間におさまった。これも一種のパーキンソンの法則のようなものが働いているのかもしれない。
+仕事は、完成までに利用可能な時間を使い果たすように拡大していく
+パーキンソンの法則
+メンバーが2人なので機能開発が2つずつ並行に進む。1つは開発が完了し、もう1つも大半は完了している。完了できなかったことは残念だが、私からみても着実にステップアップしているのでそれほど問題視していない。ドッグフードテスト の導入も完了こそしなかったが、これも社内インフラの都合や管理者の工数を調整してもらったりするので着実に進捗しているのであれば、それほど厳密にスケジュール管理しなくてよいのかもしれない。
+イテレーション開発のルール的には優先度を付けた issue はそのイテレーション内でやり切るという目標をもつように促している。但し、まだ開発の序盤であるので現時点ではそれほど重要ではない。これも1つのメリハリだとみなすこともできる。また様々な状況の変化や調整をしながら期限を意識して働くのは一定のスキルと自律的な行動を取れる開発者に限られる。
+なんのために働くかの答えを見い出せていない若い人にそれを求めるのもまた違うなと思えて、この状況を作り出しているのは、働く目的そのものを導くようなリーダーシップを取れていない私自身の責任だと実感した。つまり私が自身の規律を緩めているのがメンバーに伝わって、結果的にスケジュールを守ろうとする最後の底力を支えられていないと思えた。開発の仕切り直しに私自身も切り替えていかないといけない。
+厄介なインフラの問題 x 2 ちょうどインフラに関する、特定の状況においてパフォーマンスが劇的に劣化したり、意図しない振る舞いをしたりする事象を2つ確認している。これこそ私が面倒をみる issue だなと思って着手した。m2 macbook はこういったインフラの再現環境を作るのに向いていない。2022年に virtualbox 7.0 で m1/m2 に対応したという changelog があるけど、少し前にインストールしようとするとエラーになって動かなくて諦めた。
+macOS host: Providing a Developer Preview package for systems with an Apple silicon CPU. This is unsupported work in progress, and is known to have very modest performance.
+Changelog for VirtualBox 7.0
+アプリケーションのコンテナイメージも、現時点では amd64 向けにしか提供していないため、どのみちコンテナでの検証が必要になったら m2 macbook では動作させられない。そういう厄介な issue を抱えた。帰ったらオフィスのデスクトップマシンで再現環境を作るところから始める。</description><content>&lt;p>23時ぐらいまで作業して、1時から2時ぐらいまで仮眠した。いつも通り普通に寝ないで始発の新幹線に乗って寝てた。寝ていて体があちこち痛くて、月に1回ではあるけどこの生活を続けるのもよくないかもなと思い始めた。&lt;/p>
+&lt;h2 id="新しい定例会議の初日">新しい定例会議の初日&lt;/h2>
+&lt;p>6月から新しい開発がスタートして &lt;a href="/diary/diary/posts/2023/0607/">新しい定例会議の進め方&lt;/a> に変更した。ふりかえりと情報共有の定例を1時間に詰め込むので時間が足りないかも？と時間を意識しながら進めた。その甲斐もあってか、ちょうどぴったり1時間におさまった。これも一種のパーキンソンの法則のようなものが働いているのかもしれない。&lt;/p>
+&lt;blockquote>
+&lt;p>仕事は、完成までに利用可能な時間を使い果たすように拡大していく&lt;/p>
+&lt;p>&lt;a href="https://asana.com/ja/resources/parkinsons-law">パーキンソンの法則&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>メンバーが2人なので機能開発が2つずつ並行に進む。1つは開発が完了し、もう1つも大半は完了している。完了できなかったことは残念だが、私からみても着実にステップアップしているのでそれほど問題視していない。&lt;a href="/diary/diary/posts/2023/0526/#ドッグフードテストと運用談義">ドッグフードテスト&lt;/a> の導入も完了こそしなかったが、これも社内インフラの都合や管理者の工数を調整してもらったりするので着実に進捗しているのであれば、それほど厳密にスケジュール管理しなくてよいのかもしれない。&lt;/p>
+&lt;p>イテレーション開発のルール的には優先度を付けた issue はそのイテレーション内でやり切るという目標をもつように促している。但し、まだ開発の序盤であるので現時点ではそれほど重要ではない。これも1つのメリハリだとみなすこともできる。また様々な状況の変化や調整をしながら期限を意識して働くのは一定のスキルと自律的な行動を取れる開発者に限られる。&lt;/p>
+&lt;p>なんのために働くかの答えを見い出せていない若い人にそれを求めるのもまた違うなと思えて、この状況を作り出しているのは、働く目的そのものを導くようなリーダーシップを取れていない私自身の責任だと実感した。つまり私が自身の規律を緩めているのがメンバーに伝わって、結果的にスケジュールを守ろうとする最後の底力を支えられていないと思えた。開発の仕切り直しに私自身も切り替えていかないといけない。&lt;/p>
+&lt;h2 id="厄介なインフラの問題-x-2">厄介なインフラの問題 x 2&lt;/h2>
+&lt;p>ちょうどインフラに関する、特定の状況においてパフォーマンスが劇的に劣化したり、意図しない振る舞いをしたりする事象を2つ確認している。これこそ私が面倒をみる issue だなと思って着手した。m2 macbook はこういったインフラの再現環境を作るのに向いていない。2022年に virtualbox 7.0 で m1/m2 に対応したという changelog があるけど、少し前にインストールしようとするとエラーになって動かなくて諦めた。&lt;/p>
+&lt;blockquote>
+&lt;p>macOS host: Providing a Developer Preview package for systems with an Apple silicon CPU. This is unsupported work in progress, and is known to have very modest performance.&lt;/p>
+&lt;p>&lt;a href="https://www.virtualbox.org/wiki/Changelog-7.0">Changelog for VirtualBox 7.0&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>アプリケーションのコンテナイメージも、現時点では amd64 向けにしか提供していないため、どのみちコンテナでの検証が必要になったら m2 macbook では動作させられない。そういう厄介な issue を抱えた。帰ったらオフィスのデスクトップマシンで再現環境を作るところから始める。&lt;/p></content></item><item><title>一期一会</title><link>/diary/posts/2023/0608/</link><pubDate>Thu, 08 Jun 2023 08:24:16 +0900</pubDate><guid>/diary/posts/2023/0608/</guid><description>1時に寝て何度か起きて6時に起きた。鬼滅の刃を読みながら寝落ちした。
 近況報告の資料作り 来週また東京出張することになり、あわてて資料作りしていた。5月に落ち穂拾いして6月は開発始まりだし、経費削減の意図もあって出張しなくてもよいんじゃないか？と緩く考えていた。しかし、先方は全然そんなつもりなくて「当然出張してくるよね」的なノリだった。毎月の顔合わせというリズムもあるし、新しい定例会議の進め方 を初めて実践する上でもオフラインでやるのが大事かもしれない。
 能は一回限りの公演 武田宗典さんという能楽師が1分25秒頃から次のように話している。
 能は全部一回限りの公演なんですよね。
