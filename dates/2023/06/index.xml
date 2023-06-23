@@ -1,4 +1,66 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2023/06 on forest nook</title><link>/diary/dates/2023/06/</link><description>Recent content in 2023/06 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2023/06/index.xml" rel="self" type="application/rss+xml"/><item><title>go の channel 制御の学び</title><link>/diary/posts/2023/0620/</link><pubDate>Tue, 20 Jun 2023 07:58:34 +0900</pubDate><guid>/diary/posts/2023/0620/</guid><description>0時に寝て2時に起きて5時に起きて6時に起きた。久しぶりに夢をみたような気がする。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2023/06 on forest nook</title><link>/diary/dates/2023/06/</link><description>Recent content in 2023/06 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2023/06/index.xml" rel="self" type="application/rss+xml"/><item><title>厄介なインフラ問題をやっつけた</title><link>/diary/posts/2023/0621/</link><pubDate>Wed, 21 Jun 2023 08:24:11 +0900</pubDate><guid>/diary/posts/2023/0621/</guid><description>2時に寝て6時に起きて7時に起きた。夜に作業していたら遅くなった。
+厄介なインフラの問題 解決編 運用のトラブルシューティング の続き。アプリケーションアカウントを作って compose 環境を構築したら nginx のコンテナが起動して即時終了する状態になったという。これまで起きていた現象とまた違う問題が発生してさらに混迷をもたらすかに思えたが、私の中では nginx のコンテナでなにかがおかしいと問題の発生箇所を局所化できたのでそこからの調査はそんなに時間を必要としなかった。
+結論からいうと podman の aardvark-dns の不具合だった。なんらかのトリガーでコンテナネットワーク内の名前解決が不整合な状態に陥る。
+vagrant@bookworm:$ podman-compose exec proxy /bin/bash ... root@3742c45c7c60:/# dig app ; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG 9.16.37-Debian &amp;lt;&amp;lt;&amp;gt;&amp;gt; app ;; global options: +cmd ;; Got answer: ;; -&amp;gt;&amp;gt;HEADER&amp;lt;&amp;lt;- opcode: QUERY, status: NOERROR, id: 56696 ;; flags: qr rd ra ad; QUERY: 1, ANSWER: 8, AUTHORITY: 0, ADDITIONAL: 1 ;; OPT PSEUDOSECTION: ; EDNS: version: 0, flags:; udp: 4096 ; COOKIE: 37ff0fd63315d70e (echoed) ;; QUESTION SECTION: ;app.</description><content>&lt;p>2時に寝て6時に起きて7時に起きた。夜に作業していたら遅くなった。&lt;/p>
+&lt;h2 id="厄介なインフラの問題-解決編">厄介なインフラの問題 解決編&lt;/h2>
+&lt;p>&lt;a href="/diary/diary/posts/2023/0619/#運用のトラブルシューティング">運用のトラブルシューティング&lt;/a> の続き。アプリケーションアカウントを作って compose 環境を構築したら nginx のコンテナが起動して即時終了する状態になったという。これまで起きていた現象とまた違う問題が発生してさらに混迷をもたらすかに思えたが、私の中では nginx のコンテナでなにかがおかしいと問題の発生箇所を局所化できたのでそこからの調査はそんなに時間を必要としなかった。&lt;/p>
+&lt;p>結論からいうと podman の &lt;a href="https://github.com/containers/aardvark-dns">aardvark-dns&lt;/a> の不具合だった。なんらかのトリガーでコンテナネットワーク内の名前解決が不整合な状態に陥る。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>vagrant@bookworm:$ podman-compose exec proxy /bin/bash
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>root@3742c45c7c60:/# dig app
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG 9.16.37-Debian &amp;lt;&amp;lt;&amp;gt;&amp;gt; app
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; global options: +cmd
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; Got answer:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; -&amp;gt;&amp;gt;HEADER&lt;span style="color:#e6db74">&amp;lt;&amp;lt;- opco&lt;/span>de: QUERY, status: NOERROR, id: &lt;span style="color:#ae81ff">56696&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; flags: qr rd ra ad; QUERY: 1, ANSWER: 8, AUTHORITY: 0, ADDITIONAL: &lt;span style="color:#ae81ff">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; OPT PSEUDOSECTION:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>; EDNS: version: 0, flags:; udp: &lt;span style="color:#ae81ff">4096&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>; COOKIE: 37ff0fd63315d70e &lt;span style="color:#f92672">(&lt;/span>echoed&lt;span style="color:#f92672">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; QUESTION SECTION:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;app. IN A
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; ANSWER SECTION:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>app. 86400 IN A 10.89.0.36
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>app. 86400 IN A 10.89.0.36
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>app. 86400 IN A 10.89.0.136
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>app. 86400 IN A 10.89.0.136
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>app. 86400 IN A 10.89.0.146
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>app. 86400 IN A 10.89.0.146
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>app. 86400 IN A 10.89.0.156
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>app. 86400 IN A 10.89.0.156
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; Query time: &lt;span style="color:#ae81ff">4&lt;/span> msec
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; SERVER: 10.89.0.1#53&lt;span style="color:#f92672">(&lt;/span>10.89.0.1&lt;span style="color:#f92672">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; WHEN: Thu Jun &lt;span style="color:#ae81ff">22&lt;/span> 02:45:26 UTC &lt;span style="color:#ae81ff">2023&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; MSG SIZE rcvd: &lt;span style="color:#ae81ff">172&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>podman 4.0 から aardvark-dns がコンテナネットワーク内での dns を提供する。nginx が app を名前解決したときに起動しているコンテナの ip アドレスではなく、削除された過去のコンテナの ip アドレスが返される状況が発生する。app という名前に対して複数の ip アドレスが返る。&lt;/p>
+&lt;p>このとき nginx は複数の ip アドレスのうちの1つに接続しようとするが、正しい ip アドレスでない場合、リクエストがタイムアウトする。タイムアウトした後に fallback で他の ip アドレスに接続しにいく。このときに正しい ip アドレスがみつかればクライアントにレスポンスが返る。この fallback のリトライの回数分だけリクエストのレイテンシの時間がかかっていた。&lt;/p>
+&lt;pre tabindex="0">&lt;code>vagrant@bookworm:$ podman logs -f proxy
+...
+2023/06/22 02:46:26 [error] 15#15: *41 connect() failed (113: No route to host) while connecting to upstream, client: 10.89.0.38, server: ucidmsv1-app, request: &amp;#34;GET / HTTP/1.1&amp;#34;, upstream: &amp;#34;http://10.89.0.136:3000/&amp;#34;, host: &amp;#34;localhost:4430&amp;#34;
+2023/06/22 02:46:29 [error] 15#15: *41 connect() failed (113: No route to host) while connecting to upstream, client: 10.89.0.38, server: ucidmsv1-app, request: &amp;#34;GET / HTTP/1.1&amp;#34;, upstream: &amp;#34;http://10.89.0.156:3000/&amp;#34;, host: &amp;#34;localhost:4430&amp;#34;
+2023/06/22 02:46:32 [error] 15#15: *41 connect() failed (113: No route to host) while connecting to upstream, client: 10.89.0.38, server: ucidmsv1-app, request: &amp;#34;GET / HTTP/1.1&amp;#34;, upstream: &amp;#34;http://10.89.0.136:3000/&amp;#34;, host: &amp;#34;localhost:4430&amp;#34;
+10.89.0.38 - - [22/Jun/2023:02:46:32 +0000] &amp;#34;GET / HTTP/1.1&amp;#34; 200 2864 &amp;#34;-&amp;#34; &amp;#34;curl/7.88.1&amp;#34;
+&lt;/code>&lt;/pre>&lt;p>ワークアラウンドとして、次のファイルに複数の app の ip アドレスが登録されていれば不整合な状態なのでネットワークを削除して、このファイルも手動で削除してしまえばよい。&lt;/p>
+&lt;pre tabindex="0">&lt;code>$ cat /run/user/$(id -u)/containers/networks/aardvark-dns/mynetwork
+&lt;/code>&lt;/pre>&lt;p>ファイルを監視していると、どうやら mynetwork ファイルから名前と ip アドレスの情報が削除されるのは該当のコンテナが削除されるタイミングになる。なんらかのエラーにより、コンテナ削除時にマッピングの削除が実行されないと、古いコンテナのマッピング設定が残ったままとなり、compose サービスを起動したときに複数の ip アドレスの名前解決できる状態になってしまう。ちょっと調べても aardvark-dns に関する issue はたくさん登録されている。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/containers/podman/issues/18783">https://github.com/containers/podman/issues/18783&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/containers/podman/issues/18530">https://github.com/containers/podman/issues/18530&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/containers/podman/issues/17370">https://github.com/containers/podman/issues/17370&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="コワーキングのオンラインイベント">コワーキングのオンラインイベント&lt;/h2>
+&lt;p>月例のカフーツさんのオンラインイベントに参加した。&lt;a href="/diary/diary/posts/2023/0517/#コワーキングのオンラインイベント">先月の所感はここ&lt;/a> 。今日はもともと予定していた話しをする参加者が急遽参加できなくなってしまったので他の参加者での雑談会になった。&lt;/p>
+&lt;p>いとうさん曰く、これまで外国人のデジタルノマドは自分で業務時間を選べるフリーランスの、さらにお金に余裕をもった人たちが多いと考えられていた。しかし、実際にコワーキングスペースに来られている外国人にキャリアを伺うと、大企業の普通の社員であることがわかってきた。グローバルな会社だと、働く場所に制限のない会社もあって、ただ日本へ行ってみたかった的な理由で日本へ来られて数ヶ月滞在して普通に会社のお仕事をするといったデジタルノマドもいるという。過去に私が働いていた職場の同僚も、コロナのときに会社がフルリモートワークの体制を設けて、airbnb で全国を旅しながら1年ほど働いていた。日本でもそういう社員はいるのだから外国人はなおさらという感じ。&lt;/p>
+&lt;p>そういった外国人のデジタルノマドが要求することが3つある。&lt;/p>
+&lt;ul>
+&lt;li>24時間利用できること (勤め先の会社と時差があるから)&lt;/li>
+&lt;li>セカンドモニターがあること&lt;/li>
+&lt;li>・・・ (あともう1つあったが、忘れてしまった)&lt;/li>
+&lt;/ul>
+&lt;p>コワーキングスペースに外国人のデジタルノマドを呼び込むにはどうすればよいか。実際にコワーキングスペースへ来られた外国人に理由を伺うと英語のホームページをみて来ましたということらしい。至極、当たり前の話し。英語のホームページをちゃんと作ろうねみたいな話題で話していた。&lt;/p></content></item><item><title>go の channel 制御の学び</title><link>/diary/posts/2023/0620/</link><pubDate>Tue, 20 Jun 2023 07:58:34 +0900</pubDate><guid>/diary/posts/2023/0620/</guid><description>0時に寝て2時に起きて5時に起きて6時に起きた。久しぶりに夢をみたような気がする。
 go の channel とクローズ制御 rabbitmq/amqp091-go を使った pubsub の consumer の実装で次のような for ループでメッセージを取得していた。この場合 deliveries の channel が閉じられると内側の for ループが終了して、外側の for ループの接続処理へ遷移する。
 for { // コネクションの接続処理 for d := range deliveries { // メッセージ処理 } } この処理を context を使ってキャンセルできるよう、次に書き換えた。channel の Receive operator のドキュメントによると、channel は2値を返すことができて、戻り値の2番目の ok の値を調べることでその channel がクローズされているかどうかを判定できる。この仕組みを知っていれば select で ok を調べてエラー処理を実装できる。そうしないと deliveries の channel が閉じられれたときに select では常にゼロ値のメッセージが返るようになって意図したメッセージ処理とならない。
 for { // コネクションの接続処理 for { select { case &amp;lt;-ctx.Done(): // context がキャンセルされたら終了処理 if err := s.</description><content>&lt;p>0時に寝て2時に起きて5時に起きて6時に起きた。久しぶりに夢をみたような気がする。&lt;/p>
