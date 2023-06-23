@@ -1,4 +1,60 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>design on forest nook</title><link>/diary/tags/design/</link><description>Recent content in design on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Tue, 20 Jun 2023 07:58:34 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/design/index.xml" rel="self" type="application/rss+xml"/><item><title>go の channel 制御の学び</title><link>/diary/posts/2023/0620/</link><pubDate>Tue, 20 Jun 2023 07:58:34 +0900</pubDate><guid>/diary/posts/2023/0620/</guid><description>0時に寝て2時に起きて5時に起きて6時に起きた。久しぶりに夢をみたような気がする。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>design on forest nook</title><link>/diary/tags/design/</link><description>Recent content in design on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Fri, 23 Jun 2023 21:55:59 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/design/index.xml" rel="self" type="application/rss+xml"/><item><title>トイレにうんこ</title><link>/diary/posts/2023/0623/</link><pubDate>Fri, 23 Jun 2023 21:55:59 +0900</pubDate><guid>/diary/posts/2023/0623/</guid><description>0時に寝て4時に起きてドラクエタクトやりながらだらだらしているうちに少し寝て7時に起きた。
+トイレにうんこを詰まらせた いや。正確にはトイレが詰まってうんこを浮かべた。朝トイレへ行ったら洋式トイレにトイレットペーパーが漂っていた。前に使った人が流していないのかな？と考えて気持ち悪いのですぐ流した。これまでも過去にそういうことがたまにあった。あとから考えると、誰かのいたずらでなにかしらトイレに詰まるものがトイレットペーパーの下に隠されていた可能性もある。この時点で次に水が流れるかどうかのチェックをするべきと洞察できていなかった。
+それから、うんこして流したらトイレが詰まったようで流れない。微妙に便器から水が溢れてきた。ぎりぎり溢れ返ることにはならなかったのでトイレの床にうんこが散乱する最悪の状況にはならなかった。しかし、トイレにうんこがぷかぷか浮かんでいる状態になった。べつに私が悪いわけではないと思うのだけど、トイレにうんこが浮かんでいる状態にしてしまったことにとても罪悪感を感じた。
+幸い朝8時からシェアオフィスにいるのは私ぐらいで、多くの利用者は10時前後にならないと出社してこない。いまトイレに誰かが入ってきて犯人扱いされることはなさそう。なんか行き当たりで人を殺めてしまった殺人犯みたいな心境になった。運営会社のサポートは9時から。1階へ降りていって掃除のおばちゃんに尋ねてみたけど、うんこが詰まったトイレの階は自分たちの管轄じゃないと断られてしまった。(´・ω・｀) 仕方なく、時間を待って9時ぴったりにサポートに電話して聞いてみる。サポートにも断られたらどうしよう？不安と緊張が走る。サポートのお姉さんは (当然ではあると思うけれども) 全然平気ですよーと快く応じてくれて安心した。まぁ、電話しているお姉さんが対応するわけじゃないしね。
+電話で一報を終えて、その後、トイレ業者さんが来るまで自分のうんこを浮かべておいていいのかどうか、すごく悩んだ。かといってうんこを取り出す勇気もなく結果的にそのまま放置した。人間がしょぼい。40年以上も生きてきて自分のうんこの処理もできないのかと思うと本当に情けなくなった。「入るな、危険」ぐらいの張り紙しといてもよかった。本当の犯人だったらここでとんでもないトリックを思いついて実行するところだけど、一報したことでそこまでの切羽詰まった状況でもなくなっていた。もし警察がやってきてもサポートのお姉さんが犯人じゃないと証言してくれるだろう。
+9時から打ち合わせがあって、1時間半後、恐る恐るトイレを見に行ったらすでに詰まりは解消していてうんこもなくなっていた。平和な日常が戻ってきてよかった。
+隔週の雑談 顧問のはらさんと隔週の打ち合わせ。今日の議題はこれら。
+サイトデザインのサンプルページレビュー 課題管理の雑談会の資料のレビュー 最初の30分でサイトデザインをみながら、はらさんのレビューの視点や背景を教えてもらっていくつか気付きを得た。後半は来月の雑談会へ向けて、課題管理の資料のレビューを始めて、いつもは1時間で打ち合わせを終えるのだけれど、つい課題管理の話しでテンションあがって話し過ぎてしまって30分オーバーした。打ち合わせのような時間を決めている会議で議論に熱くなるのはよくない。失敗したなーと反省した。
+パスワードの表現 go でパスワードを扱うときに平文をハッシュ化して保持するためのユーザー定義の構造体を作りたい。構造体にハッシュ化した値をもつとしても、プログラマーが誤って任意の値を設定できないように制御したい。ここで go はオブジェクト指向言語ではないのでコンストラクタという概念がない。私が知っているもっともシンプルな方法は interface と private な構造体を組み合わせてコンストラクタに近いものを実装する。コードレビューしていてメンバーにパスワードがハッシュ化されていることを保証する仕組みをお題として指摘してみた。
+今日のところは解決できなくて月曜日に持ち越しになった。私の想定する模範解答は次のようなものだけど、ちゃんと自分で考えて実装できるかなぁ。
+type Password interface { Authenticate(s string) error Get() []byte String() string } type passwd struct { hashed []byte } func (p *passwd) Authenticate(s string) error { return bcrypt.CompareHashAndPassword(p.hashed, []byte(s)) } func (p *passwd) Get() []byte { return p.hashed } func (p *passwd) String() string { return string(p.</description><content>&lt;p>0時に寝て4時に起きてドラクエタクトやりながらだらだらしているうちに少し寝て7時に起きた。&lt;/p>
+&lt;h2 id="トイレにうんこを詰まらせた">トイレにうんこを詰まらせた&lt;/h2>
+&lt;p>いや。正確にはトイレが詰まってうんこを浮かべた。朝トイレへ行ったら洋式トイレにトイレットペーパーが漂っていた。前に使った人が流していないのかな？と考えて気持ち悪いのですぐ流した。これまでも過去にそういうことがたまにあった。あとから考えると、誰かのいたずらでなにかしらトイレに詰まるものがトイレットペーパーの下に隠されていた可能性もある。この時点で次に水が流れるかどうかのチェックをするべきと洞察できていなかった。&lt;/p>
+&lt;p>それから、うんこして流したらトイレが詰まったようで流れない。微妙に便器から水が溢れてきた。ぎりぎり溢れ返ることにはならなかったのでトイレの床にうんこが散乱する最悪の状況にはならなかった。しかし、トイレにうんこがぷかぷか浮かんでいる状態になった。べつに私が悪いわけではないと思うのだけど、トイレにうんこが浮かんでいる状態にしてしまったことにとても罪悪感を感じた。&lt;/p>
+&lt;p>幸い朝8時からシェアオフィスにいるのは私ぐらいで、多くの利用者は10時前後にならないと出社してこない。いまトイレに誰かが入ってきて犯人扱いされることはなさそう。なんか行き当たりで人を殺めてしまった殺人犯みたいな心境になった。運営会社のサポートは9時から。1階へ降りていって掃除のおばちゃんに尋ねてみたけど、うんこが詰まったトイレの階は自分たちの管轄じゃないと断られてしまった。(´・ω・｀) 仕方なく、時間を待って9時ぴったりにサポートに電話して聞いてみる。サポートにも断られたらどうしよう？不安と緊張が走る。サポートのお姉さんは (当然ではあると思うけれども) 全然平気ですよーと快く応じてくれて安心した。まぁ、電話しているお姉さんが対応するわけじゃないしね。&lt;/p>
+&lt;p>電話で一報を終えて、その後、トイレ業者さんが来るまで自分のうんこを浮かべておいていいのかどうか、すごく悩んだ。かといってうんこを取り出す勇気もなく結果的にそのまま放置した。人間がしょぼい。40年以上も生きてきて自分のうんこの処理もできないのかと思うと本当に情けなくなった。「入るな、危険」ぐらいの張り紙しといてもよかった。本当の犯人だったらここでとんでもないトリックを思いついて実行するところだけど、一報したことでそこまでの切羽詰まった状況でもなくなっていた。もし警察がやってきてもサポートのお姉さんが犯人じゃないと証言してくれるだろう。&lt;/p>
+&lt;p>9時から打ち合わせがあって、1時間半後、恐る恐るトイレを見に行ったらすでに詰まりは解消していてうんこもなくなっていた。平和な日常が戻ってきてよかった。&lt;/p>
+&lt;h2 id="隔週の雑談">隔週の雑談&lt;/h2>
+&lt;p>顧問のはらさんと隔週の打ち合わせ。今日の議題はこれら。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="/diary/diary/posts/2023/0619/#サイトデザインのサンプルページ">サイトデザインのサンプルページレビュー&lt;/a>&lt;/li>
+&lt;li>&lt;a href="/diary/diary/posts/2023/0617/#課題管理の雑談会へ向けての準備">課題管理の雑談会の資料のレビュー&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>最初の30分でサイトデザインをみながら、はらさんのレビューの視点や背景を教えてもらっていくつか気付きを得た。後半は来月の雑談会へ向けて、課題管理の資料のレビューを始めて、いつもは1時間で打ち合わせを終えるのだけれど、つい課題管理の話しでテンションあがって話し過ぎてしまって30分オーバーした。打ち合わせのような時間を決めている会議で議論に熱くなるのはよくない。失敗したなーと反省した。&lt;/p>
+&lt;h2 id="パスワードの表現">パスワードの表現&lt;/h2>
+&lt;p>go でパスワードを扱うときに平文をハッシュ化して保持するためのユーザー定義の構造体を作りたい。構造体にハッシュ化した値をもつとしても、プログラマーが誤って任意の値を設定できないように制御したい。ここで go はオブジェクト指向言語ではないのでコンストラクタという概念がない。私が知っているもっともシンプルな方法は interface と private な構造体を組み合わせてコンストラクタに近いものを実装する。コードレビューしていてメンバーにパスワードがハッシュ化されていることを保証する仕組みをお題として指摘してみた。&lt;/p>
+&lt;p>今日のところは解決できなくて月曜日に持ち越しになった。私の想定する模範解答は次のようなものだけど、ちゃんと自分で考えて実装できるかなぁ。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-go" data-lang="go">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">type&lt;/span> &lt;span style="color:#a6e22e">Password&lt;/span> &lt;span style="color:#66d9ef">interface&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">Authenticate&lt;/span>(&lt;span style="color:#a6e22e">s&lt;/span> &lt;span style="color:#66d9ef">string&lt;/span>) &lt;span style="color:#66d9ef">error&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">Get&lt;/span>() []&lt;span style="color:#66d9ef">byte&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">String&lt;/span>() &lt;span style="color:#66d9ef">string&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">type&lt;/span> &lt;span style="color:#a6e22e">passwd&lt;/span> &lt;span style="color:#66d9ef">struct&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">hashed&lt;/span> []&lt;span style="color:#66d9ef">byte&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> (&lt;span style="color:#a6e22e">p&lt;/span> &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">passwd&lt;/span>) &lt;span style="color:#a6e22e">Authenticate&lt;/span>(&lt;span style="color:#a6e22e">s&lt;/span> &lt;span style="color:#66d9ef">string&lt;/span>) &lt;span style="color:#66d9ef">error&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">bcrypt&lt;/span>.&lt;span style="color:#a6e22e">CompareHashAndPassword&lt;/span>(&lt;span style="color:#a6e22e">p&lt;/span>.&lt;span style="color:#a6e22e">hashed&lt;/span>, []byte(&lt;span style="color:#a6e22e">s&lt;/span>))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> (&lt;span style="color:#a6e22e">p&lt;/span> &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">passwd&lt;/span>) &lt;span style="color:#a6e22e">Get&lt;/span>() []&lt;span style="color:#66d9ef">byte&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">p&lt;/span>.&lt;span style="color:#a6e22e">hashed&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> (&lt;span style="color:#a6e22e">p&lt;/span> &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">passwd&lt;/span>) &lt;span style="color:#a6e22e">String&lt;/span>() &lt;span style="color:#66d9ef">string&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> string(&lt;span style="color:#a6e22e">p&lt;/span>.&lt;span style="color:#a6e22e">hashed&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">NewPassword&lt;/span>(&lt;span style="color:#a6e22e">s&lt;/span> &lt;span style="color:#66d9ef">string&lt;/span>) (&lt;span style="color:#a6e22e">Password&lt;/span>, &lt;span style="color:#66d9ef">error&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">h&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">bcrypt&lt;/span>.&lt;span style="color:#a6e22e">GenerateFromPassword&lt;/span>([]byte(&lt;span style="color:#a6e22e">s&lt;/span>), &lt;span style="color:#a6e22e">bcrypt&lt;/span>.&lt;span style="color:#a6e22e">DefaultCost&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#f92672">&amp;amp;&lt;/span>&lt;span style="color:#a6e22e">passwd&lt;/span>{&lt;span style="color:#a6e22e">hashed&lt;/span>: &lt;span style="color:#a6e22e">h&lt;/span>}, &lt;span style="color:#66d9ef">nil&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>go の channel 制御の学び</title><link>/diary/posts/2023/0620/</link><pubDate>Tue, 20 Jun 2023 07:58:34 +0900</pubDate><guid>/diary/posts/2023/0620/</guid><description>0時に寝て2時に起きて5時に起きて6時に起きた。久しぶりに夢をみたような気がする。
 go の channel とクローズ制御 rabbitmq/amqp091-go を使った pubsub の consumer の実装で次のような for ループでメッセージを取得していた。この場合 deliveries の channel が閉じられると内側の for ループが終了して、外側の for ループの接続処理へ遷移する。
 for { // コネクションの接続処理 for d := range deliveries { // メッセージ処理 } } この処理を context を使ってキャンセルできるよう、次に書き換えた。channel の Receive operator のドキュメントによると、channel は2値を返すことができて、戻り値の2番目の ok の値を調べることでその channel がクローズされているかどうかを判定できる。この仕組みを知っていれば select で ok を調べてエラー処理を実装できる。そうしないと deliveries の channel が閉じられれたときに select では常にゼロ値のメッセージが返るようになって意図したメッセージ処理とならない。
 for { // コネクションの接続処理 for { select { case &amp;lt;-ctx.Done(): // context がキャンセルされたら終了処理 if err := s.</description><content>&lt;p>0時に寝て2時に起きて5時に起きて6時に起きた。久しぶりに夢をみたような気がする。&lt;/p>
