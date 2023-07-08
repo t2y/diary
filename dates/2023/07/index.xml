@@ -1,4 +1,14 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2023/07 on forest nook</title><link>/diary/dates/2023/07/</link><description>Recent content in 2023/07 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2023/07/index.xml" rel="self" type="application/rss+xml"/><item><title>ldap プロトコルの persistent search</title><link>/diary/posts/2023/0704/</link><pubDate>Tue, 04 Jul 2023 08:11:43 +0900</pubDate><guid>/diary/posts/2023/0704/</guid><description>0時に寝て5時に起きて6時半に起きた。朝から大鼓方を調べたりしていた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2023/07 on forest nook</title><link>/diary/dates/2023/07/</link><description>Recent content in 2023/07 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2023/07/index.xml" rel="self" type="application/rss+xml"/><item><title>go の generics 勉強会へ向けての準備</title><link>/diary/posts/2023/0705/</link><pubDate>Wed, 05 Jul 2023 09:06:35 +0900</pubDate><guid>/diary/posts/2023/0705/</guid><description>0時に寝て6時に起きて7時に起きた。週明けから忙しくて余裕ない。それでもよく眠れていることが幸い。
+go の generics 勉強会の準備 今週末の金曜日に勉強会をする想定で作り始めた。generics は難しいのでなかなか本腰を入れて取り組めていなかった。基本的には tenntenn さんの プログラミング言語Go完全入門 15章ジェネリクス（型パラメタ） の資料をベースに、自分で理解できるように調査したり、サンプルコードを書いたり、自分で理解した内容を補足したりして資料を作り始めた。go 1.18 のジェネリクスで導入された概念は次になる。これらのキーワードに関するところをそれぞれ調べることにした。
+型パラメーター 型引数 インターフェースによる制約 (Type constraint) 型セット (Type sets)</description><content>&lt;p>0時に寝て6時に起きて7時に起きた。週明けから忙しくて余裕ない。それでもよく眠れていることが幸い。&lt;/p>
+&lt;h2 id="go-の-generics-勉強会の準備">go の generics 勉強会の準備&lt;/h2>
+&lt;p>今週末の金曜日に勉強会をする想定で作り始めた。generics は難しいのでなかなか本腰を入れて取り組めていなかった。基本的には tenntenn さんの &lt;a href="https://tenn.in/generics">プログラミング言語Go完全入門 15章ジェネリクス（型パラメタ）&lt;/a> の資料をベースに、自分で理解できるように調査したり、サンプルコードを書いたり、自分で理解した内容を補足したりして資料を作り始めた。go 1.18 のジェネリクスで導入された概念は次になる。これらのキーワードに関するところをそれぞれ調べることにした。&lt;/p>
+&lt;ul>
+&lt;li>型パラメーター&lt;/li>
+&lt;li>型引数&lt;/li>
+&lt;li>インターフェースによる制約 (Type constraint)&lt;/li>
+&lt;li>型セット (Type sets)&lt;/li>
+&lt;/ul></content></item><item><title>ldap プロトコルの persistent search</title><link>/diary/posts/2023/0704/</link><pubDate>Tue, 04 Jul 2023 08:11:43 +0900</pubDate><guid>/diary/posts/2023/0704/</guid><description>0時に寝て5時に起きて6時半に起きた。朝から大鼓方を調べたりしていた。
 persistent search あれこれ ldap プロトコルの文脈でクライアントがサーバーに接続して、エントリーの更新を検出して更新があったエントリーのみを取得することを persistent search (永続検索) と呼ぶ。メッセージキューで言うところの pubsub の consumer に相当する機能。フィルター条件に合致したエントリーのみを取得するという側面では検索と言える。
 ietf のワーキンググループに次のような仕様がある。
 Persistent Search: A Simple LDAP Change Notification Mechanism go-ldap で過去に Add Persistent search control + PersistentSearch() #80 で実装を追加しようとしたのもあったので調べてみた。しかし、この機能に openldap は対応していないようだ。
