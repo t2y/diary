@@ -1,4 +1,28 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2023/07 on forest nook</title><link>/diary/dates/2023/07/</link><description>Recent content in 2023/07 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2023/07/index.xml" rel="self" type="application/rss+xml"/><item><title>七夕と願い</title><link>/diary/posts/2023/0707/</link><pubDate>Fri, 07 Jul 2023 18:01:53 +0900</pubDate><guid>/diary/posts/2023/0707/</guid><description>23時に寝て2時に起きて6時に起きた。旅行から帰ってきてから最近はこのパターンになってきた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2023/07 on forest nook</title><link>/diary/dates/2023/07/</link><description>Recent content in 2023/07 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2023/07/index.xml" rel="self" type="application/rss+xml"/><item><title>定例会議のプラクティスとプロダクト</title><link>/diary/posts/2023/0709/</link><pubDate>Sun, 09 Jul 2023 20:15:38 +0900</pubDate><guid>/diary/posts/2023/0709/</guid><description>昨日も1時過ぎまで飲んでいて3時に寝て8時に起きて午前中はだらだらしていてお昼からオフィスへ出掛けて行って調べものをしていた。
+課題管理の雑談会へ向けての準備 先日の準備 の続き。
+先日は私が関心をもっていることの資料を整理し直して先方に提示した。今日は コパイロツト さんのプロダクトの1つである SuperGoodMeetings にアカウント登録していろいろ触っていた。その過程で Project Sprint プラクティカルガイド を読んだりもしていた。
+SuperGoodMeetings は Project Sprint という考え方で定例会議をうまくやるためのプロダクトにみえる。アプリケーションの完成度も高いしよく出来ていると思う。私からみたら課題管理システムのサブセットにみえる。会議のアジェンダが個々の issue に相当して詳細に管理できる。ui も最近の課題管理システムのそれに近い。一方でこのプロダクトは開発者向けのツールではないため、このツールだけでシステム開発を管理することは想定していないのではないか？と推測される。その辺りの話しも来週、出張したときに中の人に聞いてみようと思う。</description><content>&lt;p>昨日も1時過ぎまで飲んでいて3時に寝て8時に起きて午前中はだらだらしていてお昼からオフィスへ出掛けて行って調べものをしていた。&lt;/p>
+&lt;h2 id="課題管理の雑談会へ向けての準備">課題管理の雑談会へ向けての準備&lt;/h2>
+&lt;p>&lt;a href="/diary/diary/posts/2023/0617/#課題管理の雑談会へ向けての準備">先日の準備&lt;/a> の続き。&lt;/p>
+&lt;p>先日は私が関心をもっていることの資料を整理し直して先方に提示した。今日は &lt;a href="https://copilot.jp/">コパイロツト&lt;/a> さんのプロダクトの1つである &lt;a href="https://supergoodmeetings.com/">SuperGoodMeetings&lt;/a> にアカウント登録していろいろ触っていた。その過程で &lt;a href="https://miro.com/app/board/uXjVMX-zl6s=/">Project Sprint プラクティカルガイド&lt;/a> を読んだりもしていた。&lt;/p>
+&lt;p>SuperGoodMeetings は Project Sprint という考え方で定例会議をうまくやるためのプロダクトにみえる。アプリケーションの完成度も高いしよく出来ていると思う。私からみたら課題管理システムのサブセットにみえる。会議のアジェンダが個々の issue に相当して詳細に管理できる。ui も最近の課題管理システムのそれに近い。一方でこのプロダクトは開発者向けのツールではないため、このツールだけでシステム開発を管理することは想定していないのではないか？と推測される。その辺りの話しも来週、出張したときに中の人に聞いてみようと思う。&lt;/p></content></item><item><title>アイディアは移動距離に比例する</title><link>/diary/posts/2023/0708/</link><pubDate>Sat, 08 Jul 2023 13:01:48 +0900</pubDate><guid>/diary/posts/2023/0708/</guid><description>23時に寝て2時に起きて5時に起きて7時に起きた。
+ストレッチ 旅行へ行ってきてからなぜか首の筋を痛めている。寝違えたわけでもないのに気がついたら急にある筋が痛いなと思うようになった。今日の開脚幅は開始前157cmで、ストレッチ後160cmだった。今週もわりと忙しかったり暑かったりして負荷はまぁまぁ高かった。先週からの疲労を加味するとややバテた。すねの外側の筋、右のおしりの一点、腰の張り、肩から首にかけての張りなど、全身あちこち痛いところいっぱいみたいな状態だった。来週は東京出張でまたバタバタするが、帰ってきたら週末休んでもいいんじゃないかと思うぐらいにはしんどい感じ。
+カフーツさん訪問 お昼はずっと作業をしていて、それが一段落した後に17時半ぐらいから ブログJelly Vol.133 に参加してきた。他の参加者はいとうさんとながいさんの2人だった。いとうさんはお仕事が忙しいということでずっとお仕事をされていた。私はながいさんとあーでもないこーでもないといった、いろんな話題の雑談をしてきた。
+アイディアは移動距離に比例する
+なにかのきっかけでこういう言葉があることを知った。家を持たず、デジタルノマドのように地域に縛られずに移動しながら働く人たちは優位性があるといった話題になった。quora でも同じような Q&amp;amp;A がある。
+「アイデアは移動距離に比例する」というのは、どんな理由からでしょうか？ 今回は だいやめ を持っていった。いつも通り翌1時過ぎまで飲んで酔っ払ってしまった。飲み過ぎた。歳のせいか、お酒に弱くなっているので摂生も考慮してもうちょっと控えるようにした方がいいかもしれない。</description><content>&lt;p>23時に寝て2時に起きて5時に起きて7時に起きた。&lt;/p>
+&lt;h2 id="ストレッチ">ストレッチ&lt;/h2>
+&lt;p>旅行へ行ってきてからなぜか首の筋を痛めている。寝違えたわけでもないのに気がついたら急にある筋が痛いなと思うようになった。今日の開脚幅は開始前157cmで、ストレッチ後160cmだった。今週もわりと忙しかったり暑かったりして負荷はまぁまぁ高かった。先週からの疲労を加味するとややバテた。すねの外側の筋、右のおしりの一点、腰の張り、肩から首にかけての張りなど、全身あちこち痛いところいっぱいみたいな状態だった。来週は東京出張でまたバタバタするが、帰ってきたら週末休んでもいいんじゃないかと思うぐらいにはしんどい感じ。&lt;/p>
+&lt;h2 id="カフーツさん訪問">カフーツさん訪問&lt;/h2>
+&lt;p>お昼はずっと作業をしていて、それが一段落した後に17時半ぐらいから &lt;a href="https://www.facebook.com/events/287696183719718">ブログJelly Vol.133&lt;/a> に参加してきた。他の参加者はいとうさんとながいさんの2人だった。いとうさんはお仕事が忙しいということでずっとお仕事をされていた。私はながいさんとあーでもないこーでもないといった、いろんな話題の雑談をしてきた。&lt;/p>
+&lt;blockquote>
+&lt;p>アイディアは移動距離に比例する&lt;/p>
+&lt;/blockquote>
+&lt;p>なにかのきっかけでこういう言葉があることを知った。家を持たず、デジタルノマドのように地域に縛られずに移動しながら働く人たちは優位性があるといった話題になった。quora でも同じような Q&amp;amp;A がある。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://jp.quora.com/%E3%82%A2%E3%82%A4%E3%83%87%E3%82%A2%E3%81%AF%E7%A7%BB%E5%8B%95%E8%B7%9D%E9%9B%A2%E3%81%AB%E6%AF%94%E4%BE%8B%E3%81%99%E3%82%8B-%E3%81%A8%E3%81%84%E3%81%86%E3%81%AE%E3%81%AF-%E3%81%A9%E3%82%93%E3%81%AA%E7%90%86">「アイデアは移動距離に比例する」というのは、どんな理由からでしょうか？&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>今回は &lt;a href="/diary/diary/posts/2021/1109/#呑み">だいやめ&lt;/a> を持っていった。いつも通り翌1時過ぎまで飲んで酔っ払ってしまった。飲み過ぎた。歳のせいか、お酒に弱くなっているので摂生も考慮してもうちょっと控えるようにした方がいいかもしれない。&lt;/p></content></item><item><title>七夕と願い</title><link>/diary/posts/2023/0707/</link><pubDate>Fri, 07 Jul 2023 18:01:53 +0900</pubDate><guid>/diary/posts/2023/0707/</guid><description>23時に寝て2時に起きて6時に起きた。旅行から帰ってきてから最近はこのパターンになってきた。
 google のロゴが Tanabata 2023 になっていて七夕だと気付いた。もう私にとって願いというのは健康を祈るぐらいしかない。残された寿命を使い切る前にいまやっていることをやり切りたい、もしくはその結果をみたいと思っていて、そのために必要なことは健康ぐらいかなと。
 隔週の雑談 顧問のはらさんと隔週の打ち合わせ。今日の議題はこれら。
 ADLIV さんふりかえり 社員旅行の同行ふりかえり 他社の社員旅行へ同行してみての所感として学ぶことは多々あった。
