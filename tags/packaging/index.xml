@@ -1,4 +1,37 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>packaging on forest nook</title><link>/diary/tags/packaging/</link><description>Recent content in packaging on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 20 Apr 2023 09:44:23 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/packaging/index.xml" rel="self" type="application/rss+xml"/><item><title>git コマンドでアーカイブ</title><link>/diary/posts/2023/0420/</link><pubDate>Thu, 20 Apr 2023 09:44:23 +0900</pubDate><guid>/diary/posts/2023/0420/</guid><description>2時に寝て7時に起きた。昨日も遅かったので0時ぐらいに晩ご飯を食べてうまく眠れなかった。体調が悪かったので今日は早めにお仕事を終えて帰って寝てた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>packaging on forest nook</title><link>/diary/tags/packaging/</link><description>Recent content in packaging on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Mon, 10 Jul 2023 08:26:01 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/packaging/index.xml" rel="self" type="application/rss+xml"/><item><title>情報共有とメンバー課金の過ち</title><link>/diary/posts/2023/0710/</link><pubDate>Mon, 10 Jul 2023 08:26:01 +0900</pubDate><guid>/diary/posts/2023/0710/</guid><description>1時に寝て4時に起きて5時に起きて7時に起きた。明け方からうまく眠れなくなった。
+clang の互換性 openldap 2.5 向けに ldap の overlay モジュールのビルド環境を作っていた。これまでは 2.4 向けのモジュールのみを提供していた。2.5 もそろそろやろうということで先週末からビルド環境の構築に着手していた。rpm のパッケージングの作業をしていて、openldap 2.5 のサーバーのビルドをしていると次のエラーが発生した。
+configure:21011: checking for pthread_detach with &amp;lt;pthread.h&amp;gt; configure:21033: clang -o conftest -O2 -g3 -fstack-protector -fPIE -D_REENTRANT -D_THREAD_SAFE -DOPENLDAP_FD_SETSIZE=16384 -DLDAP_CONNECTIONLESS -DSLAPD_META_CLIENT_PR -D_GNU_SOURCE -Wl,-z,relro -Wl,--as-needed -Wl,-z,now -specs=/usr/lib/rpm/redhat/redhat-hardened-ld -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 conftest.c &amp;gt;&amp;amp;5 clang-15: warning: argument unused during compilation: &amp;#39;-specs=/usr/lib/rpm/redhat/redhat-hardened-ld&amp;#39; [-Wunused-command-line-argument] clang-15: warning: argument unused during compilation: &amp;#39;-specs=/usr/lib/rpm/redhat/redhat-annobin-cc1&amp;#39; [-Wunused-command-line-argument] conftest.c:118:16: error: incompatible pointer to integer conversion passing &amp;#39;void *&amp;#39; to parameter of type &amp;#39;pthread_t&amp;#39; (aka &amp;#39;unsigned long&amp;#39;) [-Wint-conversion] pthread_detach(NULL); ^~~~ /usr/lib64/clang/15.</description><content>&lt;p>1時に寝て4時に起きて5時に起きて7時に起きた。明け方からうまく眠れなくなった。&lt;/p>
+&lt;h2 id="clang-の互換性">clang の互換性&lt;/h2>
+&lt;p>openldap 2.5 向けに ldap の overlay モジュールのビルド環境を作っていた。これまでは 2.4 向けのモジュールのみを提供していた。2.5 もそろそろやろうということで先週末からビルド環境の構築に着手していた。rpm のパッケージングの作業をしていて、openldap 2.5 のサーバーのビルドをしていると次のエラーが発生した。&lt;/p>
+&lt;pre tabindex="0">&lt;code>configure:21011: checking for pthread_detach with &amp;lt;pthread.h&amp;gt;
+configure:21033: clang -o conftest -O2 -g3 -fstack-protector -fPIE -D_REENTRANT -D_THREAD_SAFE -DOPENLDAP_FD_SETSIZE=16384 -DLDAP_CONNECTIONLESS -DSLAPD_META_CLIENT_PR -D_GNU_SOURCE -Wl,-z,relro -Wl,--as-needed -Wl,-z,now -specs=/usr/lib/rpm/redhat/redhat-hardened-ld -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 conftest.c &amp;gt;&amp;amp;5
+clang-15: warning: argument unused during compilation: &amp;#39;-specs=/usr/lib/rpm/redhat/redhat-hardened-ld&amp;#39; [-Wunused-command-line-argument]
+clang-15: warning: argument unused during compilation: &amp;#39;-specs=/usr/lib/rpm/redhat/redhat-annobin-cc1&amp;#39; [-Wunused-command-line-argument]
+conftest.c:118:16: error: incompatible pointer to integer conversion passing &amp;#39;void *&amp;#39; to parameter of type &amp;#39;pthread_t&amp;#39; (aka &amp;#39;unsigned long&amp;#39;) [-Wint-conversion]
+pthread_detach(NULL);
+^~~~
+/usr/lib64/clang/15.0.7/include/stddef.h:89:16: note: expanded from macro &amp;#39;NULL&amp;#39;
+# define NULL ((void*)0)
+^~~~~~~~~~
+/usr/include/pthread.h:269:38: note: passing argument to parameter &amp;#39;__th&amp;#39; here
+extern int pthread_detach (pthread_t __th) __THROW;
+^
+1 error generated.
+&lt;/code>&lt;/pre>&lt;p>エラーメッセージを調べていると、どうやら clang 15 に pthread_detach がないといったものらしい。clang 14 のときはビルドできたという。他の oss でも clang のバージョン違いでビルドできないといったことは発生しているらしい。有識者によると、次の修正が clang15 対応らしい。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://git.openldap.org/openldap/openldap/-/commit/4a9aaf7c2621c2800b163efe928512c20bd422e2">ITS#10011 build: fix compatibility with stricter C99 compilers&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>それ以外はとくに問題なく、ビルドできてモジュールそのものの動作も確認した。あとは rpm のパッケージングと gitlab ci/cd でビルドしたモジュールで動くかどうかの検証だけ。&lt;/p>
+&lt;h2 id="メンバー課金による過ち">メンバー課金による過ち&lt;/h2>
+&lt;p>&lt;a href="/diary/diary/posts/2023/0709/">昨日 SuperGoodMeetings をさわってみた&lt;/a> ときにチーム管理の機能があって、任意のユーザーを招待するのは無制限で課金されないと書いてあった。「なるほどね。」とピンと来てコパイロツトの中の人に次のような所感を共有してみた。&lt;/p>
+&lt;blockquote>
+&lt;p>招待可能ユーザー数を無制限にしているのはよい視点だと私は思います。メンバー課金にすると、経費を削減するために共有アカウントを利用したり、あまり使わない人にはアカウントを作らないようになって情報共有の側面から望ましくない状態になる。一昔前のオンプレ時代は業務に使うシステムのアカウントは全社員がもっていて当たり前だったのが、クラウドサービスを使うようになってメンバー課金の経費削減から全社員がもたないようになりつつある (とくに中小企業) のは、情報共有の視点から過去よりも悪化しているという問題意識を私はもっています。&lt;/p>
+&lt;/blockquote>
+&lt;p>コパイロツトさんもまったく同じ課題意識をもっていてメンバー課金しない料金体系にしているとのこと。鶏と卵みたいな話しだけど、組織には情報共有のためにアカウントのお金をケチんなと言いたいし、クラウドサービスの会社も料金体系を1人ずつじゃなくて、30人、100人、1000人といったある程度の階段でいいんじゃない？とか思ったりする。メンバー課金じゃないクラウドサービスとして basecamp や backlog などがある。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://basecamp.com/pricing">https://basecamp.com/pricing&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://backlog.com/ja/pricing/">https://backlog.com/ja/pricing/&lt;/a>&lt;/li>
+&lt;/ul></content></item><item><title>git コマンドでアーカイブ</title><link>/diary/posts/2023/0420/</link><pubDate>Thu, 20 Apr 2023 09:44:23 +0900</pubDate><guid>/diary/posts/2023/0420/</guid><description>2時に寝て7時に起きた。昨日も遅かったので0時ぐらいに晩ご飯を食べてうまく眠れなかった。体調が悪かったので今日は早めにお仕事を終えて帰って寝てた。
 rpm パッケージングのためのアーカイブ プロダクトは docker compose を使ってデプロイするので docker-compose.yml と関連する設定などのサンプルファイルをパッケージングして rpm として提供する。ビルドは必要なく、初期は数ファイルだったので rpm の SOURCES ディレクトリに直接配置して個別に SourceXx と指定してパッケージングしていた。設定のサンプルファイルが増えてくると1つずつ指定するのが面倒になってきてアーカイブすることにした。rpm を作るための Makefile で次のように git コマンドからアーカイブを作ることができる。このやり方のメリットの1つは git でアーカイブすることでリポジトリにコミットされているものだけが使われるため、対象ディレクトリに中間ファイルなどが散らかっていても無視してくれて都合がよい。
 VERSION = 1.0.0 SRC_PREFIX = my-product-$(VERSION) SRC_ARCHIVE = $(SRC_PREFIX).tar.bz2 SOURCES/$(SRC_ARCHIVE): git -C ../my-src archive HEAD --prefix $(SRC_PREFIX)/ -o $(SRC_ARCHIVE) mv ../my-src/$(SRC_ARCHIVE) $@ make したときに my-product-1.0.0.tar.bz のようなアーカイブが rpm パッケージングするときの SOURCES 配下に置かれる。そして rpm の spec ファイルでこのアーカイブを Source0 として指定して %prep で %setup マクロを呼び出すと展開される。
 Source0: my-product-%{version}.tar.bz2 ... %prep %setup たったこれだけで spec ファイルの Source 管理をシンプルにできて保守コストが下がるのでうまいやり方だなと学びになった。</description><content>&lt;p>2時に寝て7時に起きた。昨日も遅かったので0時ぐらいに晩ご飯を食べてうまく眠れなかった。体調が悪かったので今日は早めにお仕事を終えて帰って寝てた。&lt;/p>
