@@ -1,4 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>management on forest nook</title><link>/diary/tags/management/</link><description>Recent content in management on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Fri, 28 Jul 2023 13:41:15 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/management/index.xml" rel="self" type="application/rss+xml"/><item><title>他山の転がる石</title><link>/diary/posts/2023/0728/</link><pubDate>Fri, 28 Jul 2023 13:41:15 +0900</pubDate><guid>/diary/posts/2023/0728/</guid><description>23時に寝て3時に起きて5時に起きて7時に起きた。昨日は早く帰ってきてまたオフィスに戻るつもりが、そのままゆっくり過ごしていたので休憩してた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>management on forest nook</title><link>/diary/tags/management/</link><description>Recent content in management on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 03 Aug 2023 20:27:39 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/management/index.xml" rel="self" type="application/rss+xml"/><item><title>社員の給与は最低賃金より高いのでは？</title><link>/diary/posts/2023/0803/</link><pubDate>Thu, 03 Aug 2023 20:27:39 +0900</pubDate><guid>/diary/posts/2023/0803/</guid><description>晩ご飯を食べるために20時頃に帰ってきて晩ご飯食べて21時過ぎからそのままだらだら寝てた。起きたら23時ぐらいであれ？と思ってその後も2-3時間ごとに起きたりもしながら寝てた。差分比較の開発が半分は過ぎたけれど、調査のコストも大きくてまだ継続している。
+インフレ研究会 久しぶりに エンジニアのためのインフレ研究会 #7 に参加した。話している内容を聞きながら普通にお仕事してた。こういう軽い雑談を聞きながら作業をするのは気楽でよい。雑談の話題の1つに最低賃金の話しが出た。私の感覚では時給労働者だからアルバイトやパートのスタッフの給料があがるのが主なのかな？と考えていたけど、正社員にも影響あるでしょうという話しになっていた。
+最低賃金 全国平均で時給1002円に 過去最大の41円引き上げ 例えば東京だと1080円になるらしい。仮にこの金額で給与を計算すると 8 * 20 * 1080 = 172,800 円になる。学卒者の初任賃金 をみると、令和5年の学歴別初任給が次になる。高卒者の初任給も最低賃金よりは高く設定されている。
+大学: 212,500 円 短大: 200,000 円 専修: 200,000 円 高校: 183,300 円 この統計が世の中のすべてではないのかもしれないけど、一般論として社員の給与が最低賃金より下回るといったことは起きないのではないか？と私は考えている。もちろんいろいろな税金を支払うと手取りはもっと低くなってしまうのはあるけれど、それはまた別の問題。</description><content>&lt;p>晩ご飯を食べるために20時頃に帰ってきて晩ご飯食べて21時過ぎからそのままだらだら寝てた。起きたら23時ぐらいであれ？と思ってその後も2-3時間ごとに起きたりもしながら寝てた。差分比較の開発が半分は過ぎたけれど、調査のコストも大きくてまだ継続している。&lt;/p>
+&lt;h2 id="インフレ研究会">インフレ研究会&lt;/h2>
+&lt;p>久しぶりに &lt;a href="https://inflation.connpass.com/event/291691/">エンジニアのためのインフレ研究会 #7&lt;/a> に参加した。話している内容を聞きながら普通にお仕事してた。こういう軽い雑談を聞きながら作業をするのは気楽でよい。雑談の話題の1つに最低賃金の話しが出た。私の感覚では時給労働者だからアルバイトやパートのスタッフの給料があがるのが主なのかな？と考えていたけど、正社員にも影響あるでしょうという話しになっていた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://www3.nhk.or.jp/news/html/20230728/k10014145061000.html">最低賃金 全国平均で時給1002円に 過去最大の41円引き上げ&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>例えば東京だと1080円になるらしい。仮にこの金額で給与を計算すると 8 * 20 * 1080 = 172,800 円になる。&lt;a href="https://jsite.mhlw.go.jp/tokyo-roudoukyoku/jirei_toukei/_121239.html">学卒者の初任賃金&lt;/a> をみると、令和5年の学歴別初任給が次になる。高卒者の初任給も最低賃金よりは高く設定されている。&lt;/p>
+&lt;ul>
+&lt;li>大学: 212,500 円&lt;/li>
+&lt;li>短大: 200,000 円&lt;/li>
+&lt;li>専修: 200,000 円&lt;/li>
+&lt;li>高校: 183,300 円&lt;/li>
+&lt;/ul>
+&lt;p>この統計が世の中のすべてではないのかもしれないけど、一般論として社員の給与が最低賃金より下回るといったことは起きないのではないか？と私は考えている。もちろんいろいろな税金を支払うと手取りはもっと低くなってしまうのはあるけれど、それはまた別の問題。&lt;/p></content></item><item><title>他山の転がる石</title><link>/diary/posts/2023/0728/</link><pubDate>Fri, 28 Jul 2023 13:41:15 +0900</pubDate><guid>/diary/posts/2023/0728/</guid><description>23時に寝て3時に起きて5時に起きて7時に起きた。昨日は早く帰ってきてまたオフィスに戻るつもりが、そのままゆっくり過ごしていたので休憩してた。
 プレスリリース前のドキュメントチェック いよいよ来週に私が9ヶ月に渡って開発をマネジメントしてきたプロダクトのプレスリリースがあるらしい。4月末の段階でプレスリリースできる状態にはあったものの、足りない機能もあったし、展示会に出展して反応をみたり、営業さんとの調整もあったりで3ヶ月ほど時間を要した感じだ。発表されたプレスリリースを引用してうちの会社の事例紹介も書くつもり。まだまだ開発の課題はあるし、気を抜ける状況ではないが、いろんな歯車が噛み合ってきて、期待した未来になるよう、その方向にモノゴトが収束しているようにみえる。私にとっては結果はもう既定路線になっていて、あとは自分がどれだけがんばれるかでその品質が変わるだけの状況になりつつある。
 開発においても「ラストワンマイル」に入りつつあるし、私の体力があと半年ぐらいもてばそれでいいんじゃないかと思う。まだまだ先は長いのだけど、終わりがみえてきて、ラストスパートをがんばっていこうといった心境になっている。
 ビッグモーター問題の考察 先日 ビッグモーターの記者会見 をみた。そのときに元幹部社員で youtube に動画をあげている方が副社長である息子について言及していた。その後の報道もみていてその真偽も明らかになりつつあるので動画も貼っておく。

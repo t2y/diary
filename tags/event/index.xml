@@ -1,4 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>event on forest nook</title><link>/diary/tags/event/</link><description>Recent content in event on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sat, 22 Jul 2023 12:46:36 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/event/index.xml" rel="self" type="application/rss+xml"/><item><title>歩くと足がしびれるようになった</title><link>/diary/posts/2023/0722/</link><pubDate>Sat, 22 Jul 2023 12:46:36 +0900</pubDate><guid>/diary/posts/2023/0722/</guid><description>1時半に寝て3時頃に起きて5時に起きた。だらだらしているうちに寝落ちして7時に起きた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>event on forest nook</title><link>/diary/tags/event/</link><description>Recent content in event on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 03 Aug 2023 20:27:39 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/event/index.xml" rel="self" type="application/rss+xml"/><item><title>社員の給与は最低賃金より高いのでは？</title><link>/diary/posts/2023/0803/</link><pubDate>Thu, 03 Aug 2023 20:27:39 +0900</pubDate><guid>/diary/posts/2023/0803/</guid><description>晩ご飯を食べるために20時頃に帰ってきて晩ご飯食べて21時過ぎからそのままだらだら寝てた。起きたら23時ぐらいであれ？と思ってその後も2-3時間ごとに起きたりもしながら寝てた。差分比較の開発が半分は過ぎたけれど、調査のコストも大きくてまだ継続している。
+インフレ研究会 久しぶりに エンジニアのためのインフレ研究会 #7 に参加した。話している内容を聞きながら普通にお仕事してた。こういう軽い雑談を聞きながら作業をするのは気楽でよい。雑談の話題の1つに最低賃金の話しが出た。私の感覚では時給労働者だからアルバイトやパートのスタッフの給料があがるのが主なのかな？と考えていたけど、正社員にも影響あるでしょうという話しになっていた。
+最低賃金 全国平均で時給1002円に 過去最大の41円引き上げ 例えば東京だと1080円になるらしい。仮にこの金額で給与を計算すると 8 * 20 * 1080 = 172,800 円になる。学卒者の初任賃金 をみると、令和5年の学歴別初任給が次になる。高卒者の初任給も最低賃金よりは高く設定されている。
+大学: 212,500 円 短大: 200,000 円 専修: 200,000 円 高校: 183,300 円 この統計が世の中のすべてではないのかもしれないけど、一般論として社員の給与が最低賃金より下回るといったことは起きないのではないか？と私は考えている。もちろんいろいろな税金を支払うと手取りはもっと低くなってしまうのはあるけれど、それはまた別の問題。</description><content>&lt;p>晩ご飯を食べるために20時頃に帰ってきて晩ご飯食べて21時過ぎからそのままだらだら寝てた。起きたら23時ぐらいであれ？と思ってその後も2-3時間ごとに起きたりもしながら寝てた。差分比較の開発が半分は過ぎたけれど、調査のコストも大きくてまだ継続している。&lt;/p>
+&lt;h2 id="インフレ研究会">インフレ研究会&lt;/h2>
+&lt;p>久しぶりに &lt;a href="https://inflation.connpass.com/event/291691/">エンジニアのためのインフレ研究会 #7&lt;/a> に参加した。話している内容を聞きながら普通にお仕事してた。こういう軽い雑談を聞きながら作業をするのは気楽でよい。雑談の話題の1つに最低賃金の話しが出た。私の感覚では時給労働者だからアルバイトやパートのスタッフの給料があがるのが主なのかな？と考えていたけど、正社員にも影響あるでしょうという話しになっていた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://www3.nhk.or.jp/news/html/20230728/k10014145061000.html">最低賃金 全国平均で時給1002円に 過去最大の41円引き上げ&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>例えば東京だと1080円になるらしい。仮にこの金額で給与を計算すると 8 * 20 * 1080 = 172,800 円になる。&lt;a href="https://jsite.mhlw.go.jp/tokyo-roudoukyoku/jirei_toukei/_121239.html">学卒者の初任賃金&lt;/a> をみると、令和5年の学歴別初任給が次になる。高卒者の初任給も最低賃金よりは高く設定されている。&lt;/p>
+&lt;ul>
+&lt;li>大学: 212,500 円&lt;/li>
+&lt;li>短大: 200,000 円&lt;/li>
+&lt;li>専修: 200,000 円&lt;/li>
+&lt;li>高校: 183,300 円&lt;/li>
+&lt;/ul>
+&lt;p>この統計が世の中のすべてではないのかもしれないけど、一般論として社員の給与が最低賃金より下回るといったことは起きないのではないか？と私は考えている。もちろんいろいろな税金を支払うと手取りはもっと低くなってしまうのはあるけれど、それはまた別の問題。&lt;/p></content></item><item><title>歩くと足がしびれるようになった</title><link>/diary/posts/2023/0722/</link><pubDate>Sat, 22 Jul 2023 12:46:36 +0900</pubDate><guid>/diary/posts/2023/0722/</guid><description>1時半に寝て3時頃に起きて5時に起きた。だらだらしているうちに寝落ちして7時に起きた。
 ストレッチ 今週は月曜日を休んでしまった分、取り返そうと残りの平日をがんばって働いていたので座っている時間が長かった。だいたい毎日0時ぐらいまでオフィスで作業していたと思う。疲労の自覚症状はないものの、座っていた時間と身体の疲弊は比例するのでよからぬ予感がしていた。すると、ふくらはぎの張りがひどかった。とくに左のふくらはぎがパンパンでかなり苦しかった。あとおしりの後ろの筋肉などもいつもよりずっとよくなかった。下肢全体があまりよくなくて予想は的中した。あとオフィスが暑いから通常以上に体調に負荷をかけているのではないか？という懸念もある。今日の開脚幅は開始前154cmで、ストレッチ後157cmだった。調子の悪いときの数値という印象。
 LT 会 こんなことやってみましたLT会 (テーマフリー) に参加した。オフライン・オンラインをあわせて10人ほど参加していた。5人発表して2時間ぐらいだったので LT と言いながら1人20-30分は話していた。
 私は前に チーム勉強会で使ったスマートプラグと決済 の資料を再利用した。スマートプラグを tapo と amazon 社のものを間違えて持っていったのでデモできなかった。LT だから資料をかいつまんで話すのでもよいかなとは思っていたけど、ちゃんと準備せんとあかんかった。
