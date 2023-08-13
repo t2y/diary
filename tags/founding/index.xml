@@ -1,4 +1,47 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>founding on forest nook</title><link>/diary/tags/founding/</link><description>Recent content in founding on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sat, 12 Aug 2023 12:01:41 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/founding/index.xml" rel="self" type="application/rss+xml"/><item><title>室温と集中力との相関関係</title><link>/diary/posts/2023/0812/</link><pubDate>Sat, 12 Aug 2023 12:01:41 +0900</pubDate><guid>/diary/posts/2023/0812/</guid><description>2時に寝て2回ぐらい起きて7時に起きた。朝からやや疲れ気味。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>founding on forest nook</title><link>/diary/tags/founding/</link><description>Recent content in founding on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sun, 13 Aug 2023 12:18:19 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/founding/index.xml" rel="self" type="application/rss+xml"/><item><title>神戸の高速道路事情</title><link>/diary/posts/2023/0813/</link><pubDate>Sun, 13 Aug 2023 12:18:19 +0900</pubDate><guid>/diary/posts/2023/0813/</guid><description>4時に寝て7時に起きた。蛍光灯をつけっぱなしで寝たのであまり深く寝ていない感じがする。
+テーブル受け取り 先日の ジモティー取引 のテーブルを受け取りに行ってきた。テーブルのサイズは次になる。
+縦: 120cm 幅: 75cm 高さ: 70cm ちゃんとメジャーで測って車の荷室に入ることを確認して行った。やや工夫しながら積み込みしないと当たるところもあった。後部座席を倒してこのぐらいのサイズで荷室が埋まる。もうひとまわりぐらいの余裕はあるかな。
+あとは椅子を探すだけ。次は9月に実家へ帰ろうと考えているのでそれまでに準備したい。
+阪神高速3号神戸線 以前 実家からの帰りで渋滞に遭遇 してから、たいてい実家から帰ってくるときは白川まで出て7号北神戸線で帰るようになった。少しだけ遠回りだけど、まず渋滞しないので時間的には早く着く可能性が高い。今日は京橋から西明石まで高速道路で走ってきた。30-40分といったところ。往路は白川経由で1080円 (渋滞しない) 、復路は須磨経由 (3号神戸線と呼ばれるルート) が1040円で若宮-湊川-柳原あたりで安定の渋滞につかまった。明らかに白河経由なら20分は早く帰れたと思う。下りはまだしも、上りは渋滞に遭遇する確率がかなり高い。次の記事によると、阪神高速3号神戸線は全国ワースト1位の渋滞区間になるらしい。もう休日の上りで3号神戸線を走ることはないかもしれない。
+東京圏の首都高速など、全国6都市圏にある都市高速道路のうち、最も渋滞する区間が、阪神高速3号神戸線のおもに神戸市内の区間です。
+阪神高速3号神戸線はなぜ混む？
+3号神戸線が渋滞する理由を調べるといろいろな意見がある。それっぽいのをまとめておく。
+神戸-大阪という都市間の交通量は多いのに土地が狭い 山と海に挟まれていて土地がないから下道の幹線道路 (国道) も貧弱 サグ (下り坂から上り坂に変わる箇所) がいくつかある 出口のすぐ先に信号があるから出口付近で混雑する 鋭角カーブがあるので減速する 次の記事も図解があってわかりやすかった。
+旅行シーズンには大混乱！阪神高速３号神戸線が渋滞日本一のワケ エージェントアプリケーション開発 昨日の続き 。お昼に2時間ほどやって、夕方に晩ご飯の買いものへ行ったら強い通り雨に降られて一旦家で休んでいるうちに少し寝て、また涼しくなった20時頃から4時間ほどやってた。windows ad サーバーとの dirsync の通信もコードを読みながらインターフェースをあわせるように書き換えていった。実際に動かしてないから動かないかもしれない。このテストは明日に行う。channel を使った非同期／並行処理のところは難しいのでなるべく共通化してアプリケーション側はそれを再利用する形にしたい。マージリクエストを送る一歩手前までは整理できた。あとはテストだけ。疲れたけど、ようやく先週のスケジュールに復帰した。</description><content>&lt;p>4時に寝て7時に起きた。蛍光灯をつけっぱなしで寝たのであまり深く寝ていない感じがする。&lt;/p>
+&lt;h2 id="テーブル受け取り">テーブル受け取り&lt;/h2>
+&lt;p>先日の &lt;a href="/diary/diary/posts/2023/0811/#ダイニングテーブルの交渉成立">ジモティー取引&lt;/a> のテーブルを受け取りに行ってきた。テーブルのサイズは次になる。&lt;/p>
+&lt;ul>
+&lt;li>縦: 120cm&lt;/li>
+&lt;li>幅: 75cm&lt;/li>
+&lt;li>高さ: 70cm&lt;/li>
+&lt;/ul>
+&lt;p>ちゃんとメジャーで測って車の荷室に入ることを確認して行った。やや工夫しながら積み込みしないと当たるところもあった。後部座席を倒してこのぐらいのサイズで荷室が埋まる。もうひとまわりぐらいの余裕はあるかな。&lt;/p>
+&lt;figure>&lt;img src="/diary/diary/img/2023/0813_table.jpg"/>
+&lt;/figure>
+&lt;p>あとは椅子を探すだけ。次は9月に実家へ帰ろうと考えているのでそれまでに準備したい。&lt;/p>
+&lt;h2 id="阪神高速3号神戸線">阪神高速3号神戸線&lt;/h2>
+&lt;p>以前 &lt;a href="/diary/diary/posts/2023/0212/#帰路">実家からの帰りで渋滞に遭遇&lt;/a> してから、たいてい実家から帰ってくるときは白川まで出て7号北神戸線で帰るようになった。少しだけ遠回りだけど、まず渋滞しないので時間的には早く着く可能性が高い。今日は京橋から西明石まで高速道路で走ってきた。30-40分といったところ。往路は白川経由で1080円 (渋滞しない) 、復路は須磨経由 (3号神戸線と呼ばれるルート) が1040円で若宮-湊川-柳原あたりで安定の渋滞につかまった。明らかに白河経由なら20分は早く帰れたと思う。下りはまだしも、上りは渋滞に遭遇する確率がかなり高い。次の記事によると、阪神高速3号神戸線は全国ワースト1位の渋滞区間になるらしい。もう休日の上りで3号神戸線を走ることはないかもしれない。&lt;/p>
+&lt;blockquote>
+&lt;p>東京圏の首都高速など、全国6都市圏にある都市高速道路のうち、最も渋滞する区間が、阪神高速3号神戸線のおもに神戸市内の区間です。&lt;/p>
+&lt;p>&lt;a href="https://www.nihon-kyuso.co.jp/info/archives/132">阪神高速3号神戸線はなぜ混む？&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>3号神戸線が渋滞する理由を調べるといろいろな意見がある。それっぽいのをまとめておく。&lt;/p>
+&lt;ul>
+&lt;li>神戸-大阪という都市間の交通量は多いのに土地が狭い
+&lt;ul>
+&lt;li>山と海に挟まれていて土地がないから下道の幹線道路 (国道) も貧弱&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>サグ (下り坂から上り坂に変わる箇所) がいくつかある&lt;/li>
+&lt;li>出口のすぐ先に信号があるから出口付近で混雑する&lt;/li>
+&lt;li>鋭角カーブがあるので減速する&lt;/li>
+&lt;/ul>
+&lt;p>次の記事も図解があってわかりやすかった。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://rurano0.wixsite.com/mysite/post/%E6%97%85%E8%A1%8C%E3%82%B7%E3%83%BC%E3%82%BA%E3%83%B3%E3%81%AB%E3%81%AF%E5%A4%A7%E6%B7%B7%E4%B9%B1%EF%BC%81%E9%98%AA%E7%A5%9E%E9%AB%98%E9%80%9F%EF%BC%93%E5%8F%B7%E7%A5%9E%E6%88%B8%E7%B7%9A%E3%81%8C%E6%B8%8B%E6%BB%9E%E6%97%A5%E6%9C%AC%E4%B8%80%E3%81%AE%E3%83%AF%E3%82%B1">旅行シーズンには大混乱！阪神高速３号神戸線が渋滞日本一のワケ&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="エージェントアプリケーション開発">エージェントアプリケーション開発&lt;/h2>
+&lt;p>&lt;a href="/diary/diary/posts/2023/0812/#エージェントアプリケーション開発">昨日の続き&lt;/a> 。お昼に2時間ほどやって、夕方に晩ご飯の買いものへ行ったら強い通り雨に降られて一旦家で休んでいるうちに少し寝て、また涼しくなった20時頃から4時間ほどやってた。windows ad サーバーとの dirsync の通信もコードを読みながらインターフェースをあわせるように書き換えていった。実際に動かしてないから動かないかもしれない。このテストは明日に行う。channel を使った非同期／並行処理のところは難しいのでなるべく共通化してアプリケーション側はそれを再利用する形にしたい。マージリクエストを送る一歩手前までは整理できた。あとはテストだけ。疲れたけど、ようやく先週のスケジュールに復帰した。&lt;/p></content></item><item><title>室温と集中力との相関関係</title><link>/diary/posts/2023/0812/</link><pubDate>Sat, 12 Aug 2023 12:01:41 +0900</pubDate><guid>/diary/posts/2023/0812/</guid><description>2時に寝て2回ぐらい起きて7時に起きた。朝からやや疲れ気味。
 ストレッチ 疲労と暑さと出張でバテバテ。今日の開脚幅は開始前157cmで、ストレッチ後160cmだった。数値はよい感じ。トレーナーさんが言うにはお尻と肩が硬かったらしい。私の感覚ではそれらに加えて、ふくらはぎの後ろの筋がかなり痛かった、とくに左足。さらに体全体がだるくて疲れが溜まっているなーという印象も受けた。実は8月21日の週にまた出張する予定になったので体力がもつか、不安も感じるようになってきた。
 空調工事の結果 先日 暑さ対策委員会 の続き。
 出張から帰ってきて、エアコンの冷媒切り替えを終えたはずのオフィスの室温はどう変わったか？その結果が楽しみにで昨日、出張帰りにオフィスに寄ってみたというのもあった。結論から言うと
