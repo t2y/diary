@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>go on forest nook</title><link>/diary/tags/go/</link><description>Recent content in go on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Fri, 25 Aug 2023 18:28:18 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/go/index.xml" rel="self" type="application/rss+xml"/><item><title>msgraph-sdk-go のビルド問題</title><link>/diary/posts/2023/0825/</link><pubDate>Fri, 25 Aug 2023 18:28:18 +0900</pubDate><guid>/diary/posts/2023/0825/</guid><description>1時に寝て何度か起きて7時に起きた。昨日は少し早めにお仕事を終えて家で休んでいたので少し回復した。
 msgraph-sdk-go を使った開発 昨日の続き 。前日に作ったマージリクエストをチームのメンバーにレビューしてもらっていくつか修正して、マージを終えた。一段落。
 さらにこの sdk を使うことで8月の前半に開発していた差分比較のところも変更しないといけないことに気付いた。public な構造体のメンバーにアクセスして差分比較する処理を実装していたが、この sdk は getter で構造体のメンバーにアクセスしないといけないことに気付いた。reflectoin の処理に追加で実装を入れるだけなのでそんなに難しくはない。そういった修正をしていたら1日終わってしまった。開発していると時間が過ぎるのは早い。
-たまたま ci/cd ジョブの実行時間の上限を10分にしていて超えるときがあってジョブが失敗した。 調べてみると、msgraph-sdk-go の api が巨大過ぎてメモリやコンパイルに時間がかかるという issue をみつけた。
+たまたま ci/cd ジョブの実行時間の上限を10分にしていて超えるときがあってジョブが失敗した。 調べてみると、msgraph-sdk-go の api が巨大過ぎてメモリを浪費したりコンパイルに時間がかかったりするという issue をみつけた。
 Memory Leak when creating msgraph client #436 私のローカル環境で測ってみると、約36秒で完了していたテストが2分23秒かかるようになっていた。テストの実行が4-5倍ぐらい遅くなった。さらにコンテナイメージのサイズは 36 MiB から 109 MiB と3倍ほど増えた。無駄に開発を遅らせる環境要因になっているのでこれは別途調査して対応しないといけないことに気付いた。</description><content>&lt;p>1時に寝て何度か起きて7時に起きた。昨日は少し早めにお仕事を終えて家で休んでいたので少し回復した。&lt;/p>
 &lt;h2 id="msgraph-sdk-go-を使った開発">msgraph-sdk-go を使った開発&lt;/h2>
 &lt;p>&lt;a href="/diary/diary/posts/2023/0824/#msgraph-sdk-go-を使った開発">昨日の続き&lt;/a> 。前日に作ったマージリクエストをチームのメンバーにレビューしてもらっていくつか修正して、マージを終えた。一段落。&lt;/p>
 &lt;p>さらにこの sdk を使うことで8月の前半に開発していた差分比較のところも変更しないといけないことに気付いた。public な構造体のメンバーにアクセスして差分比較する処理を実装していたが、この sdk は getter で構造体のメンバーにアクセスしないといけないことに気付いた。reflectoin の処理に追加で実装を入れるだけなのでそんなに難しくはない。そういった修正をしていたら1日終わってしまった。開発していると時間が過ぎるのは早い。&lt;/p>
 &lt;p>たまたま ci/cd ジョブの実行時間の上限を10分にしていて超えるときがあってジョブが失敗した。
-調べてみると、msgraph-sdk-go の api が巨大過ぎてメモリやコンパイルに時間がかかるという issue をみつけた。&lt;/p>
+調べてみると、msgraph-sdk-go の api が巨大過ぎてメモリを浪費したりコンパイルに時間がかかったりするという issue をみつけた。&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="https://github.com/microsoftgraph/msgraph-sdk-go/issues/436">Memory Leak when creating msgraph client #436&lt;/a>&lt;/li>
 &lt;/ul>
