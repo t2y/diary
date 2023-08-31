@@ -1,4 +1,73 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>container on forest nook</title><link>/diary/tags/container/</link><description>Recent content in container on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Fri, 19 May 2023 19:49:10 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/container/index.xml" rel="self" type="application/rss+xml"/><item><title>issue を作るとストレスが軽減する</title><link>/diary/posts/2023/0519/</link><pubDate>Fri, 19 May 2023 19:49:10 +0900</pubDate><guid>/diary/posts/2023/0519/</guid><description>お酒飲んで新幹線乗ったせいか、新幹線の中であまり寝られなくて暑くていつもより移動に疲れた。その後1時に寝て何度か起きて7時に起きた。2日酔いではないが、寝起きの気分はよくなかった。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>container on forest nook</title><link>/diary/tags/container/</link><description>Recent content in container on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Tue, 29 Aug 2023 09:27:04 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/container/index.xml" rel="self" type="application/rss+xml"/><item><title>コンテナー間のデータ通信と named pipe</title><link>/diary/posts/2023/0829/</link><pubDate>Tue, 29 Aug 2023 09:27:04 +0900</pubDate><guid>/diary/posts/2023/0829/</guid><description>22時頃から寝ていて2回起きて3時に起き出して、4時までネットみたりしていて、また寝て6時に起きた。生活のリズムがおかしい。
+コンテナー間のデータのやり取り 昨日 モジュール分割 したことにより、いままで1つのモジュールで管理していたが、モジュールを分割したのでそれぞれのバージョンを取得できるとよいという話題が出た。コンテナー内にアプリケーションのバイナリがあり、バイナリを実行するとバージョン情報を取得できる。それぞれのモジュールは独立したコンテナで動いてるため、コンテナー間でその情報を受け渡す方法が必要になる。ググってみると次の so がヒットして named pipe がプラクティスだという。
+How to run shell script on host from docker container? ホスト os 上の named pipe をコンテナーの volumes でマウントして、それぞれのコンテナーが読み書きすればよい。構築時に named pipe さえ作ったらコンテナー内での読み書きでデータ通信を実現できるため、シンプルでよいんじゃないかと思えた。
+mypipe という named pipe を作る。
+$ mkfifo mypipe 読み込み用コンテナーのための read-Dockerfile を作る。tail コマンドで named pipe を読む。
+$ vi read-Dockerfile From bash:latest ENTRYPOINT [ &amp;#34;tail&amp;#34;, &amp;#34;-f&amp;#34;, &amp;#34;/app/mypipe&amp;#34; ] $ docker build -t mypipe-read:latest -f read-Dockerfile . named pipe をマウントして読み込み用コンテナーを起動する。
+$ docker run --rm --mount type=bind,source=&amp;#34;$(pwd)&amp;#34;/mypipe,target=/app/mypipe,readonly mypipe-read 書き込み用のエントリーポイントのスクリプトはちょっと工夫がいる。おそらく Dockerfile 内で直接リダイレクトの操作ができない (やり方がわからなかった) 。シェルスクリプトを呼び出す形にして、シェルスクリプト内部でリダイレクトにより、named pipe に書き込みする。</description><content>&lt;p>22時頃から寝ていて2回起きて3時に起き出して、4時までネットみたりしていて、また寝て6時に起きた。生活のリズムがおかしい。&lt;/p>
+&lt;h2 id="コンテナー間のデータのやり取り">コンテナー間のデータのやり取り&lt;/h2>
+&lt;p>昨日 &lt;a href="/diary/diary/posts/2023/0828/">モジュール分割&lt;/a> したことにより、いままで1つのモジュールで管理していたが、モジュールを分割したのでそれぞれのバージョンを取得できるとよいという話題が出た。コンテナー内にアプリケーションのバイナリがあり、バイナリを実行するとバージョン情報を取得できる。それぞれのモジュールは独立したコンテナで動いてるため、コンテナー間でその情報を受け渡す方法が必要になる。ググってみると次の so がヒットして named pipe がプラクティスだという。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://stackoverflow.com/questions/32163955/how-to-run-shell-script-on-host-from-docker-container">How to run shell script on host from docker container?&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>ホスト os 上の named pipe をコンテナーの volumes でマウントして、それぞれのコンテナーが読み書きすればよい。構築時に named pipe さえ作ったらコンテナー内での読み書きでデータ通信を実現できるため、シンプルでよいんじゃないかと思えた。&lt;/p>
+&lt;p>mypipe という named pipe を作る。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ mkfifo mypipe
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>読み込み用コンテナーのための read-Dockerfile を作る。tail コマンドで named pipe を読む。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ vi read-Dockerfile
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>From bash:latest
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ENTRYPOINT &lt;span style="color:#f92672">[&lt;/span> &lt;span style="color:#e6db74">&amp;#34;tail&amp;#34;&lt;/span>, &lt;span style="color:#e6db74">&amp;#34;-f&amp;#34;&lt;/span>, &lt;span style="color:#e6db74">&amp;#34;/app/mypipe&amp;#34;&lt;/span> &lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ docker build -t mypipe-read:latest -f read-Dockerfile .
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>named pipe をマウントして読み込み用コンテナーを起動する。&lt;/p>
+&lt;pre tabindex="0">&lt;code>$ docker run --rm --mount type=bind,source=&amp;#34;$(pwd)&amp;#34;/mypipe,target=/app/mypipe,readonly mypipe-read
+&lt;/code>&lt;/pre>&lt;p>書き込み用のエントリーポイントのスクリプトはちょっと工夫がいる。おそらく Dockerfile 内で直接リダイレクトの操作ができない (やり方がわからなかった) 。シェルスクリプトを呼び出す形にして、シェルスクリプト内部でリダイレクトにより、named pipe に書き込みする。&lt;/p>
+&lt;p>エントリーポイントのスクリプトは次のような感じ。&lt;code>eval &amp;quot;$@&amp;quot;&lt;/code> で任意のコード実行できるようにちょっと細工。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ vi myentrypoint.sh
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#!/bin/sh&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cleanup&lt;span style="color:#f92672">()&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> echo &lt;span style="color:#e6db74">&amp;#34;cleanup ...&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> exit &lt;span style="color:#ae81ff">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>trap cleanup INT TERM
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">while&lt;/span> true
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">do&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> echo &lt;span style="color:#e6db74">&amp;#34;&lt;/span>&lt;span style="color:#66d9ef">$(&lt;/span>date&lt;span style="color:#66d9ef">)&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> eval &lt;span style="color:#e6db74">&amp;#34;&lt;/span>$@&lt;span style="color:#e6db74">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> sleep &lt;span style="color:#ae81ff">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">done&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>書き込み用コンテナーのための write-Dockerfile を作る。先の myentrypoint.sh を &lt;code>ENTRYPOINT&lt;/code> として起動させる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ vi write-Dockerfile
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>From bash:latest
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>COPY myentrypoint.sh /app/
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>RUN chmod +x /app/myentrypoint.sh
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ENTRYPOINT &lt;span style="color:#f92672">[&lt;/span> &lt;span style="color:#e6db74">&amp;#34;/app/myentrypoint.sh&amp;#34;&lt;/span> &lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ docker build -t mypipe-write:latest -f write-Dockerfile .
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>適当に乱数を生成する cli を eval 実行させる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ docker run --rm --mount type&lt;span style="color:#f92672">=&lt;/span>bind,source&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>&lt;span style="color:#66d9ef">$(&lt;/span>pwd&lt;span style="color:#66d9ef">)&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>/mypipe,target&lt;span style="color:#f92672">=&lt;/span>/app/mypipe mypipe-write &lt;span style="color:#e6db74">&amp;#34;tr -dc 0-9 &amp;lt; /dev/urandom | fold -w 8 | head -1 &amp;gt; /app/mypipe&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>読み込み用コンテナーで乱数を表示できるはず。&lt;/p>
+&lt;p>なにも難しくなく、linux の標準の機能を使ってコンテナー間のデータ通信を実現できたことにちょっと驚いた。&lt;/p>
+&lt;p>go で named pipe を読むときは linux ならば &lt;code>syscall.O_NONBLOCK&lt;/code> を指定することで書き込みしていなくてもブロックせずに読める。値を取得できない可能性はあるけど、それが許される要件ならこれで済む。またテックブログにまとめたい。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-go" data-lang="go">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">readNamedPipe&lt;/span>(&lt;span style="color:#a6e22e">path&lt;/span> &lt;span style="color:#66d9ef">string&lt;/span>) ([]&lt;span style="color:#66d9ef">byte&lt;/span>, &lt;span style="color:#66d9ef">error&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">flag&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">os&lt;/span>.&lt;span style="color:#a6e22e">O_RDONLY&lt;/span> | &lt;span style="color:#a6e22e">syscall&lt;/span>.&lt;span style="color:#a6e22e">O_NONBLOCK&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">pipe&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">os&lt;/span>.&lt;span style="color:#a6e22e">OpenFile&lt;/span>(&lt;span style="color:#a6e22e">path&lt;/span>, &lt;span style="color:#a6e22e">flag&lt;/span>, &lt;span style="color:#a6e22e">os&lt;/span>.&lt;span style="color:#a6e22e">ModeNamedPipe&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span>, &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Errorf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;failed to open path: %w&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">defer&lt;/span> &lt;span style="color:#a6e22e">pipe&lt;/span>.&lt;span style="color:#a6e22e">Close&lt;/span>()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">reader&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">bufio&lt;/span>.&lt;span style="color:#a6e22e">NewReader&lt;/span>(&lt;span style="color:#a6e22e">pipe&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">b&lt;/span>, &lt;span style="color:#a6e22e">_&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">reader&lt;/span>.&lt;span style="color:#a6e22e">ReadLine&lt;/span>()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span>, &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Errorf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;failed to read line: %w&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">b&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>issue を作るとストレスが軽減する</title><link>/diary/posts/2023/0519/</link><pubDate>Fri, 19 May 2023 19:49:10 +0900</pubDate><guid>/diary/posts/2023/0519/</guid><description>お酒飲んで新幹線乗ったせいか、新幹線の中であまり寝られなくて暑くていつもより移動に疲れた。その後1時に寝て何度か起きて7時に起きた。2日酔いではないが、寝起きの気分はよくなかった。
 issue を作ることによるストレス軽減 昨日の打ち合わせのメモから議事録を作ったり、そこから新しい issue を作ったりしながら来週の打ち合わせの資料作りをしていた。資料を作っている途中、割り込みでメンバーのコードレビューが入ったりして、あまり資料作りは進捗しなかった。
 打ち合わせした内容から issue を作る作業を、私は好きだったりする。何をやってよいかわからない状況というのは苦しい。issue を作ること、要件を言語化したり、背景を調べたり、他の issue との関連付けしたり、そういった手を動かすことがきっかけになって、その issue を明確化していく作業を積み重ねれば時間の経過とともに課題が解決するということを経験的に理解しているからだ。
 大雑把に言えば、私にとって、issue さえ作れればその課題解決は優先順位付けと (解決までの) 時間の問題に置き換えられる。あれやらなきゃ、これもやらなきゃ、なにか抜け・漏れがあるんじゃないかと頭の中でもやもやしているものを issue という概念に変換することで考えなくて済むようになっていく過程がストレスを軽減している気もする。
