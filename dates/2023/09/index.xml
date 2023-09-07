@@ -1,4 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2023/09 on forest nook</title><link>/diary/dates/2023/09/</link><description>Recent content in 2023/09 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2023/09/index.xml" rel="self" type="application/rss+xml"/><item><title>開発フェーズの完了まであと2週間</title><link>/diary/posts/2023/0905/</link><pubDate>Tue, 05 Sep 2023 09:04:21 +0900</pubDate><guid>/diary/posts/2023/0905/</guid><description>0時に寝て何度か起きて7時に起きた。オーバートレーニング気味で夜帰ってきてゆっくり過ごしている。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2023/09 on forest nook</title><link>/diary/dates/2023/09/</link><description>Recent content in 2023/09 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2023/09/index.xml" rel="self" type="application/rss+xml"/><item><title>openldap サーバーのデバッグ</title><link>/diary/posts/2023/0906/</link><pubDate>Wed, 06 Sep 2023 08:18:13 +0900</pubDate><guid>/diary/posts/2023/0906/</guid><description>1時に寝て3時に起きて5時に起きて6時半に起きた。あとひと踏ん張りなのでこのまま突っ切る。
+openldap 2.5 の ldappasswd の振る舞い openldap サーバーでパスワードを変更時の平文パスワードを連携するために カスタム overlay モジュール を使っている。前回の改修をしたときは openldap 2.4 向けのみの振る舞いを検証していた。今回は開発フェーズでは openldap 2.5 向けにもモジュールをビルドしてパッケージングしていた。その qa テストをしていて ldappasswd だけ、意図したパスワード連携が行われないという。
+開発時に私が振る舞いを検証したつもりが ldapadd, ldapmodify は確認済みだったが、ldappasswd の確認をしていなかった。これは完全に私のミスで2つのフックポイントに対してカスタム overlay モジュールが動くのだから ldappasswd も大丈夫だろうと見通していた。しかし、そうではなかった。それぞれにフックポイントのコールバック設定があって、フックポイントもロジックが違うのだから当然ではあるのだけど、ちゃんと動作検証をしないといけないという、初歩的なミスをした。こんなこともあるんやと反省した。
+gdb でデバッグしていて原因は 2.5.3 に含まれる次の修正だとわかった。私が検証していた openldap サーバーのバージョンは 2.5.14 だった。
+Issue 8698 - ppolicy: responses from pwdCheckModule discarded when using an extended password modify ITS#8698 Propagate policy checker message through even if using PW Extop 簡潔に言えば、なんらかの不具合対応でもともと設定してあるコールバックを別のものに上書きしていた。カスタム overlay モジュールが設定したコールバックが別のものに上書きされてしまって意図した振る舞いをしないという現象が起きていた。これは明らかに openldap のリグレッションなので 2.5.15 で修正されてた。</description><content>&lt;p>1時に寝て3時に起きて5時に起きて6時半に起きた。あとひと踏ん張りなのでこのまま突っ切る。&lt;/p>
+&lt;h2 id="openldap-25-の-ldappasswd-の振る舞い">openldap 2.5 の ldappasswd の振る舞い&lt;/h2>
+&lt;p>openldap サーバーでパスワードを変更時の平文パスワードを連携するために &lt;a href="/diary/diary/posts/2023/0525/#カスタム-overlay-モジュールの改修">カスタム overlay モジュール&lt;/a> を使っている。前回の改修をしたときは openldap 2.4 向けのみの振る舞いを検証していた。今回は開発フェーズでは openldap 2.5 向けにもモジュールをビルドしてパッケージングしていた。その qa テストをしていて ldappasswd だけ、意図したパスワード連携が行われないという。&lt;/p>
+&lt;p>開発時に私が振る舞いを検証したつもりが ldapadd, ldapmodify は確認済みだったが、ldappasswd の確認をしていなかった。これは完全に私のミスで2つのフックポイントに対してカスタム overlay モジュールが動くのだから ldappasswd も大丈夫だろうと見通していた。しかし、そうではなかった。それぞれにフックポイントのコールバック設定があって、フックポイントもロジックが違うのだから当然ではあるのだけど、ちゃんと動作検証をしないといけないという、初歩的なミスをした。こんなこともあるんやと反省した。&lt;/p>
+&lt;p>gdb でデバッグしていて原因は 2.5.3 に含まれる次の修正だとわかった。私が検証していた openldap サーバーのバージョンは 2.5.14 だった。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://bugs.openldap.org/show_bug.cgi?id=8698">Issue 8698 - ppolicy: responses from pwdCheckModule discarded when using an extended password modify&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://git.openldap.org/openldap/openldap/-/merge_requests/304/diffs">ITS#8698 Propagate policy checker message through even if using PW Extop&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>簡潔に言えば、なんらかの不具合対応でもともと設定してあるコールバックを別のものに上書きしていた。カスタム overlay モジュールが設定したコールバックが別のものに上書きされてしまって意図した振る舞いをしないという現象が起きていた。これは明らかに openldap のリグレッションなので 2.5.15 で修正されてた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://bugs.openldap.org/show_bug.cgi?id=9990">Issue 9990 - Part of the ITS#8698 fix breaks exop overlays that set a callback&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>たまたまピンポイントにバグを踏んだ形にはなったが、qa テストという別の人がテストをする仕組みでこのバグを検出できたことがうちの開発の品質基準を担保していることの表れでもある。&lt;/p>
+&lt;blockquote>
+&lt;p>生きるということは嬉しいこと半分、辛いこと半分なのですよ。 采王&lt;/p>
+&lt;/blockquote></content></item><item><title>開発フェーズの完了まであと2週間</title><link>/diary/posts/2023/0905/</link><pubDate>Tue, 05 Sep 2023 09:04:21 +0900</pubDate><guid>/diary/posts/2023/0905/</guid><description>0時に寝て何度か起きて7時に起きた。オーバートレーニング気味で夜帰ってきてゆっくり過ごしている。
 定例会議 次のマイルストーンでこの開発フェーズを完了させる。その最後の打ち合わせとなる定例会議。話題が多過ぎて、始める前から今日の会議は1時間におさまらないんじゃないかと話しながら始めて10分ほどオーバーして終えた。会議時間が私の感覚とも一致していてよかった (違う) 。
 qa テストでいろいろ issue が洗い出されていて、その中のアーキテクチャや仕様の抜本的な見直しを検討するのが2つ、管理画面の ui/ux に関する設計の2つ、よいことではあるが、私の設計の目が及ぶ範囲を超えて issue が上がるようになりつつある。本当はフロントエンド向けに ui/ux デザイナーがいれば画面設計について委譲したいところだが、そんな人はいないのでチームで話し合い、私が方針を決めて暫定的に修正していく。
 また致命的な issue は出ていないという私の認識から、次の2週間でこの開発は収束させるという合意を行った。やや qa テストや issue の収束は遅れ気味ではある。いまから慌てても大きく変わることはないし、このチームは十分に私の課題管理の慣習にしたがって作業しているので、このまま成り行きでもうまく着地できるんじゃないかなと楽観的には考えている。その感覚は過去の経験からも来ているのだろうけど、もうこの歳になると脳ができることを自動的に判断している気がする。できるとわかっているから不安や焦燥感といった危機を感じられない。悪い言い方をするとさぼっているだけという見方もあるが、そういう感覚をここ2-3年で実感するようになってきた。

@@ -1,4 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ldap on forest nook</title><link>/diary/tags/ldap/</link><description>Recent content in ldap on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Fri, 18 Aug 2023 09:57:18 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/ldap/index.xml" rel="self" type="application/rss+xml"/><item><title>3つめのテックブログ</title><link>/diary/posts/2023/0818/</link><pubDate>Fri, 18 Aug 2023 09:57:18 +0900</pubDate><guid>/diary/posts/2023/0818/</guid><description>2時に寝て何度か起きて7時に起きた。朝から弁護士さんにメールの返信をしたりしていた。午前／午後と普通に運用ツールの開発をして夕方に勉強会をして、夜に軽く呑みに行ってきた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ldap on forest nook</title><link>/diary/tags/ldap/</link><description>Recent content in ldap on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Wed, 06 Sep 2023 08:18:13 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/ldap/index.xml" rel="self" type="application/rss+xml"/><item><title>openldap サーバーのデバッグ</title><link>/diary/posts/2023/0906/</link><pubDate>Wed, 06 Sep 2023 08:18:13 +0900</pubDate><guid>/diary/posts/2023/0906/</guid><description>1時に寝て3時に起きて5時に起きて6時半に起きた。あとひと踏ん張りなのでこのまま突っ切る。
+openldap 2.5 の ldappasswd の振る舞い openldap サーバーでパスワードを変更時の平文パスワードを連携するために カスタム overlay モジュール を使っている。前回の改修をしたときは openldap 2.4 向けのみの振る舞いを検証していた。今回は開発フェーズでは openldap 2.5 向けにもモジュールをビルドしてパッケージングしていた。その qa テストをしていて ldappasswd だけ、意図したパスワード連携が行われないという。
+開発時に私が振る舞いを検証したつもりが ldapadd, ldapmodify は確認済みだったが、ldappasswd の確認をしていなかった。これは完全に私のミスで2つのフックポイントに対してカスタム overlay モジュールが動くのだから ldappasswd も大丈夫だろうと見通していた。しかし、そうではなかった。それぞれにフックポイントのコールバック設定があって、フックポイントもロジックが違うのだから当然ではあるのだけど、ちゃんと動作検証をしないといけないという、初歩的なミスをした。こんなこともあるんやと反省した。
+gdb でデバッグしていて原因は 2.5.3 に含まれる次の修正だとわかった。私が検証していた openldap サーバーのバージョンは 2.5.14 だった。
+Issue 8698 - ppolicy: responses from pwdCheckModule discarded when using an extended password modify ITS#8698 Propagate policy checker message through even if using PW Extop 簡潔に言えば、なんらかの不具合対応でもともと設定してあるコールバックを別のものに上書きしていた。カスタム overlay モジュールが設定したコールバックが別のものに上書きされてしまって意図した振る舞いをしないという現象が起きていた。これは明らかに openldap のリグレッションなので 2.5.15 で修正されてた。</description><content>&lt;p>1時に寝て3時に起きて5時に起きて6時半に起きた。あとひと踏ん張りなのでこのまま突っ切る。&lt;/p>
+&lt;h2 id="openldap-25-の-ldappasswd-の振る舞い">openldap 2.5 の ldappasswd の振る舞い&lt;/h2>
+&lt;p>openldap サーバーでパスワードを変更時の平文パスワードを連携するために &lt;a href="/diary/diary/posts/2023/0525/#カスタム-overlay-モジュールの改修">カスタム overlay モジュール&lt;/a> を使っている。前回の改修をしたときは openldap 2.4 向けのみの振る舞いを検証していた。今回は開発フェーズでは openldap 2.5 向けにもモジュールをビルドしてパッケージングしていた。その qa テストをしていて ldappasswd だけ、意図したパスワード連携が行われないという。&lt;/p>
+&lt;p>開発時に私が振る舞いを検証したつもりが ldapadd, ldapmodify は確認済みだったが、ldappasswd の確認をしていなかった。これは完全に私のミスで2つのフックポイントに対してカスタム overlay モジュールが動くのだから ldappasswd も大丈夫だろうと見通していた。しかし、そうではなかった。それぞれにフックポイントのコールバック設定があって、フックポイントもロジックが違うのだから当然ではあるのだけど、ちゃんと動作検証をしないといけないという、初歩的なミスをした。こんなこともあるんやと反省した。&lt;/p>
+&lt;p>gdb でデバッグしていて原因は 2.5.3 に含まれる次の修正だとわかった。私が検証していた openldap サーバーのバージョンは 2.5.14 だった。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://bugs.openldap.org/show_bug.cgi?id=8698">Issue 8698 - ppolicy: responses from pwdCheckModule discarded when using an extended password modify&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://git.openldap.org/openldap/openldap/-/merge_requests/304/diffs">ITS#8698 Propagate policy checker message through even if using PW Extop&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>簡潔に言えば、なんらかの不具合対応でもともと設定してあるコールバックを別のものに上書きしていた。カスタム overlay モジュールが設定したコールバックが別のものに上書きされてしまって意図した振る舞いをしないという現象が起きていた。これは明らかに openldap のリグレッションなので 2.5.15 で修正されてた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://bugs.openldap.org/show_bug.cgi?id=9990">Issue 9990 - Part of the ITS#8698 fix breaks exop overlays that set a callback&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>たまたまピンポイントにバグを踏んだ形にはなったが、qa テストという別の人がテストをする仕組みでこのバグを検出できたことがうちの開発の品質基準を担保していることの表れでもある。&lt;/p>
+&lt;blockquote>
+&lt;p>生きるということは嬉しいこと半分、辛いこと半分なのですよ。 采王&lt;/p>
+&lt;/blockquote></content></item><item><title>3つめのテックブログ</title><link>/diary/posts/2023/0818/</link><pubDate>Fri, 18 Aug 2023 09:57:18 +0900</pubDate><guid>/diary/posts/2023/0818/</guid><description>2時に寝て何度か起きて7時に起きた。朝から弁護士さんにメールの返信をしたりしていた。午前／午後と普通に運用ツールの開発をして夕方に勉強会をして、夜に軽く呑みに行ってきた。
 go-ldap テックブログとその勉強会 水曜日から テックブログの執筆 に着手して、木曜日のお昼には下書きを書き上げて社内レビューをお願いしていた。ldap プロトコルの振る舞いについて調べたことを書いた。あまり自信はなかったけど、社内のシニアエンジニアにレビューしてもらって、よく書けているとコメントをもらってシンプルに嬉しかった。いま開発の佳境のしんどい時期に、非開発以外のことに時間をとって記事を書いて報われた気持ちになった。
 今日のチーム勉強会は私が担当だったのでこのテックブログの記事を解説した。実際に go-ldap のソースコードを一緒に読みながら進める。書いたり話したりすると、ちゃんと自分が理解できているかどうかを確認ができる。そして、コードを読みながら説明しているときに、記事に書いてある内容が一部間違っていることにも気付けた。こういう体験の繰り返しで私は自分を信頼しないことを学ぶ。私の浅い理解や未熟さを実感する機会があって、また次にがんばろうというモチベーションにもつながる。
 自身の理解度の確認やチームへの共有、モチベーションコントロールなど、複数の意味で自分が書いたテックブログの記事を解説する勉強会はいいように思えた。
