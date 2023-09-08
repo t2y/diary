@@ -1,4 +1,15 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2023/09 on forest nook</title><link>/diary/dates/2023/09/</link><description>Recent content in 2023/09 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2023/09/index.xml" rel="self" type="application/rss+xml"/><item><title>組織やプロジェクト横断的なメトリクスの視覚化</title><link>/diary/posts/2023/0907/</link><pubDate>Thu, 07 Sep 2023 12:19:38 +0900</pubDate><guid>/diary/posts/2023/0907/</guid><description>0時に寝て4時に起きてもう1回ぐらい起きて6時半に起きた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2023/09 on forest nook</title><link>/diary/dates/2023/09/</link><description>Recent content in 2023/09 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2023/09/index.xml" rel="self" type="application/rss+xml"/><item><title>お休み前の勉強会</title><link>/diary/posts/2023/0908/</link><pubDate>Fri, 08 Sep 2023 07:26:27 +0900</pubDate><guid>/diary/posts/2023/0908/</guid><description>22時に寝て24時に起きて2時に起きて4時に起きて6時に起きた。晩ご飯食べてからオフィスに戻る元気がない。本当は明日の出張に備えて今晩、実家へ帰ろうと思っていたが、まったく準備ができていないので明日の早朝に帰ることにした。
+slog 勉強会 チーム勉強会向けに、今日は軽い話題として slog のブログ記事をピックアップしてみた。この内容を deepl で翻訳して社内の wiki に書いてそれをメンバーと共有した。
+Structured Logging with slog うちのプロジェクトの logger はすべて slog に移行済みではあるが、一部 slog を使う前に実装したログ関数があって、そのカスタムログ関数の移行だけまだできていない。アプリケーションの振る舞いには影響を与えないし、急ぐ必要もないので先送りにしているだけ。次の開発フェーズでカスタムログ関数周りもすべて移行して slog で万全の状態にしたい。そのための予備知識として slog でこんなことができるという全体像は理解できた。とてもよい記事だったと思う。
+LT 資料の推敲 先日 LT 資料のたたき台 を作成した。いくらか寝かして週のどこかの空いている時間に推敲しようとずっと頭の中にはあったものの、現実にはさぼっていて前日に最終見直しをしている。でも、見直した方がよいところのアイディアは2-3個思いついてはいる。少し手直ししたら明日のイベントに備えて早めに寝る。</description><content>&lt;p>22時に寝て24時に起きて2時に起きて4時に起きて6時に起きた。晩ご飯食べてからオフィスに戻る元気がない。本当は明日の出張に備えて今晩、実家へ帰ろうと思っていたが、まったく準備ができていないので明日の早朝に帰ることにした。&lt;/p>
+&lt;h2 id="slog-勉強会">slog 勉強会&lt;/h2>
+&lt;p>チーム勉強会向けに、今日は軽い話題として slog のブログ記事をピックアップしてみた。この内容を deepl で翻訳して社内の wiki に書いてそれをメンバーと共有した。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://go.dev/blog/slog">Structured Logging with slog&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>うちのプロジェクトの logger はすべて slog に移行済みではあるが、一部 slog を使う前に実装したログ関数があって、そのカスタムログ関数の移行だけまだできていない。アプリケーションの振る舞いには影響を与えないし、急ぐ必要もないので先送りにしているだけ。次の開発フェーズでカスタムログ関数周りもすべて移行して slog で万全の状態にしたい。そのための予備知識として slog でこんなことができるという全体像は理解できた。とてもよい記事だったと思う。&lt;/p>
+&lt;h2 id="lt-資料の推敲">LT 資料の推敲&lt;/h2>
+&lt;p>先日 &lt;a href="/diary/diary/posts/2023/0903/#LT-資料の作成">LT 資料のたたき台&lt;/a> を作成した。いくらか寝かして週のどこかの空いている時間に推敲しようとずっと頭の中にはあったものの、現実にはさぼっていて前日に最終見直しをしている。でも、見直した方がよいところのアイディアは2-3個思いついてはいる。少し手直ししたら明日のイベントに備えて早めに寝る。&lt;/p></content></item><item><title>組織やプロジェクト横断的なメトリクスの視覚化</title><link>/diary/posts/2023/0907/</link><pubDate>Thu, 07 Sep 2023 12:19:38 +0900</pubDate><guid>/diary/posts/2023/0907/</guid><description>0時に寝て4時に起きてもう1回ぐらい起きて6時半に起きた。
 もうすぐ期限がやってくる。私が担当している issue 対応はあらかた終わってメンバーに「大きいもので見落としある？」って尋ねて「ない」って返ってきたのでもうクローズに向けて調整していく感じ。今週末から月曜日と3日間お休みする (土日も含めて休むというのも変ではあるが) ので一安心。
 dirsync 周りのリファクタリング ずっとレビューが放置されていた。おそらくいま go-ldap のプロジェクトで最も活発なメンテナーが夏休みだったのではないかと推測する。昨日帰ってきたようで怒涛のレビューをされていて、私が3週間前に送っていた pr もレビューしてくれた。
 Refactor DirSync search process #458 概ね同意してくれて public な関数名をより適切な関数名に変えたところを、1度公開したものは互換性を維持するために deprecated のコメントをして残しておいてと言われたところだけ修正した。修正後、数時間ですぐにマージしてくれた。感謝。
@@ -36,7 +47,6 @@ derrors の是非 pkgsite という pkg.</description><content>&lt;p>0時に寝�
 &lt;/ul>
 &lt;p>この延長でエラーが発生したときにレポートを生成する derrors のユーティリティもあったりする。google がやっていることだから、わりと開発者間でもこれと同じものを自前で実装する開発者が増えているといった話しも聞く。&lt;/p>
 &lt;h3 id="go-2-はもうリリースされない">go 2 はもうリリースされない&lt;/h3>
-&lt;p>￼￼&lt;/p>
 &lt;blockquote>
 &lt;p>The answer is never. Go 2, in the sense of breaking with the past and no longer compiling old programs, is never going to happen. Go 2 in the sense of being the major revision of Go 1 we started toward in 2017 has already happened.&lt;/p>
 &lt;p>&lt;a href="https://go.dev/blog/compat">Backward Compatibility, Go 1.21, and Go 2&lt;/a>&lt;/p>

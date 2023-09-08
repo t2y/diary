@@ -36,7 +36,6 @@ derrors の是非 pkgsite という pkg.</description><content>&lt;p>0時に寝�
 &lt;/ul>
 &lt;p>この延長でエラーが発生したときにレポートを生成する derrors のユーティリティもあったりする。google がやっていることだから、わりと開発者間でもこれと同じものを自前で実装する開発者が増えているといった話しも聞く。&lt;/p>
 &lt;h3 id="go-2-はもうリリースされない">go 2 はもうリリースされない&lt;/h3>
-&lt;p>￼￼&lt;/p>
 &lt;blockquote>
 &lt;p>The answer is never. Go 2, in the sense of breaking with the past and no longer compiling old programs, is never going to happen. Go 2 in the sense of being the major revision of Go 1 we started toward in 2017 has already happened.&lt;/p>
 &lt;p>&lt;a href="https://go.dev/blog/compat">Backward Compatibility, Go 1.21, and Go 2&lt;/a>&lt;/p>
