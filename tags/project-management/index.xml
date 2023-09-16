@@ -1,4 +1,40 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>project management on forest nook</title><link>/diary/tags/project-management/</link><description>Recent content in project management on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 14 Sep 2023 20:35:21 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/project-management/index.xml" rel="self" type="application/rss+xml"/><item><title>資料作りの一日</title><link>/diary/posts/2023/0914/</link><pubDate>Thu, 14 Sep 2023 20:35:21 +0900</pubDate><guid>/diary/posts/2023/0914/</guid><description>23時に寝て何度か起きて6時に起きた。疲労も溜まっているのでなるべく早く寝るように努めている。旅行中ずっと早起きしていたから早起きするのは苦にならない。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>project management on forest nook</title><link>/diary/tags/project-management/</link><description>Recent content in project management on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sat, 16 Sep 2023 12:24:09 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/project-management/index.xml" rel="self" type="application/rss+xml"/><item><title>昼に寝て夜に考える</title><link>/diary/posts/2023/0916/</link><pubDate>Sat, 16 Sep 2023 12:24:09 +0900</pubDate><guid>/diary/posts/2023/0916/</guid><description>0時に寝て何度か起きて7時に起きた。昨日は晩ご飯食べてからだらだらしているうちにいつの間にか寝ていた。今日はオフィス暑くて14時から帰ってきてお昼寝して19時過ぎにまた戻った。
+ストレッチ 先週末は実家や四国へ出掛けていたため、ストレッチをお休みしていた。2週間ぶりのストレッチとなる。右足がパンパンでひどいことになっていた。休んだことと出掛けていたことの疲労が重なったのか、右足のどこの部位も調子が悪くて歩くのもやや辛いと言える。相対的に左足が大丈夫なように聞こえるが、普通の感覚ではそれなりに張りがあるので左足も疲労している。あと腰も左右ともに負荷がかかっているように思えた。今日の開脚幅は開始前155cmで、ストレッチ後157cmだった。週末はちょっと休もうかと思ったぐらいの疲労度と体調の悪さを実感した。
+工事業者の訪問 先日の 暑さ対策委員会 の続き。
+ストレッチを終えてオフィスに向かうと、ちょうど同じエレベーターで工事業者さんと鉢合わせになった。いまから作業するところだったらしく、作業前にオフィスに入ってもらって通気口の状況を確認してもらった。いまの室温は30℃を少し上回ったところ。通気口からエアコンの風は出ているが、室内がまったく冷えないことを伝えた。そのときになにかの機器にガスを注入したという話しをしていた。これでダメなら (エアコンの？) メーカーの担当者と別の調査か対策を行うといった話しをされていた。何であれ、調査して原因の切り分けをして、次の作業へ進展している話しを聞いて安心した。但し、今日のところは、夜になっても室温の変化はみられなかった。まだ改善するかどうかはわからない。
+遺産分割協議書の契印・割印の要否 弁護士さんから以前、作成した遺産分割協議書に割印をしていないことに気付き、税務署の手続きを進められない可能性があるから、もう一度、相続人全員の割印を取得してほしいと書類が届いた。すでに銀行・法務局の手続きは滞りなく終えている。こんな面倒なことを可能性があるという不確かな情報でやってられないと思って、本当に必要な手続きかどうかを税務署に確認してほしいと返信した。それと同時にググってみると、あるほうが改ざん防止になるので望ましいが、必須ではないという記事が多くみつかる。書類を作成するときに依頼されていれば応じるが、書類作成後になって大半の手続きも終えていて、相続税を払うためだけにそんなことやってられるかと思ってこのまま進めてほしいと押印せず書類も返送した。
+https://www.souzoku-zei.jp/souzokuzei/souzoku-tetsuduki/%E9%81%BA%E7%94%A3%E5%88%86%E5%89%B2%E5%8D%94%E8%AD%B0%E6%9B%B8%E6%96%87%E4%BE%8B%E9%9B%86/ https://www.tax-tomoni.co.jp/blog/souzokuzei/stamp/ もちろん税理士さんや税務署に裏付けをとる必要はあるが、ちょっと調べれば分かることをベテランの弁護士さんが調べずに顧客へ工数を転嫁することにがっかりした。
+ストーリーポイント再考 少し前にみかけたポストで「ストーリーポイントは機能しない」というものがあった。
+Story Points don&amp;#39;t work.
+Even Ron Jeffries, who invented them, said he was sorry years ago.
+And not only did he apologize, but he called the whole estimation idea &amp;quot;Evil.&amp;quot;
+Unfortunately, too many teams still use these points to estimate their work.
+Story Points is a made-up… pic.twitter.com/w62WJRU7lg
+&amp;mdash; Santiago (@svpino) August 31, 2023 私もストーリーポイント否定派の1人だが、その投稿に発明者ですら謝罪していると書かれていた。それでずっと気になっていたので発明者の元記事を読んでみた。翻訳に近いが、日本語でも要約された記事もある。</description><content>&lt;p>0時に寝て何度か起きて7時に起きた。昨日は晩ご飯食べてからだらだらしているうちにいつの間にか寝ていた。今日はオフィス暑くて14時から帰ってきてお昼寝して19時過ぎにまた戻った。&lt;/p>
+&lt;h2 id="ストレッチ">ストレッチ&lt;/h2>
+&lt;p>先週末は実家や四国へ出掛けていたため、ストレッチをお休みしていた。2週間ぶりのストレッチとなる。右足がパンパンでひどいことになっていた。休んだことと出掛けていたことの疲労が重なったのか、右足のどこの部位も調子が悪くて歩くのもやや辛いと言える。相対的に左足が大丈夫なように聞こえるが、普通の感覚ではそれなりに張りがあるので左足も疲労している。あと腰も左右ともに負荷がかかっているように思えた。今日の開脚幅は開始前155cmで、ストレッチ後157cmだった。週末はちょっと休もうかと思ったぐらいの疲労度と体調の悪さを実感した。&lt;/p>
+&lt;h2 id="工事業者の訪問">工事業者の訪問&lt;/h2>
+&lt;p>先日の &lt;a href="/diary/diary/posts/2023/0915/">暑さ対策委員会&lt;/a> の続き。&lt;/p>
+&lt;p>ストレッチを終えてオフィスに向かうと、ちょうど同じエレベーターで工事業者さんと鉢合わせになった。いまから作業するところだったらしく、作業前にオフィスに入ってもらって通気口の状況を確認してもらった。いまの室温は30℃を少し上回ったところ。通気口からエアコンの風は出ているが、室内がまったく冷えないことを伝えた。そのときになにかの機器にガスを注入したという話しをしていた。これでダメなら (エアコンの？) メーカーの担当者と別の調査か対策を行うといった話しをされていた。何であれ、調査して原因の切り分けをして、次の作業へ進展している話しを聞いて安心した。但し、今日のところは、夜になっても室温の変化はみられなかった。まだ改善するかどうかはわからない。&lt;/p>
+&lt;h2 id="遺産分割協議書の契印割印の要否">遺産分割協議書の契印・割印の要否&lt;/h2>
+&lt;p>弁護士さんから以前、作成した遺産分割協議書に割印をしていないことに気付き、税務署の手続きを進められない可能性があるから、もう一度、相続人全員の割印を取得してほしいと書類が届いた。すでに銀行・法務局の手続きは滞りなく終えている。こんな面倒なことを可能性があるという不確かな情報でやってられないと思って、本当に必要な手続きかどうかを税務署に確認してほしいと返信した。それと同時にググってみると、あるほうが改ざん防止になるので望ましいが、必須ではないという記事が多くみつかる。書類を作成するときに依頼されていれば応じるが、書類作成後になって大半の手続きも終えていて、相続税を払うためだけにそんなことやってられるかと思ってこのまま進めてほしいと押印せず書類も返送した。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://www.souzoku-zei.jp/souzokuzei/souzoku-tetsuduki/%E9%81%BA%E7%94%A3%E5%88%86%E5%89%B2%E5%8D%94%E8%AD%B0%E6%9B%B8%E6%96%87%E4%BE%8B%E9%9B%86/">https://www.souzoku-zei.jp/souzokuzei/souzoku-tetsuduki/%E9%81%BA%E7%94%A3%E5%88%86%E5%89%B2%E5%8D%94%E8%AD%B0%E6%9B%B8%E6%96%87%E4%BE%8B%E9%9B%86/&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.tax-tomoni.co.jp/blog/souzokuzei/stamp/">https://www.tax-tomoni.co.jp/blog/souzokuzei/stamp/&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>もちろん税理士さんや税務署に裏付けをとる必要はあるが、ちょっと調べれば分かることをベテランの弁護士さんが調べずに顧客へ工数を転嫁することにがっかりした。&lt;/p>
+&lt;h2 id="ストーリーポイント再考">ストーリーポイント再考&lt;/h2>
+&lt;p>少し前にみかけたポストで「ストーリーポイントは機能しない」というものがあった。&lt;/p>
+&lt;blockquote class="twitter-tweet">&lt;p lang="en" dir="ltr">Story Points don&amp;#39;t work.&lt;br>&lt;br>Even Ron Jeffries, who invented them, said he was sorry years ago.&lt;br>&lt;br>And not only did he apologize, but he called the whole estimation idea &amp;quot;Evil.&amp;quot;&lt;br>&lt;br>Unfortunately, too many teams still use these points to estimate their work.&lt;br>&lt;br>Story Points is a made-up… &lt;a href="https://t.co/w62WJRU7lg">pic.twitter.com/w62WJRU7lg&lt;/a>&lt;/p>&amp;mdash; Santiago (@svpino) &lt;a href="https://twitter.com/svpino/status/1697250711632003260?ref_src=twsrc%5Etfw">August 31, 2023&lt;/a>&lt;/blockquote>
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script>
+&lt;p>私もストーリーポイント否定派の1人だが、その投稿に発明者ですら謝罪していると書かれていた。それでずっと気になっていたので発明者の元記事を読んでみた。翻訳に近いが、日本語でも要約された記事もある。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://note.com/shunk_py/n/n6bcf39bbe282">XP創始者、Ron Jeffries氏による「ストーリーポイントの再考」&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://ronjeffries.com/articles/019-01ff/story-points/Index.html">Story Points Revisited&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>これを読んでみて、発明者も言っていることは真っ当だと思う。ストーリーポイントがいかに誤用されているか、それによって意味のない時間を費やしているか。そもそも見積もりは現実のプロジェクトマネジメントにおいて必要とされるが、実際の開発においてまったく無意味であるといったことなどが書かれていて、ソフトウェア開発を見積もろうとする行為そのものがそもそも間違っていて、それをさらに相対化 (抽象化) させたストーリーポイントが役に立つわけがないとすら思えた。誤用されるなら、スプリントプランニングのためにストーリーポイントを使うのはまったくの無駄とまで言い切っている。&lt;/p>
+&lt;p>この記事を読んで不思議なことの1つに、実際にスクラムでストーリーポイントを使ってみれば意味のない指標であることに気付く開発者は多いと思う。スクラムガイドにおいても、見積もりより経験主義の重要性を説いているにも関わらず、なぜこんな誤ったメトリクスがスクラムとセットで導入されているのか、私には理解できない。プロジェクトマネジメントては別の、政治力学においてストーリーポイントが使われているのではないか？という気すらしてくる。&lt;/p>
+&lt;p>課題管理の文脈だと、見積もりは勘と経験でよいというのが私の解になる (ストーリーポイントを使ったところで出鱈目なんだから) 。課題管理と見積もりというテーマもなにかしらコンテツになりそうな気がした。&lt;/p></content></item><item><title>資料作りの一日</title><link>/diary/posts/2023/0914/</link><pubDate>Thu, 14 Sep 2023 20:35:21 +0900</pubDate><guid>/diary/posts/2023/0914/</guid><description>23時に寝て何度か起きて6時に起きた。疲労も溜まっているのでなるべく早く寝るように努めている。旅行中ずっと早起きしていたから早起きするのは苦にならない。
 今開発の大きなふりかえりの資料作り ふりかえりのために課題管理システムの issue 情報から統計的な数値を取得する。
 gitlab の cli ツールを使って issue 情報を取得して mongodb にインポートする。
 $ glab api --paginate &amp;#34;groups/product%2Funicorncidm/issues?milestone=2023-09-05&amp;amp;not[labels]=Duplicate,Invalid,Wontfix&amp;#34; | jq -c &amp;#39;.[]&amp;#39; &amp;gt; 2023-09-05-issues.json $ mongoimport --authenticationDatabase=admin --uri &amp;#34;mongodb://root:secret@localhost:27017&amp;#34; --db gitlab --collection issues 2023-09-05-issues.json mongodb で aggregation (sql で言うところの group by 句に相当する) するときはパイプライン処理を実装する。例えば、最初にデータをフィルターして、次にグルーピングして、最後にソートするのは次のようなパラメーターになる。
