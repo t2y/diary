@@ -1,4 +1,79 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>linux on forest nook</title><link>/diary/tags/linux/</link><description>Recent content in linux on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Tue, 29 Aug 2023 09:27:04 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>コンテナー間のデータ通信と named pipe</title><link>/diary/posts/2023/0829/</link><pubDate>Tue, 29 Aug 2023 09:27:04 +0900</pubDate><guid>/diary/posts/2023/0829/</guid><description>22時頃から寝ていて2回起きて3時に起き出して、4時までネットみたりしていて、また寝て6時に起きた。生活のリズムがおかしい。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>linux on forest nook</title><link>/diary/tags/linux/</link><description>Recent content in linux on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Fri, 29 Sep 2023 08:20:06 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>初めて lvm を操作してみた</title><link>/diary/posts/2023/0929/</link><pubDate>Fri, 29 Sep 2023 08:20:06 +0900</pubDate><guid>/diary/posts/2023/0929/</guid><description>0時に寝て何度か起きて7時に起きた。最近は寝る前にはてブのアプリで適当に記事を読みながら寝ることが多い。
+隔週の雑談 顧問のはらさんと隔週の打ち合わせ。今日の議題はこれら。
+今後のお手伝いの展望 fun/done/learn をカスタマイズする話し hugo のテンプレートを作る話し 課題管理のコンテンツを作っていく話し ここ1-2週間ぼーっとしていて、忙しくもなく、なにかやっているわけでもないけど、のんびり過ごしている。軽いバーンアウトだと思う。先週末は休みも取った。「hugo のテンプレート作り」のような新規開発を、どこかのもくもく会やイベントに行って、その場で集中してやったらいいんじゃないか？というアドバイスをいただいて、確かにそういうやり方もよいように思えた。今週末は課題管理のコンテンツを考えて、できればブログに書いてみようと思う。
+lvm の論理ボリュームの結合 新規に almalinux 8 で仮想マシンを作った。デフォルト設定でインストールしたら / と /home でパーティション分割されていて、これは使い勝手が悪いなと思ってパーティションを結合することにした。
+$ df -h ファイルシス サイズ 使用 残り 使用% マウント位置 devtmpfs 1.9G 0 1.9G 0% /dev tmpfs 2.0G 0 2.0G 0% /dev/shm tmpfs 2.0G 8.6M 2.0G 1% /run tmpfs 2.0G 0 2.0G 0% /sys/fs/cgroup /dev/mapper/almalinux-root 70G 6.5G 64G 10% / /dev/mapper/almalinux-home 437G 5.0G 432G 2% /home /dev/vda1 1014M 221M 794M 22% /boot tmpfs 393M 12K 393M 1% /run/user/1000 基本的には次の記事をみてやったらうまくいった。</description><content>&lt;p>0時に寝て何度か起きて7時に起きた。最近は寝る前にはてブのアプリで適当に記事を読みながら寝ることが多い。&lt;/p>
+&lt;h2 id="隔週の雑談">隔週の雑談&lt;/h2>
+&lt;p>顧問のはらさんと隔週の打ち合わせ。今日の議題はこれら。&lt;/p>
+&lt;ul>
+&lt;li>今後のお手伝いの展望&lt;/li>
+&lt;li>&lt;a href="/diary/diary/posts/2023/0926/">fun/done/learn をカスタマイズする話し&lt;/a>&lt;/li>
+&lt;li>hugo のテンプレートを作る話し&lt;/li>
+&lt;li>課題管理のコンテンツを作っていく話し&lt;/li>
+&lt;/ul>
+&lt;p>ここ1-2週間ぼーっとしていて、忙しくもなく、なにかやっているわけでもないけど、のんびり過ごしている。軽いバーンアウトだと思う。先週末は休みも取った。「hugo のテンプレート作り」のような新規開発を、どこかのもくもく会やイベントに行って、その場で集中してやったらいいんじゃないか？というアドバイスをいただいて、確かにそういうやり方もよいように思えた。今週末は課題管理のコンテンツを考えて、できればブログに書いてみようと思う。&lt;/p>
+&lt;h2 id="lvm-の論理ボリュームの結合">lvm の論理ボリュームの結合&lt;/h2>
+&lt;p>新規に almalinux 8 で仮想マシンを作った。デフォルト設定でインストールしたら &lt;code>/&lt;/code> と &lt;code>/home&lt;/code> でパーティション分割されていて、これは使い勝手が悪いなと思ってパーティションを結合することにした。&lt;/p>
+&lt;pre tabindex="0">&lt;code>$ df -h
+ファイルシス サイズ 使用 残り 使用% マウント位置
+devtmpfs 1.9G 0 1.9G 0% /dev
+tmpfs 2.0G 0 2.0G 0% /dev/shm
+tmpfs 2.0G 8.6M 2.0G 1% /run
+tmpfs 2.0G 0 2.0G 0% /sys/fs/cgroup
+/dev/mapper/almalinux-root 70G 6.5G 64G 10% /
+/dev/mapper/almalinux-home 437G 5.0G 432G 2% /home
+/dev/vda1 1014M 221M 794M 22% /boot
+tmpfs 393M 12K 393M 1% /run/user/1000
+&lt;/code>&lt;/pre>&lt;p>基本的には次の記事をみてやったらうまくいった。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://blog.andersonbanihirwe.dev/posts/2021/how-to-merge-disk-partitions-on-centos/">How to merge two or more disk partitions on Centos 7&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>/home をバックアップする&lt;/p>
+&lt;pre tabindex="0">&lt;code># mkdir /home-bkup
+# rsync -a /home/ /home-bkup/
+&lt;/code>&lt;/pre>&lt;p>emergency モードに入る？&lt;/p>
+&lt;pre tabindex="0">&lt;code># systemctl emergency
+&lt;/code>&lt;/pre>&lt;p>結合したい領域を unmount して、home の論理ボリュームを削除する。&lt;/p>
+&lt;pre tabindex="0">&lt;code># umount /dev/mapper/almalinux-home
+# lvremove /dev/mapper/almalinux-home
+Do you really want to remove active logical volume almalinux/home? [y/n]: y
+Logical volume &amp;#34;home&amp;#34; successfully removed.
+&lt;/code>&lt;/pre>&lt;p>バックアップからデータを戻す。&lt;/p>
+&lt;pre tabindex="0">&lt;code># rsync -a /home-bkup/ /home/
+&lt;/code>&lt;/pre>&lt;p>/etc/fstab から不要なパーティション設定を削除する。&lt;/p>
+&lt;pre tabindex="0">&lt;code># vi /etc/fstab
+...
+/dev/mapper/almalinux-home /home xfs defaults 0 0 # &amp;lt;- この行を削除
+...
+&lt;/code>&lt;/pre>&lt;p>root の論理ボリュームに余っている領域を拡張する。&lt;/p>
+&lt;pre tabindex="0">&lt;code># lvextend -l +100%FREE -r /dev/mapper/almalinux-root
+Size of logical volume almalinux/root changed from 70.00 GiB (17920 extents) to &amp;lt;507.04 GiB (129802 extents).
+Logical volume almalinux/root successfully resized.
+meta-data=/dev/mapper/almalinux-root isize=512 agcount=4, agsize=4587520 blks
+= sectsz=512 attr=2, projid32bit=1
+= crc=1 finobt=1, sparse=1, rmapbt=0
+= reflink=1 bigtime=0 inobtcount=0
+data = bsize=4096 blocks=18350080, imaxpct=25
+= sunit=0 swidth=0 blks
+naming =version 2 bsize=4096 ascii-ci=0, ftype=1
+log =internal log bsize=4096 blocks=8960, version=2
+= sectsz=512 sunit=0 blks, lazy-count=1
+realtime =none extsz=4096 blocks=0, rtextents=0
+data blocks changed from 18350080 to 132917248
+&lt;/code>&lt;/pre>&lt;p>この時点で1つの領域に結合されたことがわかる。&lt;/p>
+&lt;pre tabindex="0">&lt;code># df -h
+ファイルシス サイズ 使用 残り 使用% マウント位置
+devtmpfs 1.9G 0 1.9G 0% /dev
+tmpfs 2.0G 0 2.0G 0% /dev/shm
+tmpfs 2.0G 78M 1.9G 4% /run
+tmpfs 2.0G 0 2.0G 0% /sys/fs/cgroup
+/dev/mapper/almalinux-root 508G 14G 494G 3% /
+/dev/vda1 1014M 221M 794M 22% /boot
+&lt;/code>&lt;/pre>&lt;p>バックアップを削除する。&lt;/p>
+&lt;pre tabindex="0">&lt;code># rm -rf /home-bkup/
+&lt;/code>&lt;/pre>&lt;p>マシンを再起動する。&lt;/p>
+&lt;pre tabindex="0">&lt;code># reboot
+&lt;/code>&lt;/pre>&lt;p>これで問題なければ完了。&lt;/p></content></item><item><title>コンテナー間のデータ通信と named pipe</title><link>/diary/posts/2023/0829/</link><pubDate>Tue, 29 Aug 2023 09:27:04 +0900</pubDate><guid>/diary/posts/2023/0829/</guid><description>22時頃から寝ていて2回起きて3時に起き出して、4時までネットみたりしていて、また寝て6時に起きた。生活のリズムがおかしい。
 コンテナー間のデータのやり取り 昨日 モジュール分割 したことにより、いままで1つのモジュールで管理していたが、モジュールを分割したのでそれぞれのバージョンを取得できるとよいという話題が出た。コンテナー内にアプリケーションのバイナリがあり、バイナリを実行するとバージョン情報を取得できる。それぞれのモジュールは独立したコンテナで動いてるため、コンテナー間でその情報を受け渡す方法が必要になる。ググってみると次の so がヒットして named pipe がプラクティスだという。
 How to run shell script on host from docker container? ホスト os 上の named pipe をコンテナーの volumes でマウントして、それぞれのコンテナーが読み書きすればよい。構築時に named pipe さえ作ったらコンテナー内での読み書きでデータ通信を実現できるため、シンプルでよいんじゃないかと思えた。
 mypipe という named pipe を作る。
