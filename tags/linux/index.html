@@ -12,13 +12,13 @@ tmpfs                        2.0G     0  2.0G    0% /sys/fs/cgroup
 /dev/vda1                   1014M  221M  794M   22% /boot
 tmpfs                        393M   12K  393M    1% /run/user/1000
 </code></pre><p>基本的には次の記事をみてやったらうまくいった。</p><ul><li><a href=https://blog.andersonbanihirwe.dev/posts/2021/how-to-merge-disk-partitions-on-centos/>How to merge two or more disk partitions on Centos 7</a></li></ul><p>/home をバックアップする</p><pre tabindex=0><code># mkdir /home-bkup
-# rsync -a /home/ /home-bkup/
+# cp -a /home/ /home-bkup/
 </code></pre><p>emergency モードに入る？</p><pre tabindex=0><code># systemctl emergency
 </code></pre><p>結合したい領域を unmount して、home の論理ボリュームを削除する。</p><pre tabindex=0><code># umount /dev/mapper/almalinux-home
 # lvremove /dev/mapper/almalinux-home
 Do you really want to remove active logical volume almalinux/home? [y/n]: y
   Logical volume &#34;home&#34; successfully removed.
-</code></pre><p>バックアップからデータを戻す。</p><pre tabindex=0><code># rsync -a /home-bkup/ /home/
+</code></pre><p>バックアップからデータを戻す。</p><pre tabindex=0><code># cp -a /home-bkup/ /home/
 </code></pre><p>/etc/fstab から不要なパーティション設定を削除する。</p><pre tabindex=0><code># vi /etc/fstab
 ...
 /dev/mapper/almalinux-home  /home  xfs  defaults  0  0  # &lt;- この行を削除

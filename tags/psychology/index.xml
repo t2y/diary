@@ -30,7 +30,7 @@ tmpfs 393M 12K 393M 1% /run/user/1000
 &lt;/ul>
 &lt;p>/home をバックアップする&lt;/p>
 &lt;pre tabindex="0">&lt;code># mkdir /home-bkup
-# rsync -a /home/ /home-bkup/
+# cp -a /home/ /home-bkup/
 &lt;/code>&lt;/pre>&lt;p>emergency モードに入る？&lt;/p>
 &lt;pre tabindex="0">&lt;code># systemctl emergency
 &lt;/code>&lt;/pre>&lt;p>結合したい領域を unmount して、home の論理ボリュームを削除する。&lt;/p>
@@ -39,7 +39,7 @@ tmpfs 393M 12K 393M 1% /run/user/1000
 Do you really want to remove active logical volume almalinux/home? [y/n]: y
 Logical volume &amp;#34;home&amp;#34; successfully removed.
 &lt;/code>&lt;/pre>&lt;p>バックアップからデータを戻す。&lt;/p>
-&lt;pre tabindex="0">&lt;code># rsync -a /home-bkup/ /home/
+&lt;pre tabindex="0">&lt;code># cp -a /home-bkup/ /home/
 &lt;/code>&lt;/pre>&lt;p>/etc/fstab から不要なパーティション設定を削除する。&lt;/p>
 &lt;pre tabindex="0">&lt;code># vi /etc/fstab
 ...
