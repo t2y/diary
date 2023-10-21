@@ -1,4 +1,41 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>event on forest nook</title><link>/diary/tags/event/</link><description>Recent content in event on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Wed, 27 Sep 2023 10:16:37 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/event/index.xml" rel="self" type="application/rss+xml"/><item><title>地方は都会の人たちにとっての消費の場ではない</title><link>/diary/posts/2023/0927/</link><pubDate>Wed, 27 Sep 2023 10:16:37 +0900</pubDate><guid>/diary/posts/2023/0927/</guid><description>0時に寝てうまく眠れなくて、吐き気がして3時頃に起きてそのまま起きてたらいつの間にか寝て8時に起きた。夜遅くにアルフォート食べたのがよくなかったかもしれない。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>event on forest nook</title><link>/diary/tags/event/</link><description>Recent content in event on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sat, 14 Oct 2023 07:01:12 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/event/index.xml" rel="self" type="application/rss+xml"/><item><title>イベント参加のついでに実家に立ち寄り</title><link>/diary/posts/2023/1014/</link><pubDate>Sat, 14 Oct 2023 07:01:12 +0900</pubDate><guid>/diary/posts/2023/1014/</guid><description>0時に寝て2時に起きて少し仮眠して5時に起きた。朝から出かける準備をして6時過ぎには出発した。神戸から実家まで約80kmの距離を、早朝だと高速道路が空いているのもあって1時間弱といったところ。
+軽トラのエンジンをかける 車のバッテリーがあがってしまったときに使う ジャンプスターター を昨年末に購入していた。また軽トラのバッテリーがあがってしまったようで、今回は母に使い方を教えながらエンジンをかけてみた。バッテリーにつなぐケーブルに boost ボタンがあってそれを押下してエンジンをかけるだけ。これは本当に買ってよかった。たまにしか農業しないような家の軽トラ向けにあると安心できる。軽トラのエンジンがかかったら1時間ほど走ってくればそれで元のバッテリーは回復する。
+草焼き 実家に着いたのが7時過ぎで朝ご飯を食べて、まだ時間があったので草焼きを手伝うことにした。すでに刈って干した草が集めてあったのでそれを火にかけて番をする。以前にも草焼きをした経験 があったので注意を払いながら行う。母が言うには、最近でも淡路島の人で草焼きをしていて2人亡くなっているという。おそらく煙に巻かれて一酸化炭素中毒で気を失ってしまったんだと推測する。干し草は一気に燃え上がるので青い草と干し草を調整ながら火の勢いを制御する。あとは表面だけ燃えるので内側も燃えるように混ぜ返したり空気を送ったりといった調整も必要になる。火の制御は難しい。1時間ほどやっていた。
+Python Boot Camp 今日の目的は次のイベントに TA として参加してきた。
+Python Boot Camp in 徳島2nd 現地11時集合だったものの、早めに実家を出たので10時半頃に着いてしまった。他のスタッフもその後すぐに合流して10時50分には全員が揃った。私は知り合いのスタッフがほとんどいなかったので挨拶したりしていた。だいたいスタッフは次のような構成だった。
+講師: 1人 現地スタッフ: 1人 TA: 3人 会場関係者: 2人 次の段取りでほぼこの通りうまくスケジュールを進捗できたと思う。
+11:00 スタッフTA講師が集合 11:00-11:30 準備 11:30-12:30 スタッフTA講師でランチ 12:30 開場 13:00 PyCamp開始 17:00 PyCamp終了 17:30 撤収完了 お昼に食べた「鳴門うどん」もひやむぎ程度のサイズの麺をにゅうめんのような食感で食べるものだった。身近に住んでいてこれは知らなかった。おいしかった。
+boot camp イベントも順調に進捗して受講者も喜んでいたようだったのでよかった。久しぶりにこういったイベントに参加すると、プログラミングを始めたばかりの気持ちなどを思い出してよかったと思う。いまはお仕事でプログラミングの随分と高度なことをマネージャーとして教えているわけだけど、簡単なコードが動いておもしろいといった気持ちがあることも大事だと思う。懇親会も出て、その後、スタッフ同士での反省会もやって、21時前には現地を解散して21時20分に実家に戻った。</description><content>&lt;p>0時に寝て2時に起きて少し仮眠して5時に起きた。朝から出かける準備をして6時過ぎには出発した。神戸から実家まで約80kmの距離を、早朝だと高速道路が空いているのもあって1時間弱といったところ。&lt;/p>
+&lt;h2 id="軽トラのエンジンをかける">軽トラのエンジンをかける&lt;/h2>
+&lt;p>車のバッテリーがあがってしまったときに使う &lt;a href="/diary/diary/posts/2023/0101/#ジャンプスターター">ジャンプスターター&lt;/a> を昨年末に購入していた。また軽トラのバッテリーがあがってしまったようで、今回は母に使い方を教えながらエンジンをかけてみた。バッテリーにつなぐケーブルに boost ボタンがあってそれを押下してエンジンをかけるだけ。これは本当に買ってよかった。たまにしか農業しないような家の軽トラ向けにあると安心できる。軽トラのエンジンがかかったら1時間ほど走ってくればそれで元のバッテリーは回復する。&lt;/p>
+&lt;h2 id="草焼き">草焼き&lt;/h2>
+&lt;p>実家に着いたのが7時過ぎで朝ご飯を食べて、まだ時間があったので草焼きを手伝うことにした。すでに刈って干した草が集めてあったのでそれを火にかけて番をする。&lt;a href="/diary/diary/posts/2021/1006/">以前にも草焼きをした経験&lt;/a> があったので注意を払いながら行う。母が言うには、最近でも淡路島の人で草焼きをしていて2人亡くなっているという。おそらく煙に巻かれて一酸化炭素中毒で気を失ってしまったんだと推測する。干し草は一気に燃え上がるので青い草と干し草を調整ながら火の勢いを制御する。あとは表面だけ燃えるので内側も燃えるように混ぜ返したり空気を送ったりといった調整も必要になる。火の制御は難しい。1時間ほどやっていた。&lt;/p>
+&lt;figure>&lt;img src="/diary/diary/img/2023/1014_kusayaki.jpg"/>
+&lt;/figure>
+&lt;h2 id="python-boot-camp">Python Boot Camp&lt;/h2>
+&lt;p>今日の目的は次のイベントに TA として参加してきた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://pyconjp.connpass.com/event/293032/">Python Boot Camp in 徳島2nd&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>現地11時集合だったものの、早めに実家を出たので10時半頃に着いてしまった。他のスタッフもその後すぐに合流して10時50分には全員が揃った。私は知り合いのスタッフがほとんどいなかったので挨拶したりしていた。だいたいスタッフは次のような構成だった。&lt;/p>
+&lt;ul>
+&lt;li>講師: 1人&lt;/li>
+&lt;li>現地スタッフ: 1人&lt;/li>
+&lt;li>TA: 3人&lt;/li>
+&lt;li>会場関係者: 2人&lt;/li>
+&lt;/ul>
+&lt;p>次の段取りでほぼこの通りうまくスケジュールを進捗できたと思う。&lt;/p>
+&lt;pre tabindex="0">&lt;code>11:00 スタッフTA講師が集合
+11:00-11:30 準備
+11:30-12:30 スタッフTA講師でランチ
+12:30 開場
+13:00 PyCamp開始
+17:00 PyCamp終了
+17:30 撤収完了
+&lt;/code>&lt;/pre>&lt;p>お昼に食べた「鳴門うどん」もひやむぎ程度のサイズの麺をにゅうめんのような食感で食べるものだった。身近に住んでいてこれは知らなかった。おいしかった。&lt;/p>
+&lt;figure>&lt;img src="/diary/diary/img/2023/1014_naruto-udon.jpg"/>
+&lt;/figure>
+&lt;p>boot camp イベントも順調に進捗して受講者も喜んでいたようだったのでよかった。久しぶりにこういったイベントに参加すると、プログラミングを始めたばかりの気持ちなどを思い出してよかったと思う。いまはお仕事でプログラミングの随分と高度なことをマネージャーとして教えているわけだけど、簡単なコードが動いておもしろいといった気持ちがあることも大事だと思う。懇親会も出て、その後、スタッフ同士での反省会もやって、21時前には現地を解散して21時20分に実家に戻った。&lt;/p></content></item><item><title>地方は都会の人たちにとっての消費の場ではない</title><link>/diary/posts/2023/0927/</link><pubDate>Wed, 27 Sep 2023 10:16:37 +0900</pubDate><guid>/diary/posts/2023/0927/</guid><description>0時に寝てうまく眠れなくて、吐き気がして3時頃に起きてそのまま起きてたらいつの間にか寝て8時に起きた。夜遅くにアルフォート食べたのがよくなかったかもしれない。
 go アプリケーションのライセンスチェック お手伝い先で開発しているプロダクトは原則として oss ライセンスにするといった方針らしい。公けにソースコードを公開していないものの、お客さんが望めばソースコードも提供するといった運用にしているらしい。実際にお客さんでソースコードを要求されたことはないという。そのため、自分たちの開発したアプリケーションを oss なライセンスで提供可能かどうかを、一応は、調べておく必要がある。プレスリリースもしているし、いつお客さんが使い始めるかもわからないので、プロジェクトの隙間のときにライセンスチェックをした。
 ググってみたら google/go-licenses というツールがあってこれを使って自分たちが開発したモジュールのライセンスチェックをした。問題なく apache 2.0 のライセンスで提供できることを検証した。
 インストール $ go install github.com/google/go-licenses@latest レポート出力 $ cd path/to/repository $ go-licenses report ./... ライセンスチェック $ go-licenses check ./... 2&amp;gt;&amp;amp;1 | egrep &amp;#34;^(W|E)[[:digit:]]+&amp;#34; コワーキングのオンラインイベント 月例のカフーツさんのオンラインイベントに参加した。前回の所感はここ 。8月は私の予定があわなかったのでイベントを欠席したが、7月の所感がないのはなぜか忘れてしまった。単純に忙しくて書く余裕がなかったのかもしれない。
