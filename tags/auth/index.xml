@@ -1,4 +1,29 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>auth on forest nook</title><link>/diary/tags/auth/</link><description>Recent content in auth on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Wed, 18 Oct 2023 09:04:08 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/auth/index.xml" rel="self" type="application/rss+xml"/><item><title>パスワードリセットのテストのためのガイドライン</title><link>/diary/posts/2023/1018/</link><pubDate>Wed, 18 Oct 2023 09:04:08 +0900</pubDate><guid>/diary/posts/2023/1018/</guid><description>0時に寝て何度か起きて4時に起きて仮眠して6時に起きた。あまり寝た気がしない。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>auth on forest nook</title><link>/diary/tags/auth/</link><description>Recent content in auth on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Tue, 24 Oct 2023 11:48:05 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/auth/index.xml" rel="self" type="application/rss+xml"/><item><title>初めて rbac なライブラリを実装した</title><link>/diary/posts/2023/1024/</link><pubDate>Tue, 24 Oct 2023 11:48:05 +0900</pubDate><guid>/diary/posts/2023/1024/</guid><description>22時頃から休んでいて寝たり起きたりで7時に起きた。起きたらネットの記事とかだらだら読んでた。
+rbac なライブラリの実装 昨日から認可のための仕組みを調査している。私の中ではもっとも一般的な rbac (role-based access control) でまずは作ってみようと思う。次の2つのライブラリの利用を検討したが、自分たちのやりたいことにあわない気がして今回は見送ることにした。
+https://github.com/casbin/casbin モデル定義とポリシー設定が複雑過ぎて設定が難しい、保守が大変になりそう https://github.com/mikespook/gorbac イメージはあっているが、この程度のライブラリなら自分で作った方が学習コストもなく、拡張にも柔軟に思える 一通り、ライブラリとして使えるように参照実装した。これから実際のアプリケーション要件にあわせてミドルウェアとして rbac な認可処理を作っていく。
+変わりゆく世界秩序 サンフランシスコが陥った負の“スパイラル” の記事にあるような、米国で950ドル以下の窃盗は軽犯罪とするという法律の変更によって、万引きを逮捕しなくなってモラル崩壊が起きて、小売店の商品を普通に盗むという事件が多発しているらしい。fin-py でおがわさんとそんな話しをしていたら次の動画を教えてもらった。私は歴史が好きなので、こういった「歴史は繰り返す」といったものはだいたいみてしまう。厳密な裏付けはわからないが、盛者必衰という言葉もあるように、どんな国でも栄枯盛衰のサイクルはあるだろうというのは大局の視点として同意できる。過去の歴史と国の栄枯盛衰をいくつかの指標とお金の視点から調査したものでおもしろかった。
+日本は80年サイクルで戦争の周期がくるといった説もあるが、この動画でもサイクルの切り替わりのタイミングで平和的にしろ暴力的にしろ、かならず戦争は起きると説明している。もうすでに戦争は始まっている感もあるが、戦争は避けようがないという点も同意するところだ。本も読んでみようと思う。</description><content>&lt;p>22時頃から休んでいて寝たり起きたりで7時に起きた。起きたらネットの記事とかだらだら読んでた。&lt;/p>
+&lt;h2 id="rbac-なライブラリの実装">rbac なライブラリの実装&lt;/h2>
+&lt;p>昨日から認可のための仕組みを調査している。私の中ではもっとも一般的な rbac (role-based access control) でまずは作ってみようと思う。次の2つのライブラリの利用を検討したが、自分たちのやりたいことにあわない気がして今回は見送ることにした。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/casbin/casbin">https://github.com/casbin/casbin&lt;/a>
+&lt;ul>
+&lt;li>モデル定義とポリシー設定が複雑過ぎて設定が難しい、保守が大変になりそう&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;a href="https://github.com/mikespook/gorbac">https://github.com/mikespook/gorbac&lt;/a>
+&lt;ul>
+&lt;li>イメージはあっているが、この程度のライブラリなら自分で作った方が学習コストもなく、拡張にも柔軟に思える&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>一通り、ライブラリとして使えるように参照実装した。これから実際のアプリケーション要件にあわせてミドルウェアとして rbac な認可処理を作っていく。&lt;/p>
+&lt;h2 id="変わりゆく世界秩序">変わりゆく世界秩序&lt;/h2>
+&lt;p>&lt;a href="https://www3.nhk.or.jp/news/special/international_news_navi/articles/feature/2023/09/26/34645.html">サンフランシスコが陥った負の“スパイラル”&lt;/a> の記事にあるような、米国で950ドル以下の窃盗は軽犯罪とするという法律の変更によって、万引きを逮捕しなくなってモラル崩壊が起きて、小売店の商品を普通に盗むという事件が多発しているらしい。fin-py でおがわさんとそんな話しをしていたら次の動画を教えてもらった。私は歴史が好きなので、こういった「歴史は繰り返す」といったものはだいたいみてしまう。厳密な裏付けはわからないが、盛者必衰という言葉もあるように、どんな国でも栄枯盛衰のサイクルはあるだろうというのは大局の視点として同意できる。過去の歴史と国の栄枯盛衰をいくつかの指標とお金の視点から調査したものでおもしろかった。&lt;/p>
+&lt;p>日本は80年サイクルで戦争の周期がくるといった説もあるが、この動画でもサイクルの切り替わりのタイミングで平和的にしろ暴力的にしろ、かならず戦争は起きると説明している。もうすでに戦争は始まっている感もあるが、戦争は避けようがないという点も同意するところだ。本も読んでみようと思う。&lt;/p>
+&lt;div class="video-container">
+&lt;iframe src="https://www.youtube.com/embed/y3oy8y0EljY" allowfullscreen title="レイ・ダリオ著 「変わりゆく世界秩序」">&lt;/iframe>
+&lt;/div></content></item><item><title>パスワードリセットのテストのためのガイドライン</title><link>/diary/posts/2023/1018/</link><pubDate>Wed, 18 Oct 2023 09:04:08 +0900</pubDate><guid>/diary/posts/2023/1018/</guid><description>0時に寝て何度か起きて4時に起きて仮眠して6時に起きた。あまり寝た気がしない。
 OWASP のパスワードリセットのガイドライン パスワードリセットの仕組みをメンバーに開発してもらっている。そのコードレビューが先週から白熱している。セキュリティが関連するので堅牢に作る必要があるのでここはあまり妥協せきない。お手伝い先のシニアエンジニアから独自設計で作るのではなく、最低限、世の中の一般的なガイドラインに従っているかを確認するために OWASP のガイドラインを紹介してくれた。これはパスワードリセットの仕組みをテストするための要項をあげている。
 Testing for Weak Password Change or Reset Functionalities これをメンバーに読んでもらって理解して実装しろと言いたいところでもあるが、私自身、読んだことがないとレビューできないことに気付いて、これは私が読んだ上で既存の設計や実装を見直すべきだと判断して deepl を駆使しながらほとんどを読んでみた。たしかに読んでみていくつか抜け・漏れに気付いたり、うちのセキュリティポリシーとして意図的に緩和しているところも認識できたりして、結論から言って読んでよかったと思う。当初はパスワードリセットのために一時トークンを1つだけ使っていたのだけど、それも2つを別々の経路に送って、割符のように組み合わせて認証する仕組みに変更した。よりセキュアにするという意図では一時トークンも1つよりも2つの方がよいというのは概ね正しいと思う。</description><content>&lt;p>0時に寝て何度か起きて4時に起きて仮眠して6時に起きた。あまり寝た気がしない。&lt;/p>
 &lt;h2 id="owasp-のパスワードリセットのガイドライン">OWASP のパスワードリセットのガイドライン&lt;/h2>
