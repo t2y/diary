@@ -1,4 +1,47 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2023/11 on forest nook</title><link>/diary/dates/2023/11/</link><description>Recent content in 2023/11 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2023/11/index.xml" rel="self" type="application/rss+xml"/><item><title>rbac なロールでの動的な権限チェック</title><link>/diary/posts/2023/1108/</link><pubDate>Wed, 08 Nov 2023 08:26:25 +0900</pubDate><guid>/diary/posts/2023/1108/</guid><description>23時に寝て何度か起きて7時に起きた。夜に作業するつもりが、メイドインアビス を見ながら寝落ちした。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2023/11 on forest nook</title><link>/diary/dates/2023/11/</link><description>Recent content in 2023/11 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2023/11/index.xml" rel="self" type="application/rss+xml"/><item><title>儲かっていない会社に中間申告はない</title><link>/diary/posts/2023/1109/</link><pubDate>Thu, 09 Nov 2023 08:48:38 +0900</pubDate><guid>/diary/posts/2023/1109/</guid><description>0時に寝て何度か起きて7時過ぎに起きた。髭を剃っていて唇を切った。
+ソフトバンクグループ 第2四半期 決算 孫さんが決算発表の場に出てこなくなってまったく関心がなくなっている。ここ数ヶ月ほどタイミングを見計らって少しずつ空売りしてきた。ちょうど年の暮れだしこのタイミングで空売りの返済をしてしまおうと考えている。昨今の雰囲気からまだまだ投資の時期ではなく、なんとなくソフトバンクグループの決算は悪いのだろうと予測していた。虎の子の ARM も上場してしまって他に材料もないだろうと。
+ソフトバンクグループ 2024年3月期 第2四半期 決算 とくにみるつもりはなかったけれど、作業しながら CFO の説明を聞いていて、「守り」がうんたら、財務が健全だと何度か話していることに気付いた。周りから財務を不安視されて懸念を持たれていることの裏返しように聞こえた。普通、投資会社なら投資の成果をもっとアピールすればいいと思えるが、財務の健全性をアピールするというのがおもしろおかしく聞こえた。arm が上場したにも関わらず、現在の株価と 1株当たりNAV情報 の差も前回の決算時よりも開いてしまったと説明していた気がする。それが市場の答えにも思えた。
+おそらく明日の寄り付きの価格は下がると推測するけれど、明日はマイナー SQ だし、この決算でどのぐらい下がるのか、やや楽しみ。11月中には空売りを返済してしまうつもり。
+中間申告 前期は黒字決算だったので自動的に中間申告が必要なのだと思い込んでいた。しかし、例年ならすでに納税のための通知やデータが届いているはずが一向に来ない。
+昨日、消費税の中間申告の通知が届いた。2年前から消費税を支払っているはずだけど、昨年は中間申告の通知が来てないような？まぁいいや。e-tax のメッセージボックスには中間申告のデータも届いていて、それを使って申告書を作成して pay-easy でそのまま納付した。作業時間は15分といったところ。中間申告はめっちゃ簡単。
+本題の法人税などの中間申告の通知が来ないので厳密な中間申告の条件について調べてみた。
+中間申告が必要なのは、前事業年度の法人税額が20万円を超える場合です。中間申告が必要となったとき、その提出期限と税金の納期限は、事業年度開始後6月を経過した日から2月以内です。なお、法人税の中間申告の対象となる人は、地方税（都道府県税、市町村民税、事業税等）についての申告も必要です。
+法人税の中間申告とは？目的や申告方法を基礎から解説！ | 経理・会計業務を効率化「経理プラス」
+法人税が20万円を超えないと中間申告は不要だという。前期の法人税を調べたら 187,800 円だった。これで法人税と地方法人税の中間申告は不要であることがわかった。
+また、事業年度が6カ月を超える法人で法人税の中間申告義務のある法人は、その事業年度開始の日から6カ月を経過した日から2カ月以内に原則として前事業年度の税額の半分の額を予定（中間）申告して納めます。
+法人県民税・事業税、特別法人事業税・地方法人特別税
+次に法人県民税も「法人税の中間申告義務のある法人」とあるので法人税の判定基準と同じになる。
+予定申告は、法人税において前事業年度の確定法人税額に前事業年度の月数で除し6を乗じて計算した金額が10万円以下の場合はその年度の申告の必要はありません。
+神戸市：法人市民税に関するQ&amp;amp;A
+実際に計算してみると、187,800 / 12 * 6 = 93,900 円となって10万円以下なので中間申告は必要ないとのこと。
+要約すると、あまり納税していない会社は中間申告しなくてよいってことだと理解できた。前期は iphone 14 pro, m2 macbook, 社用車といろいろお金を使ったので納税額が少なかったみたい。</description><content>&lt;p>0時に寝て何度か起きて7時過ぎに起きた。髭を剃っていて唇を切った。&lt;/p>
+&lt;h2 id="ソフトバンクグループ-第2四半期-決算">ソフトバンクグループ 第2四半期 決算&lt;/h2>
+&lt;p>孫さんが決算発表の場に出てこなくなってまったく関心がなくなっている。ここ数ヶ月ほどタイミングを見計らって少しずつ空売りしてきた。ちょうど年の暮れだしこのタイミングで空売りの返済をしてしまおうと考えている。昨今の雰囲気からまだまだ投資の時期ではなく、なんとなくソフトバンクグループの決算は悪いのだろうと予測していた。虎の子の ARM も上場してしまって他に材料もないだろうと。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://group.softbank/event/earnings_2023q2">ソフトバンクグループ 2024年3月期 第2四半期 決算&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>とくにみるつもりはなかったけれど、作業しながら CFO の説明を聞いていて、「守り」がうんたら、財務が健全だと何度か話していることに気付いた。周りから財務を不安視されて懸念を持たれていることの裏返しように聞こえた。普通、投資会社なら投資の成果をもっとアピールすればいいと思えるが、財務の健全性をアピールするというのがおもしろおかしく聞こえた。arm が上場したにも関わらず、現在の株価と &lt;a href="https://group.softbank/ir/stock/sotp">1株当たりNAV情報&lt;/a> の差も前回の決算時よりも開いてしまったと説明していた気がする。それが市場の答えにも思えた。&lt;/p>
+&lt;p>おそらく明日の寄り付きの価格は下がると推測するけれど、明日はマイナー SQ だし、この決算でどのぐらい下がるのか、やや楽しみ。11月中には空売りを返済してしまうつもり。&lt;/p>
+&lt;h2 id="中間申告">中間申告&lt;/h2>
+&lt;p>前期は黒字決算だったので自動的に中間申告が必要なのだと思い込んでいた。しかし、例年ならすでに納税のための通知やデータが届いているはずが一向に来ない。&lt;/p>
+&lt;p>昨日、消費税の中間申告の通知が届いた。2年前から消費税を支払っているはずだけど、昨年は中間申告の通知が来てないような？まぁいいや。e-tax のメッセージボックスには中間申告のデータも届いていて、それを使って申告書を作成して pay-easy でそのまま納付した。作業時間は15分といったところ。中間申告はめっちゃ簡単。&lt;/p>
+&lt;p>本題の法人税などの中間申告の通知が来ないので厳密な中間申告の条件について調べてみた。&lt;/p>
+&lt;blockquote>
+&lt;p>中間申告が必要なのは、前事業年度の法人税額が20万円を超える場合です。中間申告が必要となったとき、その提出期限と税金の納期限は、事業年度開始後6月を経過した日から2月以内です。なお、法人税の中間申告の対象となる人は、地方税（都道府県税、市町村民税、事業税等）についての申告も必要です。&lt;/p>
+&lt;p>&lt;a href="https://keiriplus.jp/tips/houjinzei_cyukansinkoku/">法人税の中間申告とは？目的や申告方法を基礎から解説！ | 経理・会計業務を効率化「経理プラス」&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>法人税が20万円を超えないと中間申告は不要だという。前期の法人税を調べたら 187,800 円だった。これで法人税と地方法人税の中間申告は不要であることがわかった。&lt;/p>
+&lt;blockquote>
+&lt;p>また、事業年度が6カ月を超える法人で法人税の中間申告義務のある法人は、その事業年度開始の日から6カ月を経過した日から2カ月以内に原則として前事業年度の税額の半分の額を予定（中間）申告して納めます。&lt;/p>
+&lt;p>&lt;a href="https://web.pref.hyogo.lg.jp/kk22/pa04_000000008.html">法人県民税・事業税、特別法人事業税・地方法人特別税&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>次に法人県民税も「法人税の中間申告義務のある法人」とあるので法人税の判定基準と同じになる。&lt;/p>
+&lt;blockquote>
+&lt;p>予定申告は、法人税において前事業年度の確定法人税額に前事業年度の月数で除し6を乗じて計算した金額が10万円以下の場合はその年度の申告の必要はありません。&lt;/p>
+&lt;p>&lt;a href="https://www.city.kobe.lg.jp/a35984/kurashi/tax/houjin/200.html#unker6">神戸市：法人市民税に関するQ&amp;amp;A&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>実際に計算してみると、187,800 / 12 * 6 = 93,900 円となって10万円以下なので中間申告は必要ないとのこと。&lt;/p>
+&lt;p>要約すると、あまり納税していない会社は中間申告しなくてよいってことだと理解できた。前期は iphone 14 pro, m2 macbook, 社用車といろいろお金を使ったので納税額が少なかったみたい。&lt;/p></content></item><item><title>rbac なロールでの動的な権限チェック</title><link>/diary/posts/2023/1108/</link><pubDate>Wed, 08 Nov 2023 08:26:25 +0900</pubDate><guid>/diary/posts/2023/1108/</guid><description>23時に寝て何度か起きて7時に起きた。夜に作業するつもりが、メイドインアビス を見ながら寝落ちした。
 ldap で認証したユーザーの権限管理 rbac なロール管理 の仕組みを api サーバーに実装した。初期実装したときは静的にリソース (url) に対して acl から権限が許可されているかどうかのみをチェックするだけでよかった。ldap で認証したユーザーは自分の情報は更新できるが、他人の情報は更新できないといったリクエスト単位に権限が許可されているかどうかをミドルウェアで判別したい。いわば、リクエスト時に動的にリソースの情報をチェックしないといけない。
 いくつか試行錯誤して、あーでもないこーどもないとやった結果、次のように落ち着いた。
 リソースは動的な権限チェックのために AuthorizeFunc を取得するための AuthorizeKey をもつ AuthorizeFunc は Context から取得する AuthorizeFunc が true を返す場合は権限を付与する func (r *Role) CanAccess(ctx context.Context, resourceName, target string) bool { for _, ac := range r.ACL { if ac.Resource.Match(resourceName) { for _, perm := range ac.Permissions { if perm.IsGranted(target) { return true } } if authorize, ok := ctx.Value(ac.Resource.Key).(AuthorizeFunc); ok { if authorize(ctx, resourceName, target) { return true } } } } return false } ロールに渡す Context にはあらかじめ、AuthorizeKey と AuthorizeFunc を登録しておく。</description><content>&lt;p>23時に寝て何度か起きて7時に起きた。夜に作業するつもりが、&lt;a href="http://miabyss.com/">メイドインアビス&lt;/a> を見ながら寝落ちした。&lt;/p>
