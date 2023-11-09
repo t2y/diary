@@ -1,4 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>communication on forest nook</title><link>/diary/tags/communication/</link><description>Recent content in communication on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 02 Nov 2023 12:59:43 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/communication/index.xml" rel="self" type="application/rss+xml"/><item><title>論理の通じない人たち</title><link>/diary/posts/2023/1102/</link><pubDate>Thu, 02 Nov 2023 12:59:43 +0900</pubDate><guid>/diary/posts/2023/1102/</guid><description>23時に寝て何度か起きて8時に起きた。ホテルの部屋が暗いと朝になった気がしなくて2度寝したら寝坊した。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>communication on forest nook</title><link>/diary/tags/communication/</link><description>Recent content in communication on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Mon, 06 Nov 2023 08:32:47 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/communication/index.xml" rel="self" type="application/rss+xml"/><item><title>考えないという傷のある現場</title><link>/diary/posts/2023/1106/</link><pubDate>Mon, 06 Nov 2023 08:32:47 +0900</pubDate><guid>/diary/posts/2023/1106/</guid><description>2時に寝て7時半に起きた。昨日からよく寝た。また心機一転。
+ldap エントリーの crud api 先週から ldap クライアントや そのプール を実装して結合テストも一通り書いていた。今日はそれらを使った crud な web api を一通り実装した。クライアント実装もテストもしっかり出来ているので後は時間の問題で1つずつ確認しながらコードを書いていくだけだった。こういう作業になると、まとまった時間があればすぐに終わる。他のメンバーのコードレビューをみたり、設計の話しをしたり、他に意識を取られてあまり自分の作業に集中できなかった。
+言葉が通じないもどかしさ 先週「参考にして」と指示したものが「全コピー」で驚いてしまった。私がいくつか指摘したらすぐに削除し始めてさらに落胆した。自分の頭で考えて作業していないようにみえる。
+開発というお仕事は自分で考えて、コードの1つ1つに明確な意図や根拠をもって書くものだ。もちろん、情報不足や設計に自信がもてなくて一時的に曖昧な実装にするときもあるけれど、それは懸念事項として把握しておくことで将来対応すればよい。基本的に追加するコードにはすべて意味がある。
+他人が分からなくても自分が理解できているのなら、自分の考えを説明し、それが論理的であったり筋が通っていれば、私は自分の考えと違っていても構わない。説明できないコードを追加して、ツッコミを受けてなにも説明できない状況をみているのは本当に悲しい。
+山田ズーニーさんの著書に書いてあった「考えないという傷」を思い出した。
+「働きたくない」というあなたへ ７</description><content>&lt;p>2時に寝て7時半に起きた。昨日からよく寝た。また心機一転。&lt;/p>
+&lt;h2 id="ldap-エントリーの-crud-api">ldap エントリーの crud api&lt;/h2>
+&lt;p>先週から ldap クライアントや &lt;a href="/diary/diary/posts/2023/1102/#コネクションを共有しないプール">そのプール&lt;/a> を実装して結合テストも一通り書いていた。今日はそれらを使った crud な web api を一通り実装した。クライアント実装もテストもしっかり出来ているので後は時間の問題で1つずつ確認しながらコードを書いていくだけだった。こういう作業になると、まとまった時間があればすぐに終わる。他のメンバーのコードレビューをみたり、設計の話しをしたり、他に意識を取られてあまり自分の作業に集中できなかった。&lt;/p>
+&lt;h2 id="言葉が通じないもどかしさ">言葉が通じないもどかしさ&lt;/h2>
+&lt;p>先週「参考にして」と指示したものが「全コピー」で驚いてしまった。私がいくつか指摘したらすぐに削除し始めてさらに落胆した。自分の頭で考えて作業していないようにみえる。&lt;/p>
+&lt;p>開発というお仕事は自分で考えて、コードの1つ1つに明確な意図や根拠をもって書くものだ。もちろん、情報不足や設計に自信がもてなくて一時的に曖昧な実装にするときもあるけれど、それは懸念事項として把握しておくことで将来対応すればよい。基本的に追加するコードにはすべて意味がある。&lt;/p>
+&lt;p>他人が分からなくても自分が理解できているのなら、自分の考えを説明し、それが論理的であったり筋が通っていれば、私は自分の考えと違っていても構わない。説明できないコードを追加して、ツッコミを受けてなにも説明できない状況をみているのは本当に悲しい。&lt;/p>
+&lt;p>山田ズーニーさんの著書に書いてあった「考えないという傷」を思い出した。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://www.1101.com/essay/2010-03-17.html">「働きたくない」というあなたへ ７&lt;/a>&lt;/li>
+&lt;/ul></content></item><item><title>論理の通じない人たち</title><link>/diary/posts/2023/1102/</link><pubDate>Thu, 02 Nov 2023 12:59:43 +0900</pubDate><guid>/diary/posts/2023/1102/</guid><description>23時に寝て何度か起きて8時に起きた。ホテルの部屋が暗いと朝になった気がしなくて2度寝したら寝坊した。
 組織の対応と sns の議論 先日の sns 騒ぎ の続き。公式からの声明も出たので軽くまとめておく。
 PyCon APAC 2023におけるNOCコンテンツに関するご指摘について 簡潔な文章に事実の記述、責任の所在、関係者への配慮が含まれていて十分な内容にみえる。法律なども関係するため、弁護士チェックが必要なことを考慮すると、こんな短期間で組織の見解を出せたことは運営側の体制を鑑みることができる。それが適正かどうかは人によって判断は異なるかもしれないが、私はコミュニティ運営というボランティア主体の組織であれば十分なものだと思えた。その後のネット上の議論も、ちゃんと終えてはいないが、様々な見解で議論は進んでいるようにみえる。
 今回みていて感じたことの1つに、コミュニケーションが成り立たない人が世の中にはたくさんいるということ。議論の前提や論理の出発点が異なる人たちは、一定の論理を含む全体や大局を理解できず、細部や詳細のところだけを拠り所に自身の論理を組み立てる。意見の差異があることはなんら問題はないが、論理が通じないのは議論の余地すらないようにみえた。そういう人たちを会話するときは前提条件を同じにしたり、思想の背景を共有したり、もっと時間をかけて丁寧にすり合わせていく作業が必要になる。そして sns のような、流れが速い不特定多数の議論はそういった丁寧な作業にまったく向いていない。だから sns で議論することは時間の無駄である。

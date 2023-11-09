@@ -1,4 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ldap on forest nook</title><link>/diary/tags/ldap/</link><description>Recent content in ldap on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Wed, 13 Sep 2023 08:04:20 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/ldap/index.xml" rel="self" type="application/rss+xml"/><item><title>来週の出張準備</title><link>/diary/posts/2023/0913/</link><pubDate>Wed, 13 Sep 2023 08:04:20 +0900</pubDate><guid>/diary/posts/2023/0913/</guid><description>1時に寝て何度か起きて6時半に起きた。気分転換も兼ねた非日常の小旅行を終えてまた元の生活へ戻していく。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ldap on forest nook</title><link>/diary/tags/ldap/</link><description>Recent content in ldap on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Mon, 06 Nov 2023 08:32:47 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/ldap/index.xml" rel="self" type="application/rss+xml"/><item><title>考えないという傷のある現場</title><link>/diary/posts/2023/1106/</link><pubDate>Mon, 06 Nov 2023 08:32:47 +0900</pubDate><guid>/diary/posts/2023/1106/</guid><description>2時に寝て7時半に起きた。昨日からよく寝た。また心機一転。
+ldap エントリーの crud api 先週から ldap クライアントや そのプール を実装して結合テストも一通り書いていた。今日はそれらを使った crud な web api を一通り実装した。クライアント実装もテストもしっかり出来ているので後は時間の問題で1つずつ確認しながらコードを書いていくだけだった。こういう作業になると、まとまった時間があればすぐに終わる。他のメンバーのコードレビューをみたり、設計の話しをしたり、他に意識を取られてあまり自分の作業に集中できなかった。
+言葉が通じないもどかしさ 先週「参考にして」と指示したものが「全コピー」で驚いてしまった。私がいくつか指摘したらすぐに削除し始めてさらに落胆した。自分の頭で考えて作業していないようにみえる。
+開発というお仕事は自分で考えて、コードの1つ1つに明確な意図や根拠をもって書くものだ。もちろん、情報不足や設計に自信がもてなくて一時的に曖昧な実装にするときもあるけれど、それは懸念事項として把握しておくことで将来対応すればよい。基本的に追加するコードにはすべて意味がある。
+他人が分からなくても自分が理解できているのなら、自分の考えを説明し、それが論理的であったり筋が通っていれば、私は自分の考えと違っていても構わない。説明できないコードを追加して、ツッコミを受けてなにも説明できない状況をみているのは本当に悲しい。
+山田ズーニーさんの著書に書いてあった「考えないという傷」を思い出した。
+「働きたくない」というあなたへ ７</description><content>&lt;p>2時に寝て7時半に起きた。昨日からよく寝た。また心機一転。&lt;/p>
+&lt;h2 id="ldap-エントリーの-crud-api">ldap エントリーの crud api&lt;/h2>
+&lt;p>先週から ldap クライアントや &lt;a href="/diary/diary/posts/2023/1102/#コネクションを共有しないプール">そのプール&lt;/a> を実装して結合テストも一通り書いていた。今日はそれらを使った crud な web api を一通り実装した。クライアント実装もテストもしっかり出来ているので後は時間の問題で1つずつ確認しながらコードを書いていくだけだった。こういう作業になると、まとまった時間があればすぐに終わる。他のメンバーのコードレビューをみたり、設計の話しをしたり、他に意識を取られてあまり自分の作業に集中できなかった。&lt;/p>
+&lt;h2 id="言葉が通じないもどかしさ">言葉が通じないもどかしさ&lt;/h2>
+&lt;p>先週「参考にして」と指示したものが「全コピー」で驚いてしまった。私がいくつか指摘したらすぐに削除し始めてさらに落胆した。自分の頭で考えて作業していないようにみえる。&lt;/p>
+&lt;p>開発というお仕事は自分で考えて、コードの1つ1つに明確な意図や根拠をもって書くものだ。もちろん、情報不足や設計に自信がもてなくて一時的に曖昧な実装にするときもあるけれど、それは懸念事項として把握しておくことで将来対応すればよい。基本的に追加するコードにはすべて意味がある。&lt;/p>
+&lt;p>他人が分からなくても自分が理解できているのなら、自分の考えを説明し、それが論理的であったり筋が通っていれば、私は自分の考えと違っていても構わない。説明できないコードを追加して、ツッコミを受けてなにも説明できない状況をみているのは本当に悲しい。&lt;/p>
+&lt;p>山田ズーニーさんの著書に書いてあった「考えないという傷」を思い出した。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://www.1101.com/essay/2010-03-17.html">「働きたくない」というあなたへ ７&lt;/a>&lt;/li>
+&lt;/ul></content></item><item><title>来週の出張準備</title><link>/diary/posts/2023/0913/</link><pubDate>Wed, 13 Sep 2023 08:04:20 +0900</pubDate><guid>/diary/posts/2023/0913/</guid><description>1時に寝て何度か起きて6時半に起きた。気分転換も兼ねた非日常の小旅行を終えてまた元の生活へ戻していく。
 ドキュメント書き 昨日の続き。ドキュメントの一部レビューをお願いしているところがあるので別のところのドキュメントを書いていた。その過程で ldap の anonymous bind の設定ができないような制御になっていることに気付いてその設定を修正したりした。ドキュメントを書いていてバグをみつけた。
 近況報告の資料作り 四国から帰ってきたばかりなのに来週は東京へ行かないといけない。開発はほぼ完了しているのでなにも憂いはないが、出張のタイミングで大きなふりかえりや次の開発フェーズの要件の発散などもやりたい。そのための資料の準備がまったくできていないことに昨日の夜、気付いた。明日・明後日ぐらいで準備して、できるだけ事前に参加者に共有したい。いまは忙しくないのだけど、なぜか空き時間をうまく作れなくても毎日バタバタしている感がある。
 今日は月例の近況報告の資料を作っていた。客観的に、このタイミングで私を契約終了としてもよいだろうし、私の感覚的には次の開発フェーズを3-4ヶ月みて、その後にチームのメンバーにこのプロダクト開発を委譲するといった段取りがよいのではないかと考えている。そういった話しも来週はしてくるつもり。長く残ったとしても今年度いっぱいが区切りとしてよいのではないかな。</description><content>&lt;p>1時に寝て何度か起きて6時半に起きた。気分転換も兼ねた非日常の小旅行を終えてまた元の生活へ戻していく。&lt;/p>
