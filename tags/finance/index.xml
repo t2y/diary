@@ -1,4 +1,64 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>finance on forest nook</title><link>/diary/tags/finance/</link><description>Recent content in finance on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 22 Sep 2022 08:54:56 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/finance/index.xml" rel="self" type="application/rss+xml"/><item><title>勉強会が2つ</title><link>/diary/posts/2022/0922/</link><pubDate>Thu, 22 Sep 2022 08:54:56 +0900</pubDate><guid>/diary/posts/2022/0922/</guid><description>0時に寝て6時に起きた。涼しくて体調は抜群。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>finance on forest nook</title><link>/diary/tags/finance/</link><description>Recent content in finance on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Fri, 10 Nov 2023 07:38:17 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/finance/index.xml" rel="self" type="application/rss+xml"/><item><title>資産運用の新たなツール</title><link>/diary/posts/2023/1110/</link><pubDate>Fri, 10 Nov 2023 07:38:17 +0900</pubDate><guid>/diary/posts/2023/1110/</guid><description>3時に寝て6時半に起きた。晩ごはん食べて、夜の作業して、寝る前に paypay 証券の積立の仕組みを調べて設定したりしていた。昨日あまり寝ていなかったせいか、今日は17時でお仕事を終えて、帰ってきて晩ごはんを食べて、すぐ1-2時間寝落ちした。あまりこういう居眠りは少ない。21時過ぎに起きてまたオフィスへ戻って作業していた。
+決算後の評価 昨日の続き 。おそらくネガティブな評価になるだろうという予測通り、寄り付きの価格は大きく下落して場中もどんどん下がって次のような結果になった。
+日付 始値 高値 安値 終値 出来高 調整後終値 2023-11-09 6,152 6,333 6,098 6,305 7,250,900 6,305 2023-11-10 6,000 6,016 5,721 5,790 27,804,300 5,790 寄り付きの成り行き、指値、前場引け、後場引けと段階的に空売りの返済が進んで1日で約 77% を返済した。今月中には完済してしまおうとは考えているものの、今日1日で思ったより捌けたのは予想以上にザラ場でも価格が落ちていったから。十分な収益にはなったので来週中には適当なタイミングで完済してしまう。
+paypay 証券の「つみたて」 口座を開設していたものの、ずっと放置していた paypay 証券のアプリを久しぶりにたまたま開いてみた。だいぶアプリも改善されたようで機能が増えているようにみえる。適当に触っていて、投信や外国株の購入オプションに「つみたて」があることに気付いた。定期的に決められた金額を購入できる。paypay 証券のよいところは最低1,000円から購入できるところ。これなら財形貯蓄のような用途に使える。
+PayPay証券アプリに機能追加！ 〜米国株式つみたてができる！さらに見やすく・使いやすく！～ 私は2016年ぐらいから株式投資を始め、もう5年以上は継続している。そのぐらいやって気付いたことはたった1つで、私には投資運用のスキルもなく、そのモチベーションも高くない。資産運用の効率を考慮して貯金に懸念があるから株式投資をしているに過ぎない。あとは経営の勉強の延長で投資や経済の先行きを自分なりに組み立てて予想したりするのにも応用している。それはともかく、これまであまりうまく投資運用してこれなかった経験から、私にとっての株式投資の最適解は ドル・コスト平均法 になる。中二病の1つだと思うが、自分ならもっとうまく資産運用できると思ってあれこれやった結果、普遍的なドル・コスト平均法の凄さを理解しただけだった。一番よくない投資は一度に大きなお金を動かすことだと思う。一方で、自分の好きな会社に投資したいという思いはあって paypay 証券のような、会社を指定して「つみたて」というドル・コスト平均法のようなオプションはもっとも望ましいとずっと考えていて、これまで手動でやっていた方法だった。
+試しに毎週1000円ずつ購入する「つみたて」をいくつか設定してみた。どうやら外国株もすべてが選択できるわけではなさそう。アトラシアンやアームは検索結果に出てこなかった。
+ファイザー クラウドフレア アマゾン・ドットコム あと投信も1つぐらい設定しておこうと思って、これも同じように「つみたて」してみた。
+ひふみプラス とりあえず1000円から始めて、世の中の状況をみながら期間や金額を調整するぐらいの、その程度のカスタマイズで十分。いままでも証券会社のアプリケーションでそういったことができたのかどうか、私はよく知らないけど、スマホアプリだと、ちゃちゃっと触って操作できるのでお手軽でよい。自分が詳しくないものを扱うのはスマホアプリが便利でよい。</description><content>&lt;p>3時に寝て6時半に起きた。晩ごはん食べて、夜の作業して、寝る前に paypay 証券の積立の仕組みを調べて設定したりしていた。昨日あまり寝ていなかったせいか、今日は17時でお仕事を終えて、帰ってきて晩ごはんを食べて、すぐ1-2時間寝落ちした。あまりこういう居眠りは少ない。21時過ぎに起きてまたオフィスへ戻って作業していた。&lt;/p>
+&lt;h2 id="決算後の評価">決算後の評価&lt;/h2>
+&lt;p>&lt;a href="/diary/diary/posts/2023/1109/#ソフトバンクグループ-第2四半期-決算">昨日の続き&lt;/a> 。おそらくネガティブな評価になるだろうという予測通り、寄り付きの価格は大きく下落して場中もどんどん下がって次のような結果になった。&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th style="text-align:center">日付&lt;/th>
+&lt;th style="text-align:right">始値&lt;/th>
+&lt;th style="text-align:right">高値&lt;/th>
+&lt;th style="text-align:right">安値&lt;/th>
+&lt;th style="text-align:right">終値&lt;/th>
+&lt;th style="text-align:right">出来高&lt;/th>
+&lt;th style="text-align:right">調整後終値&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td style="text-align:center">2023-11-09&lt;/td>
+&lt;td style="text-align:right">6,152&lt;/td>
+&lt;td style="text-align:right">6,333&lt;/td>
+&lt;td style="text-align:right">6,098&lt;/td>
+&lt;td style="text-align:right">6,305&lt;/td>
+&lt;td style="text-align:right">7,250,900&lt;/td>
+&lt;td style="text-align:right">6,305&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">2023-11-10&lt;/td>
+&lt;td style="text-align:right">6,000&lt;/td>
+&lt;td style="text-align:right">6,016&lt;/td>
+&lt;td style="text-align:right">5,721&lt;/td>
+&lt;td style="text-align:right">5,790&lt;/td>
+&lt;td style="text-align:right">27,804,300&lt;/td>
+&lt;td style="text-align:right">5,790&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>寄り付きの成り行き、指値、前場引け、後場引けと段階的に空売りの返済が進んで1日で約 77% を返済した。今月中には完済してしまおうとは考えているものの、今日1日で思ったより捌けたのは予想以上にザラ場でも価格が落ちていったから。十分な収益にはなったので来週中には適当なタイミングで完済してしまう。&lt;/p>
+&lt;h1 id="paypay-証券のつみたて">paypay 証券の「つみたて」&lt;/h1>
+&lt;p>口座を開設していたものの、ずっと放置していた paypay 証券のアプリを久しぶりにたまたま開いてみた。だいぶアプリも改善されたようで機能が増えているようにみえる。適当に触っていて、投信や外国株の購入オプションに「つみたて」があることに気付いた。定期的に決められた金額を購入できる。paypay 証券のよいところは最低1,000円から購入できるところ。これなら財形貯蓄のような用途に使える。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://www.paypay-sec.co.jp/news/20230403_2.html">PayPay証券アプリに機能追加！ 〜米国株式つみたてができる！さらに見やすく・使いやすく！～&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>私は2016年ぐらいから株式投資を始め、もう5年以上は継続している。そのぐらいやって気付いたことはたった1つで、私には投資運用のスキルもなく、そのモチベーションも高くない。資産運用の効率を考慮して貯金に懸念があるから株式投資をしているに過ぎない。あとは経営の勉強の延長で投資や経済の先行きを自分なりに組み立てて予想したりするのにも応用している。それはともかく、これまであまりうまく投資運用してこれなかった経験から、私にとっての株式投資の最適解は &lt;a href="https://ja.wikipedia.org/wiki/%E3%83%89%E3%83%AB%E3%83%BB%E3%82%B3%E3%82%B9%E3%83%88%E5%B9%B3%E5%9D%87%E6%B3%95">ドル・コスト平均法&lt;/a> になる。中二病の1つだと思うが、自分ならもっとうまく資産運用できると思ってあれこれやった結果、普遍的なドル・コスト平均法の凄さを理解しただけだった。一番よくない投資は一度に大きなお金を動かすことだと思う。一方で、自分の好きな会社に投資したいという思いはあって paypay 証券のような、会社を指定して「つみたて」というドル・コスト平均法のようなオプションはもっとも望ましいとずっと考えていて、これまで手動でやっていた方法だった。&lt;/p>
+&lt;p>試しに毎週1000円ずつ購入する「つみたて」をいくつか設定してみた。どうやら外国株もすべてが選択できるわけではなさそう。アトラシアンやアームは検索結果に出てこなかった。&lt;/p>
+&lt;ul>
+&lt;li>ファイザー&lt;/li>
+&lt;li>クラウドフレア&lt;/li>
+&lt;li>アマゾン・ドットコム&lt;/li>
+&lt;/ul>
+&lt;p>あと投信も1つぐらい設定しておこうと思って、これも同じように「つみたて」してみた。&lt;/p>
+&lt;ul>
+&lt;li>ひふみプラス&lt;/li>
+&lt;/ul>
+&lt;p>とりあえず1000円から始めて、世の中の状況をみながら期間や金額を調整するぐらいの、その程度のカスタマイズで十分。いままでも証券会社のアプリケーションでそういったことができたのかどうか、私はよく知らないけど、スマホアプリだと、ちゃちゃっと触って操作できるのでお手軽でよい。自分が詳しくないものを扱うのはスマホアプリが便利でよい。&lt;/p></content></item><item><title>勉強会が2つ</title><link>/diary/posts/2022/0922/</link><pubDate>Thu, 22 Sep 2022 08:54:56 +0900</pubDate><guid>/diary/posts/2022/0922/</guid><description>0時に寝て6時に起きた。涼しくて体調は抜群。
 インフラ引き継ぎ勉強会 先週引き継ぎのためのインフラドキュメントを書いていたものをチームの開発者に共有した。今日は開発者向けの話しなので 5日以上かけた非開発者向けのインフラドキュメント は使わないが、社員さんによると、(私が参加していない社員さんだけの) 別の開発者チャンネルで読まれているとのこと。時間をかけたので多くの人に読んでもらえるに越したことはない。但し、そのフィードバックは私には一切ないので役に立っているのかどうかの判断しようがない。業務委託にそういう外様感を与えるかどうかは組織によって大きく異なる。過去に働いたある会社では自由に勉強会に参加したり他チームのメンバーとも技術の議論をできたりした。私は技術の話題に対しては真摯なので当たり前のように感じていたが、あの会社のあの文化は特別だったのだとそれから別の数社で働いてみて気付いた。
 書いたインフラドキュメントに沿って一通り説明して、ほとんど実務をやっていないメンバーではあまりイメージができないと思うので質問もそれほどなかった。次回は実際にどうやってインフラのデプロイをするかの作業をみんなで確認しながら cdk の使い方などの話しをしようと思う。
 インフレ勉強会 fin-py の月例のインフレ勉強会に参加した。背景はわかってないが、connpass イベントではない。市場調査や金融の勉強のために最近は毎月出席している。
