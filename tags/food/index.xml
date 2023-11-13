@@ -1,4 +1,52 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>food on forest nook</title><link>/diary/tags/food/</link><description>Recent content in food on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sun, 12 Nov 2023 14:41:49 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/food/index.xml" rel="self" type="application/rss+xml"/><item><title>紅生姜とポテトサラダ</title><link>/diary/posts/2023/1112/</link><pubDate>Sun, 12 Nov 2023 14:41:49 +0900</pubDate><guid>/diary/posts/2023/1112/</guid><description>1時に寝て4時ぐらいに吐き気で起きてしばらく休んで寝たら12時に起きた。変な寝方した。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>food on forest nook</title><link>/diary/tags/food/</link><description>Recent content in food on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Mon, 13 Nov 2023 17:05:35 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/food/index.xml" rel="self" type="application/rss+xml"/><item><title>経済的且つ健康</title><link>/diary/posts/2023/1113/</link><pubDate>Mon, 13 Nov 2023 17:05:35 +0900</pubDate><guid>/diary/posts/2023/1113/</guid><description>22時頃から寝てしまって24時に起きて2時間ほどネットみたりしてまた寝て4時に起きて7時に起きた。
+健康によさそうな紅生姜 昨日の続き 。業務スーパーの紅生姜は 1kg 338円、賞味期限も9ヶ月、とお得ではあるものの、中国産且つ合成保存料／着色料を使っているところに懸念がある。日常的に食べるものならもう少し健康に注意を払いたい。amazon で購入できる商品で 坂田信夫商店 という生姜専門店をみつけた。「合成着色料・保存料 不使用」なのがよい。この紅生姜も色はついているものの、野菜色素で色付けしているらしい。この商品は 1kg 1,800円、賞味期限は製造日から4ヶ月になる。健康に気を遣うと割高になるが、普段食べるものはそれで構わない。amazon の定期便で食べる量にあわせて送ってもらうのがよさそう。
+お昼ご飯の行方 週末にスーパーのポイントカードの振る舞いをチェックするためにいつもより食材をたくさん買い込んでしまった。冷蔵庫が膨らんでいるので土日の両日とも自炊して、今日のランチも外食ではなく、お昼に帰って自炊した。オフィスと家の距離が徒歩3分なのですぐ帰れる。家で自炊してお昼ご飯を作るメリット・デメリットを考えてみる。
+メリット
+外食するよりも自炊した方が安い 物価が上がっているので外食すると1,000円前後になる 自炊なら高めに見積もっても500円もあれば済む 野菜を多く採れる 基本的に外食のランチは野菜が足りない 野菜は値段が高いのでランチやお弁当ではしばしば省略される デメリット
+自炊するのが面倒くさい 家だと仕事の合間の気分転換にならない？ 基本的に私が労力さえ払えば、経済的にも健康的にもメリットしかない。自炊すればするほどスーパーのポイントも多く貯まる。毎日じゃなくても、たまに多めに買い込んでお昼も自炊してみようと思う。
+go の set 型の導入予測 コードレビューをしていて、ある処理の実装を集合演算でやった方がよいとアドバイスした。go の型システムや標準ライブラリには set 型に相当するものがない。しかし、map を使って簡単に実装できるので実際の開発で問題になることはほとんどない。いまは generics と comparable があるので、汎用の set 型を map で実装することもできるはず、と思って調べたら次の記事をみつけた。
+A generic Set type in Go 私のイメージとも合致して、こういったものをユーザー定義型で実装すればよいと reviewee とやり取りしていた。generics で汎用の set 型を実装できるなら、当然、それを標準ライブラリに導入しようという話しも出ているはずで軽く調べてみた。次の issue がその議論らしい。
+proposal: container/set: new package to provide a generic set type (discussion) #47331 で、私は issue を読んでいないのだけど、どうやらユーザー定義の iterator 機能に依存しているらしい。従って iterator 機能が導入された後に set 型が導入されるといった流れになるだろう。</description><content>&lt;p>22時頃から寝てしまって24時に起きて2時間ほどネットみたりしてまた寝て4時に起きて7時に起きた。&lt;/p>
+&lt;h2 id="健康によさそうな紅生姜">健康によさそうな紅生姜&lt;/h2>
+&lt;p>&lt;a href="/diary/diary/posts/2023/1112/">昨日の続き&lt;/a> 。業務スーパーの紅生姜は 1kg 338円、賞味期限も9ヶ月、とお得ではあるものの、中国産且つ合成保存料／着色料を使っているところに懸念がある。日常的に食べるものならもう少し健康に注意を払いたい。amazon で購入できる商品で &lt;a href="https://sakatashop.jp/pages/company">坂田信夫商店&lt;/a> という生姜専門店をみつけた。「合成着色料・保存料 不使用」なのがよい。この紅生姜も色はついているものの、野菜色素で色付けしているらしい。この商品は 1kg 1,800円、賞味期限は製造日から4ヶ月になる。健康に気を遣うと割高になるが、普段食べるものはそれで構わない。amazon の定期便で食べる量にあわせて送ってもらうのがよさそう。&lt;/p>
+&lt;p>&lt;a href="https://amzn.to/47r3HVA" target="_blank">&lt;img src="https://m.media-amazon.com/images/I/51dzpO1MqVL._AC_.jpg" width="320">&lt;/a>&lt;/p>
+&lt;h2 id="お昼ご飯の行方">お昼ご飯の行方&lt;/h2>
+&lt;p>週末にスーパーのポイントカードの振る舞いをチェックするためにいつもより食材をたくさん買い込んでしまった。冷蔵庫が膨らんでいるので土日の両日とも自炊して、今日のランチも外食ではなく、お昼に帰って自炊した。オフィスと家の距離が徒歩3分なのですぐ帰れる。家で自炊してお昼ご飯を作るメリット・デメリットを考えてみる。&lt;/p>
+&lt;p>メリット&lt;/p>
+&lt;ul>
+&lt;li>外食するよりも自炊した方が安い
+&lt;ul>
+&lt;li>物価が上がっているので外食すると1,000円前後になる&lt;/li>
+&lt;li>自炊なら高めに見積もっても500円もあれば済む&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>野菜を多く採れる
+&lt;ul>
+&lt;li>基本的に外食のランチは野菜が足りない&lt;/li>
+&lt;li>野菜は値段が高いのでランチやお弁当ではしばしば省略される&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>デメリット&lt;/p>
+&lt;ul>
+&lt;li>自炊するのが面倒くさい&lt;/li>
+&lt;li>家だと仕事の合間の気分転換にならない？&lt;/li>
+&lt;/ul>
+&lt;p>基本的に私が労力さえ払えば、経済的にも健康的にもメリットしかない。自炊すればするほどスーパーのポイントも多く貯まる。毎日じゃなくても、たまに多めに買い込んでお昼も自炊してみようと思う。&lt;/p>
+&lt;h2 id="go-の-set-型の導入予測">go の set 型の導入予測&lt;/h2>
+&lt;p>コードレビューをしていて、ある処理の実装を集合演算でやった方がよいとアドバイスした。go の型システムや標準ライブラリには set 型に相当するものがない。しかし、map を使って簡単に実装できるので実際の開発で問題になることはほとんどない。いまは generics と comparable があるので、汎用の set 型を map で実装することもできるはず、と思って調べたら次の記事をみつけた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://bitfieldconsulting.com/golang/generic-set">A generic Set type in Go&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>私のイメージとも合致して、こういったものをユーザー定義型で実装すればよいと reviewee とやり取りしていた。generics で汎用の set 型を実装できるなら、当然、それを標準ライブラリに導入しようという話しも出ているはずで軽く調べてみた。次の issue がその議論らしい。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/golang/go/discussions/47331">proposal: container/set: new package to provide a generic set type (discussion) #47331&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>で、私は issue を読んでいないのだけど、どうやらユーザー定義の iterator 機能に依存しているらしい。従って iterator 機能が導入された後に set 型が導入されるといった流れになるだろう。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/golang/go/issues/61405">spec: add range over int, range over func #61405&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>iterator 機能は早ければ次の 1.22 ともみられているが、まだマイルストーンがついていないので開発状況によっては見送られるかもしれない。これから1-2年後あたりには go 本体が提供する set 型が支えるようになっているのではないかと推測する。&lt;/p></content></item><item><title>紅生姜とポテトサラダ</title><link>/diary/posts/2023/1112/</link><pubDate>Sun, 12 Nov 2023 14:41:49 +0900</pubDate><guid>/diary/posts/2023/1112/</guid><description>1時に寝て4時ぐらいに吐き気で起きてしばらく休んで寝たら12時に起きた。変な寝方した。
 業務スーパー 昨日 よく行くスーパー について書いたが、もう1つ補足しておく。日常的に行くスーパーではないが、隔週に1回ぐらい行くところに 業務スーパー がある。年末に帰省したときになにかの番組で業務スーパーの創業者が地熱発電に取り組んでいて、そのための学校も自前で作り、エネルギー問題という難しい課題に対して政府に頼らず、自分たちで課題解決しようとしている姿勢に共感した。
 業務スーパー創業者が描く日本の地熱発電の未来－スピード感が鍵 それ以来、業務スーパーでちょくちょく買いものをするようになった。運営会社の 神戸物産 は加古川市の総合商社らしい。神戸市じゃなかったのか (´・ω・`) 兵庫県という括りで地元支援の意図もあって買いものをしている。アプリの電子マネーにチャージするときに0.5%のポイントが付き、購入時にもいくらかポイントが付くらしい (店舗によって異なるみたい) 。イオン系列スーパーの買いものを最適化したタイミングで業務スーパーもそうしようと思ってアプリをダウンロードしてアカウントを作った。100ポイント溜まったら100円として使える。
 現時点ではアプリであっても店舗の専用ハードウェアでチャージしないといけない。ちょっと不便。なんでこんな機械がいるのだろう？と疑問に思ったけど、おそらく物理カードのチャージのためかなと推測する。アプリなら、いずれはオンラインでチャージできるようになるのだろうと思う。
