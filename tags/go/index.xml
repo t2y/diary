@@ -1,4 +1,42 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>go on forest nook</title><link>/diary/tags/go/</link><description>Recent content in go on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Mon, 13 Nov 2023 17:05:35 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/go/index.xml" rel="self" type="application/rss+xml"/><item><title>経済的且つ健康</title><link>/diary/posts/2023/1113/</link><pubDate>Mon, 13 Nov 2023 17:05:35 +0900</pubDate><guid>/diary/posts/2023/1113/</guid><description>22時頃から寝てしまって24時に起きて2時間ほどネットみたりしてまた寝て4時に起きて7時に起きた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>go on forest nook</title><link>/diary/tags/go/</link><description>Recent content in go on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Mon, 20 Nov 2023 08:35:29 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/go/index.xml" rel="self" type="application/rss+xml"/><item><title>生活リズムが崩れた月曜日</title><link>/diary/posts/2023/1120/</link><pubDate>Mon, 20 Nov 2023 08:35:29 +0900</pubDate><guid>/diary/posts/2023/1120/</guid><description>1時に寝て2時半に起きて5時に起きて7時に起きた。朝から昼過ぎまで寝てたのでトータルでは睡眠時間をたくさん取っているのになんか疲れている。生活のリズムを崩すのがよくないのかも。
+ガンダムに学ぶ経営学 やぎさんに教えてもらって寝る前にみたらおもしろかった。入山先生がガンダム大好きなことが伝わってくる。おもしろいのはそうだけど、まじレスすると、アニメの世界の組織や経済に学ぶというのは誤りで、当時の組織や経済のリアルを参考にして、ガンダムの世界観は作られていると推測する。だから入山先生はユーモアで盛り上げているのだと思うけれど、ガンダムから学ぶのではなく歴史から学べが正解だと思う。でも、ガンダムの世界観を知るよい番組だと思う。
+go-ldap へのプルリクエスト 2週間ほど前に送った pr がまだレビューすらしてもらえていない。github actions のテストがいくつか落ちていて、この pr の修正によるものではないところでエラーになっている。メンテナーの1人が再実行してくれたんだけど、たくさんあるマトリックステストのどこかが落ちてまた再実行しないといけない。
+IsErrorAnyOf should match the given result code even if the error is wrapped #471 それを待っている間に、テストがエラーになる本当の原因の問題を直そうと2-3日前に issue 登録していた。この issue の対応を本当は昨日やろうと思っていたのに、思いの外、寝てしまって、その後もいろいろ書きものをしていて時間を使ってしまってできていなかった。今朝からそれを片付けた。業務の一環なので日曜日にプルリクエストを送らなくてもよいのだけど、コントリビューションなので空き時間に終わらせて、業務の時間は別のことに使いたいという思いもあったりする。
+Fix DATA RACE as a result of changing ber&amp;rsquo;s module global variable for fuzz tests #473 さらに github actions のログに deprecated ワーニングが出ていたのでついでにそれも直した。
+Fix deprecated warning on GitHub Actions #474 473, 474, 471 の順番にマージされていくのが望ましい。そろそろコミット権をくれたりしないかな？と思ったりもする。というのは、タイミングの問題で action の job が落ちたり、バージョン上げるだけの pr とか、自分でマージしてしまえばいいと思ったりする。</description><content>&lt;p>1時に寝て2時半に起きて5時に起きて7時に起きた。朝から昼過ぎまで寝てたのでトータルでは睡眠時間をたくさん取っているのになんか疲れている。生活のリズムを崩すのがよくないのかも。&lt;/p>
+&lt;h2 id="ガンダムに学ぶ経営学">ガンダムに学ぶ経営学&lt;/h2>
+&lt;p>やぎさんに教えてもらって寝る前にみたらおもしろかった。入山先生がガンダム大好きなことが伝わってくる。おもしろいのはそうだけど、まじレスすると、アニメの世界の組織や経済に学ぶというのは誤りで、当時の組織や経済のリアルを参考にして、ガンダムの世界観は作られていると推測する。だから入山先生はユーモアで盛り上げているのだと思うけれど、ガンダムから学ぶのではなく歴史から学べが正解だと思う。でも、ガンダムの世界観を知るよい番組だと思う。&lt;/p>
+&lt;div class="video-container">
+&lt;iframe src="https://www.youtube.com/embed/w7Hhimmu26c" allowfullscreen title="ガンダムに学ぶ経営学 【まとめ】【テレ東経済ニュースアカデミー　GWセレクション３】">&lt;/iframe>
+&lt;/div>
+&lt;h2 id="go-ldap-へのプルリクエスト">go-ldap へのプルリクエスト&lt;/h2>
+&lt;p>2週間ほど前に送った pr がまだレビューすらしてもらえていない。github actions のテストがいくつか落ちていて、この pr の修正によるものではないところでエラーになっている。メンテナーの1人が再実行してくれたんだけど、たくさんあるマトリックステストのどこかが落ちてまた再実行しないといけない。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/go-ldap/ldap/pull/471">IsErrorAnyOf should match the given result code even if the error is wrapped #471&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>それを待っている間に、テストがエラーになる本当の原因の問題を直そうと2-3日前に issue 登録していた。この issue の対応を本当は昨日やろうと思っていたのに、思いの外、寝てしまって、その後もいろいろ書きものをしていて時間を使ってしまってできていなかった。今朝からそれを片付けた。業務の一環なので日曜日にプルリクエストを送らなくてもよいのだけど、コントリビューションなので空き時間に終わらせて、業務の時間は別のことに使いたいという思いもあったりする。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/go-ldap/ldap/pull/473">Fix DATA RACE as a result of changing ber&amp;rsquo;s module global variable for fuzz tests #473&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>さらに github actions のログに deprecated ワーニングが出ていたのでついでにそれも直した。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/go-ldap/ldap/pull/474">Fix deprecated warning on GitHub Actions #474&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>473, 474, 471 の順番にマージされていくのが望ましい。そろそろコミット権をくれたりしないかな？と思ったりもする。というのは、タイミングの問題で action の job が落ちたり、バージョン上げるだけの pr とか、自分でマージしてしまえばいいと思ったりする。&lt;/p>
+&lt;h2 id="hugo-で書いた記事に目次を生成する">hugo で書いた記事に目次を生成する&lt;/h2>
+&lt;p>お手伝い先のテックブログは hugo で運用されている。記事の目次がないなと気付いて追加してみた。hugo v0.60.0 以降のバージョンなら標準で目次生成の機能をもっている。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-html" data-lang="html">&lt;span style="display:flex;">&lt;span>&amp;lt;&lt;span style="color:#f92672">aside&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ .TableOfContents }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/&lt;span style="color:#f92672">aside&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>&lt;a href="https://gohugo.io/content-management/toc/">Table of contents&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>デフォルトはヘッダー2レベルより下の目次を生成する。レベル1も生成したい場合は config.toml に次の設定を追加する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-toml" data-lang="toml">&lt;span style="display:flex;">&lt;span>[&lt;span style="color:#a6e22e">markup&lt;/span>]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> [&lt;span style="color:#a6e22e">markup&lt;/span>.&lt;span style="color:#a6e22e">tableOfContents&lt;/span>]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">startLevel&lt;/span> = &lt;span style="color:#ae81ff">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">endLevel&lt;/span> = &lt;span style="color:#ae81ff">3&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>経済的且つ健康</title><link>/diary/posts/2023/1113/</link><pubDate>Mon, 13 Nov 2023 17:05:35 +0900</pubDate><guid>/diary/posts/2023/1113/</guid><description>22時頃から寝てしまって24時に起きて2時間ほどネットみたりしてまた寝て4時に起きて7時に起きた。
 健康によさそうな紅生姜 昨日の続き 。業務スーパーの紅生姜は 1kg 338円、賞味期限も9ヶ月、とお得ではあるものの、中国産且つ合成保存料／着色料を使っているところに懸念がある。日常的に食べるものならもう少し健康に注意を払いたい。amazon で購入できる商品で 坂田信夫商店 という生姜専門店をみつけた。「合成着色料・保存料 不使用」なのがよい。この紅生姜も色はついているものの、野菜色素で色付けしているらしい。この商品は 1kg 1,800円、賞味期限は製造日から4ヶ月になる。健康に気を遣うと割高になるが、普段食べるものはそれで構わない。amazon の定期便で食べる量にあわせて送ってもらうのがよさそう。
 お昼ご飯の行方 週末にスーパーのポイントカードの振る舞いをチェックするためにいつもより食材をたくさん買い込んでしまった。冷蔵庫が膨らんでいるので土日の両日とも自炊して、今日のランチも外食ではなく、お昼に帰って自炊した。オフィスと家の距離が徒歩3分なのですぐ帰れる。家で自炊してお昼ご飯を作るメリット・デメリットを考えてみる。
 メリット
