@@ -1,4 +1,32 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>docker on forest nook</title><link>/diary/tags/docker/</link><description>Recent content in docker on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Mon, 02 Oct 2023 09:08:26 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/docker/index.xml" rel="self" type="application/rss+xml"/><item><title>インフラの式年遷宮</title><link>/diary/posts/2023/1002/</link><pubDate>Mon, 02 Oct 2023 09:08:26 +0900</pubDate><guid>/diary/posts/2023/1002/</guid><description>1時に寝て何度か起きて5時に起きた。それからだらだらして寝てまた7時に起きた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>docker on forest nook</title><link>/diary/tags/docker/</link><description>Recent content in docker on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Fri, 15 Dec 2023 08:34:04 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/docker/index.xml" rel="self" type="application/rss+xml"/><item><title>おいしい 🦀 を食べに行く</title><link>/diary/posts/2023/1215/</link><pubDate>Fri, 15 Dec 2023 08:34:04 +0900</pubDate><guid>/diary/posts/2023/1215/</guid><description>22時頃に寝てしまって1時に起きて5時に起きて6時過ぎに起きた。とくになにもしていないのにバテている気がする。今週はずっと mongodb のレプリカセットの調査やインフラの移行作業などをやっていたせいか、普段よりもエネルギーを消費しているのかもしれない。朝から疲労困憊でオフィスへ向かった。
+docker のコンテナネットワークの調査 docker のコンテナネットワークから解決できる名前がなになのか、よくわかってなくて、その調査のためにサンプルの compose サービスを作った。
+https://github.com/t2y/docker-compose-sample myimage から nginx のコンテナの名前解決がどうなるかを試してみる。
+c67a5ca94a77:/app# dig +short 00c719491558 192.168.240.3 c67a5ca94a77:/app# dig +short mynginx 192.168.240.3 c67a5ca94a77:/app# dig +short nginx 192.168.240.3 c67a5ca94a77:/app# dig +short yournginx 192.168.240.3 基本的にはサービス名、コンテナ名 (container_name)、コンテナー ID、ホスト名 (hostname) はすべて名前解決できる。hostname があるときはそのコンテナの /etc/hosts にその名前が追加され、ないときはコンテナ ID が追加されていた。
+yourcontainer:/app# cat /etc/hosts 127.0.0.1 localhost ... 172.18.0.3 yourcontainer 冬の開発合宿の準備 日程を決めたのが5月末 で、うちの会社のワークスペースに slack のチャンネルを開設したのが10月。現時点で7人の参加者がいる。もうこのメンバーでいいかなと考えている。今回はコミュニティのワーケーションイベントというより、自社の開発合宿という体をとっている。スポンサーとしていくらか会社からお金も出す。その理由の1つは slack チャンネルにログを残したいという意図がある。コミュニティの slack だとフリープランになるので3ヶ月以上過去のログがみえなくなってしまう。それを解消するには自社の有料プランの slack チャンネルに置いておくのがもっともログを制御できて嬉しい。
+城崎温泉では11月から 🦀 が解禁となって、今年は冬に行くので 🦀 を食べるというのも目的の1つ。チャンネルで盛り上げようと、たまに城崎温泉の記事を貼り付けたりしていた。そろそろ、メンバーと顔合わせの情報共有の打ち合わせをしようと思って調整さんを作った。他の人たちは、わざわざうちの slack のワークスペースにゲスト参加しているから、あまり無理強いをせずに情報共有できるようにしておきたい。たった1つの、ほとんどやり取りしないチャンネルのために slack のワークスペースをオープンしておかないといけないという用途はなかなか面倒だ。私が逆の立場でもそう思う。どうにか普段使っているワークスペースから、必要なときだけ連携できるような仕組みがないだろうか？</description><content>&lt;p>22時頃に寝てしまって1時に起きて5時に起きて6時過ぎに起きた。とくになにもしていないのにバテている気がする。今週はずっと mongodb のレプリカセットの調査やインフラの移行作業などをやっていたせいか、普段よりもエネルギーを消費しているのかもしれない。朝から疲労困憊でオフィスへ向かった。&lt;/p>
+&lt;h2 id="docker-のコンテナネットワークの調査">docker のコンテナネットワークの調査&lt;/h2>
+&lt;p>docker のコンテナネットワークから解決できる名前がなになのか、よくわかってなくて、その調査のためにサンプルの compose サービスを作った。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/t2y/docker-compose-sample">https://github.com/t2y/docker-compose-sample&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>myimage から nginx のコンテナの名前解決がどうなるかを試してみる。&lt;/p>
+&lt;pre tabindex="0">&lt;code>c67a5ca94a77:/app# dig +short 00c719491558
+192.168.240.3
+c67a5ca94a77:/app# dig +short mynginx
+192.168.240.3
+c67a5ca94a77:/app# dig +short nginx
+192.168.240.3
+c67a5ca94a77:/app# dig +short yournginx
+192.168.240.3
+&lt;/code>&lt;/pre>&lt;p>基本的にはサービス名、コンテナ名 (container_name)、コンテナー ID、ホスト名 (hostname) はすべて名前解決できる。hostname があるときはそのコンテナの /etc/hosts にその名前が追加され、ないときはコンテナ ID が追加されていた。&lt;/p>
+&lt;pre tabindex="0">&lt;code>yourcontainer:/app# cat /etc/hosts
+127.0.0.1 localhost
+...
+172.18.0.3 yourcontainer
+&lt;/code>&lt;/pre>&lt;h2 id="冬の開発合宿の準備">冬の開発合宿の準備&lt;/h2>
+&lt;p>&lt;a href="/diary/diary/posts/2023/0526/#開発合宿の日程確定">日程を決めたのが5月末&lt;/a> で、うちの会社のワークスペースに slack のチャンネルを開設したのが10月。現時点で7人の参加者がいる。もうこのメンバーでいいかなと考えている。今回はコミュニティのワーケーションイベントというより、自社の開発合宿という体をとっている。スポンサーとしていくらか会社からお金も出す。その理由の1つは slack チャンネルにログを残したいという意図がある。コミュニティの slack だとフリープランになるので3ヶ月以上過去のログがみえなくなってしまう。それを解消するには自社の有料プランの slack チャンネルに置いておくのがもっともログを制御できて嬉しい。&lt;/p>
+&lt;p>城崎温泉では11月から 🦀 が解禁となって、今年は冬に行くので 🦀 を食べるというのも目的の1つ。チャンネルで盛り上げようと、たまに城崎温泉の記事を貼り付けたりしていた。そろそろ、メンバーと顔合わせの情報共有の打ち合わせをしようと思って調整さんを作った。他の人たちは、わざわざうちの slack のワークスペースにゲスト参加しているから、あまり無理強いをせずに情報共有できるようにしておきたい。たった1つの、ほとんどやり取りしないチャンネルのために slack のワークスペースをオープンしておかないといけないという用途はなかなか面倒だ。私が逆の立場でもそう思う。どうにか普段使っているワークスペースから、必要なときだけ連携できるような仕組みがないだろうか？&lt;/p>
+&lt;p>年末・年始の情報共有の打ち合わせへ向けて旅のしおりも準備していく。日々の業務に忙殺されて後回しにしがちなので自分を追い込むためにも予定を入れた。&lt;/p></content></item><item><title>インフラの式年遷宮</title><link>/diary/posts/2023/1002/</link><pubDate>Mon, 02 Oct 2023 09:08:26 +0900</pubDate><guid>/diary/posts/2023/1002/</guid><description>1時に寝て何度か起きて5時に起きた。それからだらだらして寝てまた7時に起きた。
 テスト環境の再整備と rootless コンテナ インフラの式年遷宮のようなことをしていて、テスト環境をリファクタリングして再整備していた。これまで root でコンテナを実行していたが、最近は rootless コンテナがセキュリティ強化の観点から望ましいということで次のドキュメントをみながら設定した。
 Linux post-installation steps for Docker Engine 設定はとくに難しくないが、dockerd や containerd の起動を systemd のユーザーインスタンスに依存することになる。systemd のユーザーインスタンスは基本的にユーザーがログインしたときに生成されるものなので OS が再起動したときなどに困る。OS 再起動時にも systemd のユーザーインスタンスを生成するには linger という仕組みを有効にすればよいらしい。systemd &amp;ndash;user の扱いと linger のことまで理解していれば、たぶん大丈夫なのかな？これで運用がうまくいくことを祈りたい。
 $ sudo loginctl enable-linger ucidm</description><content>&lt;p>1時に寝て何度か起きて5時に起きた。それからだらだらして寝てまた7時に起きた。&lt;/p>
