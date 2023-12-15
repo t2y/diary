@@ -1,4 +1,65 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>design on forest nook</title><link>/diary/tags/design/</link><description>Recent content in design on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Wed, 08 Nov 2023 08:26:25 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/design/index.xml" rel="self" type="application/rss+xml"/><item><title>rbac なロールでの動的な権限チェック</title><link>/diary/posts/2023/1108/</link><pubDate>Wed, 08 Nov 2023 08:26:25 +0900</pubDate><guid>/diary/posts/2023/1108/</guid><description>23時に寝て何度か起きて7時に起きた。夜に作業するつもりが、メイドインアビス を見ながら寝落ちした。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>design on forest nook</title><link>/diary/tags/design/</link><description>Recent content in design on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Wed, 13 Dec 2023 20:35:00 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/design/index.xml" rel="self" type="application/rss+xml"/><item><title>mongodb のサードパーティのコンテナイメージ</title><link>/diary/posts/2023/1213/</link><pubDate>Wed, 13 Dec 2023 20:35:00 +0900</pubDate><guid>/diary/posts/2023/1213/</guid><description>23時に寝て3時に起きて寝たかどうか覚えていないうちに6時半になっていて7時半に起きた。
+json を介した go の bool 値のバリエーション go-playground/validator のバリデータには required というバリデーションオプションがある。しかし、このオプションは go のゼロ値でないことをチェックするという仕様になっている。bool のゼロ値は false となるため、リクエストした JSON データに false を設定していたのか、未設定だったのかの違いを検出できない。これはバリデータの問題ではなく、go の json ライブラリの制約のようなもので使い勝手のよい仕様とは言えない。私もこの振る舞いに起因する不具合に遭遇したこともあるし、こういうときにどうしたらよいかも過去に3回ぐらいは調べている気がする。
+How to validate bool #142 現時点での私の最適化は次のコードになる。データ構造として *bool 型にすれば、ポインタ型のゼロ値は nil となるため、true, false, nil の3値でバリデーションできる。しかし、私はこのデータ構造を好ましく思わない。というのは、内部的には true/false の2値でしか管理しないメンバーを、json のバリデーションのためだけに nil も許容する3値にすることがよい設計だと私は思えない。そこでバリデータによるバリデーションは諦めて、json の Unmarshal 処理をフックしてバリデーション相当の処理を自分で実装する。このやり方のデメリットはメンバーが追加されたときに自分で UnmarshalJSON() メソッドを保守する必要がある点になる。しかし、メリットとして内部のデータ構造の型は bool 型で扱える。一概にどちらがよいとは言いにくいかもしれないし、設計上の好みかもしれない。
+type reqMyData struct { Name string `json:&amp;#34;name&amp;#34;` View *bool `json:&amp;#34;view&amp;#34;` } type MyData struct { Name string `json:&amp;#34;name&amp;#34;` View bool `json:&amp;#34;view&amp;#34;` } func (d *MyData) UnmarshalJSON(data []byte) error { var tmp reqMyData if err := json.</description><content>&lt;p>23時に寝て3時に起きて寝たかどうか覚えていないうちに6時半になっていて7時半に起きた。&lt;/p>
+&lt;h2 id="json-を介した-go-の-bool-値のバリエーション">json を介した go の bool 値のバリエーション&lt;/h2>
+&lt;p>&lt;a href="https://github.com/go-playground/validator">go-playground/validator&lt;/a> のバリデータには &lt;a href="https://pkg.go.dev/github.com/go-playground/validator/v10#hdr-Required">required&lt;/a> というバリデーションオプションがある。しかし、このオプションは go のゼロ値でないことをチェックするという仕様になっている。bool のゼロ値は false となるため、リクエストした JSON データに false を設定していたのか、未設定だったのかの違いを検出できない。これはバリデータの問題ではなく、go の json ライブラリの制約のようなもので使い勝手のよい仕様とは言えない。私もこの振る舞いに起因する不具合に遭遇したこともあるし、こういうときにどうしたらよいかも過去に3回ぐらいは調べている気がする。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/go-playground/validator/issues/142">How to validate bool #142&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>現時点での私の最適化は次のコードになる。データ構造として &lt;code>*bool&lt;/code> 型にすれば、ポインタ型のゼロ値は nil となるため、true, false, nil の3値でバリデーションできる。しかし、私はこのデータ構造を好ましく思わない。というのは、内部的には true/false の2値でしか管理しないメンバーを、json のバリデーションのためだけに nil も許容する3値にすることがよい設計だと私は思えない。そこでバリデータによるバリデーションは諦めて、json の Unmarshal 処理をフックしてバリデーション相当の処理を自分で実装する。このやり方のデメリットはメンバーが追加されたときに自分で UnmarshalJSON() メソッドを保守する必要がある点になる。しかし、メリットとして内部のデータ構造の型は &lt;code>bool&lt;/code> 型で扱える。一概にどちらがよいとは言いにくいかもしれないし、設計上の好みかもしれない。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-go" data-lang="go">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">type&lt;/span> &lt;span style="color:#a6e22e">reqMyData&lt;/span> &lt;span style="color:#66d9ef">struct&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">Name&lt;/span> &lt;span style="color:#66d9ef">string&lt;/span> &lt;span style="color:#e6db74">`json:&amp;#34;name&amp;#34;`&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">View&lt;/span> &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#66d9ef">bool&lt;/span> &lt;span style="color:#e6db74">`json:&amp;#34;view&amp;#34;`&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">type&lt;/span> &lt;span style="color:#a6e22e">MyData&lt;/span> &lt;span style="color:#66d9ef">struct&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">Name&lt;/span> &lt;span style="color:#66d9ef">string&lt;/span> &lt;span style="color:#e6db74">`json:&amp;#34;name&amp;#34;`&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">View&lt;/span> &lt;span style="color:#66d9ef">bool&lt;/span> &lt;span style="color:#e6db74">`json:&amp;#34;view&amp;#34;`&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> (&lt;span style="color:#a6e22e">d&lt;/span> &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">MyData&lt;/span>) &lt;span style="color:#a6e22e">UnmarshalJSON&lt;/span>(&lt;span style="color:#a6e22e">data&lt;/span> []&lt;span style="color:#66d9ef">byte&lt;/span>) &lt;span style="color:#66d9ef">error&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">tmp&lt;/span> &lt;span style="color:#a6e22e">reqMyData&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">json&lt;/span>.&lt;span style="color:#a6e22e">Unmarshal&lt;/span>(&lt;span style="color:#a6e22e">data&lt;/span>, &lt;span style="color:#f92672">&amp;amp;&lt;/span>&lt;span style="color:#a6e22e">tmp&lt;/span>); &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Errorf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;failed to unmarshal as reqMyData&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">tmp&lt;/span>.&lt;span style="color:#a6e22e">View&lt;/span> &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Errorf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;required view field&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">d&lt;/span>.&lt;span style="color:#a6e22e">Name&lt;/span> = &lt;span style="color:#a6e22e">tmp&lt;/span>.&lt;span style="color:#a6e22e">Name&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">d&lt;/span>.&lt;span style="color:#a6e22e">View&lt;/span> = &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">tmp&lt;/span>.&lt;span style="color:#a6e22e">View&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="サードパーティの-mongodb-コンテナイメージ">サードパーティの mongodb コンテナイメージ&lt;/h2>
+&lt;p>先日の &lt;a href="/diary/diary/posts/2023/1211/">mongodb のレプリカセット調査&lt;/a> の続き。コードレビューをしていて &lt;a href="https://hub.docker.com/r/bitnami/mongodb">bitnami/mongodb&lt;/a> というサードパーティのコンテナイメージを使った方がよいのではないか？というコメントがあったのでその調査をしてみた。VMware 社が提供しているサードパーティのコンテナイメージらしい。&lt;/p>
+&lt;blockquote>
+&lt;p>MongoDB(R) is run and maintained by MongoDB, which is a completely separate project from Bitnami.&lt;/p>
+&lt;/blockquote>
+&lt;p>まず MongoDB プロジェクトとはまったく別管理であることが書いてある。&lt;/p>
+&lt;blockquote>
+&lt;p>Bitnami イメージを使用する理由&lt;/p>
+&lt;ul>
+&lt;li>Bitnamiはアップストリームソースの変更を綿密に追跡し、自動化されたシステムを使用してこのイメージの新しいバージョンを迅速に公開します。&lt;/li>
+&lt;li>Bitnami イメージでは、最新のバグ修正と機能をできるだけ早く利用できます。&lt;/li>
+&lt;li>Bitnamiのコンテナ、仮想マシン、クラウドイメージは、同じコンポーネントと構成アプローチを使用しているため、プロジェクトのニーズに応じて形式を簡単に切り替えることができます。&lt;/li>
+&lt;li>Bitnamiのイメージはすべて、minideb（最小限のDebianベースのコンテナイメージ）またはscratch（明示的に空のイメージ）をベースにしています。&lt;/li>
+&lt;li>Docker Hubで利用可能なすべてのBitnamiイメージは、Docker Content Trust（DCT）で署名されています。DOCKER_CONTENT_TRUST=1 を使用して、イメージの完全性を確認できます。&lt;/li>
+&lt;li>Bitnamiコンテナイメージは定期的にリリースされ、最新のディストリビューションパッケージが利用可能です。&lt;/li>
+&lt;/ul>
+&lt;p>MongoDB®を本番環境で使用したいですか？Bitnami Application Catalogのエンタープライズ版であるVMware Tanzu Application Catalogをお試しください。&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;a href="https://hub.docker.com/_/mongo">mongo&lt;/a> の公式イメージは ubuntu をベースイメージにしている。ubuntu よりは minideb の方が軽いのかな？そしてちゃんと upstream にも追随しているみたい。このベースイメージの違いによるものかは定かではないが、結合テストのイメージも移行してみたところ、10-20秒ほど結合テストの実行時間が速くなった。割合にすると10%程度かな。&lt;/p>
+&lt;blockquote>
+&lt;p>KubernetesにMongoDB®をデプロイするには？&lt;/p>
+&lt;p>Bitnami アプリケーションを Helm Chart としてデプロイすることは、Kubernetes 上で当社のアプリケーションを使い始める最も簡単な方法です。インストールの詳細については、Bitnami MongoDB® Chart GitHub リポジトリを参照してください。&lt;/p>
+&lt;p>Bitnami コンテナは、クラスタへの Helm Charts のデプロイと管理に Kubeapps と一緒に使用できます。&lt;/p>
+&lt;/blockquote>
+&lt;p>helm chart も提供しているようで、いずれクラウド版を作るときに MongoDB も k8s 上にデプロイする上でこのことは都合がよいように思える。&lt;/p>
+&lt;p>レプリケーションを前提とした初期設定があり、entrypoint スクリプトもいくつか読んでみた感じだと、きれいに管理されていて保守もちゃんとやってくれそうにみえる。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/bitnami/containers/tree/main/bitnami/mongodb">https://github.com/bitnami/containers/tree/main/bitnami/mongodb&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>昨日、導入したばかりの公式イメージ + 自作スクリプトによるレプリケーション設定を廃止して、Bitnami のコンテナイメージを使うことに決めた。&lt;/p></content></item><item><title>rbac なロールでの動的な権限チェック</title><link>/diary/posts/2023/1108/</link><pubDate>Wed, 08 Nov 2023 08:26:25 +0900</pubDate><guid>/diary/posts/2023/1108/</guid><description>23時に寝て何度か起きて7時に起きた。夜に作業するつもりが、メイドインアビス を見ながら寝落ちした。
 ldap で認証したユーザーの権限管理 rbac なロール管理 の仕組みを api サーバーに実装した。初期実装したときは静的にリソース (url) に対して acl から権限が許可されているかどうかのみをチェックするだけでよかった。ldap で認証したユーザーは自分の情報は更新できるが、他人の情報は更新できないといったリクエスト単位に権限が許可されているかどうかをミドルウェアで判別したい。いわば、リクエスト時に動的にリソースの情報をチェックしないといけない。
 いくつか試行錯誤して、あーでもないこーどもないとやった結果、次のように落ち着いた。
 リソースは動的な権限チェックのために AuthorizeFunc を取得するための AuthorizeKey をもつ AuthorizeFunc は Context から取得する AuthorizeFunc が true を返す場合は権限を付与する func (r *Role) CanAccess(ctx context.Context, resourceName, target string) bool { for _, ac := range r.ACL { if ac.Resource.Match(resourceName) { for _, perm := range ac.Permissions { if perm.IsGranted(target) { return true } } if authorize, ok := ctx.Value(ac.Resource.Key).(AuthorizeFunc); ok { if authorize(ctx, resourceName, target) { return true } } } } return false } ロールに渡す Context にはあらかじめ、AuthorizeKey と AuthorizeFunc を登録しておく。</description><content>&lt;p>23時に寝て何度か起きて7時に起きた。夜に作業するつもりが、&lt;a href="http://miabyss.com/">メイドインアビス&lt;/a> を見ながら寝落ちした。&lt;/p>
