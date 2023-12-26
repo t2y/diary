@@ -1,4 +1,36 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>workcation on forest nook</title><link>/diary/tags/workcation/</link><description>Recent content in workcation on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Fri, 15 Dec 2023 08:34:04 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/workcation/index.xml" rel="self" type="application/rss+xml"/><item><title>おいしい 🦀 を食べに行く</title><link>/diary/posts/2023/1215/</link><pubDate>Fri, 15 Dec 2023 08:34:04 +0900</pubDate><guid>/diary/posts/2023/1215/</guid><description>22時頃に寝てしまって1時に起きて5時に起きて6時過ぎに起きた。とくになにもしていないのにバテている気がする。今週はずっと mongodb のレプリカセットの調査やインフラの移行作業などをやっていたせいか、普段よりもエネルギーを消費しているのかもしれない。朝から疲労困憊でオフィスへ向かった。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>workcation on forest nook</title><link>/diary/tags/workcation/</link><description>Recent content in workcation on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sun, 24 Dec 2023 12:05:44 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/workcation/index.xml" rel="self" type="application/rss+xml"/><item><title>無駄なものはそうそうない</title><link>/diary/posts/2023/1224/</link><pubDate>Sun, 24 Dec 2023 12:05:44 +0900</pubDate><guid>/diary/posts/2023/1224/</guid><description>0時に寝て4時に起きてアニメをみて5時半に寝て9時に起きた。午前中はだらだらしていた。
+旅のしおりのたたき台作り 3月に予定している 開発合宿 イベントの打ち合わせを次の木曜日に行う。そのための資料作りをした。昨年の記録があるのでその内容を見返したり、写真を貼り付けたりしながら、昨年作った資料よりも詳細な「旅のしおり」を作ることができた。
+1日目 2日目 3日目 しばらくは冬の城崎温泉の開発合宿を、うちの会社の年中行事として継続していきたい。
+コワーキングの価値の考察 独りで活動する個人事業主やマイクロ法人の役員にとってコワーキングがもたらす価値は大きいのではないかと私は考えている。以前 リモートワークと相談相手 という記事を書いた。そのふりかえりや考察の中から 日記を書き続ける ことに決めた。それは思考の外在化を強制的に行わないと、私はすぐに劣化するということを身をもって理解した。ひとえに人間が弱いのだと思う。思考の外在化とは次になる。
+書くこと 話すこと これらの活動が減ることで思考が鈍化したり脳が退化したりする。書くことは日記で補えたが、話すことは相手がいないと成り立たない。顧問のはらさんに隔週で相談しているのもそうだし、カフーツさんのオンラインイベントに参加しているのもそうだし、開発合宿に社外の人たちを呼ぶのもその一環になる。そして、このことは会社員時代にあまり感じたことはなかった。それは会社員時代にはこれらの活動を伴うイベント、つまり会議だったり、報告だったり、同僚との雑談などが自然に日々の生活の中に含まれていたからだ。
+無駄じゃなかったんやと思ったら次のシーンを思い出した。
+初めて、成功したよ。800年か……全く、無駄な魔法だと恨んでさえいたが。ああ、意味はあったんだな。
+意味のない無駄なことだと思いながらも長く続けていたことが、その意図をもって実施したかの如何に関わらず、なにかの役に立つことはあるし、なにごとも継続するに無駄なことはないという気付きでもある。古代の中国においても 鶏鳴狗盗 という故事がある。人それぞれに長く継続できていることがあるならそのことを大事にしたらよいと私は思う。それは継続した先にしかわからないこともある。
+やや非科学的な仮説ではあるが、小林正観 という人物が「ありがとう」を唱えると幸せになるという仮説を提唱している。「ありがとう」を一万回となえると幸せになり、二万五千回となえると涙があふれだし、五万回となえると奇跡がおきる、もしくは年齢×一万回となえると第一段階の奇跡が起きるという。仮にこういった現象が本当に起きるのであれば、他者への感謝を述べる言葉から脳が影響を受けて、感謝の行動や考え方が身に付いて、現実の生活にも影響が出てくるのだろうと推測する。</description><content>&lt;p>0時に寝て4時に起きてアニメをみて5時半に寝て9時に起きた。午前中はだらだらしていた。&lt;/p>
+&lt;h2 id="旅のしおりのたたき台作り">旅のしおりのたたき台作り&lt;/h2>
+&lt;p>3月に予定している &lt;a href="/diary/diary/posts/2023/1027/#隔週の雑談">開発合宿&lt;/a> イベントの打ち合わせを次の木曜日に行う。そのための資料作りをした。昨年の記録があるのでその内容を見返したり、写真を貼り付けたりしながら、昨年作った資料よりも詳細な「旅のしおり」を作ることができた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="/diary/diary/posts/2022/0603/">1日目&lt;/a>&lt;/li>
+&lt;li>&lt;a href="/diary/diary/posts/2022/0604/">2日目&lt;/a>&lt;/li>
+&lt;li>&lt;a href="/diary/diary/posts/2022/0605/">3日目&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>しばらくは冬の城崎温泉の開発合宿を、うちの会社の年中行事として継続していきたい。&lt;/p>
+&lt;h2 id="コワーキングの価値の考察">コワーキングの価値の考察&lt;/h2>
+&lt;p>独りで活動する個人事業主やマイクロ法人の役員にとってコワーキングがもたらす価値は大きいのではないかと私は考えている。以前 &lt;a href="https://note.com/t2y1979/n/n84deed5fd934">リモートワークと相談相手&lt;/a> という記事を書いた。そのふりかえりや考察の中から &lt;a href="/diary/diary/posts/2022/0927/">日記を書き続ける&lt;/a> ことに決めた。それは思考の外在化を強制的に行わないと、私はすぐに劣化するということを身をもって理解した。ひとえに人間が弱いのだと思う。思考の外在化とは次になる。&lt;/p>
+&lt;ul>
+&lt;li>書くこと&lt;/li>
+&lt;li>話すこと&lt;/li>
+&lt;/ul>
+&lt;p>これらの活動が減ることで思考が鈍化したり脳が退化したりする。書くことは日記で補えたが、話すことは相手がいないと成り立たない。顧問のはらさんに隔週で相談しているのもそうだし、カフーツさんのオンラインイベントに参加しているのもそうだし、開発合宿に社外の人たちを呼ぶのもその一環になる。そして、このことは会社員時代にあまり感じたことはなかった。それは会社員時代にはこれらの活動を伴うイベント、つまり会議だったり、報告だったり、同僚との雑談などが自然に日々の生活の中に含まれていたからだ。&lt;/p>
+&lt;p>無駄じゃなかったんやと思ったら次のシーンを思い出した。&lt;/p>
+&lt;blockquote>
+&lt;p>初めて、成功したよ。800年か……全く、無駄な魔法だと恨んでさえいたが。ああ、意味はあったんだな。&lt;/p>
+&lt;/blockquote>
+&lt;div class="video-container">
+&lt;iframe src="https://www.youtube.com/embed/eZ13oxXpbH4" allowfullscreen title="フェルズの気付き">&lt;/iframe>
+&lt;/div>
+&lt;p>意味のない無駄なことだと思いながらも長く続けていたことが、その意図をもって実施したかの如何に関わらず、なにかの役に立つことはあるし、なにごとも継続するに無駄なことはないという気付きでもある。古代の中国においても &lt;a href="https://ja.wikipedia.org/wiki/%E5%AD%9F%E5%98%97%E5%90%9B#%E9%B6%8F%E9%B3%B4%E7%8B%97%E7%9B%97">鶏鳴狗盗&lt;/a> という故事がある。人それぞれに長く継続できていることがあるならそのことを大事にしたらよいと私は思う。それは継続した先にしかわからないこともある。&lt;/p>
+&lt;p>やや非科学的な仮説ではあるが、&lt;a href="https://ja.wikipedia.org/wiki/%E5%B0%8F%E6%9E%97%E6%AD%A3%E8%A6%B3">小林正観&lt;/a> という人物が「ありがとう」を唱えると幸せになるという仮説を提唱している。「ありがとう」を一万回となえると幸せになり、二万五千回となえると涙があふれだし、五万回となえると奇跡がおきる、もしくは年齢×一万回となえると第一段階の奇跡が起きるという。仮にこういった現象が本当に起きるのであれば、他者への感謝を述べる言葉から脳が影響を受けて、感謝の行動や考え方が身に付いて、現実の生活にも影響が出てくるのだろうと推測する。&lt;/p></content></item><item><title>おいしい 🦀 を食べに行く</title><link>/diary/posts/2023/1215/</link><pubDate>Fri, 15 Dec 2023 08:34:04 +0900</pubDate><guid>/diary/posts/2023/1215/</guid><description>22時頃に寝てしまって1時に起きて5時に起きて6時過ぎに起きた。とくになにもしていないのにバテている気がする。今週はずっと mongodb のレプリカセットの調査やインフラの移行作業などをやっていたせいか、普段よりもエネルギーを消費しているのかもしれない。朝から疲労困憊でオフィスへ向かった。
 docker のコンテナネットワークの調査 docker のコンテナネットワークから解決できる名前がなになのか、よくわかってなくて、その調査のためにサンプルの compose サービスを作った。
 https://github.com/t2y/docker-compose-sample myimage から nginx のコンテナの名前解決がどうなるかを試してみる。
 c67a5ca94a77:/app# dig +short 00c719491558 192.168.240.3 c67a5ca94a77:/app# dig +short mynginx 192.168.240.3 c67a5ca94a77:/app# dig +short nginx 192.168.240.3 c67a5ca94a77:/app# dig +short yournginx 192.168.240.3 基本的にはサービス名、コンテナ名 (container_name)、コンテナー ID、ホスト名 (hostname) はすべて名前解決できる。hostname があるときはそのコンテナの /etc/hosts にその名前が追加され、ないときはコンテナ ID が追加されていた。
