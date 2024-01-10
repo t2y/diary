@@ -1,5 +1,43 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2024/01 on forest nook</title><link>/diary/dates/2024/01/</link><description>Recent content in 2024/01 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2024/01/index.xml" rel="self" type="application/rss+xml"/><item><title>evernote から upnote への移行</title><link>/diary/posts/2024/0108/</link><pubDate>Mon, 08 Jan 2024 01:15:31 +0900</pubDate><guid>/diary/posts/2024/0108/</guid><description>6時に寝て8時半に起きた。オフィスで3時前ぐらいまで調べものして、帰ってからも眠れなくてネットしてたら朝になった。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2024/01 on forest nook</title><link>/diary/dates/2024/01/</link><description>Recent content in 2024/01 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2024/01/index.xml" rel="self" type="application/rss+xml"/><item><title>災害義援金を寄付してみた</title><link>/diary/posts/2024/0109/</link><pubDate>Tue, 09 Jan 2024 09:30:22 +0900</pubDate><guid>/diary/posts/2024/0109/</guid><description>2時半に寝て4時半に起きて6時半に起きて7時半に起きた。
 今日の筋トレは腹筋:15x1,腕立て:10x1,スクワット10x1をした。
+災害義援金の寄付 週末に災害の寄付をしようと思ったときに、ふと寄付を法人でやればいいんじゃないかと思い付いた。どちらも私のお金であることには変わりないのだけど、会社のお金は個人のお金という気がしないので個人よりも大きいお金を寄付できる。これは法人という人格を分けていることのメリットの1つかもしれない。
+令和6年（2024年）能登半島地震に係る災害義援金の受付について 今朝から税理士さんに損金算入についての懸念がないかを確認して問題ないということだったので10万円を寄付した。領収書は電子フォームから申請したが、毎日それなりの数の人が寄付しているだろうから領収書が発送されるまで1ヶ月ぐらいはかかるのかもしれない。気長に待って領収書が届いたら軽く記事を書こうと思う。現時点での義援金の残高は 968,223,243 円とのこと。せいぜい集まるお金は数十億程度なのかな。
+現時点での暫定推計で被害総額は約8,000億円
+能登半島地震による経済損失について考える
+はてなブックマーク数の表示 hugo ではてなブックマークの数を表示するためのカスタマイズを追加した。はてな社がそのための機能を提供しているのですぐできる。
+自分のブログに「○○users」を表示する {{ $url := .Permalink }} {{ if hugo.IsDevelopment }} {{/* ローカル環境でブックマーク数の表示確認用途 */}} {{ $url = &amp;#34;https://kazamori.jp/&amp;#34; }} {{ end }} &amp;lt;span class=&amp;#34;m-1&amp;#34;&amp;gt; &amp;lt;a href=&amp;#34;{{ print &amp;#34;https://b.hatena.ne.jp/entry/&amp;#34; $url }}&amp;#34;&amp;gt; &amp;lt;img src=&amp;#34;{{ print &amp;#34;https://b.hatena.ne.jp/entry/image/&amp;#34; $url }}&amp;#34; alt=&amp;#34;はてなブックマーク - {{ .Title }}&amp;#34; title=&amp;#34;はてなブックマーク - {{ .Title }}&amp;#34; /&amp;gt; &amp;lt;/a&amp;gt; &amp;lt;/span&amp;gt; 呼び出し側はこんな風に使う。
+{{ partial &amp;#34;hatebu.html&amp;#34; . }} 結果は 記事一覧 で確認できる。</description><content>&lt;p>2時半に寝て4時半に起きて6時半に起きて7時半に起きた。&lt;/p>
+&lt;p>今日の筋トレは腹筋:15x1,腕立て:10x1,スクワット10x1をした。&lt;/p>
+&lt;h2 id="災害義援金の寄付">災害義援金の寄付&lt;/h2>
+&lt;p>週末に災害の寄付をしようと思ったときに、ふと寄付を法人でやればいいんじゃないかと思い付いた。どちらも私のお金であることには変わりないのだけど、会社のお金は個人のお金という気がしないので個人よりも大きいお金を寄付できる。これは法人という人格を分けていることのメリットの1つかもしれない。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://www.pref.ishikawa.lg.jp/suitou/gienkinr0601.html">令和6年（2024年）能登半島地震に係る災害義援金の受付について&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>今朝から税理士さんに損金算入についての懸念がないかを確認して問題ないということだったので10万円を寄付した。領収書は電子フォームから申請したが、毎日それなりの数の人が寄付しているだろうから領収書が発送されるまで1ヶ月ぐらいはかかるのかもしれない。気長に待って領収書が届いたら軽く記事を書こうと思う。現時点での義援金の残高は 968,223,243 円とのこと。せいぜい集まるお金は数十億程度なのかな。&lt;/p>
+&lt;blockquote>
+&lt;p>現時点での暫定推計で被害総額は約8,000億円&lt;/p>
+&lt;p>&lt;a href="https://www.nri.com/jp/knowledge/blog/lst/2024/fis/kiuchi/0105">能登半島地震による経済損失について考える&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="はてなブックマーク数の表示">はてなブックマーク数の表示&lt;/h2>
+&lt;p>hugo ではてなブックマークの数を表示するためのカスタマイズを追加した。はてな社がそのための機能を提供しているのですぐできる。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://b.hatena.ne.jp/help/entry/count">自分のブログに「○○users」を表示する&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-html" data-lang="html">&lt;span style="display:flex;">&lt;span>{{ $url := .Permalink }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{{ if hugo.IsDevelopment }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{/* ローカル環境でブックマーク数の表示確認用途 */}}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ $url = &amp;#34;https://kazamori.jp/&amp;#34; }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{{ end }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;&lt;span style="color:#f92672">span&lt;/span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;m-1&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">a&lt;/span> &lt;span style="color:#a6e22e">href&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;{{ print &amp;#34;&lt;/span>&lt;span style="color:#a6e22e">https:&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">//&lt;/span>&lt;span style="color:#a6e22e">b&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">.&lt;/span>&lt;span style="color:#a6e22e">hatena&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">.&lt;/span>&lt;span style="color:#a6e22e">ne&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">.&lt;/span>&lt;span style="color:#a6e22e">jp&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">/&lt;/span>&lt;span style="color:#a6e22e">entry&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">/&amp;#34;&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">$&lt;/span>&lt;span style="color:#a6e22e">url&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">}}&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">img&lt;/span> &lt;span style="color:#a6e22e">src&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;{{ print &amp;#34;&lt;/span>&lt;span style="color:#a6e22e">https:&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">//&lt;/span>&lt;span style="color:#a6e22e">b&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">.&lt;/span>&lt;span style="color:#a6e22e">hatena&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">.&lt;/span>&lt;span style="color:#a6e22e">ne&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">.&lt;/span>&lt;span style="color:#a6e22e">jp&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">/&lt;/span>&lt;span style="color:#a6e22e">entry&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">/&lt;/span>&lt;span style="color:#a6e22e">image&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">/&amp;#34;&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">$&lt;/span>&lt;span style="color:#a6e22e">url&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">}}&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">alt&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;はてなブックマーク - {{ .Title }}&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">title&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;はてなブックマーク - {{ .Title }}&amp;#34;&lt;/span> /&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">a&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/&lt;span style="color:#f92672">span&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>呼び出し側はこんな風に使う。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-html" data-lang="html">&lt;span style="display:flex;">&lt;span>{{ partial &amp;#34;hatebu.html&amp;#34; . }}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>結果は &lt;a href="https://blog.osstech.co.jp/posts/">記事一覧&lt;/a> で確認できる。&lt;/p></content></item><item><title>evernote から upnote への移行</title><link>/diary/posts/2024/0108/</link><pubDate>Mon, 08 Jan 2024 01:15:31 +0900</pubDate><guid>/diary/posts/2024/0108/</guid><description>6時に寝て8時半に起きた。オフィスで3時前ぐらいまで調べものして、帰ってからも眠れなくてネットしてたら朝になった。
+今日の筋トレは腹筋:15x2,腕立て:10x1,スクワット10x1をした。
 サンライズ出雲の予約 以前 やまさきさんに教えていただいた夜行列車 を予約してみた。列車は瀬戸と出雲の2つがある。岡山〜東京間は瀬戸と出雲が連結して運行するそうなのでどちらを選択しても同じだと思うけれど、出雲で予約してみた。乗り込む車両が異なるのかな？
 三ノ宮(00:11発) =&amp;gt; 東京 (07:08着)
 特急サンライズ出雲（シングル） 料金券部分 10,460円 (三ノ宮 - 東京) 乗車券部分 9,460円 (神戸市内 - 東京都区内 2月6日～2月9日まで有効) 前回に 専用の予約画面 があることを調査済みだったので迷わず予約を取れた。唯一、面倒なところがオンラインで予約した後に紙の切符を発行しないといけないところ。切符を発行するには緑の窓口・券売機へ行かないといけない。三ノ宮駅にはあるので問題はない。発行には次の3つが必要になる。初めてだから予約後、すぐに駅へ行って発行してみた。迷わず簡単にできたのでこれなら乗車する直前でもそう困らないように思える。
@@ -9,7 +47,7 @@
 買いものの備忘録として思いついたときにパソコンから記録し、スマホでチェックしながら買いものする 法人番号、住所、家族の誕生日など、オンラインで手入力しないといけないときなどのコピペ元 郵便受けのダイヤルロックを忘れたときのメモ パソコンやデバイスを購入したときのスペックを記録しておく オンラインの記事やサイトを保管しておくときの web クリップ 正直メモ帳アプリでなくても、他のアプリへ移行することもできるが、惰性で使っているのでできればそのまま移行したい。私の周りでは obsidian を使っている人も多く評判もいいからこれでもよかったんだけど、いくつか記事を読んでいると upnote の評判もよさそうにみえた。また upnote はサブスクリプションモデルではなく、パッケージライセンスなのでコストが安い。app store 経由でプレミアムのライセンスを購入する。為替によって値段が変わると思うが、いま買ったら3,500円だった。この値段で未来永劫 upnote のインフラコストを賄えるのかは懐疑的だが、3,500円ぐらいならそうなったときにまた別のメモ帳アプリへ移行するのでもよいかなというぐらいの気持ちで upnote を使ってみることにした。
 ノートアプリ難民必見！UpNoteが超気に入った理由を語りたい web 版はなくて、それぞれのデバイスごとにインストールする。linux は snap パッケージが用意されているので ubuntu なら次のようにインストールする。
 $ sudo snap install upnote evernote から移行をするにあたり、.</description><content>&lt;p>6時に寝て8時半に起きた。オフィスで3時前ぐらいまで調べものして、帰ってからも眠れなくてネットしてたら朝になった。&lt;/p>
-&lt;p>今日の筋トレは腹筋:15x1,腕立て:10x1,スクワット10x1をした。&lt;/p>
+&lt;p>今日の筋トレは腹筋:15x2,腕立て:10x1,スクワット10x1をした。&lt;/p>
 &lt;h2 id="サンライズ出雲の予約">サンライズ出雲の予約&lt;/h2>
 &lt;p>以前 &lt;a href="/diary/diary/posts/2023/1119/#サンライズ瀬戸・出雲">やまさきさんに教えていただいた夜行列車&lt;/a> を予約してみた。列車は瀬戸と出雲の2つがある。岡山〜東京間は瀬戸と出雲が連結して運行するそうなのでどちらを選択しても同じだと思うけれど、出雲で予約してみた。乗り込む車両が異なるのかな？&lt;/p>
 &lt;p>三ノ宮(00:11発) =&amp;gt; 東京 (07:08着)&lt;/p>
