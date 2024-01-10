@@ -1,4 +1,41 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2024/01 on forest nook</title><link>/diary/dates/2024/01/</link><description>Recent content in 2024/01 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2024/01/index.xml" rel="self" type="application/rss+xml"/><item><title>災害義援金を寄付してみた</title><link>/diary/posts/2024/0109/</link><pubDate>Tue, 09 Jan 2024 09:30:22 +0900</pubDate><guid>/diary/posts/2024/0109/</guid><description>2時半に寝て4時半に起きて6時半に起きて7時半に起きた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2024/01 on forest nook</title><link>/diary/dates/2024/01/</link><description>Recent content in 2024/01 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2024/01/index.xml" rel="self" type="application/rss+xml"/><item><title>vhs コマンドの使い方</title><link>/diary/posts/2024/0110/</link><pubDate>Wed, 10 Jan 2024 08:27:29 +0900</pubDate><guid>/diary/posts/2024/0110/</guid><description>23時過ぎに寝始めて何度か起きて7時半に起きた。
+今日の筋トレは腹筋:10x1,腕立て:10x1,スクワット15x1をした。
+sveltekit で context のデータを扱う ui 側でページに依存しない形で設定情報などを扱いたいとする。svelte の store と context api を組み合わせて sveltekit として context を管理するサンプルコードが紹介されている。
+context と共に store を使う これだけですぐ動くのだけど、このときに LayoutData はサーバー側で作るとバックエンドの仕組みを隠蔽できて嬉しい。そういったときは src/routes/+layout.server.ts にバックエンドの api 呼び出しを隠蔽することで意図した振る舞いになる。
+import type { LayoutServerLoad } from &amp;#34;./$types&amp;#34;; export const load: LayoutServerLoad = async () =&amp;gt; { const r = await fetch(`localhost:18080/myapi`); return r.json(); }; アニメ gif をスクリプトから作る お気に入りのコマンドラインツールを淡々と紹介する をみていて vhs という cli でアニメ gif を作ってくれることを知った。試しにやってみた。ターミナルを録画するようなやり方と比べて、録画時にタイプミスしてしまうようなミスを防げる。次のようなスクリプトファイルを新規作成する。
+$ vhs new bf.tape Output bf.gif Require echo Set Shell &amp;#34;bash&amp;#34; Set FontSize 14 Set Width 800 Set Height 380 Type &amp;#34;genact -m bruteforce&amp;#34; Sleep 500ms Enter Sleep 10s あとはこの設定でアニメ gif を作る。</description><content>&lt;p>23時過ぎに寝始めて何度か起きて7時半に起きた。&lt;/p>
+&lt;p>今日の筋トレは腹筋:10x1,腕立て:10x1,スクワット15x1をした。&lt;/p>
+&lt;h2 id="sveltekit-で-context-のデータを扱う">sveltekit で context のデータを扱う&lt;/h2>
+&lt;p>ui 側でページに依存しない形で設定情報などを扱いたいとする。svelte の store と context api を組み合わせて sveltekit として context を管理するサンプルコードが紹介されている。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://kit.svelte.jp/docs/state-management#using-stores-with-context">context と共に store を使う&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>これだけですぐ動くのだけど、このときに &lt;code>LayoutData&lt;/code> はサーバー側で作るとバックエンドの仕組みを隠蔽できて嬉しい。そういったときは &lt;code>src/routes/+layout.server.ts&lt;/code> にバックエンドの api 呼び出しを隠蔽することで意図した振る舞いになる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-typescript" data-lang="typescript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">import&lt;/span> &lt;span style="color:#66d9ef">type&lt;/span> { &lt;span style="color:#a6e22e">LayoutServerLoad&lt;/span> } &lt;span style="color:#66d9ef">from&lt;/span> &lt;span style="color:#e6db74">&amp;#34;./$types&amp;#34;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">export&lt;/span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">load&lt;/span>: &lt;span style="color:#66d9ef">LayoutServerLoad&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">async&lt;/span> () &lt;span style="color:#f92672">=&amp;gt;&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">r&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">await&lt;/span> &lt;span style="color:#a6e22e">fetch&lt;/span>(&lt;span style="color:#e6db74">`localhost:18080/myapi`&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">r&lt;/span>.&lt;span style="color:#a6e22e">json&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="アニメ-gif-をスクリプトから作る">アニメ gif をスクリプトから作る&lt;/h2>
+&lt;p>&lt;a href="https://zenn.dev/kou_pg_0131/articles/favorite-cli-tools">お気に入りのコマンドラインツールを淡々と紹介する&lt;/a> をみていて &lt;a href="https://github.com/charmbracelet/vhs">vhs&lt;/a> という cli でアニメ gif を作ってくれることを知った。試しにやってみた。ターミナルを録画するようなやり方と比べて、録画時にタイプミスしてしまうようなミスを防げる。次のようなスクリプトファイルを新規作成する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ vhs new bf.tape
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;pre tabindex="0">&lt;code>Output bf.gif
+Require echo
+Set Shell &amp;#34;bash&amp;#34;
+Set FontSize 14
+Set Width 800
+Set Height 380
+Type &amp;#34;genact -m bruteforce&amp;#34; Sleep 500ms Enter
+Sleep 10s
+&lt;/code>&lt;/pre>&lt;p>あとはこの設定でアニメ gif を作る。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ vhs bf.tape
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;figure>&lt;img src="/diary/diary/img/2024/0110_bf.gif"/>
+&lt;/figure>
+&lt;p>これで 4.8 MiB なのでサイズはまぁまぁ大きい。サイズやカラーの調整をすればもう1桁は縮小できるかもしれない。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ ls -lh img/2024/0110_bf.gif
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>-rw-rw-r-- &lt;span style="color:#ae81ff">1&lt;/span> 4.8M 1月 &lt;span style="color:#ae81ff">10&lt;/span> 19:48 img/2024/0110_bf.gif
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>災害義援金を寄付してみた</title><link>/diary/posts/2024/0109/</link><pubDate>Tue, 09 Jan 2024 09:30:22 +0900</pubDate><guid>/diary/posts/2024/0109/</guid><description>2時半に寝て4時半に起きて6時半に起きて7時半に起きた。
 今日の筋トレは腹筋:15x1,腕立て:10x1,スクワット10x1をした。
 災害義援金の寄付 週末に災害の寄付をしようと思ったときに、ふと寄付を法人でやればいいんじゃないかと思い付いた。どちらも私のお金であることには変わりないのだけど、会社のお金は個人のお金という気がしないので個人よりも大きいお金を寄付できる。これは法人という人格を分けていることのメリットの1つかもしれない。
 令和6年（2024年）能登半島地震に係る災害義援金の受付について 今朝から税理士さんに損金算入についての懸念がないかを確認して問題ないということだったので10万円を寄付した。領収書は電子フォームから申請したが、毎日それなりの数の人が寄付しているだろうから領収書が発送されるまで1ヶ月ぐらいはかかるのかもしれない。気長に待って領収書が届いたら軽く記事を書こうと思う。現時点での義援金の残高は 968,223,243 円とのこと。せいぜい集まるお金は数十億程度なのかな。

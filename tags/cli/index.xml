@@ -1,4 +1,41 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>cli on forest nook</title><link>/diary/tags/cli/</link><description>Recent content in cli on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 11 May 2023 09:06:56 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/cli/index.xml" rel="self" type="application/rss+xml"/><item><title>gitlab issues と mongodb による分析</title><link>/diary/posts/2023/0511/</link><pubDate>Thu, 11 May 2023 09:06:56 +0900</pubDate><guid>/diary/posts/2023/0511/</guid><description>0時に寝て何度か起きて7時に起きた。今日も一日資料作りをしていた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>cli on forest nook</title><link>/diary/tags/cli/</link><description>Recent content in cli on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Wed, 10 Jan 2024 08:27:29 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/cli/index.xml" rel="self" type="application/rss+xml"/><item><title>vhs コマンドの使い方</title><link>/diary/posts/2024/0110/</link><pubDate>Wed, 10 Jan 2024 08:27:29 +0900</pubDate><guid>/diary/posts/2024/0110/</guid><description>23時過ぎに寝始めて何度か起きて7時半に起きた。
+今日の筋トレは腹筋:10x1,腕立て:10x1,スクワット15x1をした。
+sveltekit で context のデータを扱う ui 側でページに依存しない形で設定情報などを扱いたいとする。svelte の store と context api を組み合わせて sveltekit として context を管理するサンプルコードが紹介されている。
+context と共に store を使う これだけですぐ動くのだけど、このときに LayoutData はサーバー側で作るとバックエンドの仕組みを隠蔽できて嬉しい。そういったときは src/routes/+layout.server.ts にバックエンドの api 呼び出しを隠蔽することで意図した振る舞いになる。
+import type { LayoutServerLoad } from &amp;#34;./$types&amp;#34;; export const load: LayoutServerLoad = async () =&amp;gt; { const r = await fetch(`localhost:18080/myapi`); return r.json(); }; アニメ gif をスクリプトから作る お気に入りのコマンドラインツールを淡々と紹介する をみていて vhs という cli でアニメ gif を作ってくれることを知った。試しにやってみた。ターミナルを録画するようなやり方と比べて、録画時にタイプミスしてしまうようなミスを防げる。次のようなスクリプトファイルを新規作成する。
+$ vhs new bf.tape Output bf.gif Require echo Set Shell &amp;#34;bash&amp;#34; Set FontSize 14 Set Width 800 Set Height 380 Type &amp;#34;genact -m bruteforce&amp;#34; Sleep 500ms Enter Sleep 10s あとはこの設定でアニメ gif を作る。</description><content>&lt;p>23時過ぎに寝始めて何度か起きて7時半に起きた。&lt;/p>
+&lt;p>今日の筋トレは腹筋:10x1,腕立て:10x1,スクワット15x1をした。&lt;/p>
+&lt;h2 id="sveltekit-で-context-のデータを扱う">sveltekit で context のデータを扱う&lt;/h2>
+&lt;p>ui 側でページに依存しない形で設定情報などを扱いたいとする。svelte の store と context api を組み合わせて sveltekit として context を管理するサンプルコードが紹介されている。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://kit.svelte.jp/docs/state-management#using-stores-with-context">context と共に store を使う&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>これだけですぐ動くのだけど、このときに &lt;code>LayoutData&lt;/code> はサーバー側で作るとバックエンドの仕組みを隠蔽できて嬉しい。そういったときは &lt;code>src/routes/+layout.server.ts&lt;/code> にバックエンドの api 呼び出しを隠蔽することで意図した振る舞いになる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-typescript" data-lang="typescript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">import&lt;/span> &lt;span style="color:#66d9ef">type&lt;/span> { &lt;span style="color:#a6e22e">LayoutServerLoad&lt;/span> } &lt;span style="color:#66d9ef">from&lt;/span> &lt;span style="color:#e6db74">&amp;#34;./$types&amp;#34;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">export&lt;/span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">load&lt;/span>: &lt;span style="color:#66d9ef">LayoutServerLoad&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">async&lt;/span> () &lt;span style="color:#f92672">=&amp;gt;&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">r&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">await&lt;/span> &lt;span style="color:#a6e22e">fetch&lt;/span>(&lt;span style="color:#e6db74">`localhost:18080/myapi`&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">r&lt;/span>.&lt;span style="color:#a6e22e">json&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="アニメ-gif-をスクリプトから作る">アニメ gif をスクリプトから作る&lt;/h2>
+&lt;p>&lt;a href="https://zenn.dev/kou_pg_0131/articles/favorite-cli-tools">お気に入りのコマンドラインツールを淡々と紹介する&lt;/a> をみていて &lt;a href="https://github.com/charmbracelet/vhs">vhs&lt;/a> という cli でアニメ gif を作ってくれることを知った。試しにやってみた。ターミナルを録画するようなやり方と比べて、録画時にタイプミスしてしまうようなミスを防げる。次のようなスクリプトファイルを新規作成する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ vhs new bf.tape
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;pre tabindex="0">&lt;code>Output bf.gif
+Require echo
+Set Shell &amp;#34;bash&amp;#34;
+Set FontSize 14
+Set Width 800
+Set Height 380
+Type &amp;#34;genact -m bruteforce&amp;#34; Sleep 500ms Enter
+Sleep 10s
+&lt;/code>&lt;/pre>&lt;p>あとはこの設定でアニメ gif を作る。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ vhs bf.tape
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;figure>&lt;img src="/diary/diary/img/2024/0110_bf.gif"/>
+&lt;/figure>
+&lt;p>これで 4.8 MiB なのでサイズはまぁまぁ大きい。サイズやカラーの調整をすればもう1桁は縮小できるかもしれない。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ ls -lh img/2024/0110_bf.gif
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>-rw-rw-r-- &lt;span style="color:#ae81ff">1&lt;/span> 4.8M 1月 &lt;span style="color:#ae81ff">10&lt;/span> 19:48 img/2024/0110_bf.gif
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>gitlab issues と mongodb による分析</title><link>/diary/posts/2023/0511/</link><pubDate>Thu, 11 May 2023 09:06:56 +0900</pubDate><guid>/diary/posts/2023/0511/</guid><description>0時に寝て何度か起きて7時に起きた。今日も一日資料作りをしていた。
 gitlab issues の解析 ふりかえりの資料を作っていて gitlab issues の解析を始めた。gitlab にも分析系機能は提供されているが、大半が有償機能で free では使えない。実質 free で役に立ちそうなレポートを私はみつけられなかった。
 Analyze GitLab usage gitlab は glab cli というツールを提供している。試しに glab を使って issues の解析ができないかとやってみたが、グループ単位ではなくプロジェクト単位でしか操作できないようにみえた。そこで rest api を呼び出すための便利ツールとして使うことにした。要は rest api で任意のデータを取得してそれを使ってローカルで解析することにした。例えば、次のようにして特定ラベルを除外した特定グループのマイルストーンごとの issues をすべて取得できる。
 $ mygrpid=&amp;#34;xxx&amp;#34; $ milestones=&amp;#34;2022-11 2022-12 2023-01 2023-02 2023-03 2023-04&amp;#34; $ for i in $milestones; do echo $i; glab api --paginate &amp;#34;groups/${mygrpid}/issues?milestone=${i}&amp;amp;not[labels]=Duplicate,Invalid,Wontfix&amp;#34; | jq -c &amp;#39;.[]&amp;#39; &amp;gt; &amp;#34;${i}-issues.json&amp;#34;; done あとはこの json データをそのまま分析のためのデータベースに取り込む。今回は mongodb にインポートしてみた。mongodb だとスキーマを定義しなくても json データをそのままインポートできてアドホックな分析に便利そうに思えた。オブジェクトの入れ子構造をもつ json データのようなものを rdbms にインポートするのはひと工夫必要なことから json データをそのままインポートできるドキュメントデータベースの有効性を理解できた。インポートしたら MongoDB Shell を使うとてっとり早い。例えば、マイルストーンごとの issues の件数などは次のようにして集計できる。</description><content>&lt;p>0時に寝て何度か起きて7時に起きた。今日も一日資料作りをしていた。&lt;/p>
