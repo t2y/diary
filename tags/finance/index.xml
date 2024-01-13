@@ -1,4 +1,52 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>finance on forest nook</title><link>/diary/tags/finance/</link><description>Recent content in finance on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sun, 07 Jan 2024 10:31:51 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/finance/index.xml" rel="self" type="application/rss+xml"/><item><title>経営の価値観にもの思い</title><link>/diary/posts/2024/0107/</link><pubDate>Sun, 07 Jan 2024 10:31:51 +0900</pubDate><guid>/diary/posts/2024/0107/</guid><description>2時に寝て途中起きて7時半に起きた。久しぶりによく眠れた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>finance on forest nook</title><link>/diary/tags/finance/</link><description>Recent content in finance on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Sat, 13 Jan 2024 14:34:38 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/finance/index.xml" rel="self" type="application/rss+xml"/><item><title>ハンズオン資料の作成に着手</title><link>/diary/posts/2024/0113/</link><pubDate>Sat, 13 Jan 2024 14:34:38 +0900</pubDate><guid>/diary/posts/2024/0113/</guid><description>晩ご飯食べてくつろいでからまたオフィスに戻って作業してた。3時過ぎに寝て8時に起きた。寝不足のせいか、今日も夕方に眠くなって家に戻って3時間ほど寝てた。
+今日の筋トレは腹筋:25x1,腕立て:10x0,スクワット15x1をした。
+ストレッチ 今週もとくにお仕事で疲労や負荷はないものの、筋トレを継続しているせいか、やや腰が痛いかなといったところ。トレーナーさんによると、筋トレで筋肉痛になっていると体が硬くなるという。おそらくそのせいでやや硬めの印象になっているのだと思う。腰や太ももの前・後ろの筋に張りがあったのでこれらはスクワットの反動ではないかと思われる。今日の開脚幅は開始前152cmで、ストレッチ後157cmだった。先週と同じだ。
+ハンガーラック受け取り ジモティーで「ハンガーラック」を500円で購入した。これもコワーキングスペースで使う。この前帰ったときにジャケットを掛けるものがないと気付いた。引き取りに東灘区へ行く機会が増えてきてだいぶ道を覚えてきた。マンションの駐車場まで行って、そこでハンガーラックを受け取った。解体してくれていたので難なく荷室に積めた。丁寧な方で駐車場から車が出ていくときまでお見送りしてくれた。ジモティーだと受け渡しが終わったらすぐ帰る人の方が普通なので性格なのかホスピタリティの違いが出るなと思った。
+iostat-tool のメンテナンス 日記を書こうと決めて初日に書いた内容 が iostat-tool の保守だったなと思い出した。2年半ほど前。一昨日からプルリクエストが届いていたのでレビューしたり、CI 環境の設定を更新したりしてマージした。
+Use %H for output generated with iostat -t #6 マージしてから 0.3.1 として https://pypi.org/project/iostat-tool/ にパッケージをアップロードした。
+ファイナンシャルプランナーとの打ち合わせ 先週の続き 。17時からの予定だったが、プランナーさんの前の予定が早く終わったそうで15時半からに変更になった。お昼以降ならいつでもよいと伝えていたのでこういった調整ができてよいと思う。卓上カレンダーをお土産にもってきてくれた。今日は次のような内容を話した。
+人生のキャッシュフローに問題ない 預貯金が多いのでもう少し運用にまわしたい どういった運用があるのかノーアイディアなので提案してほしい 資産形成ではなく万が一のときのための役員向けの保険を提案してほしい 先方もどうせ来るならもっと準備して来たらいいんじゃないかとも思うが、次は teams でテレビ会議にしましょうと提案した。30分の打ち合わせのために三ノ宮のオフィスまで来てもらうのも申し訳なく思えてきた。その際にメールアドレスを伝えていて「すべて小文字ですか？」と聞くのでメールアドレス (ドメイン名) は大文字小文字を区別せず、大文字でも届きますよと教えてあげたら思いの外驚かれていた。昔からある古い仕様は大文字小文字を区別しなかったりする。大文字小文字を区別しないというのは、多くのケースで百害あって一利なしだけれども、互換性のために変更することもできない。
+hugo のハンズオン資料作り 先日の打ち合わせ を受けて資料作りに着手した。hugo のサイト構築やテーマ設定は一度行ったらそうそう変更することはないので久しぶりに設定したら忘れていて、これどうだったかな？とか、このフォーマットはどこからきているのか？とか、いろいろ調べて思い出しながらやっていた。
+hugo は設定ファイルを yaml, toml, json で記述できる。フォーマットを複数対応するというのはよくないということに気付いた。json はみたことないけど、テーマのサンプルの設定ファイルを yaml と toml の、開発者が慣れた方を使う。そうすると、テーマのサンプルの設定ファイルを yaml で提供していて、hugo.toml でサイトの設定をしていた場合、テーマの設定を yaml から toml に変換する作業が発生する。コンテンツの markdown も toml と yaml の両方で記述できるからフォーマットの統一感もなかったりする。なによりも初心者が調べたときに設定ファイルが toml だったり、yaml だったりして混乱する。</description><content>&lt;p>晩ご飯食べてくつろいでからまたオフィスに戻って作業してた。3時過ぎに寝て8時に起きた。寝不足のせいか、今日も夕方に眠くなって家に戻って3時間ほど寝てた。&lt;/p>
+&lt;p>今日の筋トレは腹筋:25x1,腕立て:10x0,スクワット15x1をした。&lt;/p>
+&lt;h2 id="ストレッチ">ストレッチ&lt;/h2>
+&lt;p>今週もとくにお仕事で疲労や負荷はないものの、筋トレを継続しているせいか、やや腰が痛いかなといったところ。トレーナーさんによると、筋トレで筋肉痛になっていると体が硬くなるという。おそらくそのせいでやや硬めの印象になっているのだと思う。腰や太ももの前・後ろの筋に張りがあったのでこれらはスクワットの反動ではないかと思われる。今日の開脚幅は開始前152cmで、ストレッチ後157cmだった。先週と同じだ。&lt;/p>
+&lt;h2 id="ハンガーラック受け取り">ハンガーラック受け取り&lt;/h2>
+&lt;p>ジモティーで「ハンガーラック」を500円で購入した。これもコワーキングスペースで使う。この前帰ったときにジャケットを掛けるものがないと気付いた。引き取りに東灘区へ行く機会が増えてきてだいぶ道を覚えてきた。マンションの駐車場まで行って、そこでハンガーラックを受け取った。解体してくれていたので難なく荷室に積めた。丁寧な方で駐車場から車が出ていくときまでお見送りしてくれた。ジモティーだと受け渡しが終わったらすぐ帰る人の方が普通なので性格なのかホスピタリティの違いが出るなと思った。&lt;/p>
+&lt;h2 id="iostat-tool-のメンテナンス">iostat-tool のメンテナンス&lt;/h2>
+&lt;p>&lt;a href="/diary/diary/posts/2021/0926/">日記を書こうと決めて初日に書いた内容&lt;/a> が iostat-tool の保守だったなと思い出した。2年半ほど前。一昨日からプルリクエストが届いていたのでレビューしたり、CI 環境の設定を更新したりしてマージした。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/t2y/iostat-tool/pull/6">Use %H for output generated with iostat -t #6&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>マージしてから 0.3.1 として &lt;a href="https://pypi.org/project/iostat-tool/">https://pypi.org/project/iostat-tool/&lt;/a> にパッケージをアップロードした。&lt;/p>
+&lt;h2 id="ファイナンシャルプランナーとの打ち合わせ">ファイナンシャルプランナーとの打ち合わせ&lt;/h2>
+&lt;p>&lt;a href="/diary/diary/posts/2024/0106/#ファイナンシャルプランナーとの打ち合わせ">先週の続き&lt;/a> 。17時からの予定だったが、プランナーさんの前の予定が早く終わったそうで15時半からに変更になった。お昼以降ならいつでもよいと伝えていたのでこういった調整ができてよいと思う。卓上カレンダーをお土産にもってきてくれた。今日は次のような内容を話した。&lt;/p>
+&lt;ul>
+&lt;li>人生のキャッシュフローに問題ない&lt;/li>
+&lt;li>預貯金が多いのでもう少し運用にまわしたい
+&lt;ul>
+&lt;li>どういった運用があるのかノーアイディアなので提案してほしい&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>資産形成ではなく万が一のときのための役員向けの保険を提案してほしい&lt;/li>
+&lt;/ul>
+&lt;p>先方もどうせ来るならもっと準備して来たらいいんじゃないかとも思うが、次は teams でテレビ会議にしましょうと提案した。30分の打ち合わせのために三ノ宮のオフィスまで来てもらうのも申し訳なく思えてきた。その際にメールアドレスを伝えていて「すべて小文字ですか？」と聞くのでメールアドレス (ドメイン名) は大文字小文字を区別せず、大文字でも届きますよと教えてあげたら思いの外驚かれていた。昔からある古い仕様は大文字小文字を区別しなかったりする。大文字小文字を区別しないというのは、多くのケースで百害あって一利なしだけれども、互換性のために変更することもできない。&lt;/p>
+&lt;h2 id="hugo-のハンズオン資料作り">hugo のハンズオン資料作り&lt;/h2>
+&lt;p>&lt;a href="/diary/diary/posts/2024/0111/#静的サイトジェネレーターの勉強会の打ち合わせ">先日の打ち合わせ&lt;/a> を受けて資料作りに着手した。hugo のサイト構築やテーマ設定は一度行ったらそうそう変更することはないので久しぶりに設定したら忘れていて、これどうだったかな？とか、このフォーマットはどこからきているのか？とか、いろいろ調べて思い出しながらやっていた。&lt;/p>
+&lt;p>hugo は設定ファイルを yaml, toml, json で記述できる。フォーマットを複数対応するというのはよくないということに気付いた。json はみたことないけど、テーマのサンプルの設定ファイルを yaml と toml の、開発者が慣れた方を使う。そうすると、テーマのサンプルの設定ファイルを yaml で提供していて、hugo.toml でサイトの設定をしていた場合、テーマの設定を yaml から toml に変換する作業が発生する。コンテンツの markdown も toml と yaml の両方で記述できるからフォーマットの統一感もなかったりする。なによりも初心者が調べたときに設定ファイルが toml だったり、yaml だったりして混乱する。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://gohugo.io/getting-started/configuration/">Configure Hugo&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>デフォルト設定は toml になっているので hugo で yaml は使わない方がいいんだろうなと思えた。&lt;/p>
+&lt;p>さらに設定ファイルの名前も昔は &lt;code>config.toml&lt;/code> だったのが、最近は &lt;code>hugo.toml&lt;/code> に変わり、さらにどちらのファイル名でもよいという仕様になっている。こんなことになんの意味があるのかもわからない。&lt;/p>
+&lt;blockquote>
+&lt;p>With v0.109.0 and earlier the basename of the site configuration file was config instead of hugo. You can use either, but should transition to the new naming convention when practical.&lt;/p>
+&lt;/blockquote>
+&lt;p>まずはサイト構築して github actions で github pages へアップロードする環境構築を完了した。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://t2y.github.io/hugo-hands-on/">https://t2y.github.io/hugo-hands-on/&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>徐々にコンテンツを追加していく。&lt;/p></content></item><item><title>経営の価値観にもの思い</title><link>/diary/posts/2024/0107/</link><pubDate>Sun, 07 Jan 2024 10:31:51 +0900</pubDate><guid>/diary/posts/2024/0107/</guid><description>2時に寝て途中起きて7時半に起きた。久しぶりによく眠れた。
 今日の筋トレは腹筋:10x2,腕立て:10x1,スクワット15x1をした。
 経営の価値観と財務 年末から読み進めて 昨日読み終えた本 の書評を書いた。こういったアウトプットをすることで学びを強化できるし、忘れてしまったときにまた自分の記事を読み返すこともできる。南原さんの経営の価値観に共感するところも多かった。
 「絶対無理」なんて「絶対」ない！ 以前読んだ 貧乏はお金持ち にも書いてあったことだけれども、会社の資金繰りが厳しくなって、いざお金を借りようと思ったときに返済実績がないと借りられないことがあると書いてあった。余裕のあるときに借りて返済したという融資実績を作ることは会社の信用において意味があることだという。南原さんも同じことを指摘していて、その融資を受ける上で事業計画書が大事だという。これまで事業計画書を作るという考えが私にはなかったが、融資を受けるタイミングで試しに作ってみて外部の人たちが私の作った事業計画に対してどういった評価をするかで、やりたい事業の客観的な評価をするのもよさそうだと思い始めた。
