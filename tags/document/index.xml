@@ -1,4 +1,23 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>document on forest nook</title><link>/diary/tags/document/</link><description>Recent content in document on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Fri, 15 Sep 2023 08:40:20 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/document/index.xml" rel="self" type="application/rss+xml"/><item><title>涼しくなる前に暑さ対策を</title><link>/diary/posts/2023/0915/</link><pubDate>Fri, 15 Sep 2023 08:40:20 +0900</pubDate><guid>/diary/posts/2023/0915/</guid><description>0時に寝て何度か起きて7時過ぎに起きた。6時に起きようと思ったけど、気付いたら7時になってた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>document on forest nook</title><link>/diary/tags/document/</link><description>Recent content in document on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Mon, 15 Jan 2024 09:24:49 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/document/index.xml" rel="self" type="application/rss+xml"/><item><title>頭痛でダウン</title><link>/diary/posts/2024/0115/</link><pubDate>Mon, 15 Jan 2024 09:24:49 +0900</pubDate><guid>/diary/posts/2024/0115/</guid><description>4時半に寝て7時半に起きた。深夜にハンズオン資料を作っていたらまた眠れなくなった。朝から頭痛くて調子が悪い。きっと生活のリズムが崩れているせい。早くお仕事を終えて帰って寝てた。
+今日の筋トレは腕立て:10x1,スクワット15x1をした。
+ldap エントリーの更新リクエストをランダムに行うツール 先週末から作っていたテストツールがようやく一通り動くようになった。ldap エントリーを生成したり、既存のエントリーに対して更新、削除、パスワード変更のリクエストをランダムに自動生成して送る。常時 id 連携の処理を動かしたときの並行処理の問題であったり、やや負荷をかけたときになにかの敷居値を超えて不具合がないかといった検証に使える。8月末に開発に着手して、年末から再開して、1月明けでようやく完成した。テストツールの開発の優先度が低いので後回し後回しにしているうちにどんどん後ろに流れていった。悪い開発の典型例。
+hugo のハンズオン資料作り 昨日の続き 、、、をやろうと思っていたけど、頭痛でしんどかったので今日はお休み。イベントが公開された。
+静的サイトジェネレーター勉強会 他のツールをみていて slate というツールは知らなかった。api ドキュメントを書くためのツールとある。
+https://github.com/slatedocs/slate https://slatedocs.github.io/slate/ うちはいま redocly というツールを使って openapi のフォーマット (yml) で api ドキュメントを管理している。開発は openapi を使ってなくてドキュメントのためだけに openapi を使っている。量が増えてくると yml でドキュメントを書くのも辛くなってくるので markdown で api ドキュメントを書けるならそれもよいかもしれない。</description><content>&lt;p>4時半に寝て7時半に起きた。深夜にハンズオン資料を作っていたらまた眠れなくなった。朝から頭痛くて調子が悪い。きっと生活のリズムが崩れているせい。早くお仕事を終えて帰って寝てた。&lt;/p>
+&lt;p>今日の筋トレは腕立て:10x1,スクワット15x1をした。&lt;/p>
+&lt;h2 id="ldap-エントリーの更新リクエストをランダムに行うツール">ldap エントリーの更新リクエストをランダムに行うツール&lt;/h2>
+&lt;p>先週末から作っていたテストツールがようやく一通り動くようになった。ldap エントリーを生成したり、既存のエントリーに対して更新、削除、パスワード変更のリクエストをランダムに自動生成して送る。常時 id 連携の処理を動かしたときの並行処理の問題であったり、やや負荷をかけたときになにかの敷居値を超えて不具合がないかといった検証に使える。8月末に開発に着手して、年末から再開して、1月明けでようやく完成した。テストツールの開発の優先度が低いので後回し後回しにしているうちにどんどん後ろに流れていった。悪い開発の典型例。&lt;/p>
+&lt;h2 id="hugo-のハンズオン資料作り">hugo のハンズオン資料作り&lt;/h2>
+&lt;p>&lt;a href="/diary/diary/posts/2024/0114/">昨日の続き&lt;/a> 、、、をやろうと思っていたけど、頭痛でしんどかったので今日はお休み。イベントが公開された。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://fin-py.connpass.com/event/307453/">静的サイトジェネレーター勉強会&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>他のツールをみていて slate というツールは知らなかった。api ドキュメントを書くためのツールとある。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/slatedocs/slate">https://github.com/slatedocs/slate&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://slatedocs.github.io/slate/">https://slatedocs.github.io/slate/&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>うちはいま &lt;a href="https://redocly.com/">redocly&lt;/a> というツールを使って openapi のフォーマット (yml) で api ドキュメントを管理している。開発は openapi を使ってなくてドキュメントのためだけに openapi を使っている。量が増えてくると yml でドキュメントを書くのも辛くなってくるので markdown で api ドキュメントを書けるならそれもよいかもしれない。&lt;/p></content></item><item><title>涼しくなる前に暑さ対策を</title><link>/diary/posts/2023/0915/</link><pubDate>Fri, 15 Sep 2023 08:40:20 +0900</pubDate><guid>/diary/posts/2023/0915/</guid><description>0時に寝て何度か起きて7時過ぎに起きた。6時に起きようと思ったけど、気付いたら7時になってた。
 ドキュメント書き 8月前半にやっていた非機能要件である差分比較の仕組みについてドキュメントを追加した。但し、この機能はまだ品質を保証できないところがあるため experimental という機能にした。そのためのドキュメントとサポートポリシーについても明記した。利用者からのフィードバックを得られることを目的にした開発途中の機能をプロダクトに追加する仕組み化した。あまりエンタープライズ向けの業務システムでそういった機能を多用するようなことはないと思うけど、QA を十分にできなくてまだ品質に自信がないといったときにも使えるかもしれない。
 実務スタッフの訪問 先日の 暑さ対策委員会 の続き。
 そろそろ電話しようかと考えていたところ、スタッフが訪問してくれた。7月の中旬からクレームを上げていて、初めてオフィスに来てくれて室温が高いことを確認してくれた。いまだと昼間は30℃ぐらい。その人は過去の経緯をわかっていないようで、フィルター交換と冷媒交換をしたが、まったく効果がないことを丁寧に説明し、エアコンのコントロールパネルの温度・風量設定もまったく機能しないことを伝えた。明日の午前中に工事の業者と一緒に調査してくれるという。ようやく人が来てちゃんと確認してくれた。明日の作業に期待。
