@@ -1,4 +1,113 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2024/01 on forest nook</title><link>/diary/dates/2024/01/</link><description>Recent content in 2024/01 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2024/01/index.xml" rel="self" type="application/rss+xml"/><item><title>勉強のやり方の基本</title><link>/diary/posts/2024/0117/</link><pubDate>Wed, 17 Jan 2024 01:52:58 +0900</pubDate><guid>/diary/posts/2024/0117/</guid><description>3時過ぎに寝て1度起きて7時半に起きた。また体調を崩さないか心配になってくる。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2024/01 on forest nook</title><link>/diary/dates/2024/01/</link><description>Recent content in 2024/01 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2024/01/index.xml" rel="self" type="application/rss+xml"/><item><title>年明けからコーポレート業務いろいろ</title><link>/diary/posts/2024/0119/</link><pubDate>Fri, 19 Jan 2024 08:37:01 +0900</pubDate><guid>/diary/posts/2024/0119/</guid><description>23時に寝て4時半頃に起きてそのまま6時半までだらだらして起きた。早寝早起き。
+今日の筋トレは腹筋:20x1,腕立て:15x1,スクワット20x1をした。
+隔週の雑談 顧問のはらさんと隔週の打ち合わせ。今日の議題はこれら。内容が多くて1時間超えた。
+電子帳簿保存法対応の事務処理規定の共有 まだ始まったばかりで税理士さんの温度感も低い 事務処理規定が省令に沿っているかどうかの判断はプロセス監査で行われる 電子帳簿保存法には規定されていないため、事務処理規定の妥当性の検証は行われない 融資を受ける構想作り 日本政策金融公庫のみで検討していたが、融資実績を作りたいなら信用金庫も加えた方がよい 借金のメンタリティ、担当者との折衝や審査など余裕のあるときに経験を積んでおくことはよいように思えた ファイナンシャルプランナーさんとのやり取り 会社の経費で役員のための保険に入ろうと考えている 個人の保険控除は8万円らしい ローカル複業化プロジェクトの考察 IT コミュニティに老人や子どもたちは入りにくい。農業なら老若男女誰でも入れる気がする 農業や地元の特産品を切り口にコワーキング (コミュニティ) で街の人たちと田舎の人たちをつなげるのはすごいことだと思う (関係人口の創出) 地元の有力者と仲良くなると、行政の口利きもしてくれて活動しやすくなる はらさんが よりひろいフロントエンド を始めたそうでその話しも聞いていた。個人のブログサイトにするのか、複数人で記事を共有するサイトにするのかもまだ曖昧だという。Contentful + Next.js + Cloudflare Pages という構成らしい。Contentful というツールを私が知らなかったのでまた時間のあるときに調べてみようと思う。
+母が一人暮らしをしていて体調もよくないことから要介護状態になるリスクがそこそこあると考えている。最悪の場合、会社を休眠させてしばらく介護をするかもしれない。はらさんが仰るには休眠はよいアイディアだという。会社員に例えると退職した日の帰り道を想像するとよいと話されていたのだけど、私は過去の記憶があまりないというのもあるが、これまで6回も退職してきたのに退職日を特別に思ったことはあまりない。退職日と他の日に大きな違いはなくて、次のお仕事の準備や調査をしていることが私は多かったと思う。それでも退職にあわせて有休を1-2ヶ月とってゆっくり過ごしていたことには変わりない。私もそういう、メリハリのある働き方が好きだ。
+smtp 接続のタイムアウト たまたまメンバーが誤った設定で smtp サーバーに接続したときにタイムアウトするまで5分ほどかかるという現象を発見した。タイムアウトの設定をせずに接続しようとするからそんなことが起きるのかな？と考えて smtp クライアントのタイムアウト設定を調べてみると net.DialTimeout を使えばよいという。
+https://github.com/golang/go/issues/16436#issuecomment-233829112 多めに見積もって30秒のタイムアウトを設定して接続するようにして再度メンバーに再現検証してもらったら直っていないという。接続そのものは出来ていたのだ。ソースを読んでみると、smtp クライアントを生成するときに 220 というレスポンスを読むことがわかる。誤った接続設定でもコネクションは確立するが、レスポンスが返ってこなくて待ち状態になっていた。
+func NewClient(conn net.Conn, host string) (*Client, error) { text := textproto.NewConn(conn) _, _, err := text.ReadResponse(220) if err != nil { text.Close() return nil, err } c := &amp;amp;Client{Text: text, conn: conn, serverName: host, localName: &amp;#34;localhost&amp;#34;} _, c.</description><content>&lt;p>23時に寝て4時半頃に起きてそのまま6時半までだらだらして起きた。早寝早起き。&lt;/p>
+&lt;p>今日の筋トレは腹筋:20x1,腕立て:15x1,スクワット20x1をした。&lt;/p>
+&lt;h2 id="隔週の雑談">隔週の雑談&lt;/h2>
+&lt;p>顧問のはらさんと隔週の打ち合わせ。今日の議題はこれら。内容が多くて1時間超えた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="/diary/diary/posts/2024/0105/#事務処理規定の叩き台作成">電子帳簿保存法対応の事務処理規定の共有&lt;/a>
+&lt;ul>
+&lt;li>まだ始まったばかりで税理士さんの温度感も低い&lt;/li>
+&lt;li>事務処理規定が省令に沿っているかどうかの判断はプロセス監査で行われる&lt;/li>
+&lt;li>電子帳簿保存法には規定されていないため、事務処理規定の妥当性の検証は行われない&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;a href="/diary/diary/posts/2024/0107/#経営の価値観と財務">融資を受ける構想作り&lt;/a>
+&lt;ul>
+&lt;li>日本政策金融公庫のみで検討していたが、融資実績を作りたいなら信用金庫も加えた方がよい&lt;/li>
+&lt;li>借金のメンタリティ、担当者との折衝や審査など余裕のあるときに経験を積んでおくことはよいように思えた&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;a href="/diary/diary/posts/2024/0113/#ファイナンシャルプランナーとの打ち合わせ">ファイナンシャルプランナーさんとのやり取り&lt;/a>
+&lt;ul>
+&lt;li>会社の経費で役員のための保険に入ろうと考えている&lt;/li>
+&lt;li>個人の保険控除は8万円らしい&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;a href="https://note.com/kanzan10to9/n/n49d8fe09ad5b">ローカル複業化プロジェクトの考察&lt;/a>
+&lt;ul>
+&lt;li>IT コミュニティに老人や子どもたちは入りにくい。農業なら老若男女誰でも入れる気がする&lt;/li>
+&lt;li>農業や地元の特産品を切り口にコワーキング (コミュニティ) で街の人たちと田舎の人たちをつなげるのはすごいことだと思う (関係人口の創出)&lt;/li>
+&lt;li>地元の有力者と仲良くなると、行政の口利きもしてくれて活動しやすくなる&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>はらさんが &lt;a href="https://yorihiroi-frontend.engineer/ja">よりひろいフロントエンド&lt;/a> を始めたそうでその話しも聞いていた。個人のブログサイトにするのか、複数人で記事を共有するサイトにするのかもまだ曖昧だという。&lt;a href="https://www.contentful.com/">Contentful&lt;/a> + Next.js + Cloudflare Pages という構成らしい。Contentful というツールを私が知らなかったのでまた時間のあるときに調べてみようと思う。&lt;/p>
+&lt;p>母が一人暮らしをしていて体調もよくないことから要介護状態になるリスクがそこそこあると考えている。最悪の場合、会社を休眠させてしばらく介護をするかもしれない。はらさんが仰るには休眠はよいアイディアだという。会社員に例えると退職した日の帰り道を想像するとよいと話されていたのだけど、私は過去の記憶があまりないというのもあるが、これまで6回も退職してきたのに退職日を特別に思ったことはあまりない。退職日と他の日に大きな違いはなくて、次のお仕事の準備や調査をしていることが私は多かったと思う。それでも退職にあわせて有休を1-2ヶ月とってゆっくり過ごしていたことには変わりない。私もそういう、メリハリのある働き方が好きだ。&lt;/p>
+&lt;h2 id="smtp-接続のタイムアウト">smtp 接続のタイムアウト&lt;/h2>
+&lt;p>たまたまメンバーが誤った設定で smtp サーバーに接続したときにタイムアウトするまで5分ほどかかるという現象を発見した。タイムアウトの設定をせずに接続しようとするからそんなことが起きるのかな？と考えて smtp クライアントのタイムアウト設定を調べてみると &lt;a href="https://pkg.go.dev/net#DialTimeout">net.DialTimeout&lt;/a> を使えばよいという。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/golang/go/issues/16436#issuecomment-233829112">https://github.com/golang/go/issues/16436#issuecomment-233829112&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>多めに見積もって30秒のタイムアウトを設定して接続するようにして再度メンバーに再現検証してもらったら直っていないという。接続そのものは出来ていたのだ。ソースを読んでみると、smtp クライアントを生成するときに &lt;code>220&lt;/code> というレスポンスを読むことがわかる。誤った接続設定でもコネクションは確立するが、レスポンスが返ってこなくて待ち状態になっていた。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-go" data-lang="go">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">NewClient&lt;/span>(&lt;span style="color:#a6e22e">conn&lt;/span> &lt;span style="color:#a6e22e">net&lt;/span>.&lt;span style="color:#a6e22e">Conn&lt;/span>, &lt;span style="color:#a6e22e">host&lt;/span> &lt;span style="color:#66d9ef">string&lt;/span>) (&lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">Client&lt;/span>, &lt;span style="color:#66d9ef">error&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">text&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">textproto&lt;/span>.&lt;span style="color:#a6e22e">NewConn&lt;/span>(&lt;span style="color:#a6e22e">conn&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">_&lt;/span>, &lt;span style="color:#a6e22e">_&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">text&lt;/span>.&lt;span style="color:#a6e22e">ReadResponse&lt;/span>(&lt;span style="color:#ae81ff">220&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">text&lt;/span>.&lt;span style="color:#a6e22e">Close&lt;/span>()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">c&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#f92672">&amp;amp;&lt;/span>&lt;span style="color:#a6e22e">Client&lt;/span>{&lt;span style="color:#a6e22e">Text&lt;/span>: &lt;span style="color:#a6e22e">text&lt;/span>, &lt;span style="color:#a6e22e">conn&lt;/span>: &lt;span style="color:#a6e22e">conn&lt;/span>, &lt;span style="color:#a6e22e">serverName&lt;/span>: &lt;span style="color:#a6e22e">host&lt;/span>, &lt;span style="color:#a6e22e">localName&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;localhost&amp;#34;&lt;/span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">_&lt;/span>, &lt;span style="color:#a6e22e">c&lt;/span>.&lt;span style="color:#a6e22e">tls&lt;/span> = &lt;span style="color:#a6e22e">conn&lt;/span>.(&lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">tls&lt;/span>.&lt;span style="color:#a6e22e">Conn&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">c&lt;/span>, &lt;span style="color:#66d9ef">nil&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>調べてみると Conn インターフェースにデッドラインを設定する API が提供されている。注意事項としては接続した後にデッドラインをリセットしないといけない。&lt;/p>
+&lt;blockquote>
+&lt;p>デッドラインとは、I/O操作がブロックされずに失敗する絶対時間のことである。デッドラインは、ReadやWriteを呼び出した直後のI/Oだけでなく、将来の保留中の I/O すべてに適用される。デッドラインを超過した後は、未来にデッドラインを設定することで、接続をリフレッシュすることができる。&lt;/p>
+&lt;p>デッドラインを超えた場合、ReadやWrite、その他のI/Oメソッドの呼び出しは、os.ErrDeadlineExceeded をラップしたエラーを返します。これは、errors.Is(err, os.ErrDeadlineExceeded)を使用してテストすることができます。errorのTimeoutメソッドはtrueを返しますが、期限を超過していなくてもTimeoutメソッドがtrueを返すエラーが他にもあることに注意してください。&lt;/p>
+&lt;p>アイドルタイムアウトは、ReadまたはWrite呼び出しに成功した後、デッドラインを繰り返し延長することで実装できる。tの値が0であれば、I/O操作はタイムアウトしない。&lt;/p>
+&lt;p>&lt;a href="https://pkg.go.dev/net#Conn">https://pkg.go.dev/net#Conn&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>次のように &lt;code>SetReadDeadline()&lt;/code> を使ってタイムアウトを5分から30秒に短縮できた。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-go" data-lang="go">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> (&lt;span style="color:#a6e22e">s&lt;/span> &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">Clinet&lt;/span>) &lt;span style="color:#a6e22e">connectWithReadDeadline&lt;/span>(&lt;span style="color:#a6e22e">conn&lt;/span> &lt;span style="color:#a6e22e">net&lt;/span>.&lt;span style="color:#a6e22e">Conn&lt;/span>) (&lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">smtp&lt;/span>.&lt;span style="color:#a6e22e">Client&lt;/span>, &lt;span style="color:#66d9ef">error&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">conn&lt;/span>.&lt;span style="color:#a6e22e">SetReadDeadline&lt;/span>(&lt;span style="color:#a6e22e">time&lt;/span>.&lt;span style="color:#a6e22e">Now&lt;/span>().&lt;span style="color:#a6e22e">Add&lt;/span>(&lt;span style="color:#a6e22e">dialTimeout&lt;/span>)); &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span>, &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Errorf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;failed to set read deadline: %w&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">c&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">smtp&lt;/span>.&lt;span style="color:#a6e22e">NewClient&lt;/span>(&lt;span style="color:#a6e22e">conn&lt;/span>, &lt;span style="color:#a6e22e">s&lt;/span>.&lt;span style="color:#a6e22e">config&lt;/span>.&lt;span style="color:#a6e22e">Host&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span>, &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Errorf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;failed to connect to the smtp server: %w&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// clear read deadline
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">conn&lt;/span>.&lt;span style="color:#a6e22e">SetReadDeadline&lt;/span>(&lt;span style="color:#a6e22e">time&lt;/span>.&lt;span style="color:#a6e22e">Time&lt;/span>{}); &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span>, &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Errorf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;failed to reset read deadline: %w&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">c&lt;/span>, &lt;span style="color:#66d9ef">nil&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>ローカルに window server をインストールした</title><link>/diary/posts/2024/0118/</link><pubDate>Thu, 18 Jan 2024 09:28:57 +0900</pubDate><guid>/diary/posts/2024/0118/</guid><description>1時過ぎに寝て6時半に起きた。久しぶりによく眠れた。6時半に起きてたのに8時ぐらいまでだらだらしてた。
+今日の筋トレは腹筋:20x1,腕立て:15x1,スクワット20x1をした。
+windows server 2022 試用版のインストール Windows Server 2022 の試用版が提供されていると知ったのでローカルの VirtualBox 環境にインストールしてみた。Active Directory の検証に使うのでディレクトサービスや ldaps 接続のための証明書サービスなどを設定する。メンバーがインストールして課題管理システムにメモを残してくれてあったのでそれを見ながらインストールや設定自体はすぐにできた。1つだけうまく接続できないことがあった。
+ホスト os から ldapsearch で ldaps で接続しようとすると次のようなエラーになる。
+$ ldapsearch -x -H &amp;#34;ldaps://192.168.56.101&amp;#34; -W -b &amp;#34;CN=Users,DC=myad,DC=com&amp;#34; -D &amp;#34;CN=Administrator,CN=Users,DC=myad,DC=com&amp;#34; ldap_sasl_bind(SIMPLE): Can&amp;#39;t contact LDAP server (-1) ldap では接続できるので tls の検証のチェックに失敗していることは自明だったが、メンバーは接続できているようにみえたので私の環境の設定が誤っているのかどうかを調べていた。2時間ぐらいデバッグしたりしながら調べてもよくわからなくて、たまたまチーム勉強会があったので終わったときにメンバーに聞いてみた。すぐに完結した。ldapsearch は LDAPTLS_REQCERT という環境変数で tls のリクエストの振る舞いを制御できる。次のように明示的に指定すると接続できる。
+$ LDAPTLS_REQCERT=never ldapsearch -x -H &amp;#34;ldaps://192.168.56.101&amp;#34; ... この設定はいくつかの方法で設定ファイルに書いておくこともできる。メンバーが使っている環境には ldap.conf でこの設定を有効にしていたので ldaps 接続できていたというオチだった。私が openldap について明るくないのでこういった背景知識をもっていなくてはまっていただけだった。
+Thus the following files and variables are read, in order: variable $LDAPNOINIT, and if that is not set: system file /etc/openldap/ldap.</description><content>&lt;p>1時過ぎに寝て6時半に起きた。久しぶりによく眠れた。6時半に起きてたのに8時ぐらいまでだらだらしてた。&lt;/p>
+&lt;p>今日の筋トレは腹筋:20x1,腕立て:15x1,スクワット20x1をした。&lt;/p>
+&lt;h2 id="windows-server-2022-試用版のインストール">windows server 2022 試用版のインストール&lt;/h2>
+&lt;p>&lt;a href="https://www.microsoft.com/ja-jp/evalcenter/evaluate-windows-server-2022">Windows Server 2022&lt;/a> の試用版が提供されていると知ったのでローカルの &lt;a href="https://www.virtualbox.org/">VirtualBox&lt;/a> 環境にインストールしてみた。Active Directory の検証に使うのでディレクトサービスや ldaps 接続のための証明書サービスなどを設定する。メンバーがインストールして課題管理システムにメモを残してくれてあったのでそれを見ながらインストールや設定自体はすぐにできた。1つだけうまく接続できないことがあった。&lt;/p>
+&lt;p>ホスト os から ldapsearch で ldaps で接続しようとすると次のようなエラーになる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ ldapsearch -x -H &lt;span style="color:#e6db74">&amp;#34;ldaps://192.168.56.101&amp;#34;&lt;/span> -W -b &lt;span style="color:#e6db74">&amp;#34;CN=Users,DC=myad,DC=com&amp;#34;&lt;/span> -D &lt;span style="color:#e6db74">&amp;#34;CN=Administrator,CN=Users,DC=myad,DC=com&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ldap_sasl_bind&lt;span style="color:#f92672">(&lt;/span>SIMPLE&lt;span style="color:#f92672">)&lt;/span>: Can&lt;span style="color:#960050;background-color:#1e0010">&amp;#39;&lt;/span>t contact LDAP server &lt;span style="color:#f92672">(&lt;/span>-1&lt;span style="color:#f92672">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>ldap では接続できるので tls の検証のチェックに失敗していることは自明だったが、メンバーは接続できているようにみえたので私の環境の設定が誤っているのかどうかを調べていた。2時間ぐらいデバッグしたりしながら調べてもよくわからなくて、たまたまチーム勉強会があったので終わったときにメンバーに聞いてみた。すぐに完結した。ldapsearch は &lt;code>LDAPTLS_REQCERT&lt;/code> という環境変数で tls のリクエストの振る舞いを制御できる。次のように明示的に指定すると接続できる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ LDAPTLS_REQCERT&lt;span style="color:#f92672">=&lt;/span>never ldapsearch -x -H &lt;span style="color:#e6db74">&amp;#34;ldaps://192.168.56.101&amp;#34;&lt;/span> ...
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>この設定はいくつかの方法で設定ファイルに書いておくこともできる。メンバーが使っている環境には &lt;code>ldap.conf&lt;/code> でこの設定を有効にしていたので ldaps 接続できていたというオチだった。私が openldap について明るくないのでこういった背景知識をもっていなくてはまっていただけだった。&lt;/p>
+&lt;pre tabindex="0">&lt;code>Thus the following files and variables are read, in order:
+variable $LDAPNOINIT, and if that is not set:
+system file /etc/openldap/ldap.conf,
+user files $HOME/ldaprc, $HOME/.ldaprc, ./ldaprc,
+system file $LDAPCONF,
+user files $HOME/$LDAPRC, $HOME/.$LDAPRC, ./$LDAPRC,
+variables $LDAP&amp;lt;uppercase option name&amp;gt;.
+Settings late in the list override earlier ones.
+&lt;/code>&lt;/pre>&lt;h2 id="明石海峡大橋海上ウォーク">明石海峡大橋海上ウォーク&lt;/h2>
+&lt;p>神戸ジャーナルの記事をみかけて、そういうイベントがあるのは知っていた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://kaijo-uzushio-walk.jp/">神戸淡路鳴門自動車道 2橋ウォーク同時開催！ 明石海峡大橋海上ウォーク/大鳴門橋うずしおウォーク 令和6年3月9日(土)・10日(日)&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>開発合宿の翌週だし、わざわざ行くほどでもないかとスルーしていたものの、関東から知人がわざわざ歩きに来るという話しを聞いて、せっかくの機会なので私も参加することにした。土曜日の午前中に明石海峡大橋を歩いてくる。まだ申込みが始まったばかりなので希望の時間帯を選択できると思う。&lt;/p></content></item><item><title>勉強のやり方の基本</title><link>/diary/posts/2024/0117/</link><pubDate>Wed, 17 Jan 2024 01:52:58 +0900</pubDate><guid>/diary/posts/2024/0117/</guid><description>3時過ぎに寝て1度起きて7時半に起きた。また体調を崩さないか心配になってくる。
 今日の筋トレは腹筋:15x2,腕立て:10x1,スクワット20x1をした。
 業務での勉強のやり方の基本 隔週で水曜日はメンバーと1on1をしている。今日は年明けで最初の1on1になる。あるメンバーと勉強のやり方について話題になった。私が普段、業務で行っている勉強のやり方を紹介してみた。
 業務の中で未知の内容やわからないことに遭遇する ツールやフレームワークを学ぶなら公式ドキュメントを一通り読む チュートリアルやサンプルコードを書くためにサンプルリポジトリを作る 実際にコードを書いて、動かしてみて、ドキュメントの内容を理解する 自分が理解した内容をテックブログに書く 対象への理解の解像度が上がってから業務に応用する 業務をしながらこれを繰り返してプロダクト開発をしている。

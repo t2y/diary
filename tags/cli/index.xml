@@ -1,4 +1,33 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>cli on forest nook</title><link>/diary/tags/cli/</link><description>Recent content in cli on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Wed, 10 Jan 2024 08:27:29 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/cli/index.xml" rel="self" type="application/rss+xml"/><item><title>vhs コマンドの使い方</title><link>/diary/posts/2024/0110/</link><pubDate>Wed, 10 Jan 2024 08:27:29 +0900</pubDate><guid>/diary/posts/2024/0110/</guid><description>23時過ぎに寝始めて何度か起きて7時半に起きた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>cli on forest nook</title><link>/diary/tags/cli/</link><description>Recent content in cli on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 18 Jan 2024 09:28:57 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/cli/index.xml" rel="self" type="application/rss+xml"/><item><title>ローカルに window server をインストールした</title><link>/diary/posts/2024/0118/</link><pubDate>Thu, 18 Jan 2024 09:28:57 +0900</pubDate><guid>/diary/posts/2024/0118/</guid><description>1時過ぎに寝て6時半に起きた。久しぶりによく眠れた。6時半に起きてたのに8時ぐらいまでだらだらしてた。
+今日の筋トレは腹筋:20x1,腕立て:15x1,スクワット20x1をした。
+windows server 2022 試用版のインストール Windows Server 2022 の試用版が提供されていると知ったのでローカルの VirtualBox 環境にインストールしてみた。Active Directory の検証に使うのでディレクトサービスや ldaps 接続のための証明書サービスなどを設定する。メンバーがインストールして課題管理システムにメモを残してくれてあったのでそれを見ながらインストールや設定自体はすぐにできた。1つだけうまく接続できないことがあった。
+ホスト os から ldapsearch で ldaps で接続しようとすると次のようなエラーになる。
+$ ldapsearch -x -H &amp;#34;ldaps://192.168.56.101&amp;#34; -W -b &amp;#34;CN=Users,DC=myad,DC=com&amp;#34; -D &amp;#34;CN=Administrator,CN=Users,DC=myad,DC=com&amp;#34; ldap_sasl_bind(SIMPLE): Can&amp;#39;t contact LDAP server (-1) ldap では接続できるので tls の検証のチェックに失敗していることは自明だったが、メンバーは接続できているようにみえたので私の環境の設定が誤っているのかどうかを調べていた。2時間ぐらいデバッグしたりしながら調べてもよくわからなくて、たまたまチーム勉強会があったので終わったときにメンバーに聞いてみた。すぐに完結した。ldapsearch は LDAPTLS_REQCERT という環境変数で tls のリクエストの振る舞いを制御できる。次のように明示的に指定すると接続できる。
+$ LDAPTLS_REQCERT=never ldapsearch -x -H &amp;#34;ldaps://192.168.56.101&amp;#34; ... この設定はいくつかの方法で設定ファイルに書いておくこともできる。メンバーが使っている環境には ldap.conf でこの設定を有効にしていたので ldaps 接続できていたというオチだった。私が openldap について明るくないのでこういった背景知識をもっていなくてはまっていただけだった。
+Thus the following files and variables are read, in order: variable $LDAPNOINIT, and if that is not set: system file /etc/openldap/ldap.</description><content>&lt;p>1時過ぎに寝て6時半に起きた。久しぶりによく眠れた。6時半に起きてたのに8時ぐらいまでだらだらしてた。&lt;/p>
+&lt;p>今日の筋トレは腹筋:20x1,腕立て:15x1,スクワット20x1をした。&lt;/p>
+&lt;h2 id="windows-server-2022-試用版のインストール">windows server 2022 試用版のインストール&lt;/h2>
+&lt;p>&lt;a href="https://www.microsoft.com/ja-jp/evalcenter/evaluate-windows-server-2022">Windows Server 2022&lt;/a> の試用版が提供されていると知ったのでローカルの &lt;a href="https://www.virtualbox.org/">VirtualBox&lt;/a> 環境にインストールしてみた。Active Directory の検証に使うのでディレクトサービスや ldaps 接続のための証明書サービスなどを設定する。メンバーがインストールして課題管理システムにメモを残してくれてあったのでそれを見ながらインストールや設定自体はすぐにできた。1つだけうまく接続できないことがあった。&lt;/p>
+&lt;p>ホスト os から ldapsearch で ldaps で接続しようとすると次のようなエラーになる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ ldapsearch -x -H &lt;span style="color:#e6db74">&amp;#34;ldaps://192.168.56.101&amp;#34;&lt;/span> -W -b &lt;span style="color:#e6db74">&amp;#34;CN=Users,DC=myad,DC=com&amp;#34;&lt;/span> -D &lt;span style="color:#e6db74">&amp;#34;CN=Administrator,CN=Users,DC=myad,DC=com&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ldap_sasl_bind&lt;span style="color:#f92672">(&lt;/span>SIMPLE&lt;span style="color:#f92672">)&lt;/span>: Can&lt;span style="color:#960050;background-color:#1e0010">&amp;#39;&lt;/span>t contact LDAP server &lt;span style="color:#f92672">(&lt;/span>-1&lt;span style="color:#f92672">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>ldap では接続できるので tls の検証のチェックに失敗していることは自明だったが、メンバーは接続できているようにみえたので私の環境の設定が誤っているのかどうかを調べていた。2時間ぐらいデバッグしたりしながら調べてもよくわからなくて、たまたまチーム勉強会があったので終わったときにメンバーに聞いてみた。すぐに完結した。ldapsearch は &lt;code>LDAPTLS_REQCERT&lt;/code> という環境変数で tls のリクエストの振る舞いを制御できる。次のように明示的に指定すると接続できる。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ LDAPTLS_REQCERT&lt;span style="color:#f92672">=&lt;/span>never ldapsearch -x -H &lt;span style="color:#e6db74">&amp;#34;ldaps://192.168.56.101&amp;#34;&lt;/span> ...
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>この設定はいくつかの方法で設定ファイルに書いておくこともできる。メンバーが使っている環境には &lt;code>ldap.conf&lt;/code> でこの設定を有効にしていたので ldaps 接続できていたというオチだった。私が openldap について明るくないのでこういった背景知識をもっていなくてはまっていただけだった。&lt;/p>
+&lt;pre tabindex="0">&lt;code>Thus the following files and variables are read, in order:
+variable $LDAPNOINIT, and if that is not set:
+system file /etc/openldap/ldap.conf,
+user files $HOME/ldaprc, $HOME/.ldaprc, ./ldaprc,
+system file $LDAPCONF,
+user files $HOME/$LDAPRC, $HOME/.$LDAPRC, ./$LDAPRC,
+variables $LDAP&amp;lt;uppercase option name&amp;gt;.
+Settings late in the list override earlier ones.
+&lt;/code>&lt;/pre>&lt;h2 id="明石海峡大橋海上ウォーク">明石海峡大橋海上ウォーク&lt;/h2>
+&lt;p>神戸ジャーナルの記事をみかけて、そういうイベントがあるのは知っていた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://kaijo-uzushio-walk.jp/">神戸淡路鳴門自動車道 2橋ウォーク同時開催！ 明石海峡大橋海上ウォーク/大鳴門橋うずしおウォーク 令和6年3月9日(土)・10日(日)&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>開発合宿の翌週だし、わざわざ行くほどでもないかとスルーしていたものの、関東から知人がわざわざ歩きに来るという話しを聞いて、せっかくの機会なので私も参加することにした。土曜日の午前中に明石海峡大橋を歩いてくる。まだ申込みが始まったばかりなので希望の時間帯を選択できると思う。&lt;/p></content></item><item><title>vhs コマンドの使い方</title><link>/diary/posts/2024/0110/</link><pubDate>Wed, 10 Jan 2024 08:27:29 +0900</pubDate><guid>/diary/posts/2024/0110/</guid><description>23時過ぎに寝始めて何度か起きて7時半に起きた。
 今日の筋トレは腹筋:10x1,腕立て:10x1,スクワット15x1をした。
 sveltekit で context のデータを扱う ui 側でページに依存しない形で設定情報などを扱いたいとする。svelte の store と context api を組み合わせて sveltekit として context を管理するサンプルコードが紹介されている。
 context と共に store を使う これだけですぐ動くのだけど、このときに LayoutData はサーバー側で作るとバックエンドの仕組みを隠蔽できて嬉しい。そういったときは src/routes/+layout.server.ts にバックエンドの api 呼び出しを隠蔽することで意図した振る舞いになる。
