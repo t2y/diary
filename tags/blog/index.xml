@@ -1,4 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog on forest nook</title><link>/diary/tags/blog/</link><description>Recent content in blog on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Tue, 09 Jan 2024 09:30:22 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>災害義援金を寄付してみた</title><link>/diary/posts/2024/0109/</link><pubDate>Tue, 09 Jan 2024 09:30:22 +0900</pubDate><guid>/diary/posts/2024/0109/</guid><description>2時半に寝て4時半に起きて6時半に起きて7時半に起きた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog on forest nook</title><link>/diary/tags/blog/</link><description>Recent content in blog on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Mon, 22 Jan 2024 08:30:33 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>継続の習慣</title><link>/diary/posts/2024/0122/</link><pubDate>Mon, 22 Jan 2024 08:30:33 +0900</pubDate><guid>/diary/posts/2024/0122/</guid><description>1時に寝て4時に起きて2時間ほどだらだらして7時半に起きた。
+今日の筋トレは腹筋:15x1,腕立て:15x1,スクワット20x1をした。
+雑多な作業 virtualbox に windows server 2022 のインストールと Active Directory ドメインサービスの構築 する方法のドキュメントを書き終えた。年度が変わったら新卒のメンバーがチームに入る可能性もあるし、滅多にやらない作業だし、windows のことを私はよく知らないので整理しておくとよい気がした。その後、メンバーのツール開発やインフラ作業のアドバイスややり取りなどをしていたら時間が経ってしまった。
+テックブログを読む会 年を明けて初めての テックブログ一気読み選手権20240122杯 に参加した。次の記事を読んで他の参加者に共有した。
+心理的安全性の高い職場はどのように作られているか？ 2023年も開発合宿を開催しました この30分イベントのためにテックブログを読むことを強制されるのがよい。この日記を始めたことで「書くこと」と最近は「筋トレ」も継続できるようになった。短い時間の継続を目的とした仕組みをもっとうまく取り入れて他にも応用していきたいと思う。</description><content>&lt;p>1時に寝て4時に起きて2時間ほどだらだらして7時半に起きた。&lt;/p>
+&lt;p>今日の筋トレは腹筋:15x1,腕立て:15x1,スクワット20x1をした。&lt;/p>
+&lt;h2 id="雑多な作業">雑多な作業&lt;/h2>
+&lt;p>&lt;a href="/diary/diary/posts/2024/0118/#windows-server-2022-試用版のインストール">virtualbox に windows server 2022 のインストールと Active Directory ドメインサービスの構築&lt;/a> する方法のドキュメントを書き終えた。年度が変わったら新卒のメンバーがチームに入る可能性もあるし、滅多にやらない作業だし、windows のことを私はよく知らないので整理しておくとよい気がした。その後、メンバーのツール開発やインフラ作業のアドバイスややり取りなどをしていたら時間が経ってしまった。&lt;/p>
+&lt;h2 id="テックブログを読む会">テックブログを読む会&lt;/h2>
+&lt;p>年を明けて初めての &lt;a href="https://blogreading.connpass.com/event/308426/">テックブログ一気読み選手権20240122杯&lt;/a> に参加した。次の記事を読んで他の参加者に共有した。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://techtouch.hatenablog.jp/entry/psychological_safety_in_workplace">心理的安全性の高い職場はどのように作られているか？&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://developers.freee.co.jp/entry/developers-camp-2023">2023年も開発合宿を開催しました&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>この30分イベントのためにテックブログを読むことを強制されるのがよい。この日記を始めたことで「書くこと」と最近は「筋トレ」も継続できるようになった。短い時間の継続を目的とした仕組みをもっとうまく取り入れて他にも応用していきたいと思う。&lt;/p></content></item><item><title>災害義援金を寄付してみた</title><link>/diary/posts/2024/0109/</link><pubDate>Tue, 09 Jan 2024 09:30:22 +0900</pubDate><guid>/diary/posts/2024/0109/</guid><description>2時半に寝て4時半に起きて6時半に起きて7時半に起きた。
 今日の筋トレは腹筋:15x1,腕立て:10x1,スクワット10x1をした。
 災害義援金の寄付 週末に災害の寄付をしようと思ったときに、ふと寄付を法人でやればいいんじゃないかと思い付いた。どちらも私のお金であることには変わりないのだけど、会社のお金は個人のお金という気がしないので個人よりも大きいお金を寄付できる。これは法人という人格を分けていることのメリットの1つかもしれない。
 令和6年（2024年）能登半島地震に係る災害義援金の受付について 今朝から税理士さんに損金算入についての懸念がないかを確認して問題ないということだったので10万円を寄付した。領収書は電子フォームから申請したが、毎日それなりの数の人が寄付しているだろうから領収書が発送されるまで1ヶ月ぐらいはかかるのかもしれない。気長に待って領収書が届いたら軽く記事を書こうと思う。現時点での義援金の残高は 968,223,243 円とのこと。せいぜい集まるお金は数十億程度なのかな。
