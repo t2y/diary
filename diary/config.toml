@@ -1,7 +1,7 @@
 baseurl = "https://t2y.github.io/"
 languageCode = "ja-jp"
 theme = "terminal"
-paginate = 7
+paginate = 11
 
 [taxonomies]
   date = "dates"
