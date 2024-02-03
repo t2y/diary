@@ -140,6 +140,100 @@ admin&gt; db.revokeRolesFromUser(&#34;root&#34;, [&#34;__system&#34;]);
 </span></span></code></pre></div><p>selinux を無効にしてみたら？というアドバイスをいただいて、試しに enforced から disabled にしたら動いたので selinux のなにかしらの設定を変えてしまったのかな？とそのときは思っていた。しかし、別の開発者からデフォルト設定で enforced でも動くはずという情報をもらって、もう一度 disabled から enforced に戻して再起動したら普通に動いて、その前の公開鍵認証の失敗を再現できなくなった。私にはこの先のデバッグはまったくわからない。お手伝い先のシニアエンジニアの方にみてもらって次のようなことを教えてもらった。</p><blockquote><p>SElinuxが怪しいなと思ったら、/var/log/audit/audit.log とか<code>ausearch -m avc</code>コマンドを確認。<br>authorized_keysのアクセスが拒否されているので確かにSELinuxの問題があったことがわかります。<br>type=AVC msg=audit(1696315292.258:1446): avc: denied { read } for pid=446534 comm=&ldquo;sshd&rdquo; name=&ldquo;authorized_keys&rdquo; dev=&ldquo;dm-0&rdquo; ino=201836096 scontext=system_u:system_r:sshd_t:s0-s0:c0.c1023 tcontext=unconfined_u:object_r:default_t:s0 tclass=file permissive=0<br>現在、authorized_keysのコンテキストは期待通りunconfined_u:object_r:ssh_home_t:s0となっているけど、問題が起きていたときは、unconfined_u:object_r:default_t:s0 だったことがわかります。<br>詳しい経緯はわからないけど、.ssh/authorized_keysを作成した時点でopenssh用のselinuxポリシーが適用されていなかったと考えられます。<br>その後なにかのイベント(再起動?)でrestorecon 相当が行われて、コンテキストがssh_home_tに変更され問題は解消した。<br>なんだかよくわかないけど、OSのマイナーバージョンアップで微妙にセキュリティコンテキストが変更されてrestoreconすると解決する、ってのは時々起きてますね。<br>たぶんopensshインストール前にrsyncしたのでコンテキストがdefault_tになってたんじゃないかと。なかなかの罠ですね。<br></p></blockquote><p>おそらく lvm の論理ボリュームのバックアップ／リストアに <code>rsync -a</code> を使った (本当は <code>cp -a</code>の方がよい) ことによる問題ではないかということ。私が報告した状況と selinux のログからすぐ助言できるのが素晴らしいと思う。まだまだ私のインフラエンジニアとしての未熟さを実感した瞬間でもあった。一昔前は selinux は disabled にするものという常識だったが、最近は初期設定で動くようになっているのでなるべく selinux は有効にして運用するものという意識に変わってきているらしい。</p></div></article><article class="post on-list"><h1 class=post-title><a href=/diary/posts/2023/1002/>インフラの式年遷宮</a></h1><div class=post-meta><time class=post-date>2023-10-02 (Mon.) ::</time></div><span class=post-tags>#<a href=/diary/tags/container/>container</a>&nbsp;
 #<a href=/diary/tags/docker/>docker</a>&nbsp;
 #<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;</span><div class=post-content><p>1時に寝て何度か起きて5時に起きた。それからだらだらして寝てまた7時に起きた。</p><h2 id=テスト環境の再整備と-rootless-コンテナ>テスト環境の再整備と rootless コンテナ</h2><p>インフラの式年遷宮のようなことをしていて、テスト環境をリファクタリングして再整備していた。これまで root でコンテナを実行していたが、最近は rootless コンテナがセキュリティ強化の観点から望ましいということで次のドキュメントをみながら設定した。</p><ul><li><a href=https://docs.docker.com/engine/install/linux-postinstall/>Linux post-installation steps for Docker Engine</a></li></ul><p>設定はとくに難しくないが、dockerd や containerd の起動を systemd のユーザーインスタンスに依存することになる。systemd のユーザーインスタンスは基本的にユーザーがログインしたときに生成されるものなので OS が再起動したときなどに困る。OS 再起動時にも systemd のユーザーインスタンスを生成するには linger という仕組みを有効にすればよいらしい。systemd &ndash;user の扱いと linger のことまで理解していれば、たぶん大丈夫なのかな？これで運用がうまくいくことを祈りたい。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ sudo loginctl enable-linger ucidm
-</span></span></code></pre></div></div></article><div class=pagination><div class=pagination__buttons><a href=/diary/tags/infrastructure/page/2/ class="button next"><span class=button__text>過去の日記</span>
+</span></span></code></pre></div></div></article><article class="post on-list"><h1 class=post-title><a href=/diary/posts/2023/0929/>初めて lvm を操作してみた</a></h1><div class=post-meta><time class=post-date>2023-09-29 (Fri.) ::</time></div><span class=post-tags>#<a href=/diary/tags/founding/>founding</a>&nbsp;
+#<a href=/diary/tags/psychology/>psychology</a>&nbsp;
+#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
+#<a href=/diary/tags/linux/>linux</a>&nbsp;</span><div class=post-content><p>0時に寝て何度か起きて7時に起きた。最近は寝る前にはてブのアプリで適当に記事を読みながら寝ることが多い。</p><h2 id=隔週の雑談>隔週の雑談</h2><p>顧問のはらさんと隔週の打ち合わせ。今日の議題はこれら。</p><ul><li>今後のお手伝いの展望</li><li><a href=/diary/posts/2023/0926/>fun/done/learn をカスタマイズする話し</a></li><li>hugo のテンプレートを作る話し</li><li>課題管理のコンテンツを作っていく話し</li></ul><p>ここ1-2週間ぼーっとしていて、忙しくもなく、なにかやっているわけでもないけど、のんびり過ごしている。軽いバーンアウトだと思う。先週末は休みも取った。「hugo のテンプレート作り」のような新規開発を、どこかのもくもく会やイベントに行って、その場で集中してやったらいいんじゃないか？というアドバイスをいただいて、確かにそういうやり方もよいように思えた。今週末は課題管理のコンテンツを考えて、できればブログに書いてみようと思う。</p><h2 id=lvm-の論理ボリュームの結合>lvm の論理ボリュームの結合</h2><p>新規に almalinux 8 で仮想マシンを作った。デフォルト設定でインストールしたら <code>/</code> と <code>/home</code> でパーティション分割されていて、これは使い勝手が悪いなと思ってパーティションを結合することにした。</p><pre tabindex=0><code>$ df -h
+ファイルシス               サイズ  使用  残り 使用% マウント位置
+devtmpfs                     1.9G     0  1.9G    0% /dev
+tmpfs                        2.0G     0  2.0G    0% /dev/shm
+tmpfs                        2.0G  8.6M  2.0G    1% /run
+tmpfs                        2.0G     0  2.0G    0% /sys/fs/cgroup
+/dev/mapper/almalinux-root    70G  6.5G   64G   10% /
+/dev/mapper/almalinux-home   437G  5.0G  432G    2% /home
+/dev/vda1                   1014M  221M  794M   22% /boot
+tmpfs                        393M   12K  393M    1% /run/user/1000
+</code></pre><p>基本的には次の記事をみてやったらうまくいった。</p><ul><li><a href=https://blog.andersonbanihirwe.dev/posts/2021/how-to-merge-disk-partitions-on-centos/>How to merge two or more disk partitions on Centos 7</a></li></ul><p>/home をバックアップする</p><pre tabindex=0><code># mkdir /home-bkup
+# cp -a /home/ /home-bkup/
+</code></pre><p>emergency モードに入る？</p><pre tabindex=0><code># systemctl emergency
+</code></pre><p>結合したい領域を unmount して、home の論理ボリュームを削除する。</p><pre tabindex=0><code># umount /dev/mapper/almalinux-home
+# lvremove /dev/mapper/almalinux-home
+Do you really want to remove active logical volume almalinux/home? [y/n]: y
+  Logical volume &#34;home&#34; successfully removed.
+</code></pre><p>バックアップからデータを戻す。</p><pre tabindex=0><code># cp -a /home-bkup/ /home/
+</code></pre><p>/etc/fstab から不要なパーティション設定を削除する。</p><pre tabindex=0><code># vi /etc/fstab
+...
+/dev/mapper/almalinux-home  /home  xfs  defaults  0  0  # &lt;- この行を削除
+...
+</code></pre><p>root の論理ボリュームに余っている領域を拡張する。</p><pre tabindex=0><code># lvextend -l +100%FREE -r /dev/mapper/almalinux-root
+  Size of logical volume almalinux/root changed from 70.00 GiB (17920 extents) to &lt;507.04 GiB (129802 extents).
+  Logical volume almalinux/root successfully resized.
+meta-data=/dev/mapper/almalinux-root isize=512    agcount=4, agsize=4587520 blks
+         =                       sectsz=512   attr=2, projid32bit=1
+         =                       crc=1        finobt=1, sparse=1, rmapbt=0
+         =                       reflink=1    bigtime=0 inobtcount=0
+data     =                       bsize=4096   blocks=18350080, imaxpct=25
+         =                       sunit=0      swidth=0 blks
+naming   =version 2              bsize=4096   ascii-ci=0, ftype=1
+log      =internal log           bsize=4096   blocks=8960, version=2
+         =                       sectsz=512   sunit=0 blks, lazy-count=1
+realtime =none                   extsz=4096   blocks=0, rtextents=0
+data blocks changed from 18350080 to 132917248
+</code></pre><p>この時点で1つの領域に結合されたことがわかる。</p><pre tabindex=0><code># df -h
+ファイルシス               サイズ  使用  残り 使用% マウント位置
+devtmpfs                     1.9G     0  1.9G    0% /dev
+tmpfs                        2.0G     0  2.0G    0% /dev/shm
+tmpfs                        2.0G   78M  1.9G    4% /run
+tmpfs                        2.0G     0  2.0G    0% /sys/fs/cgroup
+/dev/mapper/almalinux-root   508G   14G  494G    3% /
+/dev/vda1                   1014M  221M  794M   22% /boot
+</code></pre><p>バックアップを削除する。</p><pre tabindex=0><code># rm -rf /home-bkup/
+</code></pre><p>マシンを再起動する。</p><pre tabindex=0><code># reboot
+</code></pre><p>これで問題なければ完了。</p></div></article><article class="post on-list"><h1 class=post-title><a href=/diary/posts/2023/0922/>また podman に苦戦する</a></h1><div class=post-meta><time class=post-date>2023-09-22 (Fri.) ::</time></div><span class=post-tags>#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
+#<a href=/diary/tags/operation/>operation</a>&nbsp;
+#<a href=/diary/tags/podman/>podman</a>&nbsp;</span><div class=post-content><p>23時に寝て何度か起きて7時に起きた。出張帰りでなんかバテててなにもせず休んでいた。少し喉に引っかかりがある。出張で飲み歩いたし、そろそろコロナ感染？の疑いをもって生活してみる。</p><h2 id=podman-と-dbus-daemon-とsystemd-の調査>podman と dbus-daemon とsystemd の調査</h2><p>2次開発の成果物をドッグフーディングの目的で社内へ導入する。メンバーが作業していて nginx が正常に動作しないという。ログをみろとすぐにコンテナネットワーク内の dns サービスが正常に動いていないということはわかった。podman は <a href=https://github.com/containers/aardvark-dns>aardvark-dns</a> というサービスを使って dns を管理する。但し、このサービスがまだまだ安定していなくて不具合があるのを以前にも確認した。このサービスの振る舞いがよく分からなくて、意図しない状況や状態に対して正常に動作してくれない。</p><p>他にも調査をしていて rootless で podman コマンドを実行すると次の issue で書かれているようなワーニングが出力される。dbus-user-session というパッケージを導入すれば解決するとある。</p><ul><li><a href=https://github.com/containers/podman/issues/12983>WARN[0000] The cgroupv2 manager is set to systemd but there is no systemd user session available #12983</a></li></ul><p>dbus-daemon のサービスは systemd で動いていて、systemd のユーザーモードと dbus が正常に動いていないというところまではすぐに分かった。その状態だと rootless な podman が正常に動作しないということもすぐに分かった。ここまではすぐに調査できたが、問題はどうやれば sytemd のユーザーモードを dbus を正常に動くように復旧できるのかがまったく分からない。systemd がそもそも難しいのに、そのユーザーモードは権限管理が関係するのでさらにもっと難しい。1日調べてお手上げで他の社員さんにも相談してみた。</p><p>今日は自分の作業は進捗しなかったけど、メンバーの作業の進捗をみていて、メンバーがはまっていたところを助言して、その問題は解決してうまくいって、それだけで満足していた。</p></div></article><article class="post on-list"><h1 class=post-title><a href=/diary/posts/2023/0825/>msgraph-sdk-go のビルド問題</a></h1><div class=post-meta><time class=post-date>2023-08-25 (Fri.) ::</time></div><span class=post-tags>#<a href=/diary/tags/go/>go</a>&nbsp;
+#<a href=/diary/tags/ci/cd/>ci/cd</a>&nbsp;
+#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;</span><div class=post-content><p>1時に寝て何度か起きて7時に起きた。昨日は少し早めにお仕事を終えて家で休んでいたので少し回復した。</p><h2 id=msgraph-sdk-go-を使った開発>msgraph-sdk-go を使った開発</h2><p><a href=/diary/posts/2023/0824/#msgraph-sdk-go-を使った開発>昨日の続き</a> 。前日に作ったマージリクエストをチームのメンバーにレビューしてもらっていくつか修正して、マージを終えた。一段落。</p><p>さらにこの sdk を使うことで8月の前半に開発していた差分比較のところも変更しないといけないことに気付いた。public な構造体のメンバーにアクセスして差分比較する処理を実装していたが、この sdk は getter で構造体のメンバーにアクセスしないといけないことに気付いた。reflectoin の処理に追加で実装を入れるだけなのでそんなに難しくはない。そういった修正をしていたら1日終わってしまった。開発していると時間が過ぎるのは早い。</p><p>たまたま ci/cd ジョブの実行時間の上限を10分にしていて超えるときがあってジョブが失敗した。
+調べてみると、msgraph-sdk-go の api が巨大過ぎてメモリを浪費したりコンパイルに時間がかかったりするという issue をみつけた。</p><ul><li><a href=https://github.com/microsoftgraph/msgraph-sdk-go/issues/436>Memory Leak when creating msgraph client #436</a></li></ul><p>私のローカル環境で測ってみると、約36秒で完了していたテストが2分23秒かかるようになっていた。テストの実行が4-5倍ぐらい遅くなった。さらにコンテナイメージのサイズは 36 MiB から 109 MiB と3倍ほど増えた。無駄に開発を遅らせる環境要因になっているのでこれは別途調査して対応しないといけないことに気付いた。</p></div></article><article class="post on-list"><h1 class=post-title><a href=/diary/posts/2023/0621/>厄介なインフラ問題をやっつけた</a></h1><div class=post-meta><time class=post-date>2023-06-21 (Wed.) ::</time></div><span class=post-tags>#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
+#<a href=/diary/tags/operation/>operation</a>&nbsp;
+#<a href=/diary/tags/podman/>podman</a>&nbsp;
+#<a href=/diary/tags/event/>event</a>&nbsp;</span><div class=post-content><p>2時に寝て6時に起きて7時に起きた。夜に作業していたら遅くなった。</p><h2 id=厄介なインフラの問題-解決編>厄介なインフラの問題 解決編</h2><p><a href=/diary/posts/2023/0619/#運用のトラブルシューティング>運用のトラブルシューティング</a> の続き。アプリケーションアカウントを作って compose 環境を構築したら nginx のコンテナが起動して即時終了する状態になったという。これまで起きていた現象とまた違う問題が発生してさらに混迷をもたらすかに思えたが、私の中では nginx のコンテナでなにかがおかしいと問題の発生箇所を局所化できたのでそこからの調査はそんなに時間を必要としなかった。</p><p>結論からいうと podman の <a href=https://github.com/containers/aardvark-dns>aardvark-dns</a> の不具合だった。なんらかのトリガーでコンテナネットワーク内の名前解決が不整合な状態に陥る。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>vagrant@bookworm:$ podman-compose exec proxy /bin/bash
+</span></span><span style=display:flex><span>...
+</span></span><span style=display:flex><span>root@3742c45c7c60:/# dig app
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>; &lt;&lt;&gt;&gt; DiG 9.16.37-Debian &lt;&lt;&gt;&gt; app
+</span></span><span style=display:flex><span>;; global options: +cmd
+</span></span><span style=display:flex><span>;; Got answer:
+</span></span><span style=display:flex><span>;; -&gt;&gt;HEADER<span style=color:#e6db74>&lt;&lt;- opco</span>de: QUERY, status: NOERROR, id: <span style=color:#ae81ff>56696</span>
+</span></span><span style=display:flex><span>;; flags: qr rd ra ad; QUERY: 1, ANSWER: 8, AUTHORITY: 0, ADDITIONAL: <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>;; OPT PSEUDOSECTION:
+</span></span><span style=display:flex><span>; EDNS: version: 0, flags:; udp: <span style=color:#ae81ff>4096</span>
+</span></span><span style=display:flex><span>; COOKIE: 37ff0fd63315d70e <span style=color:#f92672>(</span>echoed<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>;; QUESTION SECTION:
+</span></span><span style=display:flex><span>;app.				IN	A
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>;; ANSWER SECTION:
+</span></span><span style=display:flex><span>app.			86400	IN	A	10.89.0.36
+</span></span><span style=display:flex><span>app.			86400	IN	A	10.89.0.36
+</span></span><span style=display:flex><span>app.			86400	IN	A	10.89.0.136
+</span></span><span style=display:flex><span>app.			86400	IN	A	10.89.0.136
+</span></span><span style=display:flex><span>app.			86400	IN	A	10.89.0.146
+</span></span><span style=display:flex><span>app.			86400	IN	A	10.89.0.146
+</span></span><span style=display:flex><span>app.			86400	IN	A	10.89.0.156
+</span></span><span style=display:flex><span>app.			86400	IN	A	10.89.0.156
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>;; Query time: <span style=color:#ae81ff>4</span> msec
+</span></span><span style=display:flex><span>;; SERVER: 10.89.0.1#53<span style=color:#f92672>(</span>10.89.0.1<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>;; WHEN: Thu Jun <span style=color:#ae81ff>22</span> 02:45:26 UTC <span style=color:#ae81ff>2023</span>
+</span></span><span style=display:flex><span>;; MSG SIZE  rcvd: <span style=color:#ae81ff>172</span>
+</span></span></code></pre></div><p>podman 4.0 から aardvark-dns がコンテナネットワーク内での dns を提供する。nginx が app を名前解決したときに起動しているコンテナの ip アドレスではなく、削除された過去のコンテナの ip アドレスが返される状況が発生する。app という名前に対して複数の ip アドレスが返る。</p><p>このとき nginx は複数の ip アドレスのうちの1つに接続しようとするが、正しい ip アドレスでない場合、リクエストがタイムアウトする。タイムアウトした後に fallback で他の ip アドレスに接続しにいく。このときに正しい ip アドレスがみつかればクライアントにレスポンスが返る。この fallback のリトライの回数分だけリクエストのレイテンシの時間がかかっていた。</p><pre tabindex=0><code>vagrant@bookworm:$ podman logs -f proxy
+...
+2023/06/22 02:46:26 [error] 15#15: *41 connect() failed (113: No route to host) while connecting to upstream, client: 10.89.0.38, server: ucidmsv1-app, request: &#34;GET / HTTP/1.1&#34;, upstream: &#34;http://10.89.0.136:3000/&#34;, host: &#34;localhost:4430&#34;
+2023/06/22 02:46:29 [error] 15#15: *41 connect() failed (113: No route to host) while connecting to upstream, client: 10.89.0.38, server: ucidmsv1-app, request: &#34;GET / HTTP/1.1&#34;, upstream: &#34;http://10.89.0.156:3000/&#34;, host: &#34;localhost:4430&#34;
+2023/06/22 02:46:32 [error] 15#15: *41 connect() failed (113: No route to host) while connecting to upstream, client: 10.89.0.38, server: ucidmsv1-app, request: &#34;GET / HTTP/1.1&#34;, upstream: &#34;http://10.89.0.136:3000/&#34;, host: &#34;localhost:4430&#34;
+10.89.0.38 - - [22/Jun/2023:02:46:32 +0000] &#34;GET / HTTP/1.1&#34; 200 2864 &#34;-&#34; &#34;curl/7.88.1&#34;
+</code></pre><p>ワークアラウンドとして、次のファイルに複数の app の ip アドレスが登録されていれば不整合な状態なのでネットワークを削除して、このファイルも手動で削除してしまえばよい。</p><pre tabindex=0><code>$ cat /run/user/$(id -u)/containers/networks/aardvark-dns/mynetwork
+</code></pre><p>ファイルを監視していると、どうやら mynetwork ファイルから名前と ip アドレスの情報が削除されるのは該当のコンテナが削除されるタイミングになる。なんらかのエラーにより、コンテナ削除時にマッピングの削除が実行されないと、古いコンテナのマッピング設定が残ったままとなり、compose サービスを起動したときに複数の ip アドレスの名前解決できる状態になってしまう。ちょっと調べても aardvark-dns に関する issue はたくさん登録されている。</p><ul><li><a href=https://github.com/containers/podman/issues/18783>https://github.com/containers/podman/issues/18783</a></li><li><a href=https://github.com/containers/podman/issues/18530>https://github.com/containers/podman/issues/18530</a></li><li><a href=https://github.com/containers/podman/issues/17370>https://github.com/containers/podman/issues/17370</a></li></ul><h2 id=コワーキングのオンラインイベント>コワーキングのオンラインイベント</h2><p>月例のカフーツさんのオンラインイベントに参加した。<a href=/diary/posts/2023/0517/#コワーキングのオンラインイベント>先月の所感はここ</a> 。今日はもともと予定していた話しをする参加者が急遽参加できなくなってしまったので他の参加者での雑談会になった。</p><p>いとうさん曰く、これまで外国人のデジタルノマドは自分で業務時間を選べるフリーランスの、さらにお金に余裕をもった人たちが多いと考えられていた。しかし、実際にコワーキングスペースに来られている外国人にキャリアを伺うと、大企業の普通の社員であることがわかってきた。グローバルな会社だと、働く場所に制限のない会社もあって、ただ日本へ行ってみたかった的な理由で日本へ来られて数ヶ月滞在して普通に会社のお仕事をするといったデジタルノマドもいるという。過去に私が働いていた職場の同僚も、コロナのときに会社がフルリモートワークの体制を設けて、airbnb で全国を旅しながら1年ほど働いていた。日本でもそういう社員はいるのだから外国人はなおさらという感じ。</p><p>そういった外国人のデジタルノマドが要求することが3つある。</p><ul><li>24時間利用できること (勤め先の会社と時差があるから)</li><li>セカンドモニターがあること</li><li>・・・ (あともう1つあったが、忘れてしまった)</li></ul><p>コワーキングスペースに外国人のデジタルノマドを呼び込むにはどうすればよいか。実際にコワーキングスペースへ来られた外国人に理由を伺うと英語のホームページをみて来ましたということらしい。至極、当たり前の話し。英語のホームページをちゃんと作ろうねみたいな話題で話していた。</p></div></article><div class=pagination><div class=pagination__buttons><a href=/diary/tags/infrastructure/page/2/ class="button next"><span class=button__text>過去の日記</span>
 <span class=button__icon>→</span></a></div></div></div></div><footer class=footer><div class=footer__inner><div class="copyright copyright--user"><span>© 2021 Tetsuya Morimoto</span>
 <span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span></div></div></footer><script type=text/javascript src=/diary/bundle.min.js></script></div></body></html>
