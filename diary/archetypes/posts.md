@@ -7,4 +7,4 @@ tags: []
 showFullContent: true
 ---
 
-今日の筋トレはレッグレイズ(椅子):ax0,腹筋ローラー:bx0,腕立て:cx0,スクワット:dx0,背筋:ex0,縄跳び(両足跳):fx0をした。
+今日の運動はレッグレイズ(椅子),腹筋ローラー,腕立て,スクワット,背筋,縄跳び(両足跳)をした。統計を [運動の記録](https://docs.google.com/spreadsheets/d/1bg85QtM-LciUgey8I79uI7vW2PEwsP6TVdeIRVkACBg/edit?usp=sharing) にまとめる。
