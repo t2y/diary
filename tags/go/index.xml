@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>go on forest nook</title><link>/diary/tags/go/</link><description>Recent content in go on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Mon, 12 Feb 2024 12:52:28 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/go/index.xml" rel="self" type="application/rss+xml"/><item><title>ホットクックのレシピを upnote で書く</title><link>/diary/posts/2024/0212/</link><pubDate>Mon, 12 Feb 2024 12:52:28 +0900</pubDate><guid>/diary/posts/2024/0212/</guid><description>2時半に寝て５時過ぎに起きた。それから二度寝して7時に起きた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Go on forest nook</title><link>/diary/tags/go/</link><description>Recent content in Go on forest nook</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Mon, 12 Feb 2024 12:52:28 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/go/index.xml" rel="self" type="application/rss+xml"/><item><title>ホットクックのレシピを upnote で書く</title><link>/diary/posts/2024/0212/</link><pubDate>Mon, 12 Feb 2024 12:52:28 +0900</pubDate><guid>/diary/posts/2024/0212/</guid><description>2時半に寝て５時過ぎに起きた。それから二度寝して7時に起きた。
 今日の運動はレッグレイズ(椅子),腹筋ローラー,腕立て,散歩をした。統計を 運動の記録 にまとめる。
 トランクルームの契約 家電を購入すると大きな箱が付いてきて物理的にその置き場所がない。箱を捨てるという戦略もあるが、オリジナルの箱があると引っ越しや売買／処分するときに便利なのでできれば残しておきたい。これまでデスクトップマシンの箱やオフィス備え付けの椅子などをマンションの部屋に保管したりしていたけど、家電の箱が増えてくると邪魔になってきて、トランクルームを借りることにした。面倒なのであまり調べていないが、スペラボ というサービスの屋内型トランクルームをレンタルすることにした。0.7畳で6,450円/月(税込)になる。会社の経費だしこのぐらいの金額ならいいかと思って、朝から内見に行って問題なさそうなので即決した。
 ホットクックレシピの公開 ホットクックのレシピをどこかに整理したい。スマホ上でも調理しながら簡単に確認したいとなると web よりもアプリの方がよい。そこで evernote から移行した upnote に書くことにした。実際に調理してみて、デスクトップマシンでレシピを編集・整理して、写真はスマホアプリからアップロードするといった使い方ができる。View shared notes によると、ノート単位で web 公開もできる。試しに次のレシピを公開してみた。ノートブック単位で公開設定して一覧ページがあるともっとよいが、その機能はないみたい。公開リンクを作成する一手間はあるけれど、そんなにレシピノートを書くわけでもないから気にはならない。
@@ -954,7 +954,7 @@ derrors の是非 pkgsite という pkg.</description><content>&lt;p>0時に寝�
 &lt;li>&lt;a href="https://github.com/go-ldap/ldap/pull/458">Refactor DirSync search process #458&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;p>概ね同意してくれて public な関数名をより適切な関数名に変えたところを、1度公開したものは互換性を維持するために deprecated のコメントをして残しておいてと言われたところだけ修正した。修正後、数時間ですぐにマージしてくれた。感謝。&lt;/p>
-&lt;p>go-ldap にいくつかコントリビュートした機能はうちのプロダクトのシステムに使われていて、それなりの qa テストをやった上で動いているので一定の品質は担保していると思う。&lt;a href="https://github.com/go-ldap/ldap/graphs/contributors?from=2022-09-08&amp;amp;to=2023-09-07&amp;amp;type=c">直近1年間のコントリビューター&lt;/a> を参照すると、私は2番目に貢献しているようにみえる。こういう見える化が自分のモチベーションになるならそれはそれでよいと思う。&lt;/p>
+&lt;p>go-ldap にいくつかコントリビュートした機能はうちのプロダクトのシステムに使われていて、それなりの qa テストをやった上で動いているので一定の品質は担保していると思う。&lt;a href="https://github.com/go-ldap/ldap/graphs/contributors?from=2022-09-08&amp;to=2023-09-07&amp;type=c">直近1年間のコントリビューター&lt;/a> を参照すると、私は2番目に貢献しているようにみえる。こういう見える化が自分のモチベーションになるならそれはそれでよいと思う。&lt;/p>
 &lt;figure>&lt;img src="/diary/diary/img/2023/0907_contributor.png"/>
 &lt;/figure>
 &lt;p>組み込みの課題管理のプロダクトを作る上で、個人がみたいメトリクスを簡単に集計できるような機能を提供しようと考えている。それは自分が伸ばしたいスキルやプラクティスに対して、会社やプロダクトを横断的に計測できる仕組みがあるといいと私は考えている。とくにいまどきはプログラマーが転職するのは当たり前だが、転職したら前の会社でやっていたメトリクスがみれないとか、別の会社でのメトリクスと相対比較したいとか、そういうニーズはあるなと私自身が感じているからでもある。&lt;/p>
@@ -1132,7 +1132,7 @@ microsoft 社のシステムの仕様が直感的でなかったり、sdk の ap
 例えば businessPhones というプロパティはリストで設定するけれど、これは1つしか設定できないという仕様になる。2つ値を設定しようとするとエラーになる。
 businessPhones String collection The telephone numbers for the user.
 NOTE: Although this is a string collection, only one number can be set for this property.
-https://learn.microsoft.com/en-us/graph/api/user-update?view=graph-rest-1.0&amp;amp;tabs=http#request-body
+https://learn.microsoft.com/en-us/graph/api/user-update?view=graph-rest-1.0&amp;tabs=http#request-body
 だいぶ sdk に慣れてきて、あともうちょっとのところだったが、今晩は予定があるので切り上げとなった。
 年度末打ち上げ お手伝いしているお客さんが8月が年度末になる。年度末の会社の打ち上げをやるのでよかったらどうぞとお声がけをいただいていた。うちのプロジェクトのスケジュールにあわせると定例を行う週の火・水の2日間だけ参加可能として予定を提出していた。他の社員さんの予定と調整して2週間もあるからそんなあわないだろう？と思っていたらあってしまって出張するしかないかと今回の出張が決まった次第だ。
 17時半から東銀座へ移動して、ホテルの地下にあるちょっとよい雰囲気のレストランでお食事をいただいた。立派な陶磁器に芸術的な料理が添えられていて、おいしかったし、みて楽しむこともできて、会社で来ないと食べられないような内容で私はよかったと思う。食べものはコースだったが、若い人向けにはもっと量がないとお腹が空くだろうから追加でいくつか料理を頼んだりしていた。行ったことないレストランの量はわからないのでコースの選択は難しいと思う。
@@ -1148,7 +1148,7 @@ https://learn.microsoft.com/en-us/graph/api/user-update?view=graph-rest-1.0&amp;
 &lt;blockquote>
 &lt;p>businessPhones String collection The telephone numbers for the user.&lt;br />
 NOTE: Although this is a string collection, only one number can be set for this property.&lt;br />
-&lt;a href="https://learn.microsoft.com/en-us/graph/api/user-update?view=graph-rest-1.0&amp;amp;tabs=http#request-body">https://learn.microsoft.com/en-us/graph/api/user-update?view=graph-rest-1.0&amp;amp;tabs=http#request-body&lt;/a>&lt;/p>
+&lt;a href="https://learn.microsoft.com/en-us/graph/api/user-update?view=graph-rest-1.0&amp;tabs=http#request-body">https://learn.microsoft.com/en-us/graph/api/user-update?view=graph-rest-1.0&amp;tabs=http#request-body&lt;/a>&lt;/p>
 &lt;/blockquote>
 &lt;p>だいぶ sdk に慣れてきて、あともうちょっとのところだったが、今晩は予定があるので切り上げとなった。&lt;/p>
 &lt;h2 id="年度末打ち上げ">年度末打ち上げ&lt;/h2>
@@ -2654,7 +2654,7 @@ https://gitlab.com/t2y/misc/-/tree/main/winio-send https://gitlab.com/t2y/misc/-
 &lt;li>&lt;a href="https://gitlab.com/t2y/misc/-/tree/main/winio-receive">https://gitlab.com/t2y/misc/-/tree/main/winio-receive&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;h2 id="課題管理勉強会">課題管理勉強会&lt;/h2>
-&lt;p>出張のときに毎月の課題管理勉強会。とくにネタが思いつかなかったので &lt;a href="https://gihyo.jp/book/2018/978-4-7741-9605-3">エンジニアリング組織論への招待&lt;/a> を題材にしてみた。&lt;a href="/diary/diary/posts/2023/0205/">資料はすでに作ってあった&lt;/a> 。私にとっては課題管理をやる意義や価値の大半がこの書籍の中で解説されている。用語や考え方のところでとても参考になるし、いまメンタリングの技術の章を読み直したりもしている。昔はマネージャーやってなかったからその章は読み飛ばしてた。開発組織向けの組織論を解説した書籍でこれ以上のものは、いまのところ、私が読んだ本の中では知らない。4年前に読んだ本を、今回の勉強会を開く機会でまた読み直すきっかけにもなってよかった。本はコンテキストがきれいに構成されているので他の人の所感や意見を聞いたり雑談したりする題材としてもよさそうに思える。&lt;/p></content></item><item><title>集中のち寝不足</title><link>/diary/posts/2023/0206/</link><pubDate>Mon, 06 Feb 2023 09:21:43 +0900</pubDate><guid>/diary/posts/2023/0206/</guid><description>1時に帰ってきてそのまま寝ないで6時10分の新幹線に乗ってから2時間半ほど寝た。これはこれで時間の使い方が有意義な気がする。午前中は翌日の定例会議の準備を着々と進めて、ci/cd 環境の改善、午後からリファクタリングなどをやっていた。15時をまわると眠くなってきて散歩したりして気分転換しつつも体調悪いなと思って17時半にお仕事を終えてホテルへ戻って2-3時間ほど寝てた。その後、晩ご飯食べるかなと出掛けたものの、あまり食欲もなくて、2時間ほど付近を散歩して運動していた。たまにはそういうのもいいか。飲食店が多い地域なので外から眺めているだけでもわりと楽しい。
+&lt;p>出張のときに毎月の課題管理勉強会。とくにネタが思いつかなかったので &lt;a href="https://gihyo.jp/book/2018/978-4-7741-9605-3">エンジニアリング組織論への招待&lt;/a> を題材にしてみた。&lt;a href="/diary/diary/posts/2023/0205/#課題管理勉強会の資料作り">資料はすでに作ってあった&lt;/a> 。私にとっては課題管理をやる意義や価値の大半がこの書籍の中で解説されている。用語や考え方のところでとても参考になるし、いまメンタリングの技術の章を読み直したりもしている。昔はマネージャーやってなかったからその章は読み飛ばしてた。開発組織向けの組織論を解説した書籍でこれ以上のものは、いまのところ、私が読んだ本の中では知らない。4年前に読んだ本を、今回の勉強会を開く機会でまた読み直すきっかけにもなってよかった。本はコンテキストがきれいに構成されているので他の人の所感や意見を聞いたり雑談したりする題材としてもよさそうに思える。&lt;/p></content></item><item><title>集中のち寝不足</title><link>/diary/posts/2023/0206/</link><pubDate>Mon, 06 Feb 2023 09:21:43 +0900</pubDate><guid>/diary/posts/2023/0206/</guid><description>1時に帰ってきてそのまま寝ないで6時10分の新幹線に乗ってから2時間半ほど寝た。これはこれで時間の使い方が有意義な気がする。午前中は翌日の定例会議の準備を着々と進めて、ci/cd 環境の改善、午後からリファクタリングなどをやっていた。15時をまわると眠くなってきて散歩したりして気分転換しつつも体調悪いなと思って17時半にお仕事を終えてホテルへ戻って2-3時間ほど寝てた。その後、晩ご飯食べるかなと出掛けたものの、あまり食欲もなくて、2時間ほど付近を散歩して運動していた。たまにはそういうのもいいか。飲食店が多い地域なので外から眺めているだけでもわりと楽しい。
 ssh 経由のデプロイ これまで ci/cd でテストして docker イメージをビルドしてコンテナレジストリに登録するところまでやっていた。実際にテスト環境にデプロイするときは、テスト環境にログインして更新用のスクリプトを私が手動実行していた。そんなに頻繁にテスト環境を更新する必要がなかったのでそれでも十分ではあるものの、ci/cd の完成形を目指すなら自動化すべきという考え方もあってデプロイの部分を作ることにした。
 もっとも簡単な方法として Using SSH keys with GitLab CI/CD をみながら、ssh でテスト環境にデプロイすることにした。すでに更新用のスクリプトがあって、テスト環境にログインして実行すればできる状態なので ssh さえ使えればすぐに移行できるという話しでもある。openssh-client を使うためにベースイメージを alpine から ubuntu にしてパッケージをインストールしないといけない。実行時間がややかかるというコスト以外には気にならないかな。ssh の秘密鍵を file 種別でもつのか通常の環境変数でもつのかで扱いが異なって、それに少しはまったぐらいですぐできた。今後は docker イメージのビルド単位に自動的にデプロイされるようになる。
 interface{} の型エイリアスとしての any go のコードをリファクタリングしていて json.Marshal の引数が any となっていることに気付いた。
@@ -2954,7 +2954,7 @@ go の Time 型とタイムゾーン go の Time 型は Location をもってい
 package main import ( &amp;#34;fmt&amp;#34; &amp;#34;time&amp;#34; ) func mustGetJST() *time.Location { jst, err := time.LoadLocation(&amp;#34;Asia/Tokyo&amp;#34;) if err != nil { panic(err) } return jst } func main() { now := time.Now() fmt.Println(&amp;#34;now:&amp;#34;, now) fmt.Println(&amp;#34;jst:&amp;#34;, now.In(mustGetJST())) fmt.Println(&amp;#34;utc:&amp;#34;, now.UTC()) } 実行結果。
 $ export TZ=&amp;#34;CET&amp;#34; $ go run test_time_now.go now: 2022-11-18 17:00:30.08305121 +0100 CET m=+0.000011788 jst: 2022-11-19 01:00:30.</description><content>&lt;p>2時に寝て4時に起きて仮眠して6時半に起きた。たぶん寝たんだろうぐらいの感覚。10月まで対外的には週4日で働いていたのを、11月から週5日フルタイムの働き方に移行して、やっぱりしんどいという実感がある。対外的に週4日でも10月もオフィスに来て自社のお仕事をしていたり、半日ぐらいは社外のお仕事をしたりはしていた。それでも働く義務の有無によって、意識の違いか、プレッシャーやストレスの面からなにか働き方が違うように思える。生活も働き方もまったく同じなのに。&lt;/p>
 &lt;h2 id="盛り上がってないイベント">盛り上がってないイベント&lt;/h2>
-&lt;p>&lt;a href="https://twitter.com/hashtag/techverse_ja?src=hashtag_click&amp;amp;f=live">ハッシュタグ&lt;/a> をみてもほとんど関係者や発表者しかコメントしていないようにみえた。過去に新規事業の立ち上げに協力したプロジェクトの発表があると元同僚のタイムラインで知ったのでその発表だけみてみた。私が辞めてから3年ほど経つので新規サービスも追加されていてその内容がメインだったように思う。&lt;/p>
+&lt;p>&lt;a href="https://twitter.com/hashtag/techverse_ja?src=hashtag_click&amp;f=live">ハッシュタグ&lt;/a> をみてもほとんど関係者や発表者しかコメントしていないようにみえた。過去に新規事業の立ち上げに協力したプロジェクトの発表があると元同僚のタイムラインで知ったのでその発表だけみてみた。私が辞めてから3年ほど経つので新規サービスも追加されていてその内容がメインだったように思う。&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="https://tech-verse.me/ja/sessions/133">DataSolution事業を支える技術&lt;/a>&lt;/li>
 &lt;/ul>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2023/08 on forest nook</title><link>/diary/dates/2023/08/</link><description>Recent content in 2023/08 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><copyright>© 2021 Tetsuya Morimoto</copyright><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2023/08/index.xml" rel="self" type="application/rss+xml"/><item><title>qa と最初のキャリア</title><link>/diary/posts/2023/0831/</link><pubDate>Thu, 31 Aug 2023 12:49:54 +0900</pubDate><guid>/diary/posts/2023/0831/</guid><description>0時に寝て何度か起きて6時に起きた。1-2週間前に2年ほどやっていたドラクエタクトをやめた。飽きたのか自然ともういいかって感じでやめられた。それ以来、家に帰ってからゆっくり休む時間が増えた気がする。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2023/08 on forest nook</title><link>/diary/dates/2023/08/</link><description>Recent content in 2023/08 on forest nook</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>© 2021 Tetsuya Morimoto</copyright><lastBuildDate>Thu, 31 Aug 2023 12:49:54 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2023/08/index.xml" rel="self" type="application/rss+xml"/><item><title>qa と最初のキャリア</title><link>/diary/posts/2023/0831/</link><pubDate>Thu, 31 Aug 2023 12:49:54 +0900</pubDate><guid>/diary/posts/2023/0831/</guid><description>0時に寝て何度か起きて6時に起きた。1-2週間前に2年ほどやっていたドラクエタクトをやめた。飽きたのか自然ともういいかって感じでやめられた。それ以来、家に帰ってからゆっくり休む時間が増えた気がする。
 qa という業務の懐の広さ 先週の水曜日から qa テストに移行している。スケジュールとしてはこのために1ヶ月を確保している。おそらくもう少し早く終えられるんじゃないかという気はしている。早く終われば次の開発の計画づくりを前倒しにすればよいのでそれは構わない。私は先週から残タスクのリファクタリングが終わりきらなかったのでややバタバタしていたが、メンバーはテストに専念してテスト環境で動かして意図しない振る舞いを issue 登録したり、直感とは反する振る舞いを issue 登録したりしている。
 新人さんや、未経験だけと開発者になりたいとジョブチェンジする人たち向けに、最初のキャリアとしてテスターや qa をするのがよいのではないかと私は考えている。きっかけは More Joel on Software に、テクニカルサポートは開発者を配置する必要があると書いてあった。しかし、テクニカルサポートだとスキルを身につけると持て余してしまうため、その業務ためのキャリアパスを考えないといけないと書いてあった。まったく同感だ。私がお手伝いしたある会社でもテクニカルサポートは1-2年で辞めているのを見聞きした。みんな開発したいからね。
 (おまけ) カスタマーサービスの人たちのためのキャリアパスを用意する
@@ -222,7 +222,7 @@ microsoft 社のシステムの仕様が直感的でなかったり、sdk の ap
 例えば businessPhones というプロパティはリストで設定するけれど、これは1つしか設定できないという仕様になる。2つ値を設定しようとするとエラーになる。
 businessPhones String collection The telephone numbers for the user.
 NOTE: Although this is a string collection, only one number can be set for this property.
-https://learn.microsoft.com/en-us/graph/api/user-update?view=graph-rest-1.0&amp;amp;tabs=http#request-body
+https://learn.microsoft.com/en-us/graph/api/user-update?view=graph-rest-1.0&amp;tabs=http#request-body
 だいぶ sdk に慣れてきて、あともうちょっとのところだったが、今晩は予定があるので切り上げとなった。
 年度末打ち上げ お手伝いしているお客さんが8月が年度末になる。年度末の会社の打ち上げをやるのでよかったらどうぞとお声がけをいただいていた。うちのプロジェクトのスケジュールにあわせると定例を行う週の火・水の2日間だけ参加可能として予定を提出していた。他の社員さんの予定と調整して2週間もあるからそんなあわないだろう？と思っていたらあってしまって出張するしかないかと今回の出張が決まった次第だ。
 17時半から東銀座へ移動して、ホテルの地下にあるちょっとよい雰囲気のレストランでお食事をいただいた。立派な陶磁器に芸術的な料理が添えられていて、おいしかったし、みて楽しむこともできて、会社で来ないと食べられないような内容で私はよかったと思う。食べものはコースだったが、若い人向けにはもっと量がないとお腹が空くだろうから追加でいくつか料理を頼んだりしていた。行ったことないレストランの量はわからないのでコースの選択は難しいと思う。
@@ -238,7 +238,7 @@ https://learn.microsoft.com/en-us/graph/api/user-update?view=graph-rest-1.0&amp;
 &lt;blockquote>
 &lt;p>businessPhones String collection The telephone numbers for the user.&lt;br />
 NOTE: Although this is a string collection, only one number can be set for this property.&lt;br />
-&lt;a href="https://learn.microsoft.com/en-us/graph/api/user-update?view=graph-rest-1.0&amp;amp;tabs=http#request-body">https://learn.microsoft.com/en-us/graph/api/user-update?view=graph-rest-1.0&amp;amp;tabs=http#request-body&lt;/a>&lt;/p>
+&lt;a href="https://learn.microsoft.com/en-us/graph/api/user-update?view=graph-rest-1.0&amp;tabs=http#request-body">https://learn.microsoft.com/en-us/graph/api/user-update?view=graph-rest-1.0&amp;tabs=http#request-body&lt;/a>&lt;/p>
 &lt;/blockquote>
 &lt;p>だいぶ sdk に慣れてきて、あともうちょっとのところだったが、今晩は予定があるので切り上げとなった。&lt;/p>
 &lt;h2 id="年度末打ち上げ">年度末打ち上げ&lt;/h2>
