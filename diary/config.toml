@@ -53,7 +53,7 @@ paginate = 11
   site = "t2y"
 
 [languages]
-  [languages.en]
+  [languages.en.params]
     languageName = "English"
     title = "forest nook"
     subtitle = ""
@@ -65,8 +65,8 @@ paginate = 11
     readOtherPosts = "Read other posts"
     newerPosts = "最近の日記"
     olderPosts = "過去の日記"
-    missingContentMessage = "Page not found..."
-    missingBackButtonLabel = "Back to home page"
+    missingContentMessage = "ページがありません ..."
+    missingBackButtonLabel = "ホームに戻る"
 
     [languages.en.params.logo]
       logoText = "forest nook"
