@@ -1,4 +1,29 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blog on</title><link>/diary/tags/blog/</link><description>Recent content in Blog on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 19 Feb 2024 20:18:47 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>日曜日に運動し過ぎて月曜から疲れている</title><link>/diary/posts/2024/0219/</link><pubDate>Mon, 19 Feb 2024 20:18:47 +0900</pubDate><guid>/diary/posts/2024/0219/</guid><description>1時半に寝て6時前に起きた。今日もよく眠れたと思う。1日中天気が悪かったのもあってあまり外出 (運動) せず休息の日になった。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blog on</title><link>/diary/tags/blog/</link><description>Recent content in Blog on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 26 Feb 2024 09:52:56 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>骨伝導ワイヤレスイヤホンを初めて使う</title><link>/diary/posts/2024/0226/</link><pubDate>Mon, 26 Feb 2024 09:52:56 +0900</pubDate><guid>/diary/posts/2024/0226/</guid><description>0時半に寝て6時前に起きた。fitbit によると5時間は寝ていたらしい。睡眠時間が増えてきた。
+今日の運動は腹筋ローラー,腕立て,スクワットをした。統計を 運動の記録 にまとめる。
+骨伝導ワイヤレスイヤホン 初めて bluetooth 接続の骨伝導ワイヤレスイヤホンを購入してみた。音楽を聞きながら散歩できたらいいなと思って危険防止のために耳が空いているものにした。使ったことがなかったのでよくわかっていなかったけど、普通にイヤホン部分から音も出ているので電車とか、静かなところとか、音漏れが気になる場所では使えない。おそらく普通のイヤホンよりは小さい音で骨伝導の仕組みで聞こえるのだと思う。
+買って届いてから、ふと サクラチェッカー でみてみたらレビューはサクラっぽい。
+サクラ度は 99￼です。
+お昼から付けて聞きながらお仕事をしていた。apple music を聞く分には音質とか音飛びとか、私のレベルでは気にならない。他の骨伝導ワイヤレスイヤホンを使ったことがないのでこの製品がベースラインになる。それでも値段も高くなかったし、このぐらいの品質で数年ぐらい安定的に使えればそれでいいかな。あとは耐久性がどのぐらいもつのか次第。
+社内版テックブログを読む会の紹介 週末に下書きしておいて、今朝から社内でレビューを通して、夕方に公開した。
+チームで「テックブログを読む会」を始めました ついでに 企業テックブログ RSS で連携されることも確認できた。
+イベント開催へ向けて準備のお手伝い Python Kansai をおがわさんが主催している。私はもう10年ほど python やっていないし、最近の動向も追いかけていないし、うちの会社のビジネスとしても言語的には java か go しかやらないと決めている。もしかしたら rust はやるかも？だけど。私の関心度が低くなっているので積極的には運営しないし、登壇もやらないのだけど、おがわさんがやっているからできる範囲内で協力はしようと考えていて、そのための打ち合わせに参加した。今日の成果としてはイベントをやる会場が決まったらしい。よかった。よかった。初めての打ち合わせで、且つ知らない人たちの顔合わせでもあったため、やや堅い雰囲気で雑談して終えた。</description><content>&lt;p>0時半に寝て6時前に起きた。fitbit によると5時間は寝ていたらしい。睡眠時間が増えてきた。&lt;/p>
+&lt;p>今日の運動は腹筋ローラー,腕立て,スクワットをした。統計を &lt;a href="https://docs.google.com/spreadsheets/d/1bg85QtM-LciUgey8I79uI7vW2PEwsP6TVdeIRVkACBg/edit?usp=sharing">運動の記録&lt;/a> にまとめる。&lt;/p>
+&lt;h2 id="骨伝導ワイヤレスイヤホン">骨伝導ワイヤレスイヤホン&lt;/h2>
+&lt;p>初めて bluetooth 接続の骨伝導ワイヤレスイヤホンを購入してみた。音楽を聞きながら散歩できたらいいなと思って危険防止のために耳が空いているものにした。使ったことがなかったのでよくわかっていなかったけど、普通にイヤホン部分から音も出ているので電車とか、静かなところとか、音漏れが気になる場所では使えない。おそらく普通のイヤホンよりは小さい音で骨伝導の仕組みで聞こえるのだと思う。&lt;/p>
+&lt;p>&lt;a href="https://amzn.to/48xCCAd" target="_blank">&lt;img src="https://m.media-amazon.com/images/I/61ki0oFCRmL._AC_SX679_.jpg" width="240" />&lt;/a>&lt;/p>
+&lt;p>買って届いてから、ふと &lt;a href="https://sakura-checker.jp/search/B0CMV31HK3/">サクラチェッカー&lt;/a> でみてみたらレビューはサクラっぽい。&lt;/p>
+&lt;blockquote>
+&lt;p>サクラ度は 99￼です。&lt;/p>
+&lt;/blockquote>
+&lt;p>お昼から付けて聞きながらお仕事をしていた。apple music を聞く分には音質とか音飛びとか、私のレベルでは気にならない。他の骨伝導ワイヤレスイヤホンを使ったことがないのでこの製品がベースラインになる。それでも値段も高くなかったし、このぐらいの品質で数年ぐらい安定的に使えればそれでいいかな。あとは耐久性がどのぐらいもつのか次第。&lt;/p>
+&lt;h2 id="社内版テックブログを読む会の紹介">社内版テックブログを読む会の紹介&lt;/h2>
+&lt;p>週末に下書きしておいて、今朝から社内でレビューを通して、夕方に公開した。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://blog.osstech.co.jp/posts/2024/02/techblog-reading/">チームで「テックブログを読む会」を始めました&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>ついでに &lt;a href="https://yamadashy.github.io/tech-blog-rss-feed/">企業テックブログ RSS&lt;/a> で連携されることも確認できた。&lt;/p>
+&lt;h2 id="イベント開催へ向けて準備のお手伝い">イベント開催へ向けて準備のお手伝い&lt;/h2>
+&lt;p>&lt;a href="https://kansai-python.connpass.com/">Python Kansai&lt;/a> をおがわさんが主催している。私はもう10年ほど python やっていないし、最近の動向も追いかけていないし、うちの会社のビジネスとしても言語的には java か go しかやらないと決めている。もしかしたら rust はやるかも？だけど。私の関心度が低くなっているので積極的には運営しないし、登壇もやらないのだけど、おがわさんがやっているからできる範囲内で協力はしようと考えていて、そのための打ち合わせに参加した。今日の成果としてはイベントをやる会場が決まったらしい。よかった。よかった。初めての打ち合わせで、且つ知らない人たちの顔合わせでもあったため、やや堅い雰囲気で雑談して終えた。&lt;/p></content></item><item><title>日曜日に運動し過ぎて月曜から疲れている</title><link>/diary/posts/2024/0219/</link><pubDate>Mon, 19 Feb 2024 20:18:47 +0900</pubDate><guid>/diary/posts/2024/0219/</guid><description>1時半に寝て6時前に起きた。今日もよく眠れたと思う。1日中天気が悪かったのもあってあまり外出 (運動) せず休息の日になった。
 今日の運動はレッグレイズ(椅子),腹筋ローラー,スクワット,散歩をした。統計を 運動の記録 にまとめる。
 QA テスト 先週から引き続き、ずっとテストをしている。今日から windows server の active directory への連携に関するテストをしていた。プライマリグループという設定があって、その連携方法だけ分からなくてまた明日メンバーに教えてもらうことにした。テストは誰がやっても時間がかかるし、うまくいかないときに設定が悪いのか、データが誤っているのか、操作が適切ではないのか、調査にも時間がかかる。実際に手を動かしてみると、メンバーから聞いてるだけではわからない気付きも得られるのでこれはこれでよい経験になったと思う。ただ時間だけがどんどん削られるというのが欠点。
 テックブログを読むためのイベント考察 テックブログ一気読み選手権20240219杯 に参加した。今日はにしはらさんが都合悪かったようで誰もいなかった。1人でテックブログを読んで、1人で hackmd にまとめて、それでイベントを終えた。その時間に都合が悪くても非同期に読めばよいというイベントの主旨ではあるけれど、なんのためにイベントをやっているのか？ということについて考えてみた。確かにイベントがあることでテックブログを1つ2つ読む機会になっている。これはイベントが中止であれば読まなかったかもしれない。一方で読んで他社へ話して共有する過程で新たな価値に気付くといったこともこのイベントの主旨ではあるのでその効果は落ちてしまう。なによりもイベントに参加して、誰もいなくて、ただまとめを書いて終えるというのはなにか寂しい。</description><content>&lt;p>1時半に寝て6時前に起きた。今日もよく眠れたと思う。1日中天気が悪かったのもあってあまり外出 (運動) せず休息の日になった。&lt;/p>
