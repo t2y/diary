@@ -1,4 +1,28 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Exercise on</title><link>/diary/tags/exercise/</link><description>Recent content in Exercise on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 26 Feb 2024 09:52:56 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/exercise/index.xml" rel="self" type="application/rss+xml"/><item><title>骨伝導ワイヤレスイヤホンを初めて使う</title><link>/diary/posts/2024/0226/</link><pubDate>Mon, 26 Feb 2024 09:52:56 +0900</pubDate><guid>/diary/posts/2024/0226/</guid><description>0時半に寝て6時前に起きた。fitbit によると5時間は寝ていたらしい。睡眠時間が増えてきた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Exercise on</title><link>/diary/tags/exercise/</link><description>Recent content in Exercise on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 28 Feb 2024 21:15:32 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/exercise/index.xml" rel="self" type="application/rss+xml"/><item><title>大きなふりかえりの資料作り</title><link>/diary/posts/2024/0228/</link><pubDate>Wed, 28 Feb 2024 21:15:32 +0900</pubDate><guid>/diary/posts/2024/0228/</guid><description>お風呂で fitbit を外してそのまま付けるのを忘れて寝た。たぶん3時前に寝て6時半ぐらいに起きた。
+今日の運動は腹筋ローラー,腕立て,スクワット,散歩をした。統計を 運動の記録 にまとめる。
+大きなふりかえりの資料作り 今日は丸一日ふりかえりの資料を作っていた。だいたい出来た。過去のスライドがあるのでその内容に沿って統計のグラフを作りながら、今回の開発の特徴や前開発との違いなどを比較していく。ノウハウが溜まっているので比較的簡単に作っていける。しかし、今回は2週間遅れ、新規メンバーの受け入れ失敗と、プロジェクトとして明確も失敗もあったのでその反省として、次の受け入れのときにこういう状況なら受け入れせず、開発からメンバーを外すといったクライテリアを作ることにした。今回の失敗は新規メンバーのために、ぎりぎりまで参加できるよう、待ったために結果的に中盤の機能開発の集中力を乱した。プロジェクトマネジメントの失敗としてしっかりふりかえりをしていく。
+バランスボール ジモティーで IGNIO のバランスボールを0円で譲り受けた。新品を買ってもそんなに高くないのかな？
+椅子の代わりにもなるし、トレーニングのなにかにも使えるかもしれない。実家コワーキングスペースに置いておく用に譲ってもらった。県庁駅の近くの持ち主の自宅近くまで意味なく歩いて受け取りに行ってきた。おかげで7000歩、片道40分ほど歩いて今日の運動のノルマを達成した。もう1万歩歩くのは簡単になってきた。普段の生活に1時間ほど散歩の時間を設けると簡単に超える。バランスボールの空気がやや少なかったのでダイソーで空気入れを探してこようと思う。
+バランスボールに使える空気入れの種類や空気の入れ方を解説 創作天ぷらと創作そば 私の知る限り、三ノ宮で一二を争うおいしいお蕎麦屋さんに ISOGAMI FRY BAR がある。以前からお昼にはちょくちょくお蕎麦を食べに行ったりしていた。いまはダイエット中だから外食そのものをほぼ　していない。ふと夜はどんなメニューがあるのかの下見に入ってみた。夜はお酒も出しているので、チャージ300円、ワンドリンク必須だという。料理は刺し身や前菜、サラダ、つまみ系の料理、創作天ぷらがあり、お蕎麦も基本のざる蕎麦から創作系の変わったお蕎麦もある。ちょっとよい居酒屋へ行くぐらいの金額にはなる。ここのお蕎麦はおいしいから割高でも私は気にはならない。
+創作そばの彩り野菜の豆乳バジルそば。
+創作天ぷらのバジル&amp;amp;トマト。</description><content>&lt;p>お風呂で fitbit を外してそのまま付けるのを忘れて寝た。たぶん3時前に寝て6時半ぐらいに起きた。&lt;/p>
+&lt;p>今日の運動は腹筋ローラー,腕立て,スクワット,散歩をした。統計を &lt;a href="https://docs.google.com/spreadsheets/d/1bg85QtM-LciUgey8I79uI7vW2PEwsP6TVdeIRVkACBg/edit?usp=sharing">運動の記録&lt;/a> にまとめる。&lt;/p>
+&lt;h2 id="大きなふりかえりの資料作り">大きなふりかえりの資料作り&lt;/h2>
+&lt;p>今日は丸一日ふりかえりの資料を作っていた。だいたい出来た。過去のスライドがあるのでその内容に沿って統計のグラフを作りながら、今回の開発の特徴や前開発との違いなどを比較していく。ノウハウが溜まっているので比較的簡単に作っていける。しかし、今回は2週間遅れ、新規メンバーの受け入れ失敗と、プロジェクトとして明確も失敗もあったのでその反省として、次の受け入れのときにこういう状況なら受け入れせず、開発からメンバーを外すといったクライテリアを作ることにした。今回の失敗は新規メンバーのために、ぎりぎりまで参加できるよう、待ったために結果的に中盤の機能開発の集中力を乱した。プロジェクトマネジメントの失敗としてしっかりふりかえりをしていく。&lt;/p>
+&lt;h2 id="バランスボール">バランスボール&lt;/h2>
+&lt;p>ジモティーで IGNIO のバランスボールを0円で譲り受けた。新品を買ってもそんなに高くないのかな？&lt;/p>
+&lt;p>椅子の代わりにもなるし、トレーニングのなにかにも使えるかもしれない。実家コワーキングスペースに置いておく用に譲ってもらった。県庁駅の近くの持ち主の自宅近くまで意味なく歩いて受け取りに行ってきた。おかげで7000歩、片道40分ほど歩いて今日の運動のノルマを達成した。もう1万歩歩くのは簡単になってきた。普段の生活に1時間ほど散歩の時間を設けると簡単に超える。バランスボールの空気がやや少なかったのでダイソーで空気入れを探してこようと思う。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://tential.jp/journals/exercise/balance_ball/013">バランスボールに使える空気入れの種類や空気の入れ方を解説&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="創作天ぷらと創作そば">創作天ぷらと創作そば&lt;/h2>
+&lt;p>私の知る限り、三ノ宮で一二を争うおいしいお蕎麦屋さんに &lt;a href="https://t-and-g.jp/">ISOGAMI FRY BAR&lt;/a> がある。以前からお昼にはちょくちょくお蕎麦を食べに行ったりしていた。いまはダイエット中だから外食そのものをほぼ　していない。ふと夜はどんなメニューがあるのかの下見に入ってみた。夜はお酒も出しているので、チャージ300円、ワンドリンク必須だという。料理は刺し身や前菜、サラダ、つまみ系の料理、創作天ぷらがあり、お蕎麦も基本のざる蕎麦から創作系の変わったお蕎麦もある。ちょっとよい居酒屋へ行くぐらいの金額にはなる。ここのお蕎麦はおいしいから割高でも私は気にはならない。&lt;/p>
+&lt;p>創作そばの彩り野菜の豆乳バジルそば。&lt;/p>
+&lt;figure>&lt;img src="/diary/diary/img/2024/0228_soba1.jpg"/>
+&lt;/figure>
+&lt;p>創作天ぷらのバジル&amp;amp;トマト。&lt;/p>
+&lt;figure>&lt;img src="/diary/diary/img/2024/0228_tenpra1.jpg"/>
+&lt;/figure></content></item><item><title>骨伝導ワイヤレスイヤホンを初めて使う</title><link>/diary/posts/2024/0226/</link><pubDate>Mon, 26 Feb 2024 09:52:56 +0900</pubDate><guid>/diary/posts/2024/0226/</guid><description>0時半に寝て6時前に起きた。fitbit によると5時間は寝ていたらしい。睡眠時間が増えてきた。
 今日の運動は腹筋ローラー,腕立て,スクワットをした。統計を 運動の記録 にまとめる。
 骨伝導ワイヤレスイヤホン 初めて bluetooth 接続の骨伝導ワイヤレスイヤホンを購入してみた。音楽を聞きながら散歩できたらいいなと思って危険防止のために耳が空いているものにした。使ったことがなかったのでよくわかっていなかったけど、普通にイヤホン部分から音も出ているので電車とか、静かなところとか、音漏れが気になる場所では使えない。おそらく普通のイヤホンよりは小さい音で骨伝導の仕組みで聞こえるのだと思う。
 買って届いてから、ふと サクラチェッカー でみてみたらレビューはサクラっぽい。
