@@ -1,4 +1,36 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Postmortem on</title><link>/diary/tags/postmortem/</link><description>Recent content in Postmortem on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 05 Mar 2024 09:25:05 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/postmortem/index.xml" rel="self" type="application/rss+xml"/><item><title>よい開発文化をもつチーム</title><link>/diary/posts/2024/0305/</link><pubDate>Tue, 05 Mar 2024 09:25:05 +0900</pubDate><guid>/diary/posts/2024/0305/</guid><description>今回は寝台列車であまり寝付けなかったのか、fitbit に睡眠時間が記録されていなかった。おそらく2-3時間は寝たと思う。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Postmortem on</title><link>/diary/tags/postmortem/</link><description>Recent content in Postmortem on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 13 Mar 2024 17:46:37 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/postmortem/index.xml" rel="self" type="application/rss+xml"/><item><title>Fun/Give/Learn のふりかえりを miro で行う</title><link>/diary/posts/2024/0313/</link><pubDate>Wed, 13 Mar 2024 17:46:37 +0900</pubDate><guid>/diary/posts/2024/0313/</guid><description>fitbit の日々の目標の1万歩と2900カロリーの消費を達成するため、23時過ぎから散歩に言って0時前に達成して戻ってきて、CPAP のセットアップする前に疲れてそのまま寝てしまった。
+今日の運動は水中ウォーキング,散歩をした。統計を 運動の記録 にまとめる。
+google jamboard の移行先 サービス終了するので移行しないといけない。
+Google Jamboard の提供終了について 前にお手伝いしていた会社でよく使っていた Miro でいいんじゃないかと思って実際に評価して、機能性と使い勝手がとてもよかったので、やっぱり miro でいいんじゃないかと結論付けた。お手伝い先では miro を使っていない。偉い人に miro の管理者になってもらって、私のアカウントを招待してもらって、開発メンバーのチームを作ってもらうことにした。
+付箋に絵文字を付けられる 付箋の作成者を表示、確認できる 付箋にコメントを付けられる この3点だけでも jamboard ではできなかったことを実現できて好感触。今後の fun/give/learn のふりかえり は miro のボードを使う。
+プール 前に行ったのが2月16日なので約1ヶ月経ってしまっていた。最近は週の半分ぐらいは夜に予定が入っている。打ち合わせや勉強会が入ったり、ちょっとお仕事を残業していたりすると全然余裕がない。プールに入った後に時計をみたら19時19分だった。1時間は運動しようと思って途中に5分休憩があるので20時25分で引き上げてきた。歩いたり平泳ぎしたりを1時間ずっとやってた。プールは空いていたのでほぼ1コースを貸し切りで自分のペースで歩いたり泳いだりできて快適だった。しかし、プールでは fitbit を外しているのでこの1時間のアクティビティは記録されない。これだけが残念。
+隣のコースで外国人がバタフライで泳いでいて、すごいダイナミックで迫力があってカッコよかった。バタフライとかどうやって泳ぐのだろう？と軽く真似してみたけど泳げる気がしない。4泳法の中では一番難しいみたい。
+バタフライは、クロールや平泳ぎ、背泳ぎと並んで、水泳の「4泳法」のひとつです。両手を回すように動かしたり、両足を揃えて上下にうねらせたり、非常にダイナミックなフォームで泳ぎます。4泳法の中ではクロールの次に速く泳げる一方で、泳ぎ方にコツが必要なため、最も泳げない人が多い泳法といわれています。
+【水泳】バタフライを上手に泳ぐコツは？ 泳ぎ方の基本を押さえよう
+プールを終えて晩ご飯を食べて歩数が9000歩を超えてたり、消費カロリーが2700カロリーぐらいだった。プールのアクティビティを含めると実際は軽く超えているけれど、データ上の目標を達成していないのが気に食わないと思えたので夜に散歩に出掛けて、データ上も日々の目標値を達成した。しんどかったけど、余分に運動したのでよしとしておく。</description><content>&lt;p>fitbit の日々の目標の1万歩と2900カロリーの消費を達成するため、23時過ぎから散歩に言って0時前に達成して戻ってきて、CPAP のセットアップする前に疲れてそのまま寝てしまった。&lt;/p>
+&lt;p>今日の運動は水中ウォーキング,散歩をした。統計を &lt;a href="https://docs.google.com/spreadsheets/d/1bg85QtM-LciUgey8I79uI7vW2PEwsP6TVdeIRVkACBg/edit?usp=sharing">運動の記録&lt;/a> にまとめる。&lt;/p>
+&lt;h2 id="google-jamboard-の移行先">google jamboard の移行先&lt;/h2>
+&lt;p>サービス終了するので移行しないといけない。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://support.google.com/jamboard/answer/14084927?hl=ja">Google Jamboard の提供終了について&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>前にお手伝いしていた会社でよく使っていた &lt;a href="https://miro.com/">Miro&lt;/a> でいいんじゃないかと思って実際に評価して、機能性と使い勝手がとてもよかったので、やっぱり miro でいいんじゃないかと結論付けた。お手伝い先では miro を使っていない。偉い人に miro の管理者になってもらって、私のアカウントを招待してもらって、開発メンバーのチームを作ってもらうことにした。&lt;/p>
+&lt;figure>&lt;img src="/diary/diary/img/2024/0313_miro1.png"/>
+&lt;/figure>
+&lt;ul>
+&lt;li>付箋に絵文字を付けられる&lt;/li>
+&lt;li>付箋の作成者を表示、確認できる&lt;/li>
+&lt;li>付箋にコメントを付けられる&lt;/li>
+&lt;/ul>
+&lt;p>この3点だけでも jamboard ではできなかったことを実現できて好感触。今後の &lt;a href="/diary/diary/posts/2023/0926/#fundonelearn-のカスタマイズ">fun/give/learn のふりかえり&lt;/a> は miro のボードを使う。&lt;/p>
+&lt;h2 id="プール">プール&lt;/h2>
+&lt;p>前に行ったのが2月16日なので約1ヶ月経ってしまっていた。最近は週の半分ぐらいは夜に予定が入っている。打ち合わせや勉強会が入ったり、ちょっとお仕事を残業していたりすると全然余裕がない。プールに入った後に時計をみたら19時19分だった。1時間は運動しようと思って途中に5分休憩があるので20時25分で引き上げてきた。歩いたり平泳ぎしたりを1時間ずっとやってた。プールは空いていたのでほぼ1コースを貸し切りで自分のペースで歩いたり泳いだりできて快適だった。しかし、プールでは fitbit を外しているのでこの1時間のアクティビティは記録されない。これだけが残念。&lt;/p>
+&lt;p>隣のコースで外国人がバタフライで泳いでいて、すごいダイナミックで迫力があってカッコよかった。バタフライとかどうやって泳ぐのだろう？と軽く真似してみたけど泳げる気がしない。4泳法の中では一番難しいみたい。&lt;/p>
+&lt;blockquote>
+&lt;p>バタフライは、クロールや平泳ぎ、背泳ぎと並んで、水泳の「4泳法」のひとつです。両手を回すように動かしたり、両足を揃えて上下にうねらせたり、非常にダイナミックなフォームで泳ぎます。4泳法の中ではクロールの次に速く泳げる一方で、泳ぎ方にコツが必要なため、最も泳げない人が多い泳法といわれています。&lt;/p>
+&lt;p>&lt;a href="https://media.alpen-group.jp/media/detail/other_230629_01.html">【水泳】バタフライを上手に泳ぐコツは？ 泳ぎ方の基本を押さえよう&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>プールを終えて晩ご飯を食べて歩数が9000歩を超えてたり、消費カロリーが2700カロリーぐらいだった。プールのアクティビティを含めると実際は軽く超えているけれど、データ上の目標を達成していないのが気に食わないと思えたので夜に散歩に出掛けて、データ上も日々の目標値を達成した。しんどかったけど、余分に運動したのでよしとしておく。&lt;/p></content></item><item><title>よい開発文化をもつチーム</title><link>/diary/posts/2024/0305/</link><pubDate>Tue, 05 Mar 2024 09:25:05 +0900</pubDate><guid>/diary/posts/2024/0305/</guid><description>今回は寝台列車であまり寝付けなかったのか、fitbit に睡眠時間が記録されていなかった。おそらく2-3時間は寝たと思う。
 今日の運動は合宿明けと移動疲れがあるのでお休みにした。統計を 運動の記録 にまとめる。
 会議の準備 この3日間で私が主催の打ち合わせが5つある。主題だからそのすべてに私が資料を作らないといけない。もちろん先週から準備はしていたものの、完全ではなく、週末には城崎温泉でいっぱいいぱいになっていて余裕がない状態のまま出張になってしまった。打ち合わせの成否はそれまでにかけた準備時間に比例する。私の持論だ。最低限このぐらいの資料や段取りを組んでやらないといけないという私なりの基準がある。今回はぎりぎりまで資料を作ったり、打ち合わせ内容を練ったりして自身の基準すら満たすのにとてもしんどかった。
 定例会議 いつものマイルストーン単位の定例会議。
