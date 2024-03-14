@@ -1,4 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Health on</title><link>/diary/tags/health/</link><description>Recent content in Health on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 12 Mar 2024 09:43:59 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/health/index.xml" rel="self" type="application/rss+xml"/><item><title>睡眠時無呼吸症候群認定された</title><link>/diary/posts/2024/0312/</link><pubDate>Tue, 12 Mar 2024 09:43:59 +0900</pubDate><guid>/diary/posts/2024/0312/</guid><description>1時半に寝て4時に起きて6時半に起きた。7時までおふとんでだらだらしてた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Health on</title><link>/diary/tags/health/</link><description>Recent content in Health on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 14 Mar 2024 00:32:09 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/health/index.xml" rel="self" type="application/rss+xml"/><item><title>CPAP 治療による睡眠</title><link>/diary/posts/2024/0314/</link><pubDate>Thu, 14 Mar 2024 00:32:09 +0900</pubDate><guid>/diary/posts/2024/0314/</guid><description>2時半に寝て6時過ぎに起きた。CPAP 治療を開始した。
+今日の運動はスクワット,縄跳び(両足跳),散歩をした。統計を 運動の記録 にまとめる。
+CPAP 治療による睡眠 睡眠時無呼吸症候群の重症 と診断されたので CPAP という、人工呼吸器のようなものをセットして寝るといった治療を行う。初めて CPAP のマスクを装着して寝てみた。わりと普通に眠れた。寝起きはいつもと変わらないか、気持ちよく眠れたような感じがする。夜間に起きることがなかったと思ったけど、昨日は2時半から寝始めたから単純に睡眠時間が少なかっただけなんだろう。
+SnoreLab という、いびきを記録するアプリがある。昔から使っていてたまに記録したりしている。試しに CPAP を付ける前と昨日の記録を比較してみた。
+オレンジ色になっているところがいびきがひどいところ。それがなだらかになっているので確かにこのマスクを付けて寝たらいびきは発生しないようだ。無理やり鼻から空気を送り込むから、酸素が足りなくなって口から空気を取り込む必要がなくなるのかな？よく分からんけど、たしかに効果はあるようにみえる。
+fitbit の睡眠機能にある推定酸素変動量についても CPAP を付ける前と昨日の記録を比較してみた。
+これもブレの幅が小さくなっているので睡眠中に酸素の変化が少なくなっていることが伺える。見た目そんなすごそうな機械でもないのだけど、この治療法はすごいなと感心した。一方でこの治療法をやっても治るわけではない。
+私がリースしてきたのは ResMed AirSense 11 という機器で、家用の普通サイズ (言うても小さいプロジェクターぐらいのサイズ) になる。クリニックでスタッフの方が携帯用の手のひら程度のサイズのものもあると話していた。毎月出張へ行くのだし、携帯用の機器は購入した方がよいのかな？と調べてみた。個人向け CPAP所有について によると、基本的に個人所有はできなくて、医師の診察と診断のもとで所有が許可されるものらしい。機器もそこそこ高い価格帯になっている。1ヶ月 CPAP の治療をやってみてお医者さんと相談してみる。
+ふりかえりの記事の執筆に着手 チームの開発方法論をテックブログに書くと宣言して3ヶ月ぐらい放置している。ふりかえりの jamboard 移行 をやったのも含めてテックブログを書くかと、着手した。私にとって一番難しいのが「書き始める」というハードルなので、書き始めたら時間をかければいつか仕上がる。できれば明日中には書き終えてレビュー通して公開したい。</description><content>&lt;p>2時半に寝て6時過ぎに起きた。CPAP 治療を開始した。&lt;/p>
+&lt;p>今日の運動はスクワット,縄跳び(両足跳),散歩をした。統計を &lt;a href="https://docs.google.com/spreadsheets/d/1bg85QtM-LciUgey8I79uI7vW2PEwsP6TVdeIRVkACBg/edit?usp=sharing">運動の記録&lt;/a> にまとめる。&lt;/p>
+&lt;h2 id="cpap-治療による睡眠">CPAP 治療による睡眠&lt;/h2>
+&lt;p>&lt;a href="/diary/diary/posts/2024/0312/#睡眠時無呼吸症候群-sas">睡眠時無呼吸症候群の重症&lt;/a> と診断されたので CPAP という、人工呼吸器のようなものをセットして寝るといった治療を行う。初めて CPAP のマスクを装着して寝てみた。わりと普通に眠れた。寝起きはいつもと変わらないか、気持ちよく眠れたような感じがする。夜間に起きることがなかったと思ったけど、昨日は2時半から寝始めたから単純に睡眠時間が少なかっただけなんだろう。&lt;/p>
+&lt;p>&lt;a href="https://www.snorelab.com/">SnoreLab&lt;/a> という、いびきを記録するアプリがある。昔から使っていてたまに記録したりしている。試しに CPAP を付ける前と昨日の記録を比較してみた。&lt;/p>
+&lt;figure>&lt;img src="/diary/diary/img/2024/0314_ibiki.png"/>
+&lt;/figure>
+&lt;p>オレンジ色になっているところがいびきがひどいところ。それがなだらかになっているので確かにこのマスクを付けて寝たらいびきは発生しないようだ。無理やり鼻から空気を送り込むから、酸素が足りなくなって口から空気を取り込む必要がなくなるのかな？よく分からんけど、たしかに効果はあるようにみえる。&lt;/p>
+&lt;p>fitbit の睡眠機能にある推定酸素変動量についても CPAP を付ける前と昨日の記録を比較してみた。&lt;/p>
+&lt;figure>&lt;img src="/diary/diary/img/2024/0314_fitbit.png"/>
+&lt;/figure>
+&lt;p>これもブレの幅が小さくなっているので睡眠中に酸素の変化が少なくなっていることが伺える。見た目そんなすごそうな機械でもないのだけど、この治療法はすごいなと感心した。一方でこの治療法をやっても治るわけではない。&lt;/p>
+&lt;p>私がリースしてきたのは &lt;a href="https://www.resmed.com/en-us/sleep-apnea/cpap-parts-support/sleep-apnea-full-products-list/cpap-machines/airsense-11/">ResMed AirSense 11&lt;/a> という機器で、家用の普通サイズ (言うても小さいプロジェクターぐらいのサイズ) になる。クリニックでスタッフの方が携帯用の手のひら程度のサイズのものもあると話していた。毎月出張へ行くのだし、携帯用の機器は購入した方がよいのかな？と調べてみた。&lt;a href="https://tms1992.co.jp/business/sleep/personal">個人向け CPAP所有について&lt;/a> によると、基本的に個人所有はできなくて、医師の診察と診断のもとで所有が許可されるものらしい。機器もそこそこ高い価格帯になっている。1ヶ月 CPAP の治療をやってみてお医者さんと相談してみる。&lt;/p>
+&lt;h2 id="ふりかえりの記事の執筆に着手">ふりかえりの記事の執筆に着手&lt;/h2>
+&lt;p>チームの開発方法論をテックブログに書くと宣言して3ヶ月ぐらい放置している。ふりかえりの &lt;a href="/diary/diary/posts/2024/0313/#google-jamboard-の移行先">jamboard 移行&lt;/a> をやったのも含めてテックブログを書くかと、着手した。私にとって一番難しいのが「書き始める」というハードルなので、書き始めたら時間をかければいつか仕上がる。できれば明日中には書き終えてレビュー通して公開したい。&lt;/p></content></item><item><title>睡眠時無呼吸症候群認定された</title><link>/diary/posts/2024/0312/</link><pubDate>Tue, 12 Mar 2024 09:43:59 +0900</pubDate><guid>/diary/posts/2024/0312/</guid><description>1時半に寝て4時に起きて6時半に起きた。7時までおふとんでだらだらしてた。
 今日の運動はレッグレイズ(椅子),腹筋ローラー,腕立て,スクワット,背筋,水中ウォーキング,縄跳び(両足跳),散歩をした。統計を 運動の記録 にまとめる。
 開発課題の優先順位付け 昨日の続き 。エイヤで優先順位付けして次の開発の課題を整理する。
 1つ厄介、且つ難しい大きめの機能があって、これはどうしようか？と懸念に思っていた機能が、その要件の詳細をヒアリングしている過程で既存の運用は他の機能で代替できる可能性も出てきて、その大きな機能の優先度を下げて後回しにすることができた。このことによって開発課題全般のバランスがよくなって、メンバーの役割分担の適正になって、機能開発3ヶ月 + QA1ヶ月の4ヶ月のイテレーションにおさまりそうな開発規模に調整できた。自画自賛だけれども、プロジェクトマネージャーとして適正な課題設定とスケジュール調整に成功したと実感できた。もちろんお手伝い先の偉い人はめちゃくちゃことを言わないというのも大きい。

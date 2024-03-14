@@ -1,4 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2024/03 on</title><link>/diary/dates/2024/03/</link><description>Recent content in 2024/03 on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 13 Mar 2024 17:46:37 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2024/03/index.xml" rel="self" type="application/rss+xml"/><item><title>Fun/Give/Learn のふりかえりを miro で行う</title><link>/diary/posts/2024/0313/</link><pubDate>Wed, 13 Mar 2024 17:46:37 +0900</pubDate><guid>/diary/posts/2024/0313/</guid><description>fitbit の日々の目標の1万歩と2900カロリーの消費を達成するため、23時過ぎから散歩に言って0時前に達成して戻ってきて、CPAP のセットアップする前に疲れてそのまま寝てしまった。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2024/03 on</title><link>/diary/dates/2024/03/</link><description>Recent content in 2024/03 on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 14 Mar 2024 00:32:09 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2024/03/index.xml" rel="self" type="application/rss+xml"/><item><title>CPAP 治療による睡眠</title><link>/diary/posts/2024/0314/</link><pubDate>Thu, 14 Mar 2024 00:32:09 +0900</pubDate><guid>/diary/posts/2024/0314/</guid><description>2時半に寝て6時過ぎに起きた。CPAP 治療を開始した。
+今日の運動はスクワット,縄跳び(両足跳),散歩をした。統計を 運動の記録 にまとめる。
+CPAP 治療による睡眠 睡眠時無呼吸症候群の重症 と診断されたので CPAP という、人工呼吸器のようなものをセットして寝るといった治療を行う。初めて CPAP のマスクを装着して寝てみた。わりと普通に眠れた。寝起きはいつもと変わらないか、気持ちよく眠れたような感じがする。夜間に起きることがなかったと思ったけど、昨日は2時半から寝始めたから単純に睡眠時間が少なかっただけなんだろう。
+SnoreLab という、いびきを記録するアプリがある。昔から使っていてたまに記録したりしている。試しに CPAP を付ける前と昨日の記録を比較してみた。
+オレンジ色になっているところがいびきがひどいところ。それがなだらかになっているので確かにこのマスクを付けて寝たらいびきは発生しないようだ。無理やり鼻から空気を送り込むから、酸素が足りなくなって口から空気を取り込む必要がなくなるのかな？よく分からんけど、たしかに効果はあるようにみえる。
+fitbit の睡眠機能にある推定酸素変動量についても CPAP を付ける前と昨日の記録を比較してみた。
+これもブレの幅が小さくなっているので睡眠中に酸素の変化が少なくなっていることが伺える。見た目そんなすごそうな機械でもないのだけど、この治療法はすごいなと感心した。一方でこの治療法をやっても治るわけではない。
+私がリースしてきたのは ResMed AirSense 11 という機器で、家用の普通サイズ (言うても小さいプロジェクターぐらいのサイズ) になる。クリニックでスタッフの方が携帯用の手のひら程度のサイズのものもあると話していた。毎月出張へ行くのだし、携帯用の機器は購入した方がよいのかな？と調べてみた。個人向け CPAP所有について によると、基本的に個人所有はできなくて、医師の診察と診断のもとで所有が許可されるものらしい。機器もそこそこ高い価格帯になっている。1ヶ月 CPAP の治療をやってみてお医者さんと相談してみる。
+ふりかえりの記事の執筆に着手 チームの開発方法論をテックブログに書くと宣言して3ヶ月ぐらい放置している。ふりかえりの jamboard 移行 をやったのも含めてテックブログを書くかと、着手した。私にとって一番難しいのが「書き始める」というハードルなので、書き始めたら時間をかければいつか仕上がる。できれば明日中には書き終えてレビュー通して公開したい。</description><content>&lt;p>2時半に寝て6時過ぎに起きた。CPAP 治療を開始した。&lt;/p>
+&lt;p>今日の運動はスクワット,縄跳び(両足跳),散歩をした。統計を &lt;a href="https://docs.google.com/spreadsheets/d/1bg85QtM-LciUgey8I79uI7vW2PEwsP6TVdeIRVkACBg/edit?usp=sharing">運動の記録&lt;/a> にまとめる。&lt;/p>
+&lt;h2 id="cpap-治療による睡眠">CPAP 治療による睡眠&lt;/h2>
+&lt;p>&lt;a href="/diary/diary/posts/2024/0312/#睡眠時無呼吸症候群-sas">睡眠時無呼吸症候群の重症&lt;/a> と診断されたので CPAP という、人工呼吸器のようなものをセットして寝るといった治療を行う。初めて CPAP のマスクを装着して寝てみた。わりと普通に眠れた。寝起きはいつもと変わらないか、気持ちよく眠れたような感じがする。夜間に起きることがなかったと思ったけど、昨日は2時半から寝始めたから単純に睡眠時間が少なかっただけなんだろう。&lt;/p>
+&lt;p>&lt;a href="https://www.snorelab.com/">SnoreLab&lt;/a> という、いびきを記録するアプリがある。昔から使っていてたまに記録したりしている。試しに CPAP を付ける前と昨日の記録を比較してみた。&lt;/p>
+&lt;figure>&lt;img src="/diary/diary/img/2024/0314_ibiki.png"/>
+&lt;/figure>
+&lt;p>オレンジ色になっているところがいびきがひどいところ。それがなだらかになっているので確かにこのマスクを付けて寝たらいびきは発生しないようだ。無理やり鼻から空気を送り込むから、酸素が足りなくなって口から空気を取り込む必要がなくなるのかな？よく分からんけど、たしかに効果はあるようにみえる。&lt;/p>
+&lt;p>fitbit の睡眠機能にある推定酸素変動量についても CPAP を付ける前と昨日の記録を比較してみた。&lt;/p>
+&lt;figure>&lt;img src="/diary/diary/img/2024/0314_fitbit.png"/>
+&lt;/figure>
+&lt;p>これもブレの幅が小さくなっているので睡眠中に酸素の変化が少なくなっていることが伺える。見た目そんなすごそうな機械でもないのだけど、この治療法はすごいなと感心した。一方でこの治療法をやっても治るわけではない。&lt;/p>
+&lt;p>私がリースしてきたのは &lt;a href="https://www.resmed.com/en-us/sleep-apnea/cpap-parts-support/sleep-apnea-full-products-list/cpap-machines/airsense-11/">ResMed AirSense 11&lt;/a> という機器で、家用の普通サイズ (言うても小さいプロジェクターぐらいのサイズ) になる。クリニックでスタッフの方が携帯用の手のひら程度のサイズのものもあると話していた。毎月出張へ行くのだし、携帯用の機器は購入した方がよいのかな？と調べてみた。&lt;a href="https://tms1992.co.jp/business/sleep/personal">個人向け CPAP所有について&lt;/a> によると、基本的に個人所有はできなくて、医師の診察と診断のもとで所有が許可されるものらしい。機器もそこそこ高い価格帯になっている。1ヶ月 CPAP の治療をやってみてお医者さんと相談してみる。&lt;/p>
+&lt;h2 id="ふりかえりの記事の執筆に着手">ふりかえりの記事の執筆に着手&lt;/h2>
+&lt;p>チームの開発方法論をテックブログに書くと宣言して3ヶ月ぐらい放置している。ふりかえりの &lt;a href="/diary/diary/posts/2024/0313/#google-jamboard-の移行先">jamboard 移行&lt;/a> をやったのも含めてテックブログを書くかと、着手した。私にとって一番難しいのが「書き始める」というハードルなので、書き始めたら時間をかければいつか仕上がる。できれば明日中には書き終えてレビュー通して公開したい。&lt;/p></content></item><item><title>Fun/Give/Learn のふりかえりを miro で行う</title><link>/diary/posts/2024/0313/</link><pubDate>Wed, 13 Mar 2024 17:46:37 +0900</pubDate><guid>/diary/posts/2024/0313/</guid><description>fitbit の日々の目標の1万歩と2900カロリーの消費を達成するため、23時過ぎから散歩に言って0時前に達成して戻ってきて、CPAP のセットアップする前に疲れてそのまま寝てしまった。
 今日の運動は水中ウォーキング,散歩をした。統計を 運動の記録 にまとめる。
 google jamboard の移行先 サービス終了するので移行しないといけない。
 Google Jamboard の提供終了について 前にお手伝いしていた会社でよく使っていた Miro でいいんじゃないかと思って実際に評価して、機能性と使い勝手がとてもよかったので、やっぱり miro でいいんじゃないかと結論付けた。お手伝い先では miro を使っていない。偉い人に miro の管理者になってもらって、私のアカウントを招待してもらって、開発メンバーのチームを作ってもらうことにした。
