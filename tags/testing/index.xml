@@ -1,4 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Testing on</title><link>/diary/tags/testing/</link><description>Recent content in Testing on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 19 Feb 2024 20:18:47 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/testing/index.xml" rel="self" type="application/rss+xml"/><item><title>日曜日に運動し過ぎて月曜から疲れている</title><link>/diary/posts/2024/0219/</link><pubDate>Mon, 19 Feb 2024 20:18:47 +0900</pubDate><guid>/diary/posts/2024/0219/</guid><description>1時半に寝て6時前に起きた。今日もよく眠れたと思う。1日中天気が悪かったのもあってあまり外出 (運動) せず休息の日になった。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Testing on</title><link>/diary/tags/testing/</link><description>Recent content in Testing on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 17 Mar 2024 10:40:03 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/testing/index.xml" rel="self" type="application/rss+xml"/><item><title>スマート縄跳びを購入</title><link>/diary/posts/2024/0317/</link><pubDate>Sun, 17 Mar 2024 10:40:03 +0900</pubDate><guid>/diary/posts/2024/0317/</guid><description>0時過ぎに寝て5時に起きて7時に起きた。CPAP 機器を装着する前に布団入ってだらだらしていたらそのまま寝てしまった。
+今日の運動は腹筋ローラー,腕立て,スクワット,散歩をした。統計を 運動の記録 にまとめる。
+スマート縄跳びを購入 縄跳びにもだいぶ慣れてきて数えながら跳ぶのも面倒になってきた。回数から時間に移行しようと考えているところ。検索したら普通にデータ連携できるスマート縄跳びがあることに気付いた。どの商品がよいのかよくわかっていないのでクラウドファンディングして有名そうな SmartRope LED Red を直販で購入した。
+Subtotal ¥12,100 Shipping ¥1,900 Taxes ¥0 Total ¥14,000 JPY 海外から発送するなら2-4週間ぐらいはかかるかな？と予想していたら、そんなことはなくて韓国からの FedEx による発送で数日で届くみたい。
+フロントエンドのテストフレームワーク mswとstorybookで始めるフロントエンドテスト に参加した。そごうさんがハンズオンの講師を務められていた。
+MSW+Storybook で始めるフロントエンドテスト https://github.com/tenkawa0/msw-storybook-handson うちのチームはまだフロントエンドのテストを書いていない。まだまだ ui や機能を開発している段階なのでテストを書くのはもう少し先になる。一方で storybook はドキュメントの代替に導入していたので、その延長上にテストフレームワークがあるのはステップアップとしてよいように思えた。そごうさんの説明やハンズオンのサンプルもわかりやすかった。とてもよかったと思う。</description><content>&lt;p>0時過ぎに寝て5時に起きて7時に起きた。CPAP 機器を装着する前に布団入ってだらだらしていたらそのまま寝てしまった。&lt;/p>
+&lt;p>今日の運動は腹筋ローラー,腕立て,スクワット,散歩をした。統計を &lt;a href="https://docs.google.com/spreadsheets/d/1bg85QtM-LciUgey8I79uI7vW2PEwsP6TVdeIRVkACBg/edit?usp=sharing">運動の記録&lt;/a> にまとめる。&lt;/p>
+&lt;h2 id="スマート縄跳びを購入">スマート縄跳びを購入&lt;/h2>
+&lt;p>縄跳びにもだいぶ慣れてきて数えながら跳ぶのも面倒になってきた。回数から時間に移行しようと考えているところ。検索したら普通にデータ連携できるスマート縄跳びがあることに気付いた。どの商品がよいのかよくわかっていないのでクラウドファンディングして有名そうな &lt;a href="https://store.tangramfactory.com/collections/frontpage/products/smart-rope-red">SmartRope LED Red&lt;/a> を直販で購入した。&lt;/p>
+&lt;pre tabindex="0">&lt;code>Subtotal ¥12,100
+Shipping ¥1,900
+Taxes ¥0
+Total ¥14,000 JPY
+&lt;/code>&lt;/pre>&lt;p>海外から発送するなら2-4週間ぐらいはかかるかな？と予想していたら、そんなことはなくて韓国からの FedEx による発送で数日で届くみたい。&lt;/p>
+&lt;h2 id="フロントエンドのテストフレームワーク">フロントエンドのテストフレームワーク&lt;/h2>
+&lt;p>&lt;a href="https://kobe-sannomiya-dev.connpass.com/event/306844/">mswとstorybookで始めるフロントエンドテスト&lt;/a> に参加した。そごうさんがハンズオンの講師を務められていた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.google.com/presentation/d/1K01uV6rWFS6zBWLZZcOdNyAZbC_EFmGY6Oe7gp-481E/edit?usp=sharing">MSW+Storybook で始めるフロントエンドテスト&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/tenkawa0/msw-storybook-handson">https://github.com/tenkawa0/msw-storybook-handson&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>うちのチームはまだフロントエンドのテストを書いていない。まだまだ ui や機能を開発している段階なのでテストを書くのはもう少し先になる。一方で storybook はドキュメントの代替に導入していたので、その延長上にテストフレームワークがあるのはステップアップとしてよいように思えた。そごうさんの説明やハンズオンのサンプルもわかりやすかった。とてもよかったと思う。&lt;/p></content></item><item><title>日曜日に運動し過ぎて月曜から疲れている</title><link>/diary/posts/2024/0219/</link><pubDate>Mon, 19 Feb 2024 20:18:47 +0900</pubDate><guid>/diary/posts/2024/0219/</guid><description>1時半に寝て6時前に起きた。今日もよく眠れたと思う。1日中天気が悪かったのもあってあまり外出 (運動) せず休息の日になった。
 今日の運動はレッグレイズ(椅子),腹筋ローラー,スクワット,散歩をした。統計を 運動の記録 にまとめる。
 QA テスト 先週から引き続き、ずっとテストをしている。今日から windows server の active directory への連携に関するテストをしていた。プライマリグループという設定があって、その連携方法だけ分からなくてまた明日メンバーに教えてもらうことにした。テストは誰がやっても時間がかかるし、うまくいかないときに設定が悪いのか、データが誤っているのか、操作が適切ではないのか、調査にも時間がかかる。実際に手を動かしてみると、メンバーから聞いてるだけではわからない気付きも得られるのでこれはこれでよい経験になったと思う。ただ時間だけがどんどん削られるというのが欠点。
 テックブログを読むためのイベント考察 テックブログ一気読み選手権20240219杯 に参加した。今日はにしはらさんが都合悪かったようで誰もいなかった。1人でテックブログを読んで、1人で hackmd にまとめて、それでイベントを終えた。その時間に都合が悪くても非同期に読めばよいというイベントの主旨ではあるけれど、なんのためにイベントをやっているのか？ということについて考えてみた。確かにイベントがあることでテックブログを1つ2つ読む機会になっている。これはイベントが中止であれば読まなかったかもしれない。一方で読んで他社へ話して共有する過程で新たな価値に気付くといったこともこのイベントの主旨ではあるのでその効果は落ちてしまう。なによりもイベントに参加して、誰もいなくて、ただまとめを書いて終えるというのはなにか寂しい。</description><content>&lt;p>1時半に寝て6時前に起きた。今日もよく眠れたと思う。1日中天気が悪かったのもあってあまり外出 (運動) せず休息の日になった。&lt;/p>
