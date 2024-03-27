@@ -1,4 +1,33 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Go on</title><link>/diary/tags/go/</link><description>Recent content in Go on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 18 Mar 2024 00:36:01 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/go/index.xml" rel="self" type="application/rss+xml"/><item><title>リリースパーティの食べもの</title><link>/diary/posts/2024/0318/</link><pubDate>Mon, 18 Mar 2024 00:36:01 +0900</pubDate><guid>/diary/posts/2024/0318/</guid><description>0時に寝て6時に起きて7時に起きた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Go on</title><link>/diary/tags/go/</link><description>Recent content in Go on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 25 Mar 2024 09:18:55 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/go/index.xml" rel="self" type="application/rss+xml"/><item><title>ordered map という適当な粒度の課題</title><link>/diary/posts/2024/0325/</link><pubDate>Mon, 25 Mar 2024 09:18:55 +0900</pubDate><guid>/diary/posts/2024/0325/</guid><description>1時に寝て4時に起きて CPAP 治療忘れて寝ていたことに気付いて、装着してまた寝て6時半に起きた。
+今日の運動は背筋をした。統計を 運動の記録 にまとめる。
+orderedmap ライブラリ json のオブジェクトの属性を意図した順番に並び替えたいという要件があって 適当なライブラリをみつけられなくて 最終的には自分で実装した。そのときに参考にしたモジュールではネストした配列やオブジェクトの順番を維持できないことに気付いて、どうせ実装するなら json の marshal/unmarshal の処理を完璧に実装しようと思って、再度フルスクラッチで作り直した。要は python の OrderedDict のようなものの go 版になる。
+orderedmap というキーワードで検索するといくつもオレオレの実装がみつかる。次の3つを参考にしながら、私も自分の思う「ぼくのかんがえたさいきょうの orderedmap」 を作ってみた。
+https://github.com/iancoleman/orderedmap https://github.com/elliotchance/orderedmap https://github.com/mroth/orderedmap 実際に作ったものが次になる。
+github.com/kazamori/orderedmap インストール
+$ go get -u github.com/kazamori/orderedmap go のモジュールは GOPROXY protocol を介してプロキシサーバーから取得される。デフォルトでは proxy.golang.org が設定されている。
+$ go env | grep GOPROXY GOPROXY=&amp;#39;https://proxy.golang.org,direct&amp;#39; プロキシサーバーではモジュールがキャッシュされているため、利用する側でリビジョンを更新しようとしても短い間隔だとすぐには反映されない。プロキシサーバーに存在しないモジュールのリビジョンを取得したい場合は GOPROXY の環境変数でダイレクトモードに変更する。
+$ GOPROXY=direct go get -u github.com/kazamori/orderedmap generics 対応して汎用の map を扱えるのがちょっとお気に入りなところ。他人が作ったライブラリを使うことはできるけど、プログラミング勉強として自分で実装してみるのもよい気はする。ちょうど kyoto.go のイベントがあってそのトークに orderedmap について話して来ようと思う。</description><content>&lt;p>1時に寝て4時に起きて CPAP 治療忘れて寝ていたことに気付いて、装着してまた寝て6時半に起きた。&lt;/p>
+&lt;p>今日の運動は背筋をした。統計を &lt;a href="https://docs.google.com/spreadsheets/d/1bg85QtM-LciUgey8I79uI7vW2PEwsP6TVdeIRVkACBg/edit?usp=sharing">運動の記録&lt;/a> にまとめる。&lt;/p>
+&lt;h2 id="orderedmap-ライブラリ">orderedmap ライブラリ&lt;/h2>
+&lt;p>json のオブジェクトの属性を意図した順番に並び替えたいという要件があって &lt;a href="/diary/diary/posts/2024/0308/#ordered-map-の開発">適当なライブラリをみつけられなくて&lt;/a> 最終的には自分で実装した。そのときに参考にしたモジュールではネストした配列やオブジェクトの順番を維持できないことに気付いて、どうせ実装するなら json の marshal/unmarshal の処理を完璧に実装しようと思って、再度フルスクラッチで作り直した。要は &lt;a href="https://docs.python.org/ja/3/library/collections.html#collections.OrderedDict">python の OrderedDict&lt;/a> のようなものの go 版になる。&lt;/p>
+&lt;p>&lt;code>orderedmap&lt;/code> というキーワードで検索するといくつもオレオレの実装がみつかる。次の3つを参考にしながら、私も自分の思う「ぼくのかんがえたさいきょうの orderedmap」 を作ってみた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/iancoleman/orderedmap">https://github.com/iancoleman/orderedmap&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/elliotchance/orderedmap">https://github.com/elliotchance/orderedmap&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/mroth/orderedmap">https://github.com/mroth/orderedmap&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>実際に作ったものが次になる。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/kazamori/orderedmap">github.com/kazamori/orderedmap&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>インストール&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ go get -u github.com/kazamori/orderedmap
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>go のモジュールは &lt;a href="https://go.dev/ref/mod#goproxy-protocol">GOPROXY protocol&lt;/a> を介してプロキシサーバーから取得される。デフォルトでは &lt;code>proxy.golang.org&lt;/code> が設定されている。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ go env | grep GOPROXY
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>GOPROXY&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;https://proxy.golang.org,direct&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>プロキシサーバーではモジュールがキャッシュされているため、利用する側でリビジョンを更新しようとしても短い間隔だとすぐには反映されない。プロキシサーバーに存在しないモジュールのリビジョンを取得したい場合は &lt;code>GOPROXY&lt;/code> の環境変数でダイレクトモードに変更する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ GOPROXY&lt;span style="color:#f92672">=&lt;/span>direct go get -u github.com/kazamori/orderedmap
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>generics 対応して汎用の map を扱えるのがちょっとお気に入りなところ。他人が作ったライブラリを使うことはできるけど、プログラミング勉強として自分で実装してみるのもよい気はする。ちょうど &lt;a href="https://kyotogo.connpass.com/event/313309/">kyoto.go&lt;/a> のイベントがあってそのトークに orderedmap について話して来ようと思う。&lt;/p></content></item><item><title>リリースパーティの食べもの</title><link>/diary/posts/2024/0318/</link><pubDate>Mon, 18 Mar 2024 00:36:01 +0900</pubDate><guid>/diary/posts/2024/0318/</guid><description>0時に寝て6時に起きて7時に起きた。
 今日の運動はお休み。統計を 運動の記録 にまとめる。
 go 1.22 リリースパーティのパブリックビューイング 【オフライン限定】Go HackBar in MF Kyoto #2 に参加した。裏番組で同時開催されていた Go 1.22 リリースパーティ のパブリックビューイング的な雑談イベントになっていた。神戸から京都は遠い。三条まで待ち時間などを考慮すると片道1時間半ぐらいかかった。行きはよいよい帰りは怖い的な。
 go のイベントでちょくちょくみかける luccafort さんと初めて面識をもって話してみた。理詰めでしっかりした方だったように思う。マネーフォワードさんの技術広報のお仕事をされているみたい。いまは開発者以上にエンジニアリングマネージャー (EM) が求めているといったお話をしていた。うちの会社の課題管理は業務委託で EM のお仕事を手伝うのに近いものではあるけど、ビジネスにコミットしてもらうといった性質があるから業務委託はなかなか難しいみたい。あとマネーフォワードさんの場合、顧客企業の財務データがみえてしまうため、お客さんのプライバシーを守る上でも業務委託にみせにくいデータもあるといった話しもあった。
