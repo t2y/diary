@@ -1,5 +1,127 @@
 <!doctype html><html lang=en><head><meta name=generator content="Hugo 0.123.1"><title></title>
-<meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=keywords content><meta name=robots content="noodp"><link rel=canonical href=/diary/><link rel=stylesheet href=/diary/styles.css><link rel=stylesheet href=/diary/style.css><link rel="shortcut icon" href=/diary/favicon.ico><meta name=twitter:card content="summary"><meta name=twitter:site content="t2y"><meta name=twitter:creator content="t2y"><meta property="og:locale" content="en"><meta property="og:type" content="website"><meta property="og:title" content><meta property="og:description" content><meta property="og:url" content="/diary/"><meta property="og:site_name" content><meta property="og:image" content="/diary/favicon.ico"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="627"><link href=/diary/index.xml rel=alternate type=application/rss+xml title></head><body class=green><div class="container full headings--one-size"><header class=header><div class=header__inner><div class=header__logo><a href=/diary><div class=logo>forest nook</div></a></div><ul class="menu menu--mobile"><li class=menu__trigger>Menu&nbsp;▾</li><li><ul class=menu__dropdown><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul></li></ul></div><nav class=navigation-menu><ul class="navigation-menu__inner menu--desktop"><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul></nav></header><div class=content><div class=posts><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2022/0817/>たまには画面作り</a></h1><div class=post-meta><span class=post-date>2022-08-17 (Wed.)</span></div><span class=post-tags>#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
+<meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=keywords content><meta name=robots content="noodp"><link rel=canonical href=/diary/><link rel=stylesheet href=/diary/styles.css><link rel=stylesheet href=/diary/style.css><link rel="shortcut icon" href=/diary/favicon.ico><meta name=twitter:card content="summary"><meta name=twitter:site content="t2y"><meta name=twitter:creator content="t2y"><meta property="og:locale" content="en"><meta property="og:type" content="website"><meta property="og:title" content><meta property="og:description" content><meta property="og:url" content="/diary/"><meta property="og:site_name" content><meta property="og:image" content="/diary/favicon.ico"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="627"><link href=/diary/index.xml rel=alternate type=application/rss+xml title></head><body class=green><div class="container full headings--one-size"><header class=header><div class=header__inner><div class=header__logo><a href=/diary><div class=logo>forest nook</div></a></div><ul class="menu menu--mobile"><li class=menu__trigger>Menu&nbsp;▾</li><li><ul class=menu__dropdown><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul></li></ul></div><nav class=navigation-menu><ul class="navigation-menu__inner menu--desktop"><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul></nav></header><div class=content><div class=posts><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2022/0818/>spring boot におけるプロキシ実装</a></h1><div class=post-meta><span class=post-date>2022-08-18 (Thu.)</span></div><span class=post-tags>#<a href=/diary/tags/java/>java</a>&nbsp;
+#<a href=/diary/tags/spring-boot/>spring boot</a>&nbsp;</span><div class=table-of-contents><h2>目次</h2><nav id=TableOfContents><ul><li><a href=#spring-boot-における簡易的なミドルウェアの実装>spring boot における簡易的なミドルウェアの実装</a></li></ul></nav></div><div class=post-content><p>0時に寝て7時に起きた。</p><h2 id=spring-boot-における簡易的なミドルウェアの実装>spring boot における簡易的なミドルウェアの実装</h2><p>bff (backend for frontend) の web api サーバーから別の web api サーバーのエンドポイントを呼び出す処理を書いていてただプロキシする処理のためだけに <a href=https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#getting-started.first-application.code.mvc-annotations>controller</a> を書くのも面倒だなと気付いた。controller よりも低いレイヤで raw request を扱うにはどうしたらいいかを調べてみたら spring の <em>Filter</em> を使うのが最も簡単そうにみえた。その spring の Filter の1つである <em>OncePerRequestFilter</em> を使って簡易的なプロキシの処理を実装してみた。OncePerRequestFilter はリクエストに対して1度だけ呼ばれることが保証された Filter になる。これらのドキュメントがどこにあるかわからなかったので baeldung のチュートリアル <a href=https://www.baeldung.com/spring-onceperrequestfilter>What Is OncePerRequestFilter?</a> をみた方が早いかもしれない。</p><p>Filter が複数あるときは実行順序を指定したいときは <a href=https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#web.servlet.embedded-container.servlets-filters-listeners.beans>Order</a> というアノテーションで制御できる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#a6e22e>@Component</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@Order</span>(30)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyFilter</span> <span style=color:#66d9ef>extends</span> OncePerRequestFilter {
+</span></span><span style=display:flex><span>  ...
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>OncePerRequestFilter の <em>doFilterInternal</em> メソッドをオーバーライドすれば任意のミドルウェアっぽい処理を実装できる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span>    <span style=color:#a6e22e>@Override</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>protected</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>doFilterInternal</span>(
+</span></span><span style=display:flex><span>        HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>throws</span> ServletException, IOException {
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// ここに任意の前処理を実装する</span>
+</span></span><span style=display:flex><span>        filterChain.<span style=color:#a6e22e>doFilter</span>(request, response);
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// ここに任意の後処理を実装する</span>
+</span></span><span style=display:flex><span>    }
+</span></span></code></pre></div><p>あとは HttpServletRequest と HttpServletResponse を直接操作してリクエストから必要な情報を取り出して、クライアントでリクエストして返ってきたレスポンスをそのまま返してあげればよい。簡単に実装したものが次になる。クライアントには <a href=/diary/posts/2022/0722/>以前に少し調べたことを書いた WebClient</a> を使っている。WebClient じゃなければ、もう少しシンプルに書ける気もする。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#a6e22e>@Component</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@Order</span>(30)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>RequestForwardFilter</span> <span style=color:#66d9ef>extends</span> OncePerRequestFilter {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@Autowired</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> List<span style=color:#f92672>&lt;</span>RequestForwardMatcher<span style=color:#f92672>&gt;</span> matchers;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@Override</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>protected</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>doFilterInternal</span>(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) <span style=color:#66d9ef>throws</span> ServletException, IOException {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> matcher <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>getMatcher</span>(request);
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> (matcher.<span style=color:#a6e22e>isEmpty</span>()) {
+</span></span><span style=display:flex><span>            filterChain.<span style=color:#a6e22e>doFilter</span>(request, response);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span>;
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        writeResponse(response, <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>forwardRequest</span>(request, matcher.<span style=color:#a6e22e>get</span>().<span style=color:#a6e22e>getWebClient</span>()));
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> Optional<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>byte</span><span style=color:#f92672>[]&gt;</span> <span style=color:#a6e22e>forwardRequest</span>(HttpServletRequest request, WebClient webClient) <span style=color:#66d9ef>throws</span> IOException {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> method <span style=color:#f92672>=</span> HttpMethod.<span style=color:#a6e22e>resolve</span>(request.<span style=color:#a6e22e>getMethod</span>().<span style=color:#a6e22e>toUpperCase</span>());
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> originalUri <span style=color:#f92672>=</span> request.<span style=color:#a6e22e>getRequestURI</span>();
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> uri <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>getUri</span>(originalUri, request.<span style=color:#a6e22e>getQueryString</span>());
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> spec <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>getSpec</span>(method, webClient, uri, request.<span style=color:#a6e22e>getReader</span>());
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> spec.<span style=color:#a6e22e>retrieve</span>().<span style=color:#a6e22e>bodyToMono</span>(<span style=color:#66d9ef>byte</span><span style=color:#f92672>[]</span>.<span style=color:#a6e22e>class</span>).<span style=color:#a6e22e>blockOptional</span>();
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>writeResponse</span>(HttpServletResponse response, Optional<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>byte</span><span style=color:#f92672>[]&gt;</span> bytes) <span style=color:#66d9ef>throws</span> IOException {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> (bytes.<span style=color:#a6e22e>isEmpty</span>()) {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span>;
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> stream <span style=color:#f92672>=</span> response.<span style=color:#a6e22e>getOutputStream</span>();
+</span></span><span style=display:flex><span>        stream.<span style=color:#a6e22e>write</span>(bytes.<span style=color:#a6e22e>get</span>());
+</span></span><span style=display:flex><span>        stream.<span style=color:#a6e22e>flush</span>();
+</span></span><span style=display:flex><span>        stream.<span style=color:#a6e22e>close</span>();
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>byte</span><span style=color:#f92672>[]</span> <span style=color:#a6e22e>getRequestBody</span>(BufferedReader reader) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> reader.<span style=color:#a6e22e>lines</span>().<span style=color:#a6e22e>collect</span>(Collectors.<span style=color:#a6e22e>joining</span>()).<span style=color:#a6e22e>getBytes</span>();
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> String <span style=color:#a6e22e>getUri</span>(String originalUri, String queryString) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> path <span style=color:#f92672>=</span> originalUri.<span style=color:#a6e22e>replace</span>(<span style=color:#e6db74>&#34;/api&#34;</span>, <span style=color:#e6db74>&#34;&#34;</span>);
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> (StringUtils.<span style=color:#a6e22e>hasLength</span>(queryString)) {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> String.<span style=color:#a6e22e>format</span>(<span style=color:#e6db74>&#34;%s?%s&#34;</span>, path, queryString);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> path;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> WebClient.<span style=color:#a6e22e>RequestHeadersSpec</span><span style=color:#f92672>&lt;?&gt;</span> getSpec(
+</span></span><span style=display:flex><span>            HttpMethod method, WebClient webClient, String uri, BufferedReader reader) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>switch</span> (method) {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>case</span> GET:
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span> webClient.<span style=color:#a6e22e>get</span>().<span style=color:#a6e22e>uri</span>(uri);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>case</span> POST:
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span> webClient.<span style=color:#a6e22e>post</span>()
+</span></span><span style=display:flex><span>                        .<span style=color:#a6e22e>uri</span>(uri)
+</span></span><span style=display:flex><span>                        .<span style=color:#a6e22e>header</span>(HttpHeaders.<span style=color:#a6e22e>CONTENT_TYPE</span>, MediaType.<span style=color:#a6e22e>APPLICATION_JSON_VALUE</span>)
+</span></span><span style=display:flex><span>                        .<span style=color:#a6e22e>bodyValue</span>(<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>getRequestBody</span>(reader));
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>case</span> PUT:
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span> webClient.<span style=color:#a6e22e>put</span>()
+</span></span><span style=display:flex><span>                        .<span style=color:#a6e22e>uri</span>(uri)
+</span></span><span style=display:flex><span>                        .<span style=color:#a6e22e>header</span>(HttpHeaders.<span style=color:#a6e22e>CONTENT_TYPE</span>, MediaType.<span style=color:#a6e22e>APPLICATION_JSON_VALUE</span>)
+</span></span><span style=display:flex><span>                        .<span style=color:#a6e22e>bodyValue</span>(<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>getRequestBody</span>(reader));
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>case</span> DELETE:
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span> webClient.<span style=color:#a6e22e>delete</span>().<span style=color:#a6e22e>uri</span>(uri);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>default</span>:
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> RuntimeException(String.<span style=color:#a6e22e>format</span>(<span style=color:#e6db74>&#34;Unsupported HTTP method: %s&#34;</span>, method));
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> Optional<span style=color:#f92672>&lt;</span>RequestForwardMatcher<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>getMatcher</span>(HttpServletRequest request) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>var</span> matcher : <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>matchers</span>) {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (matcher.<span style=color:#a6e22e>match</span>(request)) {
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span> Optional.<span style=color:#a6e22e>of</span>(matcher);
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> Optional.<span style=color:#a6e22e>empty</span>();
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>matcher のサンプル実装。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>RequestForwardMatcher</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> String ASTERISK <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;*&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>final</span> Pattern pattern;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>final</span> List<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>&gt;</span> methods;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>final</span> WebClient webClient;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#a6e22e>RequestForwardMatcher</span>(String pattern, List<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>&gt;</span> methods, WebClient webClient) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>pattern</span> <span style=color:#f92672>=</span> Pattern.<span style=color:#a6e22e>compile</span>(pattern);
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>methods</span> <span style=color:#f92672>=</span> methods;
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>webClient</span> <span style=color:#f92672>=</span> webClient;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>boolean</span> <span style=color:#a6e22e>matchMethod</span>(String method) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> (<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>methods</span>.<span style=color:#a6e22e>contains</span>(ASTERISK)) {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>true</span>;
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>methods</span>.<span style=color:#a6e22e>contains</span>(method);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>boolean</span> <span style=color:#a6e22e>match</span>(HttpServletRequest request) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span>matchMethod(request.<span style=color:#a6e22e>getMethod</span>())) {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span>;
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>pattern</span>.<span style=color:#a6e22e>matcher</span>(request.<span style=color:#a6e22e>getRequestURI</span>()).<span style=color:#a6e22e>matches</span>();
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> WebClient <span style=color:#a6e22e>getWebClient</span>() {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>webClient</span>;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2022/0817/>たまには画面作り</a></h1><div class=post-meta><span class=post-date>2022-08-17 (Wed.)</span></div><span class=post-tags>#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
 #<a href=/diary/tags/migration/>migration</a>&nbsp;
 #<a href=/diary/tags/vue.js/>vue.js</a>&nbsp;</span><div class=table-of-contents><h2>目次</h2><nav id=TableOfContents><ul><li><a href=#リファクタリングとインフラ移行>リファクタリングとインフラ移行</a></li><li><a href=#nuxt-で画面作り>nuxt で画面作り</a></li></ul></nav></div><div class=post-content><p>1時に寝て6時に起きた。</p><h2 id=リファクタリングとインフラ移行>リファクタリングとインフラ移行</h2><p>ここ2週間ほどリファクタリングやらインフラ変更やらをしてきて、来週からまた新しい施設がサービスインするので区切りとしてリファクタリングは一旦終わりにする。今日がその集大成となるインフラ移行も含めた本番リリースだった。インフラ移行するときはなにかしら障害が起きる前提で待機しているものの、今日もすんなりと意図した通りに移行できて、してやったりではあるものの、モノ足りなさで拍子抜けしてしまった。また昨日から社内 wiki にも minikube の使い方、k8s cronjob の設計、バッチ処理の設計と実装についてドキュメントなどを書いていた。いままですべて私が1人で担当していたものを他メンバーでも作業できるようにドキュメント化した。近いうちにいなくなるので引き継ぎのドキュメントにもなる。</p><h2 id=nuxt-で画面作り>nuxt で画面作り</h2><p>ここ最近2種類の web api の機能を作ったのでその管理画面も2つ作る必要がある。私はフロントエンド開発の素人なので他のメンバーが作ってくれないかと声をかけてはいたけど、みんな忙しいようなので私が作ることにした。今週は <a href=https://nuxtjs.org/ja/>nuxtjs</a> の新規画面の開発をがんばってみようと思う。既存のソースを読む限りはそんなに複雑ではなさそう。素人が雰囲気で実装しても動くんじゃないかと思っている。ソースコードを読んでいて url 設計はめちゃくちゃだし、一覧画面にはページング機能も実装されていない。素人がソースを読んで基本的な骨子や機能が正しく実装されてないことがわかってしまうのは品質レベルとしてなにかがおかしい。圧倒的低品質と呼ぶのか、こんなことが起こってしまうのはよい開発文化がないせいなのだろうと考えている。</p></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2022/0816/>リーン思考の考え方</a></h1><div class=post-meta><span class=post-date>2022-08-16 (Tue.)</span></div><span class=post-tags>#<a href=/diary/tags/lean/>lean</a>&nbsp;
 #<a href=/diary/tags/scrum/>scrum</a>&nbsp;</span><div class=table-of-contents><h2>目次</h2><nav id=TableOfContents><ul><li><a href=#リーン思考を学ぶ勉強会>リーン思考を学ぶ勉強会</a></li></ul></nav></div><div class=post-content><p>1時に寝て6時に起きた。夜中に3回ぐらい起きたかな。夜あまり眠れない。</p><h2 id=リーン思考を学ぶ勉強会>リーン思考を学ぶ勉強会</h2><p>スクラムマスター主催の勉強会があった。スクラムマスターは折に触れてリーン思考が大事という発言をするので気にはなっていた。リーンという概念はトヨタ生産方式から触発されている。リーン思考はフロー効率の方を重視するらしい。</p><ul><li>フロー効率: 価値を素早く提供する</li><li>リソース効率: リソースが遊び無く稼働している</li></ul><p>どちらも効率の話しをしているが、なんの効率をあげるかが異なる。i/o におけるレイテンシとスループットの関係に似ている。レイテンシを上げればスループットは下がるが、スループットを上げればレイテンシは下がるという反比例の関係となる。おそらくフロー効率とリソース効率の話しがトヨタから出ているのであれば、工場の稼働率の話しとも関連があると考えられるのでお互いにトレードオフの関係が成り立つのではないかと推測する。リーン思考は小さく作って育てていくことを指していて、同義語として mvp, イテレーティブ、バーティカルスライドなどがある。スクラムは戦術であり、リーン思考を実践するのは戦略となる。リーン思考を具体的にどう実践するかは自分たちで考える必要がある。あとは用語や概念の詳細な説明が主だった。リーン思考のメリットとして次があげられていた。</p><ul><li>早いタイミングでフィードバックを得られる</li><li>早く作るとリスクを早期発見できる</li><li>小さい状態でフィードバックをもらった方が手戻りが少なくなる</li></ul><p>一方でリーン思考の概念はパラダイムシフトを伴うので難しいと説明されていた。難しい背景は次になる。</p><ul><li>ウォータフォールはリソース効率を重視する考え方である</li><li>産業革命の時代に科学的管理法としてウォータフォール的な考え方が広まった<ul><li>工場でのモノヅクリにはうまくいった</li><li>ソフトウェア開発ではあまり適用できない</li></ul></li></ul><p>また <a href=https://www.ankr.design/designtips/making-sense-of-mvp>MVP（Minimum Viable Product）の意味を理解する。そして、なぜ私はEarliest Testable / Usable / Lovableを好むのか。</a> の考え方の例としてこの記事のスライドを引用していた。これはこれで理解できるけれど、これはプロダクトアウトの考え方であって、業務アプリケーションはまた違うのではないかと私には懸念に思えた。自分たちのプロジェクトにとってどう実践していくかが重要になるが、そういった話しはとくになかった。プロダクトオーナーからも現状とリーン思考の概念とのギャップや違和感を感じて質問していたようにみえた。</p><p>リーン思考は難しくてなかなか実践できないといった説明があったところに私は違和感を感じた。リーン思考とは無関係にそもそもプロジェクトマネジメントは難しい。現実のプロジェクトマネジメントは生きものなのでケーススタディや教科書通りの論理でできるものではないと私は考えている。現実のプロジェクトにおける、ヒト・モノ・カネ・情報の4つを考慮した上で意思決定を適切なタイミングで行うことに正解はない。歴史に if はないので重要な意思決定を下してそれがどんな結果になろうと、別の意思決定をしたときの未来を知ることはできない。うまくいかなかったときにできることはそのふりかえりだけで、リーン思考を実践できていないという考え方はやや責任転嫁しているようにも受け取れた。</p></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2022/0815/>k8s ノードの削除方法がわからない</a></h1><div class=post-meta><span class=post-date>2022-08-15 (Mon.)</span></div><span class=post-tags>#<a href=/diary/tags/kubernetes/>kubernetes</a>&nbsp;
@@ -76,97 +198,7 @@
 </span></span><span style=display:flex><span>- kind: ServiceAccount
 </span></span><span style=display:flex><span>  name: default
 </span></span><span style=display:flex><span>  namespace: default
-</span></span></code></pre></div><p>これで cronjob から job を作成する権限が付与された。<a href=https://kubernetes.io/docs/reference/access-authn-authz/rbac/#write-access-for-endpoints>Write access for Endpoints</a> によると、新規に作成した v1.22 以降のクラスターではエンドポイントに対する write アクセス権限が異なるように記載されている。一方で v1.22 にアップグレードしたクラスターは影響を受けないとも記述されている。私がいま運用しているクラスターは v1.21 から v1.22 にアップグレードしたクラスターなので <code>edit</code> ロールでうまくいったのかもしれない。クラスターのバージョンによって設定が異なるかもしれない。</p></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2022/0807/>wiremock を使った kubernetes モックサーバーのテスト拡張</a></h1><div class=post-meta><span class=post-date>2022-08-07 (Sun.)</span></div><span class=post-tags>#<a href=/diary/tags/kubernetes/>kubernetes</a>&nbsp;
-#<a href=/diary/tags/java/>java</a>&nbsp;
-#<a href=/diary/tags/testing/>testing</a>&nbsp;</span><div class=table-of-contents><h2>目次</h2><nav id=TableOfContents><ul><li><a href=#kubernetes-clients-のライブラリ実装>Kubernetes Clients のライブラリ実装</a></li></ul></nav></div><div class=post-content><p>2時に寝て7時に起きて9時までだらだらしてた。</p><h2 id=kubernetes-clients-のライブラリ実装>Kubernetes Clients のライブラリ実装</h2><p><a href=/diary/posts/2022/0806/#kubernetes-clients-のサンプル実装>昨日の続き</a> 。ある程度、クライアントの振る舞いを確認できたので自前のライブラリを作ることにした。ライブラリなのでテストをちゃんと書きたいと思って単体テストのやり方を調べてたら Kubernetes Clients のリポジトリにも単体テストはほとんどなくて、どうも e2e テストの方を重視しているようにもみえた。github issues を検索してみたら次の issue をみつけた。</p><ul><li><a href=https://github.com/apache/submarine/issues/956>[DESIGN] Add k8s mock client and server test case #956</a></li></ul><p>なにかしら単体テストの仕組みを作った方がいいんじゃないかという提案と一緒に issue の作者？かどうかはわからんけど、<a href=https://wiremock.org/>wiremock</a> を使ったテストのサンプルコードをあげていた。名前だけは聞いたことがあったけど、過去に使ったこともなく、どういうものか全くわかってない。ドキュメントを軽く読んでみたら http モックサーバーらしい。issue の内容を参考にしながら wiremock のドキュメントをみて junit5 のテスト拡張を書いてみた。これが適切な実装かはあまり自信がないけど、こんな感じでモックサーバーとモッククライアントの junit5 のテスト拡張を実装した。これは static なモックサーバーの設定になるので wiremock 自体の起動コストは速く感じた。ライブラリのテストとしては申し分ない。いまのところは自画自賛。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#a6e22e>@Documented</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@Target</span>(ElementType.<span style=color:#a6e22e>FIELD</span>)
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@Retention</span>(RetentionPolicy.<span style=color:#a6e22e>RUNTIME</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#a6e22e>@interface</span> KubernetesApiClient {
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>SetupKubernetesWireMock</span> <span style=color:#66d9ef>implements</span> BeforeAllCallback, BeforeEachCallback, ExtensionContext.<span style=color:#a6e22e>Store</span>.<span style=color:#a6e22e>CloseableResource</span> {
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> Logger logger <span style=color:#f92672>=</span> LogManager.<span style=color:#a6e22e>getLogger</span>(SetupKubernetesWireMock.<span style=color:#a6e22e>class</span>.<span style=color:#a6e22e>getName</span>());
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>int</span> PORT <span style=color:#f92672>=</span> 8384;
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> WireMockServer wireMockServer <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> WireMockServer(options().<span style=color:#a6e22e>port</span>(PORT));
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>boolean</span> started <span style=color:#f92672>=</span> <span style=color:#66d9ef>false</span>;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> ApiClient apiClient;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@Override</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>beforeAll</span>(ExtensionContext context) <span style=color:#66d9ef>throws</span> Exception {
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span>started) {
-</span></span><span style=display:flex><span>            wireMockServer.<span style=color:#a6e22e>start</span>();
-</span></span><span style=display:flex><span>            started <span style=color:#f92672>=</span> <span style=color:#66d9ef>true</span>;
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>configureMockClient</span>();
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>var</span> basePath <span style=color:#f92672>=</span> String.<span style=color:#a6e22e>format</span>(<span style=color:#e6db74>&#34;http://localhost:%d&#34;</span>, wireMockServer.<span style=color:#a6e22e>port</span>());
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>apiClient</span> <span style=color:#f92672>=</span> ClientBuilder.<span style=color:#a6e22e>standard</span>().<span style=color:#a6e22e>setBasePath</span>(basePath).<span style=color:#a6e22e>build</span>();
-</span></span><span style=display:flex><span>            logger.<span style=color:#a6e22e>info</span>(<span style=color:#e6db74>&#34;started kubernetes wiremock: {}&#34;</span>, basePath);
-</span></span><span style=display:flex><span>            context.<span style=color:#a6e22e>getRoot</span>().<span style=color:#a6e22e>getStore</span>(GLOBAL).<span style=color:#a6e22e>put</span>(<span style=color:#e6db74>&#34;SetupKubernetesWireMock&#34;</span>, <span style=color:#66d9ef>this</span>);
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@Override</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>beforeEach</span>(ExtensionContext context) <span style=color:#66d9ef>throws</span> Exception {
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>var</span> instance : context.<span style=color:#a6e22e>getRequiredTestInstances</span>().<span style=color:#a6e22e>getAllInstances</span>()) {
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>var</span> field : instance.<span style=color:#a6e22e>getClass</span>().<span style=color:#a6e22e>getDeclaredFields</span>()) {
-</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> (field.<span style=color:#a6e22e>isAnnotationPresent</span>(KubernetesApiClient.<span style=color:#a6e22e>class</span>)) {
-</span></span><span style=display:flex><span>                    field.<span style=color:#a6e22e>setAccessible</span>(<span style=color:#66d9ef>true</span>);
-</span></span><span style=display:flex><span>                    field.<span style=color:#a6e22e>set</span>(instance, <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>apiClient</span>);
-</span></span><span style=display:flex><span>                }
-</span></span><span style=display:flex><span>            }
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@Override</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>close</span>() <span style=color:#66d9ef>throws</span> Throwable {
-</span></span><span style=display:flex><span>        wireMockServer.<span style=color:#a6e22e>stop</span>();
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>configureMockClient</span>() <span style=color:#66d9ef>throws</span> IOException {
-</span></span><span style=display:flex><span>        <span style=color:#75715e>// add static stubs for mock client</span>
-</span></span><span style=display:flex><span>        configureFor(<span style=color:#e6db74>&#34;localhost&#34;</span>, PORT);
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>stubForBatchGetCronjobs</span>();
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>stubForBatchGetSingleCronJob</span>(<span style=color:#e6db74>&#34;my-job1&#34;</span>);
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>stubForBatchGetSingleCronJob</span>(<span style=color:#e6db74>&#34;my-job2&#34;</span>);
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>stubForBatchGetSingleCronJob</span>(<span style=color:#e6db74>&#34;my-job3&#34;</span>);
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>stubForBatchPostJob</span>();
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>stubForBatchGetJob</span>();
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>byte</span><span style=color:#f92672>[]</span> <span style=color:#a6e22e>getContents</span>(String name) <span style=color:#66d9ef>throws</span> IOException {
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> json <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> File(<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>getClass</span>().<span style=color:#a6e22e>getResource</span>(name).<span style=color:#a6e22e>getPath</span>());
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> Files.<span style=color:#a6e22e>readAllBytes</span>(Paths.<span style=color:#a6e22e>get</span>(json.<span style=color:#a6e22e>getPath</span>()));
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>stubForBatchGetCronjobs</span>() <span style=color:#66d9ef>throws</span> IOException {
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> contents <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>getContents</span>(<span style=color:#e6db74>&#34;/fixtures/kubernetes/batch/cronjobs.json&#34;</span>);
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> path <span style=color:#f92672>=</span> urlPathEqualTo(<span style=color:#e6db74>&#34;/apis/batch/v1/namespaces/default/cronjobs&#34;</span>);
-</span></span><span style=display:flex><span>        stubFor(get(path).<span style=color:#a6e22e>willReturn</span>(aResponse().<span style=color:#a6e22e>withStatus</span>(200).<span style=color:#a6e22e>withBody</span>(contents)));
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>stubForBatchGetSingleCronJob</span>(String jobName) <span style=color:#66d9ef>throws</span> IOException {
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> contents <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>getContents</span>(String.<span style=color:#a6e22e>format</span>(<span style=color:#e6db74>&#34;/fixtures/kubernetes/batch/%s.json&#34;</span>, jobName));
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> url <span style=color:#f92672>=</span> String.<span style=color:#a6e22e>format</span>(<span style=color:#e6db74>&#34;/apis/batch/v1/namespaces/default/cronjobs/%s&#34;</span>, jobName);
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> path <span style=color:#f92672>=</span> urlPathEqualTo(url);
-</span></span><span style=display:flex><span>        stubFor(get(path).<span style=color:#a6e22e>willReturn</span>(aResponse().<span style=color:#a6e22e>withStatus</span>(200).<span style=color:#a6e22e>withBody</span>(contents)));
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>stubForBatchPostJob</span>() <span style=color:#66d9ef>throws</span> IOException {
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> name <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;/fixtures/kubernetes/batch/post-my-job.json&#34;</span>;
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> contents <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>getContents</span>(name);
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> url <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;/apis/batch/v1/namespaces/default/jobs&#34;</span>;
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> path <span style=color:#f92672>=</span> urlPathEqualTo(url);
-</span></span><span style=display:flex><span>        stubFor(post(path).<span style=color:#a6e22e>willReturn</span>(aResponse().<span style=color:#a6e22e>withStatus</span>(200).<span style=color:#a6e22e>withBody</span>(contents)));
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>stubForBatchGetJob</span>() <span style=color:#66d9ef>throws</span> IOException {
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> name <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;/fixtures/kubernetes/batch/get-my-job.json&#34;</span>;
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> contents <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>getContents</span>(name);
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> url <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;/apis/batch/v1/namespaces/default/jobs/my-job&#34;</span>;
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> path <span style=color:#f92672>=</span> urlPathEqualTo(url);
-</span></span><span style=display:flex><span>        stubFor(get(urlPathEqualTo(url)).<span style=color:#a6e22e>willReturn</span>(aResponse().<span style=color:#a6e22e>withStatus</span>(200).<span style=color:#a6e22e>withBody</span>(contents)));
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div></div></div><div class=pagination><div class=pagination__buttons><a href=/diary/page/58/ class="button previous"><span class=button__icon>←</span>
+</span></span></code></pre></div><p>これで cronjob から job を作成する権限が付与された。<a href=https://kubernetes.io/docs/reference/access-authn-authz/rbac/#write-access-for-endpoints>Write access for Endpoints</a> によると、新規に作成した v1.22 以降のクラスターではエンドポイントに対する write アクセス権限が異なるように記載されている。一方で v1.22 にアップグレードしたクラスターは影響を受けないとも記述されている。私がいま運用しているクラスターは v1.21 から v1.22 にアップグレードしたクラスターなので <code>edit</code> ロールでうまくいったのかもしれない。クラスターのバージョンによって設定が異なるかもしれない。</p></div></div><div class=pagination><div class=pagination__buttons><a href=/diary/page/58/ class="button previous"><span class=button__icon>←</span>
 <span class=button__text>最近の日記</span>
 </a><a href=/diary/page/60/ class="button next"><span class=button__text>過去の日記</span>
 <span class=button__icon>→</span></a></div></div></div></div><footer class=footer><div class=footer__inner><div class=copyright><span>© 2024 Powered by <a href=https://gohugo.io>Hugo</a></span>
