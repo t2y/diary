@@ -120,13 +120,13 @@ https://maven.apache.org/ref/3.6.3/maven-settings/settings.html</description><co
 朝からアプリをインストールしてマイナンバーカードを使って接種証明書を発行しようとしたのだけど、マイナンバーカードの読み取りができない。エラーも表示されなくてうんともすんとも動かない。パスワードがロックされていたらエラーが表示されるように思えるのでなんかおかしい状況だった。そのことをツィートしたら、とのきさんがマイナンバーカードの読み取りはシビアで位置があっていないと読み取りできないとアドバイスしてくれた。
 スマホ機種によってNFCの搭載位置やカードの当て方などで読み取りが非常にシビアみたいです
 NFCチップの位置をスマホとカードで正確に一致させてギリギリ読みとれた、など聞いたことがあります
-&amp;mdash; demobird SHS N199 (@tonoki) December 20, 2021 午後から JPKIMobile を用いた有効性の確認方法 を確認しながら再挑戦した。ここに書いてあるようにちょっと離したり、カードの位置を少しずつずらして調整したりしてたら読み取りできた。この時点でパスワードロックではないことを確認できた。
+&amp;mdash; demobird (@tonoki) December 20, 2021 午後から JPKIMobile を用いた有効性の確認方法 を確認しながら再挑戦した。ここに書いてあるようにちょっと離したり、カードの位置を少しずつずらして調整したりしてたら読み取りできた。この時点でパスワードロックではないことを確認できた。
 iPhone端末にICカードをセットします。画面が変わらないようであれば、一度ICカードを離してから再度セットしてください。
 JPKIMobile で読み取りできたので同じ要領で接種証明書アプリでもやってみたら今度はすんなりと読み取りできて発行できた。位置さえあえば読み取りはすぐできた。今朝はたぶん机に置いて位置を調整せず、読み取りには時間がかかるのかな？とずっと動かさず待っていたのがよくなかったみたい。とのきさんのおかげで区役所に行く無駄な時間を削減できた。感謝。</description><content>&lt;p>23時に寝て1時過ぎに起きて4時半に起きて6時半に起きた。寝てないわけじゃないけど、うまく眠れなくなった。&lt;/p>
 &lt;h2 id="スマホのマイナンバーカードの読み取りは位置がシビア">スマホのマイナンバーカードの読み取りは位置がシビア&lt;/h2>
 &lt;p>ワーケーションで &lt;a href="https://www.hyogo-tourism.jp/furusato-ouen/">ふるさと応援！ひょうごを旅しようキャンペーン&lt;/a> を利用する条件の1つにワクチンの接種証明を提示する必要がある。ちょうどデジタル庁から &lt;a href="https://www.digital.go.jp/policies/posts/vaccinecert">新型コロナワクチン接種証明書アプリ&lt;/a> がリリースされた。このアプリを使えば接種の原本の書類を持っていかなくて済む。&lt;/p>
 &lt;p>朝からアプリをインストールしてマイナンバーカードを使って接種証明書を発行しようとしたのだけど、マイナンバーカードの読み取りができない。エラーも表示されなくてうんともすんとも動かない。パスワードがロックされていたらエラーが表示されるように思えるのでなんかおかしい状況だった。そのことをツィートしたら、とのきさんがマイナンバーカードの読み取りはシビアで位置があっていないと読み取りできないとアドバイスしてくれた。&lt;/p>
-&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">スマホ機種によってNFCの搭載位置やカードの当て方などで読み取りが非常にシビアみたいです&lt;br>NFCチップの位置をスマホとカードで正確に一致させてギリギリ読みとれた、など聞いたことがあります&lt;/p>&amp;mdash; demobird SHS N199 (@tonoki) &lt;a href="https://twitter.com/tonoki/status/1472760754332127235?ref_src=twsrc%5Etfw">December 20, 2021&lt;/a>&lt;/blockquote>
+&lt;blockquote class="twitter-tweet">&lt;p lang="ja" dir="ltr">スマホ機種によってNFCの搭載位置やカードの当て方などで読み取りが非常にシビアみたいです&lt;br>NFCチップの位置をスマホとカードで正確に一致させてギリギリ読みとれた、など聞いたことがあります&lt;/p>&amp;mdash; demobird (@tonoki) &lt;a href="https://twitter.com/tonoki/status/1472760754332127235?ref_src=twsrc%5Etfw">December 20, 2021&lt;/a>&lt;/blockquote>
 &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script>
 &lt;p>午後から &lt;a href="https://www.jpki.go.jp/download/howto_iphone/certificate_p02.html">JPKIMobile を用いた有効性の確認方法&lt;/a> を確認しながら再挑戦した。ここに書いてあるようにちょっと離したり、カードの位置を少しずつずらして調整したりしてたら読み取りできた。この時点でパスワードロックではないことを確認できた。&lt;/p>
 &lt;blockquote>
