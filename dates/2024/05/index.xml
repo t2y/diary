@@ -1,4 +1,196 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2024/05 on</title><link>/diary/dates/2024/05/</link><description>Recent content in 2024/05 on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 22 May 2024 08:35:43 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2024/05/index.xml" rel="self" type="application/rss+xml"/><item><title>振り込みの強制中断エラー</title><link>/diary/posts/2024/0522/</link><pubDate>Wed, 22 May 2024 08:35:43 +0900</pubDate><guid>/diary/posts/2024/0522/</guid><description>今日の運動は縄跳び(両足跳),散歩,ジョギング,ハンドグリップ,ダンベルをした。統計を 運動の記録 にまとめる。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2024/05 on</title><link>/diary/dates/2024/05/</link><description>Recent content in 2024/05 on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 23 May 2024 13:24:27 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2024/05/index.xml" rel="self" type="application/rss+xml"/><item><title>2024年度の変更登記第一弾</title><link>/diary/posts/2024/0523/</link><pubDate>Thu, 23 May 2024 13:24:27 +0900</pubDate><guid>/diary/posts/2024/0523/</guid><description>今日の運動は腹筋ローラー,背筋,縄跳び(両足跳),散歩,ジョギング,ハンドグリップ,ダンベルをした。統計を 運動の記録 にまとめる。
+変更登記の申請1 昨日 資本金の入金 を行ったので変更登記を申請する。法律では変更後2週間以内に申請しないといけない。9時過ぎに法務局へ行って申請した。オフィスから徒歩10分以内に法務局があるので気軽に行ける。
+申請書を提出する手順は次になる。滅多に行かないからいつも忘れてしまっているが。
+登録免許税の金額分の収入印紙を購入する 申請書の台紙に収入印紙を貼り付ける 法人登記専用受付へ行って申請書を提出する 受付スタッフが簡単に書類チェックして不備がなければ受付となる 書類の内容は後日に別途審査される 4営業日以内に法務局から連絡がなければ変更登記は完了しているとみなせる。問題があれば提出して翌日か翌々日ぐらいには電話がかかってくる。
+me-id 調査 選手からの me-id の調査の続き 。Microsoft Graph API の delta query という仕組みで entra id のユーザー／グループ情報に変更があったときにその差分を検出できる。ドキュメントはおそらく次の2つを参照すればよいはず。
+Use delta query to track changes in Microsoft Graph data Get incremental changes for groups もっとも API としての設計が開発者にとって直感的なものではないから、自分で動かしてデバッグしないとドキュメントだけで振る舞いを理解するのは至難だと思う。msgraph-sdk-go を使ったアプリケーションのデバッグをしていたときも実感したけど、azure のプラットフォームとしての品質は低い。ドキュメントがたまに間違っているし、仕様も振る舞いも論理的に説明がつかないこともある。開発者がちょっと触っただけで気付くというのは中身の品質はもっと低いと推測される。google や amazon の方が品質が高い。
+実際に sdk を使って entra id のユーザーやグループの変更を行いながら、リクエストしてデバッグしてわかったことを書く。
+nextLink と deltaLink は排他的な関係にある nextLink が返される場合は、実際に差分データがなかったとしてもそのセッション内で次のデータがあることを意図している。nextLink が返され続けている限り、その情報を使ってリクエストし続ける必要がある。実際にはなにもデータが取得されないということもある。基本的には変更がなければ1回で終わるが、数十回ぐらいリクエストし続ける場合もある deltaLink は rdbms でいうところの cursor のような概念になる。ldap プロトコルで言うところの cookie に相当する。その時点以降の差分のみを取得するためのトークンになる。deltaLink を使ったリクエストのときに新しい変更の差分情報を取得できる 毎秒リクエストするような頻繁なリクエストだと、同じ変更差分を複数回取得することがある (at least once) 30秒ごとに取得するようにしたら再現しなかったのでデータストアが eventual consistency な振る舞いをしている 削除やメンバーの差分のような情報は sdk の api では additional data と呼ばれる領域に map で格納されている ドキュメントではこれらをアノテーションと呼んでいた気がする 削除は @removed というデータが含まれる { &amp;#34;@removed&amp;#34;: {&amp;#34;reason&amp;#34;: &amp;#34;changed&amp;#34;} } メンバーの変更は members@delta というデータに含まれる ユーザーとグループの関係を表すようなものは propertyName@delta というフィールドで additional data に含まれる { &amp;#34;members@delta&amp;#34;: [ { &amp;#34;@odata.</description><content>&lt;p>今日の運動は腹筋ローラー,背筋,縄跳び(両足跳),散歩,ジョギング,ハンドグリップ,ダンベルをした。統計を &lt;a href="https://docs.google.com/spreadsheets/d/1bg85QtM-LciUgey8I79uI7vW2PEwsP6TVdeIRVkACBg/edit?usp=sharing">運動の記録&lt;/a> にまとめる。&lt;/p>
+&lt;h2 id="変更登記の申請1">変更登記の申請1&lt;/h2>
+&lt;p>昨日 &lt;a href="/diary/diary/posts/2024/0522/#資本金の増資">資本金の入金&lt;/a> を行ったので変更登記を申請する。法律では変更後2週間以内に申請しないといけない。9時過ぎに法務局へ行って申請した。オフィスから徒歩10分以内に法務局があるので気軽に行ける。&lt;/p>
+&lt;p>申請書を提出する手順は次になる。滅多に行かないからいつも忘れてしまっているが。&lt;/p>
+&lt;ol>
+&lt;li>登録免許税の金額分の収入印紙を購入する&lt;/li>
+&lt;li>申請書の台紙に収入印紙を貼り付ける&lt;/li>
+&lt;li>法人登記専用受付へ行って申請書を提出する&lt;/li>
+&lt;li>受付スタッフが簡単に書類チェックして不備がなければ受付となる&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>書類の内容は後日に別途審査される&lt;/li>
+&lt;/ul>
+&lt;p>4営業日以内に法務局から連絡がなければ変更登記は完了しているとみなせる。問題があれば提出して翌日か翌々日ぐらいには電話がかかってくる。&lt;/p>
+&lt;h2 id="me-id-調査">me-id 調査&lt;/h2>
+&lt;p>&lt;a href="/diary/diary/posts/2024/0520/#me-id-調査">選手からの me-id の調査の続き&lt;/a> 。Microsoft Graph API の delta query という仕組みで entra id のユーザー／グループ情報に変更があったときにその差分を検出できる。ドキュメントはおそらく次の2つを参照すればよいはず。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://learn.microsoft.com/en-us/graph/delta-query-overview">Use delta query to track changes in Microsoft Graph data&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://learn.microsoft.com/en-us/graph/delta-query-groups?tabs=http">Get incremental changes for groups&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>もっとも API としての設計が開発者にとって直感的なものではないから、自分で動かしてデバッグしないとドキュメントだけで振る舞いを理解するのは至難だと思う。&lt;a href="https://github.com/microsoftgraph/msgraph-sdk-go">msgraph-sdk-go&lt;/a> を使ったアプリケーションのデバッグをしていたときも実感したけど、azure のプラットフォームとしての品質は低い。ドキュメントがたまに間違っているし、仕様も振る舞いも論理的に説明がつかないこともある。開発者がちょっと触っただけで気付くというのは中身の品質はもっと低いと推測される。google や amazon の方が品質が高い。&lt;/p>
+&lt;p>実際に sdk を使って entra id のユーザーやグループの変更を行いながら、リクエストしてデバッグしてわかったことを書く。&lt;/p>
+&lt;ul>
+&lt;li>nextLink と deltaLink は排他的な関係にある
+&lt;ul>
+&lt;li>nextLink が返される場合は、実際に差分データがなかったとしてもそのセッション内で次のデータがあることを意図している。nextLink が返され続けている限り、その情報を使ってリクエストし続ける必要がある。実際にはなにもデータが取得されないということもある。基本的には変更がなければ1回で終わるが、数十回ぐらいリクエストし続ける場合もある&lt;/li>
+&lt;li>deltaLink は rdbms でいうところの cursor のような概念になる。ldap プロトコルで言うところの cookie に相当する。その時点以降の差分のみを取得するためのトークンになる。deltaLink を使ったリクエストのときに新しい変更の差分情報を取得できる&lt;/li>
+&lt;li>毎秒リクエストするような頻繁なリクエストだと、同じ変更差分を複数回取得することがある (at least once)
+&lt;ul>
+&lt;li>30秒ごとに取得するようにしたら再現しなかったのでデータストアが eventual consistency な振る舞いをしている&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>削除やメンバーの差分のような情報は sdk の api では additional data と呼ばれる領域に map で格納されている
+&lt;ul>
+&lt;li>ドキュメントではこれらをアノテーションと呼んでいた気がする&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>削除は &lt;code>@removed&lt;/code> というデータが含まれる&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;@removed&amp;#34;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {&lt;span style="color:#e6db74">&amp;#34;reason&amp;#34;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#34;changed&amp;#34;&lt;/span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>メンバーの変更は &lt;code>members@delta&lt;/code> というデータに含まれる
+&lt;ul>
+&lt;li>ユーザーとグループの関係を表すようなものは &lt;code>propertyName@delta&lt;/code> というフィールドで additional data に含まれる&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;members@delta&amp;#34;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;@odata.type&amp;#34;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#34;#microsoft.graph.user&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;id&amp;#34;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#34;693acd06-2877-4339-8ade-b704261fe7a0&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;@odata.type&amp;#34;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#34;#microsoft.graph.user&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;id&amp;#34;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#34;49320844-be99-4164-8167-87ff5d047ace&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>たとえば、グループの変更とグループメンバーの変更を検出するには次のようなコードになる。これは振る舞いを検証するためのデバッグのために書いた検証コードなので実際のアプリケーションに使うようなものではない。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-go" data-lang="go">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">groups&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">defaultOptions&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#f92672">&amp;amp;&lt;/span>&lt;span style="color:#a6e22e">azidentity&lt;/span>.&lt;span style="color:#a6e22e">ClientSecretCredentialOptions&lt;/span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">ClientOptions&lt;/span>: &lt;span style="color:#a6e22e">azcore&lt;/span>.&lt;span style="color:#a6e22e">ClientOptions&lt;/span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">Retry&lt;/span>: &lt;span style="color:#a6e22e">policy&lt;/span>.&lt;span style="color:#a6e22e">RetryOptions&lt;/span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">MaxRetries&lt;/span>: &lt;span style="color:#ae81ff">3&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">TryTimeout&lt;/span>: &lt;span style="color:#ae81ff">10&lt;/span> &lt;span style="color:#f92672">*&lt;/span> &lt;span style="color:#a6e22e">time&lt;/span>.&lt;span style="color:#a6e22e">Second&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">RetryDelay&lt;/span>: &lt;span style="color:#ae81ff">20&lt;/span> &lt;span style="color:#f92672">*&lt;/span> &lt;span style="color:#a6e22e">time&lt;/span>.&lt;span style="color:#a6e22e">Second&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">MaxRetryDelay&lt;/span>: &lt;span style="color:#ae81ff">80&lt;/span> &lt;span style="color:#f92672">*&lt;/span> &lt;span style="color:#a6e22e">time&lt;/span>.&lt;span style="color:#a6e22e">Second&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">credential&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">azidentity&lt;/span>.&lt;span style="color:#a6e22e">NewClientSecretCredential&lt;/span>(
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">tenantID&lt;/span>, &lt;span style="color:#a6e22e">clientID&lt;/span>, &lt;span style="color:#a6e22e">secret&lt;/span>, &lt;span style="color:#a6e22e">defaultOptions&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> )
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">log&lt;/span>.&lt;span style="color:#a6e22e">Fatal&lt;/span>(&lt;span style="color:#a6e22e">err&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">client&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">msgraphsdk&lt;/span>.&lt;span style="color:#a6e22e">NewGraphServiceClientWithCredentials&lt;/span>(
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">credential&lt;/span>, &lt;span style="color:#a6e22e">defaultScopes&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> )
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">log&lt;/span>.&lt;span style="color:#a6e22e">Fatal&lt;/span>(&lt;span style="color:#a6e22e">err&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">ctx&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">context&lt;/span>.&lt;span style="color:#a6e22e">Background&lt;/span>()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">headers&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">abstractions&lt;/span>.&lt;span style="color:#a6e22e">NewRequestHeaders&lt;/span>()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">headers&lt;/span>.&lt;span style="color:#a6e22e">Add&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;Prefer&amp;#34;&lt;/span>, &lt;span style="color:#e6db74">&amp;#34;return=minimal&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">conf&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#f92672">&amp;amp;&lt;/span>&lt;span style="color:#a6e22e">graphgroups&lt;/span>.&lt;span style="color:#a6e22e">DeltaRequestBuilderGetRequestConfiguration&lt;/span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">Headers&lt;/span>: &lt;span style="color:#a6e22e">headers&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">delta&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">client&lt;/span>.&lt;span style="color:#a6e22e">Groups&lt;/span>().&lt;span style="color:#a6e22e">Delta&lt;/span>().&lt;span style="color:#a6e22e">GetAsDeltaGetResponse&lt;/span>(&lt;span style="color:#a6e22e">ctx&lt;/span>, &lt;span style="color:#a6e22e">conf&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">log&lt;/span>.&lt;span style="color:#a6e22e">Fatal&lt;/span>(&lt;span style="color:#a6e22e">err&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">i&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Println&lt;/span>(&lt;span style="color:#a6e22e">i&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Println&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;delta AdditionalData&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">ad&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">delta&lt;/span>.&lt;span style="color:#a6e22e">GetAdditionalData&lt;/span>()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> &lt;span style="color:#a6e22e">k&lt;/span>, &lt;span style="color:#a6e22e">v&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#66d9ef">range&lt;/span> &lt;span style="color:#a6e22e">ad&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">k&lt;/span> &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#e6db74">&amp;#34;@odata.context&amp;#34;&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">s&lt;/span>, &lt;span style="color:#a6e22e">ok&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">v&lt;/span>.(&lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#66d9ef">string&lt;/span>); &lt;span style="color:#a6e22e">ok&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;%+v: %+v\n&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">k&lt;/span>, &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">s&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">else&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;%+v: %+v\n&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">k&lt;/span>, &lt;span style="color:#a6e22e">v&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Println&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;------------------------&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> &lt;span style="color:#a6e22e">_&lt;/span>, &lt;span style="color:#a6e22e">d&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#66d9ef">range&lt;/span> &lt;span style="color:#a6e22e">delta&lt;/span>.&lt;span style="color:#a6e22e">GetValue&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Println&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">id&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">d&lt;/span>.&lt;span style="color:#a6e22e">GetId&lt;/span>()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">id&lt;/span> &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;id: %+v\n&amp;#34;&lt;/span>, &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">id&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Println&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;group AdditionalData&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">dad&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">d&lt;/span>.&lt;span style="color:#a6e22e">GetAdditionalData&lt;/span>()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> &lt;span style="color:#a6e22e">k&lt;/span>, &lt;span style="color:#a6e22e">v&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#66d9ef">range&lt;/span> &lt;span style="color:#a6e22e">dad&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">k&lt;/span> &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#e6db74">&amp;#34;@removed&amp;#34;&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">removed&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">v&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">removed&lt;/span> &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> &lt;span style="color:#a6e22e">k&lt;/span>, &lt;span style="color:#a6e22e">v&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#66d9ef">range&lt;/span> &lt;span style="color:#a6e22e">removed&lt;/span>.(&lt;span style="color:#66d9ef">map&lt;/span>[&lt;span style="color:#66d9ef">string&lt;/span>]&lt;span style="color:#a6e22e">any&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">reason&lt;/span>, &lt;span style="color:#a6e22e">ok&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">v&lt;/span>.(&lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#66d9ef">string&lt;/span>); &lt;span style="color:#a6e22e">ok&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;%+v: %+v\n&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">k&lt;/span>, &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">reason&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Println&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;------------------------&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">else&lt;/span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">k&lt;/span> &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#e6db74">&amp;#34;members@delta&amp;#34;&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Println&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;members@delta&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">ms&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">v&lt;/span>.([]&lt;span style="color:#a6e22e">any&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> &lt;span style="color:#a6e22e">_&lt;/span>, &lt;span style="color:#a6e22e">mi&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#66d9ef">range&lt;/span> &lt;span style="color:#a6e22e">ms&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">m&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">mi&lt;/span>.(&lt;span style="color:#66d9ef">map&lt;/span>[&lt;span style="color:#66d9ef">string&lt;/span>]&lt;span style="color:#a6e22e">any&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> &lt;span style="color:#a6e22e">k&lt;/span>, &lt;span style="color:#a6e22e">v&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#66d9ef">range&lt;/span> &lt;span style="color:#a6e22e">m&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">switch&lt;/span> &lt;span style="color:#a6e22e">vv&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">v&lt;/span>.(&lt;span style="color:#66d9ef">type&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">case&lt;/span> &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#66d9ef">string&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34; - %+v: %+v\n&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">k&lt;/span>, &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">vv&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">case&lt;/span> &lt;span style="color:#66d9ef">map&lt;/span>[&lt;span style="color:#66d9ef">string&lt;/span>]&lt;span style="color:#a6e22e">any&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34; - %+v: %+v\n&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">k&lt;/span>, &lt;span style="color:#a6e22e">vv&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Println&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;---------&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">else&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;%+v: %+v\n&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">k&lt;/span>, &lt;span style="color:#a6e22e">v&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">dispName&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">d&lt;/span>.&lt;span style="color:#a6e22e">GetDisplayName&lt;/span>()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">dispName&lt;/span> &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;dispName: %+v\n&amp;#34;&lt;/span>, &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">dispName&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">nextLink&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">delta&lt;/span>.&lt;span style="color:#a6e22e">GetOdataNextLink&lt;/span>()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">deltaLink&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">delta&lt;/span>.&lt;span style="color:#a6e22e">GetOdataDeltaLink&lt;/span>()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">deltaLink&lt;/span> &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;hasNextLink: %t, use deltaLink to request\n&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">nextLink&lt;/span> &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">delta&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span> = &lt;span style="color:#a6e22e">client&lt;/span>.&lt;span style="color:#a6e22e">Groups&lt;/span>().&lt;span style="color:#a6e22e">Delta&lt;/span>().&lt;span style="color:#a6e22e">WithUrl&lt;/span>(&lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">deltaLink&lt;/span>).&lt;span style="color:#a6e22e">Get&lt;/span>(&lt;span style="color:#a6e22e">ctx&lt;/span>, &lt;span style="color:#a6e22e">conf&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">log&lt;/span>.&lt;span style="color:#a6e22e">Fatal&lt;/span>(&lt;span style="color:#a6e22e">err&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">i&lt;/span>&lt;span style="color:#f92672">++&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;lt;-&lt;/span>&lt;span style="color:#a6e22e">time&lt;/span>.&lt;span style="color:#a6e22e">After&lt;/span>(&lt;span style="color:#ae81ff">10&lt;/span> &lt;span style="color:#f92672">*&lt;/span> &lt;span style="color:#a6e22e">time&lt;/span>.&lt;span style="color:#a6e22e">Second&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">continue&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">delta&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span> = &lt;span style="color:#a6e22e">client&lt;/span>.&lt;span style="color:#a6e22e">Groups&lt;/span>().&lt;span style="color:#a6e22e">Delta&lt;/span>().&lt;span style="color:#a6e22e">WithUrl&lt;/span>(&lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">nextLink&lt;/span>).&lt;span style="color:#a6e22e">Get&lt;/span>(&lt;span style="color:#a6e22e">ctx&lt;/span>, &lt;span style="color:#a6e22e">conf&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">log&lt;/span>.&lt;span style="color:#a6e22e">Fatal&lt;/span>(&lt;span style="color:#a6e22e">err&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;lt;-&lt;/span>&lt;span style="color:#a6e22e">time&lt;/span>.&lt;span style="color:#a6e22e">After&lt;/span>(&lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">*&lt;/span> &lt;span style="color:#a6e22e">time&lt;/span>.&lt;span style="color:#a6e22e">Second&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">i&lt;/span>&lt;span style="color:#f92672">++&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="みなとのもりの運動">みなとのもりの運動&lt;/h2>
+&lt;p>&lt;a href="/diary/diary/posts/2024/0522/#みなとのもりの運動">前回の所感&lt;/a> 。いつも通りのメニューをこなす。19時頃に公園へ通うのも習慣になりつつある。今日もよい場所を陣取ったものの、後からフライングディスクのサークルの人たちが近くに来て練習を始めた。他が空いているのだからもう少し余裕をもって場所をとってくれたらよいのに、微妙に視界に入って気になる距離感のところで練習を始める。接触するわけではないから問題はないのだけど、フライングディスクというスポーツの特性上、ディスクが飛んできたら走ってくるから十分に離れていないと、たまたまディスクがそれたときに危なくないかが気になってしまう。だいたいストレッチと縄跳びとジョギングと筋トレとストレッチでだいたい1時間ぐらいかかる。だいぶ慣れてきたので、負荷を増やすためにもう少しメニューを追加してもよい時期かもしれない。&lt;/p></content></item><item><title>振り込みの強制中断エラー</title><link>/diary/posts/2024/0522/</link><pubDate>Wed, 22 May 2024 08:35:43 +0900</pubDate><guid>/diary/posts/2024/0522/</guid><description>今日の運動は縄跳び(両足跳),散歩,ジョギング,ハンドグリップ,ダンベルをした。統計を 運動の記録 にまとめる。
 隔週の雑談 顧問のはらさんと隔週の打ち合わせ。今日の議題はこれら。
 資本金と住所変更の変更登記の共有 フルタイムではない契約提案のフィードバック 昨日の税理士さん打ち合わせ の内容も踏まえて変更登記の共有を行った。当初はまとめてやった方が登録免許税が安くなったりしないかな？と期待して、2つの変更登記を1回の申請で行うように段取りしていた。昨日、税理士さんから 登録免許税一覧 を共有してもらって、資本金の増加と代表社員の住所変更は別区分であるため、それぞれの登録免許税を支払う必要があることを教えてもらった。はらさんに説明しているうちに登録免許税が同じなら1つの変更登記の申請にこだわる必要がないことに気付いた。それぞれ別の変更登記で申請することに決めた。
 今後の契約移行へ向けての提案について、いきなり契約変更を先方に伝えると、急過ぎて相手にショックを与えてしまう懸念があることを指摘してもらった。たしかにこちらの都合で契約を変更したいというところはあるので、丁寧な表現で段階を踏んで相互理解を深めていく取り組みにすることにした。こういうニュアンスのようなものは1人だと気付きにくい。相談相手がいると助かる。
