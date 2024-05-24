@@ -1,4 +1,36 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2024/05 on</title><link>/diary/dates/2024/05/</link><description>Recent content in 2024/05 on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 23 May 2024 13:24:27 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2024/05/index.xml" rel="self" type="application/rss+xml"/><item><title>2024年度の変更登記第一弾</title><link>/diary/posts/2024/0523/</link><pubDate>Thu, 23 May 2024 13:24:27 +0900</pubDate><guid>/diary/posts/2024/0523/</guid><description>今日の運動は腹筋ローラー,背筋,縄跳び(両足跳),散歩,ジョギング,ハンドグリップ,ダンベルをした。統計を 運動の記録 にまとめる。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2024/05 on</title><link>/diary/dates/2024/05/</link><description>Recent content in 2024/05 on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 24 May 2024 07:06:31 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2024/05/index.xml" rel="self" type="application/rss+xml"/><item><title>健康診断前は安静に</title><link>/diary/posts/2024/0524/</link><pubDate>Fri, 24 May 2024 07:06:31 +0900</pubDate><guid>/diary/posts/2024/0524/</guid><description>今日の運動は腕立て,スクワットをした。統計を 運動の記録 にまとめる。明日は健康診断があるのでよい数値を得るために今日は休養して安静にしようと思う。
+オフィス移転祝 お手伝い先の会社が6月1日にオフィス移転をする。感覚的に引っ越ししたら胡蝶蘭を玄関に並べてあるイメージがあって、ちょうどよい機会なのでうちも送ってみることにした。
+オフィスの移転祝いの選び方やマナーを解説｜相場やメッセージの書き方、贈る時の注意点も紹介 この記事によると、次の2つのパターンのときは移転祝いを送らない方がよいらしい。
+事業縮小による移転 移転祝いを辞退している お手伝い先はどちらにも該当しないから送って大丈夫だと思う。初めて胡蝶蘭を購入して送付する手続きをする。適当にオンラインで検索して PREMIER GARDEN というサイトから手配をした。取引関係のある法人だと2-5万円ぐらいが相場になるらしい。適当にみて27,000円の白の胡蝶蘭 (3本立て) にした。立て札も法人なら縦書きがよいらしい。胡蝶蘭を送る慣習は花言葉が「幸せが飛んでくる」となっていて、さらに胡蝶蘭には「根付く」という意味があって「幸せが根付く」という意図も込められているらしい。そんなことも知らんかった。機会があってよい学びになった。
+歯科検診 17時から歯科検診へ行ってきた。今日はベテランっぽいスタッフの方が担当でとても効率よく巧く歯のお掃除をやってくれた気がする。時間も早かったし、口をあけた状態で作業される不快さもいつもより少なかった気がする。機械を使った作業でも、人間の手際のよさで大きく違うものやなと思った。
+svelte の情報収集 19時から Svelte Japan Online Meetup #3 にオンライン参加した。もう私はほとんどフロントエンドの開発に携わっていないけれど、アーキテクチャや大きな開発の方針などをメンバーに指導していくためには svelte を取り巻くエコシステムの流れを把握しておかないといけない。こういったコミュニティのミートアップはそういった情報収集に役に立つ。前回から都合がつけば参加するようにしている。
+svelte/kit を使っている会社の情報をまとめているという話しを聞いたので骨髄反射で pr を投げておいた。
+https://github.com/svelte-jp/japanese-svelte-companies/pull/2 svelte 5 はいま rc になっているそうでもう少しでリリースされそう。うちらは次の開発フェーズで移行することになると思うけれど、大きく機能や構文が変わっているようにみえるのでまたこのタイミングで私も再勉強するのがよさそうに思えた。
+Svelte 5 Release Candidate よりシンプルになる Svelte の世界</description><content>&lt;p>今日の運動は腕立て,スクワットをした。統計を &lt;a href="https://docs.google.com/spreadsheets/d/1bg85QtM-LciUgey8I79uI7vW2PEwsP6TVdeIRVkACBg/edit?usp=sharing">運動の記録&lt;/a> にまとめる。明日は健康診断があるのでよい数値を得るために今日は休養して安静にしようと思う。&lt;/p>
+&lt;h2 id="オフィス移転祝">オフィス移転祝&lt;/h2>
+&lt;p>お手伝い先の会社が6月1日にオフィス移転をする。感覚的に引っ越ししたら胡蝶蘭を玄関に並べてあるイメージがあって、ちょうどよい機会なのでうちも送ってみることにした。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://www.kokuyo-marketing.co.jp/column/relocation-renewal/post-162/">オフィスの移転祝いの選び方やマナーを解説｜相場やメッセージの書き方、贈る時の注意点も紹介&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>この記事によると、次の2つのパターンのときは移転祝いを送らない方がよいらしい。&lt;/p>
+&lt;ul>
+&lt;li>事業縮小による移転&lt;/li>
+&lt;li>移転祝いを辞退している&lt;/li>
+&lt;/ul>
+&lt;p>お手伝い先はどちらにも該当しないから送って大丈夫だと思う。初めて胡蝶蘭を購入して送付する手続きをする。適当にオンラインで検索して &lt;a href="https://prrr.jp/">PREMIER GARDEN&lt;/a> というサイトから手配をした。取引関係のある法人だと2-5万円ぐらいが相場になるらしい。適当にみて27,000円の白の胡蝶蘭 (3本立て) にした。立て札も法人なら縦書きがよいらしい。胡蝶蘭を送る慣習は花言葉が「幸せが飛んでくる」となっていて、さらに胡蝶蘭には「根付く」という意味があって「幸せが根付く」という意図も込められているらしい。そんなことも知らんかった。機会があってよい学びになった。&lt;/p>
+&lt;h2 id="歯科検診">歯科検診&lt;/h2>
+&lt;p>17時から歯科検診へ行ってきた。今日はベテランっぽいスタッフの方が担当でとても効率よく巧く歯のお掃除をやってくれた気がする。時間も早かったし、口をあけた状態で作業される不快さもいつもより少なかった気がする。機械を使った作業でも、人間の手際のよさで大きく違うものやなと思った。&lt;/p>
+&lt;h2 id="svelte-の情報収集">svelte の情報収集&lt;/h2>
+&lt;p>19時から &lt;a href="https://svelte-jp.connpass.com/event/315825/">Svelte Japan Online Meetup #3&lt;/a> にオンライン参加した。もう私はほとんどフロントエンドの開発に携わっていないけれど、アーキテクチャや大きな開発の方針などをメンバーに指導していくためには svelte を取り巻くエコシステムの流れを把握しておかないといけない。こういったコミュニティのミートアップはそういった情報収集に役に立つ。前回から都合がつけば参加するようにしている。&lt;/p>
+&lt;p>svelte/kit を使っている会社の情報をまとめているという話しを聞いたので骨髄反射で pr を投げておいた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/svelte-jp/japanese-svelte-companies/pull/2">https://github.com/svelte-jp/japanese-svelte-companies/pull/2&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>svelte 5 はいま rc になっているそうでもう少しでリリースされそう。うちらは次の開発フェーズで移行することになると思うけれど、大きく機能や構文が変わっているようにみえるのでまたこのタイミングで私も再勉強するのがよさそうに思えた。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://svelte.dev/blog/svelte-5-release-candidate">Svelte 5 Release Candidate&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://speakerdeck.com/azukiazusa1/yorisinpuruninaru-svelte-noshi-jie">よりシンプルになる Svelte の世界&lt;/a>&lt;/li>
+&lt;/ul></content></item><item><title>2024年度の変更登記第一弾</title><link>/diary/posts/2024/0523/</link><pubDate>Thu, 23 May 2024 13:24:27 +0900</pubDate><guid>/diary/posts/2024/0523/</guid><description>今日の運動は腹筋ローラー,背筋,縄跳び(両足跳),散歩,ジョギング,ハンドグリップ,ダンベルをした。統計を 運動の記録 にまとめる。
 変更登記の申請1 昨日 資本金の入金 を行ったので変更登記を申請する。法律では変更後2週間以内に申請しないといけない。9時過ぎに法務局へ行って申請した。オフィスから徒歩10分以内に法務局があるので気軽に行ける。
 申請書を提出する手順は次になる。滅多に行かないからいつも忘れてしまっているが。
 登録免許税の金額分の収入印紙を購入する 申請書の台紙に収入印紙を貼り付ける 法人登記専用受付へ行って申請書を提出する 受付スタッフが簡単に書類チェックして不備がなければ受付となる 書類の内容は後日に別途審査される 4営業日以内に法務局から連絡がなければ変更登記は完了しているとみなせる。問題があれば提出して翌日か翌々日ぐらいには電話がかかってくる。
@@ -13,11 +45,12 @@ nextLink と deltaLink は排他的な関係にある nextLink が返される�
 &lt;li>登録免許税の金額分の収入印紙を購入する&lt;/li>
 &lt;li>申請書の台紙に収入印紙を貼り付ける&lt;/li>
 &lt;li>法人登記専用受付へ行って申請書を提出する&lt;/li>
-&lt;li>受付スタッフが簡単に書類チェックして不備がなければ受付となる&lt;/li>
-&lt;/ol>
+&lt;li>受付スタッフが簡単に書類チェックして不備がなければ受付となる
 &lt;ul>
 &lt;li>書類の内容は後日に別途審査される&lt;/li>
 &lt;/ul>
+&lt;/li>
+&lt;/ol>
 &lt;p>4営業日以内に法務局から連絡がなければ変更登記は完了しているとみなせる。問題があれば提出して翌日か翌々日ぐらいには電話がかかってくる。&lt;/p>
 &lt;h2 id="me-id-調査">me-id 調査&lt;/h2>
 &lt;p>&lt;a href="/diary/diary/posts/2024/0520/#me-id-調査">選手からの me-id の調査の続き&lt;/a> 。Microsoft Graph API の delta query という仕組みで entra id のユーザー／グループ情報に変更があったときにその差分を検出できる。ドキュメントはおそらく次の2つを参照すればよいはず。&lt;/p>
