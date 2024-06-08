@@ -1,4 +1,21 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Packaging on</title><link>/diary/tags/packaging/</link><description>Recent content in Packaging on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 25 Mar 2024 09:18:55 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/packaging/index.xml" rel="self" type="application/rss+xml"/><item><title>ordered map という適当な粒度の課題</title><link>/diary/posts/2024/0325/</link><pubDate>Mon, 25 Mar 2024 09:18:55 +0900</pubDate><guid>/diary/posts/2024/0325/</guid><description>1時に寝て4時に起きて CPAP 治療忘れて寝ていたことに気付いて、装着してまた寝て6時半に起きた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Packaging on</title><link>/diary/tags/packaging/</link><description>Recent content in Packaging on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 08 Jun 2024 08:42:48 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/packaging/index.xml" rel="self" type="application/rss+xml"/><item><title>オフラインカンファレンスへの参加</title><link>/diary/posts/2024/0608/</link><pubDate>Sat, 08 Jun 2024 08:42:48 +0900</pubDate><guid>/diary/posts/2024/0608/</guid><description>今日の運動は腹筋ローラー,腕立て,スクワット,散歩,ハンドグリップをした。統計を 運動の記録 にまとめる。
+神戸に戻ってきてから軽く公園へ行って運動しようと思っていたら22時頃から雨降りで行けなかった。オフィスで事務作業や片付けなどをしていた。
+久しぶりのオフラインカンファレンス たまたま出張の週末にかさなっていたので Go Conference 2024 に参加してきた。いつもはオンライン参加していたが、今回はオフラインでしかやらないという。朝ホテルでのんびりしていたら時間がぎりぎりになってしまって、10時半からの tenntenn さんの発表が始まる10分前ぐらいに会場へ着いた。時間的にはちょうどよかった。次の 1.23 でリリース予定のイテレーターについての話しを聞いた。さすがのクォリティだったと思う。
+イテレータによってGoはどう変わるのか python の generator に近い概念のようにみえる。まだ自分でイテレーターを実装したことがないので seq 関数というのがちょっと腹落ちしていない。お手伝い先の次の開発フェーズで 1.23 にアップデートするだろうからそのときにいろいろ試してみることになると思う。イテレーターは重要な概念なのでチーム勉強会などでメンバーとしっかり情報共有してもよいかもしれない。
+他の発表もどれもレベルが高くておもしろかったのだが、私が関心をもったものを1つあげると go module のバージョン管理の仕組みの解説が勉強になった。
+試してわかるGo ModulesとMinimal Version Selection 依存先のモジュールのどのバージョンを使うかを決定するアルゴリズムを Minimal Version Selection (MVS) と呼ぶ。ライブラリをアップデートする経緯によってはサードパーティライブラリのバージョンの組み合わせは一意に決定されないという振る舞いを、あまり意識する機会はないだろうけれど、開発者として知っておく必要がある。</description><content>&lt;p>今日の運動は腹筋ローラー,腕立て,スクワット,散歩,ハンドグリップをした。統計を &lt;a href="https://docs.google.com/spreadsheets/d/1bg85QtM-LciUgey8I79uI7vW2PEwsP6TVdeIRVkACBg/edit?usp=sharing">運動の記録&lt;/a> にまとめる。&lt;/p>
+&lt;p>神戸に戻ってきてから軽く公園へ行って運動しようと思っていたら22時頃から雨降りで行けなかった。オフィスで事務作業や片付けなどをしていた。&lt;/p>
+&lt;h2 id="久しぶりのオフラインカンファレンス">久しぶりのオフラインカンファレンス&lt;/h2>
+&lt;p>たまたま出張の週末にかさなっていたので &lt;a href="https://gocon.jp/2024/">Go Conference 2024&lt;/a> に参加してきた。いつもはオンライン参加していたが、今回はオフラインでしかやらないという。朝ホテルでのんびりしていたら時間がぎりぎりになってしまって、10時半からの tenntenn さんの発表が始まる10分前ぐらいに会場へ着いた。時間的にはちょうどよかった。次の 1.23 でリリース予定のイテレーターについての話しを聞いた。さすがのクォリティだったと思う。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.google.com/presentation/d/1oY8pIpcB9t0C7siyQvj-ha5PLHTP_pdD-LA9uL2CaTU/edit?usp=sharing">イテレータによってGoはどう変わるのか&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>python の generator に近い概念のようにみえる。まだ自分でイテレーターを実装したことがないので seq 関数というのがちょっと腹落ちしていない。お手伝い先の次の開発フェーズで 1.23 にアップデートするだろうからそのときにいろいろ試してみることになると思う。イテレーターは重要な概念なのでチーム勉強会などでメンバーとしっかり情報共有してもよいかもしれない。&lt;/p>
+&lt;p>他の発表もどれもレベルが高くておもしろかったのだが、私が関心をもったものを1つあげると go module のバージョン管理の仕組みの解説が勉強になった。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.google.com/presentation/d/1X5dXShWTmjhQbXH7vXHnTLJ5Tca7QhU4Pq1YugGiIHs/edit#slide=id.p">試してわかるGo ModulesとMinimal Version Selection&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>依存先のモジュールのどのバージョンを使うかを決定するアルゴリズムを Minimal Version Selection (MVS) と呼ぶ。ライブラリをアップデートする経緯によってはサードパーティライブラリのバージョンの組み合わせは一意に決定されないという振る舞いを、あまり意識する機会はないだろうけれど、開発者として知っておく必要がある。&lt;/p></content></item><item><title>ordered map という適当な粒度の課題</title><link>/diary/posts/2024/0325/</link><pubDate>Mon, 25 Mar 2024 09:18:55 +0900</pubDate><guid>/diary/posts/2024/0325/</guid><description>1時に寝て4時に起きて CPAP 治療忘れて寝ていたことに気付いて、装着してまた寝て6時半に起きた。
 今日の運動は背筋をした。統計を 運動の記録 にまとめる。
 orderedmap ライブラリ json のオブジェクトの属性を意図した順番に並び替えたいという要件があって 適当なライブラリをみつけられなくて 最終的には自分で実装した。そのときに参考にしたモジュールではネストした配列やオブジェクトの順番を維持できないことに気付いて、どうせ実装するなら json の marshal/unmarshal の処理を完璧に実装しようと思って、再度フルスクラッチで作り直した。要は python の OrderedDict のようなものの go 版になる。
 orderedmap というキーワードで検索するといくつもオレオレの実装がみつかる。次の3つを参考にしながら、私も自分の思う「ぼくのかんがえたさいきょうの orderedmap」 を作ってみた。
