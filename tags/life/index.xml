@@ -1,4 +1,34 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Life on</title><link>/diary/tags/life/</link><description>Recent content in Life on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 24 Jun 2024 10:35:58 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/life/index.xml" rel="self" type="application/rss+xml"/><item><title>2024年度の変更登記第二弾</title><link>/diary/posts/2024/0624/</link><pubDate>Mon, 24 Jun 2024 10:35:58 +0900</pubDate><guid>/diary/posts/2024/0624/</guid><description>今日の運動は縄跳び(両足跳),散歩,ジョギング,ハンドグリップをした。統計を 運動の記録 にまとめる。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Life on</title><link>/diary/tags/life/</link><description>Recent content in Life on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 26 Jun 2024 09:28:41 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/life/index.xml" rel="self" type="application/rss+xml"/><item><title>gitlab ci/cd のトークン移行</title><link>/diary/posts/2024/0626/</link><pubDate>Wed, 26 Jun 2024 09:28:41 +0900</pubDate><guid>/diary/posts/2024/0626/</guid><description>今日は荷解きしていたので運動はお休み。収納はたくさんあるものの、まだ部屋に不慣れで使い勝手がわかってないからどこに何を入れるか、決まらなくてなかなか進まない。
+gitlab ci/cd のセキュリティ対応 gitlab のアクセストークンが 16.0 以前までは無期限に利用できたのが最長1年の有効期限が設定されるようになった。16.0 移行で無期限のアクセストークンは移行後から1年の有効期限となる。
+Why GitLab access tokens now have lifetime limits gitlab ci/cd のジョブでパッケージレジストリの操作が、これまでは ci job token (ジョブ実行のタイミングで自動生成される短期間有効なトークン) でアクセスできなかった。そこに project access token を発行して組み込んでいた。しかし、そのトークンが1年ごとに有効期限切れするようになったら保守コストがかかるからこれをやめたい。調べてみると、ちょうど ci job token も進化して 16.1 以上でパッケージレジストリへのアクセスができるようになった。
+Allow access to project-level package files API with CI job token 移行の注意事項として project access token は PRIVATE-TOKEN というヘッダーを使うが、ci job token は JOB-TOKEN というヘッダーを使う。curl なら次のようにして project access token を使わなくてもよくなった。
+$ curl --fail-with-body -s -H &amp;#34;JOB-TOKEN: ${CI_JOB_TOKEN}&amp;#34; .</description><content>&lt;p>今日は荷解きしていたので運動はお休み。収納はたくさんあるものの、まだ部屋に不慣れで使い勝手がわかってないからどこに何を入れるか、決まらなくてなかなか進まない。&lt;/p>
+&lt;h2 id="gitlab-cicd-のセキュリティ対応">gitlab ci/cd のセキュリティ対応&lt;/h2>
+&lt;p>gitlab のアクセストークンが 16.0 以前までは無期限に利用できたのが最長1年の有効期限が設定されるようになった。16.0 移行で無期限のアクセストークンは移行後から1年の有効期限となる。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://about.gitlab.com/blog/2023/10/25/access-token-lifetime-limits/">Why GitLab access tokens now have lifetime limits&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>gitlab ci/cd のジョブでパッケージレジストリの操作が、これまでは ci job token (ジョブ実行のタイミングで自動生成される短期間有効なトークン) でアクセスできなかった。そこに project access token を発行して組み込んでいた。しかし、そのトークンが1年ごとに有効期限切れするようになったら保守コストがかかるからこれをやめたい。調べてみると、ちょうど ci job token も進化して 16.1 以上でパッケージレジストリへのアクセスができるようになった。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://gitlab.com/gitlab-org/gitlab/-/merge_requests/116059">Allow access to project-level package files API with CI job token&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>移行の注意事項として project access token は &lt;code>PRIVATE-TOKEN&lt;/code> というヘッダーを使うが、ci job token は &lt;code>JOB-TOKEN&lt;/code> というヘッダーを使う。curl なら次のようにして project access token を使わなくてもよくなった。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ curl --fail-with-body -s -H &lt;span style="color:#e6db74">&amp;#34;JOB-TOKEN: &lt;/span>&lt;span style="color:#e6db74">${&lt;/span>CI_JOB_TOKEN&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span> ...
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>しかし、ci job token でリポジトリへの push はまだできない。これもいま修正中なので 17.2 から対応されるようだ。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://gitlab.com/gitlab-org/gitlab/-/issues/389060">Allow CI_JOB_TOKEN to push to its own repository&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="社宅既定の作成">社宅既定の作成&lt;/h2>
+&lt;p>&lt;a href="/diary/diary/posts/2024/0625/">家賃計算&lt;/a> を終えて社宅関連の手続きは完了かな？と税理士さんに相談していたら社宅既定を作るのが望ましいと教えてもらった。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://kiteikisoku.com/menu/jinji/karisyataku.html">借り上げ社宅規定&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>うちの会社は就業規則もなく、既定はほとんど作っていないものの、社宅のような特性を、法人と個人の境界を曖昧に運用するのもガバナンス的によくないというのは理解できる。来月あたり時間のあるときにぼちぼち既定を作っていこうと思う。&lt;/p>
+&lt;h2 id="google-マップのクチコミ">google マップのクチコミ&lt;/h2>
+&lt;p>社宅探しを手伝っていただいた &lt;a href="/diary/diary/posts/2024/0321/#不動産仲介会社さん訪問">不動産仲介会社&lt;/a> さんに感謝を伝える意図も含めて google マップにクチコミを書いた。35レビューで 5.0 しかないということからしょうみさんの信頼の高さが伺える。このままクチコミが増えていくと、しょうみさんの会社がどのように成長していくのか。この先の展望も楽しみにしている。きっと最後はうまくいくと思う。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://maps.app.goo.gl/SbRdDbdb9BREeXmf7">https://maps.app.goo.gl/SbRdDbdb9BREeXmf7&lt;/a>&lt;/li>
+&lt;/ul></content></item><item><title>2024年度の変更登記第二弾</title><link>/diary/posts/2024/0624/</link><pubDate>Mon, 24 Jun 2024 10:35:58 +0900</pubDate><guid>/diary/posts/2024/0624/</guid><description>今日の運動は縄跳び(両足跳),散歩,ジョギング,ハンドグリップをした。統計を 運動の記録 にまとめる。
 変更登記の申請2 先日 社宅へ引っ越し したので代表社員の住所変更の変更登記を申請した。9時過ぎに法務局へ行った。もうこの手続きは慣れっこで今回は先に収入印紙を購入して、受け付けへ行って、完璧に変更登記の申請をきめた。代表社員の住所変更の登録免許税は1万円。オフィスからの往復時間も含めて30分もかからない。
 私は独り暮らしだから法人登記から住所がバレて困ることはほとんどない。しかし、それでもプライバシーの観点から公開しなくてよい個人情報は非公開にしたいという考えはある。2024年10月1日から代表社員の住所を非公開にできるよう、法律が改正されるらしい。これは家族がいる起業家や女性起業家にとってはプライバシーの保護になってよいと思う。10月になったら非公開のための変更登記をするかどうか、まだ決めてはいない。時間的／財務的／精神的に余裕があれば非公開の手続きをやってみてもよいかもしれない。
 会社登記簿や法人登記で代表取締役の住所がバレる？プライバシー対策方法を解説 フローリングの部分補修 退去時に立会人からフローリングの部分補修 が借主の全額負担になると伝えられた。一通り国土交通省のガイドラインを確認した上で立会人に電話して詳細をヒアリングした。フローリングの張り替えは行わない。サンドペーパーをして、凹みをパテで埋めて色を塗るといった補修を行うため、材料費は大した金額ではなく、作業者の工賃と人件費で5万円ほどかかるという。見積書も送ってくれるという。背景を調べて詳細をヒアリングしたら妥当な金額にみえる。これは正当な補修のようだ。
