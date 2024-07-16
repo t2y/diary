@@ -1,26 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Network on</title><link>/diary/tags/network/</link><description>Recent content in Network on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 14 Jul 2024 01:52:10 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/network/index.xml" rel="self" type="application/rss+xml"/><item><title>wi-fi ルーターの規格調査</title><link>/diary/posts/2024/0714/</link><pubDate>Sun, 14 Jul 2024 01:52:10 +0900</pubDate><guid>/diary/posts/2024/0714/</guid><description>今日の運動は腹筋ローラー,腕立て,スクワット,ハンドグリップをした。今日も全般的に雨降りだったので筋トレをメインにした。統計を 運動の記録 にまとめる。オフィスで軽く 右股関節の改善体操 をした。
-wi-fi ルーターの規格 引っ越しした機会に wi-fi ルーターを wi-fi 6 対応のバッファローの WSR-1500AX2L/N に変更した。wi-fi 6 の速度があれば十分だろうと手頃な価格帯 (6,280円) のモデルを購入した。
-業者さんから光クロス対応ルーターを用意してほしいと言われていた。フレッツ光クロス対応ルーター をみると、どうやらこのモデルは違うようだ。光クロス対応ってなんのことを言っているのか理解できていなかった。おそらく 10GBASE-T のことだと思う。最近のネットワークは家庭でも 10Gbps になっているのか。WSR-1500AX2L/N のインターフェースは 1Gbps なので光クロス回線の帯域をフル活用できない。それでも 5GHz だと 200 Mbps 前後、2.4GHz でも 50 Mbps 前後の速度が出ていて私の用途なら十分に速い。とはいえ、ネットワークは速ければ速いほどいいから、またお金の余裕があるときに wi-fi ルーターを買い替えてもよいかなと思う。INTERNET / LAN 両方とも 10Gbps 対応ポートを備えたモデルは WXR18000BE10P/N になる。実勢価格は5-6万円とけっこう高い。1-2年先でもいいかな。
-wi-fi ルーターのアクセスポイントの SSID やパスワード、管理画面へのパスワードを初期設定から変更してカスタマイズした。たまにネットワーク設定やらないといろいろ忘れてしまう。
-ホットクックの無線設定 wi-fi ルーターのカスタマイズを完了したのでホットクックをインターネットに接続した。ホットクックが接続できる wi-fi のアクセスポイントは 2.4 GHz の WPA2 Personal になる。暗号方式は AES を選択する。ホットクックのために wi-fi ルーターの 2.4 GHz も有効にしないといけない。そして、ホットクックの wi-fi ルーターの接続設定がすごくわかりにくい。初めてやったときも苦労したけど、今回の再設定も苦労したので要項を書いておく。</description><content>&lt;p>今日の運動は腹筋ローラー,腕立て,スクワット,ハンドグリップをした。今日も全般的に雨降りだったので筋トレをメインにした。統計を &lt;a href="https://docs.google.com/spreadsheets/d/1bg85QtM-LciUgey8I79uI7vW2PEwsP6TVdeIRVkACBg/edit?usp=sharing">運動の記録&lt;/a> にまとめる。オフィスで軽く &lt;a href="/diary/diary/posts/2024/0707/#右股関節をよくするための体操">右股関節の改善体操&lt;/a> をした。&lt;/p>
-&lt;h2 id="wi-fi-ルーターの規格">wi-fi ルーターの規格&lt;/h2>
-&lt;p>引っ越しした機会に wi-fi ルーターを wi-fi 6 対応のバッファローの WSR-1500AX2L/N に変更した。wi-fi 6 の速度があれば十分だろうと手頃な価格帯 (6,280円) のモデルを購入した。&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Network on</title><link>/diary/tags/network/</link><description>Recent content in Network on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 14 Jul 2024 01:52:10 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/network/index.xml" rel="self" type="application/rss+xml"/><item><title>wifi ルーターの規格調査</title><link>/diary/posts/2024/0714/</link><pubDate>Sun, 14 Jul 2024 01:52:10 +0900</pubDate><guid>/diary/posts/2024/0714/</guid><description>今日の運動は腹筋ローラー,腕立て,スクワット,ハンドグリップをした。今日も全般的に雨降りだったので筋トレをメインにした。統計を 運動の記録 にまとめる。オフィスで軽く 右股関節の改善体操 をした。
+wifi ルーターの規格 引っ越しした機会に wifi ルーターを wifi 6 対応のバッファローの WSR-1500AX2L/N に変更した。wifi 6 の速度があれば十分だろうと手頃な価格帯 (6,280円) のモデルを購入した。
+業者さんから光クロス対応ルーターを用意してほしいと言われていた。フレッツ光クロス対応ルーター をみると、どうやらこのモデルは違うようだ。光クロス対応ってなんのことを言っているのか理解できていなかった。おそらく 10GBASE-T のことだと思う。最近のネットワークは家庭でも 10Gbps になっているのか。WSR-1500AX2L/N のインターフェースは 1Gbps なので光クロス回線の帯域をフル活用できない。それでも 5GHz だと 200 Mbps 前後、2.4GHz でも 50 Mbps 前後の速度が出ていて私の用途なら十分に速い。とはいえ、ネットワークは速ければ速いほどいいから、またお金の余裕があるときに wifi ルーターを買い替えてもよいかなと思う。INTERNET / LAN 両方とも 10Gbps 対応ポートを備えたモデルは WXR18000BE10P/N になる。実勢価格は5-6万円とけっこう高い。1-2年先でもいいかな。
+wifi ルーターのアクセスポイントの SSID やパスワード、管理画面へのパスワードを初期設定から変更してカスタマイズした。たまにネットワーク設定やらないといろいろ忘れてしまう。
+ホットクックの無線設定 wifi ルーターのカスタマイズを完了したのでホットクックをインターネットに接続した。ホットクックが接続できる wifi のアクセスポイントは 2.4 GHz の WPA2 Personal になる。暗号方式は AES を選択する。ホットクックのために wifi ルーターの 2.4 GHz も有効にしないといけない。そして、ホットクックの wifi ルーターの接続設定がすごくわかりにくい。初めてやったときも苦労したけど、今回の再設定も苦労したので要項を書いておく。</description><content>&lt;p>今日の運動は腹筋ローラー,腕立て,スクワット,ハンドグリップをした。今日も全般的に雨降りだったので筋トレをメインにした。統計を &lt;a href="https://docs.google.com/spreadsheets/d/1bg85QtM-LciUgey8I79uI7vW2PEwsP6TVdeIRVkACBg/edit?usp=sharing">運動の記録&lt;/a> にまとめる。オフィスで軽く &lt;a href="/diary/diary/posts/2024/0707/#右股関節をよくするための体操">右股関節の改善体操&lt;/a> をした。&lt;/p>
+&lt;h2 id="wifi-ルーターの規格">wifi ルーターの規格&lt;/h2>
+&lt;p>引っ越しした機会に wifi ルーターを wifi 6 対応のバッファローの WSR-1500AX2L/N に変更した。wifi 6 の速度があれば十分だろうと手頃な価格帯 (6,280円) のモデルを購入した。&lt;/p>
 &lt;p>&lt;a href="https://amzn.to/4bK4Lpo" target="_blank">&lt;img src="https://m.media-amazon.com/images/I/61veZLRtl3L._AC_SX522_.jpg" width="120" />&lt;/a>&lt;/p>
-&lt;p>業者さんから光クロス対応ルーターを用意してほしいと言われていた。&lt;a href="https://flets.com/next/router/buffalo.html">フレッツ光クロス対応ルーター&lt;/a> をみると、どうやらこのモデルは違うようだ。光クロス対応ってなんのことを言っているのか理解できていなかった。おそらく 10GBASE-T のことだと思う。最近のネットワークは家庭でも 10Gbps になっているのか。WSR-1500AX2L/N のインターフェースは 1Gbps なので光クロス回線の帯域をフル活用できない。それでも 5GHz だと 200 Mbps 前後、2.4GHz でも 50 Mbps 前後の速度が出ていて私の用途なら十分に速い。とはいえ、ネットワークは速ければ速いほどいいから、またお金の余裕があるときに wi-fi ルーターを買い替えてもよいかなと思う。INTERNET / LAN 両方とも 10Gbps 対応ポートを備えたモデルは &lt;a href="https://www.buffalo.jp/product/detail/wxr18000be10p_n.html">WXR18000BE10P/N&lt;/a> になる。実勢価格は5-6万円とけっこう高い。1-2年先でもいいかな。&lt;/p>
-&lt;p>wi-fi ルーターのアクセスポイントの SSID やパスワード、管理画面へのパスワードを初期設定から変更してカスタマイズした。たまにネットワーク設定やらないといろいろ忘れてしまう。&lt;/p>
+&lt;p>業者さんから光クロス対応ルーターを用意してほしいと言われていた。&lt;a href="https://flets.com/next/router/buffalo.html">フレッツ光クロス対応ルーター&lt;/a> をみると、どうやらこのモデルは違うようだ。光クロス対応ってなんのことを言っているのか理解できていなかった。おそらく 10GBASE-T のことだと思う。最近のネットワークは家庭でも 10Gbps になっているのか。WSR-1500AX2L/N のインターフェースは 1Gbps なので光クロス回線の帯域をフル活用できない。それでも 5GHz だと 200 Mbps 前後、2.4GHz でも 50 Mbps 前後の速度が出ていて私の用途なら十分に速い。とはいえ、ネットワークは速ければ速いほどいいから、またお金の余裕があるときに wifi ルーターを買い替えてもよいかなと思う。INTERNET / LAN 両方とも 10Gbps 対応ポートを備えたモデルは &lt;a href="https://www.buffalo.jp/product/detail/wxr18000be10p_n.html">WXR18000BE10P/N&lt;/a> になる。実勢価格は5-6万円とけっこう高い。1-2年先でもいいかな。&lt;/p>
+&lt;p>wifi ルーターのアクセスポイントの SSID やパスワード、管理画面へのパスワードを初期設定から変更してカスタマイズした。たまにネットワーク設定やらないといろいろ忘れてしまう。&lt;/p>
 &lt;h2 id="ホットクックの無線設定">ホットクックの無線設定&lt;/h2>
-&lt;p>wi-fi ルーターのカスタマイズを完了したのでホットクックをインターネットに接続した。ホットクックが接続できる wi-fi のアクセスポイントは 2.4 GHz の WPA2 Personal になる。暗号方式は AES を選択する。ホットクックのために wi-fi ルーターの 2.4 GHz も有効にしないといけない。そして、ホットクックの wi-fi ルーターの接続設定がすごくわかりにくい。初めてやったときも苦労したけど、今回の再設定も苦労したので要項を書いておく。&lt;/p>
+&lt;p>wifi ルーターのカスタマイズを完了したのでホットクックをインターネットに接続した。ホットクックが接続できる wifi のアクセスポイントは 2.4 GHz の WPA2 Personal になる。暗号方式は AES を選択する。ホットクックのために wifi ルーターの 2.4 GHz も有効にしないといけない。そして、ホットクックの wifi ルーターの接続設定がすごくわかりにくい。初めてやったときも苦労したけど、今回の再設定も苦労したので要項を書いておく。&lt;/p>
 &lt;ol>
 &lt;li>(ホットクック) 無線 LAN 接続設定を開く&lt;/li>
 &lt;li>(ホットクック) 「アプリで接続」という状態にする&lt;/li>
 &lt;li>(スマホアプリ) アプリ設定から機器を追加する&lt;/li>
-&lt;li>(スマホアプリ) アプリ設定を進めて、スマホの wi-fi のアクセスポイントをホットクックの AP に接続させる&lt;/li>
-&lt;li>(スマホ) ローカルネットワークの wi-fi ルーターに接続させる&lt;/li>
+&lt;li>(スマホアプリ) アプリ設定を進めて、スマホの wifi のアクセスポイントをホットクックの AP に接続させる&lt;/li>
+&lt;li>(スマホ) ローカルネットワークの wifi ルーターに接続させる&lt;/li>
 &lt;li>(ホットクック) 音声で接続できたことがわかる&lt;/li>
-&lt;li>(スマホ) wi-fi のアクセスポイントをローカルネットワークの wi-fi ルーターに切り替える&lt;/li>
+&lt;li>(スマホ) wifi のアクセスポイントをローカルネットワークの wifi ルーターに切り替える&lt;/li>
 &lt;li>(スマホアプリ) アプリ設定の機器登録ができていることを確認する&lt;/li>
 &lt;/ol>
-&lt;p>一時的にホットクックを無線 LAN のアクセスポイントにするという手順が直感的にわかりにくい。本体から無線 LAN 接続設定を行う (wi-fi 接続のパスワード入力する) 方法がないから苦肉の策でこういう仕様になっているように思える。&lt;/p>
+&lt;p>一時的にホットクックを無線 LAN のアクセスポイントにするという手順が直感的にわかりにくい。本体から無線 LAN 接続設定を行う (wifi 接続のパスワード入力する) 方法がないから苦肉の策でこういう仕様になっているように思える。&lt;/p>
 &lt;h2 id="迷惑をかけない死に方">迷惑をかけない死に方&lt;/h2>
 &lt;p>&lt;a href="/diary/diary/posts/2024/0705/#隔週の雑談">居場所の雑談&lt;/a> と関連して、自分の死に方も少し意識するようになってきた。&lt;a href="/diary/diary/posts/2023/0103/#追悼">父が亡くなったとき&lt;/a> はあまりショックを受けることはなかった。昔から父とは距離があったのと、病院で寝たきりの生活が5年もあったから心の準備ができていたのかもしれない。母とはちょいちょい電話したりもするし、実家に帰ったときはご飯を食べに行ったりもするし、一緒に田んぼ作業をしたり、父よりはずっと私にとって身近な存在であると言える。親が亡くなったときに大きなショックを受けた知人の話しをたまに聞く。母が亡くなると私も孤独感を感じるんやろか？と考えるときもある。&lt;/p>
 &lt;ul>
