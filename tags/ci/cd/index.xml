@@ -1,4 +1,56 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ci/Cd on</title><link>/diary/tags/ci/cd/</link><description>Recent content in Ci/Cd on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 26 Jun 2024 09:28:41 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/ci/cd/index.xml" rel="self" type="application/rss+xml"/><item><title>gitlab ci/cd のトークン移行</title><link>/diary/posts/2024/0626/</link><pubDate>Wed, 26 Jun 2024 09:28:41 +0900</pubDate><guid>/diary/posts/2024/0626/</guid><description>今日は荷解きしていたので運動はお休み。収納はたくさんあるものの、まだ部屋に不慣れで使い勝手がわかってないからどこに何を入れるか、決まらなくてなかなか進まない。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ci/Cd on</title><link>/diary/tags/ci/cd/</link><description>Recent content in Ci/Cd on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 29 Jul 2024 19:06:51 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/ci/cd/index.xml" rel="self" type="application/rss+xml"/><item><title>api ドキュメント保守の考察</title><link>/diary/posts/2024/0729/</link><pubDate>Mon, 29 Jul 2024 19:06:51 +0900</pubDate><guid>/diary/posts/2024/0729/</guid><description>今晩から東京出張なので運動はおやすみ。縄跳びだけもっていく。
+api ドキュメントを継続的に保守することへの考察 お手伝い先のプロダクトを1年半以上、継続している。web api の機能もどんどん増えてきて50は超えていると思う。api ドキュメントをビルドするために redocly cli というツールを使っている。次のスクリプトは .gitlab-ci.yml の設定だけど、このぐらいの手間で openapi.yml から1つの html ドキュメントを生成してくれる。この index.html を api サーバーに同梱している。
+before_script: - node --version - npm --version - npm install @redocly/cli@latest - npx redocly --version script: - |+ npx redocly build-docs schema/openapi.yml \ --output index.html \ --theme.openapi.schemaExpansionLevel=10 \ --theme.openapi.expandResponses=all \ --theme.openapi.requiredPropsFirst=true \ --theme.openapi.jsonSampleExpandLevel=10 \ --theme.openapi.hideLoading=true \ --theme.openapi.pathInMiddlePanel=true - mkdir -p public - mv index.html public/ web api の機能数が少ないときはこれで十分だった。しかし、50を超えてくると yml で api ドキュメントを保守するのが辛くなってくる。xml/yml/json を問わず、サイズの大きいこれらのファイルを保守するのはつらい。人間の能は複数種別の情報を同時処理できるが、一定量を超えた情報量をうまく処理できない。もちろん機能別にファイル分割して管理しているのだけど、それでも openapi.</description><content>&lt;p>今晩から東京出張なので運動はおやすみ。縄跳びだけもっていく。&lt;/p>
+&lt;h2 id="api-ドキュメントを継続的に保守することへの考察">api ドキュメントを継続的に保守することへの考察&lt;/h2>
+&lt;p>お手伝い先のプロダクトを1年半以上、継続している。web api の機能もどんどん増えてきて50は超えていると思う。api ドキュメントをビルドするために &lt;a href="https://redocly.com/docs/cli">redocly cli&lt;/a> というツールを使っている。次のスクリプトは .gitlab-ci.yml の設定だけど、このぐらいの手間で openapi.yml から1つの html ドキュメントを生成してくれる。この index.html を api サーバーに同梱している。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">before_script&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">node --version&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">npm --version&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">npm install @redocly/cli@latest&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">npx redocly --version&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">script&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - |+&lt;span style="color:#e6db74">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> npx redocly build-docs schema/openapi.yml \
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> --output index.html \
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> --theme.openapi.schemaExpansionLevel=10 \
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> --theme.openapi.expandResponses=all \
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> --theme.openapi.requiredPropsFirst=true \
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> --theme.openapi.jsonSampleExpandLevel=10 \
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> --theme.openapi.hideLoading=true \
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> --theme.openapi.pathInMiddlePanel=true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">mkdir -p public&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">mv index.html public/&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>web api の機能数が少ないときはこれで十分だった。しかし、50を超えてくると yml で api ドキュメントを保守するのが辛くなってくる。xml/yml/json を問わず、サイズの大きいこれらのファイルを保守するのはつらい。人間の能は複数種別の情報を同時処理できるが、一定量を超えた情報量をうまく処理できない。もちろん機能別にファイル分割して管理しているのだけど、それでも openapi.yml のエンドポイントの定義はどんどん増えていく。それがだんだん辛くなってきたのが現状になる。&lt;/p>
+&lt;p>以前 &lt;a href="/diary/diary/posts/2024/0115/#hugo-のハンズオン資料作り">静的サイトジェネレーター勉強会の手伝い&lt;/a> をしたときに &lt;a href="https://github.com/slatedocs/slate">slate&lt;/a> という markdown で記述できる api ドキュメントツールがあることを教えてもらった。これはいいなとそのとき思ったのだけど、コミット履歴などをみているともう保守モードで活発に開発されていない。oss あるある話しで継続的に開発されていないツールはすぐに廃れるのでいまから採用するには躊躇してしまう。&lt;/p>
+&lt;p>&lt;a href="https://www.postman.com/">postman&lt;/a> という api プラットフォームがある。昔から api クライアントとして使う開発者も多かったのでツール自体は知っていた。この機会に私も実際に使ってみて評価した。既存の openapi.yml + redocly cli を使っているドキュメント管理と postman との比較をした。&lt;/p>
+&lt;ul>
+&lt;li>postman はドキュメントのバージョン管理ができる&lt;/li>
+&lt;li>postman アプリを api ドキュメントのエディターとして使える
+&lt;ul>
+&lt;li>テキストの説明欄に markdown を記述できる&lt;/li>
+&lt;li>エクスポートすると json データになる
+&lt;ul>
+&lt;li>ドキュメントのデータとして yml と大きな違いはないが、エディターで隠蔽されるからドキュメントの保守はやりやすくなる
+&lt;ul>
+&lt;li>但し、エディターは postman アプリに依存する&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>postman はリクエスト CLI とレスポンスの対応関係をセットで管理できる&lt;/li>
+&lt;li>ドキュメントの構造や見た目はあまり変わらない&lt;/li>
+&lt;/ul>
+&lt;p>postman そのものは悪くないけど、うちらのいまの開発のワークフローにすぐに適用できる状況でもない。postman の機能を有効に活用できるように開発のやり方を変えないといけない。そうしないと、ドキュメント管理だけに使うには外部サービス依存が大きくて学習コストも高くなってしまう。&lt;/p>
+&lt;p>別のアプローチとして openapi.yml の編集をテキストファイルで行うのではなく、人間にとって操作しやすいエディター上で行えるようにしたものが &lt;a href="https://github.com/stoplightio/studio">stoplight studio&lt;/a> になる。ググると評判もよいし、私も実際に使ってみて機能はまさに探していたツールではある。しかし、このツールの先行きも怪しい。これまでデスクトップ版のエディターは無償で提供されていて、いまもアカウント登録すれば無償で使える。しかし、昨年あたりに SmartBear 社 (swagger を作ってた会社ね) に買収されている。おそらく &lt;a href="https://editor.swagger.io/">swagger editor&lt;/a> の移行先を探していてちょうど都合がよいのだと思う。SmartBear 社は過去の openapi 移行時のゴダゴダがあって印象がよくないし、ビジネス寄りの会社になるので将来的に stoplight studio を無償で使い続けられるかどうかにも懸念がある。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://smartbear.com/news/news-releases/smartbear-to-acquire-stoplight/">SmartBear to Acquire Stoplight to Deliver Industry’s Broadest Portfolio of API Development Capabilities&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>今回は調査したどのツールにも懸念があって採用を見送ることにした。api ドキュメントを書くツールを探すのは難しい。&lt;/p>
+&lt;h2 id="寝台特急">寝台特急&lt;/h2>
+&lt;p>久しぶりの寝台特急。11時25分頃に乗車券を使って JR 三ノ宮駅の改札を通過しようとするとエラーになった。30日から有効とは書いてあるものの、以前は通過できていた気がしたので駅員さんに聞いたら30分前から通れるはずとの。その後11時38分には改札を通れた。これまで改札でエラーになったことがなかったのは11時30分をまわってからだったんだと初めて気付いた。運が悪いことに0時11分発の予定が32分遅延した。調子の悪いときはこんなもので段取りもうまくいかない。最終的に東京駅には15分ほど遅れになった。&lt;/p>
+&lt;p>今日は普通のB寝台シングルを予約した。下側の狭い部屋でゆっくり寝ることにした。乗車後10分ほどして車掌さんが切符確認にきた。これもわかっているから扉を開けて切符も用意して待ってた。寝台特急は薄い布団しかついていないから冬はちょっと寒い。逆に夏はエアコンが効いているし薄い布団で問題ない。寝台特急は暖かい時期に乗るのがよさそうだということもわかってきた。&lt;/p></content></item><item><title>gitlab ci/cd のトークン移行</title><link>/diary/posts/2024/0626/</link><pubDate>Wed, 26 Jun 2024 09:28:41 +0900</pubDate><guid>/diary/posts/2024/0626/</guid><description>今日は荷解きしていたので運動はお休み。収納はたくさんあるものの、まだ部屋に不慣れで使い勝手がわかってないからどこに何を入れるか、決まらなくてなかなか進まない。
 gitlab ci/cd のセキュリティ対応 gitlab のアクセストークンが 16.0 以前までは無期限に利用できたのが最長1年の有効期限が設定されるようになった。16.0 移行で無期限のアクセストークンは移行後から1年の有効期限となる。
 Why GitLab access tokens now have lifetime limits gitlab ci/cd のジョブでパッケージレジストリの操作が、これまでは ci job token (ジョブ実行のタイミングで自動生成される短期間有効なトークン) でアクセスできなかった。そこに project access token を発行して組み込んでいた。しかし、そのトークンが1年ごとに有効期限切れするようになったら保守コストがかかるからこれをやめたい。調べてみると、ちょうど ci job token も進化して 16.1 以上でパッケージレジストリへのアクセスができるようになった。
 Allow access to project-level package files API with CI job token 移行の注意事項として project access token は PRIVATE-TOKEN というヘッダーを使うが、ci job token は JOB-TOKEN というヘッダーを使う。curl なら次のようにして project access token を使わなくてもよくなった。
