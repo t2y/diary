@@ -1,4 +1,161 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Founding on</title><link>/diary/tags/founding/</link><description>Recent content in Founding on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 13 Sep 2024 13:10:44 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/founding/index.xml" rel="self" type="application/rss+xml"/><item><title>責任を扱うコミュニケーションの在り方</title><link>/diary/posts/2024/0913/</link><pubDate>Fri, 13 Sep 2024 13:10:44 +0900</pubDate><guid>/diary/posts/2024/0913/</guid><description>水曜日から継続していたメンバーのコードレビューをお昼頃に完了して、それからは自分の時間に集中して開発に取り組めた。途中、晩ご飯休憩もしながら翌2時頃までコードを書いていて issue を2つ fix した。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Founding on</title><link>/diary/tags/founding/</link><description>Recent content in Founding on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 11 Oct 2024 10:15:44 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/founding/index.xml" rel="self" type="application/rss+xml"/><item><title>ひとりではできないこと</title><link>/diary/posts/2024/1011/</link><pubDate>Fri, 11 Oct 2024 10:15:44 +0900</pubDate><guid>/diary/posts/2024/1011/</guid><description>今日のバドミントン練習はエアシャトルでリフティングを30分した。最高は80回だが、ほとんどの試行は20回も続かずに失敗してしまう。難しい。
+隔週の雑談 顧問のはらさんと隔週の打ち合わせ。今日の議題はこれら。
+課題管理と adr の関係の考察 数年前から adr の話題や導入した会社の記事などをみかけるようになった。私はこれまで課題管理をうまくやっていれば adr はそれほど重要ではないとあまり重視してこなかった。しかし、世の中的に認知されて流行っているものはなにかしら意義があるのだろうと最近は少し見直してきているところもある。このスライドによると2017年から流行り始めたらしい。
+開発に関する情報を一元管理する、または全文検索ことにビジネスチャンスはある 検索のニーズや要件は多様で言語によっても違い、技術もまだまだ発展的でもあるからずっとビジネスの種になる気はする gitlab issues のコメントの全文検索は有料機能なので slack 通知したチャンネルを全文検索している 課題管理システムのプラグインでテキストをシステム間連携することで検索システムを別途構築できる可能性がある 検索できなくてもデータのアーカイブをするという視点でもビジネスニーズに応える？ ベクトル検索 を検索がまだ一般的にはなっていない？ テックブログを読む会でメンバーが 医薬品検索にベクトル検索を導入したら、デフォで検索ニーズをほぼ満たせそうだった話 を紹介していた いまや rdb でも全文検索機能はあるが、実運用だと rdb の i/o がボトルネックになることは多いだろうから全文検索用途に使うモチベーションが低いと想定される 普通の全文検索とベクトル検索の違いを実際に触ってみて評価してみたい wiki と adr の違いの1つとして wiki になにを書いてよいかわからない問題がある 文章を書けるようになるのは経験や習熟を必要とする adr のようなテンプレートがあることで経験の浅い開発者も書きやすくなる狙いはある 課題管理システムの wiki に adr のラッピングをして別機能としてみせるのはよいかもしれない 業務の引き継ぎにも adr は役に立つのではないか？ adr 一覧をみたり、そこから検索することで検索効率や精度は上がるという想定 大きい会社でも巨大な課題管理システムと wiki が1つだけあって一元管理しているという噂は聞く ある会社では wiki は誤っている可能性があるから信用するなという教訓があった wiki の情報は更新されていない可能性があるから参考にしながら必ず裏をとって業務をしなさいという話し wiki を編集したら必ずレビューが必要になるプロセス notion のプロジェクト管理の使い勝手はどうか？ テンプレートを使ってガントチャートやカンバンを作れる 基本的に自分でカスタマイズできることの良し悪しがある db をどんどん改良できるが、それだけに魔改造してしまう 時間とともに複数人が改良すると保守できなくなっていく懸念がある 中核機能をパッケージ側で提供することは堅牢性を担保する上で重要ではないか タスク管理と wiki がシームレスなところはよい、はらさんは日報を書いてリンクしている 会社のインフラに日々の開発情報を書いていくと退職後に参照できない フリーランスのような働き方をするにはナレッジデータベースをローカルに作りたいという欲求がある 組み込みの課題管理システムにより、自身のナレッジデータベースをローカルに残すという目的はよいかもしれない 仕事は楽しいかね？ の考察 まとめを見返しながら、だいたいの項目は理解または支持できる。1つだけ次の項目が私には欠けていることに気付いた。</description><content>&lt;p>今日のバドミントン練習はエアシャトルでリフティングを30分した。最高は80回だが、ほとんどの試行は20回も続かずに失敗してしまう。難しい。&lt;/p>
+&lt;h2 id="隔週の雑談">隔週の雑談&lt;/h2>
+&lt;p>顧問のはらさんと隔週の打ち合わせ。今日の議題はこれら。&lt;/p>
+&lt;h3 id="課題管理と-adr-の関係の考察">課題管理と adr の関係の考察&lt;/h3>
+&lt;iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/1d21876659d244a8b6c121255e2fbce9" title="ADRを運用して3年経った僕らの現在地" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 600px; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777">&lt;/iframe>
+&lt;p>数年前から adr の話題や導入した会社の記事などをみかけるようになった。私はこれまで課題管理をうまくやっていれば adr はそれほど重要ではないとあまり重視してこなかった。しかし、世の中的に認知されて流行っているものはなにかしら意義があるのだろうと最近は少し見直してきているところもある。このスライドによると2017年から流行り始めたらしい。&lt;/p>
+&lt;ul>
+&lt;li>開発に関する情報を一元管理する、または全文検索ことにビジネスチャンスはある
+&lt;ul>
+&lt;li>検索のニーズや要件は多様で言語によっても違い、技術もまだまだ発展的でもあるからずっとビジネスの種になる気はする&lt;/li>
+&lt;li>gitlab issues のコメントの全文検索は有料機能なので slack 通知したチャンネルを全文検索している
+&lt;ul>
+&lt;li>課題管理システムのプラグインでテキストをシステム間連携することで検索システムを別途構築できる可能性がある&lt;/li>
+&lt;li>検索できなくてもデータのアーカイブをするという視点でもビジネスニーズに応える？&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;a href="https://www.elastic.co/jp/what-is/vector-search">ベクトル検索&lt;/a> を検索がまだ一般的にはなっていない？
+&lt;ul>
+&lt;li>テックブログを読む会でメンバーが &lt;a href="https://zenn.dev/minedia/articles/d9f01aa05bc880">医薬品検索にベクトル検索を導入したら、デフォで検索ニーズをほぼ満たせそうだった話&lt;/a> を紹介していた&lt;/li>
+&lt;li>いまや rdb でも全文検索機能はあるが、実運用だと rdb の i/o がボトルネックになることは多いだろうから全文検索用途に使うモチベーションが低いと想定される&lt;/li>
+&lt;li>普通の全文検索とベクトル検索の違いを実際に触ってみて評価してみたい&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>wiki と adr の違いの1つとして wiki になにを書いてよいかわからない問題がある
+&lt;ul>
+&lt;li>文章を書けるようになるのは経験や習熟を必要とする&lt;/li>
+&lt;li>adr のようなテンプレートがあることで経験の浅い開発者も書きやすくなる狙いはある&lt;/li>
+&lt;li>課題管理システムの wiki に adr のラッピングをして別機能としてみせるのはよいかもしれない&lt;/li>
+&lt;li>業務の引き継ぎにも adr は役に立つのではないか？&lt;/li>
+&lt;li>adr 一覧をみたり、そこから検索することで検索効率や精度は上がるという想定&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>大きい会社でも巨大な課題管理システムと wiki が1つだけあって一元管理しているという噂は聞く
+&lt;ul>
+&lt;li>ある会社では wiki は誤っている可能性があるから信用するなという教訓があった
+&lt;ul>
+&lt;li>wiki の情報は更新されていない可能性があるから参考にしながら必ず裏をとって業務をしなさいという話し&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>wiki を編集したら必ずレビューが必要になるプロセス&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>notion のプロジェクト管理の使い勝手はどうか？
+&lt;ul>
+&lt;li>テンプレートを使ってガントチャートやカンバンを作れる
+&lt;ul>
+&lt;li>基本的に自分でカスタマイズできることの良し悪しがある
+&lt;ul>
+&lt;li>db をどんどん改良できるが、それだけに魔改造してしまう&lt;/li>
+&lt;li>時間とともに複数人が改良すると保守できなくなっていく懸念がある&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>中核機能をパッケージ側で提供することは堅牢性を担保する上で重要ではないか&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>タスク管理と wiki がシームレスなところはよい、はらさんは日報を書いてリンクしている&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>会社のインフラに日々の開発情報を書いていくと退職後に参照できない
+&lt;ul>
+&lt;li>フリーランスのような働き方をするにはナレッジデータベースをローカルに作りたいという欲求がある&lt;/li>
+&lt;li>組み込みの課題管理システムにより、自身のナレッジデータベースをローカルに残すという目的はよいかもしれない&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="仕事は楽しいかねhahahugoshortcode1111s0hbhb-の考察">&lt;a href="/diary/diary/posts/2024/1008/">仕事は楽しいかね？&lt;/a> の考察&lt;/h3>
+&lt;p>まとめを見返しながら、だいたいの項目は理解または支持できる。1つだけ次の項目が私には欠けていることに気付いた。&lt;/p>
+&lt;blockquote>
+&lt;p>毎日1つ試し続ければ必ず上達や進歩ができる&lt;/p>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>新しいことを始めると、いまやっていることを継続する時間がなくなったりしないか？&lt;/li>
+&lt;li>プロダクト開発ではがんばってもあまり成果が出ないような時期もある
+&lt;ul>
+&lt;li>リファクタリングやテスト追加などはまさにそう&lt;/li>
+&lt;li>そういったときも1つでも変化をもたらせれば日々の生活が変わるのか？&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>はらさんのお奨めは梅原さんの &lt;a href="https://www.kadokawa.co.jp/product/301305000020/">１日ひとつだけ、強くなる。 世界一プロ・ゲーマーの勝ち続ける６４の流儀&lt;/a>&lt;/li>
+&lt;li>本書を読んではらさんのよかったところは「試してみることに失敗はない」
+&lt;ul>
+&lt;li>それまでも試すことはやっていたはずなのに躊躇してしまう理由として失敗したら時間の無駄だと考えてしまっていた&lt;/li>
+&lt;li>失敗したら嫌だと考えてしまうところがあったが、この考え方があるから vision pro を購入できる
+&lt;ul>
+&lt;li>最近は vision pro の話題を聞かなくなったがどうか？
+&lt;ul>
+&lt;li>&lt;a href="https://internet.watch.impress.co.jp/docs/yajiuma/1630679.html">ロードマップに影響は？ Appleに26年間在籍した「Vision Pro」の開発責任者が退職へ&lt;/a>&lt;/li>
+&lt;li>仕事にはならないのではないか？&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>やりたいことをすぐやってみるという思考につながった&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>面倒くさいときもなるべくパソコンを使うようにしてなにかしら調べる&lt;/li>
+&lt;li>私はオフィスにいれば、家よりはなにかしら作業するモチベーションになる&lt;/li>
+&lt;li>目標達成や成果をあげるには環境がもっとも大事
+&lt;ul>
+&lt;li>個人の感情を信頼しない
+&lt;ul>
+&lt;li>人間は面倒だとすぐ怠けてやめてしまう&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>環境を整えることでワークフローを洗練させて習慣化する
+&lt;ul>
+&lt;li>日記になにか書かないといけないから調べものをする&lt;/li>
+&lt;li>嫌々ながらでもやっているうちに習慣になってくるとワークフローが洗練していく&lt;/li>
+&lt;li>人間の運用を変えていくなにかは普遍的な価値またはビジネスチャンスがある&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>調子の悪いときにどうやって早く脱却するかが大事
+&lt;ul>
+&lt;li>ひとりでは言い訳を作ったり怠けてしまう&lt;/li>
+&lt;li>このときに他人の助けがいるのではないか？
+&lt;ul>
+&lt;li>話しを聞いてもらうだけでも前へ進むきっかけになる&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="go-の結合テスト向けカバレッジ計測の考察">go の結合テスト向けカバレッジ計測の考察&lt;/h2>
+&lt;p>以前リリースパーティーで go 1.20 で結合テスト向けのカバレッジ計測の機能が入ったことを聞いていた。次のブログ記事でやり方が紹介されている。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://go.dev/blog/integration-test-coverage">Code coverage for Go integration tests&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://netdevops.me/2023/test-coverage-for-go-integration-tests/">Test coverage for Go integration tests&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>将来的に結合テストを作るときにカバレッジ計測のカスタマイズを施したバイナリを使って api server を起動する仕組みにすればこの機能を使えることに気付いた。&lt;/p>
+&lt;p>まずは単体テストを実行して任意のディレクトリ (&lt;code>tests/coverage&lt;/code>) にカバレッジ計測のための中間データを生成する。&lt;/p>
+&lt;pre tabindex="0">&lt;code>$ mkdir -p tests/coverage
+$ go test -cover ./... -covermode atomic -args -test.gocoverdir=&amp;#34;$PWD/tests/coverage&amp;#34;
+$ go tool covdata textfmt -i=./tests/coverage -o coverage.out
+&lt;/code>&lt;/pre>&lt;p>coverage.out がさまざまなツールの入力となる統計情報となる。例えば、このファイルを使って次のようにしてソースコードのヒートマップの html を作成できる。&lt;/p>
+&lt;pre tabindex="0">&lt;code>$ go tool cover -html coverage.out -o coverage.html
+&lt;/code>&lt;/pre>&lt;p>&lt;a href="https://github.com/nikolaydubina/go-cover-treemap">nikolaydubina/go-cover-treemap&lt;/a> を使うと treemap でカバレッジのヒートマップを確認できる。&lt;/p>
+&lt;pre tabindex="0">&lt;code>$ go-cover-treemap -coverprofile coverage.out &amp;gt; treemap.svg
+&lt;/code>&lt;/pre>&lt;p>カバレッジ計測向けのバイナリをビルドする。そのバイナリを起動するときに環境変数 GOCOVERDIR に単体テストのカバレッジの中間データが含まれるディレクトリを指定する。&lt;/p>
+&lt;pre tabindex="0">&lt;code>$ go build -cover -covermode atomic -o bin/api ./cmd/api/...
+$ GOCOVERDIR=&amp;#34;$PWD/tests/coverage&amp;#34; ./bin/api -verbose
+&lt;/code>&lt;/pre>&lt;p>このバイナリを使って起動した api server に対してリクエストを呼び出すことでカバレッジを計測してくれる。結合テストからバイナリ起動した api server に対してリクエストしたときに GOCOVERDIR に中間データが追加されていく。結合テストを完了したら最終的なカバレッジの統計情報を生成する。
+￼&lt;/p>
+&lt;pre tabindex="0">&lt;code>$ go tool covdata textfmt -i=./tests/coverage -o coverage.out
+&lt;/code>&lt;/pre>&lt;p>textfmt のヘルプをみたら同じディレクトリじゃなくてもよいみたい。&lt;/p>
+&lt;pre tabindex="0">&lt;code>$ go tool covdata textfmt -help
+...
+Examples:
+go tool covdata textfmt -i=dir1,dir2 -o=out.txt
+merges data from input directories dir1+dir2
+and emits text format into file &amp;#39;out.txt&amp;#39;
+&lt;/code>&lt;/pre></content></item><item><title>責任を扱うコミュニケーションの在り方</title><link>/diary/posts/2024/0913/</link><pubDate>Fri, 13 Sep 2024 13:10:44 +0900</pubDate><guid>/diary/posts/2024/0913/</guid><description>水曜日から継続していたメンバーのコードレビューをお昼頃に完了して、それからは自分の時間に集中して開発に取り組めた。途中、晩ご飯休憩もしながら翌2時頃までコードを書いていて issue を2つ fix した。
 隔週の雑談 顧問のはらさんと隔週の打ち合わせ。ここ1-2ヶ月はあまり議題がなくて近況について雑談した。いまの開発フェーズが終わらないと、私が開発以外にリソースを割いていないので他のことに取り組む余裕はないかもしれない。開発プロジェクトにおける、議題の1つで次のインタビュー記事の内容について雑談した。
 責任をすぐに相手に投げてしまわないこと。責任をこちらで負えるように日頃から信頼貯金を貯めていくことが大事です。責任を負うこと自体はたいへんだけど、仕事は楽になるんです。
 でも、人は責任を負いたくないと考えてしまうんですね。気持ちは分かりますよ、責任を負うのには胆力が必要ですから。そして責任を負いたくないから「いつまでですか？」と聞いてしまう。その途端、スケジュールを決めるのは相手の裁量になる。責任から降りて、自分から立場を下にして、受発注の関係にしてしまっています。
