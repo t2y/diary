@@ -1,4 +1,51 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Testing on</title><link>/diary/tags/testing/</link><description>Recent content in Testing on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 15 Oct 2024 08:52:01 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/testing/index.xml" rel="self" type="application/rss+xml"/><item><title>mongodb のテストデータ管理</title><link>/diary/posts/2024/1015/</link><pubDate>Tue, 15 Oct 2024 08:52:01 +0900</pubDate><guid>/diary/posts/2024/1015/</guid><description>今日のバドミントン練習はエアシャトルでリフティングを45分した。連続最大回数は146回できた。調子は悪くなく安定的に30回前後は続くものの、50回を超えたぐらいで失敗してしまう。打ち上げる高さの違いかな？と気付いて少し高めに打ち上げるようにしたら100回を超えた。エアシャトルはラケット面に対して適切な角度でコルクを打たないとあらぬ方向に飛んでいってしまう。高く打ち上げるほど、重力で落ちてくるときにコルクが下を向きやすくなるため、うまくシャトルを打ち上げやすくなる。ラケットコントロールをうまくできれば、エアシャトルをより低い高さでリフティングできるようになるかもしれない。まだ私はそのレベルには満たない。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Testing on</title><link>/diary/tags/testing/</link><description>Recent content in Testing on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 16 Oct 2024 11:36:49 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/testing/index.xml" rel="self" type="application/rss+xml"/><item><title>テストライブラリの導入</title><link>/diary/posts/2024/1016/</link><pubDate>Wed, 16 Oct 2024 11:36:49 +0900</pubDate><guid>/diary/posts/2024/1016/</guid><description>今日のバドミントン練習はエアシャトルでリフティングを25分した。連続最大回数は277回できた。初めてエアシャトルで200回を超えた。しかも夜なのに。やや高めに打ち上げれば安定的にリフティングできるようになってきた。連続回数が増えることはラケットとシャトルの距離感、ラケットコントロールが上達していることの証左でもあるので200回を超えたときは嬉しかった。
+テストライブラリの追加 結合テストを改善するために2つのライブラリを新たに使うよう導入した。
+gavv/httpexpect stretchr/testify testify は名前だけ知っていたが、実際に使ってみるのは初めて。testify は大きく3つの機能もっている。
+アサーション テストスィート モック うちらのチームで使うのはアサーション機能だけになる。モックも将来的に使う可能性はある。アサーションを使うと自分でエラーメッセージを書く手間を省ける。次のようなコードがあった場合、
+if expected != actual { t.Errorf(&amp;#34;expected %d, but got %d&amp;#34;, expected, actual) return } 次のようにエラーレポートを testify に委譲できる。このぐらいの利便性でしかないが、テストの規模が大きくなったり、量が増えていけば読み書きのコストを削減できるかもしれない。
+if !assert.Equal(expected, actual) { return } httpexpect はまったく知らなくて初めて使ってみたが、感触がよい。これもデフォルトのエラーレポート機能は testify のアサーション機能を使っているようにみえる。これまでは http リクエストに対して自前のユーティリティ関数と組み合わせて次のようなコードを書いていた。
+res, err := doHTTPRequest(body, UserPath, http.MethodGet, &amp;#34;&amp;#34;) if res.StatusCode != http.StatusOK { t.Errorf(&amp;#34;expected to get %d, but got %d&amp;#34;, http.StatusOK, res.StatusCode) return } var actual entry.User if err := convertBody(res, &amp;amp;actual); err !</description><content>&lt;p>今日のバドミントン練習はエアシャトルでリフティングを25分した。連続最大回数は277回できた。初めてエアシャトルで200回を超えた。しかも夜なのに。やや高めに打ち上げれば安定的にリフティングできるようになってきた。連続回数が増えることはラケットとシャトルの距離感、ラケットコントロールが上達していることの証左でもあるので200回を超えたときは嬉しかった。&lt;/p>
+&lt;h2 id="テストライブラリの追加">テストライブラリの追加&lt;/h2>
+&lt;p>結合テストを改善するために2つのライブラリを新たに使うよう導入した。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/gavv/httpexpect">gavv/httpexpect&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/stretchr/testify">stretchr/testify&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>testify は名前だけ知っていたが、実際に使ってみるのは初めて。testify は大きく3つの機能もっている。&lt;/p>
+&lt;ul>
+&lt;li>アサーション&lt;/li>
+&lt;li>テストスィート&lt;/li>
+&lt;li>モック&lt;/li>
+&lt;/ul>
+&lt;p>うちらのチームで使うのはアサーション機能だけになる。モックも将来的に使う可能性はある。アサーションを使うと自分でエラーメッセージを書く手間を省ける。次のようなコードがあった場合、&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-go" data-lang="go">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">expected&lt;/span> &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#a6e22e">actual&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">t&lt;/span>.&lt;span style="color:#a6e22e">Errorf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;expected %d, but got %d&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">expected&lt;/span>, &lt;span style="color:#a6e22e">actual&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>次のようにエラーレポートを testify に委譲できる。このぐらいの利便性でしかないが、テストの規模が大きくなったり、量が増えていけば読み書きのコストを削減できるかもしれない。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-go" data-lang="go">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">if&lt;/span> !&lt;span style="color:#a6e22e">assert&lt;/span>.&lt;span style="color:#a6e22e">Equal&lt;/span>(&lt;span style="color:#a6e22e">expected&lt;/span>, &lt;span style="color:#a6e22e">actual&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>httpexpect はまったく知らなくて初めて使ってみたが、感触がよい。これもデフォルトのエラーレポート機能は testify のアサーション機能を使っているようにみえる。これまでは http リクエストに対して自前のユーティリティ関数と組み合わせて次のようなコードを書いていた。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-go" data-lang="go">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">res&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">doHTTPRequest&lt;/span>(&lt;span style="color:#a6e22e">body&lt;/span>, &lt;span style="color:#a6e22e">UserPath&lt;/span>, &lt;span style="color:#a6e22e">http&lt;/span>.&lt;span style="color:#a6e22e">MethodGet&lt;/span>, &lt;span style="color:#e6db74">&amp;#34;&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">res&lt;/span>.&lt;span style="color:#a6e22e">StatusCode&lt;/span> &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#a6e22e">http&lt;/span>.&lt;span style="color:#a6e22e">StatusOK&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">t&lt;/span>.&lt;span style="color:#a6e22e">Errorf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;expected to get %d, but got %d&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">http&lt;/span>.&lt;span style="color:#a6e22e">StatusOK&lt;/span>, &lt;span style="color:#a6e22e">res&lt;/span>.&lt;span style="color:#a6e22e">StatusCode&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">actual&lt;/span> &lt;span style="color:#a6e22e">entry&lt;/span>.&lt;span style="color:#a6e22e">User&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">convertBody&lt;/span>(&lt;span style="color:#a6e22e">res&lt;/span>, &lt;span style="color:#f92672">&amp;amp;&lt;/span>&lt;span style="color:#a6e22e">actual&lt;/span>); &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">t&lt;/span>.&lt;span style="color:#a6e22e">Errorf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;failed to convert: %s&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>httpexpect を使うと次のように簡潔に記述できる上にエラーレポートを httpexpect に委譲できる。これはかなりテストコードを読み書きする工数を削減できると思う。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-go" data-lang="go">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">actual&lt;/span> &lt;span style="color:#a6e22e">entry&lt;/span>.&lt;span style="color:#a6e22e">User&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">e&lt;/span>.&lt;span style="color:#a6e22e">GET&lt;/span>(&lt;span style="color:#a6e22e">UserPath&lt;/span>).
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">WithJSON&lt;/span>(&lt;span style="color:#66d9ef">map&lt;/span>[&lt;span style="color:#66d9ef">string&lt;/span>]&lt;span style="color:#a6e22e">any&lt;/span>{ &lt;span style="color:#f92672">...&lt;/span> }).
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">Expect&lt;/span>().
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">Status&lt;/span>(&lt;span style="color:#a6e22e">http&lt;/span>.&lt;span style="color:#a6e22e">StatusOK&lt;/span>).
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">JSON&lt;/span>().
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">Decode&lt;/span>(&lt;span style="color:#f92672">&amp;amp;&lt;/span>&lt;span style="color:#a6e22e">actual&lt;/span>)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>mongodb のテストデータ管理</title><link>/diary/posts/2024/1015/</link><pubDate>Tue, 15 Oct 2024 08:52:01 +0900</pubDate><guid>/diary/posts/2024/1015/</guid><description>今日のバドミントン練習はエアシャトルでリフティングを45分した。連続最大回数は146回できた。調子は悪くなく安定的に30回前後は続くものの、50回を超えたぐらいで失敗してしまう。打ち上げる高さの違いかな？と気付いて少し高めに打ち上げるようにしたら100回を超えた。エアシャトルはラケット面に対して適切な角度でコルクを打たないとあらぬ方向に飛んでいってしまう。高く打ち上げるほど、重力で落ちてくるときにコルクが下を向きやすくなるため、うまくシャトルを打ち上げやすくなる。ラケットコントロールをうまくできれば、エアシャトルをより低い高さでリフティングできるようになるかもしれない。まだ私はそのレベルには満たない。
 json からの mongodb にテストデータを追加する 結合テストの改善をしていてテストデータを json で管理したい。これまで go の構造体でテストデータを定義して mongodb の client で insert するといったことをしていた。それも役に立つのだけど、共有のテストデータがどこにあるのか、ソースコードに書いてしまうと時間とともに散らばっていって把握できなくなっていく。テストデータを管理するためのディレクトリを設け、そこに json で記述してどのテスト関数で使うかといったメタ情報も定義できるようにした。次のコードは mongodb に json からデータをインポートするための原理を説明するための疑似コードのようなもの。
 go の構造体で定義したテストデータと json で管理するのとどちらがよいかというのは議論の余地はあるし、一概に言えないとは思う。
 type testData struct { Documents []bson.Raw `bson:&amp;#34;documents&amp;#34;` } func InsertData( t *testing.T, client *mongo.Client, b []byte, ) (func()) { var data testData err := bson.UnmarshalExtJSON(b, false, &amp;amp;data) require.NoError(t, err, &amp;#34;failed to get json files: %v&amp;#34;, err) ctx := context.Background() col := client.Database(dbName).Collection(&amp;#34;mycollection&amp;#34;) r, err := col.</description><content>&lt;p>今日のバドミントン練習はエアシャトルでリフティングを45分した。連続最大回数は146回できた。調子は悪くなく安定的に30回前後は続くものの、50回を超えたぐらいで失敗してしまう。打ち上げる高さの違いかな？と気付いて少し高めに打ち上げるようにしたら100回を超えた。エアシャトルはラケット面に対して適切な角度でコルクを打たないとあらぬ方向に飛んでいってしまう。高く打ち上げるほど、重力で落ちてくるときにコルクが下を向きやすくなるため、うまくシャトルを打ち上げやすくなる。ラケットコントロールをうまくできれば、エアシャトルをより低い高さでリフティングできるようになるかもしれない。まだ私はそのレベルには満たない。&lt;/p>
@@ -117,7 +164,7 @@ type testData struct { Documents []bson.Raw `bson:&amp;#34;documents&amp;#34;` }
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h3 id="仕事は楽しいかねhahahugoshortcode1112s0hbhb-の考察">&lt;a href="/diary/diary/posts/2024/1008/">仕事は楽しいかね？&lt;/a> の考察&lt;/h3>
+&lt;h3 id="仕事は楽しいかねhahahugoshortcode1111s0hbhb-の考察">&lt;a href="/diary/diary/posts/2024/1008/">仕事は楽しいかね？&lt;/a> の考察&lt;/h3>
 &lt;p>まとめを見返しながら、だいたいの項目は理解または支持できる。1つだけ次の項目が私には欠けていることに気付いた。&lt;/p>
 &lt;blockquote>
 &lt;p>毎日1つ試し続ければ必ず上達や進歩ができる&lt;/p>
