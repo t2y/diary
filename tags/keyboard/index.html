@@ -1,0 +1,116 @@
+<!doctype html><html lang=en><head><title>Keyboard :: </title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=keywords content><meta name=robots content="noodp"><link rel=canonical href=/diary/tags/keyboard/><link rel=stylesheet href=/diary/styles.css><link rel=stylesheet href=/diary/style.css><link rel="shortcut icon" href=/diary/favicon.ico><meta name=twitter:card content="summary"><meta name=twitter:site content="t2y"><meta name=twitter:creator content><meta property="og:locale" content="en"><meta property="og:type" content="website"><meta property="og:title" content="Keyboard"><meta property="og:description" content><meta property="og:url" content="/diary/tags/keyboard/"><meta property="og:site_name" content><meta property="og:image" content="/diary/favicon.ico"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="627"><link href=/diary/tags/keyboard/index.xml rel=alternate type=application/rss+xml title></head><body class=green><div class="container full headings--one-size"><header class=header><div class=header__inner><div class=header__logo><a href=/diary><div class=logo>forest nook</div></a></div><ul class="menu menu--mobile"><li class=menu__trigger>Menu&nbsp;▾</li><li><ul class=menu__dropdown><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul></li></ul></div><nav class=navigation-menu><ul class="navigation-menu__inner menu--desktop"><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul></nav></header><div class=content><h1>Posts for: #Keyboard</h1><div class=posts><article class="post on-list"><h1 class=post-title><a href=/diary/posts/2024/1019/>コンパクトな REALFORCE R1 キーボード</a></h1><div class=post-meta><time class=post-date>2024-10-19</time></div><span class=post-tags>#<a href=/diary/tags/keyboard/>keyboard</a>&nbsp;
+#<a href=/diary/tags/device/>device</a>&nbsp;
+#<a href=/diary/tags/noh/>noh</a>&nbsp;
+</span><img src=/diary/img/2024/1019_r1.jpg class=post-cover alt="コンパクトな REALFORCE R1 キーボード" title="Cover Image"><div class=post-content><p>今日は午前中寝ていたのと雨降りだったのもありバドミントン練習はお休みした。</p><h2 id=realforce-r1-レビュー>REALFORCE R1 レビュー</h2><p>bluetooth の初回ペアリング設定を過去の <a href=/diary/posts/2021/1102/#realforce-のワイヤレスモデル>R3 のペアリング設定</a> をみながら行った。手順を忘れていたのでまた書いておく。agent を介してパスキーを入力する必要がある。その手順が少しわかりにくい。30分ほどペアリング設定をうまくできなくてやり直ししたりしていた。滅多にやらないことだし。今回も GUI ツールではなく bluetoothctl を実行してペアリングした。</p><pre tabindex=0><code>$ bluetoothctl
+[REALFORCE_2 (R3)]# default-agent
+Default agent request successful
+[REALFORCE_2 (R3)]# scan on
+Discovery started
+... (デバイスを検索しているうちに RC1 がみつかる)
+... MAC アドレスを確認してペアリングする
+
+[REALFORCE_2 (R3)]# pair F7:62:4B:02:D6:EB
+Attempting to pair with F7:62:4B:02:D6:EB  (キーボードに接続を試みる)
+..
+[agent] Passkey: 946185 (エージェントがパスキーを受け取る)
+...
+</code></pre><p>エージェントが受け取ったパスキーを、bluetooth 接続するキーボードで入力して Enter を押下する。</p><pre tabindex=0><code>[NEW] Primary Service (Handle 0x0000)
+	/org/bluez/hci0/dev_F7_62_4B_02_D6_EB/service000a
+	00001801-0000-1000-8000-00805f9b34fb
+	Generic Attribute Profile
+[NEW] Primary Service (Handle 0x0000)
+	/org/bluez/hci0/dev_F7_62_4B_02_D6_EB/service000b
+	0000180a-0000-1000-8000-00805f9b34fb
+	Device Information
+[NEW] Characteristic (Handle 0x0000)
+	/org/bluez/hci0/dev_F7_62_4B_02_D6_EB/service000b/char000c
+	00002a29-0000-1000-8000-00805f9b34fb
+	Manufacturer Name String
+[NEW] Characteristic (Handle 0x0000)
+	/org/bluez/hci0/dev_F7_62_4B_02_D6_EB/service000b/char000e
+	00002a50-0000-1000-8000-00805f9b34fb
+	PnP ID
+[NEW] Primary Service (Handle 0x0000)
+	/org/bluez/hci0/dev_F7_62_4B_02_D6_EB/service0010
+	0000180f-0000-1000-8000-00805f9b34fb
+	Battery Service
+[NEW] Characteristic (Handle 0x0000)
+	/org/bluez/hci0/dev_F7_62_4B_02_D6_EB/service0010/char0011
+	00002a19-0000-1000-8000-00805f9b34fb
+	Battery Level
+[NEW] Descriptor (Handle 0x0000)
+	/org/bluez/hci0/dev_F7_62_4B_02_D6_EB/service0010/char0011/desc0013
+	00002902-0000-1000-8000-00805f9b34fb
+	Client Characteristic Configuration
+[CHG] Device F7:62:4B:02:D6:EB UUIDs: 00001800-0000-1000-8000-00805f9b34fb
+[CHG] Device F7:62:4B:02:D6:EB UUIDs: 00001801-0000-1000-8000-00805f9b34fb
+[CHG] Device F7:62:4B:02:D6:EB UUIDs: 0000180a-0000-1000-8000-00805f9b34fb
+[CHG] Device F7:62:4B:02:D6:EB UUIDs: 0000180f-0000-1000-8000-00805f9b34fb
+[CHG] Device F7:62:4B:02:D6:EB UUIDs: 00001812-0000-1000-8000-00805f9b34fb
+[CHG] Device F7:62:4B:02:D6:EB ServicesResolved: yes
+[CHG] Device F7:62:4B:02:D6:EB Paired: yes
+Pairing successful
+[CHG] Device F7:62:4B:02:D6:EB Modalias: usb:v0853p031Ad0001
+...
+[REALFORCE_2 (R3)]# exit
+</code></pre><p>ペアリングが成功したらキーボード入力できるようになる。bluetoothctl を eixt してから再実行すると今度は RC1 で実行された。</p><pre tabindex=0><code>$ bluetoothctl
+[RC1_1]# info
+Device F7:62:4B:01:D6:EB (random)
+	Name: RC1_1
+	Alias: RC1_1
+	Appearance: 0x03c1
+	Icon: input-keyboard
+	Paired: yes
+	Trusted: no
+	Blocked: no
+	Connected: yes
+	WakeAllowed: yes
+	LegacyPairing: no
+	UUID: Generic Access Profile    (00001800-0000-1000-8000-00805f9b34fb)
+	UUID: Generic Attribute Profile (00001801-0000-1000-8000-00805f9b34fb)
+	UUID: Device Information        (0000180a-0000-1000-8000-00805f9b34fb)
+	UUID: Battery Service           (0000180f-0000-1000-8000-00805f9b34fb)
+	UUID: Human Interface Device    (00001812-0000-1000-8000-00805f9b34fb)
+	Modalias: usb:v0853p031Ad0001
+	Battery Percentage: 0x5b (91)
+[RC1_1]# trust 
+[CHG] Device F7:62:4B:02:D6:EB Trusted: yes
+</code></pre><p>この日記を R1 のキーボードで書いている。R3 と比べてたしかにコンパクトで軽い。キーボードを持ち運びするならよさそう。R3 と比べて右シフトキーが小さいのでその隣にある PgUp キーをタイプミスしてしまう。私は左右両方のシフトキーを使う。!記号などの左手でタイプするときは右シフトキーを使う。それからコンパクトサイズのせいか、キーとキーの隙間が若干狭くなったように感じる。矢印キーの位置もエンターキーの下の方に移動している。R3 の矢印キーの位置を無意識にタイプしようとして空打ちしてしまう。意外と矢印キーを私は使っていたことに気付く。これらの操作の違和感は慣れの問題だと思う。キーボードの打鍵感も R3 と比べて若干違う。気持ち、深さが増して軽い印象を受ける。キー荷重は 45g を選択した。R3 では変荷重モデルを使っていたので小指キーが 30g から 45g に変わる。その違いはあまり感じない。</p><p>キーボードは毎日たくさん使うものだから慣れによる無意識の最適化が自然と行われる。私の用途では R3 と R1 では右シフトキーと矢印キーの位置の違いに違和感を感じる。両方のキーボードを使い分けるというようにはならないのかもしれない。どちらかに慣れるともう一方に違和感を抱くように思える。</p><h2 id=能楽の勉強>能楽の勉強</h2><p><a href=https://nohgaku-kyodo.com/repertoire/yondemiru-yohkihi20241019>玄宗皇帝と楊貴妃の愛情物語の後日談《楊貴妃》 第41回能のことばを読んでみる会</a> に参加してきた。<a href=/diary/posts/2024/0630/#能楽の勉強>前回の所感はここ</a> 。中国史上もっとも有名な美人といわれる <a href=https://ja.wikipedia.org/wiki/%E6%A5%8A%E8%B2%B4%E5%A6%83>楊貴妃</a> の幽霊を主人公とした能になる。<a href=https://ja.wikipedia.org/wiki/%E6%96%B9%E5%A3%AB>方士</a> と呼ばれる修行者が玄宗皇帝の命令で楊貴妃の魂魄の在り処を探していて蓬莱島でみつけて話しを聞くといった、とくに変わったこともない普通の物語の構成になっている。作者ははっきり分かっていないらしいが、世阿弥の娘婿になる金春禅竹 (こんぱる ぜんちく) ではないかと推定されるとのこと。</p><p><a href=https://ja.wikipedia.org/wiki/%E8%B2%B4%E5%A6%83>貴妃</a> というのは皇帝の后に与えられる位の1つで皇后に次ぐ高い位だという。楊が姓になる。唐の <a href=https://ja.wikipedia.org/wiki/%E7%8E%84%E5%AE%97_(%E5%94%90)>玄宗皇帝</a> は在位期間が45年と長い。前半は善政をしいて唐は絶頂期を迎える。後半は楊貴妃にうつつを抜かすようになる。楊一族が政治の重要なポストを占めるようになり、玄宗皇帝が政治に関心をなくして最終的に反乱が起きて国が乱れてしまう。その後、白居易 (はくきょい) という著名な詩人が玄宗皇帝と楊貴妃の物語を <a href=https://ja.wikipedia.org/wiki/%E9%95%B7%E6%81%A8%E6%AD%8C>長恨歌</a> にした。この漢詩が素晴らしい内容だと評価されて後世にまで楊貴妃の物語が広く伝わる影響を与えたという。</p><p>源氏物語に出てくる <a href=https://ja.wikipedia.org/wiki/%E6%A1%90%E5%A3%BA%E6%9B%B4%E8%A1%A3>桐壺更衣</a> (光源氏の母) が楊貴妃のイメージや長恨歌から引用されて創作されているという。この能は源氏物語に出てくる長恨歌を引用した文章を引用して作られてもいて、伝言ゲームのように、引用を繰り返すうちに少しその内容が変わってしまうといったことも起きているらしい。おもしろかったのが、漢詩に序文をつけたりするのを詩序と呼ぶ。オリジナルの中国の長恨歌には詩序がないのに、日本に伝わって残っている長恨歌には詩序が残っていて、その詩序の内容を能でも引用していたりする。当時は長恨歌には詩序があったのに現代では失われてしまった可能性もないわけではないが、おそらく日本に伝わってきた後に誰かが詩序を追加したのではないかと考えられているらしい。</p><blockquote><p>会者定離ぞと 聞く時は、逢うこそ別れなりけれ</p></blockquote><p>以前 <a href=/diary/posts/2023/1021/#能楽の勉強>蝉丸の能</a> を読んだときにも <a href=https://ja.wikipedia.org/wiki/%E4%BC%9A%E8%80%85%E5%AE%9A%E9%9B%A2>会者定離 (えしゃじょうり)</a> が出てきた。一種の悟りのような表現だと朝原さんが解説していて私も記憶によく残っている。直接なにかの役に立つわけではないけれど、こういう言葉や概念に触れて自分の価値観をふりかえる機会があるのはおもしろい。能の言葉を読んでいるとそういう出会いがある。</p></div></article><article class="post on-list"><h1 class=post-title><a href=/diary/posts/2022/1004/>備えあれば憂いなし</a></h1><div class=post-meta><time class=post-date>2022-10-04</time></div><span class=post-tags>#<a href=/diary/tags/keyboard/>keyboard</a>&nbsp;
+#<a href=/diary/tags/device/>device</a>&nbsp;
+#<a href=/diary/tags/biztrip/>biztrip</a>&nbsp;</span><div class=post-content><p>2時に寝て6時に起きた。眠り方がわからなくなってきた雰囲気。昨日に引き続き、淡々とリリース前の細かいバグ修正をしていた。フロントエンドの ux のよくないところを修正したりしていた。</p><h2 id=m2-macbook-air-購入>m2 macbook air 購入</h2><p>次のお仕事は東京出張もちょいちょい入る (自オフィスのデスクトップマシンで開発できない) ことからラップトップの開発マシンがあった方がよいなと気付いて <a href=https://www.apple.com/jp/macbook-air/>M2 MacBook Air</a> を購入した。2022年7月に販売開始されたそうなのでタイミングとしてはちょうどよかった。本当は macos である必要はない。linux が動くラップトップなら何でもよいのだけど、dell のラップトップをみても値段がそんなに安くない。数万円ぐらいの違いしか変わらないなら macbook にしようと思って決断した。1週間ほどで納品される。</p><p>いま macbook を使わなくなった理由の1つとしてバタフライキーボードが大きい。前職でも2台ほどキーボードのキー入力が一部受け付けなくなって交換してもらったりしていた。2016年モデルの macbook を持っているけど、もうバタフライキーボードを使いたくないという忌避感が強い。2019年からシザーキーボードが復活しているらしい。使ったことない他メーカーのラップトップに躊躇する理由もキーボードが気に入らないものだったらどうしようという不安がある。いまデスクトップマシンだから realforce の打鍵に慣れ親しんでしまい、キーボードの使い心地に敏感になっていると思う。</p><p>新しいお仕事、新しい挑戦、新しいマシン。気持ちを入れ替えて集中したい。</p><h2 id=東京出張の準備>東京出張の準備</h2><p>次のお仕事のキックオフのため、10月31日の週に1週間ほど東京出張しようと考えている。コロナ禍になってから約3年間ほとんど神戸を出ていない。大阪すら年に1-2回ぐらいしか行っていない。東京は約3年ぶり。新幹線やホテルの予約の仕方も忘れてしまった。せっかく行くので長い間、会っていない友だちや知人に挨拶できればと思う。</p></div></article><article class="post on-list"><h1 class=post-title><a href=/diary/posts/2021/1102/>ワイヤレス REALFORCE</a></h1><div class=post-meta><time class=post-date>2021-11-02</time></div><span class=post-tags>#<a href=/diary/tags/book/>book</a>&nbsp;
+#<a href=/diary/tags/keyboard/>keyboard</a>&nbsp;
+#<a href=/diary/tags/device/>device</a>&nbsp;
+#<a href=/diary/tags/subcontract/>subcontract</a>&nbsp;
+</span><img src=/diary/img/2021/1102_realforce.jpg class=post-cover alt="ワイヤレス REALFORCE" title="Cover Image"><div class=post-content><p>3時に寝て7時に起きた。ウォーキングから帰ってきて0時にベッドに入ったものの、選挙結果の総括記事を読んだり、<a href=http://yorimoi.com/story/>宇宙よりも遠い場所</a> をみたりしていたら3時になってしまった。全13話すべてみた。どちらかと言えばおもしろかったけど、ツィートみて期待値が高かった分、そこまで私の中に響くものはなかったかな。南極へ行く道中や南極の生活がわりと遊んでいるようにみえてあまり大変そうにみえなかった。とはいえ、実際の船上や南極でもやることなくて娯楽ないと持て余すのかなとも思えた。<a href=https://www.nipr.ac.jp/antarctic/>南極地域観測隊</a> って現実にあるんだなとみてた。</p><blockquote class=twitter-tweet><p lang=ja dir=ltr>僕はだいたいプログラミングしてるときは既に内容を知ってるアニメを常に流してるんですが今週はまた「宇宙よりも遠い場所」を観ていました。これほどまでに13話すべて足すところも引くところもない完璧な作品は他に早々思いつかないです。</p>&mdash; Fumihiko Shiroyama (@fushiroyama) <a href="https://twitter.com/fushiroyama/status/1453610090632663048?ref_src=twsrc%5Etfw">October 28, 2021</a></blockquote><script async src=https://platform.twitter.com/widgets.js></script><h2 id=データ指向アプリケーションデザイン>データ指向アプリケーションデザイン</h2><p>9.3 順序の保証を読んだ。</p><blockquote><p>データベースや分散システムにおいて順序付けは重要な基本的概念である。順序と線形化可能性、合意との間には深い関係がある。順序付けが重要なのは <strong>因果関係</strong> を保つのに役立つことがあげられる。</p><p><strong>全順序</strong> があれば任意の2つの数を比較して大小関係を必ず判断できる。たとえば自然数には全順序があると言える。線形化可能なシステムは操作に全順序がある。一方で因果律には並行という概念があり、どちらが先に行われたかが重要ではない場合に操作が並行に行われたとみなせる。したがって、因果律は全順序ではなく、 <strong>半順序</strong> を定義すると言える。半順序とは、大小関係を比較できる場合もあるしできない場合もあることを指す。</p><p>因果律に基づく順序と線形化可能性との関係は、線形化可能性は因果関係を <strong>暗に含む</strong> といえる。線形化可能性を持つシステムは、因果律を正しく保持する。しかし、システムを線形化可能にすればパフォーマンスや可用性が損なわれる可能性がある。特にネットワークの遅延が大きい（たとえば地理的に分散している）システムで問題になる。そのため、分散データシステムの中には線形化可能性をあきらめることでパフォーマンスを向上させたものの、扱いが難しいものもある。因果律を保持する方法は、線形化可能性が唯一というわけではなく他の方法もある。多くの場合、システムに本当に必要なのは線形化可能性ではなく因果律における一貫性だけであり、これは線形化可能性よりも効率の良い実装が可能となる。</p><p>因果律における一貫性を保持する方法として次のものがあげられている。</p><ul><li>シーケンス番号またはタイムスタンプ</li><li>ランポートタイムスタンプ（Lamport timestamp）</li></ul><p>しかし、分散システムではネットワークを介して他のノードの状態を確認しないと因果律の一貫性を確定できない。たとえシングルリーダーアプリケーションであっても、リーダーに障害が発生したときにリーダーのフェイルオーバーが必要となる。この問題は <strong>全順序のブロードキャスト</strong> と呼ばれる。ZooKeeper や etcd のような合意サービスが全順序ブロードキャストを実装している。</p><p>詳細は省くが、ネットワークを介した分散システムで線形化可能な compare-and-set （あるいは increment-and-get ）を実装しようとすると、必然的に合意アルゴリズムに行き着く。これらと全順序ブロードキャストは等価であることが証明できる。したがって、これらの問題のいずれかを解決できれば、他方の問題の解決策に変換できるという点は重大な知見である。</p></blockquote><h2 id=realforce-のワイヤレスモデル>REALFORCE のワイヤレスモデル</h2><p>ユーザーから待望されていた REALFORCE のワイヤレスモデルがとうとう発売された。</p><ul><li><a href=https://weekly.ascii.jp/elem/000/004/073/4073042/>高級キーボードREALFORCEから待望のワイヤレス機「R3」が登場、見どころは？</a></li></ul><p>先週から amazon で予約販売を受け付けていたので <a href=https://amzn.to/3EJivAF>REALFORCE 東プレ R3 キーボード 静音 ハイブリッドモデル 日本語配列 91キー ブラック R3HC12</a> を予約して、本日届いた。私はとくに必要ないけど、bluetooth のマルチペアリングに対応していて最大4つまで接続できる。オフィスの机はそこそこ広いけれど、本とラップトップとモニター2台置いたらスペースが埋まってしまっている。ご飯を食べるときや書類を作成するときにキーボードを立てかけたりしてスペースを確保していて不便に感じていた。</p><p>ubuntu 環境での bluetooth の設定に少し手こずった。GUI の設定マネージャー (blueman) でペアリングしようとしても失敗する。キーボードの情報は取得できるけど、ペアリングは失敗する。試しに macos でペアリングしてみたらパスキーの入力画面が表示されて、6桁の数字を入力して ENTER した後に接続するとペアリングできた。blueman だとパスキーが表示されないなと気付いてググってたら <a href="https://bbs.archlinux.org/viewtopic.php?id=174239">[SOLVED] Bluetooth keyboard: Unable to pair (authentication timeout)</a> を見かけて、bluetoothctl でも設定できそうなのでやってみた。</p><pre tabindex=0><code>キーボードの情報を表示
+[REALFORCE_3]# info F6:9D:A5:80:B7:1F
+Device F6:9D:A5:80:B7:1F (random)
+	Name: REALFORCE_3
+	Alias: REALFORCE_3
+	Appearance: 0x03c1
+	Icon: input-keyboard
+	Paired: no
+	Trusted: yes
+	Blocked: no
+	Connected: yes
+	LegacyPairing: no
+	UUID: Generic Access Profile    (00001800-0000-1000-8000-00805f9b34fb)
+	UUID: Generic Attribute Profile (00001801-0000-1000-8000-00805f9b34fb)
+	UUID: Device Information        (0000180a-0000-1000-8000-00805f9b34fb)
+	UUID: Battery Service           (0000180f-0000-1000-8000-00805f9b34fb)
+	UUID: Human Interface Device    (00001812-0000-1000-8000-00805f9b34fb)
+	RSSI: -45
+</code></pre><pre tabindex=0><code>ペアリングを実行
+* エージェントからパスキーが表示されて、キーボードで入力して ENTER したらペアリングに成功した
+[bluetooth]# pair F6:9D:A5:80:B7:1F
+Attempting to pair with F6:9D:A5:80:B7:1F
+[CHG] Device F6:9D:A5:80:B7:1F Connected: yes
+[agent] Passkey: 323759
+[CHG] Device F6:9D:A5:80:B7:1F Paired: yes
+Pairing successful
+[CHG] Device F6:9D:A5:80:B7:1F Modalias: usb:v08ACp0302d0001
+[CHG] Device F6:9D:A5:80:B7:1F ServicesResolved: yes
+</code></pre><pre tabindex=0><code>キーボードを信頼する
+[REALFORCE_3]# trust F6:9D:A5:80:B7:1F
+Changing F6:9D:A5:80:B7:1F trust succeeded
+</code></pre><h2 id=契約書の確認>契約書の確認</h2><p><a href=/diary/posts/2021/1026/#選考面談>先日</a> の業務委託案件の契約書が届いたので内容を確認した。</p><p>これまで <a href=https://www.cloudsign.jp/>クラウドサイン</a> でしか契約したことがなくて、紙の契約書で契約を締結するのは初めての挑戦でもある。<a href=https://www.post.japanpost.jp/service/letterpack/>レターパック</a> を使って郵送するのがお作法？といったところから調べてた。明後日から働き始める。フルリモートなので物理的な職場は変わらないけど、新しい職場は緊張するな。うまく入っていけるやろか。フルリモートの経験もだいぶたまってきたし、体調も万全だし、憂うことは何もないはず。いまの状況は純粋に私ががんばるだけだ。</p></div></article><div class=pagination><div class=pagination__buttons></div></div></div></div><footer class=footer><div class=footer__inner><div class=copyright><span>© 2024 Powered by <a href=https://gohugo.io>Hugo</a></span>
+<span>:: <a href=https://github.com/panr/hugo-theme-terminal target=_blank>Theme</a> made by <a href=https://github.com/panr target=_blank>panr</a></span></div></div></footer><script type=text/javascript src=/diary/bundle.min.js></script></div></body></html>
