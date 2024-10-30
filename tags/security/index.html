@@ -1,4 +1,71 @@
-<!doctype html><html lang=en><head><title>Security :: </title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=keywords content><meta name=robots content="noodp"><link rel=canonical href=/diary/tags/security/><link rel=stylesheet href=/diary/styles.css><link rel=stylesheet href=/diary/style.css><link rel="shortcut icon" href=/diary/favicon.ico><meta name=twitter:card content="summary"><meta name=twitter:site content="t2y"><meta name=twitter:creator content><meta property="og:locale" content="en"><meta property="og:type" content="website"><meta property="og:title" content="Security"><meta property="og:description" content><meta property="og:url" content="/diary/tags/security/"><meta property="og:site_name" content><meta property="og:image" content="/diary/favicon.ico"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="627"><link href=/diary/tags/security/index.xml rel=alternate type=application/rss+xml title></head><body class=green><div class="container full headings--one-size"><header class=header><div class=header__inner><div class=header__logo><a href=/diary><div class=logo>forest nook</div></a></div><ul class="menu menu--mobile"><li class=menu__trigger>Menu&nbsp;▾</li><li><ul class=menu__dropdown><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul></li></ul></div><nav class=navigation-menu><ul class="navigation-menu__inner menu--desktop"><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul></nav></header><div class=content><h1>Posts for: #Security</h1><div class=posts><article class="post on-list"><h1 class=post-title><a href=/diary/posts/2024/0626/>gitlab ci/cd のトークン移行</a></h1><div class=post-meta><time class=post-date>2024-06-26</time></div><span class=post-tags>#<a href=/diary/tags/gitlab/>gitlab</a>&nbsp;
+<!doctype html><html lang=en><head><title>Security :: </title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=keywords content><meta name=robots content="noodp"><link rel=canonical href=/diary/tags/security/><link rel=stylesheet href=/diary/styles.css><link rel=stylesheet href=/diary/style.css><link rel="shortcut icon" href=/diary/favicon.ico><meta name=twitter:card content="summary"><meta name=twitter:site content="t2y"><meta name=twitter:creator content><meta property="og:locale" content="en"><meta property="og:type" content="website"><meta property="og:title" content="Security"><meta property="og:description" content><meta property="og:url" content="/diary/tags/security/"><meta property="og:site_name" content><meta property="og:image" content="/diary/favicon.ico"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="627"><link href=/diary/tags/security/index.xml rel=alternate type=application/rss+xml title></head><body class=green><div class="container full headings--one-size"><header class=header><div class=header__inner><div class=header__logo><a href=/diary><div class=logo>forest nook</div></a></div><ul class="menu menu--mobile"><li class=menu__trigger>Menu&nbsp;▾</li><li><ul class=menu__dropdown><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul></li></ul></div><nav class=navigation-menu><ul class="navigation-menu__inner menu--desktop"><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul></nav></header><div class=content><h1>Posts for: #Security</h1><div class=posts><article class="post on-list"><h1 class=post-title><a href=/diary/posts/2024/1030/>nginx の設定調査</a></h1><div class=post-meta><time class=post-date>2024-10-30</time></div><span class=post-tags>#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
+#<a href=/diary/tags/linux/>linux</a>&nbsp;
+#<a href=/diary/tags/container/>container</a>&nbsp;
+#<a href=/diary/tags/security/>security</a>&nbsp;</span><div class=post-content><p>開発合宿の準備をしていて今日のバドミントン練習はお休み。</p><h2 id=nginx-のリバースプロキシ>nginx のリバースプロキシ</h2><p>compose に起動している2つのサービスを同じポート番号で共有したい。nginx を tls 終端にしていてリバースプロキシとして構築している。ルーティングするには2つの方法がある。次のような compose.yml を作ってローカルのファイルシステムをマウントして設定変更しながら検証する。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=display:flex><span><span style=color:#f92672>services</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>proxy</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>container_name</span>: <span style=color:#ae81ff>proxy</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>image</span>: <span style=color:#ae81ff>docker.io/library/nginx:stable</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>8443</span>:<span style=color:#ae81ff>8443</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>network_mode</span>: <span style=color:#e6db74>&#34;host&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>./nginx:/etc/nginx</span>
+</span></span></code></pre></div><h3 id=sub-domain-based-routing>sub-domain based routing</h3><p>クラウドでは普通のやり方がサブドメインのホスト名でルーティングを行う。設定もシンプルでファイルも管理しやすいように分割できてよいと思える。システム変更時の移行も名前を切り替えればよいので移行しやすい。</p><ul><li>nginx.conf</li></ul><pre tabindex=0><code>http {
+    sendfile on;
+
+    upstream web-api1 {
+        server localhost:8801;
+    }
+
+    upstream web-api2 {
+        server localhost:8802;
+    }
+
+    ssl_certificate /etc/nginx/ssl/sample.crt;
+    ssl_certificate_key /etc/nginx/ssl/sample.key;
+
+    include /etc/nginx/sites-enabled/*;
+}
+</code></pre><ul><li>nginx/sites-enabled/www.sub1.example.com</li></ul><pre tabindex=0><code>server {
+    listen 8443 ssl;
+    server_name sub1.example.com;
+    location / {
+        include     /etc/nginx/common_proxy.conf;
+        proxy_pass  http://web-api1;
+    }
+}
+</code></pre><h3 id=path-based-routing>path based routing</h3><p>サブドメインの方が私は好みではあるが、サブドメインをネームサーバーに登録したり、tls の証明書にも複数ホストの考慮が必要になってくる。パスでルーティングするなら1台のマシンのように仮想的にみせられるというメリットはある。</p><pre tabindex=0><code>http {
+    sendfile on;
+
+    upstream web-api1 {
+        server localhost:8801;
+    }
+
+    upstream web-api2 {
+        server localhost:8802;
+    }
+
+    ssl_certificate /etc/nginx/ssl/sample.crt;
+    ssl_certificate_key /etc/nginx/ssl/sample.key;
+
+    server {
+        listen 8443 ssl;
+
+        location /app1/ {
+            include     /etc/nginx/common_proxy.conf;
+            proxy_pass  http://web-api1;
+        }
+
+        location /app2/ {
+            include     /etc/nginx/common_proxy.conf;
+            proxy_pass  http://web-api2;
+        }
+    }
+}
+</code></pre><h2 id=コンテナの-capability>コンテナの capability</h2><p>docker compose を rootless mode で使っていて 443 ポートを使いたいと言われてどうしたらいいのだろう？といままで考えていないことに気付いた。調べたらすぐにやり方が書いてあった。</p><ul><li><a href=https://docs.docker.com/engine/security/rootless/#exposing-privileged-ports>Exposing privileged ports</a></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ sudo setcap cap_net_bind_service<span style=color:#f92672>=</span>ep <span style=color:#66d9ef>$(</span>which rootlesskit<span style=color:#66d9ef>)</span>
+</span></span><span style=display:flex><span>$ systemctl --user restart docker
+</span></span></code></pre></div><p>これだけで compose サービスの1つにポート設定できた。めちゃ簡単だった。いままで capability を設定したことがなかったのと、権限周りはややこしいという先入観もあって触る機会がなかった。いろいろ洗練されて抽象化されているのだと推測する。バックエンドの場合は任意のポート番号を使えばよいから capability の設定をして 1024 以下のポート番号を使わないといけない理由はあまりない気はするが、そういう設定もできるようにはみえる。そういう話題すら聞いたことがなかった。</p><ul><li><a href=https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-capabilities-for-a-container>Set capabilities for a Container</a></li></ul></div></article><article class="post on-list"><h1 class=post-title><a href=/diary/posts/2024/0626/>gitlab ci/cd のトークン移行</a></h1><div class=post-meta><time class=post-date>2024-06-26</time></div><span class=post-tags>#<a href=/diary/tags/gitlab/>gitlab</a>&nbsp;
 #<a href=/diary/tags/ci/cd/>ci/cd</a>&nbsp;
 #<a href=/diary/tags/security/>security</a>&nbsp;
 #<a href=/diary/tags/founding/>founding</a>&nbsp;
@@ -127,49 +194,6 @@
 </span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    --checksum <span style=color:#ae81ff>\
 </span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    --delete <span style=color:#ae81ff>\
 </span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    local/ <span style=color:#e6db74>${</span>USER<span style=color:#e6db74>}</span>@<span style=color:#e6db74>${</span>HOST<span style=color:#e6db74>}</span>::<span style=color:#e6db74>${</span>RSYNC_DIR<span style=color:#e6db74>}</span>
-</span></span></code></pre></div><ul><li><a href=https://jyn.jp/rsync-daemon-over-ssh/>rsync+sshはdaemonモードを使うと更に安全になる</a></li></ul><h2 id=llmを使ってみる会>LLMを使ってみる会</h2><p><a href=https://fin-py.connpass.com/event/279271/>LLMを使ってみる会</a> に参加した。私も chatgpt に調べものやちょっとしたことを聞くようになったりしているが、他の人たちがどんな用途に使っているのかも知りたくて参加してみた。fin-py のイベントだったのでみんな金融系のドキュメントの要約に使っているのが多そうにみえた。あとは研究テーマとして gpt/llm を取り上げている人たちも何人かいた。</p></div></article><article class="post on-list"><h1 class=post-title><a href=/diary/posts/2023/0307/>暗号化と復号化を実装してみる</a></h1><div class=post-meta><time class=post-date>2023-03-07</time></div><span class=post-tags>#<a href=/diary/tags/go/>go</a>&nbsp;
-#<a href=/diary/tags/security/>security</a>&nbsp;</span><div class=post-content><p>不定期に寝て7時半に起きた。起きてからシャワー浴びたらしゃんとした。昨日と同様に昼間働いて、ホテルに戻ってきて2-3時間寝てから夜に2-3時間かけて次のコードを書いた。</p><h2 id=go-での暗号化復号化>go での暗号化/復号化</h2><p>ある機密情報を扱うので暗号化して普通には「みえない」ようにしたい。まったくわからないのでググったら次の記事がみつかった。</p><ul><li><a href=https://blog.logrocket.com/learn-golang-encryption-decryption/>Learn Golang encryption and decryption</a></li></ul><p>まずはこの記事にあるサンプルコードを動かしてみながら内容を理解する。暗号技術そのものは理解できないが、コードの振る舞いそのものは動かしながら理解できる。その後、いろいろ調べているとこのサンプルコードの大半は <a href=https://pkg.go.dev/crypto/cipher>crypto/cipher</a> パッケージにあるサンプルコードと同じであることに気づく。標準ライブラリのドキュメントでは iv (initialization vector) を暗号化対象の文字列の一部を切り取って生成している。iv は一意である必要はあるが、セキュアでなくてもよいとある。よくあるやり方とあるのでサンプルコードをみながら同じように実装した。</p><pre tabindex=0><code>// The IV needs to be unique, but not secure. Therefore it&#39;s common to
-// include it at the beginning of the ciphertext.
-</code></pre><p>最終的な暗号化と復号化のコードは次になった。標準ライブラリにあるサンプルコードと基本的には同じ。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>Encrypt</span>(<span style=color:#a6e22e>secret</span> <span style=color:#66d9ef>string</span>, <span style=color:#a6e22e>plainText</span> []<span style=color:#66d9ef>byte</span>) ([]<span style=color:#66d9ef>byte</span>, <span style=color:#66d9ef>error</span>) {
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>block</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>aes</span>.<span style=color:#a6e22e>NewCipher</span>([]byte(<span style=color:#a6e22e>secret</span>))
-</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
-</span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span> <span style=color:#66d9ef>nil</span>, <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Errorf</span>(<span style=color:#e6db74>&#34;failed to create chiper: %w&#34;</span>, <span style=color:#a6e22e>err</span>)
-</span></span><span style=display:flex><span>	}
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>cipherText</span> <span style=color:#f92672>:=</span> make([]<span style=color:#66d9ef>byte</span>, <span style=color:#a6e22e>aes</span>.<span style=color:#a6e22e>BlockSize</span><span style=color:#f92672>+</span>len(<span style=color:#a6e22e>plainText</span>))
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>iv</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>cipherText</span>[:<span style=color:#a6e22e>aes</span>.<span style=color:#a6e22e>BlockSize</span>]
-</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>_</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>io</span>.<span style=color:#a6e22e>ReadFull</span>(<span style=color:#a6e22e>rand</span>.<span style=color:#a6e22e>Reader</span>, <span style=color:#a6e22e>iv</span>); <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
-</span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span> <span style=color:#66d9ef>nil</span>, <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Errorf</span>(<span style=color:#e6db74>&#34;failed to read for iv: %w&#34;</span>, <span style=color:#a6e22e>err</span>)
-</span></span><span style=display:flex><span>	}
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>stream</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>cipher</span>.<span style=color:#a6e22e>NewCFBEncrypter</span>(<span style=color:#a6e22e>block</span>, <span style=color:#a6e22e>iv</span>)
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>stream</span>.<span style=color:#a6e22e>XORKeyStream</span>(<span style=color:#a6e22e>cipherText</span>[<span style=color:#a6e22e>aes</span>.<span style=color:#a6e22e>BlockSize</span>:], <span style=color:#a6e22e>plainText</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>buf</span> <span style=color:#f92672>:=</span> make([]<span style=color:#66d9ef>byte</span>, <span style=color:#a6e22e>base64</span>.<span style=color:#a6e22e>StdEncoding</span>.<span style=color:#a6e22e>EncodedLen</span>(len(<span style=color:#a6e22e>cipherText</span>)))
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>base64</span>.<span style=color:#a6e22e>StdEncoding</span>.<span style=color:#a6e22e>Encode</span>(<span style=color:#a6e22e>buf</span>, <span style=color:#a6e22e>cipherText</span>)
-</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>buf</span>, <span style=color:#66d9ef>nil</span>
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>Decrypt</span>(<span style=color:#a6e22e>secret</span> <span style=color:#66d9ef>string</span>, <span style=color:#a6e22e>text</span> []<span style=color:#66d9ef>byte</span>) ([]<span style=color:#66d9ef>byte</span>, <span style=color:#66d9ef>error</span>) {
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>block</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>aes</span>.<span style=color:#a6e22e>NewCipher</span>([]byte(<span style=color:#a6e22e>secret</span>))
-</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
-</span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span> <span style=color:#66d9ef>nil</span>, <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Errorf</span>(<span style=color:#e6db74>&#34;failed to create chiper: %w&#34;</span>, <span style=color:#a6e22e>err</span>)
-</span></span><span style=display:flex><span>	}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>dbuf</span> <span style=color:#f92672>:=</span> make([]<span style=color:#66d9ef>byte</span>, len(<span style=color:#a6e22e>text</span>))
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>n</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>base64</span>.<span style=color:#a6e22e>StdEncoding</span>.<span style=color:#a6e22e>Decode</span>(<span style=color:#a6e22e>dbuf</span>, <span style=color:#a6e22e>text</span>)
-</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
-</span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span> <span style=color:#66d9ef>nil</span>, <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Errorf</span>(<span style=color:#e6db74>&#34;failed to create chiper: %w&#34;</span>, <span style=color:#a6e22e>err</span>)
-</span></span><span style=display:flex><span>	}
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>cipherText</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>dbuf</span>[:<span style=color:#a6e22e>n</span>]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> len(<span style=color:#a6e22e>cipherText</span>) &lt; <span style=color:#a6e22e>aes</span>.<span style=color:#a6e22e>BlockSize</span> {
-</span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span> <span style=color:#66d9ef>nil</span>, <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Errorf</span>(<span style=color:#e6db74>&#34;ciphertext is too short: %d&#34;</span>, len(<span style=color:#a6e22e>cipherText</span>))
-</span></span><span style=display:flex><span>	}
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>iv</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>cipherText</span>[:<span style=color:#a6e22e>aes</span>.<span style=color:#a6e22e>BlockSize</span>]
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>cipherText</span> = <span style=color:#a6e22e>cipherText</span>[<span style=color:#a6e22e>aes</span>.<span style=color:#a6e22e>BlockSize</span>:]
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>stream</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>cipher</span>.<span style=color:#a6e22e>NewCFBDecrypter</span>(<span style=color:#a6e22e>block</span>, <span style=color:#a6e22e>iv</span>)
-</span></span><span style=display:flex><span>	<span style=color:#75715e>// XORKeyStream can work in-place if the two arguments are the same.
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>stream</span>.<span style=color:#a6e22e>XORKeyStream</span>(<span style=color:#a6e22e>cipherText</span>, <span style=color:#a6e22e>cipherText</span>)
-</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>cipherText</span>, <span style=color:#66d9ef>nil</span>
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div></div></article><div class=pagination><div class=pagination__buttons><a href=/diary/tags/security/page/2/ class="button next"><span class=button__text>過去の日記</span>
+</span></span></code></pre></div><ul><li><a href=https://jyn.jp/rsync-daemon-over-ssh/>rsync+sshはdaemonモードを使うと更に安全になる</a></li></ul><h2 id=llmを使ってみる会>LLMを使ってみる会</h2><p><a href=https://fin-py.connpass.com/event/279271/>LLMを使ってみる会</a> に参加した。私も chatgpt に調べものやちょっとしたことを聞くようになったりしているが、他の人たちがどんな用途に使っているのかも知りたくて参加してみた。fin-py のイベントだったのでみんな金融系のドキュメントの要約に使っているのが多そうにみえた。あとは研究テーマとして gpt/llm を取り上げている人たちも何人かいた。</p></div></article><div class=pagination><div class=pagination__buttons><a href=/diary/tags/security/page/2/ class="button next"><span class=button__text>過去の日記</span>
 <span class=button__icon>→</span></a></div></div></div></div><footer class=footer><div class=footer__inner><div class=copyright><span>© 2024 Powered by <a href=https://gohugo.io>Hugo</a></span>
 <span>:: <a href=https://github.com/panr/hugo-theme-terminal target=_blank>Theme</a> made by <a href=https://github.com/panr target=_blank>panr</a></span></div></div></footer><script type=text/javascript src=/diary/bundle.min.js></script></div></body></html>

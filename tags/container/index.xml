@@ -1,4 +1,82 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Container on</title><link>/diary/tags/container/</link><description>Recent content in Container on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 09 Sep 2024 12:12:58 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/container/index.xml" rel="self" type="application/rss+xml"/><item><title>コンテナー間のデータ通信はやはり http プロトコル</title><link>/diary/posts/2024/0909/</link><pubDate>Mon, 09 Sep 2024 12:12:58 +0900</pubDate><guid>/diary/posts/2024/0909/</guid><description>過去に コンテナー間のデータ通信に named pipe を使って実装 した。機能的には問題なく運用できていたが、環境構築時に named pipe の設定がわかりにくいという課題があった。また docker compose は volumes に設定したパスが存在しないときに歴史的経緯でディレクトリを作成してしまう。初期設定時に named pipe を期待するリソースがディレクトリになってしまっているところの、エラー制御のわかりにくさもあった。またこの運用はオンプレミスの環境でしか利用できず、将来的にクラウド対応 (k8s) で運用することを考慮すると、http 通信できる方がよいと考えを改め、データ通信の仕組みを再実装した。http サーバーと比べて named pipe の方が優れているのはセキュリティとして物理的にその OS 上からしかアクセスできないところ。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Container on</title><link>/diary/tags/container/</link><description>Recent content in Container on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 30 Oct 2024 08:14:16 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/container/index.xml" rel="self" type="application/rss+xml"/><item><title>nginx の設定調査</title><link>/diary/posts/2024/1030/</link><pubDate>Wed, 30 Oct 2024 08:14:16 +0900</pubDate><guid>/diary/posts/2024/1030/</guid><description>開発合宿の準備をしていて今日のバドミントン練習はお休み。
+nginx のリバースプロキシ compose に起動している2つのサービスを同じポート番号で共有したい。nginx を tls 終端にしていてリバースプロキシとして構築している。ルーティングするには2つの方法がある。次のような compose.yml を作ってローカルのファイルシステムをマウントして設定変更しながら検証する。
+services: proxy: container_name: proxy image: docker.io/library/nginx:stable ports: - 8443:8443 network_mode: &amp;#34;host&amp;#34; restart: unless-stopped volumes: - ./nginx:/etc/nginx sub-domain based routing クラウドでは普通のやり方がサブドメインのホスト名でルーティングを行う。設定もシンプルでファイルも管理しやすいように分割できてよいと思える。システム変更時の移行も名前を切り替えればよいので移行しやすい。
+nginx.conf http { sendfile on; upstream web-api1 { server localhost:8801; } upstream web-api2 { server localhost:8802; } ssl_certificate /etc/nginx/ssl/sample.crt; ssl_certificate_key /etc/nginx/ssl/sample.key; include /etc/nginx/sites-enabled/*; } nginx/sites-enabled/www.sub1.example.com server { listen 8443 ssl; server_name sub1.example.com; location / { include /etc/nginx/common_proxy.conf; proxy_pass http://web-api1; } } path based routing サブドメインの方が私は好みではあるが、サブドメインをネームサーバーに登録したり、tls の証明書にも複数ホストの考慮が必要になってくる。パスでルーティングするなら1台のマシンのように仮想的にみせられるというメリットはある。</description><content>&lt;p>開発合宿の準備をしていて今日のバドミントン練習はお休み。&lt;/p>
+&lt;h2 id="nginx-のリバースプロキシ">nginx のリバースプロキシ&lt;/h2>
+&lt;p>compose に起動している2つのサービスを同じポート番号で共有したい。nginx を tls 終端にしていてリバースプロキシとして構築している。ルーティングするには2つの方法がある。次のような compose.yml を作ってローカルのファイルシステムをマウントして設定変更しながら検証する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">services&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">proxy&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">container_name&lt;/span>: &lt;span style="color:#ae81ff">proxy&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">image&lt;/span>: &lt;span style="color:#ae81ff">docker.io/library/nginx:stable&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">ports&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">8443&lt;/span>:&lt;span style="color:#ae81ff">8443&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">network_mode&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;host&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">restart&lt;/span>: &lt;span style="color:#ae81ff">unless-stopped&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">volumes&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">./nginx:/etc/nginx&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="sub-domain-based-routing">sub-domain based routing&lt;/h3>
+&lt;p>クラウドでは普通のやり方がサブドメインのホスト名でルーティングを行う。設定もシンプルでファイルも管理しやすいように分割できてよいと思える。システム変更時の移行も名前を切り替えればよいので移行しやすい。&lt;/p>
+&lt;ul>
+&lt;li>nginx.conf&lt;/li>
+&lt;/ul>
+&lt;pre tabindex="0">&lt;code>http {
+sendfile on;
+upstream web-api1 {
+server localhost:8801;
+}
+upstream web-api2 {
+server localhost:8802;
+}
+ssl_certificate /etc/nginx/ssl/sample.crt;
+ssl_certificate_key /etc/nginx/ssl/sample.key;
+include /etc/nginx/sites-enabled/*;
+}
+&lt;/code>&lt;/pre>&lt;ul>
+&lt;li>nginx/sites-enabled/www.sub1.example.com&lt;/li>
+&lt;/ul>
+&lt;pre tabindex="0">&lt;code>server {
+listen 8443 ssl;
+server_name sub1.example.com;
+location / {
+include /etc/nginx/common_proxy.conf;
+proxy_pass http://web-api1;
+}
+}
+&lt;/code>&lt;/pre>&lt;h3 id="path-based-routing">path based routing&lt;/h3>
+&lt;p>サブドメインの方が私は好みではあるが、サブドメインをネームサーバーに登録したり、tls の証明書にも複数ホストの考慮が必要になってくる。パスでルーティングするなら1台のマシンのように仮想的にみせられるというメリットはある。&lt;/p>
+&lt;pre tabindex="0">&lt;code>http {
+sendfile on;
+upstream web-api1 {
+server localhost:8801;
+}
+upstream web-api2 {
+server localhost:8802;
+}
+ssl_certificate /etc/nginx/ssl/sample.crt;
+ssl_certificate_key /etc/nginx/ssl/sample.key;
+server {
+listen 8443 ssl;
+location /app1/ {
+include /etc/nginx/common_proxy.conf;
+proxy_pass http://web-api1;
+}
+location /app2/ {
+include /etc/nginx/common_proxy.conf;
+proxy_pass http://web-api2;
+}
+}
+}
+&lt;/code>&lt;/pre>&lt;h2 id="コンテナの-capability">コンテナの capability&lt;/h2>
+&lt;p>docker compose を rootless mode で使っていて 443 ポートを使いたいと言われてどうしたらいいのだろう？といままで考えていないことに気付いた。調べたらすぐにやり方が書いてあった。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.docker.com/engine/security/rootless/#exposing-privileged-ports">Exposing privileged ports&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ sudo setcap cap_net_bind_service&lt;span style="color:#f92672">=&lt;/span>ep &lt;span style="color:#66d9ef">$(&lt;/span>which rootlesskit&lt;span style="color:#66d9ef">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ systemctl --user restart docker
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>これだけで compose サービスの1つにポート設定できた。めちゃ簡単だった。いままで capability を設定したことがなかったのと、権限周りはややこしいという先入観もあって触る機会がなかった。いろいろ洗練されて抽象化されているのだと推測する。バックエンドの場合は任意のポート番号を使えばよいから capability の設定をして 1024 以下のポート番号を使わないといけない理由はあまりない気はするが、そういう設定もできるようにはみえる。そういう話題すら聞いたことがなかった。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-capabilities-for-a-container">Set capabilities for a Container&lt;/a>&lt;/li>
+&lt;/ul></content></item><item><title>コンテナー間のデータ通信はやはり http プロトコル</title><link>/diary/posts/2024/0909/</link><pubDate>Mon, 09 Sep 2024 12:12:58 +0900</pubDate><guid>/diary/posts/2024/0909/</guid><description>過去に コンテナー間のデータ通信に named pipe を使って実装 した。機能的には問題なく運用できていたが、環境構築時に named pipe の設定がわかりにくいという課題があった。また docker compose は volumes に設定したパスが存在しないときに歴史的経緯でディレクトリを作成してしまう。初期設定時に named pipe を期待するリソースがディレクトリになってしまっているところの、エラー制御のわかりにくさもあった。またこの運用はオンプレミスの環境でしか利用できず、将来的にクラウド対応 (k8s) で運用することを考慮すると、http 通信できる方がよいと考えを改め、データ通信の仕組みを再実装した。http サーバーと比べて named pipe の方が優れているのはセキュリティとして物理的にその OS 上からしかアクセスできないところ。
 go でフレームワークを使わず、シンプルな http サーバーを実装してみた。セキュリティの制約さえなければ、このぐらいの手間を惜しんで named pipe を実装することもなかったかと、いまとなっての学びとなった。
 func newMux(cfg config.MyConfig) *http.ServeMux { mux := http.NewServeMux() mux.HandleFunc(&amp;#34;/version&amp;#34;, handler.HandleVersion(cfg)) return mux } func main() { ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM, ) defer stop() cfg := config.MyConfig{} server := &amp;amp;http.Server{ Addr: &amp;#34;:7099&amp;#34;, Handler: newMux(cfg), } go func() { if err := server.</description><content>&lt;p>過去に &lt;a href="/diary/diary/posts/2023/0829/">コンテナー間のデータ通信に named pipe を使って実装&lt;/a> した。機能的には問題なく運用できていたが、環境構築時に named pipe の設定がわかりにくいという課題があった。また docker compose は volumes に設定したパスが存在しないときに歴史的経緯でディレクトリを作成してしまう。初期設定時に named pipe を期待するリソースがディレクトリになってしまっているところの、エラー制御のわかりにくさもあった。またこの運用はオンプレミスの環境でしか利用できず、将来的にクラウド対応 (k8s) で運用することを考慮すると、http 通信できる方がよいと考えを改め、データ通信の仕組みを再実装した。http サーバーと比べて named pipe の方が優れているのはセキュリティとして物理的にその OS 上からしかアクセスできないところ。&lt;/p>
 &lt;p>go でフレームワークを使わず、シンプルな http サーバーを実装してみた。セキュリティの制約さえなければ、このぐらいの手間を惜しんで named pipe を実装することもなかったかと、いまとなっての学びとなった。&lt;/p>

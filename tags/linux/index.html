@@ -1,4 +1,71 @@
-<!doctype html><html lang=en><head><title>Linux :: </title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=keywords content><meta name=robots content="noodp"><link rel=canonical href=/diary/tags/linux/><link rel=stylesheet href=/diary/styles.css><link rel=stylesheet href=/diary/style.css><link rel="shortcut icon" href=/diary/favicon.ico><meta name=twitter:card content="summary"><meta name=twitter:site content="t2y"><meta name=twitter:creator content><meta property="og:locale" content="en"><meta property="og:type" content="website"><meta property="og:title" content="Linux"><meta property="og:description" content><meta property="og:url" content="/diary/tags/linux/"><meta property="og:site_name" content><meta property="og:image" content="/diary/favicon.ico"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="627"><link href=/diary/tags/linux/index.xml rel=alternate type=application/rss+xml title></head><body class=green><div class="container full headings--one-size"><header class=header><div class=header__inner><div class=header__logo><a href=/diary><div class=logo>forest nook</div></a></div><ul class="menu menu--mobile"><li class=menu__trigger>Menu&nbsp;▾</li><li><ul class=menu__dropdown><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul></li></ul></div><nav class=navigation-menu><ul class="navigation-menu__inner menu--desktop"><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul></nav></header><div class=content><h1>Posts for: #Linux</h1><div class=posts><article class="post on-list"><h1 class=post-title><a href=/diary/posts/2024/0909/>コンテナー間のデータ通信はやはり http プロトコル</a></h1><div class=post-meta><time class=post-date>2024-09-09</time></div><span class=post-tags>#<a href=/diary/tags/container/>container</a>&nbsp;
+<!doctype html><html lang=en><head><title>Linux :: </title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=keywords content><meta name=robots content="noodp"><link rel=canonical href=/diary/tags/linux/><link rel=stylesheet href=/diary/styles.css><link rel=stylesheet href=/diary/style.css><link rel="shortcut icon" href=/diary/favicon.ico><meta name=twitter:card content="summary"><meta name=twitter:site content="t2y"><meta name=twitter:creator content><meta property="og:locale" content="en"><meta property="og:type" content="website"><meta property="og:title" content="Linux"><meta property="og:description" content><meta property="og:url" content="/diary/tags/linux/"><meta property="og:site_name" content><meta property="og:image" content="/diary/favicon.ico"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="627"><link href=/diary/tags/linux/index.xml rel=alternate type=application/rss+xml title></head><body class=green><div class="container full headings--one-size"><header class=header><div class=header__inner><div class=header__logo><a href=/diary><div class=logo>forest nook</div></a></div><ul class="menu menu--mobile"><li class=menu__trigger>Menu&nbsp;▾</li><li><ul class=menu__dropdown><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul></li></ul></div><nav class=navigation-menu><ul class="navigation-menu__inner menu--desktop"><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul></nav></header><div class=content><h1>Posts for: #Linux</h1><div class=posts><article class="post on-list"><h1 class=post-title><a href=/diary/posts/2024/1030/>nginx の設定調査</a></h1><div class=post-meta><time class=post-date>2024-10-30</time></div><span class=post-tags>#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
+#<a href=/diary/tags/linux/>linux</a>&nbsp;
+#<a href=/diary/tags/container/>container</a>&nbsp;
+#<a href=/diary/tags/security/>security</a>&nbsp;</span><div class=post-content><p>開発合宿の準備をしていて今日のバドミントン練習はお休み。</p><h2 id=nginx-のリバースプロキシ>nginx のリバースプロキシ</h2><p>compose に起動している2つのサービスを同じポート番号で共有したい。nginx を tls 終端にしていてリバースプロキシとして構築している。ルーティングするには2つの方法がある。次のような compose.yml を作ってローカルのファイルシステムをマウントして設定変更しながら検証する。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=display:flex><span><span style=color:#f92672>services</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>proxy</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>container_name</span>: <span style=color:#ae81ff>proxy</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>image</span>: <span style=color:#ae81ff>docker.io/library/nginx:stable</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>8443</span>:<span style=color:#ae81ff>8443</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>network_mode</span>: <span style=color:#e6db74>&#34;host&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>./nginx:/etc/nginx</span>
+</span></span></code></pre></div><h3 id=sub-domain-based-routing>sub-domain based routing</h3><p>クラウドでは普通のやり方がサブドメインのホスト名でルーティングを行う。設定もシンプルでファイルも管理しやすいように分割できてよいと思える。システム変更時の移行も名前を切り替えればよいので移行しやすい。</p><ul><li>nginx.conf</li></ul><pre tabindex=0><code>http {
+    sendfile on;
+
+    upstream web-api1 {
+        server localhost:8801;
+    }
+
+    upstream web-api2 {
+        server localhost:8802;
+    }
+
+    ssl_certificate /etc/nginx/ssl/sample.crt;
+    ssl_certificate_key /etc/nginx/ssl/sample.key;
+
+    include /etc/nginx/sites-enabled/*;
+}
+</code></pre><ul><li>nginx/sites-enabled/www.sub1.example.com</li></ul><pre tabindex=0><code>server {
+    listen 8443 ssl;
+    server_name sub1.example.com;
+    location / {
+        include     /etc/nginx/common_proxy.conf;
+        proxy_pass  http://web-api1;
+    }
+}
+</code></pre><h3 id=path-based-routing>path based routing</h3><p>サブドメインの方が私は好みではあるが、サブドメインをネームサーバーに登録したり、tls の証明書にも複数ホストの考慮が必要になってくる。パスでルーティングするなら1台のマシンのように仮想的にみせられるというメリットはある。</p><pre tabindex=0><code>http {
+    sendfile on;
+
+    upstream web-api1 {
+        server localhost:8801;
+    }
+
+    upstream web-api2 {
+        server localhost:8802;
+    }
+
+    ssl_certificate /etc/nginx/ssl/sample.crt;
+    ssl_certificate_key /etc/nginx/ssl/sample.key;
+
+    server {
+        listen 8443 ssl;
+
+        location /app1/ {
+            include     /etc/nginx/common_proxy.conf;
+            proxy_pass  http://web-api1;
+        }
+
+        location /app2/ {
+            include     /etc/nginx/common_proxy.conf;
+            proxy_pass  http://web-api2;
+        }
+    }
+}
+</code></pre><h2 id=コンテナの-capability>コンテナの capability</h2><p>docker compose を rootless mode で使っていて 443 ポートを使いたいと言われてどうしたらいいのだろう？といままで考えていないことに気付いた。調べたらすぐにやり方が書いてあった。</p><ul><li><a href=https://docs.docker.com/engine/security/rootless/#exposing-privileged-ports>Exposing privileged ports</a></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ sudo setcap cap_net_bind_service<span style=color:#f92672>=</span>ep <span style=color:#66d9ef>$(</span>which rootlesskit<span style=color:#66d9ef>)</span>
+</span></span><span style=display:flex><span>$ systemctl --user restart docker
+</span></span></code></pre></div><p>これだけで compose サービスの1つにポート設定できた。めちゃ簡単だった。いままで capability を設定したことがなかったのと、権限周りはややこしいという先入観もあって触る機会がなかった。いろいろ洗練されて抽象化されているのだと推測する。バックエンドの場合は任意のポート番号を使えばよいから capability の設定をして 1024 以下のポート番号を使わないといけない理由はあまりない気はするが、そういう設定もできるようにはみえる。そういう話題すら聞いたことがなかった。</p><ul><li><a href=https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-capabilities-for-a-container>Set capabilities for a Container</a></li></ul></div></article><article class="post on-list"><h1 class=post-title><a href=/diary/posts/2024/0909/>コンテナー間のデータ通信はやはり http プロトコル</a></h1><div class=post-meta><time class=post-date>2024-09-09</time></div><span class=post-tags>#<a href=/diary/tags/container/>container</a>&nbsp;
 #<a href=/diary/tags/linux/>linux</a>&nbsp;
 #<a href=/diary/tags/go/>go</a>&nbsp;</span><div class=post-content><p>過去に <a href=/diary/posts/2023/0829/>コンテナー間のデータ通信に named pipe を使って実装</a> した。機能的には問題なく運用できていたが、環境構築時に named pipe の設定がわかりにくいという課題があった。また docker compose は volumes に設定したパスが存在しないときに歴史的経緯でディレクトリを作成してしまう。初期設定時に named pipe を期待するリソースがディレクトリになってしまっているところの、エラー制御のわかりにくさもあった。またこの運用はオンプレミスの環境でしか利用できず、将来的にクラウド対応 (k8s) で運用することを考慮すると、http 通信できる方がよいと考えを改め、データ通信の仕組みを再実装した。http サーバーと比べて named pipe の方が優れているのはセキュリティとして物理的にその OS 上からしかアクセスできないところ。</p><p>go でフレームワークを使わず、シンプルな http サーバーを実装してみた。セキュリティの制約さえなければ、このぐらいの手間を惜しんで named pipe を実装することもなかったかと、いまとなっての学びとなった。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>newMux</span>(<span style=color:#a6e22e>cfg</span> <span style=color:#a6e22e>config</span>.<span style=color:#a6e22e>MyConfig</span>) <span style=color:#f92672>*</span><span style=color:#a6e22e>http</span>.<span style=color:#a6e22e>ServeMux</span> {
 </span></span><span style=display:flex><span>	<span style=color:#a6e22e>mux</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>http</span>.<span style=color:#a6e22e>NewServeMux</span>()

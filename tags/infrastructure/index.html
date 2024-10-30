@@ -1,4 +1,71 @@
-<!doctype html><html lang=en><head><title>Infrastructure :: </title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=keywords content><meta name=robots content="noodp"><link rel=canonical href=/diary/tags/infrastructure/><link rel=stylesheet href=/diary/styles.css><link rel=stylesheet href=/diary/style.css><link rel="shortcut icon" href=/diary/favicon.ico><meta name=twitter:card content="summary"><meta name=twitter:site content="t2y"><meta name=twitter:creator content><meta property="og:locale" content="en"><meta property="og:type" content="website"><meta property="og:title" content="Infrastructure"><meta property="og:description" content><meta property="og:url" content="/diary/tags/infrastructure/"><meta property="og:site_name" content><meta property="og:image" content="/diary/favicon.ico"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="627"><link href=/diary/tags/infrastructure/index.xml rel=alternate type=application/rss+xml title></head><body class=green><div class="container full headings--one-size"><header class=header><div class=header__inner><div class=header__logo><a href=/diary><div class=logo>forest nook</div></a></div><ul class="menu menu--mobile"><li class=menu__trigger>Menu&nbsp;▾</li><li><ul class=menu__dropdown><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul></li></ul></div><nav class=navigation-menu><ul class="navigation-menu__inner menu--desktop"><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul></nav></header><div class=content><h1>Posts for: #Infrastructure</h1><div class=posts><article class="post on-list"><h1 class=post-title><a href=/diary/posts/2024/1018/>exec とスクリプト</a></h1><div class=post-meta><time class=post-date>2024-10-18</time></div><span class=post-tags>#<a href=/diary/tags/badminton/>badminton</a>&nbsp;
+<!doctype html><html lang=en><head><title>Infrastructure :: </title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=keywords content><meta name=robots content="noodp"><link rel=canonical href=/diary/tags/infrastructure/><link rel=stylesheet href=/diary/styles.css><link rel=stylesheet href=/diary/style.css><link rel="shortcut icon" href=/diary/favicon.ico><meta name=twitter:card content="summary"><meta name=twitter:site content="t2y"><meta name=twitter:creator content><meta property="og:locale" content="en"><meta property="og:type" content="website"><meta property="og:title" content="Infrastructure"><meta property="og:description" content><meta property="og:url" content="/diary/tags/infrastructure/"><meta property="og:site_name" content><meta property="og:image" content="/diary/favicon.ico"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="627"><link href=/diary/tags/infrastructure/index.xml rel=alternate type=application/rss+xml title></head><body class=green><div class="container full headings--one-size"><header class=header><div class=header__inner><div class=header__logo><a href=/diary><div class=logo>forest nook</div></a></div><ul class="menu menu--mobile"><li class=menu__trigger>Menu&nbsp;▾</li><li><ul class=menu__dropdown><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul></li></ul></div><nav class=navigation-menu><ul class="navigation-menu__inner menu--desktop"><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul></nav></header><div class=content><h1>Posts for: #Infrastructure</h1><div class=posts><article class="post on-list"><h1 class=post-title><a href=/diary/posts/2024/1030/>nginx の設定調査</a></h1><div class=post-meta><time class=post-date>2024-10-30</time></div><span class=post-tags>#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
+#<a href=/diary/tags/linux/>linux</a>&nbsp;
+#<a href=/diary/tags/container/>container</a>&nbsp;
+#<a href=/diary/tags/security/>security</a>&nbsp;</span><div class=post-content><p>開発合宿の準備をしていて今日のバドミントン練習はお休み。</p><h2 id=nginx-のリバースプロキシ>nginx のリバースプロキシ</h2><p>compose に起動している2つのサービスを同じポート番号で共有したい。nginx を tls 終端にしていてリバースプロキシとして構築している。ルーティングするには2つの方法がある。次のような compose.yml を作ってローカルのファイルシステムをマウントして設定変更しながら検証する。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=display:flex><span><span style=color:#f92672>services</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>proxy</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>container_name</span>: <span style=color:#ae81ff>proxy</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>image</span>: <span style=color:#ae81ff>docker.io/library/nginx:stable</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>8443</span>:<span style=color:#ae81ff>8443</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>network_mode</span>: <span style=color:#e6db74>&#34;host&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>./nginx:/etc/nginx</span>
+</span></span></code></pre></div><h3 id=sub-domain-based-routing>sub-domain based routing</h3><p>クラウドでは普通のやり方がサブドメインのホスト名でルーティングを行う。設定もシンプルでファイルも管理しやすいように分割できてよいと思える。システム変更時の移行も名前を切り替えればよいので移行しやすい。</p><ul><li>nginx.conf</li></ul><pre tabindex=0><code>http {
+    sendfile on;
+
+    upstream web-api1 {
+        server localhost:8801;
+    }
+
+    upstream web-api2 {
+        server localhost:8802;
+    }
+
+    ssl_certificate /etc/nginx/ssl/sample.crt;
+    ssl_certificate_key /etc/nginx/ssl/sample.key;
+
+    include /etc/nginx/sites-enabled/*;
+}
+</code></pre><ul><li>nginx/sites-enabled/www.sub1.example.com</li></ul><pre tabindex=0><code>server {
+    listen 8443 ssl;
+    server_name sub1.example.com;
+    location / {
+        include     /etc/nginx/common_proxy.conf;
+        proxy_pass  http://web-api1;
+    }
+}
+</code></pre><h3 id=path-based-routing>path based routing</h3><p>サブドメインの方が私は好みではあるが、サブドメインをネームサーバーに登録したり、tls の証明書にも複数ホストの考慮が必要になってくる。パスでルーティングするなら1台のマシンのように仮想的にみせられるというメリットはある。</p><pre tabindex=0><code>http {
+    sendfile on;
+
+    upstream web-api1 {
+        server localhost:8801;
+    }
+
+    upstream web-api2 {
+        server localhost:8802;
+    }
+
+    ssl_certificate /etc/nginx/ssl/sample.crt;
+    ssl_certificate_key /etc/nginx/ssl/sample.key;
+
+    server {
+        listen 8443 ssl;
+
+        location /app1/ {
+            include     /etc/nginx/common_proxy.conf;
+            proxy_pass  http://web-api1;
+        }
+
+        location /app2/ {
+            include     /etc/nginx/common_proxy.conf;
+            proxy_pass  http://web-api2;
+        }
+    }
+}
+</code></pre><h2 id=コンテナの-capability>コンテナの capability</h2><p>docker compose を rootless mode で使っていて 443 ポートを使いたいと言われてどうしたらいいのだろう？といままで考えていないことに気付いた。調べたらすぐにやり方が書いてあった。</p><ul><li><a href=https://docs.docker.com/engine/security/rootless/#exposing-privileged-ports>Exposing privileged ports</a></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ sudo setcap cap_net_bind_service<span style=color:#f92672>=</span>ep <span style=color:#66d9ef>$(</span>which rootlesskit<span style=color:#66d9ef>)</span>
+</span></span><span style=display:flex><span>$ systemctl --user restart docker
+</span></span></code></pre></div><p>これだけで compose サービスの1つにポート設定できた。めちゃ簡単だった。いままで capability を設定したことがなかったのと、権限周りはややこしいという先入観もあって触る機会がなかった。いろいろ洗練されて抽象化されているのだと推測する。バックエンドの場合は任意のポート番号を使えばよいから capability の設定をして 1024 以下のポート番号を使わないといけない理由はあまりない気はするが、そういう設定もできるようにはみえる。そういう話題すら聞いたことがなかった。</p><ul><li><a href=https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-capabilities-for-a-container>Set capabilities for a Container</a></li></ul></div></article><article class="post on-list"><h1 class=post-title><a href=/diary/posts/2024/1018/>exec とスクリプト</a></h1><div class=post-meta><time class=post-date>2024-10-18</time></div><span class=post-tags>#<a href=/diary/tags/badminton/>badminton</a>&nbsp;
 #<a href=/diary/tags/cli/>cli</a>&nbsp;
 #<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;</span><div class=post-content><p>今日のバドミントン練習はエアシャトルでリフティングを60分した。連続最大回数は191回だった。もう少しで200回だったのに残念。木曜日は睡眠をたくさんとって疲れは少し取れたし、安定的に50回前後は続くようになりつつも、100回までに失敗してしまう。今日は100回を超えたのが2回だけだった。ラケットのスィートスポットでとらえたときにきれいに真上にあがる感覚が楽しい。うまくいくときは数回は続く。それが自然にできるときとそうじゃないときの違いを私は制御できてなくて言語化もできない。</p><p>エアシャトルとメイビスにおけるリフティングの違いを比べてみると、メイビスの方が打ち上げて落ちてくるときにあまり回転せずコルクが下を向く傾向が多いようにみえる。エアシャトルの方がコルクが重い分、縦方向に回転し始めるとその回転が止まらず、回転しているからラケット面でとらえるのが難しくなる。だからエアシャトルの方がメイビスよりもリフティングが難しいといえる。シャトルを高く打ち上げると、落下してくる距離が長くなりその回転が落ち着く傾向があるからリフティングしやすくなるのではないかと仮説を考えた。伸び悩みかもしれないし、地道に練習を継続するときかもしれない。</p><h2 id=exec-とエントリーポイントのスクリプト>exec とエントリーポイントのスクリプト</h2><p>コンテナを起動して stop すると SIGTERM が送られる。そのときに api サーバーでシグナルの処理をしているのに、気付いたらシグナル処理が行われずタイムアウトするようになっていた。デフォルトでは10秒でタイムアウトして強制終了となる。なぜシグナルを捕捉しなくなったかを調査したら、あるときサーバーの起動前に前処理が必要になってエントリーポイントをシェルスクリプトにしていた。そのときに exec しないと、シェルスクリプトのプロセスに対してシグナルが送られるため、api サーバーがシグナルを検知できなくなるという副作用があることに気付いた。これまでも <a href=https://ja.wikipedia.org/wiki/Exec>exec</a> を使うとプロセス ID は変更されないという知識を知っていたが、それがどういう状況で役に立つかを理解できていなかった。シグナルを用いた同期処理に exec が役に立つ状況があることを学んだ。修正は次の1行のみ。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-diff data-lang=diff><span style=display:flex><span><span style=color:#f92672>--- a/docker/entrypoint.sh
 </span></span></span><span style=display:flex><span><span style=color:#f92672></span><span style=color:#a6e22e>+++ b/docker/entrypoint.sh
@@ -243,8 +310,6 @@ tmpfs                        2.0G     0  2.0G    0% /sys/fs/cgroup
 /dev/vda1                   1014M  221M  794M   22% /boot
 </code></pre><p>バックアップを削除する。</p><pre tabindex=0><code># rm -rf /home-bkup/
 </code></pre><p>マシンを再起動する。</p><pre tabindex=0><code># reboot
-</code></pre><p>これで問題なければ完了。</p></div></article><article class="post on-list"><h1 class=post-title><a href=/diary/posts/2023/0922/>また podman に苦戦する</a></h1><div class=post-meta><time class=post-date>2023-09-22</time></div><span class=post-tags>#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
-#<a href=/diary/tags/operation/>operation</a>&nbsp;
-#<a href=/diary/tags/podman/>podman</a>&nbsp;</span><div class=post-content><p>23時に寝て何度か起きて7時に起きた。出張帰りでなんかバテててなにもせず休んでいた。少し喉に引っかかりがある。出張で飲み歩いたし、そろそろコロナ感染？の疑いをもって生活してみる。</p><h2 id=podman-と-dbus-daemon-とsystemd-の調査>podman と dbus-daemon とsystemd の調査</h2><p>2次開発の成果物をドッグフーディングの目的で社内へ導入する。メンバーが作業していて nginx が正常に動作しないという。ログをみろとすぐにコンテナネットワーク内の dns サービスが正常に動いていないということはわかった。podman は <a href=https://github.com/containers/aardvark-dns>aardvark-dns</a> というサービスを使って dns を管理する。但し、このサービスがまだまだ安定していなくて不具合があるのを以前にも確認した。このサービスの振る舞いがよく分からなくて、意図しない状況や状態に対して正常に動作してくれない。</p><p>他にも調査をしていて rootless で podman コマンドを実行すると次の issue で書かれているようなワーニングが出力される。dbus-user-session というパッケージを導入すれば解決するとある。</p><ul><li><a href=https://github.com/containers/podman/issues/12983>WARN[0000] The cgroupv2 manager is set to systemd but there is no systemd user session available #12983</a></li></ul><p>dbus-daemon のサービスは systemd で動いていて、systemd のユーザーモードと dbus が正常に動いていないというところまではすぐに分かった。その状態だと rootless な podman が正常に動作しないということもすぐに分かった。ここまではすぐに調査できたが、問題はどうやれば sytemd のユーザーモードを dbus を正常に動くように復旧できるのかがまったく分からない。systemd がそもそも難しいのに、そのユーザーモードは権限管理が関係するのでさらにもっと難しい。1日調べてお手上げで他の社員さんにも相談してみた。</p><p>今日は自分の作業は進捗しなかったけど、メンバーの作業の進捗をみていて、メンバーがはまっていたところを助言して、その問題は解決してうまくいって、それだけで満足していた。</p></div></article><div class=pagination><div class=pagination__buttons><a href=/diary/tags/infrastructure/page/2/ class="button next"><span class=button__text>過去の日記</span>
+</code></pre><p>これで問題なければ完了。</p></div></article><div class=pagination><div class=pagination__buttons><a href=/diary/tags/infrastructure/page/2/ class="button next"><span class=button__text>過去の日記</span>
 <span class=button__icon>→</span></a></div></div></div></div><footer class=footer><div class=footer__inner><div class=copyright><span>© 2024 Powered by <a href=https://gohugo.io>Hugo</a></span>
 <span>:: <a href=https://github.com/panr/hugo-theme-terminal target=_blank>Theme</a> made by <a href=https://github.com/panr target=_blank>panr</a></span></div></div></footer><script type=text/javascript src=/diary/bundle.min.js></script></div></body></html>

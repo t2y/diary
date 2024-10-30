@@ -1,4 +1,82 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Security on</title><link>/diary/tags/security/</link><description>Recent content in Security on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 26 Jun 2024 09:28:41 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/security/index.xml" rel="self" type="application/rss+xml"/><item><title>gitlab ci/cd のトークン移行</title><link>/diary/posts/2024/0626/</link><pubDate>Wed, 26 Jun 2024 09:28:41 +0900</pubDate><guid>/diary/posts/2024/0626/</guid><description>今日は荷解きしていたので運動はお休み。収納はたくさんあるものの、まだ部屋に不慣れで使い勝手がわかってないからどこに何を入れるか、決まらなくてなかなか進まない。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Security on</title><link>/diary/tags/security/</link><description>Recent content in Security on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 30 Oct 2024 08:14:16 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/security/index.xml" rel="self" type="application/rss+xml"/><item><title>nginx の設定調査</title><link>/diary/posts/2024/1030/</link><pubDate>Wed, 30 Oct 2024 08:14:16 +0900</pubDate><guid>/diary/posts/2024/1030/</guid><description>開発合宿の準備をしていて今日のバドミントン練習はお休み。
+nginx のリバースプロキシ compose に起動している2つのサービスを同じポート番号で共有したい。nginx を tls 終端にしていてリバースプロキシとして構築している。ルーティングするには2つの方法がある。次のような compose.yml を作ってローカルのファイルシステムをマウントして設定変更しながら検証する。
+services: proxy: container_name: proxy image: docker.io/library/nginx:stable ports: - 8443:8443 network_mode: &amp;#34;host&amp;#34; restart: unless-stopped volumes: - ./nginx:/etc/nginx sub-domain based routing クラウドでは普通のやり方がサブドメインのホスト名でルーティングを行う。設定もシンプルでファイルも管理しやすいように分割できてよいと思える。システム変更時の移行も名前を切り替えればよいので移行しやすい。
+nginx.conf http { sendfile on; upstream web-api1 { server localhost:8801; } upstream web-api2 { server localhost:8802; } ssl_certificate /etc/nginx/ssl/sample.crt; ssl_certificate_key /etc/nginx/ssl/sample.key; include /etc/nginx/sites-enabled/*; } nginx/sites-enabled/www.sub1.example.com server { listen 8443 ssl; server_name sub1.example.com; location / { include /etc/nginx/common_proxy.conf; proxy_pass http://web-api1; } } path based routing サブドメインの方が私は好みではあるが、サブドメインをネームサーバーに登録したり、tls の証明書にも複数ホストの考慮が必要になってくる。パスでルーティングするなら1台のマシンのように仮想的にみせられるというメリットはある。</description><content>&lt;p>開発合宿の準備をしていて今日のバドミントン練習はお休み。&lt;/p>
+&lt;h2 id="nginx-のリバースプロキシ">nginx のリバースプロキシ&lt;/h2>
+&lt;p>compose に起動している2つのサービスを同じポート番号で共有したい。nginx を tls 終端にしていてリバースプロキシとして構築している。ルーティングするには2つの方法がある。次のような compose.yml を作ってローカルのファイルシステムをマウントして設定変更しながら検証する。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">services&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">proxy&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">container_name&lt;/span>: &lt;span style="color:#ae81ff">proxy&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">image&lt;/span>: &lt;span style="color:#ae81ff">docker.io/library/nginx:stable&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">ports&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">8443&lt;/span>:&lt;span style="color:#ae81ff">8443&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">network_mode&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;host&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">restart&lt;/span>: &lt;span style="color:#ae81ff">unless-stopped&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">volumes&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#ae81ff">./nginx:/etc/nginx&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="sub-domain-based-routing">sub-domain based routing&lt;/h3>
+&lt;p>クラウドでは普通のやり方がサブドメインのホスト名でルーティングを行う。設定もシンプルでファイルも管理しやすいように分割できてよいと思える。システム変更時の移行も名前を切り替えればよいので移行しやすい。&lt;/p>
+&lt;ul>
+&lt;li>nginx.conf&lt;/li>
+&lt;/ul>
+&lt;pre tabindex="0">&lt;code>http {
+sendfile on;
+upstream web-api1 {
+server localhost:8801;
+}
+upstream web-api2 {
+server localhost:8802;
+}
+ssl_certificate /etc/nginx/ssl/sample.crt;
+ssl_certificate_key /etc/nginx/ssl/sample.key;
+include /etc/nginx/sites-enabled/*;
+}
+&lt;/code>&lt;/pre>&lt;ul>
+&lt;li>nginx/sites-enabled/www.sub1.example.com&lt;/li>
+&lt;/ul>
+&lt;pre tabindex="0">&lt;code>server {
+listen 8443 ssl;
+server_name sub1.example.com;
+location / {
+include /etc/nginx/common_proxy.conf;
+proxy_pass http://web-api1;
+}
+}
+&lt;/code>&lt;/pre>&lt;h3 id="path-based-routing">path based routing&lt;/h3>
+&lt;p>サブドメインの方が私は好みではあるが、サブドメインをネームサーバーに登録したり、tls の証明書にも複数ホストの考慮が必要になってくる。パスでルーティングするなら1台のマシンのように仮想的にみせられるというメリットはある。&lt;/p>
+&lt;pre tabindex="0">&lt;code>http {
+sendfile on;
+upstream web-api1 {
+server localhost:8801;
+}
+upstream web-api2 {
+server localhost:8802;
+}
+ssl_certificate /etc/nginx/ssl/sample.crt;
+ssl_certificate_key /etc/nginx/ssl/sample.key;
+server {
+listen 8443 ssl;
+location /app1/ {
+include /etc/nginx/common_proxy.conf;
+proxy_pass http://web-api1;
+}
+location /app2/ {
+include /etc/nginx/common_proxy.conf;
+proxy_pass http://web-api2;
+}
+}
+}
+&lt;/code>&lt;/pre>&lt;h2 id="コンテナの-capability">コンテナの capability&lt;/h2>
+&lt;p>docker compose を rootless mode で使っていて 443 ポートを使いたいと言われてどうしたらいいのだろう？といままで考えていないことに気付いた。調べたらすぐにやり方が書いてあった。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.docker.com/engine/security/rootless/#exposing-privileged-ports">Exposing privileged ports&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ sudo setcap cap_net_bind_service&lt;span style="color:#f92672">=&lt;/span>ep &lt;span style="color:#66d9ef">$(&lt;/span>which rootlesskit&lt;span style="color:#66d9ef">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ systemctl --user restart docker
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>これだけで compose サービスの1つにポート設定できた。めちゃ簡単だった。いままで capability を設定したことがなかったのと、権限周りはややこしいという先入観もあって触る機会がなかった。いろいろ洗練されて抽象化されているのだと推測する。バックエンドの場合は任意のポート番号を使えばよいから capability の設定をして 1024 以下のポート番号を使わないといけない理由はあまりない気はするが、そういう設定もできるようにはみえる。そういう話題すら聞いたことがなかった。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-capabilities-for-a-container">Set capabilities for a Container&lt;/a>&lt;/li>
+&lt;/ul></content></item><item><title>gitlab ci/cd のトークン移行</title><link>/diary/posts/2024/0626/</link><pubDate>Wed, 26 Jun 2024 09:28:41 +0900</pubDate><guid>/diary/posts/2024/0626/</guid><description>今日は荷解きしていたので運動はお休み。収納はたくさんあるものの、まだ部屋に不慣れで使い勝手がわかってないからどこに何を入れるか、決まらなくてなかなか進まない。
 gitlab ci/cd のセキュリティ対応 gitlab のアクセストークンが 16.0 以前までは無期限に利用できたのが最長1年の有効期限が設定されるようになった。16.0 移行で無期限のアクセストークンは移行後から1年の有効期限となる。
 Why GitLab access tokens now have lifetime limits gitlab ci/cd のジョブでパッケージレジストリの操作が、これまでは ci job token (ジョブ実行のタイミングで自動生成される短期間有効なトークン) でアクセスできなかった。そこに project access token を発行して組み込んでいた。しかし、そのトークンが1年ごとに有効期限切れするようになったら保守コストがかかるからこれをやめたい。調べてみると、ちょうど ci job token も進化して 16.1 以上でパッケージレジストリへのアクセスができるようになった。
 Allow access to project-level package files API with CI job token 移行の注意事項として project access token は PRIVATE-TOKEN というヘッダーを使うが、ci job token は JOB-TOKEN というヘッダーを使う。curl なら次のようにして project access token を使わなくてもよくなった。
