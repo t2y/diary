@@ -1,4 +1,48 @@
-<!doctype html><html lang=en><head><title>Device :: </title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=keywords content><meta name=robots content="noodp"><link rel=canonical href=/diary/tags/device/><link rel=stylesheet href=/diary/styles.css><link rel=stylesheet href=/diary/style.css><link rel="shortcut icon" href=/diary/favicon.ico><meta name=twitter:card content="summary"><meta name=twitter:site content="t2y"><meta name=twitter:creator content><meta property="og:locale" content="en"><meta property="og:type" content="website"><meta property="og:title" content="Device"><meta property="og:description" content><meta property="og:url" content="/diary/tags/device/"><meta property="og:site_name" content><meta property="og:image" content="/diary/favicon.ico"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="627"><link href=/diary/tags/device/index.xml rel=alternate type=application/rss+xml title></head><body class=green><div class="container full headings--one-size"><header class=header><div class=header__inner><div class=header__logo><a href=/diary><div class=logo>forest nook</div></a></div><ul class="menu menu--mobile"><li class=menu__trigger>Menu&nbsp;▾</li><li><ul class=menu__dropdown><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul></li></ul></div><nav class=navigation-menu><ul class="navigation-menu__inner menu--desktop"><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul></nav></header><div class=content><h1>Posts for: #Device</h1><div class=posts><article class="post on-list"><h1 class=post-title><a href=/diary/posts/2023/0616/>アイディアのコラボレーション</a></h1><div class=post-meta><time class=post-date>2023-06-16</time></div><span class=post-tags>#<a href=/diary/tags/document/>document</a>&nbsp;
+<!doctype html><html lang=en><head><title>Device :: </title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=keywords content><meta name=robots content="noodp"><link rel=canonical href=/diary/tags/device/><link rel=stylesheet href=/diary/styles.css><link rel=stylesheet href=/diary/style.css><link rel="shortcut icon" href=/diary/favicon.ico><meta name=twitter:card content="summary"><meta name=twitter:site content="t2y"><meta name=twitter:creator content><meta property="og:locale" content="en"><meta property="og:type" content="website"><meta property="og:title" content="Device"><meta property="og:description" content><meta property="og:url" content="/diary/tags/device/"><meta property="og:site_name" content><meta property="og:image" content="/diary/favicon.ico"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="627"><link href=/diary/tags/device/index.xml rel=alternate type=application/rss+xml title></head><body class=green><div class="container full headings--one-size"><header class=header><div class=header__inner><div class=header__logo><a href=/diary><div class=logo>forest nook</div></a></div><ul class="menu menu--mobile"><li class=menu__trigger>Menu&nbsp;▾</li><li><ul class=menu__dropdown><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul></li></ul></div><nav class=navigation-menu><ul class="navigation-menu__inner menu--desktop"><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul></nav></header><div class=content><h1>Posts for: #Device</h1><div class=posts><article class="post on-list"><h1 class=post-title><a href=/diary/posts/2023/0618/>クラウド経由で tapo を制御する方法がわからない</a></h1><div class=post-meta><time class=post-date>2023-06-18</time></div><span class=post-tags>#<a href=/diary/tags/smartplug/>smartplug</a>&nbsp;
+#<a href=/diary/tags/device/>device</a>&nbsp;</span><div class=post-content><p>0時に寝て7時に起きて8時過ぎまでだらだらしてた。オフィスのエアコンの効き具合がよくなくて昼間暑くてやる気にならなかった。</p><h2 id=tp-link-cloud-api-で-tapo-の制御を調べる>tp-link cloud api で tapo の制御を調べる</h2><p>先日 <a href=/diary/posts/2023/0612/>ifttt で tapo p105 の制御</a> を行った。これが動くということはなんらかのクラウドの api 経由で tapo p105 を制御できている。次の記事をみながらやってみようと試してみた。結論から言ってクラウドの api 経由ではできなかった。</p><ul><li><a href=https://zenn.dev/book000/articles/tp-link-cloud-api>TP-Link cloud APIを使ってみる</a></li></ul><p>アクセストークンを取得する。terminalUUID は適当に生成すればよい。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ curl -s -X POST -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> -d <span style=color:#e6db74>&#39;{&#34;method&#34;: &#34;login&#34;, &#34;params&#34;: {&#34;appType&#34;: &#34;iphone&#34;, &#34;cloudUserName&#34;: &#34;xxx@example.com&#34;, &#34;cloudPassword&#34;: &#34;***&#34;, &#34;terminalUUID&#34;: &#34;bf63e1d0-d5dc-4636-abf1-7eeada585935&#34;}}&#39;</span> https://wap.tplinkcloud.com/ | jq .
+</span></span><span style=display:flex><span><span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;error_code&#34;</span>: 0,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;result&#34;</span>: <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;accountId&#34;</span>: <span style=color:#e6db74>&#34;142785160&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;regTime&#34;</span>: <span style=color:#e6db74>&#34;2023-06-11 04:59:43&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;countryCode&#34;</span>: <span style=color:#e6db74>&#34;JP&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;riskDetected&#34;</span>: 0,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;email&#34;</span>: <span style=color:#e6db74>&#34;xxx@example.com&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;token&#34;</span>: <span style=color:#e6db74>&#34;***-***&#34;</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span></code></pre></div><p>ここで取得したアクセストークンを使ってデバイスの一覧を取得する。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ curl -s -X POST -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> -d <span style=color:#e6db74>&#39;{&#34;method&#34;: &#34;getDeviceList&#34;}&#39;</span> https://wap.tplinkcloud.com/?token<span style=color:#f92672>=</span>***-*** | jq .
+</span></span><span style=display:flex><span><span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;error_code&#34;</span>: 0,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;result&#34;</span>: <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;deviceList&#34;</span>: <span style=color:#f92672>[</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;deviceType&#34;</span>: <span style=color:#e6db74>&#34;SMART.TAPOPLUG&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;role&#34;</span>: 0,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;fwVer&#34;</span>: <span style=color:#e6db74>&#34;1.3.6 Build 20230308 Rel. 52591&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;appServerUrl&#34;</span>: <span style=color:#e6db74>&#34;https://aps1-wap.tplinkcloud.com&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;deviceRegion&#34;</span>: <span style=color:#e6db74>&#34;ap-southeast-1&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;deviceId&#34;</span>: <span style=color:#e6db74>&#34;802241DA5175CF114E567DE8D72A3094210CB12D&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;deviceName&#34;</span>: <span style=color:#e6db74>&#34;P105&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;deviceHwVer&#34;</span>: <span style=color:#e6db74>&#34;1.0.0&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;alias&#34;</span>: <span style=color:#e6db74>&#34;U21hcnQgUGx1ZyAoS2F6YW1vcmkgT2ZmaWNlKQ==&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;deviceMac&#34;</span>: <span style=color:#e6db74>&#34;482254AC1D25&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;oemId&#34;</span>: <span style=color:#e6db74>&#34;495AC9D888EB711C42A28BECF62071CF&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;deviceModel&#34;</span>: <span style=color:#e6db74>&#34;P105&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;hwId&#34;</span>: <span style=color:#e6db74>&#34;58070BD9D8ECC915CD3D6F20A2172712&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;fwId&#34;</span>: <span style=color:#e6db74>&#34;1D18AD293A25ABDE41405B20C6F98816&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;isSameRegion&#34;</span>: true,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;status&#34;</span>: <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>]</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span></code></pre></div><p>ここまでは従来のスマートプラグと同様に動く。ここから先の手順は従来の hs105 と tapo p105 では手順が異なるみたい。<code>passthrough</code> というメソッドを呼び出してみてもエラーが返ってくる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ curl -s -X POST -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> -d <span style=color:#e6db74>&#39;{&#34;method&#34;:&#34;passthrough&#34;, &#34;params&#34;: {&#34;deviceId&#34;: &#34;802241DA5175CF114E567DE8D72A3094210CB12D&#34;, &#34;requestData&#34;: &#34;{\&#34;system\&#34;:{\&#34;get_sysinfo\&#34;:null},\&#34;emeter\&#34;:{\&#34;get_realtime\&#34;:null}}&#34;}}&#39;</span> https://wap.tplinkcloud.com/?token<span style=color:#f92672>=</span>***-*** | jq .
+</span></span><span style=display:flex><span><span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;error_code&#34;</span>: -20571,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;msg&#34;</span>: <span style=color:#e6db74>&#34;Device is offline&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span></code></pre></div><p>どうやら tapo シリーズはスマートプラグ自体が web api のエンドポイントを提供していて、ローカルからデバイスの web api を呼び出して制御できるらしい。例えば、次の記事でその手順が書いてあって、同様のやり方で実装した野生のライブラリもたくさんみつかる。</p><ul><li><a href=https://guminote.sakura.ne.jp/archives/911>ESP8266 で Tp-Link のスマートプラグ『Tapo P105』を直接操作する</a></li></ul><p>うちのシェアオフィスのネットワークはローカルの ip アドレスへの通信をすべて拒否しているようなのでこのやり方はうちのオフィスでは検証できない。しかし、tp-link 社のスマホアプリと ifttt の webhook 経由で p105 の制御ができているため、おそらくローカルのエンドポイントに接続する以外の別の手段があるのだと推測する。それをインターネット上で数時間探してみたものの、発見できなかった。この前 interop の展示で聞いた話しだと ifttt は非公開 api を使ってインテグレーションを実装しているという話しだったけど、どうやってクラウド経由で通信しているのだろう？と不思議に思った。</p></div></article><article class="post on-list"><h1 class=post-title><a href=/diary/posts/2023/0616/>アイディアのコラボレーション</a></h1><div class=post-meta><time class=post-date>2023-06-16</time></div><span class=post-tags>#<a href=/diary/tags/document/>document</a>&nbsp;
 #<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
 #<a href=/diary/tags/payment/>payment</a>&nbsp;
 #<a href=/diary/tags/smartplug/>smartplug</a>&nbsp;
@@ -86,63 +130,7 @@ Attempting to pair with F6:9D:A5:41:B7:1F
 #<a href=/diary/tags/linux/>linux</a>&nbsp;
 #<a href=/diary/tags/device/>device</a>&nbsp;</span><div class=post-content><p>1時に寝て5時に起きて7時に起きた。今週も開発に集中していたのでバテ気味。時間がなくて2ヶ月以上行ってなかった散髪に行ってきた。前髪が目にかかって鬱陶しかったのでいつもよりも短くしてもらった。頭が軽いと日々の生活のストレスも軽減しそう。</p><h2 id=ストレッチ>ストレッチ</h2><p>今日の開脚幅は開始前153cmで、ストレッチ後153cmだった。ストレッチ後の開脚幅はいつもとは計り方を変えたので数値は低くなっているが普段と同じぐらいのものだろう。すねの外側の筋は気にならないぐらいになったので復調したと言っていいだろう。今日は右股関節から太ももにかけての張りと右腰の張りが大きかった。今週も根を詰めて長時間オフィスで作業していたので座っているとかかる部位の負荷が高くなっていると想定される。納期が4月末なのでこの生活はもうしばらく続くといったところ。</p><h2 id=dell-マシンに-ubuntu-をインストール>dell マシンに ubuntu をインストール</h2><p>いつも通りオフィスで会社の事務手続きをしながら、並行して <a href=/diary/posts/2023/0323/>購入した dell マシン</a> に ubuntu をインストールする。いまお仕事で開発しているアプリケーションの成果物は amd64 をターゲットにしているのでローカルに amd64 の開発環境がないとインフラ周りやコンテナ周りの検証に一手間かかる。この状況を解消するために早くローカルの dell マシンを置き換えて開発環境を構築したい。dvd-r から ubuntu 22.04.01 (サイズ超過で dvd-r におさまらなくて 22.04.02 は断念) のインストールを行う。bios で一時的に secure boot の機能を無効にしないと署名チェックで起動しなかった。インストール作業中に予期せぬ不具合が発生しました的なポップアップが2-3回発生したけど、無視して継続できた。インストールして普通に起動すればいいやと緩い感覚で進めた。いつもはパーティションも自分で設定したりしているけれど、今回は windows 領域を残してデュアルブートな環境にしてみた。ディスク領域もインストーラーから windows 領域を 160GiB、残りをすべて ubuntu 領域にするといった設定ができた。すごい簡単。余裕があるときに windows の wsl を使うのも試してみれればと思う。</p></div></article><article class="post on-list"><h1 class=post-title><a href=/diary/posts/2023/0323/>デスクトップマシンの買い替え</a></h1><div class=post-meta><time class=post-date>2023-03-23</time></div><span class=post-tags>#<a href=/diary/tags/founding/>founding</a>&nbsp;
 #<a href=/diary/tags/device/>device</a>&nbsp;</span><div class=post-content><p>1時に寝て5時に起きて7時に起きた。昨日も吐き気がしてうまく眠れなかった。</p><h2 id=dell-マシンの買い替え>dell マシンの買い替え</h2><p><a href=/diary/posts/2023/0123/#デスクトップマシンの調子が悪い>1月頃からデスクトップマシンの調子が悪かった</a> 。ちょうど3年経ったところでそろそろ故障してもおかしくないと言える。ちょうど年度末なので dell の半期に一度の大感謝祭を待って購入することにした。これまでは <a href=https://www.dell.com/ja-jp/shop/%E8%A3%BD%E5%93%81%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BA/sf/vostro-desktops>vostro</a> を使っていた。そろそろメモリが16GiBだと厳しくなってきたところ。メモリが32GiBついているデスクトップマシンは限られてくる。
-その制約もあって <a href=https://www.dell.com/ja-jp/shop/%E8%A3%BD%E5%93%81%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BA/sf/xps-desktops>xps</a> マシンを購入をすることにした。</p><p>昨日のお昼過ぎに注文したのに翌日の午前中にマシンが届いた。あまりの早さに驚いた。dell の配送のワークフローの凄さを実感した。デスクトップマシンを注文して1週間ぐらいで来たらいいと普通の感覚で思っていたら翌日なんやもんな。24時間も経ってなかったしな。</p><p>グラフィックボードからモニタに接続しようとしたら4つのインターフェースのうち3つが displayport で1つが hdmi になっていた。いまどきは displayport が主流なんやね。そんなことすらも知らなくて変換アダプタ買わないととか思っていたら、モニターも displayport をもっていて、モニターの箱にも displayport ケーブルが同梱されていて、そのまま接続できることに気付いた。3年ぐらいでマシンを買い替えないとハードウェアのデバイスの変更にもついていけないのだなということも実感した。</p><p>私はもう世の中についていけてなくて、たまに普段やらないことをやるとそこで起きることに驚いて右往左往している。windows を起動して dell update から bios やファームウェアを最新のもの更新したりしていた。windows 上からダウンロードして設定して、再起動時に自動的に bios の更新がかかるような振る舞いをする。uefi のなせる技なんだろうけど、こういうところにも驚いて感心したりする。</p><p>ubuntu 22.04.02 が 4.8GiB あって dvd-r にぎりぎりおさまらない。もう dvd-r でもインストールメディアを作ることができなくなったんやなと気付く。22.04.01 は 3.6 GiB なので1つ前のバージョンをインストールしてアップグレードすればいいかとやってみたらブート時に次のようなエラーになった。</p><blockquote><p>Verification failed:(0x1A) Security Violation</p></blockquote><p>bios に secure boot 機能なるものがあって 22.04.01 ではインストールできないように署名チェックが行われるらしい。古いディストリビューションをインストールするには secure boot を一時的に無効にするしかなさそう。</p><ul><li><a href=https://askubuntu.com/questions/1456460/verification-failed-0x1a-security-violation-while-installing-ubuntu>https://askubuntu.com/questions/1456460/verification-failed-0x1a-security-violation-while-installing-ubuntu</a></li></ul></div></article><article class="post on-list"><h1 class=post-title><a href=/diary/posts/2023/0123/>人間の体調もマシンの調子も悪い</a></h1><div class=post-meta><time class=post-date>2023-01-23</time></div><span class=post-tags>#<a href=/diary/tags/nginx/>nginx</a>&nbsp;
-#<a href=/diary/tags/tls/>tls</a>&nbsp;
-#<a href=/diary/tags/device/>device</a>&nbsp;</span><div class=post-content><p>1時に寝て7時に起きた。冬のせいか、朝起きるのが辛くなってきた。自身の体調がパッとしないと思っていたらマシンにも移ってしまった。</p><h2 id=デスクトップマシンの調子が悪い>デスクトップマシンの調子が悪い</h2><p>何の前触れもなく os がいきなりストールする。これまでも稀にあったり、サスペンドから復帰しないとかも1ヶ月に1回ぐらいはあったりしていたけど、今日は2時間以内に3回発生した。使い始めてちょうど3年を超えたところなのでそろそろ故障が出てきてもおかしくはない。もっとも疑わしいディスクの S.M.A.R.T チェックをやってみた。<a href=https://qiita.com/ken-yossy/items/ffecfd31d41d71f27dca#smart--health-information%E3%81%AE%E5%86%85%E5%AE%B9>SMART / Health Informationの内容</a> をみると、<em>Percentage Used</em> という値がメーカーが独自計算した耐久値を表しているとのころ。しかし、値は13%なのでまだまだ大丈夫そう。その他のエラーチェックなどでもまったく問題は検出されなかった。どうやらディスクではないみたい。</p><pre tabindex=0><code>=== START OF SMART DATA SECTION ===
-SMART overall-health self-assessment test result: PASSED
-
-SMART/Health Information (NVMe Log 0x02)
-Critical Warning:                   0x00
-Temperature:                        28 Celsius
-Available Spare:                    100%
-Available Spare Threshold:          50%
-Percentage Used:                    13%
-Data Units Read:                    48,536,210 [24.8 TB]
-Data Units Written:                 57,978,947 [29.6 TB]
-Host Read Commands:                 1,818,481,150
-Host Write Commands:                1,973,810,058
-Controller Busy Time:               9,182
-Power Cycles:                       1,863
-Power On Hours:                     4,576
-Unsafe Shutdowns:                   80
-Media and Data Integrity Errors:    0
-Error Information Log Entries:      0
-Warning  Comp. Temperature Time:    0
-Critical Comp. Temperature Time:    0
-Temperature Sensor 1:               28 Celsius
-Thermal Temp. 1 Transition Count:   90
-Thermal Temp. 2 Transition Count:   50
-Thermal Temp. 1 Total Time:         2246
-Thermal Temp. 2 Total Time:         50
-</code></pre><h2 id=nginx-の-multi-upstream-対応>nginx の multi upstream 対応</h2><p><a href=/diary/posts/2023/0120/#sveltekit-アプリのデプロイ>先週末の続き</a> 。docker compose でデプロイして node.js 上のポートに http 接続できるところまでやっていた。nginx のリバースプロキシ経由でアクセスできるようにする。web api も外部から https 接続できるようにすると2つの upstream が必要になる。ホスト名を dns 登録していないから同じ ip アドレスでアクセスしているため、ポート番号を変えないといけない。そのまま server 設定を行うと location 設定が dry の原則に反してしまう。どうやったら再利用できるかを調べたら conf として外部に出してしまって include すればいいとあったので次のようにして再利用できた。これで node.js アプリは 443 を、web api は 8443 で https 接続できた。</p><pre tabindex=0><code>http {
-
-    upstream my-app {
-        server app:3000;
-    }
-
-    upstream web-api {
-        server api:18080;
-    }
-
-    server {
-        listen 443 ssl;
-        server_name server-app;
-        location / {
-            include     /etc/nginx/common_proxy.conf;
-            proxy_pass  http://my-app;
-        }
-    }
-
-    server {
-        listen 8443 ssl;
-        server_name server-api;
-        location / {
-            include     /etc/nginx/common_proxy.conf;
-            proxy_pass  http://web-api;
-        }
-    }
-}
-</code></pre></div></article><div class=pagination><div class=pagination__buttons><a href=/diary/tags/device/page/2/ class="button previous"><span class=button__icon>←</span>
+その制約もあって <a href=https://www.dell.com/ja-jp/shop/%E8%A3%BD%E5%93%81%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BA/sf/xps-desktops>xps</a> マシンを購入をすることにした。</p><p>昨日のお昼過ぎに注文したのに翌日の午前中にマシンが届いた。あまりの早さに驚いた。dell の配送のワークフローの凄さを実感した。デスクトップマシンを注文して1週間ぐらいで来たらいいと普通の感覚で思っていたら翌日なんやもんな。24時間も経ってなかったしな。</p><p>グラフィックボードからモニタに接続しようとしたら4つのインターフェースのうち3つが displayport で1つが hdmi になっていた。いまどきは displayport が主流なんやね。そんなことすらも知らなくて変換アダプタ買わないととか思っていたら、モニターも displayport をもっていて、モニターの箱にも displayport ケーブルが同梱されていて、そのまま接続できることに気付いた。3年ぐらいでマシンを買い替えないとハードウェアのデバイスの変更にもついていけないのだなということも実感した。</p><p>私はもう世の中についていけてなくて、たまに普段やらないことをやるとそこで起きることに驚いて右往左往している。windows を起動して dell update から bios やファームウェアを最新のもの更新したりしていた。windows 上からダウンロードして設定して、再起動時に自動的に bios の更新がかかるような振る舞いをする。uefi のなせる技なんだろうけど、こういうところにも驚いて感心したりする。</p><p>ubuntu 22.04.02 が 4.8GiB あって dvd-r にぎりぎりおさまらない。もう dvd-r でもインストールメディアを作ることができなくなったんやなと気付く。22.04.01 は 3.6 GiB なので1つ前のバージョンをインストールしてアップグレードすればいいかとやってみたらブート時に次のようなエラーになった。</p><blockquote><p>Verification failed:(0x1A) Security Violation</p></blockquote><p>bios に secure boot 機能なるものがあって 22.04.01 ではインストールできないように署名チェックが行われるらしい。古いディストリビューションをインストールするには secure boot を一時的に無効にするしかなさそう。</p><ul><li><a href=https://askubuntu.com/questions/1456460/verification-failed-0x1a-security-violation-while-installing-ubuntu>https://askubuntu.com/questions/1456460/verification-failed-0x1a-security-violation-while-installing-ubuntu</a></li></ul></div></article><div class=pagination><div class=pagination__buttons><a href=/diary/tags/device/page/2/ class="button previous"><span class=button__icon>←</span>
 <span class=button__text>最近の日記</span>
 </a><a href=/diary/tags/device/page/4/ class="button next"><span class=button__text>過去の日記</span>
 <span class=button__icon>→</span></a></div></div></div></div><footer class=footer><div class=footer__inner><div class=copyright><span>© 2024 Powered by <a href=https://gohugo.io>Hugo</a></span>
