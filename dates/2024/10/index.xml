@@ -810,7 +810,7 @@ type testData struct { Documents []bson.Raw `bson:&amp;#34;documents&amp;#34;` }
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h3 id="仕事は楽しいかねhahahugoshortcode1112s0hbhb-の考察">&lt;a href="/diary/diary/posts/2024/1008/">仕事は楽しいかね？&lt;/a> の考察&lt;/h3>
+&lt;h3 id="仕事は楽しいかねhahahugoshortcode1113s0hbhb-の考察">&lt;a href="/diary/diary/posts/2024/1008/">仕事は楽しいかね？&lt;/a> の考察&lt;/h3>
 &lt;p>まとめを見返しながら、だいたいの項目は理解または支持できる。1つだけ次の項目が私には欠けていることに気付いた。&lt;/p>
 &lt;blockquote>
 &lt;p>毎日1つ試し続ければ必ず上達や進歩ができる&lt;/p>

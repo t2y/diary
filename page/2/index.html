@@ -1,5 +1,72 @@
 <!doctype html><html lang=en><head><meta name=generator content="Hugo 0.123.1"><title></title>
-<meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=keywords content><meta name=robots content="noodp"><link rel=canonical href=/diary/><link rel=stylesheet href=/diary/styles.css><link rel=stylesheet href=/diary/style.css><link rel="shortcut icon" href=/diary/favicon.ico><meta name=twitter:card content="summary"><meta name=twitter:site content="t2y"><meta name=twitter:creator content="t2y"><meta property="og:locale" content="en"><meta property="og:type" content="website"><meta property="og:title" content><meta property="og:description" content><meta property="og:url" content="/diary/"><meta property="og:site_name" content><meta property="og:image" content="/diary/favicon.ico"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="627"><link href=/diary/index.xml rel=alternate type=application/rss+xml title></head><body class=green><div class="container full headings--one-size"><header class=header><div class=header__inner><div class=header__logo><a href=/diary><div class=logo>forest nook</div></a></div><ul class="menu menu--mobile"><li class=menu__trigger>Menu&nbsp;▾</li><li><ul class=menu__dropdown><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul></li></ul></div><nav class=navigation-menu><ul class="navigation-menu__inner menu--desktop"><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul></nav></header><div class=content><div class=posts><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2024/1029/>より良くなって苦しくなる</a></h1><div class=post-meta><span class=post-date>2024-10-29 (Tue.)</span></div><span class=post-tags>#<a href=/diary/tags/testing/>testing</a>&nbsp;
+<meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=keywords content><meta name=robots content="noodp"><link rel=canonical href=/diary/><link rel=stylesheet href=/diary/styles.css><link rel=stylesheet href=/diary/style.css><link rel="shortcut icon" href=/diary/favicon.ico><meta name=twitter:card content="summary"><meta name=twitter:site content="t2y"><meta name=twitter:creator content="t2y"><meta property="og:locale" content="en"><meta property="og:type" content="website"><meta property="og:title" content><meta property="og:description" content><meta property="og:url" content="/diary/"><meta property="og:site_name" content><meta property="og:image" content="/diary/favicon.ico"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="627"><link href=/diary/index.xml rel=alternate type=application/rss+xml title></head><body class=green><div class="container full headings--one-size"><header class=header><div class=header__inner><div class=header__logo><a href=/diary><div class=logo>forest nook</div></a></div><ul class="menu menu--mobile"><li class=menu__trigger>Menu&nbsp;▾</li><li><ul class=menu__dropdown><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul></li></ul></div><nav class=navigation-menu><ul class="navigation-menu__inner menu--desktop"><li><a href=/diary/about>自己紹介</a></li><li><a href=/diary/dates>月別一覧</a></li><li><a href=/diary/tags>タグ一覧</a></li></ul></nav></header><div class=content><div class=posts><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2024/1030/>nginx の設定調査</a></h1><div class=post-meta><span class=post-date>2024-10-30 (Wed.)</span></div><span class=post-tags>#<a href=/diary/tags/infrastructure/>infrastructure</a>&nbsp;
+#<a href=/diary/tags/linux/>linux</a>&nbsp;
+#<a href=/diary/tags/container/>container</a>&nbsp;
+#<a href=/diary/tags/security/>security</a>&nbsp;</span><div class=table-of-contents><h2>目次</h2><nav id=TableOfContents><ul><li><a href=#nginx-のリバースプロキシ>nginx のリバースプロキシ</a><ul><li><a href=#sub-domain-based-routing>sub-domain based routing</a></li><li><a href=#path-based-routing>path based routing</a></li></ul></li><li><a href=#コンテナの-capability>コンテナの capability</a></li></ul></nav></div><div class=post-content><p>開発合宿の準備をしていて今日のバドミントン練習はお休み。</p><h2 id=nginx-のリバースプロキシ>nginx のリバースプロキシ</h2><p>compose に起動している2つのサービスを同じポート番号で共有したい。nginx を tls 終端にしていてリバースプロキシとして構築している。ルーティングするには2つの方法がある。次のような compose.yml を作ってローカルのファイルシステムをマウントして設定変更しながら検証する。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=display:flex><span><span style=color:#f92672>services</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>proxy</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>container_name</span>: <span style=color:#ae81ff>proxy</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>image</span>: <span style=color:#ae81ff>docker.io/library/nginx:stable</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>8443</span>:<span style=color:#ae81ff>8443</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>network_mode</span>: <span style=color:#e6db74>&#34;host&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>./nginx:/etc/nginx</span>
+</span></span></code></pre></div><h3 id=sub-domain-based-routing>sub-domain based routing</h3><p>クラウドでは普通のやり方がサブドメインのホスト名でルーティングを行う。設定もシンプルでファイルも管理しやすいように分割できてよいと思える。システム変更時の移行も名前を切り替えればよいので移行しやすい。</p><ul><li>nginx.conf</li></ul><pre tabindex=0><code>http {
+    sendfile on;
+
+    upstream web-api1 {
+        server localhost:8801;
+    }
+
+    upstream web-api2 {
+        server localhost:8802;
+    }
+
+    ssl_certificate /etc/nginx/ssl/sample.crt;
+    ssl_certificate_key /etc/nginx/ssl/sample.key;
+
+    include /etc/nginx/sites-enabled/*;
+}
+</code></pre><ul><li>nginx/sites-enabled/www.sub1.example.com</li></ul><pre tabindex=0><code>server {
+    listen 8443 ssl;
+    server_name sub1.example.com;
+    location / {
+        include     /etc/nginx/common_proxy.conf;
+        proxy_pass  http://web-api1;
+    }
+}
+</code></pre><h3 id=path-based-routing>path based routing</h3><p>サブドメインの方が私は好みではあるが、サブドメインをネームサーバーに登録したり、tls の証明書にも複数ホストの考慮が必要になってくる。パスでルーティングするなら1台のマシンのように仮想的にみせられるというメリットはある。</p><pre tabindex=0><code>http {
+    sendfile on;
+
+    upstream web-api1 {
+        server localhost:8801;
+    }
+
+    upstream web-api2 {
+        server localhost:8802;
+    }
+
+    ssl_certificate /etc/nginx/ssl/sample.crt;
+    ssl_certificate_key /etc/nginx/ssl/sample.key;
+
+    server {
+        listen 8443 ssl;
+
+        location /app1/ {
+            include     /etc/nginx/common_proxy.conf;
+            proxy_pass  http://web-api1;
+        }
+
+        location /app2/ {
+            include     /etc/nginx/common_proxy.conf;
+            proxy_pass  http://web-api2;
+        }
+    }
+}
+</code></pre><h2 id=コンテナの-capability>コンテナの capability</h2><p>docker compose を rootless mode で使っていて 443 ポートを使いたいと言われてどうしたらいいのだろう？といままで考えていないことに気付いた。調べたらすぐにやり方が書いてあった。</p><ul><li><a href=https://docs.docker.com/engine/security/rootless/#exposing-privileged-ports>Exposing privileged ports</a></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ sudo setcap cap_net_bind_service<span style=color:#f92672>=</span>ep <span style=color:#66d9ef>$(</span>which rootlesskit<span style=color:#66d9ef>)</span>
+</span></span><span style=display:flex><span>$ systemctl --user restart docker
+</span></span></code></pre></div><p>これだけで compose サービスの1つにポート設定できた。めちゃ簡単だった。いままで capability を設定したことがなかったのと、権限周りはややこしいという先入観もあって触る機会がなかった。いろいろ洗練されて抽象化されているのだと推測する。バックエンドの場合は任意のポート番号を使えばよいから capability の設定をして 1024 以下のポート番号を使わないといけない理由はあまりない気はするが、そういう設定もできるようにはみえる。そういう話題すら聞いたことがなかった。</p><ul><li><a href=https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-capabilities-for-a-container>Set capabilities for a Container</a></li></ul></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2024/1029/>より良くなって苦しくなる</a></h1><div class=post-meta><span class=post-date>2024-10-29 (Tue.)</span></div><span class=post-tags>#<a href=/diary/tags/testing/>testing</a>&nbsp;
 #<a href=/diary/tags/management/>management</a>&nbsp;
 #<a href=/diary/tags/business/>business</a>&nbsp;</span><div class=table-of-contents><h2>目次</h2><nav id=TableOfContents><ul><li><a href=#改善のための改善を繰り返すと苦しくなる>改善のための改善を繰り返すと苦しくなる</a></li></ul></nav></div><div class=post-content><p>お仕事の区切りが悪くて23時までコードを書いていたので今日のバドミントン練習はお休み。ひたすらテストコードを書いている。テストケースをみて、カバレッジをみて、アプリケーションコードを読んで、テストコードを読んでの繰り返しの日々。時間をかけてきたけれど、ようやく成果が出てきつつある。一番ややこしいところのカバレッジを 50.6% から 80.4% に改善したと報告をあげた。テストデータを細かく管理できるようになったのでカバレッジが上がっているだけでなく、複数設定の違いによる振る舞いの検証も進んでいる。</p><h2 id=改善のための改善を繰り返すと苦しくなる>改善のための改善を繰り返すと苦しくなる</h2><p>ちょうどいま私がやっていることのしんどさを代弁してくれているような記事をみかけた。</p><ul><li><a href=https://yashio.hatenablog.com/entry/20241022/1729600977>業務効率化の苦しみでもとの濁りの田沼恋しき的な気持ち</a></li></ul><p>私もいまマネージャーやって、プロダクトの開発全般を改善して、また開発者に戻ってプロダクトのコードを改善して、ここ半年ほど技術的負債になってしまったところを改善しまくってきた。小さい規模ではうまくいったことが規模が大きくなる中での見直しや依存関係によって複雑化したり、自動化をしても自動化のための仕組みは保守しないといけない。改善にはいろいろ面倒くささがついてくる。その割にその成果がみえにくかったり分かりにくかったりする。やっている本人ですら微妙とか思ってしまうことさえあるものの、しかし、それをやらないとさらにひどい状況になるのでやらざるを得ない。</p><p>ひどいプロダクトやどうしようもないスタートアップなどはリアーキテクチャをやらないので直せないといった状況になってしまい、保守している人たちが苦労したり、鈍重な開発で苦しんでいるのをみかけたりする。少なくとも私がイニシアティブをとっているプロダクトでそんなことは起きない。常に改善しまくっているから短期でみた機能開発のスループットは高くないかもしれないが、中長期でみた開発を停滞させる要因はまったくない。</p><blockquote><p>この「より良くしているのに、より苦しくなってくる」機序は、基本的に産業資本主義の特徴なのだろうと思っている。<br>時間軸上の価値体系の差異から価値を取り出す行為を回し続けないといけなくて、効率化して生産性を上げたなら、さらに上げ続けないと価値を取り出せなくなってしまう。<br></p></blockquote><p>テストがなければそもそもテストの改善や見直しという作業は発生しない。開発したときにテストコードを書くという作業も発生しない。業務量はずっと下がる。もちろんその減った業務量は将来の不具合や鈍重な開発により後払いになるわけだが、いまテストを書いていてもその保守や改善のための作業が既存の開発に付加された形で将来に積み重なっていく。テストがなかった未来とテストがある未来を比較することはできないが、どちらの未来にも手に余る業務量が待ち受けているという展望はそれほど変わらないようにみえる。そこで自身の自己実現や成長といった目的がないのであれば、テストがある未来に得ているはずの利益を資本家が搾取するだけで労働者はなんら変わらないのではないかという気持ちが「改善すればするほど苦しくなっていく」と感じてしまう。</p></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2024/1028/>光るシャトル雑感</a></h1><div class=post-meta><span class=post-date>2024-10-28 (Mon.)</span></div><span class=post-tags>#<a href=/diary/tags/badminton/>badminton</a>&nbsp;
 #<a href=/diary/tags/business/>business</a>&nbsp;
@@ -36,84 +103,7 @@
 </span></span></code></pre></div><p>この make ターゲットを gitlab ci/cd から実行して coverage.out/coverage.html を自動生成する。coverage.out があるので必要に応じて好みのツールで統計情報を解析すればよい。たとえば <a href=https://github.com/nikolaydubina/go-cover-treemap>nikolaydubina/go-cover-treemap</a> でツリーマップを作るなら次のように実行する。</p><pre tabindex=0><code>$ go-cover-treemap -coverprofile coverage.out &gt; treemap.svg
 </code></pre><h2 id=近況報告の資料作り>近況報告の資料作り</h2><p>普段は週末に報告資料を作っているのにもうやる気が無さ過ぎてお仕事を終えてから作っている。今回はネガティブな内容も報告に入れる。過去の経緯などを調査しながら3時間もあれば一通りのアウトラインはできた。明日がマイルストーンの最終日になるため、明日を終えてからでないと細かい数字は決定しない。マイルストーンの issue を調べたら qa テストでみつけた不具合の issue がそれなりに溜まっているようにみえる。本当は次のマイルストーンで5次開発は完了予定だが、もう1つ増やしてもよいかもしれない。いずれにしても12月／1月に本番導入のための準備もある。今の開発フェーズを完了しても次の開発フェーズには入らないのではないかという見通しもある。</p></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2024/1020/>バドミントンの基本練習</a></h1><div class=post-meta><span class=post-date>2024-10-20 (Sun.)</span></div><span class=post-tags>#<a href=/diary/tags/badminton/>badminton</a>&nbsp;
 #<a href=/diary/tags/exercise/>exercise</a>&nbsp;
-#<a href=/diary/tags/health/>health</a>&nbsp;</span><div class=table-of-contents><h2>目次</h2><nav id=TableOfContents><ul><li><a href=#体育館でバドミントン>体育館でバドミントン</a></li><li><a href=#ストレッチ>ストレッチ</a></li></ul></nav></div><div class=post-content><p>今日のバドミントン練習は磯上体育館で9時から12時半頃まで3時間ほど練習できた。ひとりでリフティング練習をするよりも相手がいて打ち合いする方がずっと楽しい。午前中にしっかり動いたので2万歩を超えて昨日の消費エネルギーは4500カロリーを超えた。</p><h2 id=体育館でバドミントン>体育館でバドミントン</h2><p><a href=/diary/posts/2024/0918/#体育館でバドミントン>前回の所感</a> 。磯上体育館では月に2回ぐらい個人利用という先着順で予約できる仕組みがある。8時過ぎに磯上体育館へ行ったらすでに2組並んでいた。先頭の方は9時から2面予約するという。私は3番目で並んでいた。8時半頃には10人以上後ろに並んでいたので8時頃に行くと確実に予約できると思う。事務側も本当は9時から受付だけど、並んでいるせいか8時45分頃から予約受け付けしてれくた。こうやって予約を取るためにどんどん並ぶ時間が早くなっていくのかもしれない。</p><p>先頭に並んでいたシニアの方が気さくに周りに声をかけていて、話しているうちに仲良くなってその人たちの9時からの練習に混ぜてもらうことになった。ベテランのシニアな方で経験もあって教え方もとても上手だった。丁寧に教えてくれてすごく勉強になった。来週も個人利用で9時から借りると話されていたのを聞いて来週も練習に混ぜてもらうことにした。今日は3つの打ち方の基本を教えてもらいながら練習した。</p><ul><li>クリア<ul><li>コートの奥から相手のコート奥へ大きく前方へ打ち返す</li></ul></li><li>ドロップ<ul><li>クリアを同じ打ち方でコートの奥からネットを超えた前方位置へゆるく落とす</li></ul></li><li>プッシュ<ul><li>ネット前で浮いた球を下方に叩きつけるような打ち方になる</li></ul></li></ul><p>打ちながら、私のラケットの振り方や持ち方のよくないところを指摘してもらった。我流でやっていたからちゃんとした知識やフォームを教えてもらえるのは本当にありがたい。教えてもらったことで覚えていることを書いておく。</p><ul><li>足は肩幅に開いて準備をする<ul><li>まだ言語化できないが、右足/左足の使い方について説明されてた</li><li>足の親指部分にチカラを入れてコントロールするように話されていた</li></ul></li><li>フットワークと足の位置を意識してみる<ul><li>私は無意識に一歩目は左足から動いてしまう<ul><li>フォアハンドで打つときは右足から動いた方が速いのかもしれない</li></ul></li></ul></li><li>シャトルが来てから動くのではなく、来る前から位置を予測して動いて備える</li><li>ラケットを振るときに左手をあげてカラダのバランスをとる<ul><li>基本として左手をどう使うのかがすごく大事とのこと</li><li>左手を下げない、肘を90度にまげてあげるのに備えておく</li><li>手首をまげずに固定してラケットを振る</li></ul></li><li>ラケットは親指と人差し指でつまむ気持ちで軽くもち、シャトルを打ち返す瞬間だけ握る<ul><li>この感覚で打ち返すと真っ直ぐ強い打球を返せるようになった</li><li>バックハンドで返すときも同様でシャトルを打つ瞬間だけ握り込んで止めるような感覚で返す</li></ul></li><li>向かってくるシャトルに対してカラダの正面でとらえて打つ<ul><li>この位置を固定にすることで安定して打ち返せる気がする</li></ul></li></ul><p>1時間ちょっと練習の指導をしてもらって30分ほどダブルスの試合をした。私は下手だからすぐ失敗してラリーが止まってしまう。試合形式になると簡単そうにみえるシャトルの打ち返しも緊張や前後左右の動きの中で失敗してしまう。練習でできないことは試合では絶対にできない。ラリーを止めてしまって他の人たちに悪いなと罪悪感を感じるし、練習する方がたくさんシャトルを打つことができて楽しい。もう少し上達するまでは試合は棄権しようかなとも思う。11時からいとうさんが来られて、前の時間帯に教えてもらった打ち方を意識しながらひたすら打ち合いの練習をしていた。その前の練習で教えてもらったことをゆっくり反復する時間をとれてこの時間もよかった。基本の打ち方を教えてもらった通りにやっていると狙ったところにうまく返せる回数が増えたように感じた。</p><h2 id=ストレッチ>ストレッチ</h2><p>先週は実家へ帰ってストレッチをお休みして2週間ぶり。午前中にバドミントンの練習をたくさんして疲れていたのと、試合をしているときにころんで足と腰を少し痛めていた。その部位を伸ばす意図でもストレッチしてもらってちょうどよかった。運動して筋肉痛もある状態でストレッチするとよく伸びて、その日の睡眠もよく取れるし疲労回復も早くなる。今日の開脚幅は開始前146cmで、ストレッチ後155cmだった。ストレッチ前は筋肉痛で伸びないのがストレッチ後によく伸びていることが伺える。トレーナーさんはサッカーをずっとされていた方なのでたまたまはてブでみかけた町田ゼルビアの記事を話題にしたら盛り上がった。この著者の記事が3つもあがっているようにいまホット話題ではあるらしい。</p><ul><li><a href=https://note.com/shv12/n/nab3420c578d4>なぜ町田ゼルビアは叩かれるのか？ここ2年の出来事を振り返る③</a></li></ul><p>ストレッチを終えて晩ご飯を食べた後にオフィスで作業しようと思っていたものの、家に帰ったら疲れてそのまま休んでしまった。体調が悪いわけでもないのに、最近はやらないといけないことをがんばる気力がなくなっている。なにか内からのやりたいが出てこない。</p></div></div><div class="post on-list"><h1 class=post-title><a href=/diary/posts/2024/1019/>コンパクトな REALFORCE R1 キーボード</a></h1><div class=post-meta><span class=post-date>2024-10-19 (Sat.)</span></div><span class=post-tags>#<a href=/diary/tags/keyboard/>keyboard</a>&nbsp;
-#<a href=/diary/tags/device/>device</a>&nbsp;
-#<a href=/diary/tags/noh/>noh</a>&nbsp;
-</span><img src=/diary/img/2024/1019_r1.jpg class=post-cover alt="コンパクトな REALFORCE R1 キーボード"><div class=table-of-contents><h2>目次</h2><nav id=TableOfContents><ul><li><a href=#realforce-r1-レビュー>REALFORCE R1 レビュー</a></li><li><a href=#能楽の勉強>能楽の勉強</a></li></ul></nav></div><div class=post-content><p>今日は午前中寝ていたのと雨降りだったのもありバドミントン練習はお休みした。</p><h2 id=realforce-r1-レビュー>REALFORCE R1 レビュー</h2><p>bluetooth の初回ペアリング設定を過去の <a href=/diary/posts/2021/1102/#realforce-のワイヤレスモデル>R3 のペアリング設定</a> をみながら行った。手順を忘れていたのでまた書いておく。agent を介してパスキーを入力する必要がある。その手順が少しわかりにくい。30分ほどペアリング設定をうまくできなくてやり直ししたりしていた。滅多にやらないことだし。今回も GUI ツールではなく bluetoothctl を実行してペアリングした。</p><pre tabindex=0><code>$ bluetoothctl
-[REALFORCE_2 (R3)]# default-agent
-Default agent request successful
-[REALFORCE_2 (R3)]# scan on
-Discovery started
-... (デバイスを検索しているうちに RC1 がみつかる)
-... MAC アドレスを確認してペアリングする
-
-[REALFORCE_2 (R3)]# pair F7:62:4B:02:D6:EB
-Attempting to pair with F7:62:4B:02:D6:EB  (キーボードに接続を試みる)
-..
-[agent] Passkey: 946185 (エージェントがパスキーを受け取る)
-...
-</code></pre><p>エージェントが受け取ったパスキーを、bluetooth 接続するキーボードで入力して Enter を押下する。</p><pre tabindex=0><code>[NEW] Primary Service (Handle 0x0000)
-	/org/bluez/hci0/dev_F7_62_4B_02_D6_EB/service000a
-	00001801-0000-1000-8000-00805f9b34fb
-	Generic Attribute Profile
-[NEW] Primary Service (Handle 0x0000)
-	/org/bluez/hci0/dev_F7_62_4B_02_D6_EB/service000b
-	0000180a-0000-1000-8000-00805f9b34fb
-	Device Information
-[NEW] Characteristic (Handle 0x0000)
-	/org/bluez/hci0/dev_F7_62_4B_02_D6_EB/service000b/char000c
-	00002a29-0000-1000-8000-00805f9b34fb
-	Manufacturer Name String
-[NEW] Characteristic (Handle 0x0000)
-	/org/bluez/hci0/dev_F7_62_4B_02_D6_EB/service000b/char000e
-	00002a50-0000-1000-8000-00805f9b34fb
-	PnP ID
-[NEW] Primary Service (Handle 0x0000)
-	/org/bluez/hci0/dev_F7_62_4B_02_D6_EB/service0010
-	0000180f-0000-1000-8000-00805f9b34fb
-	Battery Service
-[NEW] Characteristic (Handle 0x0000)
-	/org/bluez/hci0/dev_F7_62_4B_02_D6_EB/service0010/char0011
-	00002a19-0000-1000-8000-00805f9b34fb
-	Battery Level
-[NEW] Descriptor (Handle 0x0000)
-	/org/bluez/hci0/dev_F7_62_4B_02_D6_EB/service0010/char0011/desc0013
-	00002902-0000-1000-8000-00805f9b34fb
-	Client Characteristic Configuration
-[CHG] Device F7:62:4B:02:D6:EB UUIDs: 00001800-0000-1000-8000-00805f9b34fb
-[CHG] Device F7:62:4B:02:D6:EB UUIDs: 00001801-0000-1000-8000-00805f9b34fb
-[CHG] Device F7:62:4B:02:D6:EB UUIDs: 0000180a-0000-1000-8000-00805f9b34fb
-[CHG] Device F7:62:4B:02:D6:EB UUIDs: 0000180f-0000-1000-8000-00805f9b34fb
-[CHG] Device F7:62:4B:02:D6:EB UUIDs: 00001812-0000-1000-8000-00805f9b34fb
-[CHG] Device F7:62:4B:02:D6:EB ServicesResolved: yes
-[CHG] Device F7:62:4B:02:D6:EB Paired: yes
-Pairing successful
-[CHG] Device F7:62:4B:02:D6:EB Modalias: usb:v0853p031Ad0001
-...
-[REALFORCE_2 (R3)]# exit
-</code></pre><p>ペアリングが成功したらキーボード入力できるようになる。bluetoothctl を eixt してから再実行すると今度は RC1 で実行された。</p><pre tabindex=0><code>$ bluetoothctl
-[RC1_1]# info
-Device F7:62:4B:01:D6:EB (random)
-	Name: RC1_1
-	Alias: RC1_1
-	Appearance: 0x03c1
-	Icon: input-keyboard
-	Paired: yes
-	Trusted: no
-	Blocked: no
-	Connected: yes
-	WakeAllowed: yes
-	LegacyPairing: no
-	UUID: Generic Access Profile    (00001800-0000-1000-8000-00805f9b34fb)
-	UUID: Generic Attribute Profile (00001801-0000-1000-8000-00805f9b34fb)
-	UUID: Device Information        (0000180a-0000-1000-8000-00805f9b34fb)
-	UUID: Battery Service           (0000180f-0000-1000-8000-00805f9b34fb)
-	UUID: Human Interface Device    (00001812-0000-1000-8000-00805f9b34fb)
-	Modalias: usb:v0853p031Ad0001
-	Battery Percentage: 0x5b (91)
-[RC1_1]# trust 
-[CHG] Device F7:62:4B:02:D6:EB Trusted: yes
-</code></pre><p>この日記を R1 のキーボードで書いている。R3 と比べてたしかにコンパクトで軽い。キーボードを持ち運びするならよさそう。R3 と比べて右シフトキーが小さいのでその隣にある PgUp キーをタイプミスしてしまう。私は左右両方のシフトキーを使う。!記号などの左手でタイプするときは右シフトキーを使う。それからコンパクトサイズのせいか、キーとキーの隙間が若干狭くなったように感じる。矢印キーの位置もエンターキーの下の方に移動している。R3 の矢印キーの位置を無意識にタイプしようとして空打ちしてしまう。意外と矢印キーを私は使っていたことに気付く。これらの操作の違和感は慣れの問題だと思う。キーボードの打鍵感も R3 と比べて若干違う。気持ち、深さが増して軽い印象を受ける。キー荷重は 45g を選択した。R3 では変荷重モデルを使っていたので小指キーが 30g から 45g に変わる。その違いはあまり感じない。</p><p>キーボードは毎日たくさん使うものだから慣れによる無意識の最適化が自然と行われる。私の用途では R3 と R1 では右シフトキーと矢印キーの位置の違いに違和感を感じる。両方のキーボードを使い分けるというようにはならないのかもしれない。どちらかに慣れるともう一方に違和感を抱くように思える。</p><h2 id=能楽の勉強>能楽の勉強</h2><p><a href=https://nohgaku-kyodo.com/repertoire/yondemiru-yohkihi20241019>玄宗皇帝と楊貴妃の愛情物語の後日談《楊貴妃》 第41回能のことばを読んでみる会</a> に参加してきた。<a href=/diary/posts/2024/0630/#能楽の勉強>前回の所感はここ</a> 。中国史上もっとも有名な美人といわれる <a href=https://ja.wikipedia.org/wiki/%E6%A5%8A%E8%B2%B4%E5%A6%83>楊貴妃</a> の幽霊を主人公とした能になる。<a href=https://ja.wikipedia.org/wiki/%E6%96%B9%E5%A3%AB>方士</a> と呼ばれる修行者が玄宗皇帝の命令で楊貴妃の魂魄の在り処を探していて蓬莱島でみつけて話しを聞くといった、とくに変わったこともない普通の物語の構成になっている。作者ははっきり分かっていないらしいが、世阿弥の娘婿になる金春禅竹 (こんぱる ぜんちく) ではないかと推定されるとのこと。</p><p><a href=https://ja.wikipedia.org/wiki/%E8%B2%B4%E5%A6%83>貴妃</a> というのは皇帝の后に与えられる位の1つで皇后に次ぐ高い位だという。楊が姓になる。唐の <a href=https://ja.wikipedia.org/wiki/%E7%8E%84%E5%AE%97_(%E5%94%90)>玄宗皇帝</a> は在位期間が45年と長い。前半は善政をしいて唐は絶頂期を迎える。後半は楊貴妃にうつつを抜かすようになる。楊一族が政治の重要なポストを占めるようになり、玄宗皇帝が政治に関心をなくして最終的に反乱が起きて国が乱れてしまう。その後、白居易 (はくきょい) という著名な詩人が玄宗皇帝と楊貴妃の物語を <a href=https://ja.wikipedia.org/wiki/%E9%95%B7%E6%81%A8%E6%AD%8C>長恨歌</a> にした。この漢詩が素晴らしい内容だと評価されて後世にまで楊貴妃の物語が広く伝わる影響を与えたという。</p><p>源氏物語に出てくる <a href=https://ja.wikipedia.org/wiki/%E6%A1%90%E5%A3%BA%E6%9B%B4%E8%A1%A3>桐壺更衣</a> (光源氏の母) が楊貴妃のイメージや長恨歌から引用されて創作されているという。この能は源氏物語に出てくる長恨歌を引用した文章を引用して作られてもいて、伝言ゲームのように、引用を繰り返すうちに少しその内容が変わってしまうといったことも起きているらしい。おもしろかったのが、漢詩に序文をつけたりするのを詩序と呼ぶ。オリジナルの中国の長恨歌には詩序がないのに、日本に伝わって残っている長恨歌には詩序が残っていて、その詩序の内容を能でも引用していたりする。当時は長恨歌には詩序があったのに現代では失われてしまった可能性もないわけではないが、おそらく日本に伝わってきた後に誰かが詩序を追加したのではないかと考えられているらしい。</p><blockquote><p>会者定離ぞと 聞く時は、逢うこそ別れなりけれ</p></blockquote><p>以前 <a href=/diary/posts/2023/1021/#能楽の勉強>蝉丸の能</a> を読んだときにも <a href=https://ja.wikipedia.org/wiki/%E4%BC%9A%E8%80%85%E5%AE%9A%E9%9B%A2>会者定離 (えしゃじょうり)</a> が出てきた。一種の悟りのような表現だと朝原さんが解説していて私も記憶によく残っている。直接なにかの役に立つわけではないけれど、こういう言葉や概念に触れて自分の価値観をふりかえる機会があるのはおもしろい。能の言葉を読んでいるとそういう出会いがある。</p></div></div><div class=pagination><div class=pagination__buttons><a href=/diary/ class="button previous"><span class=button__icon>←</span>
+#<a href=/diary/tags/health/>health</a>&nbsp;</span><div class=table-of-contents><h2>目次</h2><nav id=TableOfContents><ul><li><a href=#体育館でバドミントン>体育館でバドミントン</a></li><li><a href=#ストレッチ>ストレッチ</a></li></ul></nav></div><div class=post-content><p>今日のバドミントン練習は磯上体育館で9時から12時半頃まで3時間ほど練習できた。ひとりでリフティング練習をするよりも相手がいて打ち合いする方がずっと楽しい。午前中にしっかり動いたので2万歩を超えて昨日の消費エネルギーは4500カロリーを超えた。</p><h2 id=体育館でバドミントン>体育館でバドミントン</h2><p><a href=/diary/posts/2024/0918/#体育館でバドミントン>前回の所感</a> 。磯上体育館では月に2回ぐらい個人利用という先着順で予約できる仕組みがある。8時過ぎに磯上体育館へ行ったらすでに2組並んでいた。先頭の方は9時から2面予約するという。私は3番目で並んでいた。8時半頃には10人以上後ろに並んでいたので8時頃に行くと確実に予約できると思う。事務側も本当は9時から受付だけど、並んでいるせいか8時45分頃から予約受け付けしてれくた。こうやって予約を取るためにどんどん並ぶ時間が早くなっていくのかもしれない。</p><p>先頭に並んでいたシニアの方が気さくに周りに声をかけていて、話しているうちに仲良くなってその人たちの9時からの練習に混ぜてもらうことになった。ベテランのシニアな方で経験もあって教え方もとても上手だった。丁寧に教えてくれてすごく勉強になった。来週も個人利用で9時から借りると話されていたのを聞いて来週も練習に混ぜてもらうことにした。今日は3つの打ち方の基本を教えてもらいながら練習した。</p><ul><li>クリア<ul><li>コートの奥から相手のコート奥へ大きく前方へ打ち返す</li></ul></li><li>ドロップ<ul><li>クリアを同じ打ち方でコートの奥からネットを超えた前方位置へゆるく落とす</li></ul></li><li>プッシュ<ul><li>ネット前で浮いた球を下方に叩きつけるような打ち方になる</li></ul></li></ul><p>打ちながら、私のラケットの振り方や持ち方のよくないところを指摘してもらった。我流でやっていたからちゃんとした知識やフォームを教えてもらえるのは本当にありがたい。教えてもらったことで覚えていることを書いておく。</p><ul><li>足は肩幅に開いて準備をする<ul><li>まだ言語化できないが、右足/左足の使い方について説明されてた</li><li>足の親指部分にチカラを入れてコントロールするように話されていた</li></ul></li><li>フットワークと足の位置を意識してみる<ul><li>私は無意識に一歩目は左足から動いてしまう<ul><li>フォアハンドで打つときは右足から動いた方が速いのかもしれない</li></ul></li></ul></li><li>シャトルが来てから動くのではなく、来る前から位置を予測して動いて備える</li><li>ラケットを振るときに左手をあげてカラダのバランスをとる<ul><li>基本として左手をどう使うのかがすごく大事とのこと</li><li>左手を下げない、肘を90度にまげてあげるのに備えておく</li><li>手首をまげずに固定してラケットを振る</li></ul></li><li>ラケットは親指と人差し指でつまむ気持ちで軽くもち、シャトルを打ち返す瞬間だけ握る<ul><li>この感覚で打ち返すと真っ直ぐ強い打球を返せるようになった</li><li>バックハンドで返すときも同様でシャトルを打つ瞬間だけ握り込んで止めるような感覚で返す</li></ul></li><li>向かってくるシャトルに対してカラダの正面でとらえて打つ<ul><li>この位置を固定にすることで安定して打ち返せる気がする</li></ul></li></ul><p>1時間ちょっと練習の指導をしてもらって30分ほどダブルスの試合をした。私は下手だからすぐ失敗してラリーが止まってしまう。試合形式になると簡単そうにみえるシャトルの打ち返しも緊張や前後左右の動きの中で失敗してしまう。練習でできないことは試合では絶対にできない。ラリーを止めてしまって他の人たちに悪いなと罪悪感を感じるし、練習する方がたくさんシャトルを打つことができて楽しい。もう少し上達するまでは試合は棄権しようかなとも思う。11時からいとうさんが来られて、前の時間帯に教えてもらった打ち方を意識しながらひたすら打ち合いの練習をしていた。その前の練習で教えてもらったことをゆっくり反復する時間をとれてこの時間もよかった。基本の打ち方を教えてもらった通りにやっていると狙ったところにうまく返せる回数が増えたように感じた。</p><h2 id=ストレッチ>ストレッチ</h2><p>先週は実家へ帰ってストレッチをお休みして2週間ぶり。午前中にバドミントンの練習をたくさんして疲れていたのと、試合をしているときにころんで足と腰を少し痛めていた。その部位を伸ばす意図でもストレッチしてもらってちょうどよかった。運動して筋肉痛もある状態でストレッチするとよく伸びて、その日の睡眠もよく取れるし疲労回復も早くなる。今日の開脚幅は開始前146cmで、ストレッチ後155cmだった。ストレッチ前は筋肉痛で伸びないのがストレッチ後によく伸びていることが伺える。トレーナーさんはサッカーをずっとされていた方なのでたまたまはてブでみかけた町田ゼルビアの記事を話題にしたら盛り上がった。この著者の記事が3つもあがっているようにいまホット話題ではあるらしい。</p><ul><li><a href=https://note.com/shv12/n/nab3420c578d4>なぜ町田ゼルビアは叩かれるのか？ここ2年の出来事を振り返る③</a></li></ul><p>ストレッチを終えて晩ご飯を食べた後にオフィスで作業しようと思っていたものの、家に帰ったら疲れてそのまま休んでしまった。体調が悪いわけでもないのに、最近はやらないといけないことをがんばる気力がなくなっている。なにか内からのやりたいが出てこない。</p></div></div><div class=pagination><div class=pagination__buttons><a href=/diary/ class="button previous"><span class=button__icon>←</span>
 <span class=button__text>最近の日記</span>
 </a><a href=/diary/page/3/ class="button next"><span class=button__text>過去の日記</span>
 <span class=button__icon>→</span></a></div></div></div></div><footer class=footer><div class=footer__inner><div class=copyright><span>© 2024 Powered by <a href=https://gohugo.io>Hugo</a></span>
