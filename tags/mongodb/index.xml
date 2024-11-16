@@ -1,4 +1,50 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Mongodb on</title><link>/diary/tags/mongodb/</link><description>Recent content in Mongodb on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 12 Nov 2024 08:50:36 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/mongodb/index.xml" rel="self" type="application/rss+xml"/><item><title>mongodb のトランザクション調査</title><link>/diary/posts/2024/1112/</link><pubDate>Tue, 12 Nov 2024 08:50:36 +0900</pubDate><guid>/diary/posts/2024/1112/</guid><description>今日のバドミントン練習はエアシャトルでリフティングを10分、連続最大回数は120回ほど、ショートサーブ30回した。フットワーク練習はお休み。筋肉痛もあったから、みなとのもり公園をジョギングで3周 1.4km、縄跳び15分で1712回だった。縄跳びも2ヶ月ぶり。8月に過去最高が1838回に対して、2ヶ月ぶりにやって2分弱の休憩、十数回のミスがあっても1700回を超えるんやと思って少し驚いた。8月に比べたらいまは涼しいから記録が伸びるのもある。ジョギングで足が筋肉痛になると走るよりも縄跳びの方が負担が小さい。昨日と同じように運動してストレッチして十分にカラダを動かした。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Mongodb on</title><link>/diary/tags/mongodb/</link><description>Recent content in Mongodb on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 15 Nov 2024 16:24:57 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/mongodb/index.xml" rel="self" type="application/rss+xml"/><item><title>モジュールは複数データソースに依存させない</title><link>/diary/posts/2024/1115/</link><pubDate>Fri, 15 Nov 2024 16:24:57 +0900</pubDate><guid>/diary/posts/2024/1115/</guid><description>デバッグしていて遅くなり、帰ってから慌ててスーパーに買いものへ行ったりしていて時間がなくなったので今日はバドミントン練習をお休み。
+データベースとメッセージキューの整合性を考える 昨日の続き。トランザクションを導入したことで mongodb と mq でのデータフローが意図せず変わってしまっていることが調査してわかった。
+従来は次のように動いていた。
+api サーバーがエントリー情報を受け取る api ハンドラーがエントリー情報を mongodb に保存する api ハンドラーがメッセージを管理するジョブ情報を mongodb に保存する api ハンドラー内の producer が rabbitmq にメッセージを送信する consumer がメッセージを受信する consumer が mongodb からジョブ情報を参照する api ハンドラーのレスポンスを返す consumer がメッセージを処理する トランザクションを導入したことで mongodb にデータが保存されるタイミングが変わってしまった。
+api サーバーがエントリー情報を受け取る api ハンドラーがトランザクションを開始する api ハンドラーがエントリー情報を mongodb に保存する (この時点では未コミット) api ハンドラーがメッセージを管理するジョブ情報を mongodb に保存する (この時点では未コミット) api ハンドラー内の producer が rabbitmq にメッセージを送信する consumer がメッセージを受信する consumer が mongodb からジョブ情報を参照するが、トランザクションがコミットされていない可能性がある api ハンドラーがトランザクションをコミットする api ハンドラーのレスポンスを返す consumer でエラーが発生する 処理の流れを見直して次のように改修した。内部実装の都合があってやや煩雑な変更となった。</description><content>&lt;p>デバッグしていて遅くなり、帰ってから慌ててスーパーに買いものへ行ったりしていて時間がなくなったので今日はバドミントン練習をお休み。&lt;/p>
+&lt;h2 id="データベースとメッセージキューの整合性を考える">データベースとメッセージキューの整合性を考える&lt;/h2>
+&lt;p>昨日の続き。トランザクションを導入したことで mongodb と mq でのデータフローが意図せず変わってしまっていることが調査してわかった。&lt;/p>
+&lt;p>従来は次のように動いていた。&lt;/p>
+&lt;ol>
+&lt;li>api サーバーがエントリー情報を受け取る&lt;/li>
+&lt;li>api ハンドラーがエントリー情報を mongodb に保存する&lt;/li>
+&lt;li>api ハンドラーがメッセージを管理するジョブ情報を mongodb に保存する&lt;/li>
+&lt;li>api ハンドラー内の producer が rabbitmq にメッセージを送信する&lt;/li>
+&lt;li>consumer がメッセージを受信する&lt;/li>
+&lt;li>consumer が mongodb からジョブ情報を参照する&lt;/li>
+&lt;li>api ハンドラーのレスポンスを返す&lt;/li>
+&lt;li>consumer がメッセージを処理する&lt;/li>
+&lt;/ol>
+&lt;p>トランザクションを導入したことで mongodb にデータが保存されるタイミングが変わってしまった。&lt;/p>
+&lt;ol>
+&lt;li>api サーバーがエントリー情報を受け取る&lt;/li>
+&lt;li>api ハンドラーがトランザクションを開始する&lt;/li>
+&lt;li>api ハンドラーがエントリー情報を mongodb に保存する (この時点では未コミット)&lt;/li>
+&lt;li>api ハンドラーがメッセージを管理するジョブ情報を mongodb に保存する (この時点では未コミット)&lt;/li>
+&lt;li>api ハンドラー内の producer が rabbitmq にメッセージを送信する&lt;/li>
+&lt;li>consumer がメッセージを受信する&lt;/li>
+&lt;li>consumer が mongodb からジョブ情報を参照するが、トランザクションがコミットされていない可能性がある&lt;/li>
+&lt;li>api ハンドラーがトランザクションをコミットする&lt;/li>
+&lt;li>api ハンドラーのレスポンスを返す&lt;/li>
+&lt;li>consumer でエラーが発生する&lt;/li>
+&lt;/ol>
+&lt;p>処理の流れを見直して次のように改修した。内部実装の都合があってやや煩雑な変更となった。&lt;/p>
+&lt;ol>
+&lt;li>api サーバーがエントリー情報を受け取る&lt;/li>
+&lt;li>api ハンドラーがトランザクションを開始する&lt;/li>
+&lt;li>api ハンドラーがエントリー情報を mongodb に保存する (この時点では未コミット)&lt;/li>
+&lt;li>api ハンドラーがメッセージを管理するジョブ情報を mongodb に保存する (この時点では未コミット)&lt;/li>
+&lt;li>api ハンドラーがトランザクションをコミットする&lt;/li>
+&lt;li>api ハンドラー内の producer が rabbitmq にメッセージを送信する&lt;/li>
+&lt;li>consumer がメッセージを受信する&lt;/li>
+&lt;li>consumer が mongodb からジョブ情報を参照する&lt;/li>
+&lt;li>api ハンドラーのレスポンスを返す&lt;/li>
+&lt;li>consumer がメッセージを処理する&lt;/li>
+&lt;/ol>
+&lt;p>これは単純にトランザクションのコミットタイミングと mq へのメッセージ送受信のタイミングを見直せばよいという話しではない。本質的に mongodb で管理しているジョブ情報と rabbitmq へ送信しているメッセージの整合性を保証することはできないということを表している。producer はメッセージ送信に失敗する可能性があるから、そのときにジョブ情報を書き換える必要はあるが、その前にトランザクションをコミットしてしまっているため、api ハンドラー内でデータのコミットタイミングが複数になってしまう。トランザクションを導入したメリットが失われてしまい、&lt;a href="https://en.wikipedia.org/wiki/Unit_of_work">Unit of work&lt;/a> のパターンも実現できない。consumer の処理に必要な情報を mongodb にあるデータとメッセージの2つに分割しているところが整合性の問題を引き起こしている。アーキテクチャ上の設計ミスと言える。consumer の処理に必要な情報はすべてメッセージに含めてしまい、メッセージを処理した後に mongodb に結果を書き込むといった設計にすべきだった。&lt;/p>
+&lt;p>初期実装のときからジョブ情報を mongodb で管理する必要はあるのか？という懸念を私はもっていた。要件や機能が曖昧な状況でもあり、メンバーもなんとなく db に管理情報を残しておいた方が将来的な変更に対応できて安心といった理由だったと思う。当時は整合性の問題が起きることに、私が気付いていなかったためにこの設計を見直すように強く指摘できなかった。トランザクションを導入したことで consumer が必要な情報を db に保持すると、db とメッセージ処理のタイミングにおける整合性の問題が生じるという学びになった。&lt;/p>
+&lt;p>いまとなってはこのジョブ情報を使う他の機能もあるため、この設計を見直すことはできない。今後の開発プロジェクトで db とメッセージを扱うときはこの経験を活かすためにふりかえりとして書いておく。&lt;/p></content></item><item><title>mongodb のトランザクション調査</title><link>/diary/posts/2024/1112/</link><pubDate>Tue, 12 Nov 2024 08:50:36 +0900</pubDate><guid>/diary/posts/2024/1112/</guid><description>今日のバドミントン練習はエアシャトルでリフティングを10分、連続最大回数は120回ほど、ショートサーブ30回した。フットワーク練習はお休み。筋肉痛もあったから、みなとのもり公園をジョギングで3周 1.4km、縄跳び15分で1712回だった。縄跳びも2ヶ月ぶり。8月に過去最高が1838回に対して、2ヶ月ぶりにやって2分弱の休憩、十数回のミスがあっても1700回を超えるんやと思って少し驚いた。8月に比べたらいまは涼しいから記録が伸びるのもある。ジョギングで足が筋肉痛になると走るよりも縄跳びの方が負担が小さい。昨日と同じように運動してストレッチして十分にカラダを動かした。
 トランザクションとコールバック お仕事は昨日の続きでリクエスト途中のサービス終了したときに web api ハンドラーの処理が途中でキャンセルされ、そのために内部のデータが不整合になることがわかった。データを不整合にしないため mongodb のトランザクション の仕組みを調べてデバッグしたりしていた。echo のミドルウェアで Unit of work を実装できないかをプロトタイプ実装していた。
 基本は次のように callback 関数を渡せばトランザクションに失敗したときにリトライもしてくれて便利なのだけど、いろいろ api サーバーの既存アーキテクチャの都合もあってこれは使えないことがわかった。
 session, err := client.StartSession() if err != nil { return err } defer session.EndSession(ctx) result, err := session.WithTransaction(ctx, callback)</description><content>&lt;p>今日のバドミントン練習はエアシャトルでリフティングを10分、連続最大回数は120回ほど、ショートサーブ30回した。フットワーク練習はお休み。筋肉痛もあったから、みなとのもり公園をジョギングで3周 1.4km、縄跳び15分で1712回だった。縄跳びも2ヶ月ぶり。8月に過去最高が1838回に対して、2ヶ月ぶりにやって2分弱の休憩、十数回のミスがあっても1700回を超えるんやと思って少し驚いた。8月に比べたらいまは涼しいから記録が伸びるのもある。ジョギングで足が筋肉痛になると走るよりも縄跳びの方が負担が小さい。昨日と同じように運動してストレッチして十分にカラダを動かした。&lt;/p>
