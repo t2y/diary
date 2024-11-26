@@ -1,4 +1,30 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Mongodb on</title><link>/diary/tags/mongodb/</link><description>Recent content in Mongodb on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 15 Nov 2024 16:24:57 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/mongodb/index.xml" rel="self" type="application/rss+xml"/><item><title>モジュールは複数データソースに依存させない</title><link>/diary/posts/2024/1115/</link><pubDate>Fri, 15 Nov 2024 16:24:57 +0900</pubDate><guid>/diary/posts/2024/1115/</guid><description>デバッグしていて遅くなり、帰ってから慌ててスーパーに買いものへ行ったりしていて時間がなくなったので今日はバドミントン練習をお休み。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Mongodb on</title><link>/diary/tags/mongodb/</link><description>Recent content in Mongodb on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 25 Nov 2024 18:21:15 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/mongodb/index.xml" rel="self" type="application/rss+xml"/><item><title>compose 環境のバックアップ</title><link>/diary/posts/2024/1125/</link><pubDate>Mon, 25 Nov 2024 18:21:15 +0900</pubDate><guid>/diary/posts/2024/1125/</guid><description>今日は溜まった日記をまとめて書くためにバドミントン練習はおやすみ。
+コンテナの環境変数の再利用 朝から rpm パッケージングのリファクタリングをしてインストール検証をした後、バックアップスクリプトの調査をしていた。コンテナの環境変数は次のようにして取得できる。
+環境変数をすべて表示 $ docker compose exec mongo env 任意の環境変数の値を取得 $ docker compose mongo printenv MONGODB_PORT_NUMBER パスワードの隠蔽 コンテナ内の mongodump を実行するときにパスワードを隠蔽するにはパイプを使って標準入力から渡す。
+$ echo ${passwd} | docker compose exec --no-TTY mongo mongodump --authenticationDatabase admin --uri mongodb://${user}@localhost:27017 --db mydb --archive &amp;gt; mydb.dump tar ball によるバックアップ 普通に tar ball を作ると次のようになる。
+$ tar --exclude path/to/dir/subdir1 --exclude path/to/dir/subdir2 -czf backup.tar.gz path/to/dir お手伝い先の社員さんに zstd という新しい圧縮アルゴリズムを使う方がよいとアドバイスをもらって変更した。別途 zstd のパッケージはインストールしておく必要がある。
+$ tar --exclude path/to/dir/subdir1 --exclude path/to/dir/subdir2 --zstd -cf backup.</description><content>&lt;p>今日は溜まった日記をまとめて書くためにバドミントン練習はおやすみ。&lt;/p>
+&lt;h2 id="コンテナの環境変数の再利用">コンテナの環境変数の再利用&lt;/h2>
+&lt;p>朝から rpm パッケージングのリファクタリングをしてインストール検証をした後、バックアップスクリプトの調査をしていた。コンテナの環境変数は次のようにして取得できる。&lt;/p>
+&lt;ul>
+&lt;li>環境変数をすべて表示&lt;/li>
+&lt;/ul>
+&lt;pre tabindex="0">&lt;code>$ docker compose exec mongo env
+&lt;/code>&lt;/pre>&lt;ul>
+&lt;li>任意の環境変数の値を取得&lt;/li>
+&lt;/ul>
+&lt;pre tabindex="0">&lt;code>$ docker compose mongo printenv MONGODB_PORT_NUMBER
+&lt;/code>&lt;/pre>&lt;ul>
+&lt;li>パスワードの隠蔽&lt;/li>
+&lt;/ul>
+&lt;p>コンテナ内の mongodump を実行するときにパスワードを隠蔽するにはパイプを使って標準入力から渡す。&lt;/p>
+&lt;pre tabindex="0">&lt;code>$ echo ${passwd} | docker compose exec --no-TTY mongo mongodump --authenticationDatabase admin --uri mongodb://${user}@localhost:27017 --db mydb --archive &amp;gt; mydb.dump
+&lt;/code>&lt;/pre>&lt;h2 id="tar-ball-によるバックアップ">tar ball によるバックアップ&lt;/h2>
+&lt;p>普通に tar ball を作ると次のようになる。&lt;/p>
+&lt;pre tabindex="0">&lt;code>$ tar --exclude path/to/dir/subdir1 --exclude path/to/dir/subdir2 -czf backup.tar.gz path/to/dir
+&lt;/code>&lt;/pre>&lt;p>お手伝い先の社員さんに &lt;a href="https://github.com/facebook/zstd">zstd&lt;/a> という新しい圧縮アルゴリズムを使う方がよいとアドバイスをもらって変更した。別途 zstd のパッケージはインストールしておく必要がある。&lt;/p>
+&lt;pre tabindex="0">&lt;code>$ tar --exclude path/to/dir/subdir1 --exclude path/to/dir/subdir2 --zstd -cf backup.tar.zst path/to/dir
+&lt;/code>&lt;/pre></content></item><item><title>モジュールは複数データソースに依存させない</title><link>/diary/posts/2024/1115/</link><pubDate>Fri, 15 Nov 2024 16:24:57 +0900</pubDate><guid>/diary/posts/2024/1115/</guid><description>デバッグしていて遅くなり、帰ってから慌ててスーパーに買いものへ行ったりしていて時間がなくなったので今日はバドミントン練習をお休み。
 データベースとメッセージキューの整合性を考える 昨日の続き。トランザクションを導入したことで mongodb と mq でのデータフローが意図せず変わってしまっていることが調査してわかった。
 従来は次のように動いていた。
 api サーバーがエントリー情報を受け取る api ハンドラーがエントリー情報を mongodb に保存する api ハンドラーがメッセージを管理するジョブ情報を mongodb に保存する api ハンドラー内の producer が rabbitmq にメッセージを送信する consumer がメッセージを受信する consumer が mongodb からジョブ情報を参照する api ハンドラーがレスポンスを返す consumer がメッセージを処理する トランザクションを導入したことで mongodb にデータが保存されるタイミングが変わってしまった。

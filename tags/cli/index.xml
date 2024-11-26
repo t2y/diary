@@ -1,4 +1,30 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cli on</title><link>/diary/tags/cli/</link><description>Recent content in Cli on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 18 Oct 2024 11:19:20 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/cli/index.xml" rel="self" type="application/rss+xml"/><item><title>exec とスクリプト</title><link>/diary/posts/2024/1018/</link><pubDate>Fri, 18 Oct 2024 11:19:20 +0900</pubDate><guid>/diary/posts/2024/1018/</guid><description>今日のバドミントン練習はエアシャトルでリフティングを60分した。連続最大回数は191回だった。もう少しで200回だったのに残念。木曜日は睡眠をたくさんとって疲れは少し取れたし、安定的に50回前後は続くようになりつつも、100回までに失敗してしまう。今日は100回を超えたのが2回だけだった。ラケットのスィートスポットでとらえたときにきれいに真上にあがる感覚が楽しい。うまくいくときは数回は続く。それが自然にできるときとそうじゃないときの違いを私は制御できてなくて言語化もできない。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cli on</title><link>/diary/tags/cli/</link><description>Recent content in Cli on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 25 Nov 2024 18:21:15 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/cli/index.xml" rel="self" type="application/rss+xml"/><item><title>compose 環境のバックアップ</title><link>/diary/posts/2024/1125/</link><pubDate>Mon, 25 Nov 2024 18:21:15 +0900</pubDate><guid>/diary/posts/2024/1125/</guid><description>今日は溜まった日記をまとめて書くためにバドミントン練習はおやすみ。
+コンテナの環境変数の再利用 朝から rpm パッケージングのリファクタリングをしてインストール検証をした後、バックアップスクリプトの調査をしていた。コンテナの環境変数は次のようにして取得できる。
+環境変数をすべて表示 $ docker compose exec mongo env 任意の環境変数の値を取得 $ docker compose mongo printenv MONGODB_PORT_NUMBER パスワードの隠蔽 コンテナ内の mongodump を実行するときにパスワードを隠蔽するにはパイプを使って標準入力から渡す。
+$ echo ${passwd} | docker compose exec --no-TTY mongo mongodump --authenticationDatabase admin --uri mongodb://${user}@localhost:27017 --db mydb --archive &amp;gt; mydb.dump tar ball によるバックアップ 普通に tar ball を作ると次のようになる。
+$ tar --exclude path/to/dir/subdir1 --exclude path/to/dir/subdir2 -czf backup.tar.gz path/to/dir お手伝い先の社員さんに zstd という新しい圧縮アルゴリズムを使う方がよいとアドバイスをもらって変更した。別途 zstd のパッケージはインストールしておく必要がある。
+$ tar --exclude path/to/dir/subdir1 --exclude path/to/dir/subdir2 --zstd -cf backup.</description><content>&lt;p>今日は溜まった日記をまとめて書くためにバドミントン練習はおやすみ。&lt;/p>
+&lt;h2 id="コンテナの環境変数の再利用">コンテナの環境変数の再利用&lt;/h2>
+&lt;p>朝から rpm パッケージングのリファクタリングをしてインストール検証をした後、バックアップスクリプトの調査をしていた。コンテナの環境変数は次のようにして取得できる。&lt;/p>
+&lt;ul>
+&lt;li>環境変数をすべて表示&lt;/li>
+&lt;/ul>
+&lt;pre tabindex="0">&lt;code>$ docker compose exec mongo env
+&lt;/code>&lt;/pre>&lt;ul>
+&lt;li>任意の環境変数の値を取得&lt;/li>
+&lt;/ul>
+&lt;pre tabindex="0">&lt;code>$ docker compose mongo printenv MONGODB_PORT_NUMBER
+&lt;/code>&lt;/pre>&lt;ul>
+&lt;li>パスワードの隠蔽&lt;/li>
+&lt;/ul>
+&lt;p>コンテナ内の mongodump を実行するときにパスワードを隠蔽するにはパイプを使って標準入力から渡す。&lt;/p>
+&lt;pre tabindex="0">&lt;code>$ echo ${passwd} | docker compose exec --no-TTY mongo mongodump --authenticationDatabase admin --uri mongodb://${user}@localhost:27017 --db mydb --archive &amp;gt; mydb.dump
+&lt;/code>&lt;/pre>&lt;h2 id="tar-ball-によるバックアップ">tar ball によるバックアップ&lt;/h2>
+&lt;p>普通に tar ball を作ると次のようになる。&lt;/p>
+&lt;pre tabindex="0">&lt;code>$ tar --exclude path/to/dir/subdir1 --exclude path/to/dir/subdir2 -czf backup.tar.gz path/to/dir
+&lt;/code>&lt;/pre>&lt;p>お手伝い先の社員さんに &lt;a href="https://github.com/facebook/zstd">zstd&lt;/a> という新しい圧縮アルゴリズムを使う方がよいとアドバイスをもらって変更した。別途 zstd のパッケージはインストールしておく必要がある。&lt;/p>
+&lt;pre tabindex="0">&lt;code>$ tar --exclude path/to/dir/subdir1 --exclude path/to/dir/subdir2 --zstd -cf backup.tar.zst path/to/dir
+&lt;/code>&lt;/pre></content></item><item><title>exec とスクリプト</title><link>/diary/posts/2024/1018/</link><pubDate>Fri, 18 Oct 2024 11:19:20 +0900</pubDate><guid>/diary/posts/2024/1018/</guid><description>今日のバドミントン練習はエアシャトルでリフティングを60分した。連続最大回数は191回だった。もう少しで200回だったのに残念。木曜日は睡眠をたくさんとって疲れは少し取れたし、安定的に50回前後は続くようになりつつも、100回までに失敗してしまう。今日は100回を超えたのが2回だけだった。ラケットのスィートスポットでとらえたときにきれいに真上にあがる感覚が楽しい。うまくいくときは数回は続く。それが自然にできるときとそうじゃないときの違いを私は制御できてなくて言語化もできない。
 エアシャトルとメイビスにおけるリフティングの違いを比べてみると、メイビスの方が打ち上げて落ちてくるときにあまり回転せずコルクが下を向く傾向が多いようにみえる。エアシャトルの方がコルクが重い分、縦方向に回転し始めるとその回転が止まらず、回転しているからラケット面でとらえるのが難しくなる。だからエアシャトルの方がメイビスよりもリフティングが難しいといえる。シャトルを高く打ち上げると、落下してくる距離が長くなりその回転が落ち着く傾向があるからリフティングしやすくなるのではないかと仮説を考えた。伸び悩みかもしれないし、地道に練習を継続するときかもしれない。
 exec とエントリーポイントのスクリプト コンテナを起動して stop すると SIGTERM が送られる。そのときに api サーバーでシグナルの処理をしているのに、気付いたらシグナル処理が行われずタイムアウトするようになっていた。デフォルトでは10秒でタイムアウトして強制終了となる。なぜシグナルを捕捉しなくなったかを調査したら、あるときサーバーの起動前に前処理が必要になってエントリーポイントをシェルスクリプトにしていた。そのときに exec しないと、シェルスクリプトのプロセスに対してシグナルが送られるため、api サーバーがシグナルを検知できなくなるという副作用があることに気付いた。これまでも exec を使うとプロセス ID は変更されないという知識を知っていたが、それがどういう状況で役に立つかを理解できていなかった。シグナルを用いた同期処理に exec が役に立つ状況があることを学んだ。修正は次の1行のみ。
 --- a/docker/entrypoint.sh +++ b/docker/entrypoint.sh @@ -2,4 +2,4 @@ ... ... (pre process) ... -./bin/api &amp;#34;$@&amp;#34; +exec ./bin/api &amp;#34;$@&amp;#34; go test からバイナリをビルドしてサーバーを起動する 先日 結合テスト向けカバレッジ計測の調査 をした成果を使って実際に go test からカバレッジ計測のカスタマイズを施したバイナリをビルドしてサーバー起動するコードを書いてみた。やや手間取ったが、一通り動いてカバレッジを計測できた。例えば、単体テストのカバレッジを計測するための makefile のターゲットは次のようになる。

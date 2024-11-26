@@ -1,4 +1,30 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2024/11 on</title><link>/diary/dates/2024/11/</link><description>Recent content in 2024/11 on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 24 Nov 2024 12:11:21 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2024/11/index.xml" rel="self" type="application/rss+xml"/><item><title>バドミントンしただけの休日</title><link>/diary/posts/2024/1124/</link><pubDate>Sun, 24 Nov 2024 12:11:21 +0900</pubDate><guid>/diary/posts/2024/1124/</guid><description>今日のバドミントン練習は体育館で1.5時間ほど練習した。久しぶりに相手がいて打ち合いできて楽しかった。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2024/11 on</title><link>/diary/dates/2024/11/</link><description>Recent content in 2024/11 on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 25 Nov 2024 18:21:15 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/dates/2024/11/index.xml" rel="self" type="application/rss+xml"/><item><title>compose 環境のバックアップ</title><link>/diary/posts/2024/1125/</link><pubDate>Mon, 25 Nov 2024 18:21:15 +0900</pubDate><guid>/diary/posts/2024/1125/</guid><description>今日は溜まった日記をまとめて書くためにバドミントン練習はおやすみ。
+コンテナの環境変数の再利用 朝から rpm パッケージングのリファクタリングをしてインストール検証をした後、バックアップスクリプトの調査をしていた。コンテナの環境変数は次のようにして取得できる。
+環境変数をすべて表示 $ docker compose exec mongo env 任意の環境変数の値を取得 $ docker compose mongo printenv MONGODB_PORT_NUMBER パスワードの隠蔽 コンテナ内の mongodump を実行するときにパスワードを隠蔽するにはパイプを使って標準入力から渡す。
+$ echo ${passwd} | docker compose exec --no-TTY mongo mongodump --authenticationDatabase admin --uri mongodb://${user}@localhost:27017 --db mydb --archive &amp;gt; mydb.dump tar ball によるバックアップ 普通に tar ball を作ると次のようになる。
+$ tar --exclude path/to/dir/subdir1 --exclude path/to/dir/subdir2 -czf backup.tar.gz path/to/dir お手伝い先の社員さんに zstd という新しい圧縮アルゴリズムを使う方がよいとアドバイスをもらって変更した。別途 zstd のパッケージはインストールしておく必要がある。
+$ tar --exclude path/to/dir/subdir1 --exclude path/to/dir/subdir2 --zstd -cf backup.</description><content>&lt;p>今日は溜まった日記をまとめて書くためにバドミントン練習はおやすみ。&lt;/p>
+&lt;h2 id="コンテナの環境変数の再利用">コンテナの環境変数の再利用&lt;/h2>
+&lt;p>朝から rpm パッケージングのリファクタリングをしてインストール検証をした後、バックアップスクリプトの調査をしていた。コンテナの環境変数は次のようにして取得できる。&lt;/p>
+&lt;ul>
+&lt;li>環境変数をすべて表示&lt;/li>
+&lt;/ul>
+&lt;pre tabindex="0">&lt;code>$ docker compose exec mongo env
+&lt;/code>&lt;/pre>&lt;ul>
+&lt;li>任意の環境変数の値を取得&lt;/li>
+&lt;/ul>
+&lt;pre tabindex="0">&lt;code>$ docker compose mongo printenv MONGODB_PORT_NUMBER
+&lt;/code>&lt;/pre>&lt;ul>
+&lt;li>パスワードの隠蔽&lt;/li>
+&lt;/ul>
+&lt;p>コンテナ内の mongodump を実行するときにパスワードを隠蔽するにはパイプを使って標準入力から渡す。&lt;/p>
+&lt;pre tabindex="0">&lt;code>$ echo ${passwd} | docker compose exec --no-TTY mongo mongodump --authenticationDatabase admin --uri mongodb://${user}@localhost:27017 --db mydb --archive &amp;gt; mydb.dump
+&lt;/code>&lt;/pre>&lt;h2 id="tar-ball-によるバックアップ">tar ball によるバックアップ&lt;/h2>
+&lt;p>普通に tar ball を作ると次のようになる。&lt;/p>
+&lt;pre tabindex="0">&lt;code>$ tar --exclude path/to/dir/subdir1 --exclude path/to/dir/subdir2 -czf backup.tar.gz path/to/dir
+&lt;/code>&lt;/pre>&lt;p>お手伝い先の社員さんに &lt;a href="https://github.com/facebook/zstd">zstd&lt;/a> という新しい圧縮アルゴリズムを使う方がよいとアドバイスをもらって変更した。別途 zstd のパッケージはインストールしておく必要がある。&lt;/p>
+&lt;pre tabindex="0">&lt;code>$ tar --exclude path/to/dir/subdir1 --exclude path/to/dir/subdir2 --zstd -cf backup.tar.zst path/to/dir
+&lt;/code>&lt;/pre></content></item><item><title>バドミントンしただけの休日</title><link>/diary/posts/2024/1124/</link><pubDate>Sun, 24 Nov 2024 12:11:21 +0900</pubDate><guid>/diary/posts/2024/1124/</guid><description>今日のバドミントン練習は体育館で1.5時間ほど練習した。久しぶりに相手がいて打ち合いできて楽しかった。
 体育館でバドミントン 前回の所感 。朝から磯上体育館の個人利用のための行列に並ぶ。今日は7時52分に磯上体育館へ着いたら5番目だった。徐々に並ぶ時間が早くなっていっている気がする。本当は9時から予約するつもりだったが、他の参加者から15時がよいとのことで15-17時で予約した。実際に行ってみたら6面あるうちの2面が空いていた。個人利用の遅い時間帯なら並ばなくても予約を取れるのかもしれない。但し、確実に狙った時間を予約するためにはこれからも8時前後に行って並ぶことにはなると思う。逆に9時から予約しようと思ったら8時よりも早く並ばないといけない。
 15時から2-3回休憩を挟みつつ、打ち合いして、シングルスの試合やって、移動した場所に狙って打つ練習などをした。たくさん打ち込みできたので グリップの握り を試したりもしていた。今日の収穫はバック持ちの低い軌道でシャトルを打ち返すときによい手応えを掴んだ。低い位置にあるシャトルをネットを超える高さで強く速く返せるラケットコントロールを何回かできたと思う。5回中2-3回といった頻度だからまだまだ完全に捉えられてはいない。壁打ちでもよいタイミングを掴めるときはあったのでその成果が出たと言えるのかもしれない。やはり相手がいる打ち合いは練習の幅が広がる。1人でリフティングや壁打ちするのも、もちろん重要ではあるし練習にはなるが、相手がいて打ち返してくれる方がもっとさまざまなパターンや状況に対するラケットコントロールやシャトルとの距離感を試すことができる。単純にシャトルを打っていても楽しい。
 家に帰るまではバドミントン終えてからオフィスで作業しようと思っていたのに、休んだらやる気がなくなって、そのままだらだらしていた。体調悪い。</description><content>&lt;p>今日のバドミントン練習は体育館で1.5時間ほど練習した。久しぶりに相手がいて打ち合いできて楽しかった。&lt;/p>

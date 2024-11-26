@@ -1,4 +1,30 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docker on</title><link>/diary/tags/docker/</link><description>Recent content in Docker on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 15 Dec 2023 08:34:04 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/docker/index.xml" rel="self" type="application/rss+xml"/><item><title>おいしい 🦀 を食べに行く</title><link>/diary/posts/2023/1215/</link><pubDate>Fri, 15 Dec 2023 08:34:04 +0900</pubDate><guid>/diary/posts/2023/1215/</guid><description>22時頃に寝てしまって1時に起きて5時に起きて6時過ぎに起きた。とくになにもしていないのにバテている気がする。今週はずっと mongodb のレプリカセットの調査やインフラの移行作業などをやっていたせいか、普段よりもエネルギーを消費しているのかもしれない。朝から疲労困憊でオフィスへ向かった。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docker on</title><link>/diary/tags/docker/</link><description>Recent content in Docker on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 25 Nov 2024 18:21:15 +0900</lastBuildDate><atom:icon>/diary/favicon.ico</atom:icon><icon>/diary/favicon.ico</icon><atom:link href="/diary/tags/docker/index.xml" rel="self" type="application/rss+xml"/><item><title>compose 環境のバックアップ</title><link>/diary/posts/2024/1125/</link><pubDate>Mon, 25 Nov 2024 18:21:15 +0900</pubDate><guid>/diary/posts/2024/1125/</guid><description>今日は溜まった日記をまとめて書くためにバドミントン練習はおやすみ。
+コンテナの環境変数の再利用 朝から rpm パッケージングのリファクタリングをしてインストール検証をした後、バックアップスクリプトの調査をしていた。コンテナの環境変数は次のようにして取得できる。
+環境変数をすべて表示 $ docker compose exec mongo env 任意の環境変数の値を取得 $ docker compose mongo printenv MONGODB_PORT_NUMBER パスワードの隠蔽 コンテナ内の mongodump を実行するときにパスワードを隠蔽するにはパイプを使って標準入力から渡す。
+$ echo ${passwd} | docker compose exec --no-TTY mongo mongodump --authenticationDatabase admin --uri mongodb://${user}@localhost:27017 --db mydb --archive &amp;gt; mydb.dump tar ball によるバックアップ 普通に tar ball を作ると次のようになる。
+$ tar --exclude path/to/dir/subdir1 --exclude path/to/dir/subdir2 -czf backup.tar.gz path/to/dir お手伝い先の社員さんに zstd という新しい圧縮アルゴリズムを使う方がよいとアドバイスをもらって変更した。別途 zstd のパッケージはインストールしておく必要がある。
+$ tar --exclude path/to/dir/subdir1 --exclude path/to/dir/subdir2 --zstd -cf backup.</description><content>&lt;p>今日は溜まった日記をまとめて書くためにバドミントン練習はおやすみ。&lt;/p>
+&lt;h2 id="コンテナの環境変数の再利用">コンテナの環境変数の再利用&lt;/h2>
+&lt;p>朝から rpm パッケージングのリファクタリングをしてインストール検証をした後、バックアップスクリプトの調査をしていた。コンテナの環境変数は次のようにして取得できる。&lt;/p>
+&lt;ul>
+&lt;li>環境変数をすべて表示&lt;/li>
+&lt;/ul>
+&lt;pre tabindex="0">&lt;code>$ docker compose exec mongo env
+&lt;/code>&lt;/pre>&lt;ul>
+&lt;li>任意の環境変数の値を取得&lt;/li>
+&lt;/ul>
+&lt;pre tabindex="0">&lt;code>$ docker compose mongo printenv MONGODB_PORT_NUMBER
+&lt;/code>&lt;/pre>&lt;ul>
+&lt;li>パスワードの隠蔽&lt;/li>
+&lt;/ul>
+&lt;p>コンテナ内の mongodump を実行するときにパスワードを隠蔽するにはパイプを使って標準入力から渡す。&lt;/p>
+&lt;pre tabindex="0">&lt;code>$ echo ${passwd} | docker compose exec --no-TTY mongo mongodump --authenticationDatabase admin --uri mongodb://${user}@localhost:27017 --db mydb --archive &amp;gt; mydb.dump
+&lt;/code>&lt;/pre>&lt;h2 id="tar-ball-によるバックアップ">tar ball によるバックアップ&lt;/h2>
+&lt;p>普通に tar ball を作ると次のようになる。&lt;/p>
+&lt;pre tabindex="0">&lt;code>$ tar --exclude path/to/dir/subdir1 --exclude path/to/dir/subdir2 -czf backup.tar.gz path/to/dir
+&lt;/code>&lt;/pre>&lt;p>お手伝い先の社員さんに &lt;a href="https://github.com/facebook/zstd">zstd&lt;/a> という新しい圧縮アルゴリズムを使う方がよいとアドバイスをもらって変更した。別途 zstd のパッケージはインストールしておく必要がある。&lt;/p>
+&lt;pre tabindex="0">&lt;code>$ tar --exclude path/to/dir/subdir1 --exclude path/to/dir/subdir2 --zstd -cf backup.tar.zst path/to/dir
+&lt;/code>&lt;/pre></content></item><item><title>おいしい 🦀 を食べに行く</title><link>/diary/posts/2023/1215/</link><pubDate>Fri, 15 Dec 2023 08:34:04 +0900</pubDate><guid>/diary/posts/2023/1215/</guid><description>22時頃に寝てしまって1時に起きて5時に起きて6時過ぎに起きた。とくになにもしていないのにバテている気がする。今週はずっと mongodb のレプリカセットの調査やインフラの移行作業などをやっていたせいか、普段よりもエネルギーを消費しているのかもしれない。朝から疲労困憊でオフィスへ向かった。
 docker のコンテナネットワークの調査 docker のコンテナネットワークから解決できる名前がなになのか、よくわかってなくて、その調査のためにサンプルの compose サービスを作った。
 https://github.com/t2y/docker-compose-sample myimage から nginx のコンテナの名前解決がどうなるかを試してみる。
 c67a5ca94a77:/app# dig +short 00c719491558 192.168.240.3 c67a5ca94a77:/app# dig +short mynginx 192.168.240.3 c67a5ca94a77:/app# dig +short nginx 192.168.240.3 c67a5ca94a77:/app# dig +short yournginx 192.168.240.3 基本的にはサービス名、コンテナ名 (container_name)、コンテナー ID、ホスト名 (hostname) はすべて名前解決できる。hostname があるときはそのコンテナの /etc/hosts にその名前が追加され、ないときはコンテナ ID が追加されていた。
