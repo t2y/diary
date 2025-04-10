@@ -60,6 +60,13 @@ $ hugo new posts/2021/0927.md
 path/to/diary/diary/content/posts/2021/0927.md created
 ```
 
+Or
+
+```bash
+$ hugo new posts/2025/0301/index.md
+Content "path/to/diary/diary/content/posts/2025/0301/index.md" created
+```
+
 ## License
 
 Copyright © Tetsuya Morimoto for contents, however some source code is come from Hugo and Terminal theme and comply with their licenses.
