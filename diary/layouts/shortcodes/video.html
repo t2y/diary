@@ -1,0 +1,7 @@
+{{ $src := (default (printf "%s%s" .Page.RelPermalink (.Get "file")) (.Get "src")) | absURL }}
+{{ $width := or (.Get "width") "640" }}
+{{ $height := or (.Get "height") "360" }}
+<video width="{{ $width }}" height="{{ $height }}" controls>
+  <source src="{{ $src | relURL }}" type="video/mp4">
+  お使いのブラウザは video タグに対応していません。
+</video>
