@@ -47,7 +47,7 @@ Stream #0:0(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, smpte170m/
 > * -c:a copy で音声は再エンコードせずそのままコピー
 
 ```
-$ ffmpeg -i yamap-sr-20250426-orig.mp4 -vf scale=480:-2 -c:v libx264 -preset medium -crf 28 -c:a copy yamap-sr-20250426-compact1.mp4"
+$ ffmpeg -i yamap-sr-20250426-orig.mp4 -vf scale=480:-2 -c:v libx264 -preset medium -crf 28 -c:a copy yamap-sr-20250426-compact1.mp4
 ```
 
 サイズは1/4程度まで小さくなった。オリジナルと比べると明らかに劣化していることはわかるが、日記に掲載するのであれば十分な品質にみえる。
@@ -68,7 +68,7 @@ Stream #0:0(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, smpte170m/
 
 デフォルトで hugo は video タグを扱う shortcode がないらしい。登山の軌跡の動画をアップロードするために作ってみた。この日記におけるコンテンツ管理の歴史的経緯で静的ファイルの管理方法が異なるため、static から参照する `src` 属性とコンテンツと同じ場所から参照する `file` 属性を使い分けている。
 
-```html
+```xml
 {{ $src := (default (printf "%s%s" .Page.RelPermalink (.Get "file")) (.Get "src")) | absURL }}
 {{ $width := or (.Get "width") "640" }}
 {{ $height := or (.Get "height") "360" }}
