@@ -44,10 +44,10 @@ Stream #0:0(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, smpte170m/
 > * -c:v libx264  H.264で再エンコード
 > * -preset medium  エンコード速度と圧縮率のバランス（slow～veryfastなど変更可）
 > * -crf 28  品質係数。数値が大きいほど高圧縮(小ファイル)/低画質。18～28あたりが一般的
-> * -c:a copy で音声は再エンコードせずそのままコピー
+> * -c:a aac -b:a 128k  音声をAAC・128kbpsで再エンコード
 
 ```
-$ ffmpeg -i yamap-sr-20250426-orig.mp4 -vf scale=480:-2 -c:v libx264 -preset medium -crf 28 -c:a copy yamap-sr-20250426-compact1.mp4
+$ ffmpeg -i yamap-sr-20250426-orig.mp4 -vf scale=480:-2 -c:v libx264 -preset medium -crf 28 -c:a aac -b:a 128k yamap-sr-20250426-compact1.mp4
 ```
 
 サイズは1/4程度まで小さくなった。オリジナルと比べると明らかに劣化していることはわかるが、日記に掲載するのであれば十分な品質にみえる。
