@@ -52,8 +52,10 @@ showFullContent: true
 
 > 充電式 (micro usb)<br />
 > 明るさ: 最大400ルーメン (無段階調整)<br />
-> 稼働時間: 最大の明るさで6時間以上<br />
-> 重量: 69g<br />
+> 照射距離と稼働時間の目安: MAX 400ルーメン、100m、4時間 MED 200ルーメン、60m、8時間 LOW 6ルーメン、12m、225時間<br />
+> 重量: 73g<br />
+
+{{< figure file=spot-r-400-spec.jpg >}}
 
 <a href="https://amzn.to/3StbCME" target="_blank"><img src="https://m.media-amazon.com/images/I/61FqDMnMPrL._AC_SX679_.jpg" width="320"></a>
 
