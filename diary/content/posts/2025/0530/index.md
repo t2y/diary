@@ -65,7 +65,8 @@ showFullContent: true
 
 > 充電式 (usb type-c)<br />
 > 明るさ: 180ルーメン<br />
-> 稼働時間: 12時間<br />
+> 稼働時間: 23分<br />
+> 照射距離と稼働時間の目安: HIGH 180ルーメン、48m、23分、LOW 5ルーメン、？、12時間<br />
 > 重量: 22g<br />
 
 <a href="https://amzn.to/4kPexeV" target="_blank"><img src="https://m.media-amazon.com/images/I/61g61Cp4sBL._AC_SX679_.jpg" width="320"></a>
@@ -75,7 +76,8 @@ showFullContent: true
 > 単3乾電池1本<br />
 > 明るさ: 100ルーメン<br />
 > 稼働時間: 3時間<br />
-> 重量: 80g<br />
+> 照射距離: 70m (スポット配光時)<br />
+> 重量: 約75g (本体:45g + 単3乾電池:約30g)<br />
 
 <a href="https://amzn.to/3Ft3sB8" target="_blank"><img src="https://m.media-amazon.com/images/I/51XMFGyZqQL._AC_SX679_.jpg" width="320"></a>
 
